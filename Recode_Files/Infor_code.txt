@@ -5,7 +5,7 @@ if !_rc{
      tostring I_A2, replace
 }
 
-label define I_A2 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define I_A2 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode I_A2, gen(i_a2) label (I_A2)
 
@@ -16,7 +16,7 @@ if !_rc{
      tostring I_A3, replace
 }
 
-label define I_A3 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define I_A3 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode I_A3, gen(i_a3) label (I_A3)
 
@@ -27,7 +27,7 @@ if !_rc{
      tostring I_A4, replace
 }
 
-label define I_A4 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define I_A4 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode I_A4, gen(i_a4) label (I_A4)
 
@@ -60,7 +60,7 @@ if !_rc{
      tostring I_B5, replace
 }
 
-label define I_B5 .a"." 1 "esposo (a)" 2 "hijo/hija" 3 "nuero/nuera" 4 "hermano (a)" 5 "otro parentesco" 6 "amigo" 7 "vecino(a)" 8 "otro" 8 "no responde"
+label define I_B5 .a"." 1 "esposo (a)" 2 "hijo/hija" 3 "nuero/nuera" 4 "hermano (a)" 5 "otro parentesco" 6 "amigo" 7 "vecino(a)" 8 "otro" 88 "no responde"
 
 encode I_B5, gen(i_b5) label (I_B5)
 
@@ -82,7 +82,7 @@ if !_rc{
      tostring I_C2, replace
 }
 
-label define I_C2 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define I_C2 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode I_C2, gen(i_c2) label (I_C2)
 
@@ -115,7 +115,7 @@ if !_rc{
      tostring I_C5, replace
 }
 
-label define I_C5 .a"." 1 "sí he dejado de trabajar" 2 "sí he disminuido horas de trabajo" 0 "no"8 "no responde"
+label define I_C5 .a"." 1 "sí he dejado de trabajar" 2 "sí he disminuido horas de trabajo" 3 "no" 8 "no responde"
 
 encode I_C5, gen(i_c5) label (I_C5)
 
@@ -126,7 +126,7 @@ if !_rc{
      tostring I_C9, replace
 }
 
-label define I_C9 .a"." 1 "si"0 "no"8 "no responde"
+label define I_C9 .a"." 1 "si" 2 "no" 8 "no responde"
 
 encode I_C9, gen(i_c9) label (I_C9)
 
@@ -137,7 +137,7 @@ if !_rc{
      tostring I_C11, replace
 }
 
-label define I_C11 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define I_C11 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode I_C11, gen(i_c11) label (I_C11)
 
@@ -148,7 +148,7 @@ if !_rc{
      tostring I_C23, replace
 }
 
-label define I_C23 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define I_C23 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode I_C23, gen(i_c23) label (I_C23)
 
@@ -159,7 +159,7 @@ if !_rc{
      tostring I_C25, replace
 }
 
-label define I_C25 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define I_C25 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode I_C25, gen(i_c25) label (I_C25)
 
@@ -170,7 +170,7 @@ if !_rc{
      tostring I_C26A, replace
 }
 
-label define I_C26A .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define I_C26A .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode I_C26A, gen(i_c26a) label (I_C26A)
 
@@ -181,7 +181,7 @@ if !_rc{
      tostring I_C27A, replace
 }
 
-label define I_C27A .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define I_C27A .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode I_C27A, gen(i_c27a) label (I_C27A)
 
@@ -192,7 +192,7 @@ if !_rc{
      tostring I_D2, replace
 }
 
-label define I_D2 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+label define I_D2 .a"." 0 "nunca" 1 "raras veces" 2 "algunas veces" 3 "bastante frecuente" 4 "casi siempre" 8 "no responde"
 
 encode I_D2, gen(i_d2) label (I_D2)
 
@@ -203,7 +203,7 @@ if !_rc{
      tostring I_D3, replace
 }
 
-label define I_D3 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+label define I_D3 .a"." 0 "nunca" 1 "raras veces" 2 "algunas veces" 3 "bastante frecuente" 4 "casi siempre" 8 "no responde"
 
 encode I_D3, gen(i_d3) label (I_D3)
 
@@ -214,7 +214,7 @@ if !_rc{
      tostring I_D5, replace
 }
 
-label define I_D5 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+label define I_D5 .a"." 0 "nunca" 1 "raras veces" 2 "algunas veces" 3 "bastante frecuente" 4 "casi siempre" 8 "no responde"
 
 encode I_D5, gen(i_d5) label (I_D5)
 
@@ -225,7 +225,7 @@ if !_rc{
      tostring I_D6, replace
 }
 
-label define I_D6 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+label define I_D6 .a"."01 "nunca" 1 "raras veces" 2 "algunas veces" 3 "bastante frecuente" 4 "casi siempre" 8 "no responde"
 
 encode I_D6, gen(i_d6) label (I_D6)
 
@@ -236,7 +236,7 @@ if !_rc{
      tostring I_D9, replace
 }
 
-label define I_D9 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+label define I_D9 .a"." 0 "nunca" 1 "raras veces" 2 "algunas veces" 3 "bastante frecuente" 4 "casi siempre" 8 "no responde"
 
 encode I_D9, gen(i_d9) label (I_D9)
 
@@ -247,7 +247,7 @@ if !_rc{
      tostring I_D10, replace
 }
 
-label define I_D10 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+label define I_D10 .a"." 0 "nunca" 1 "raras veces" 2 "algunas veces" 3 "bastante frecuente" 4 "casi siempre" 8 "no responde"
 
 encode I_D10, gen(i_d10) label (I_D10)
 
@@ -258,7 +258,7 @@ if !_rc{
      tostring I_D11, replace
 }
 
-label define I_D11 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+label define I_D11 .a"." 0 "nunca" 1 "raras veces" 2 "algunas veces" 3 "bastante frecuente" 4 "casi siempre" 8 "no responde"
 
 encode I_D11, gen(i_d11) label (I_D11)
 
@@ -269,7 +269,7 @@ if !_rc{
      tostring I_D12, replace
 }
 
-label define I_D12 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+label define I_D12 .a"." 0 "nunca" 1 "raras veces" 2 "algunas veces" 3 "bastante frecuente" 4 "casi siempre" 8 "no responde"
 
 encode I_D12, gen(i_d12) label (I_D12)
 
@@ -280,7 +280,7 @@ if !_rc{
      tostring I_D17, replace
 }
 
-label define I_D17 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+label define I_D17 .a"." 0 "nunca" 1 "raras veces" 2 "algunas veces" 3 "bastante frecuente" 4 "casi siempre" 8 "no responde"
 
 encode I_D17, gen(i_d17) label (I_D17)
 
@@ -291,7 +291,7 @@ if !_rc{
      tostring I_D19, replace
 }
 
-label define I_D19 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+label define I_D19 .a"." 0 "nunca" 1 "raras veces" 2 "algunas veces" 3 "bastante frecuente" 4 "casi siempre" 8 "no responde"
 
 encode I_D19, gen(i_d19) label (I_D19)
 
@@ -302,7 +302,7 @@ if !_rc{
      tostring I_D20, replace
 }
 
-label define I_D20 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+label define I_D20 .a"." 0 "nunca" 1 "raras veces" 2 "algunas veces" 3 "bastante frecuente" 4 "casi siempre" 8 "no responde"
 
 encode I_D20, gen(i_d20) label (I_D20)
 
@@ -313,7 +313,7 @@ if !_rc{
      tostring I_D21, replace
 }
 
-label define I_D21 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+label define I_D21 .a"." 0 "nunca" 1 "raras veces" 2 "algunas veces" 3 "bastante frecuente" 4 "casi siempre" 8 "no responde"
 
 encode I_D21, gen(i_d21) label (I_D21)
 
@@ -500,7 +500,7 @@ if !_rc{
      tostring I_F_CSID_1, replace
 }
 
-label define I_F_CSID_1 .a"." 1 "no hay cambios" 2 "disminución de las actividades y reducida" 
+label define I_F_CSID_1 .a"." 0 "no hay cambios" 1 "disminución de las actividades y reducida" 
 
 encode I_F_CSID_1, gen(i_f_csid_1) label (I_F_CSID_1)
 
@@ -511,7 +511,7 @@ if !_rc{
      tostring I_F_CSID_2, replace
 }
 
-label define I_F_CSID_2 .a"." 1 "no hay cambios" 2 "deterioro general" 
+label define I_F_CSID_2 .a"." 0 "no hay cambios" 1 "deterioro general" 
 
 encode I_F_CSID_2, gen(i_f_csid_2) label (I_F_CSID_2)
 
@@ -522,7 +522,7 @@ if !_rc{
      tostring I_F_CSID_3, replace
 }
 
-label define I_F_CSID_3 .a"." 0 "no"1 "si"
+label define I_F_CSID_3 .a"." 0 "no" 1 "si" 
 
 encode I_F_CSID_3, gen(i_f_csid_3) label (I_F_CSID_3)
 
@@ -533,7 +533,7 @@ if !_rc{
      tostring I_F_CSID_4, replace
 }
 
-label define I_F_CSID_4 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+label define I_F_CSID_4 .a"." 0 "nunca" 1 "si algunas veces" 2 "si regularmente" 
 
 encode I_F_CSID_4, gen(i_f_csid_4) label (I_F_CSID_4)
 
@@ -544,7 +544,7 @@ if !_rc{
      tostring I_F_CSID_5, replace
 }
 
-label define I_F_CSID_5 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+label define I_F_CSID_5 .a"." 0 "nunca" 1 "si algunas veces" 2 "si regularmente" 
 
 encode I_F_CSID_5, gen(i_f_csid_5) label (I_F_CSID_5)
 
@@ -555,7 +555,7 @@ if !_rc{
      tostring I_F_BSE_3, replace
 }
 
-label define I_F_BSE_3 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+label define I_F_BSE_3 .a"." 0 "nunca" 1 "si algunas veces" 2 "si regularmente" 
 
 encode I_F_BSE_3, gen(i_f_bse_3) label (I_F_BSE_3)
 
@@ -566,7 +566,7 @@ if !_rc{
      tostring I_F_BSE_7, replace
 }
 
-label define I_F_BSE_7 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+label define I_F_BSE_7 .a"." 0 "nunca" 1 "si algunas veces" 2 "si regularmente" 
 
 encode I_F_BSE_7, gen(i_f_bse_7) label (I_F_BSE_7)
 
@@ -577,7 +577,7 @@ if !_rc{
      tostring I_F_CSID_6, replace
 }
 
-label define I_F_CSID_6 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+label define I_F_CSID_6 .a"." 0 "nunca" 1 "si algunas veces" 2 "si regularmente" 
 
 encode I_F_CSID_6, gen(i_f_csid_6) label (I_F_CSID_6)
 
@@ -588,7 +588,7 @@ if !_rc{
      tostring I_F_CSID_7, replace
 }
 
-label define I_F_CSID_7 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+label define I_F_CSID_7 .a"." 0 "nunca" 1 "si algunas veces" 2 "si regularmente" 
 
 encode I_F_CSID_7, gen(i_f_csid_7) label (I_F_CSID_7)
 
@@ -599,7 +599,7 @@ if !_rc{
      tostring I_F_CSID_8, replace
 }
 
-label define I_F_CSID_8 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+label define I_F_CSID_8 .a"." 0 "nunca" 1 "si algunas veces" 2 "si regularmente" 
 
 encode I_F_CSID_8, gen(i_f_csid_8) label (I_F_CSID_8)
 
@@ -610,7 +610,7 @@ if !_rc{
      tostring I_F_CSID_9, replace
 }
 
-label define I_F_CSID_9 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+label define I_F_CSID_9 .a"." 0 "nunca" 1 "si algunas veces" 2 "si regularmente" 
 
 encode I_F_CSID_9, gen(i_f_csid_9) label (I_F_CSID_9)
 
@@ -621,7 +621,7 @@ if !_rc{
      tostring I_F_CSID_10, replace
 }
 
-label define I_F_CSID_10 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+label define I_F_CSID_10 .a"." 0 "nunca" 1 "si algunas veces" 2 "si regularmente" 
 
 encode I_F_CSID_10, gen(i_f_csid_10) label (I_F_CSID_10)
 
@@ -632,7 +632,7 @@ if !_rc{
      tostring I_F_CSID_11, replace
 }
 
-label define I_F_CSID_11 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+label define I_F_CSID_11 .a"." 0 "nunca" 1 "si algunas veces" 2 "si regularmente" 
 
 encode I_F_CSID_11, gen(i_f_csid_11) label (I_F_CSID_11)
 
@@ -643,7 +643,7 @@ if !_rc{
      tostring I_F_CSID_12, replace
 }
 
-label define I_F_CSID_12 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+label define I_F_CSID_12 .a"." 0 "nunca" 1 "si algunas veces" 2 "si regularmente" 
 
 encode I_F_CSID_12, gen(i_f_csid_12) label (I_F_CSID_12)
 
@@ -654,7 +654,7 @@ if !_rc{
      tostring I_F_CSID_13, replace
 }
 
-label define I_F_CSID_13 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+label define I_F_CSID_13 .a"." 0 "nunca" 1 "si algunas veces" 2 "si regularmente" 
 
 encode I_F_CSID_13, gen(i_f_csid_13) label (I_F_CSID_13)
 
@@ -665,7 +665,7 @@ if !_rc{
      tostring I_F_CSID_14, replace
 }
 
-label define I_F_CSID_14 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+label define I_F_CSID_14 .a"." 0 "nunca" 1 "si algunas veces" 2 "si regularmente" 
 
 encode I_F_CSID_14, gen(i_f_csid_14) label (I_F_CSID_14)
 
@@ -676,7 +676,7 @@ if !_rc{
      tostring I_F_CSID_15, replace
 }
 
-label define I_F_CSID_15 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+label define I_F_CSID_15 .a"." 0 "nunca" 1 "si algunas veces" 2 "si regularmente" 
 
 encode I_F_CSID_15, gen(i_f_csid_15) label (I_F_CSID_15)
 
@@ -687,7 +687,7 @@ if !_rc{
      tostring I_F_CSID_16, replace
 }
 
-label define I_F_CSID_16 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+label define I_F_CSID_16 .a"." 0 "nunca" 1 "si algunas veces" 2 "si regularmente" 
 
 encode I_F_CSID_16, gen(i_f_csid_16) label (I_F_CSID_16)
 
@@ -698,7 +698,7 @@ if !_rc{
      tostring I_F_CSID_17, replace
 }
 
-label define I_F_CSID_17 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+label define I_F_CSID_17 .a"." 0 "nunca" 1 "si algunas veces" 2 "si regularmente" 
 
 encode I_F_CSID_17, gen(i_f_csid_17) label (I_F_CSID_17)
 
@@ -709,7 +709,7 @@ if !_rc{
      tostring I_F_CSID_17A, replace
 }
 
-label define I_F_CSID_17A .a"." 0 "no"1 "si"
+label define I_F_CSID_17A .a"." 0 "no" 1 "si" 
 
 encode I_F_CSID_17A, gen(i_f_csid_17a) label (I_F_CSID_17A)
 
@@ -720,7 +720,7 @@ if !_rc{
      tostring I_F_CSID_18, replace
 }
 
-label define I_F_CSID_18 .a"." 0 "no"1 "si"
+label define I_F_CSID_18 .a"." 0 "no" 1 "si" 
 
 encode I_F_CSID_18, gen(i_f_csid_18) label (I_F_CSID_18)
 
@@ -731,7 +731,7 @@ if !_rc{
      tostring I_F_CSID_19, replace
 }
 
-label define I_F_CSID_19 .a"." 1 "no muestra dificultad" 2 "alguna dificultad" 3 "no puede manejar el dinero" 
+label define I_F_CSID_19 .a"." 0 "no muestra dificultad" 1 "alguna dificultad" 2 "no puede manejar el dinero" 
 
 encode I_F_CSID_19, gen(i_f_csid_19) label (I_F_CSID_19)
 
@@ -742,7 +742,7 @@ if !_rc{
      tostring I_F_CSID_20, replace
 }
 
-label define I_F_CSID_20 .a"." 0 "no"2 "si algunas veces" 3 "si regularmente" 
+label define I_F_CSID_20 .a"." 0 "no" 1 "si algunas veces" 2 "si regularmente" 
 
 encode I_F_CSID_20, gen(i_f_csid_20) label (I_F_CSID_20)
 
@@ -753,7 +753,7 @@ if !_rc{
      tostring I_F_CSID_21, replace
 }
 
-label define I_F_CSID_21 .a"." 0 "no"2 "si algunas veces" 3 "si regularmente" 
+label define I_F_CSID_21 .a"." 0 "no" 1 "si algunas veces" 2 "si regularmente" 
 
 encode I_F_CSID_21, gen(i_f_csid_21) label (I_F_CSID_21)
 
@@ -764,7 +764,7 @@ if !_rc{
      tostring I_F_CSID_22_1, replace
 }
 
-label define I_F_CSID_22_1 .a"." 1 "come de manera limpia y con utensilios apropiados" 2 "se ensucia al comer. solo usa la cuchara" 3 "sólidos simples como galletitas" 4 "tiene que ser alimentada" 
+label define I_F_CSID_22_1 .a"." 0 "come de manera limpia y con utensilios apropiados" 1 "se ensucia al comer. solo usa la cuchara" 2 "sólidos simples como galletitas" 3 "tiene que ser alimentada" 
 
 encode I_F_CSID_22_1, gen(i_f_csid_22_1) label (I_F_CSID_22_1)
 
@@ -775,7 +775,7 @@ if !_rc{
      tostring I_F_CSID_22_2, replace
 }
 
-label define I_F_CSID_22_2 .a"." 0 "no"1 "si"
+label define I_F_CSID_22_2 .a"." 0 "no" 1 "si" 
 
 encode I_F_CSID_22_2, gen(i_f_csid_22_2) label (I_F_CSID_22_2)
 
@@ -786,7 +786,7 @@ if !_rc{
      tostring I_F_CSID_23_1, replace
 }
 
-label define I_F_CSID_23_1 .a"." 1 "se viste sola/o" 2 "ocasionalmente salta un botón etc" 3 "secuencia incorrecta a menudo olvida artículos" 4 "incapaz de vestirse" 
+label define I_F_CSID_23_1 .a"." 0 "se viste sola/o" 1 "ocasionalmente salta un botón etc" 2 "secuencia incorrecta a menudo olvida artículos" 3 "incapaz de vestirse" 
 
 encode I_F_CSID_23_1, gen(i_f_csid_23_1) label (I_F_CSID_23_1)
 
@@ -797,7 +797,7 @@ if !_rc{
      tostring I_F_CSID_23_2, replace
 }
 
-label define I_F_CSID_23_2 .a"." 0 "no"1 "si"
+label define I_F_CSID_23_2 .a"." 0 "no" 1 "si" 
 
 encode I_F_CSID_23_2, gen(i_f_csid_23_2) label (I_F_CSID_23_2)
 
@@ -808,7 +808,7 @@ if !_rc{
      tostring I_F_CSID_24_1, replace
 }
 
-label define I_F_CSID_24_1 .a"." 1 "no tiene problemas" 2 "ocasionalmente moja la cama" 3 "frecuentemente moja la cama" 4 "incontinencia doble" 
+label define I_F_CSID_24_1 .a"." 0 "no tiene problemas" 1 "ocasionalmente moja la cama" 2 "frecuentemente moja la cama" 3 "incontinencia doble" 
 
 encode I_F_CSID_24_1, gen(i_f_csid_24_1) label (I_F_CSID_24_1)
 
@@ -819,7 +819,7 @@ if !_rc{
      tostring I_F_CSID_24_2, replace
 }
 
-label define I_F_CSID_24_2 .a"." 0 "no"1 "si"
+label define I_F_CSID_24_2 .a"." 0 "no" 1 "si" 
 
 encode I_F_CSID_24_2, gen(i_f_csid_24_2) label (I_F_CSID_24_2)
 
@@ -830,7 +830,7 @@ if !_rc{
      tostring I_F_CSID_25, replace
 }
 
-label define I_F_CSID_25 .a"." 0 "no"1 "si"
+label define I_F_CSID_25 .a"." 0 "no" 1 "si" 
 
 encode I_F_CSID_25, gen(i_f_csid_25) label (I_F_CSID_25)
 
@@ -841,7 +841,7 @@ if !_rc{
      tostring I_F_CSID_26, replace
 }
 
-label define I_F_CSID_26 .a"." 0 "no"1 "si"
+label define I_F_CSID_26 .a"." 1 "no" 2 "si" 
 
 encode I_F_CSID_26, gen(i_f_csid_26) label (I_F_CSID_26)
 
@@ -852,7 +852,7 @@ if !_rc{
      tostring I_F_CSID_27, replace
 }
 
-label define I_F_CSID_27 .a"." 0 "no"1 "si"
+label define I_F_CSID_27 .a"." 0 "no" 1 "si" 
 
 encode I_F_CSID_27, gen(i_f_csid_27) label (I_F_CSID_27)
 
@@ -863,7 +863,7 @@ if !_rc{
      tostring I_F_CSID_28, replace
 }
 
-label define I_F_CSID_28 .a"." 0 "no"1 "si"
+label define I_F_CSID_28 .a"." 0 "no" 1 "si" 
 
 encode I_F_CSID_28, gen(i_f_csid_28) label (I_F_CSID_28)
 
@@ -874,7 +874,7 @@ if !_rc{
      tostring I_G1, replace
 }
 
-label define I_G1 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_G1 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_G1, gen(i_g1) label (I_G1)
 
@@ -885,7 +885,7 @@ if !_rc{
      tostring I_G1_2, replace
 }
 
-label define I_G1_2 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_G1_2 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_G1_2, gen(i_g1_2) label (I_G1_2)
 
@@ -896,7 +896,7 @@ if !_rc{
      tostring I_G1_3, replace
 }
 
-label define I_G1_3 .a"." 1 "ninguna ayuda" 2 "un poco de ayuda" 3 "de mucha ayuda" 8 "no responde"9 "no sabe"
+label define I_G1_3 .a"." 0 "ninguna ayuda" 1 "un poco de ayuda" 2 "de mucha ayuda" 8 "no responde"9 "no sabe"
 
 encode I_G1_3, gen(i_g1_3) label (I_G1_3)
 
@@ -907,7 +907,7 @@ if !_rc{
      tostring I_G1_4, replace
 }
 
-label define I_G1_4 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_G1_4 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_G1_4, gen(i_g1_4) label (I_G1_4)
 
@@ -918,7 +918,7 @@ if !_rc{
      tostring I_G1_5, replace
 }
 
-label define I_G1_5 .a"." 1 "ninguna ayuda" 2 "un poco de ayuda" 3 "de mucha ayuda" 8 "no responde"9 "no sabe"
+label define I_G1_5 .a"." 0 "ninguna ayuda" 1 "un poco de ayuda" 2 "de mucha ayuda" 8 "no responde"9 "no sabe"
 
 encode I_G1_5, gen(i_g1_5) label (I_G1_5)
 
@@ -940,7 +940,7 @@ if !_rc{
      tostring I_G_HAS_3_1, replace
 }
 
-label define I_G_HAS_3_1 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_G_HAS_3_1 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_G_HAS_3_1, gen(i_g_has_3_1) label (I_G_HAS_3_1)
 
@@ -951,7 +951,7 @@ if !_rc{
      tostring I_G_HAS_3_11, replace
 }
 
-label define I_G_HAS_3_11 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_G_HAS_3_11 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_G_HAS_3_11, gen(i_g_has_3_11) label (I_G_HAS_3_11)
 
@@ -962,7 +962,7 @@ if !_rc{
      tostring I_G_HAS_3_13, replace
 }
 
-label define I_G_HAS_3_13 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_G_HAS_3_13 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_G_HAS_3_13, gen(i_g_has_3_13) label (I_G_HAS_3_13)
 
@@ -973,7 +973,7 @@ if !_rc{
      tostring I_G_HAS_3_14, replace
 }
 
-label define I_G_HAS_3_14 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_G_HAS_3_14 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_G_HAS_3_14, gen(i_g_has_3_14) label (I_G_HAS_3_14)
 
@@ -984,7 +984,7 @@ if !_rc{
      tostring I_G_HAS_3_16, replace
 }
 
-label define I_G_HAS_3_16 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_G_HAS_3_16 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_G_HAS_3_16, gen(i_g_has_3_16) label (I_G_HAS_3_16)
 
@@ -1006,7 +1006,7 @@ if !_rc{
      tostring I_G_HAS_4, replace
 }
 
-label define I_G_HAS_4 .a"." 1 "no vario" 2 "un curso fluctuante con varios días o semanas de mejoría" 8 "no responde"9 "no sabe"
+label define I_G_HAS_4 .a"." 0 "no vario" 1 "un curso fluctuante con varios días o semanas de mejoría" 8 "no responde"9 "no sabe"
 
 encode I_G_HAS_4, gen(i_g_has_4) label (I_G_HAS_4)
 
@@ -1017,7 +1017,7 @@ if !_rc{
      tostring I_G_HAS_5_1, replace
 }
 
-label define I_G_HAS_5_1 .a"." 1 "no retornaron a lo normal" 2 "condición descrita como retorno a lo normal o casi normal" 8 "no responde"9 "no sabe"
+label define I_G_HAS_5_1 .a"." 0 "no retornaron a lo normal" 1 "condición descrita como retorno a lo normal o casi normal" 8 "no responde"9 "no sabe"
 
 encode I_G_HAS_5_1, gen(i_g_has_5_1) label (I_G_HAS_5_1)
 
@@ -1028,7 +1028,7 @@ if !_rc{
      tostring I_G_HAS_6, replace
 }
 
-label define I_G_HAS_6 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_G_HAS_6 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_G_HAS_6, gen(i_g_has_6) label (I_G_HAS_6)
 
@@ -1039,7 +1039,7 @@ if !_rc{
      tostring I_G_HAS_7_1, replace
 }
 
-label define I_G_HAS_7_1 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_G_HAS_7_1 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_G_HAS_7_1, gen(i_g_has_7_1) label (I_G_HAS_7_1)
 
@@ -1050,7 +1050,7 @@ if !_rc{
      tostring I_G_HAS_10, replace
 }
 
-label define I_G_HAS_10 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_G_HAS_10 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_G_HAS_10, gen(i_g_has_10) label (I_G_HAS_10)
 
@@ -1061,7 +1061,7 @@ if !_rc{
      tostring I_G_HAS_11, replace
 }
 
-label define I_G_HAS_11 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_G_HAS_11 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_G_HAS_11, gen(i_g_has_11) label (I_G_HAS_11)
 
@@ -1072,7 +1072,7 @@ if !_rc{
      tostring I_G_HAS_12, replace
 }
 
-label define I_G_HAS_12 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_G_HAS_12 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_G_HAS_12, gen(i_g_has_12) label (I_G_HAS_12)
 
@@ -1083,7 +1083,7 @@ if !_rc{
      tostring I_G_HAS_13, replace
 }
 
-label define I_G_HAS_13 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_G_HAS_13 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_G_HAS_13, gen(i_g_has_13) label (I_G_HAS_13)
 
@@ -1094,7 +1094,7 @@ if !_rc{
      tostring I_G_HAS_14_1, replace
 }
 
-label define I_G_HAS_14_1 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_G_HAS_14_1 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_G_HAS_14_1, gen(i_g_has_14_1) label (I_G_HAS_14_1)
 
@@ -1105,7 +1105,7 @@ if !_rc{
      tostring I_G_HAS_15, replace
 }
 
-label define I_G_HAS_15 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_G_HAS_15 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_G_HAS_15, gen(i_g_has_15) label (I_G_HAS_15)
 
@@ -1116,7 +1116,7 @@ if !_rc{
      tostring I_G_HAS_17, replace
 }
 
-label define I_G_HAS_17 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_G_HAS_17 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_G_HAS_17, gen(i_g_has_17) label (I_G_HAS_17)
 
@@ -1127,7 +1127,7 @@ if !_rc{
      tostring I_G_HAS_18, replace
 }
 
-label define I_G_HAS_18 .a"." 1 "solo han sucedido recientemente" 2 "una de las primeras cosas" 8 "no responde"9 "no sabe"
+label define I_G_HAS_18 .a"." 0 "solo han sucedido recientemente" 1 "una de las primeras cosas" 8 "no responde"9 "no sabe"
 
 encode I_G_HAS_18, gen(i_g_has_18) label (I_G_HAS_18)
 
@@ -1138,7 +1138,7 @@ if !_rc{
      tostring I_G_HAS_47, replace
 }
 
-label define I_G_HAS_47 .a"." 0 "no"2 "si probablemente" 3 "si definitivamente" 8 "no responde"9 "no sabe"
+label define I_G_HAS_47 .a"." 0 "no" 1 "si probablemente" 2 "si definitivamente" 8 "no responde"9 "no sabe"
 
 encode I_G_HAS_47, gen(i_g_has_47) label (I_G_HAS_47)
 
@@ -1149,7 +1149,7 @@ if !_rc{
      tostring I_G_HAS_48, replace
 }
 
-label define I_G_HAS_48 .a"." 0 "no"2 "si probablemente" 3 "si definitivamente" 8 "no responde"9 "no sabe"
+label define I_G_HAS_48 .a"." 0 "no" 1 "si probablemente" 2 "si definitivamente" 8 "no responde"9 "no sabe"
 
 encode I_G_HAS_48, gen(i_g_has_48) label (I_G_HAS_48)
 
@@ -1160,7 +1160,7 @@ if !_rc{
      tostring I_G_HAS_49, replace
 }
 
-label define I_G_HAS_49 .a"." 0 "no"2 "de unos minutos a una hora" 3 "más de una hora" 8 "no responde"9 "no sabe"
+label define I_G_HAS_49 .a"." 0 "no" 1 "de unos minutos a una hora" 2 "más de una hora" 8 "no responde"9 "no sabe"
 
 encode I_G_HAS_49, gen(i_g_has_49) label (I_G_HAS_49)
 
@@ -1171,7 +1171,7 @@ if !_rc{
      tostring I_G_HAS_50, replace
 }
 
-label define I_G_HAS_50 .a"." 1 "no han ocurrido tales cambios" 2 "seria condición afectando la cabeza causando cambios" 8 "no responde"9 "no sabe"
+label define I_G_HAS_50 .a"." 0 "no han ocurrido tales cambios" 1 "seria condición afectando la cabeza causando cambios" 8 "no responde"9 "no sabe"
 
 encode I_G_HAS_50, gen(i_g_has_50) label (I_G_HAS_50)
 
@@ -1182,7 +1182,7 @@ if !_rc{
      tostring I_G_HAS_52, replace
 }
 
-label define I_G_HAS_52 .a"." 0 "no"1 "si"
+label define I_G_HAS_52 .a"." 0 "no" 1 "si" 
 
 encode I_G_HAS_52, gen(i_g_has_52) label (I_G_HAS_52)
 
@@ -1193,7 +1193,7 @@ if !_rc{
      tostring I_H_NPI_1, replace
 }
 
-label define I_H_NPI_1 .a"." 0 "no"1 "si"3 "no reponde" 9 "no sabe"
+label define I_H_NPI_1 .a"." 0 "no" 1 "si" 8 "no reponde" 9 "no sabe"
 
 encode I_H_NPI_1, gen(i_h_npi_1) label (I_H_NPI_1)
 
@@ -1215,7 +1215,7 @@ if !_rc{
      tostring I_H_NPI_1_2, replace
 }
 
-label define I_H_NPI_1_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+label define I_H_NPI_1_2 .a"." 0 "no produce ningún malestar" 1 "mínimo (malestar ligero no es un problema manejarlo)" 2 "ligero (no mucho malestar fácil de manejarlo)" 3 "moderado (bastante malestar no siempre fácil de manejar)" 4 "severo (mucho malestar difícil de manejar)" 5 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
 
 encode I_H_NPI_1_2, gen(i_h_npi_1_2) label (I_H_NPI_1_2)
 
@@ -1226,7 +1226,7 @@ if !_rc{
      tostring I_H_NPI_2, replace
 }
 
-label define I_H_NPI_2 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_H_NPI_2 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_H_NPI_2, gen(i_h_npi_2) label (I_H_NPI_2)
 
@@ -1248,7 +1248,7 @@ if !_rc{
      tostring I_H_NPI_2_2, replace
 }
 
-label define I_H_NPI_2_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+label define I_H_NPI_2_2 .a"." 0 "no produce ningún malestar" 1 "mínimo (malestar ligero no es un problema manejarlo)" 2 "ligero (no mucho malestar fácil de manejarlo)" 3 "moderado (bastante malestar no siempre fácil de manejar)" 4 "severo (mucho malestar difícil de manejar)" 5 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
 
 encode I_H_NPI_2_2, gen(i_h_npi_2_2) label (I_H_NPI_2_2)
 
@@ -1259,7 +1259,7 @@ if !_rc{
      tostring I_H_NPI_3, replace
 }
 
-label define I_H_NPI_3 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_H_NPI_3 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_H_NPI_3, gen(i_h_npi_3) label (I_H_NPI_3)
 
@@ -1281,7 +1281,7 @@ if !_rc{
      tostring I_H_NPI_3_2, replace
 }
 
-label define I_H_NPI_3_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+label define I_H_NPI_3_2 .a"." 0 "no produce ningún malestar" 1 "mínimo (malestar ligero no es un problema manejarlo)" 2 "ligero (no mucho malestar fácil de manejarlo)" 3 "moderado (bastante malestar no siempre fácil de manejar)" 4 "severo (mucho malestar difícil de manejar)" 5 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
 
 encode I_H_NPI_3_2, gen(i_h_npi_3_2) label (I_H_NPI_3_2)
 
@@ -1292,7 +1292,7 @@ if !_rc{
      tostring I_H_NPI_4, replace
 }
 
-label define I_H_NPI_4 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_H_NPI_4 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_H_NPI_4, gen(i_h_npi_4) label (I_H_NPI_4)
 
@@ -1314,7 +1314,7 @@ if !_rc{
      tostring I_H_NPI_4_2, replace
 }
 
-label define I_H_NPI_4_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+label define I_H_NPI_4_2 .a"." 0 "no produce ningún malestar" 1 "mínimo (malestar ligero no es un problema manejarlo)" 2 "ligero (no mucho malestar fácil de manejarlo)" 3 "moderado (bastante malestar no siempre fácil de manejar)" 4 "severo (mucho malestar difícil de manejar)" 5 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
 
 encode I_H_NPI_4_2, gen(i_h_npi_4_2) label (I_H_NPI_4_2)
 
@@ -1325,7 +1325,7 @@ if !_rc{
      tostring I_H_NPI_5, replace
 }
 
-label define I_H_NPI_5 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_H_NPI_5 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_H_NPI_5, gen(i_h_npi_5) label (I_H_NPI_5)
 
@@ -1347,7 +1347,7 @@ if !_rc{
      tostring I_H_NPI_5_2, replace
 }
 
-label define I_H_NPI_5_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+label define I_H_NPI_5_2 .a"." 0 "no produce ningún malestar" 1 "mínimo (malestar ligero no es un problema manejarlo)" 2 "ligero (no mucho malestar fácil de manejarlo)" 3 "moderado (bastante malestar no siempre fácil de manejar)" 4 "severo (mucho malestar difícil de manejar)" 5 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
 
 encode I_H_NPI_5_2, gen(i_h_npi_5_2) label (I_H_NPI_5_2)
 
@@ -1358,7 +1358,7 @@ if !_rc{
      tostring I_H_NPI_6, replace
 }
 
-label define I_H_NPI_6 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_H_NPI_6 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_H_NPI_6, gen(i_h_npi_6) label (I_H_NPI_6)
 
@@ -1380,7 +1380,7 @@ if !_rc{
      tostring I_H_NPI_6_2, replace
 }
 
-label define I_H_NPI_6_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+label define I_H_NPI_6_2 .a"." 0 "no produce ningún malestar" 1 "mínimo (malestar ligero no es un problema manejarlo)" 2 "ligero (no mucho malestar fácil de manejarlo)" 3 "moderado (bastante malestar no siempre fácil de manejar)" 4 "severo (mucho malestar difícil de manejar)" 5 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
 
 encode I_H_NPI_6_2, gen(i_h_npi_6_2) label (I_H_NPI_6_2)
 
@@ -1391,7 +1391,7 @@ if !_rc{
      tostring I_H_NPI_7, replace
 }
 
-label define I_H_NPI_7 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_H_NPI_7 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_H_NPI_7, gen(i_h_npi_7) label (I_H_NPI_7)
 
@@ -1413,7 +1413,7 @@ if !_rc{
      tostring I_H_NPI_7_2, replace
 }
 
-label define I_H_NPI_7_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+label define I_H_NPI_7_2 .a"." 0 "no produce ningún malestar" 1 "mínimo (malestar ligero no es un problema manejarlo)" 2 "ligero (no mucho malestar fácil de manejarlo)" 3 "moderado (bastante malestar no siempre fácil de manejar)" 4 "severo (mucho malestar difícil de manejar)" 5 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
 
 encode I_H_NPI_7_2, gen(i_h_npi_7_2) label (I_H_NPI_7_2)
 
@@ -1424,7 +1424,7 @@ if !_rc{
      tostring I_H_NPI_8, replace
 }
 
-label define I_H_NPI_8 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_H_NPI_8 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_H_NPI_8, gen(i_h_npi_8) label (I_H_NPI_8)
 
@@ -1446,7 +1446,7 @@ if !_rc{
      tostring I_H_NPI_8_2, replace
 }
 
-label define I_H_NPI_8_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+label define I_H_NPI_8_2 .a"." 0 "no produce ningún malestar" 1 "mínimo (malestar ligero no es un problema manejarlo)" 2 "ligero (no mucho malestar fácil de manejarlo)" 3 "moderado (bastante malestar no siempre fácil de manejar)" 4 "severo (mucho malestar difícil de manejar)" 5 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
 
 encode I_H_NPI_8_2, gen(i_h_npi_8_2) label (I_H_NPI_8_2)
 
@@ -1457,7 +1457,7 @@ if !_rc{
      tostring I_H_NPI_9, replace
 }
 
-label define I_H_NPI_9 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_H_NPI_9 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_H_NPI_9, gen(i_h_npi_9) label (I_H_NPI_9)
 
@@ -1479,7 +1479,7 @@ if !_rc{
      tostring I_H_NPI_9_2, replace
 }
 
-label define I_H_NPI_9_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+label define I_H_NPI_9_2 .a"." 0 "no produce ningún malestar" 1 "mínimo (malestar ligero no es un problema manejarlo)" 2 "ligero (no mucho malestar fácil de manejarlo)" 3 "moderado (bastante malestar no siempre fácil de manejar)" 4 "severo (mucho malestar difícil de manejar)" 5 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
 
 encode I_H_NPI_9_2, gen(i_h_npi_9_2) label (I_H_NPI_9_2)
 
@@ -1490,7 +1490,7 @@ if !_rc{
      tostring I_H_NPI_10, replace
 }
 
-label define I_H_NPI_10 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_H_NPI_10 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_H_NPI_10, gen(i_h_npi_10) label (I_H_NPI_10)
 
@@ -1512,7 +1512,7 @@ if !_rc{
      tostring I_H_NPI_10_2, replace
 }
 
-label define I_H_NPI_10_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+label define I_H_NPI_10_2 .a"." 0 "no produce ningún malestar" 1 "mínimo (malestar ligero no es un problema manejarlo)" 2 "ligero (no mucho malestar fácil de manejarlo)" 3 "moderado (bastante malestar no siempre fácil de manejar)" 4 "severo (mucho malestar difícil de manejar)" 5 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
 
 encode I_H_NPI_10_2, gen(i_h_npi_10_2) label (I_H_NPI_10_2)
 
@@ -1523,7 +1523,7 @@ if !_rc{
      tostring I_H_NPI_11, replace
 }
 
-label define I_H_NPI_11 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_H_NPI_11 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_H_NPI_11, gen(i_h_npi_11) label (I_H_NPI_11)
 
@@ -1545,7 +1545,7 @@ if !_rc{
      tostring I_H_NPI_11_2, replace
 }
 
-label define I_H_NPI_11_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+label define I_H_NPI_11_2 .a"." 0 "no produce ningún malestar" 1 "mínimo (malestar ligero no es un problema manejarlo)" 2 "ligero (no mucho malestar fácil de manejarlo)" 3 "moderado (bastante malestar no siempre fácil de manejar)" 4 "severo (mucho malestar difícil de manejar)" 5 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
 
 encode I_H_NPI_11_2, gen(i_h_npi_11_2) label (I_H_NPI_11_2)
 
@@ -1556,7 +1556,7 @@ if !_rc{
      tostring I_H_NPI_12, replace
 }
 
-label define I_H_NPI_12 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_H_NPI_12 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_H_NPI_12, gen(i_h_npi_12) label (I_H_NPI_12)
 
@@ -1578,7 +1578,7 @@ if !_rc{
      tostring I_H_NPI_12_2, replace
 }
 
-label define I_H_NPI_12_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+label define I_H_NPI_12_2 .a"." 0 "no produce ningún malestar" 1 "mínimo (malestar ligero no es un problema manejarlo)" 2 "ligero (no mucho malestar fácil de manejarlo)" 3 "moderado (bastante malestar no siempre fácil de manejar)" 4 "severo (mucho malestar difícil de manejar)" 5 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
 
 encode I_H_NPI_12_2, gen(i_h_npi_12_2) label (I_H_NPI_12_2)
 
@@ -1589,7 +1589,7 @@ if !_rc{
      tostring I_J1, replace
 }
 
-label define I_J1 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_J1 .a"." 0 "no" 3 "si" 8 "no responde"9 "no sabe"
 
 encode I_J1, gen(i_j1) label (I_J1)
 
@@ -1611,7 +1611,7 @@ if !_rc{
      tostring I_J3, replace
 }
 
-label define I_J3 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define I_J3 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_J3, gen(i_j3) label (I_J3)
 
@@ -1622,7 +1622,7 @@ if !_rc{
      tostring I_K_ACT_1, replace
 }
 
-label define I_K_ACT_1 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 9 "no sabe"8 "no responde"
+label define I_K_ACT_1 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 8 "no sabe"9 "no responde"
 
 encode I_K_ACT_1, gen(i_k_act_1) label (I_K_ACT_1)
 
@@ -1633,7 +1633,7 @@ if !_rc{
      tostring I_K_ACT_2, replace
 }
 
-label define I_K_ACT_2 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 9 "no sabe"8 "no responde"
+label define I_K_ACT_2 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 8 "no sabe"9 "no responde"
 
 encode I_K_ACT_2, gen(i_k_act_2) label (I_K_ACT_2)
 
@@ -1644,7 +1644,7 @@ if !_rc{
      tostring I_K_ACT_5, replace
 }
 
-label define I_K_ACT_5 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 9 "no sabe"8 "no responde"
+label define I_K_ACT_5 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 8 "no sabe"9 "no responde"
 
 encode I_K_ACT_5, gen(i_k_act_5) label (I_K_ACT_5)
 
@@ -1655,7 +1655,7 @@ if !_rc{
      tostring I_K_ACT_7, replace
 }
 
-label define I_K_ACT_7 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 9 "no sabe"8 "no responde"
+label define I_K_ACT_7 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 8 "no sabe"9 "no responde"
 
 encode I_K_ACT_7, gen(i_k_act_7) label (I_K_ACT_7)
 
@@ -1666,7 +1666,7 @@ if !_rc{
      tostring I_K_ACT_8, replace
 }
 
-label define I_K_ACT_8 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 9 "no sabe"8 "no responde"
+label define I_K_ACT_8 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 8 "no sabe"9 "no responde"
 
 encode I_K_ACT_8, gen(i_k_act_8) label (I_K_ACT_8)
 
@@ -1677,7 +1677,7 @@ if !_rc{
      tostring I_K_ACT_10, replace
 }
 
-label define I_K_ACT_10 .a"." 1 "si"0 "no"3 "no es costumbre del xxx hacerlo" 9 "no sabe"8 "no responde"
+label define I_K_ACT_10 .a"." 1 "si" 2 "no" 6 "no es costumbre del xxx hacerlo" 8 "no sabe"9 "no responde"
 
 encode I_K_ACT_10, gen(i_k_act_10) label (I_K_ACT_10)
 
@@ -1688,7 +1688,7 @@ if !_rc{
      tostring I_K_ACT_13, replace
 }
 
-label define I_K_ACT_13 .a"." 1 "si"0 "no"9 "no sabe"8 "no responde"
+label define I_K_ACT_13 .a"." 1 "si" 2 "no" 8 "no sabe"9 "no responde"
 
 encode I_K_ACT_13, gen(i_k_act_13) label (I_K_ACT_13)
 
@@ -1699,7 +1699,7 @@ if !_rc{
      tostring I_K_ACT_14, replace
 }
 
-label define I_K_ACT_14 .a"." 1 "si"0 "no"9 "no sabe"8 "no responde"
+label define I_K_ACT_14 .a"." 1 "si" 2 "no" 8 "no sabe"9 "no responde"
 
 encode I_K_ACT_14, gen(i_k_act_14) label (I_K_ACT_14)
 
@@ -1710,7 +1710,7 @@ if !_rc{
      tostring I_K_ACT_15, replace
 }
 
-label define I_K_ACT_15 .a"." 1 "diariamente" 2 "varias veces a la semana" 3 "una vez a la semana" 4 "una vez al mes" 5 "raramente" 6 "nunca" 9 "no sabe"8 "no responde"
+label define I_K_ACT_15 .a"." 1 "diariamente" 2 "varias veces a la semana" 3 "una vez a la semana" 4 "una vez al mes" 5 "raramente" 6 "nunca" 8 "no sabe"9 "no responde"
 
 encode I_K_ACT_15, gen(i_k_act_15) label (I_K_ACT_15)
 
@@ -1721,7 +1721,7 @@ if !_rc{
      tostring I_K_ACT_16, replace
 }
 
-label define I_K_ACT_16 .a"." 1 "diariamente" 2 "varias veces a la semana" 3 "una vez a la semana" 4 "una vez al mes" 5 "raramente" 6 "nunca" 9 "no sabe"8 "no responde"
+label define I_K_ACT_16 .a"." 1 "diariamente" 2 "varias veces a la semana" 3 "una vez a la semana" 4 "una vez al mes" 5 "raramente" 6 "nunca" 8 "no sabe"9 "no responde"
 
 encode I_K_ACT_16, gen(i_k_act_16) label (I_K_ACT_16)
 
@@ -1732,7 +1732,7 @@ if !_rc{
      tostring I_K_ACT_17, replace
 }
 
-label define I_K_ACT_17 .a"." 1 "solo" 2 "acompañado" 9 "no sabe"8 "no responde"
+label define I_K_ACT_17 .a"." 1 "solo" 2 "acompañado" 8 "no sabe"9 "no responde"
 
 encode I_K_ACT_17, gen(i_k_act_17) label (I_K_ACT_17)
 
@@ -1743,7 +1743,23 @@ if !_rc{
      tostring I_LHAS_54, replace
 }
 
-label define I_LHAS_54 .a"." 1 "razonable" 2 "algunas dudas" 3 "dudas moderadas" 4 "dudas graves" 5 "sin valor" 
+label define I_LHAS_54 .a"." 0 "razonable" 1 "algunas dudas" 2 "dudas moderadas" 3 "dudas graves" 4 "sin valor" 
 
 encode I_LHAS_54, gen(i_lhas_54) label (I_LHAS_54)
 
+
+
+
+label define I_B7 .a "." 0 "ningunos" 1 "de 1 a 5" 2 "de 6 a 8" 3 "de 9 a 12" 4 "mas que 12" 8 "no responde" 9 "no sabe"
+
+label values i_b7 I_B7
+
+
+label define I_C7_1 .a "." 1 "profesional ejecutivo" 2 "oficinista" 3 "vendedor minorista" 4 "agricultor independiente" 5 "trabajador agricola" 6 "trabajador domestico" 7 "otros servicios" 8 "trabajador especializado" 9 "trabajador no especializado" 10 "trabajos informales" 13 "otros" 88 "no responde"
+
+label values i_c7_1 I_C7_1
+
+
+label define I_C8A .a "." 1 "todo el tiempo enfocado exclusivamente en su (xxx)" 2 "la mayor parte del tiempo enfocado en su (xxx)" 3 "mitad y mitad" 4 "la mayor parte del tiempo haciendo otras tareas u ocio" 8 "no responde" 9 "no sabe"
+
+label values i_c8a I_C8A

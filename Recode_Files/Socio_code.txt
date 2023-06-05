@@ -27,7 +27,7 @@ if !_rc{
      tostring S_1_1_C, replace
 }
 
-label define S_1_1_C .a"." 1 "negro(a)" 2 "blanco(a)" 3 "mulato(a) / mestizo(a)" 4 "otra" 8 "no responde"9 "no sabe"
+label define S_1_1_C .a"." 1 "negro(a)" 3 "blanco(a)" 6 "mulato(a) / mestizo(a)" 5 "otra" 8 "no responde"9 "no sabe"
 
 encode S_1_1_C, gen(s_1_1_c) label (S_1_1_C)
 
@@ -49,7 +49,7 @@ if !_rc{
      tostring S_2_11, replace
 }
 
-label define S_2_11 .a"." 1 "agnóstico/ateo" 2 "católico romano" 3 "evangélico / pentecostal" 4 "otro cristiano" 5 "santería" 6 "judío" 7 "otro" 8 "ninguna" 8 "no responde"9 "no sabe"
+label define S_2_11 .a"." 0 "agnóstico/ateo" 1 "católico romano" 2 "evangélico / pentecostal" 3 "otro cristiano" 4 "santería" 5 "judío" 6 "otro" 7 "ninguna" 8 "no responde"9 "no sabe"
 
 encode S_2_11, gen(s_2_11) label (S_2_11)
 
@@ -60,7 +60,7 @@ if !_rc{
      tostring S_2_12, replace
 }
 
-label define S_2_12 .a"." 1 "cada día" 2 "más que una vez a la semana" 3 "una vez a la semana" 4 "dos o tres veces al mes" 5 "uno o más veces al año" 6 "nunca" 8 "no responde"9 "no sabe"
+label define S_2_12 .a"." 0 "cada día" 1 "más que una vez a la semana" 2 "una vez a la semana" 3 "dos o tres veces al mes" 4 "uno o más veces al año" 5 "nunca" 8 "no responde"9 "no sabe"
 
 encode S_2_12, gen(s_2_12) label (S_2_12)
 
@@ -71,7 +71,7 @@ if !_rc{
      tostring S_2_13, replace
 }
 
-label define S_2_13 .a"." 0 "no"2 "sí regularmente" 3 "sí ocasionalmente" 8 "no responde"9 "no sabe"
+label define S_2_13 .a"." 0 "no" 1 "sí regularmente" 2 "sí ocasionalmente" 8 "no responde"9 "no sabe"
 
 encode S_2_13, gen(s_2_13) label (S_2_13)
 
@@ -148,7 +148,7 @@ if !_rc{
      tostring S_3_1_P, replace
 }
 
-label define S_3_1_P .a"." 1 "puerto rico" 2 "estados unidos" 3 "otro pais" 
+label define S_3_1_P .a"." 1 "puerto rico" 2 "estados unidos" 4 "otro pais" 
 
 encode S_3_1_P, gen(s_3_1_p) label (S_3_1_P)
 
@@ -170,7 +170,7 @@ if !_rc{
      tostring S_3_1_C, replace
 }
 
-label define S_3_1_C .a"." 1 "cuba" 2 "otro pais" 
+label define S_3_1_C .a"." 1 "cuba" 4 "otro pais" 
 
 encode S_3_1_C, gen(s_3_1_c) label (S_3_1_C)
 
@@ -181,7 +181,7 @@ if !_rc{
      tostring S_3_2, replace
 }
 
-label define S_3_2 .a"." 1 "cuidad" 2 "pueblo" 3 "campo" 
+label define S_3_2 .a"." 0 "ciudad" 1 "pueblo" 2 "campo" 
 
 encode S_3_2, gen(s_3_2) label (S_3_2)
 
@@ -192,7 +192,7 @@ if !_rc{
      tostring S_3_4, replace
 }
 
-label define S_3_4 .a"." 1 "ciudad" 2 "pueblo" 3 "campo" 
+label define S_3_4 .a"." 0 "ciudad" 1 "pueblo" 2 "campo" 
 
 encode S_3_4, gen(s_3_4) label (S_3_4)
 
@@ -203,7 +203,7 @@ if !_rc{
      tostring S_3_5, replace
 }
 
-label define S_3_5 .a"." 1 "ciudad" 2 "pueblo" 3 "campo" 
+label define S_3_5 .a"." 0 "ciudad" 1 "pueblo" 2 "campo" 
 
 encode S_3_5, gen(s_3_5) label (S_3_5)
 
@@ -214,7 +214,7 @@ if !_rc{
      tostring S_3_6, replace
 }
 
-label define S_3_6 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_3_6 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_3_6, gen(s_3_6) label (S_3_6)
 
@@ -225,7 +225,7 @@ if !_rc{
      tostring S_3_7, replace
 }
 
-label define S_3_7 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_3_7 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_3_7, gen(s_3_7) label (S_3_7)
 
@@ -236,7 +236,7 @@ if !_rc{
      tostring S_3_8, replace
 }
 
-label define S_3_8 .a"." 1 "mucho mejor" 2 "mejor" 3 "promedio" 4 "peor" 5 "mucho peor" 8 "no responde"9 "no sabe"8 "no fue a la escuela" 
+label define S_3_8 .a"." 1 "mucho mejor" 2 "mejor" 3 "promedio" 4 "peor" 5 "mucho peor" 8 "no responde"9 "no sabe" 10 "no fue a la escuela" 
 
 encode S_3_8, gen(s_3_8) label (S_3_8)
 
@@ -247,7 +247,7 @@ if !_rc{
      tostring S_3_9, replace
 }
 
-label define S_3_9 .a"." 1 "mucho mejor" 2 "mejor" 3 "promedio" 4 "peor" 5 "mucho peor" 8 "no responde"9 "no sabe"8 "no fue a la escuela" 
+label define S_3_9 .a"." 1 "mucho mejor" 2 "mejor" 3 "promedio" 4 "peor" 5 "mucho peor" 8 "no responde"9 "no sabe" 10 "no fue a la escuela" 
 
 encode S_3_9, gen(s_3_9) label (S_3_9)
 
@@ -258,7 +258,7 @@ if !_rc{
      tostring S_3_12_1, replace
 }
 
-label define S_3_12_1 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_3_12_1 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_3_12_1, gen(s_3_12_1) label (S_3_12_1)
 
@@ -269,7 +269,7 @@ if !_rc{
      tostring S_3_12_2, replace
 }
 
-label define S_3_12_2 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_3_12_2 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_3_12_2, gen(s_3_12_2) label (S_3_12_2)
 
@@ -280,7 +280,7 @@ if !_rc{
      tostring S_3_12_3, replace
 }
 
-label define S_3_12_3 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_3_12_3 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_3_12_3, gen(s_3_12_3) label (S_3_12_3)
 
@@ -291,7 +291,7 @@ if !_rc{
      tostring S_3_12_6, replace
 }
 
-label define S_3_12_6 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_3_12_6 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_3_12_6, gen(s_3_12_6) label (S_3_12_6)
 
@@ -302,7 +302,7 @@ if !_rc{
      tostring S_3_12_8, replace
 }
 
-label define S_3_12_8 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_3_12_8 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_3_12_8, gen(s_3_12_8) label (S_3_12_8)
 
@@ -324,7 +324,7 @@ if !_rc{
      tostring S_3_17, replace
 }
 
-label define S_3_17 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_3_17 .a"." 1 "no" 2 "si" 8 "no responde"9 "no sabe"
 
 encode S_3_17, gen(s_3_17) label (S_3_17)
 
@@ -346,7 +346,7 @@ if !_rc{
      tostring S_4_1, replace
 }
 
-label define S_4_1 .a"." 1 "no ha completado ninguna educación" 2 "pre-primaria (jardín de infantes guarderia maternal pre-escolar)" 3 "primaria" 4 "intermedio" 5 "secundaria" 6 "terciaria (ej grado asociado o carrera técnica)" 7 "universitaria o superior" 8 "no responde"9 "no sabe"
+label define S_4_1 .a"." 0 "no ha completado ninguna educación" 1 "pre-primaria (jardín de infantes guarderia maternal pre-escolar)" 2 "primaria" 3 "intermedio" 4 "secundaria" 5 "terciaria (ej grado asociado o carrera técnica)" 6 "universitaria o superior" 8 "no responde"9 "no sabe"
 
 encode S_4_1, gen(s_4_1) label (S_4_1)
 
@@ -357,7 +357,7 @@ if !_rc{
      tostring S_4_2, replace
 }
 
-label define S_4_2 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_4_2 .a"." 1 "no" 2 "si" 8 "no responde"9 "no sabe"
 
 encode S_4_2, gen(s_4_2) label (S_4_2)
 
@@ -368,7 +368,7 @@ if !_rc{
      tostring S_4_8, replace
 }
 
-label define S_4_8 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_4_8 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_4_8, gen(s_4_8) label (S_4_8)
 
@@ -379,7 +379,7 @@ if !_rc{
      tostring S_4_11, replace
 }
 
-label define S_4_11 .a"." 1 "no ha completado ninguna educación" 2 "pre-primaria (jardín de infantes guarderia maternal pre-escolar)" 3 "primaria" 4 "intermedio" 5 "secundaria" 6 "terciaria (ej grado asociado o carrera técnica)" 7 "universitaria o superior" 8 "no responde"9 "no sabe"
+label define S_4_11 .a"." 0 "no ha completado ninguna educación" 1 "pre-primaria (jardín de infantes guarderia maternal pre-escolar)" 2 "primaria" 3 "intermedio" 4 "secundaria" 5 "terciaria (ej grado asociado o carrera técnica)" 6 "universitaria o superior" 8 "no responde"9 "no sabe"
 
 encode S_4_11, gen(s_4_11) label (S_4_11)
 
@@ -390,7 +390,7 @@ if !_rc{
      tostring S_4_12, replace
 }
 
-label define S_4_12 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_4_12 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_4_12, gen(s_4_12) label (S_4_12)
 
@@ -401,7 +401,7 @@ if !_rc{
      tostring S_4_18, replace
 }
 
-label define S_4_18 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_4_18 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_4_18, gen(s_4_18) label (S_4_18)
 
@@ -412,7 +412,7 @@ if !_rc{
      tostring S_4_21, replace
 }
 
-label define S_4_21 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_4_21 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_4_21, gen(s_4_21) label (S_4_21)
 
@@ -423,7 +423,7 @@ if !_rc{
      tostring S_4_22, replace
 }
 
-label define S_4_22 .a"." 1 "esposo/a" 2 "madre" 3 "padre" 4 "suegra" 5 "suegro" 6 "hija" 7 "hijo" 8 "nieta" 9 "nieto" 10 "amigo/a" 11 "otra familiar" 12 "otra persona" 8 "no responde"9 "no sabe"
+label define S_4_22 .a"." 0 "esposo/a" 1 "madre" 2 "padre" 3 "suegra" 4 "suegro" 5 "hija" 6 "hijo" 7 "nieta" 8 "nieto" 9 "amigo/a" 10 "otra familiar" 11 "otra persona" 88 "no responde"99 "no sabe"
 
 encode S_4_22, gen(s_4_22) label (S_4_22)
 
@@ -445,7 +445,7 @@ if !_rc{
      tostring S_4_26, replace
 }
 
-label define S_4_26 .a"." 0 "no"1 "si"3 "no tengo ningunos" 8 "no responde"9 "no sabe"
+label define S_4_26 .a"." 2 "no" 1 "si" 3 "no tengo ningunos" 8 "no responde"9 "no sabe"
 
 encode S_4_26, gen(s_4_26) label (S_4_26)
 
@@ -478,7 +478,7 @@ if !_rc{
      tostring S_4_28, replace
 }
 
-label define S_4_28 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_4_28 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_4_28, gen(s_4_28) label (S_4_28)
 
@@ -511,7 +511,7 @@ if !_rc{
      tostring S_5_1, replace
 }
 
-label define S_5_1 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_5_1 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_5_1, gen(s_5_1) label (S_5_1)
 
@@ -522,7 +522,7 @@ if !_rc{
      tostring S_5_2, replace
 }
 
-label define S_5_2 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_5_2 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_5_2, gen(s_5_2) label (S_5_2)
 
@@ -533,7 +533,7 @@ if !_rc{
      tostring S_6_1, replace
 }
 
-label define S_6_1 .a"." 0 "no"1 "si"3 "nació en estados unidos" 8 "no responde"9 "no sabe"
+label define S_6_1 .a"." 2 "no" 1 "si" 7 "nació en estados unidos" 8 "no responde"9 "no sabe"
 
 encode S_6_1, gen(s_6_1) label (S_6_1)
 
@@ -544,7 +544,7 @@ if !_rc{
      tostring S_6_3, replace
 }
 
-label define S_6_3 .a"." 0 "no"1 "si"3 "nació en otro pais" 8 "no responde"9 "no sabe"
+label define S_6_3 .a"." 2 "no" 1 "si" 7 "nació en otro pais" 8 "no responde"9 "no sabe"
 
 encode S_6_3, gen(s_6_3) label (S_6_3)
 
@@ -555,7 +555,7 @@ if !_rc{
      tostring S_6_5_P, replace
 }
 
-label define S_6_5_P .a"." 1 "puerto rico" 2 "un país en américa latina" 3 "canadá" 4 "españa" 5 "otro país europeo" 6 "otro" 
+label define S_6_5_P .a"." 2 "un país en américa latina" 3 "canadá" 4 "españa" 5 "otro país europeo" 6 "otro" 
 
 encode S_6_5_P, gen(s_6_5_p) label (S_6_5_P)
 
@@ -577,7 +577,7 @@ if !_rc{
      tostring S_6_5_C, replace
 }
 
-label define S_6_5_C .a"." 1 "cuba" 2 "un país en américa latina" 3 "canadá" 4 "españa" 5 "otro país europeo" 6 "otro" 
+label define S_6_5_C .a"." 2 "un país en américa latina" 3 "canadá" 4 "españa" 5 "otro país europeo" 6 "otro" 
 
 encode S_6_5_C, gen(s_6_5_c) label (S_6_5_C)
 
@@ -599,7 +599,7 @@ if !_rc{
      tostring S_7_1, replace
 }
 
-label define S_7_1 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_7_1 .a"." 1 "no" 0 "si" 8 "no responde"9 "no sabe"
 
 encode S_7_1, gen(s_7_1) label (S_7_1)
 
@@ -610,7 +610,7 @@ if !_rc{
      tostring S_7_2A, replace
 }
 
-label define S_7_2A .a"." 1 "nunca" 2 "menos de una vez por mes" 3 "una vez por mes" 4 "varias veces al mes" 5 "una vez por semana" 6 "varias veces a la semana" 7 "cada día" 8 "varias veces al día" 8 "no responde"9 "no sabe"
+label define S_7_2A .a"." 0 "nunca" 1 "menos de una vez por mes" 2 "una vez por mes" 3 "varias veces al mes" 4 "una vez por semana" 5 "varias veces a la semana" 6 "cada día" 7 "varias veces al día" 8 "no responde"9 "no sabe"
 
 encode S_7_2A, gen(s_7_2a) label (S_7_2A)
 
@@ -621,7 +621,7 @@ if !_rc{
      tostring S_7_2B, replace
 }
 
-label define S_7_2B .a"." 1 "nunca" 2 "menos de una vez por mes" 3 "una vez por mes" 4 "varias veces al mes" 5 "una vez por semana" 6 "varias veces a la semana" 7 "cada día" 8 "varias veces al día" 8 "no responde"9 "no sabe"
+label define S_7_2B .a"." 0 "nunca" 1 "menos de una vez por mes" 2 "una vez por mes" 3 "varias veces al mes" 4 "una vez por semana" 5 "varias veces a la semana" 6 "cada día" 7 "varias veces al día" 8 "no responde"9 "no sabe"
 
 encode S_7_2B, gen(s_7_2b) label (S_7_2B)
 
@@ -632,7 +632,7 @@ if !_rc{
      tostring S_7_2C, replace
 }
 
-label define S_7_2C .a"." 1 "nunca" 2 "menos de una vez por mes" 3 "una vez por mes" 4 "varias veces al mes" 5 "una vez por semana" 6 "varias veces a la semana" 7 "cada día" 8 "varias veces al día" 8 "no responde"9 "no sabe"
+label define S_7_2C .a"." 0 "nunca" 1 "menos de una vez por mes" 2 "una vez por mes" 3 "varias veces al mes" 4 "una vez por semana" 5 "varias veces a la semana" 6 "cada día" 7 "varias veces al día" 8 "no responde"9 "no sabe"
 
 encode S_7_2C, gen(s_7_2c) label (S_7_2C)
 
@@ -643,7 +643,7 @@ if !_rc{
      tostring S_7_4A, replace
 }
 
-label define S_7_4A .a"." 1 "nunca" 2 "menos de una vez por mes" 3 "una vez por mes" 4 "varias veces al mes" 5 "una vez por semana" 6 "varias veces a la semana" 7 "cada día" 8 "varias veces al día" 8 "no responde"9 "no sabe"
+label define S_7_4A .a"." 0 "nunca" 1 "menos de una vez por mes" 2 "una vez por mes" 3 "varias veces al mes" 4 "una vez por semana" 5 "varias veces a la semana" 6 "cada día" 7 "varias veces al día" 8 "no responde"9 "no sabe"
 
 encode S_7_4A, gen(s_7_4a) label (S_7_4A)
 
@@ -654,7 +654,7 @@ if !_rc{
      tostring S_7_4B, replace
 }
 
-label define S_7_4B .a"." 1 "nunca" 2 "menos de una vez por mes" 3 "una vez por mes" 4 "varias veces al mes" 5 "una vez por semana" 6 "varias veces a la semana" 7 "cada día" 8 "varias veces al día" 8 "no responde"9 "no sabe"
+label define S_7_4B .a"." 0 "nunca" 1 "menos de una vez por mes" 2 "una vez por mes" 3 "varias veces al mes" 4 "una vez por semana" 5 "varias veces a la semana" 6 "cada día" 7 "varias veces al día" 8 "no responde"9 "no sabe"
 
 encode S_7_4B, gen(s_7_4b) label (S_7_4B)
 
@@ -665,7 +665,7 @@ if !_rc{
      tostring S_7_4C, replace
 }
 
-label define S_7_4C .a"." 1 "nunca" 2 "menos de una vez por mes" 3 "una vez por mes" 4 "varias veces al mes" 5 "una vez por semana" 6 "varias veces a la semana" 7 "cada día" 8 "varias veces al día" 8 "no responde"9 "no sabe"
+label define S_7_4C .a"." 0 "nunca" 1 "menos de una vez por mes" 2 "una vez por mes" 3 "varias veces al mes" 4 "una vez por semana" 5 "varias veces a la semana" 6 "cada día" 7 "varias veces al día" 8 "no responde"9 "no sabe"
 
 encode S_7_4C, gen(s_7_4c) label (S_7_4C)
 
@@ -709,7 +709,7 @@ if !_rc{
      tostring S_7_6A, replace
 }
 
-label define S_7_6A .a"." 1 "casi cada dia" 2 "al menos una ves a la semana" 3 "algunas veces al mes" 4 "algunas veces al año" 5 "menos que una vez al año" 6 "nunca" 8 "no responde"9 "no sabe"
+label define S_7_6A .a"." 1 "casi cada dia" 2 "al menos una ves a la semana" 3 "algunas veces al mes" 4 "algunas veces al año" 5 "menos que una vez al año" 6 "nunca" 88 "no responde"99 "no sabe"
 
 encode S_7_6A, gen(s_7_6a) label (S_7_6A)
 
@@ -720,7 +720,7 @@ if !_rc{
      tostring S_7_6B, replace
 }
 
-label define S_7_6B .a"." 1 "siempre o casi siempre" 2 "la major parte del tiempo" 3 "a veces" 4 "casi nunca" 5 "nunca" 8 "no responde"9 "no sabe"
+label define S_7_6B .a"." 1 "siempre o casi siempre" 2 "la mayor parte del tiempo" 3 "a veces" 4 "casi nunca" 5 "nunca" 88 "no responde"99 "no sabe"
 
 encode S_7_6B, gen(s_7_6b) label (S_7_6B)
 
@@ -731,7 +731,7 @@ if !_rc{
      tostring S_8_1, replace
 }
 
-label define S_8_1 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_8_1 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_8_1, gen(s_8_1) label (S_8_1)
 
@@ -742,7 +742,7 @@ if !_rc{
      tostring S_8_3, replace
 }
 
-label define S_8_3 .a"." 1 "profesional ejecutivo" 2 "oficinista" 3 "vendedor minorista" 4 "agricultor independiente" 5 "trabajador agrícola" 6 "trabajador domestico" 7 "otros servicios" 8 "trabajador especializado" 9 "trabajador no especializado" 10 "trabajos informales" 11 "otros" 8 "no responde"9 "no sabe"
+label define S_8_3 .a"." 1 "profesional ejecutivo" 2 "oficinista" 3 "vendedor minorista" 4 "agricultor independiente" 5 "trabajador agrícola" 6 "trabajador domestico" 7 "otros servicios" 8 "trabajador especializado" 9 "trabajador no especializado" 10 "trabajos informales" 11 "otros" 88 "no responde"99 "no sabe"
 
 encode S_8_3, gen(s_8_3) label (S_8_3)
 
@@ -753,7 +753,7 @@ if !_rc{
      tostring S_8_4, replace
 }
 
-label define S_8_4 .a"." 1 "director o jefe" 2 "trabajador por su cuenta" 3 "trabajador cooperativista" 4 "trabajador a sueldo fijo salario o jornal" 5 "trabajador a destajo comisión" 6 "trabajador familiar sin pago" 7 "trabajador no familiar sin pago" 8 "otro" 8 "no responde"9 "no sabe"
+label define S_8_4 .a"." 1 "director o jefe" 2 "trabajador por su cuenta" 3 "trabajador cooperativista" 4 "trabajador a sueldo fijo salario o jornal" 5 "trabajador a destajo comisión" 6 "trabajador familiar sin pago" 7 "trabajador no familiar sin pago" 8 "otro" 88 "no responde"99 "no sabe"
 
 encode S_8_4, gen(s_8_4) label (S_8_4)
 
@@ -775,7 +775,7 @@ if !_rc{
      tostring S_8_5D, replace
 }
 
-label define S_8_5D .a"." 1 "profesional ejecutivo" 2 "oficinista" 3 "vendedor minorista" 4 "agricultor independiente" 5 "trabajador agrícola" 6 "trabajador domestico" 7 "otros servicios" 8 "trabajador especializado" 9 "trabajador no especializado" 10 "trabajos informales" 11 "otros" 8 "no responde"9 "no sabe"
+label define S_8_5D .a"." 1 "profesional ejecutivo" 2 "oficinista" 3 "vendedor minorista" 4 "agricultor independiente" 5 "trabajador agrícola" 6 "trabajador domestico" 7 "otros servicios" 8 "trabajador especializado" 9 "trabajador no especializado" 10 "trabajos informales" 11 "otros" 88 "no responde"99 "no sabe"
 
 encode S_8_5D, gen(s_8_5d) label (S_8_5D)
 
@@ -786,7 +786,7 @@ if !_rc{
      tostring S_8_7, replace
 }
 
-label define S_8_7 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_8_7 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_8_7, gen(s_8_7) label (S_8_7)
 
@@ -843,7 +843,9 @@ if !_rc{
 
 label define S_8_141 .a"." 1 "muy en desacuerdo" 2 "desacuerdo" 3 "acuerdo" 4 "muy en acuerdo" 5 "no se aplica" 8 "no responde"9 "no sabe"
 
-encode S_8_141, gen(s_8_141) label (S_8_141)
+encode S_8_141, gen(s_8_14) label (S_8_141)
+
+label var s_8_14 "S_8_14"
 
 rename s_8_15 (S_8_15)
 
@@ -863,7 +865,7 @@ if !_rc{
      tostring S_8_16, replace
 }
 
-label define S_8_16 .a"." 1 "profesional ejecutivo" 2 "oficinista" 3 "vendedor minorista" 4 "agricultor independiente" 5 "trabajador agrícola" 6 "trabajador domestico" 7 "otros servicios" 8 "trabajador especializado" 9 "trabajador no especializado" 10 "trabajos informales" 11 "otros" 8 "no responde"9 "no sabe"
+label define S_8_16 .a"." 1 "profesional ejecutivo" 2 "oficinista" 3 "vendedor minorista" 4 "agricultor independiente" 5 "trabajador agrícola" 6 "trabajador domestico" 7 "otros servicios" 8 "trabajador especializado" 9 "trabajador no especializado" 10 "trabajos informales" 11 "otros" 88 "no responde"99 "no sabe"
 
 encode S_8_16, gen(s_8_16) label (S_8_16)
 
@@ -885,7 +887,7 @@ if !_rc{
      tostring S_9_3, replace
 }
 
-label define S_9_3 .a"." 1 "no tiene ese problema de salud" 2 "tiene ese problema pero no interfiere" 3 "tiene ese problema e interfiere un poco" 4 "tiene ese problema e interfiere mucho" 8 "no responde"9 "no sabe"
+label define S_9_3 .a"." 0 "no tiene ese problema de salud" 1 "tiene ese problema pero no interfiere" 2 "tiene ese problema e interfiere un poco" 3 "tiene ese problema e interfiere mucho" 8 "no responde"9 "no sabe"
 
 encode S_9_3, gen(s_9_3) label (S_9_3)
 
@@ -896,7 +898,7 @@ if !_rc{
      tostring S_9_4, replace
 }
 
-label define S_9_4 .a"." 1 "no tiene ese problema de salud" 2 "tiene ese problema pero no interfiere" 3 "tiene ese problema e interfiere un poco" 4 "tiene ese problema e interfiere mucho" 8 "no responde"9 "no sabe"
+label define S_9_4 .a"." 0 "no tiene ese problema de salud" 1 "tiene ese problema pero no interfiere" 2 "tiene ese problema e interfiere un poco" 3 "tiene ese problema e interfiere mucho" 8 "no responde"9 "no sabe"
 
 encode S_9_4, gen(s_9_4) label (S_9_4)
 
@@ -907,7 +909,7 @@ if !_rc{
      tostring S_9_5, replace
 }
 
-label define S_9_5 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_5 .a"." 1 "no" 2 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_5, gen(s_9_5) label (S_9_5)
 
@@ -918,7 +920,7 @@ if !_rc{
      tostring S_9_7, replace
 }
 
-label define S_9_7 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_7 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_7, gen(s_9_7) label (S_9_7)
 
@@ -929,7 +931,7 @@ if !_rc{
      tostring S_9_8, replace
 }
 
-label define S_9_8 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_8 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_8, gen(s_9_8) label (S_9_8)
 
@@ -940,7 +942,7 @@ if !_rc{
      tostring S_9_11, replace
 }
 
-label define S_9_11 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_11 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_11, gen(s_9_11) label (S_9_11)
 
@@ -962,7 +964,7 @@ if !_rc{
      tostring S_9_14, replace
 }
 
-label define S_9_14 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_14 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_14, gen(s_9_14) label (S_9_14)
 
@@ -995,7 +997,7 @@ if !_rc{
      tostring S_9_17, replace
 }
 
-label define S_9_17 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_17 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_17, gen(s_9_17) label (S_9_17)
 
@@ -1006,7 +1008,7 @@ if !_rc{
      tostring S_9_18, replace
 }
 
-label define S_9_18 .a"." 1 "nadie" 2 "médico general" 3 "especialista" 8 "no responde"9 "no sabe"
+label define S_9_18 .a"." 0 "nadie" 1 "médico general" 2 "especialista" 8 "no responde"9 "no sabe"
 
 encode S_9_18, gen(s_9_18) label (S_9_18)
 
@@ -1017,7 +1019,7 @@ if !_rc{
      tostring S_9_19, replace
 }
 
-label define S_9_19 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_19 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_19, gen(s_9_19) label (S_9_19)
 
@@ -1028,7 +1030,7 @@ if !_rc{
      tostring S_9_20, replace
 }
 
-label define S_9_20 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_20 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_20, gen(s_9_20) label (S_9_20)
 
@@ -1039,7 +1041,7 @@ if !_rc{
      tostring S_9_23, replace
 }
 
-label define S_9_23 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_23 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_23, gen(s_9_23) label (S_9_23)
 
@@ -1050,7 +1052,7 @@ if !_rc{
      tostring S_9_24, replace
 }
 
-label define S_9_24 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_24 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_24, gen(s_9_24) label (S_9_24)
 
@@ -1061,7 +1063,7 @@ if !_rc{
      tostring S_9_26, replace
 }
 
-label define S_9_26 .a"." 1 "sólo dieta" 2 "hipoglicemiantes orales" 3 "insulina" 4 "ningún tratamiento" 8 "no responde"9 "no sabe"
+label define S_9_26 .a"." 0 "sólo dieta" 1 "hipoglicemiantes orales" 2 "insulina" 3 "ningún tratamiento" 88 "no responde"99 "no sabe"
 
 encode S_9_26, gen(s_9_26) label (S_9_26)
 
@@ -1072,7 +1074,7 @@ if !_rc{
      tostring S_9_28, replace
 }
 
-label define S_9_28 .a"." 1 "nunca" 2 "menos de una vez por mes" 3 "una vez por mes" 4 "varias veces al mes" 5 "una vez por semana" 6 "varias veces a la semana" 7 "cada día" 8 "varias veces al día" 8 "no responde"9 "no sabe"
+label define S_9_28 .a"." 0 "nunca" 1 "menos de una vez por mes" 2 "una vez por mes" 3 "varias veces al mes" 4 "una vez por semana" 5 "varias veces a la semana" 6 "cada día" 7 "varias veces al día" 8 "no responde"9 "no sabe"
 
 encode S_9_28, gen(s_9_28) label (S_9_28)
 
@@ -1094,7 +1096,7 @@ if !_rc{
      tostring S_9_30, replace
 }
 
-label define S_9_30 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_30 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_30, gen(s_9_30) label (S_9_30)
 
@@ -1105,7 +1107,7 @@ if !_rc{
      tostring S_9_32, replace
 }
 
-label define S_9_32 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_32 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_32, gen(s_9_32) label (S_9_32)
 
@@ -1116,7 +1118,7 @@ if !_rc{
      tostring S_9_33, replace
 }
 
-label define S_9_33 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_33 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_33, gen(s_9_33) label (S_9_33)
 
@@ -1138,7 +1140,7 @@ if !_rc{
      tostring S_9_37, replace
 }
 
-label define S_9_37 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_37 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_37, gen(s_9_37) label (S_9_37)
 
@@ -1149,7 +1151,7 @@ if !_rc{
      tostring S_9_39, replace
 }
 
-label define S_9_39 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_39 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_39, gen(s_9_39) label (S_9_39)
 
@@ -1160,7 +1162,7 @@ if !_rc{
      tostring S_9_40, replace
 }
 
-label define S_9_40 .a"." 1 "si unos pocos (hasta 4)" 2 "si bastante (más de 4 y menos de la mitad)" 3 "si la mayoría (la mitad o más)" 0 "no"8 "no responde"9 "no sabe"
+label define S_9_40 .a"." 1 "si unos pocos (hasta 4)" 2 "si bastante (más de 4 y menos de la mitad)" 3 "si la mayoría (la mitad o más)" 4 "no" 8 "no responde"9 "no sabe"
 
 encode S_9_40, gen(s_9_40) label (S_9_40)
 
@@ -1171,7 +1173,7 @@ if !_rc{
      tostring S_9_41, replace
 }
 
-label define S_9_41 .a"." 0 "no"2 "si raramente" 3 "si frecuentemente" 4 "si muy frecuentemente" 8 "no responde"9 "no sabe"
+label define S_9_41 .a"." 0 "no" 1 "si raramente" 2 "si frecuentemente" 3 "si muy frecuentemente" 8 "no responde"9 "no sabe"
 
 encode S_9_41, gen(s_9_41) label (S_9_41)
 
@@ -1182,7 +1184,7 @@ if !_rc{
      tostring S_9_42, replace
 }
 
-label define S_9_42 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_42 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_42, gen(s_9_42) label (S_9_42)
 
@@ -1193,7 +1195,7 @@ if !_rc{
      tostring S_9_44, replace
 }
 
-label define S_9_44 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_44 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_44, gen(s_9_44) label (S_9_44)
 
@@ -1204,7 +1206,7 @@ if !_rc{
      tostring S_9_46, replace
 }
 
-label define S_9_46 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_46 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_46, gen(s_9_46) label (S_9_46)
 
@@ -1215,7 +1217,7 @@ if !_rc{
      tostring S_9_47, replace
 }
 
-label define S_9_47 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_47 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_47, gen(s_9_47) label (S_9_47)
 
@@ -1226,7 +1228,7 @@ if !_rc{
      tostring S_9_49, replace
 }
 
-label define S_9_49 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_49 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_49, gen(s_9_49) label (S_9_49)
 
@@ -1237,7 +1239,7 @@ if !_rc{
      tostring S_9_50, replace
 }
 
-label define S_9_50 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_50 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_50, gen(s_9_50) label (S_9_50)
 
@@ -1248,7 +1250,7 @@ if !_rc{
      tostring S_9_51, replace
 }
 
-label define S_9_51 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 8 "no responde"9 "no sabe"
+label define S_9_51 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 9 "no responde"8 "no sabe"
 
 encode S_9_51, gen(s_9_51) label (S_9_51)
 
@@ -1259,7 +1261,7 @@ if !_rc{
      tostring S_9_52, replace
 }
 
-label define S_9_52 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 8 "no responde"9 "no sabe"
+label define S_9_52 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 9 "no responde"8 "no sabe"
 
 encode S_9_52, gen(s_9_52) label (S_9_52)
 
@@ -1270,7 +1272,7 @@ if !_rc{
      tostring S_9_53, replace
 }
 
-label define S_9_53 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 8 "no responde"9 "no sabe"
+label define S_9_53 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 9 "no responde"8 "no sabe"
 
 encode S_9_53, gen(s_9_53) label (S_9_53)
 
@@ -1281,7 +1283,7 @@ if !_rc{
      tostring S_9_54, replace
 }
 
-label define S_9_54 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 8 "no responde"9 "no sabe"
+label define S_9_54 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 9 "no responde"8 "no sabe"
 
 encode S_9_54, gen(s_9_54) label (S_9_54)
 
@@ -1292,7 +1294,7 @@ if !_rc{
      tostring S_9_55, replace
 }
 
-label define S_9_55 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 8 "no responde"9 "no sabe"
+label define S_9_55 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 9 "no responde"8 "no sabe"
 
 encode S_9_55, gen(s_9_55) label (S_9_55)
 
@@ -1303,7 +1305,7 @@ if !_rc{
      tostring S_9_56, replace
 }
 
-label define S_9_56 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 8 "no responde"9 "no sabe"
+label define S_9_56 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 9 "no responde"8 "no sabe"
 
 encode S_9_56, gen(s_9_56) label (S_9_56)
 
@@ -1314,7 +1316,7 @@ if !_rc{
      tostring S_9_58, replace
 }
 
-label define S_9_58 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_58 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_58, gen(s_9_58) label (S_9_58)
 
@@ -1336,7 +1338,7 @@ if !_rc{
      tostring S_9_62, replace
 }
 
-label define S_9_62 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_62 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_62, gen(s_9_62) label (S_9_62)
 
@@ -1347,7 +1349,7 @@ if !_rc{
      tostring S_9_63, replace
 }
 
-label define S_9_63 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_63 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_63, gen(s_9_63) label (S_9_63)
 
@@ -1358,7 +1360,7 @@ if !_rc{
      tostring S_9_64_1, replace
 }
 
-label define S_9_64_1 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_64_1 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_64_1, gen(s_9_64_1) label (S_9_64_1)
 
@@ -1369,7 +1371,7 @@ if !_rc{
      tostring S_9_64_2, replace
 }
 
-label define S_9_64_2 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_64_2 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_64_2, gen(s_9_64_2) label (S_9_64_2)
 
@@ -1380,7 +1382,7 @@ if !_rc{
      tostring S_9_64_3, replace
 }
 
-label define S_9_64_3 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_64_3 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_64_3, gen(s_9_64_3) label (S_9_64_3)
 
@@ -1391,7 +1393,7 @@ if !_rc{
      tostring S_9_64_4, replace
 }
 
-label define S_9_64_4 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_64_4 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_64_4, gen(s_9_64_4) label (S_9_64_4)
 
@@ -1402,7 +1404,7 @@ if !_rc{
      tostring S_9_66, replace
 }
 
-label define S_9_66 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_9_66 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_9_66, gen(s_9_66) label (S_9_66)
 
@@ -1413,7 +1415,7 @@ if !_rc{
      tostring S_10_1A, replace
 }
 
-label define S_10_1A .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_10_1A .a"." 5 "no cierto" 1 "si cierto" 9 "no responde"8 "no sabe"
 
 encode S_10_1A, gen(s_10_1a) label (S_10_1A)
 
@@ -1424,7 +1426,7 @@ if !_rc{
      tostring S_10_1B, replace
 }
 
-label define S_10_1B .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_10_1B .a"." 5 "no cierto" 1 "si cierto" 9 "no responde"8 "no sabe"
 
 encode S_10_1B, gen(s_10_1b) label (S_10_1B)
 
@@ -1435,7 +1437,7 @@ if !_rc{
      tostring S_10_1C, replace
 }
 
-label define S_10_1C .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_10_1C .a"." 5 "no cierto" 1 "si cierto" 9 "no responde"8 "no sabe"
 
 encode S_10_1C, gen(s_10_1c) label (S_10_1C)
 
@@ -1446,7 +1448,7 @@ if !_rc{
      tostring S_10_1D, replace
 }
 
-label define S_10_1D .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_10_1D .a"." 5 "no cierto" 1 "si cierto" 9 "no responde"8 "no sabe"
 
 encode S_10_1D, gen(s_10_1d) label (S_10_1D)
 
@@ -1457,7 +1459,7 @@ if !_rc{
      tostring S_10_1E, replace
 }
 
-label define S_10_1E .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_10_1E .a"." 5 "no cierto" 1 "si cierto" 9 "no responde"8 "no sabe"
 
 encode S_10_1E, gen(s_10_1e) label (S_10_1E)
 
@@ -1468,7 +1470,7 @@ if !_rc{
      tostring S_10_1F, replace
 }
 
-label define S_10_1F .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_10_1F .a"." 5 "no cierto" 1 "si cierto" 9 "no responde"8 "no sabe"
 
 encode S_10_1F, gen(s_10_1f) label (S_10_1F)
 
@@ -1479,7 +1481,7 @@ if !_rc{
      tostring S_10_1G, replace
 }
 
-label define S_10_1G .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_10_1G .a"." 5 "no cierto" 1 "si cierto" 9 "no responde"8 "no sabe"
 
 encode S_10_1G, gen(s_10_1g) label (S_10_1G)
 
@@ -1490,7 +1492,7 @@ if !_rc{
      tostring S_10_1H, replace
 }
 
-label define S_10_1H .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_10_1H .a"." 5 "no cierto" 1 "si cierto" 9 "no responde"8 "no sabe"
 
 encode S_10_1H, gen(s_10_1h) label (S_10_1H)
 
@@ -1545,7 +1547,7 @@ if !_rc{
      tostring S_10_6_1, replace
 }
 
-label define S_10_6_1 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_10_6_1 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_10_6_1, gen(s_10_6_1) label (S_10_6_1)
 
@@ -1567,7 +1569,7 @@ if !_rc{
      tostring S_10_6_2, replace
 }
 
-label define S_10_6_2 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_10_6_2 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_10_6_2, gen(s_10_6_2) label (S_10_6_2)
 
@@ -1589,7 +1591,7 @@ if !_rc{
      tostring S_10_6_3, replace
 }
 
-label define S_10_6_3 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"5 "no se aplica (no trabaja)" 
+label define S_10_6_3 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"7 "no se aplica (no trabaja)" 
 
 encode S_10_6_3, gen(s_10_6_3) label (S_10_6_3)
 
@@ -1611,7 +1613,7 @@ if !_rc{
      tostring S_10_6_4, replace
 }
 
-label define S_10_6_4 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_10_6_4 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_10_6_4, gen(s_10_6_4) label (S_10_6_4)
 
@@ -1633,7 +1635,7 @@ if !_rc{
      tostring S_10_7_1, replace
 }
 
-label define S_10_7_1 .a"." 1 "muy en desacuerdo" 2 "desacuerdo" 3 "acuerdo" 4 "muy en acuerdo" 5 "no se aplica" 8 "no responde"9 "no sabe"
+label define S_10_7_1 .a"." 1 "muy en desacuerdo" 2 "desacuerdo" 3 "acuerdo" 4 "muy en acuerdo" 7 "no se aplica" 8 "no responde"9 "no sabe"
 
 encode S_10_7_1, gen(s_10_7_1) label (S_10_7_1)
 
@@ -1644,7 +1646,7 @@ if !_rc{
      tostring S_10_7_2, replace
 }
 
-label define S_10_7_2 .a"." 1 "muy en desacuerdo" 2 "desacuerdo" 3 "acuerdo" 4 "muy en acuerdo" 5 "no se aplica" 8 "no responde"9 "no sabe"
+label define S_10_7_2 .a"." 1 "muy en desacuerdo" 2 "desacuerdo" 3 "acuerdo" 4 "muy en acuerdo" 7 "no se aplica" 8 "no responde"9 "no sabe"
 
 encode S_10_7_2, gen(s_10_7_2) label (S_10_7_2)
 
@@ -1688,7 +1690,7 @@ if !_rc{
      tostring S_12_1A, replace
 }
 
-label define S_12_1A .a"." 0 "no"1 "si"3 "no puede" 4 "no lo hace" 8 "no responde"9 "no sabe"
+label define S_12_1A .a"." 2 "no" 1 "si" 6 "no puede" 7 "no lo hace" 8 "no responde"9 "no sabe"
 
 encode S_12_1A, gen(s_12_1a) label (S_12_1A)
 
@@ -1699,7 +1701,7 @@ if !_rc{
      tostring S_12_1B, replace
 }
 
-label define S_12_1B .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_12_1B .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_12_1B, gen(s_12_1b) label (S_12_1B)
 
@@ -1710,7 +1712,7 @@ if !_rc{
      tostring S_12_1C, replace
 }
 
-label define S_12_1C .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_12_1C .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_12_1C, gen(s_12_1c) label (S_12_1C)
 
@@ -1721,7 +1723,7 @@ if !_rc{
      tostring S_12_2A, replace
 }
 
-label define S_12_2A .a"." 0 "no"1 "si"3 "no puede" 4 "no lo hace" 8 "no responde"9 "no sabe"
+label define S_12_2A .a"." 2 "no" 1 "si" 6 "no puede" 7 "no lo hace" 8 "no responde"9 "no sabe"
 
 encode S_12_2A, gen(s_12_2a) label (S_12_2A)
 
@@ -1732,7 +1734,7 @@ if !_rc{
      tostring S_12_2C, replace
 }
 
-label define S_12_2C .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_12_2C .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_12_2C, gen(s_12_2c) label (S_12_2C)
 
@@ -1743,7 +1745,7 @@ if !_rc{
      tostring S_12_3A, replace
 }
 
-label define S_12_3A .a"." 0 "no"1 "si"3 "no puede" 4 "no lo hace" 8 "no responde"9 "no sabe"
+label define S_12_3A .a"." 2 "no" 1 "si" 6 "no puede" 7 "no lo hace" 8 "no responde"9 "no sabe"
 
 encode S_12_3A, gen(s_12_3a) label (S_12_3A)
 
@@ -1754,7 +1756,7 @@ if !_rc{
      tostring S_12_3C, replace
 }
 
-label define S_12_3C .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_12_3C .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_12_3C, gen(s_12_3c) label (S_12_3C)
 
@@ -1765,7 +1767,7 @@ if !_rc{
      tostring S_12_4A, replace
 }
 
-label define S_12_4A .a"." 0 "no"1 "si"3 "no puede" 4 "no lo hace" 8 "no responde"9 "no sabe"
+label define S_12_4A .a"." 2 "no" 1 "si" 6 "no puede" 7 "no lo hace" 8 "no responde"9 "no sabe"
 
 encode S_12_4A, gen(s_12_4a) label (S_12_4A)
 
@@ -1776,7 +1778,7 @@ if !_rc{
      tostring S_12_4B, replace
 }
 
-label define S_12_4B .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_12_4B .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_12_4B, gen(s_12_4b) label (S_12_4B)
 
@@ -1787,7 +1789,7 @@ if !_rc{
      tostring S_12_4C, replace
 }
 
-label define S_12_4C .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_12_4C .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_12_4C, gen(s_12_4c) label (S_12_4C)
 
@@ -1798,7 +1800,7 @@ if !_rc{
      tostring S_12_5A, replace
 }
 
-label define S_12_5A .a"." 0 "no"1 "si"3 "no puede" 4 "no lo hace" 8 "no responde"9 "no sabe"
+label define S_12_5A .a"." 2 "no" 1 "si" 6 "no puede" 7 "no lo hace" 8 "no responde"9 "no sabe"
 
 encode S_12_5A, gen(s_12_5a) label (S_12_5A)
 
@@ -1809,7 +1811,7 @@ if !_rc{
      tostring S_12_5C, replace
 }
 
-label define S_12_5C .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_12_5C .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_12_5C, gen(s_12_5c) label (S_12_5C)
 
@@ -1820,7 +1822,7 @@ if !_rc{
      tostring S_12_6A, replace
 }
 
-label define S_12_6A .a"." 0 "no"1 "si"3 "no puede" 4 "no lo hace" 8 "no responde"9 "no sabe"
+label define S_12_6A .a"." 2 "no" 1 "si" 6 "no puede" 7 "no lo hace" 8 "no responde"9 "no sabe"
 
 encode S_12_6A, gen(s_12_6a) label (S_12_6A)
 
@@ -1831,7 +1833,7 @@ if !_rc{
      tostring S_12_6C, replace
 }
 
-label define S_12_6C .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_12_6C .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_12_6C, gen(s_12_6c) label (S_12_6C)
 
@@ -1842,7 +1844,7 @@ if !_rc{
      tostring S_12_7, replace
 }
 
-label define S_12_7 .a"." 0 "no"1 "si"3 "no puede" 4 "no lo hace" 8 "no responde"9 "no sabe"
+label define S_12_7 .a"." 2 "no" 1 "si" 6 "no puede" 7 "no lo hace" 8 "no responde"9 "no sabe"
 
 encode S_12_7, gen(s_12_7) label (S_12_7)
 
@@ -1853,7 +1855,7 @@ if !_rc{
      tostring S_12_8, replace
 }
 
-label define S_12_8 .a"." 0 "no"1 "si"3 "no puede" 4 "no lo hace" 8 "no responde"9 "no sabe"
+label define S_12_8 .a"." 2 "no" 1 "si" 6 "no puede" 7 "no lo hace" 8 "no responde"9 "no sabe"
 
 encode S_12_8, gen(s_12_8) label (S_12_8)
 
@@ -1864,7 +1866,7 @@ if !_rc{
      tostring S_12_9, replace
 }
 
-label define S_12_9 .a"." 0 "no"1 "si"3 "no puede" 4 "no lo hace" 8 "no responde"9 "no sabe"
+label define S_12_9 .a"." 2 "no" 1 "si" 6 "no puede" 7 "no lo hace" 8 "no responde"9 "no sabe"
 
 encode S_12_9, gen(s_12_9) label (S_12_9)
 
@@ -1875,7 +1877,7 @@ if !_rc{
      tostring S_12_10, replace
 }
 
-label define S_12_10 .a"." 0 "no"1 "si"3 "no puede" 4 "no lo hace" 8 "no responde"9 "no sabe"
+label define S_12_10 .a"." 2 "no" 1 "si" 6 "no puede" 7 "no lo hace" 8 "no responde"9 "no sabe"
 
 encode S_12_10, gen(s_12_10) label (S_12_10)
 
@@ -1886,7 +1888,7 @@ if !_rc{
      tostring S_12_11, replace
 }
 
-label define S_12_11 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_12_11 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_12_11, gen(s_12_11) label (S_12_11)
 
@@ -1897,7 +1899,7 @@ if !_rc{
      tostring S_12_13, replace
 }
 
-label define S_12_13 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_12_13 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_12_13, gen(s_12_13) label (S_12_13)
 
@@ -1908,7 +1910,7 @@ if !_rc{
      tostring S_12_14, replace
 }
 
-label define S_12_14 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_12_14 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_12_14, gen(s_12_14) label (S_12_14)
 
@@ -1919,7 +1921,7 @@ if !_rc{
      tostring S_12_15, replace
 }
 
-label define S_12_15 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_12_15 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_12_15, gen(s_12_15) label (S_12_15)
 
@@ -1941,7 +1943,7 @@ if !_rc{
      tostring S_13_1_P_C, replace
 }
 
-label define S_13_1_P_C .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_13_1_P_C .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_13_1_P_C, gen(s_13_1_p_c) label (S_13_1_P_C)
 
@@ -1952,7 +1954,7 @@ if !_rc{
      tostring S_13_1_D, replace
 }
 
-label define S_13_1_D .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_13_1_D .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_13_1_D, gen(s_13_1_d) label (S_13_1_D)
 
@@ -1963,7 +1965,7 @@ if !_rc{
      tostring S_13_3_P_C, replace
 }
 
-label define S_13_3_P_C .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_13_3_P_C .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_13_3_P_C, gen(s_13_3_p_c) label (S_13_3_P_C)
 
@@ -1974,7 +1976,7 @@ if !_rc{
      tostring S_13_3_D, replace
 }
 
-label define S_13_3_D .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_13_3_D .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_13_3_D, gen(s_13_3_d) label (S_13_3_D)
 
@@ -1996,7 +1998,7 @@ if !_rc{
      tostring S_13_8, replace
 }
 
-label define S_13_8 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_13_8 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_13_8, gen(s_13_8) label (S_13_8)
 
@@ -2007,7 +2009,7 @@ if !_rc{
      tostring S_13_9, replace
 }
 
-label define S_13_9 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_13_9 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_13_9, gen(s_13_9) label (S_13_9)
 
@@ -2018,7 +2020,7 @@ if !_rc{
      tostring S_13_12, replace
 }
 
-label define S_13_12 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_13_12 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_13_12, gen(s_13_12) label (S_13_12)
 
@@ -2029,7 +2031,7 @@ if !_rc{
      tostring S_13_13, replace
 }
 
-label define S_13_13 .a"." 1 "nunca" 2 "algunos días" 3 "la mayoría de los días" 4 "una vez al dia" 5 "más que una vez al dia" 8 "no responde"9 "no sabe"
+label define S_13_13 .a"." 0 "nunca" 1 "algunos días" 2 "la mayoría de los días" 3 "una vez al dia" 4 "más que una vez al dia" 8 "no responde"9 "no sabe"
 
 encode S_13_13, gen(s_13_13) label (S_13_13)
 
@@ -2040,7 +2042,7 @@ if !_rc{
      tostring S_13_14, replace
 }
 
-label define S_13_14 .a"." 1 "nunca" 2 "algunos días" 3 "la mayoría de los días" 4 "una vez al dia" 5 "más que una vez al dia" 8 "no responde"9 "no sabe"
+label define S_13_14 .a"." 0 "nunca" 1 "algunos días" 2 "la mayoría de los días" 3 "una vez al dia" 4 "más que una vez al dia" 8 "no responde"9 "no sabe"
 
 encode S_13_14, gen(s_13_14) label (S_13_14)
 
@@ -2051,7 +2053,7 @@ if !_rc{
      tostring S_13_15, replace
 }
 
-label define S_13_15 .a"." 1 "nunca" 2 "algunos días" 3 "la mayoría de los días" 4 "una vez al dia" 5 "más que una vez al dia" 8 "no responde"9 "no sabe"
+label define S_13_15 .a"." 0 "nunca" 1 "algunos días" 2 "la mayoría de los días" 3 "una vez al dia" 4 "más que una vez al dia" 8 "no responde"9 "no sabe"
 
 encode S_13_15, gen(s_13_15) label (S_13_15)
 
@@ -2062,7 +2064,7 @@ if !_rc{
      tostring S_13_16, replace
 }
 
-label define S_13_16 .a"." 1 "nunca" 2 "algunos días" 3 "la mayoría de los días" 4 "una vez al dia" 5 "más que una vez al dia" 8 "no responde"9 "no sabe"
+label define S_13_16 .a"." 0 "nunca" 1 "algunos días" 2 "la mayoría de los días" 3 "una vez al dia" 4 "más que una vez al dia" 8 "no responde"9 "no sabe"
 
 encode S_13_16, gen(s_13_16) label (S_13_16)
 
@@ -2073,7 +2075,7 @@ if !_rc{
      tostring S_13_17, replace
 }
 
-label define S_13_17 .a"." 1 "nunca" 2 "algunos días" 3 "la mayoría de los días" 4 "una vez al dia" 5 "más que una vez al dia" 8 "no responde"9 "no sabe"
+label define S_13_17 .a"." 0 "nunca" 1 "algunos días" 2 "la mayoría de los días" 3 "una vez al dia" 4 "más que una vez al dia" 8 "no responde"9 "no sabe"
 
 encode S_13_17, gen(s_13_17) label (S_13_17)
 
@@ -2095,7 +2097,7 @@ if !_rc{
      tostring S_13_19, replace
 }
 
-label define S_13_19 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_13_19 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_13_19, gen(s_13_19) label (S_13_19)
 
@@ -2106,7 +2108,7 @@ if !_rc{
      tostring S_13_22, replace
 }
 
-label define S_13_22 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_13_22 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_13_22, gen(s_13_22) label (S_13_22)
 
@@ -2117,7 +2119,7 @@ if !_rc{
      tostring S_13_30_D_C, replace
 }
 
-label define S_13_30_D_C .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_13_30_D_C .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_13_30_D_C, gen(s_13_30_d_c) label (S_13_30_D_C)
 
@@ -2128,7 +2130,7 @@ if !_rc{
      tostring S_13_30_P, replace
 }
 
-label define S_13_30_P .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_13_30_P .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_13_30_P, gen(s_13_30_p) label (S_13_30_P)
 
@@ -2139,7 +2141,7 @@ if !_rc{
      tostring S_14_1_P_D, replace
 }
 
-label define S_14_1_P_D .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_14_1_P_D .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_14_1_P_D, gen(s_14_1_p_d) label (S_14_1_P_D)
 
@@ -2150,7 +2152,7 @@ if !_rc{
      tostring S_14_3, replace
 }
 
-label define S_14_3 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_14_3 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_14_3, gen(s_14_3) label (S_14_3)
 
@@ -2161,7 +2163,7 @@ if !_rc{
      tostring S_14_17, replace
 }
 
-label define S_14_17 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_14_17 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_14_17, gen(s_14_17) label (S_14_17)
 
@@ -2172,7 +2174,7 @@ if !_rc{
      tostring S_14_18_1, replace
 }
 
-label define S_14_18_1 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_14_18_1 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_14_18_1, gen(s_14_18_1) label (S_14_18_1)
 
@@ -2183,7 +2185,7 @@ if !_rc{
      tostring S_14_18_2, replace
 }
 
-label define S_14_18_2 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_14_18_2 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_14_18_2, gen(s_14_18_2) label (S_14_18_2)
 
@@ -2194,7 +2196,7 @@ if !_rc{
      tostring S_14_18_3, replace
 }
 
-label define S_14_18_3 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_14_18_3 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_14_18_3, gen(s_14_18_3) label (S_14_18_3)
 
@@ -2205,7 +2207,7 @@ if !_rc{
      tostring S_14_18_4, replace
 }
 
-label define S_14_18_4 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_14_18_4 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_14_18_4, gen(s_14_18_4) label (S_14_18_4)
 
@@ -2216,7 +2218,7 @@ if !_rc{
      tostring S_14_18_5, replace
 }
 
-label define S_14_18_5 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_14_18_5 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_14_18_5, gen(s_14_18_5) label (S_14_18_5)
 
@@ -2227,7 +2229,7 @@ if !_rc{
      tostring S_14_18_6, replace
 }
 
-label define S_14_18_6 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_14_18_6 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_14_18_6, gen(s_14_18_6) label (S_14_18_6)
 
@@ -2238,7 +2240,7 @@ if !_rc{
      tostring S_14_23, replace
 }
 
-label define S_14_23 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_14_23 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_14_23, gen(s_14_23) label (S_14_23)
 
@@ -2249,7 +2251,7 @@ if !_rc{
      tostring S_14_30B1_P, replace
 }
 
-label define S_14_30B1_P .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_14_30B1_P .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_14_30B1_P, gen(s_14_30b1_p) label (S_14_30B1_P)
 
@@ -2260,7 +2262,7 @@ if !_rc{
      tostring S_14_30B1_D, replace
 }
 
-label define S_14_30B1_D .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_14_30B1_D .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_14_30B1_D, gen(s_14_30b1_d) label (S_14_30B1_D)
 
@@ -2271,7 +2273,7 @@ if !_rc{
      tostring S_14_30B2_P, replace
 }
 
-label define S_14_30B2_P .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_14_30B2_P .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_14_30B2_P, gen(s_14_30b2_p) label (S_14_30B2_P)
 
@@ -2282,7 +2284,7 @@ if !_rc{
      tostring S_14_30B2_D, replace
 }
 
-label define S_14_30B2_D .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_14_30B2_D .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_14_30B2_D, gen(s_14_30b2_d) label (S_14_30B2_D)
 
@@ -2293,7 +2295,7 @@ if !_rc{
      tostring S_14_30B3_P, replace
 }
 
-label define S_14_30B3_P .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_14_30B3_P .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_14_30B3_P, gen(s_14_30b3_p) label (S_14_30B3_P)
 
@@ -2304,7 +2306,7 @@ if !_rc{
      tostring S_14_30B3_D, replace
 }
 
-label define S_14_30B3_D .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_14_30B3_D .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_14_30B3_D, gen(s_14_30b3_d) label (S_14_30B3_D)
 
@@ -2315,7 +2317,7 @@ if !_rc{
      tostring S_14_31, replace
 }
 
-label define S_14_31 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_14_31 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_14_31, gen(s_14_31) label (S_14_31)
 
@@ -2337,7 +2339,7 @@ if !_rc{
      tostring S_14_33, replace
 }
 
-label define S_14_33 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define S_14_33 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_14_33, gen(s_14_33) label (S_14_33)
 
@@ -2348,7 +2350,7 @@ if !_rc{
      tostring S_15_1, replace
 }
 
-label define S_15_1 .a"." 1 "el participante solamente" 2 "participante y proxy" 3 "proxy solo" 
+label define S_15_1 .a"." 0 "el participante solamente" 1 "participante y proxy" 2 "proxy solo" 
 
 encode S_15_1, gen(s_15_1) label (S_15_1)
 
@@ -2370,7 +2372,7 @@ if !_rc{
      tostring S_15_3, replace
 }
 
-label define S_15_3 .a"." 1 "razonable (el entrevistado respondió de manera apropiada a más o menos a todas las preguntas)" 2 "algunas dudas" 3 "moderadas dudas" 4 "graves dudas (el entrevistador consideró que el entrevistado fue incapaz o no cooperó en responder de manera apropiada a la mayoría de las preguntas)" 5 "sin valor alguno (las preguntas fueron respondidas al azar)" 
+label define S_15_3 .a"." 0 "razonable (el entrevistado respondió de manera apropiada a más o menos a todas las preguntas)" 1 "algunas dudas" 2 "moderadas dudas" 3 "graves dudas (el entrevistador consideró que el entrevistado fue incapaz o no cooperó en responder de manera apropiada a la mayoría de las preguntas)" 4 "sin valor alguno (las preguntas fueron respondidas al azar)" 
 
 encode S_15_3, gen(s_15_3) label (S_15_3)
 
@@ -2773,3 +2775,23 @@ label define S_14_2g_D 0 "false" 1 "true"
 encode S_14_2g_D, gen (s_14_2g_d) label (S_14_2g_D)
 
 drop S_14_2g_D
+
+
+label define S_Sex .a"." 0 "hombre" 1 "mujer"
+
+label values s_sex S_Sex
+
+
+label define S_2_9a .a"." 0 "no ha completado ninguna educacion" 1 "pre-primaria (jardin de infantes guarderia maternal pre-escolar)" 2 "primaria" 3 "intermedio" 4 "secundaria" 5 "educacion terciaria (ej grado asociado o carrera tecnica)" 6 "educacion universitaria o superior" 8 "no responde" 9 "no sabe"
+
+label values s_2_9a S_2_9a
+
+
+label define S_3_11 .a"." 1 "profesional ejecutivo" 2 "oficinista" 3 "vendedor minorista" 4 "agricultor independiente" 5 "trabajador agricola" 6 "trabajador domestico" 7 "ostros servicios" 8 "trabajador especializado" 9 "trabajador no especializado" 10 "trabajos informales" 11 "otros" 12 "no trabajo" 13 "no tenia padre o tutor" 88 "no responde" 99 "no sabe"
+
+label values s_3_11 S_3_11
+
+
+label define S_6_7 .a"." 1 "usted estaba enfermo?" 2 "usted extranaba a su familia?" 3 "le fue dificil permanecer en el extranjero?" 4 "era muy caro quedarse en el extranjero?" 5 "no ganaba suficiente alla?" 6 "tuvo problemas relacionados con migracion?" 7 "tuvo problemas familiares aqui?" 8 "otra" 88 "no responde" 99 "no sabe"
+
+label values s_6_7 S_6_7

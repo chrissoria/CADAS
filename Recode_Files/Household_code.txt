@@ -16,7 +16,7 @@ if !_rc{
      tostring H_3_3A_P, replace
 }
 
-label define H_3_3A_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_3A_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_3A_P, gen(h_3_3a_p) label (H_3_3A_P)
 
@@ -27,7 +27,7 @@ if !_rc{
      tostring H_3_3A_D, replace
 }
 
-label define H_3_3A_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_3A_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_3A_D, gen(h_3_3a_d) label (H_3_3A_D)
 
@@ -38,7 +38,7 @@ if !_rc{
      tostring H_3_3A_C, replace
 }
 
-label define H_3_3A_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_3A_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_3A_C, gen(h_3_3a_c) label (H_3_3A_C)
 
@@ -49,7 +49,7 @@ if !_rc{
      tostring H_3_3B_P, replace
 }
 
-label define H_3_3B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_3B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_3B_P, gen(h_3_3b_p) label (H_3_3B_P)
 
@@ -60,7 +60,7 @@ if !_rc{
      tostring H_3_3B_D, replace
 }
 
-label define H_3_3B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_3B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_3B_D, gen(h_3_3b_d) label (H_3_3B_D)
 
@@ -71,7 +71,7 @@ if !_rc{
      tostring H_3_3B_C, replace
 }
 
-label define H_3_3B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_3B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_3B_C, gen(h_3_3b_c) label (H_3_3B_C)
 
@@ -82,7 +82,7 @@ if !_rc{
      tostring H_3_3C_P, replace
 }
 
-label define H_3_3C_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_3C_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_3C_P, gen(h_3_3c_p) label (H_3_3C_P)
 
@@ -93,7 +93,7 @@ if !_rc{
      tostring H_3_3C_D, replace
 }
 
-label define H_3_3C_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_3C_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_3C_D, gen(h_3_3c_d) label (H_3_3C_D)
 
@@ -104,7 +104,7 @@ if !_rc{
      tostring H_3_3C_C, replace
 }
 
-label define H_3_3C_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_3C_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_3C_C, gen(h_3_3c_c) label (H_3_3C_C)
 
@@ -115,7 +115,7 @@ if !_rc{
      tostring H_3_5A_P, replace
 }
 
-label define H_3_5A_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_5A_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_5A_P, gen(h_3_5a_p) label (H_3_5A_P)
 
@@ -126,7 +126,7 @@ if !_rc{
      tostring H_3_5A_D, replace
 }
 
-label define H_3_5A_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_5A_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_5A_D, gen(h_3_5a_d) label (H_3_5A_D)
 
@@ -137,7 +137,7 @@ if !_rc{
      tostring H_3_5A_C, replace
 }
 
-label define H_3_5A_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_5A_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_5A_C, gen(h_3_5a_c) label (H_3_5A_C)
 
@@ -148,7 +148,7 @@ if !_rc{
      tostring H_3_5B_P, replace
 }
 
-label define H_3_5B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_5B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_5B_P, gen(h_3_5b_p) label (H_3_5B_P)
 
@@ -159,7 +159,7 @@ if !_rc{
      tostring H_3_5B_D, replace
 }
 
-label define H_3_5B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_5B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_5B_D, gen(h_3_5b_d) label (H_3_5B_D)
 
@@ -170,7 +170,7 @@ if !_rc{
      tostring H_3_5B_C, replace
 }
 
-label define H_3_5B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_5B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_5B_C, gen(h_3_5b_c) label (H_3_5B_C)
 
@@ -181,7 +181,7 @@ if !_rc{
      tostring H_3_5C_P, replace
 }
 
-label define H_3_5C_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_5C_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_5C_P, gen(h_3_5c_p) label (H_3_5C_P)
 
@@ -192,7 +192,7 @@ if !_rc{
      tostring H_3_5C_D, replace
 }
 
-label define H_3_5C_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_5C_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_5C_D, gen(h_3_5c_d) label (H_3_5C_D)
 
@@ -203,7 +203,7 @@ if !_rc{
      tostring H_3_5C_C, replace
 }
 
-label define H_3_5C_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_5C_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_5C_C, gen(h_3_5c_c) label (H_3_5C_C)
 
@@ -214,7 +214,7 @@ if !_rc{
      tostring H_3_7A_P, replace
 }
 
-label define H_3_7A_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_7A_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_7A_P, gen(h_3_7a_p) label (H_3_7A_P)
 
@@ -225,7 +225,7 @@ if !_rc{
      tostring H_3_7A_D, replace
 }
 
-label define H_3_7A_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_7A_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_7A_D, gen(h_3_7a_d) label (H_3_7A_D)
 
@@ -236,7 +236,7 @@ if !_rc{
      tostring H_3_7A_C, replace
 }
 
-label define H_3_7A_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_7A_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_7A_C, gen(h_3_7a_c) label (H_3_7A_C)
 
@@ -247,7 +247,7 @@ if !_rc{
      tostring H_3_7B_P, replace
 }
 
-label define H_3_7B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_7B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_7B_P, gen(h_3_7b_p) label (H_3_7B_P)
 
@@ -258,7 +258,7 @@ if !_rc{
      tostring H_3_7B_D, replace
 }
 
-label define H_3_7B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_7B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_7B_D, gen(h_3_7b_d) label (H_3_7B_D)
 
@@ -269,7 +269,7 @@ if !_rc{
      tostring H_3_7B_C, replace
 }
 
-label define H_3_7B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_7B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_7B_C, gen(h_3_7b_c) label (H_3_7B_C)
 
@@ -280,7 +280,7 @@ if !_rc{
      tostring H_3_7C_P, replace
 }
 
-label define H_3_7C_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_7C_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_7C_P, gen(h_3_7c_p) label (H_3_7C_P)
 
@@ -291,7 +291,7 @@ if !_rc{
      tostring H_3_7C_D, replace
 }
 
-label define H_3_7C_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_7C_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_7C_D, gen(h_3_7c_d) label (H_3_7C_D)
 
@@ -302,7 +302,7 @@ if !_rc{
      tostring H_3_7C_C, replace
 }
 
-label define H_3_7C_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_7C_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_7C_C, gen(h_3_7c_c) label (H_3_7C_C)
 
@@ -346,7 +346,7 @@ if !_rc{
      tostring H_3_12, replace
 }
 
-label define H_3_12 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_12 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_12, gen(h_3_12) label (H_3_12)
 
@@ -368,7 +368,7 @@ if !_rc{
      tostring H_3_14_1, replace
 }
 
-label define H_3_14_1 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_14_1 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_14_1, gen(h_3_14_1) label (H_3_14_1)
 
@@ -379,7 +379,7 @@ if !_rc{
      tostring H_3_14_2, replace
 }
 
-label define H_3_14_2 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_14_2 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_14_2, gen(h_3_14_2) label (H_3_14_2)
 
@@ -390,7 +390,7 @@ if !_rc{
      tostring H_3_14_3, replace
 }
 
-label define H_3_14_3 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_14_3 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_14_3, gen(h_3_14_3) label (H_3_14_3)
 
@@ -401,7 +401,7 @@ if !_rc{
      tostring H_3_14_4, replace
 }
 
-label define H_3_14_4 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_14_4 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_14_4, gen(h_3_14_4) label (H_3_14_4)
 
@@ -412,7 +412,7 @@ if !_rc{
      tostring H_3_14_5, replace
 }
 
-label define H_3_14_5 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_14_5 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_14_5, gen(h_3_14_5) label (H_3_14_5)
 
@@ -423,7 +423,7 @@ if !_rc{
      tostring H_3_14_6, replace
 }
 
-label define H_3_14_6 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_14_6 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_14_6, gen(h_3_14_6) label (H_3_14_6)
 
@@ -434,7 +434,7 @@ if !_rc{
      tostring H_3_14_7, replace
 }
 
-label define H_3_14_7 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_14_7 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_14_7, gen(h_3_14_7) label (H_3_14_7)
 
@@ -445,7 +445,7 @@ if !_rc{
      tostring H_3_14_8, replace
 }
 
-label define H_3_14_8 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_14_8 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_14_8, gen(h_3_14_8) label (H_3_14_8)
 
@@ -456,7 +456,7 @@ if !_rc{
      tostring H_3_14_9, replace
 }
 
-label define H_3_14_9 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_14_9 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_14_9, gen(h_3_14_9) label (H_3_14_9)
 
@@ -467,7 +467,7 @@ if !_rc{
      tostring H_3_14_10, replace
 }
 
-label define H_3_14_10 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_14_10 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_14_10, gen(h_3_14_10) label (H_3_14_10)
 
@@ -478,7 +478,7 @@ if !_rc{
      tostring H_3_14_11, replace
 }
 
-label define H_3_14_11 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_14_11 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_14_11, gen(h_3_14_11) label (H_3_14_11)
 
@@ -489,7 +489,7 @@ if !_rc{
      tostring H_3_14_12, replace
 }
 
-label define H_3_14_12 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_14_12 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_14_12, gen(h_3_14_12) label (H_3_14_12)
 
@@ -500,7 +500,7 @@ if !_rc{
      tostring H_3_17A_P, replace
 }
 
-label define H_3_17A_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_17A_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_17A_P, gen(h_3_17a_p) label (H_3_17A_P)
 
@@ -511,7 +511,7 @@ if !_rc{
      tostring H_3_17A_D, replace
 }
 
-label define H_3_17A_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_17A_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_17A_D, gen(h_3_17a_d) label (H_3_17A_D)
 
@@ -522,7 +522,7 @@ if !_rc{
      tostring H_3_17A_C, replace
 }
 
-label define H_3_17A_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_17A_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_17A_C, gen(h_3_17a_c) label (H_3_17A_C)
 
@@ -533,7 +533,7 @@ if !_rc{
      tostring H_3_17B_P, replace
 }
 
-label define H_3_17B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_17B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_17B_P, gen(h_3_17b_p) label (H_3_17B_P)
 
@@ -544,7 +544,7 @@ if !_rc{
      tostring H_3_17B_D, replace
 }
 
-label define H_3_17B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_17B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_17B_D, gen(h_3_17b_d) label (H_3_17B_D)
 
@@ -555,7 +555,7 @@ if !_rc{
      tostring H_3_17B_C, replace
 }
 
-label define H_3_17B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_17B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_17B_C, gen(h_3_17b_c) label (H_3_17B_C)
 
@@ -566,7 +566,7 @@ if !_rc{
      tostring H_3_17C_P, replace
 }
 
-label define H_3_17C_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_17C_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_17C_P, gen(h_3_17c_p) label (H_3_17C_P)
 
@@ -577,7 +577,7 @@ if !_rc{
      tostring H_3_17C_D, replace
 }
 
-label define H_3_17C_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_17C_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_17C_D, gen(h_3_17c_d) label (H_3_17C_D)
 
@@ -588,7 +588,7 @@ if !_rc{
      tostring H_3_17C_C, replace
 }
 
-label define H_3_17C_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_17C_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_17C_C, gen(h_3_17c_c) label (H_3_17C_C)
 
@@ -599,7 +599,7 @@ if !_rc{
      tostring H_3_18, replace
 }
 
-label define H_3_18 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_18 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_18, gen(h_3_18) label (H_3_18)
 
@@ -610,7 +610,7 @@ if !_rc{
      tostring H_3_20A_P, replace
 }
 
-label define H_3_20A_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_20A_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_20A_P, gen(h_3_20a_p) label (H_3_20A_P)
 
@@ -621,7 +621,7 @@ if !_rc{
      tostring H_3_20A_D, replace
 }
 
-label define H_3_20A_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_20A_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_20A_D, gen(h_3_20a_d) label (H_3_20A_D)
 
@@ -632,7 +632,7 @@ if !_rc{
      tostring H_3_20A_C, replace
 }
 
-label define H_3_20A_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_20A_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_20A_C, gen(h_3_20a_c) label (H_3_20A_C)
 
@@ -643,7 +643,7 @@ if !_rc{
      tostring H_3_20B_P, replace
 }
 
-label define H_3_20B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_20B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_20B_P, gen(h_3_20b_p) label (H_3_20B_P)
 
@@ -654,7 +654,7 @@ if !_rc{
      tostring H_3_20B_D, replace
 }
 
-label define H_3_20B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_20B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_20B_D, gen(h_3_20b_d) label (H_3_20B_D)
 
@@ -665,7 +665,7 @@ if !_rc{
      tostring H_3_20B_C, replace
 }
 
-label define H_3_20B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_20B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_20B_C, gen(h_3_20b_c) label (H_3_20B_C)
 
@@ -676,7 +676,7 @@ if !_rc{
      tostring H_3_20C_P, replace
 }
 
-label define H_3_20C_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_20C_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_20C_P, gen(h_3_20c_p) label (H_3_20C_P)
 
@@ -687,7 +687,7 @@ if !_rc{
      tostring H_3_20C_D, replace
 }
 
-label define H_3_20C_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_20C_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_20C_D, gen(h_3_20c_d) label (H_3_20C_D)
 
@@ -698,7 +698,7 @@ if !_rc{
      tostring H_3_20C_C, replace
 }
 
-label define H_3_20C_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_20C_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_20C_C, gen(h_3_20c_c) label (H_3_20C_C)
 
@@ -709,7 +709,7 @@ if !_rc{
      tostring H_3_21, replace
 }
 
-label define H_3_21 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_21 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_21, gen(h_3_21) label (H_3_21)
 
@@ -720,7 +720,7 @@ if !_rc{
      tostring H_3_23A_P, replace
 }
 
-label define H_3_23A_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_23A_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_23A_P, gen(h_3_23a_p) label (H_3_23A_P)
 
@@ -731,7 +731,7 @@ if !_rc{
      tostring H_3_23A_D, replace
 }
 
-label define H_3_23A_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_23A_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_23A_D, gen(h_3_23a_d) label (H_3_23A_D)
 
@@ -742,7 +742,7 @@ if !_rc{
      tostring H_3_23A_C, replace
 }
 
-label define H_3_23A_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_23A_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_23A_C, gen(h_3_23a_c) label (H_3_23A_C)
 
@@ -753,7 +753,7 @@ if !_rc{
      tostring H_3_23B_P, replace
 }
 
-label define H_3_23B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_23B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_23B_P, gen(h_3_23b_p) label (H_3_23B_P)
 
@@ -764,7 +764,7 @@ if !_rc{
      tostring H_3_23B_D, replace
 }
 
-label define H_3_23B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_23B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_23B_D, gen(h_3_23b_d) label (H_3_23B_D)
 
@@ -775,7 +775,7 @@ if !_rc{
      tostring H_3_23B_C, replace
 }
 
-label define H_3_23B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_23B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_23B_C, gen(h_3_23b_c) label (H_3_23B_C)
 
@@ -786,7 +786,7 @@ if !_rc{
      tostring H_3_23C_P, replace
 }
 
-label define H_3_23C_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_23C_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_23C_P, gen(h_3_23c_p) label (H_3_23C_P)
 
@@ -797,7 +797,7 @@ if !_rc{
      tostring H_3_23C_D, replace
 }
 
-label define H_3_23C_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_23C_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_23C_D, gen(h_3_23c_d) label (H_3_23C_D)
 
@@ -808,7 +808,7 @@ if !_rc{
      tostring H_3_23C_C, replace
 }
 
-label define H_3_23C_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_23C_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_23C_C, gen(h_3_23c_c) label (H_3_23C_C)
 
@@ -819,7 +819,7 @@ if !_rc{
      tostring H_3_24, replace
 }
 
-label define H_3_24 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_24 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_24, gen(h_3_24) label (H_3_24)
 
@@ -830,7 +830,7 @@ if !_rc{
      tostring H_3_26A_P, replace
 }
 
-label define H_3_26A_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_26A_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_26A_P, gen(h_3_26a_p) label (H_3_26A_P)
 
@@ -841,7 +841,7 @@ if !_rc{
      tostring H_3_26A_D, replace
 }
 
-label define H_3_26A_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_26A_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_26A_D, gen(h_3_26a_d) label (H_3_26A_D)
 
@@ -852,7 +852,7 @@ if !_rc{
      tostring H_3_26A_C, replace
 }
 
-label define H_3_26A_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_26A_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_26A_C, gen(h_3_26a_c) label (H_3_26A_C)
 
@@ -863,7 +863,7 @@ if !_rc{
      tostring H_3_26B_P, replace
 }
 
-label define H_3_26B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_26B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_26B_P, gen(h_3_26b_p) label (H_3_26B_P)
 
@@ -874,7 +874,7 @@ if !_rc{
      tostring H_3_26B_D, replace
 }
 
-label define H_3_26B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_26B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_26B_D, gen(h_3_26b_d) label (H_3_26B_D)
 
@@ -885,7 +885,7 @@ if !_rc{
      tostring H_3_26B_C, replace
 }
 
-label define H_3_26B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_26B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_26B_C, gen(h_3_26b_c) label (H_3_26B_C)
 
@@ -896,7 +896,7 @@ if !_rc{
      tostring H_3_26C_P, replace
 }
 
-label define H_3_26C_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_26C_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_26C_P, gen(h_3_26c_p) label (H_3_26C_P)
 
@@ -907,7 +907,7 @@ if !_rc{
      tostring H_3_26C_D, replace
 }
 
-label define H_3_26C_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_26C_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_26C_D, gen(h_3_26c_d) label (H_3_26C_D)
 
@@ -918,7 +918,7 @@ if !_rc{
      tostring H_3_26C_C, replace
 }
 
-label define H_3_26C_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_26C_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_26C_C, gen(h_3_26c_c) label (H_3_26C_C)
 
@@ -929,7 +929,7 @@ if !_rc{
      tostring H_3_28A_P, replace
 }
 
-label define H_3_28A_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_28A_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_28A_P, gen(h_3_28a_p) label (H_3_28A_P)
 
@@ -940,7 +940,7 @@ if !_rc{
      tostring H_3_28A_D, replace
 }
 
-label define H_3_28A_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_28A_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_28A_D, gen(h_3_28a_d) label (H_3_28A_D)
 
@@ -951,7 +951,7 @@ if !_rc{
      tostring H_3_28A_C, replace
 }
 
-label define H_3_28A_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_28A_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_28A_C, gen(h_3_28a_c) label (H_3_28A_C)
 
@@ -962,7 +962,7 @@ if !_rc{
      tostring H_3_28B_P, replace
 }
 
-label define H_3_28B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_28B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_28B_P, gen(h_3_28b_p) label (H_3_28B_P)
 
@@ -973,7 +973,7 @@ if !_rc{
      tostring H_3_28B_D, replace
 }
 
-label define H_3_28B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_28B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_28B_D, gen(h_3_28b_d) label (H_3_28B_D)
 
@@ -984,7 +984,7 @@ if !_rc{
      tostring H_3_28B_C, replace
 }
 
-label define H_3_28B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_28B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_28B_C, gen(h_3_28b_c) label (H_3_28B_C)
 
@@ -995,7 +995,7 @@ if !_rc{
      tostring H_3_28C_P, replace
 }
 
-label define H_3_28C_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_28C_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_28C_P, gen(h_3_28c_p) label (H_3_28C_P)
 
@@ -1006,7 +1006,7 @@ if !_rc{
      tostring H_3_28C_D, replace
 }
 
-label define H_3_28C_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_28C_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_28C_D, gen(h_3_28c_d) label (H_3_28C_D)
 
@@ -1017,7 +1017,7 @@ if !_rc{
      tostring H_3_28C_C, replace
 }
 
-label define H_3_28C_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_28C_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_28C_C, gen(h_3_28c_c) label (H_3_28C_C)
 
@@ -1028,7 +1028,7 @@ if !_rc{
      tostring H_3_29, replace
 }
 
-label define H_3_29 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_29 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_29, gen(h_3_29) label (H_3_29)
 
@@ -1039,7 +1039,7 @@ if !_rc{
      tostring H_3_31A_P, replace
 }
 
-label define H_3_31A_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_31A_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_31A_P, gen(h_3_31a_p) label (H_3_31A_P)
 
@@ -1050,7 +1050,7 @@ if !_rc{
      tostring H_3_31A_D, replace
 }
 
-label define H_3_31A_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_31A_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_31A_D, gen(h_3_31a_d) label (H_3_31A_D)
 
@@ -1061,7 +1061,7 @@ if !_rc{
      tostring H_3_31A_C, replace
 }
 
-label define H_3_31A_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_31A_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_31A_C, gen(h_3_31a_c) label (H_3_31A_C)
 
@@ -1072,7 +1072,7 @@ if !_rc{
      tostring H_3_31B_P, replace
 }
 
-label define H_3_31B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_31B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_31B_P, gen(h_3_31b_p) label (H_3_31B_P)
 
@@ -1083,7 +1083,7 @@ if !_rc{
      tostring H_3_31B_D, replace
 }
 
-label define H_3_31B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_31B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_31B_D, gen(h_3_31b_d) label (H_3_31B_D)
 
@@ -1094,7 +1094,7 @@ if !_rc{
      tostring H_3_31B_C, replace
 }
 
-label define H_3_31B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_31B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_31B_C, gen(h_3_31b_c) label (H_3_31B_C)
 
@@ -1105,7 +1105,7 @@ if !_rc{
      tostring H_3_31C_P, replace
 }
 
-label define H_3_31C_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_31C_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_31C_P, gen(h_3_31c_p) label (H_3_31C_P)
 
@@ -1116,7 +1116,7 @@ if !_rc{
      tostring H_3_31C_D, replace
 }
 
-label define H_3_31C_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_31C_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_31C_D, gen(h_3_31c_d) label (H_3_31C_D)
 
@@ -1127,7 +1127,7 @@ if !_rc{
      tostring H_3_31C_C, replace
 }
 
-label define H_3_31C_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_31C_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_31C_C, gen(h_3_31c_c) label (H_3_31C_C)
 
@@ -1138,7 +1138,7 @@ if !_rc{
      tostring H_3_33A_P, replace
 }
 
-label define H_3_33A_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_33A_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_33A_P, gen(h_3_33a_p) label (H_3_33A_P)
 
@@ -1149,7 +1149,7 @@ if !_rc{
      tostring H_3_33A_D, replace
 }
 
-label define H_3_33A_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_33A_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_33A_D, gen(h_3_33a_d) label (H_3_33A_D)
 
@@ -1160,7 +1160,7 @@ if !_rc{
      tostring H_3_33A_C, replace
 }
 
-label define H_3_33A_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_33A_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_33A_C, gen(h_3_33a_c) label (H_3_33A_C)
 
@@ -1171,7 +1171,7 @@ if !_rc{
      tostring H_3_33B_P, replace
 }
 
-label define H_3_33B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_33B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_33B_P, gen(h_3_33b_p) label (H_3_33B_P)
 
@@ -1182,7 +1182,7 @@ if !_rc{
      tostring H_3_33B_D, replace
 }
 
-label define H_3_33B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_33B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_33B_D, gen(h_3_33b_d) label (H_3_33B_D)
 
@@ -1193,7 +1193,7 @@ if !_rc{
      tostring H_3_33B_C, replace
 }
 
-label define H_3_33B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_33B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_33B_C, gen(h_3_33b_c) label (H_3_33B_C)
 
@@ -1204,7 +1204,7 @@ if !_rc{
      tostring H_3_33C_P, replace
 }
 
-label define H_3_33C_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_33C_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_33C_P, gen(h_3_33c_p) label (H_3_33C_P)
 
@@ -1215,7 +1215,7 @@ if !_rc{
      tostring H_3_33C_D, replace
 }
 
-label define H_3_33C_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_33C_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_33C_D, gen(h_3_33c_d) label (H_3_33C_D)
 
@@ -1226,7 +1226,7 @@ if !_rc{
      tostring H_3_33C_C, replace
 }
 
-label define H_3_33C_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_33C_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_33C_C, gen(h_3_33c_c) label (H_3_33C_C)
 
@@ -1237,7 +1237,7 @@ if !_rc{
      tostring H_3_34, replace
 }
 
-label define H_3_34 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_3_34 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_3_34, gen(h_3_34) label (H_3_34)
 
@@ -1248,7 +1248,7 @@ if !_rc{
      tostring H_4_1, replace
 }
 
-label define H_4_1 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_1 .a"." 1 "si" 0 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_1, gen(h_4_1) label (H_4_1)
 
@@ -1259,7 +1259,7 @@ if !_rc{
      tostring H_4_1B_P, replace
 }
 
-label define H_4_1B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_1B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_1B_P, gen(h_4_1b_p) label (H_4_1B_P)
 
@@ -1270,7 +1270,7 @@ if !_rc{
      tostring H_4_1B_D, replace
 }
 
-label define H_4_1B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_1B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_1B_D, gen(h_4_1b_d) label (H_4_1B_D)
 
@@ -1281,7 +1281,7 @@ if !_rc{
      tostring H_4_1B_C, replace
 }
 
-label define H_4_1B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_1B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_1B_C, gen(h_4_1b_c) label (H_4_1B_C)
 
@@ -1292,7 +1292,7 @@ if !_rc{
      tostring H_4_1B2_P, replace
 }
 
-label define H_4_1B2_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_1B2_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_1B2_P, gen(h_4_1b2_p) label (H_4_1B2_P)
 
@@ -1303,7 +1303,7 @@ if !_rc{
      tostring H_4_1B2_D, replace
 }
 
-label define H_4_1B2_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_1B2_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_1B2_D, gen(h_4_1b2_d) label (H_4_1B2_D)
 
@@ -1314,7 +1314,7 @@ if !_rc{
      tostring H_4_1B2_C, replace
 }
 
-label define H_4_1B2_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_1B2_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_1B2_C, gen(h_4_1b2_c) label (H_4_1B2_C)
 
@@ -1325,7 +1325,7 @@ if !_rc{
      tostring H_4_1B3_P, replace
 }
 
-label define H_4_1B3_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_1B3_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_1B3_P, gen(h_4_1b3_p) label (H_4_1B3_P)
 
@@ -1336,7 +1336,7 @@ if !_rc{
      tostring H_4_1B3_D, replace
 }
 
-label define H_4_1B3_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_1B3_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_1B3_D, gen(h_4_1b3_d) label (H_4_1B3_D)
 
@@ -1347,7 +1347,7 @@ if !_rc{
      tostring H_4_1B3_C, replace
 }
 
-label define H_4_1B3_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_1B3_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_1B3_C, gen(h_4_1b3_c) label (H_4_1B3_C)
 
@@ -1358,7 +1358,7 @@ if !_rc{
      tostring H_4_2, replace
 }
 
-label define H_4_2 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_2 .a"." 1 "si" 0 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_2, gen(h_4_2) label (H_4_2)
 
@@ -1369,7 +1369,7 @@ if !_rc{
      tostring H_4_2B_P, replace
 }
 
-label define H_4_2B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_2B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_2B_P, gen(h_4_2b_p) label (H_4_2B_P)
 
@@ -1380,7 +1380,7 @@ if !_rc{
      tostring H_4_2B_D, replace
 }
 
-label define H_4_2B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_2B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_2B_D, gen(h_4_2b_d) label (H_4_2B_D)
 
@@ -1391,7 +1391,7 @@ if !_rc{
      tostring H_4_2B_C, replace
 }
 
-label define H_4_2B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_2B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_2B_C, gen(h_4_2b_c) label (H_4_2B_C)
 
@@ -1402,7 +1402,7 @@ if !_rc{
      tostring H_4_2B2_P, replace
 }
 
-label define H_4_2B2_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_2B2_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_2B2_P, gen(h_4_2b2_p) label (H_4_2B2_P)
 
@@ -1413,7 +1413,7 @@ if !_rc{
      tostring H_4_2B2_D, replace
 }
 
-label define H_4_2B2_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_2B2_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_2B2_D, gen(h_4_2b2_d) label (H_4_2B2_D)
 
@@ -1424,7 +1424,7 @@ if !_rc{
      tostring H_4_2B2_C, replace
 }
 
-label define H_4_2B2_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_2B2_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_2B2_C, gen(h_4_2b2_c) label (H_4_2B2_C)
 
@@ -1435,7 +1435,7 @@ if !_rc{
      tostring H_4_2B3_P, replace
 }
 
-label define H_4_2B3_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_2B3_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_2B3_P, gen(h_4_2b3_p) label (H_4_2B3_P)
 
@@ -1446,7 +1446,7 @@ if !_rc{
      tostring H_4_2B3_D, replace
 }
 
-label define H_4_2B3_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_2B3_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_2B3_D, gen(h_4_2b3_d) label (H_4_2B3_D)
 
@@ -1457,7 +1457,7 @@ if !_rc{
      tostring H_4_2B3_C, replace
 }
 
-label define H_4_2B3_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_2B3_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_2B3_C, gen(h_4_2b3_c) label (H_4_2B3_C)
 
@@ -1468,7 +1468,7 @@ if !_rc{
      tostring H_4_3, replace
 }
 
-label define H_4_3 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_3 .a"." 1 "si" 0 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_3, gen(h_4_3) label (H_4_3)
 
@@ -1479,7 +1479,7 @@ if !_rc{
      tostring H_4_3B_P, replace
 }
 
-label define H_4_3B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_3B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_3B_P, gen(h_4_3b_p) label (H_4_3B_P)
 
@@ -1490,7 +1490,7 @@ if !_rc{
      tostring H_4_3B_D, replace
 }
 
-label define H_4_3B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_3B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_3B_D, gen(h_4_3b_d) label (H_4_3B_D)
 
@@ -1501,7 +1501,7 @@ if !_rc{
      tostring H_4_3B_C, replace
 }
 
-label define H_4_3B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_3B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_3B_C, gen(h_4_3b_c) label (H_4_3B_C)
 
@@ -1512,7 +1512,7 @@ if !_rc{
      tostring H_4_3B2_P, replace
 }
 
-label define H_4_3B2_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_3B2_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_3B2_P, gen(h_4_3b2_p) label (H_4_3B2_P)
 
@@ -1523,7 +1523,7 @@ if !_rc{
      tostring H_4_3B2_D, replace
 }
 
-label define H_4_3B2_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_3B2_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_3B2_D, gen(h_4_3b2_d) label (H_4_3B2_D)
 
@@ -1534,7 +1534,7 @@ if !_rc{
      tostring H_4_3B2_C, replace
 }
 
-label define H_4_3B2_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_3B2_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_3B2_C, gen(h_4_3b2_c) label (H_4_3B2_C)
 
@@ -1545,7 +1545,7 @@ if !_rc{
      tostring H_4_3B3_P, replace
 }
 
-label define H_4_3B3_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_3B3_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_3B3_P, gen(h_4_3b3_p) label (H_4_3B3_P)
 
@@ -1556,7 +1556,7 @@ if !_rc{
      tostring H_4_3B3_D, replace
 }
 
-label define H_4_3B3_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_3B3_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_3B3_D, gen(h_4_3b3_d) label (H_4_3B3_D)
 
@@ -1567,7 +1567,7 @@ if !_rc{
      tostring H_4_3B3_C, replace
 }
 
-label define H_4_3B3_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_3B3_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_3B3_C, gen(h_4_3b3_c) label (H_4_3B3_C)
 
@@ -1578,7 +1578,7 @@ if !_rc{
      tostring H_4_4, replace
 }
 
-label define H_4_4 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_4 .a"." 1 "si" 0 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_4, gen(h_4_4) label (H_4_4)
 
@@ -1589,7 +1589,7 @@ if !_rc{
      tostring H_4_4B_P, replace
 }
 
-label define H_4_4B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_4B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_4B_P, gen(h_4_4b_p) label (H_4_4B_P)
 
@@ -1600,7 +1600,7 @@ if !_rc{
      tostring H_4_4B_D, replace
 }
 
-label define H_4_4B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_4B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_4B_D, gen(h_4_4b_d) label (H_4_4B_D)
 
@@ -1611,7 +1611,7 @@ if !_rc{
      tostring H_4_4B_C, replace
 }
 
-label define H_4_4B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_4B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_4B_C, gen(h_4_4b_c) label (H_4_4B_C)
 
@@ -1622,7 +1622,7 @@ if !_rc{
      tostring H_4_4B2_P, replace
 }
 
-label define H_4_4B2_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_4B2_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_4B2_P, gen(h_4_4b2_p) label (H_4_4B2_P)
 
@@ -1633,7 +1633,7 @@ if !_rc{
      tostring H_4_4B2_D, replace
 }
 
-label define H_4_4B2_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_4B2_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_4B2_D, gen(h_4_4b2_d) label (H_4_4B2_D)
 
@@ -1644,7 +1644,7 @@ if !_rc{
      tostring H_4_4B2_C, replace
 }
 
-label define H_4_4B2_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_4B2_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_4B2_C, gen(h_4_4b2_c) label (H_4_4B2_C)
 
@@ -1655,7 +1655,7 @@ if !_rc{
      tostring H_4_4B3_P, replace
 }
 
-label define H_4_4B3_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_4B3_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_4B3_P, gen(h_4_4b3_p) label (H_4_4B3_P)
 
@@ -1666,7 +1666,7 @@ if !_rc{
      tostring H_4_4B3_D, replace
 }
 
-label define H_4_4B3_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_4B3_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_4B3_D, gen(h_4_4b3_d) label (H_4_4B3_D)
 
@@ -1677,7 +1677,7 @@ if !_rc{
      tostring H_4_4B3_C, replace
 }
 
-label define H_4_4B3_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_4B3_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_4B3_C, gen(h_4_4b3_c) label (H_4_4B3_C)
 
@@ -1688,7 +1688,7 @@ if !_rc{
      tostring H_4_5, replace
 }
 
-label define H_4_5 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_5 .a"." 1 "si" 0 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_5, gen(h_4_5) label (H_4_5)
 
@@ -1699,7 +1699,7 @@ if !_rc{
      tostring H_4_5B_P, replace
 }
 
-label define H_4_5B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_5B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_5B_P, gen(h_4_5b_p) label (H_4_5B_P)
 
@@ -1710,7 +1710,7 @@ if !_rc{
      tostring H_4_5B_D, replace
 }
 
-label define H_4_5B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_5B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_5B_D, gen(h_4_5b_d) label (H_4_5B_D)
 
@@ -1721,7 +1721,7 @@ if !_rc{
      tostring H_4_5B_C, replace
 }
 
-label define H_4_5B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_5B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_5B_C, gen(h_4_5b_c) label (H_4_5B_C)
 
@@ -1732,7 +1732,7 @@ if !_rc{
      tostring H_4_5B2_P, replace
 }
 
-label define H_4_5B2_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_5B2_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_5B2_P, gen(h_4_5b2_p) label (H_4_5B2_P)
 
@@ -1743,7 +1743,7 @@ if !_rc{
      tostring H_4_5B2_D, replace
 }
 
-label define H_4_5B2_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_5B2_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_5B2_D, gen(h_4_5b2_d) label (H_4_5B2_D)
 
@@ -1754,7 +1754,7 @@ if !_rc{
      tostring H_4_5B2_C, replace
 }
 
-label define H_4_5B2_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_5B2_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_5B2_C, gen(h_4_5b2_c) label (H_4_5B2_C)
 
@@ -1765,7 +1765,7 @@ if !_rc{
      tostring H_4_5B3_P, replace
 }
 
-label define H_4_5B3_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_5B3_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_5B3_P, gen(h_4_5b3_p) label (H_4_5B3_P)
 
@@ -1776,7 +1776,7 @@ if !_rc{
      tostring H_4_5B3_D, replace
 }
 
-label define H_4_5B3_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_5B3_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_5B3_D, gen(h_4_5b3_d) label (H_4_5B3_D)
 
@@ -1787,7 +1787,7 @@ if !_rc{
      tostring H_4_5B3_C, replace
 }
 
-label define H_4_5B3_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_5B3_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_5B3_C, gen(h_4_5b3_c) label (H_4_5B3_C)
 
@@ -1798,7 +1798,7 @@ if !_rc{
      tostring H_4_6, replace
 }
 
-label define H_4_6 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_6 .a"." 1 "si" 0 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_6, gen(h_4_6) label (H_4_6)
 
@@ -1809,7 +1809,7 @@ if !_rc{
      tostring H_4_6B_P, replace
 }
 
-label define H_4_6B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_6B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_6B_P, gen(h_4_6b_p) label (H_4_6B_P)
 
@@ -1820,7 +1820,7 @@ if !_rc{
      tostring H_4_6B_D, replace
 }
 
-label define H_4_6B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_6B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_6B_D, gen(h_4_6b_d) label (H_4_6B_D)
 
@@ -1831,7 +1831,7 @@ if !_rc{
      tostring H_4_6B_C, replace
 }
 
-label define H_4_6B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_6B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_6B_C, gen(h_4_6b_c) label (H_4_6B_C)
 
@@ -1842,7 +1842,7 @@ if !_rc{
      tostring H_4_6B2_P, replace
 }
 
-label define H_4_6B2_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_6B2_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_6B2_P, gen(h_4_6b2_p) label (H_4_6B2_P)
 
@@ -1853,7 +1853,7 @@ if !_rc{
      tostring H_4_6B2_D, replace
 }
 
-label define H_4_6B2_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_6B2_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_6B2_D, gen(h_4_6b2_d) label (H_4_6B2_D)
 
@@ -1864,7 +1864,7 @@ if !_rc{
      tostring H_4_6B2_C, replace
 }
 
-label define H_4_6B2_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_6B2_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_6B2_C, gen(h_4_6b2_c) label (H_4_6B2_C)
 
@@ -1875,7 +1875,7 @@ if !_rc{
      tostring H_4_6B3_P, replace
 }
 
-label define H_4_6B3_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_6B3_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_6B3_P, gen(h_4_6b3_p) label (H_4_6B3_P)
 
@@ -1886,7 +1886,7 @@ if !_rc{
      tostring H_4_6B3_D, replace
 }
 
-label define H_4_6B3_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_6B3_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_6B3_D, gen(h_4_6b3_d) label (H_4_6B3_D)
 
@@ -1897,7 +1897,7 @@ if !_rc{
      tostring H_4_6B3_C, replace
 }
 
-label define H_4_6B3_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_6B3_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_6B3_C, gen(h_4_6b3_c) label (H_4_6B3_C)
 
@@ -1908,7 +1908,7 @@ if !_rc{
      tostring H_4_7, replace
 }
 
-label define H_4_7 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_7 .a"." 1 "si" 0 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_7, gen(h_4_7) label (H_4_7)
 
@@ -1919,7 +1919,7 @@ if !_rc{
      tostring H_4_7B_P, replace
 }
 
-label define H_4_7B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_7B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_7B_P, gen(h_4_7b_p) label (H_4_7B_P)
 
@@ -1930,7 +1930,7 @@ if !_rc{
      tostring H_4_7B_D, replace
 }
 
-label define H_4_7B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_7B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_7B_D, gen(h_4_7b_d) label (H_4_7B_D)
 
@@ -1941,7 +1941,7 @@ if !_rc{
      tostring H_4_7B_C, replace
 }
 
-label define H_4_7B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_7B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_7B_C, gen(h_4_7b_c) label (H_4_7B_C)
 
@@ -1952,7 +1952,7 @@ if !_rc{
      tostring H_4_7B2_P, replace
 }
 
-label define H_4_7B2_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_7B2_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_7B2_P, gen(h_4_7b2_p) label (H_4_7B2_P)
 
@@ -1963,7 +1963,7 @@ if !_rc{
      tostring H_4_7B2_D, replace
 }
 
-label define H_4_7B2_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_7B2_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_7B2_D, gen(h_4_7b2_d) label (H_4_7B2_D)
 
@@ -1974,7 +1974,7 @@ if !_rc{
      tostring H_4_7B2_C, replace
 }
 
-label define H_4_7B2_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_7B2_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_7B2_C, gen(h_4_7b2_c) label (H_4_7B2_C)
 
@@ -1985,7 +1985,7 @@ if !_rc{
      tostring H_4_8, replace
 }
 
-label define H_4_8 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_8 .a"." 1 "si" 0 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_8, gen(h_4_8) label (H_4_8)
 
@@ -1996,7 +1996,7 @@ if !_rc{
      tostring H_4_8B_P, replace
 }
 
-label define H_4_8B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_8B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_8B_P, gen(h_4_8b_p) label (H_4_8B_P)
 
@@ -2007,7 +2007,7 @@ if !_rc{
      tostring H_4_8B_D, replace
 }
 
-label define H_4_8B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_8B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_8B_D, gen(h_4_8b_d) label (H_4_8B_D)
 
@@ -2018,7 +2018,7 @@ if !_rc{
      tostring H_4_8B_C, replace
 }
 
-label define H_4_8B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_8B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_8B_C, gen(h_4_8b_c) label (H_4_8B_C)
 
@@ -2029,7 +2029,7 @@ if !_rc{
      tostring H_4_8B2_P, replace
 }
 
-label define H_4_8B2_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_8B2_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_8B2_P, gen(h_4_8b2_p) label (H_4_8B2_P)
 
@@ -2040,7 +2040,7 @@ if !_rc{
      tostring H_4_8B2_D, replace
 }
 
-label define H_4_8B2_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_8B2_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_8B2_D, gen(h_4_8b2_d) label (H_4_8B2_D)
 
@@ -2051,7 +2051,7 @@ if !_rc{
      tostring H_4_8B2_C, replace
 }
 
-label define H_4_8B2_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_4_8B2_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_4_8B2_C, gen(h_4_8b2_c) label (H_4_8B2_C)
 
@@ -2062,7 +2062,7 @@ if !_rc{
      tostring H_5, replace
 }
 
-label define H_5 .a"." 1 "si"0 "no"
+label define H_5 .a"." 2 "si" 1 "no" 
 
 encode H_5, gen(h_5) label (H_5)
 
@@ -2073,7 +2073,7 @@ if !_rc{
      tostring H_5_1, replace
 }
 
-label define H_5_1 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_1 .a"." 1 "si" 0 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_1, gen(h_5_1) label (H_5_1)
 
@@ -2084,7 +2084,7 @@ if !_rc{
      tostring H_5_1B_P, replace
 }
 
-label define H_5_1B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_1B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_1B_P, gen(h_5_1b_p) label (H_5_1B_P)
 
@@ -2095,7 +2095,7 @@ if !_rc{
      tostring H_5_1B_D, replace
 }
 
-label define H_5_1B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_1B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_1B_D, gen(h_5_1b_d) label (H_5_1B_D)
 
@@ -2106,7 +2106,7 @@ if !_rc{
      tostring H_5_1B_C, replace
 }
 
-label define H_5_1B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_1B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_1B_C, gen(h_5_1b_c) label (H_5_1B_C)
 
@@ -2117,7 +2117,7 @@ if !_rc{
      tostring H_5_1B2_P, replace
 }
 
-label define H_5_1B2_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_1B2_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_1B2_P, gen(h_5_1b2_p) label (H_5_1B2_P)
 
@@ -2128,7 +2128,7 @@ if !_rc{
      tostring H_5_1B2_D, replace
 }
 
-label define H_5_1B2_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_1B2_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_1B2_D, gen(h_5_1b2_d) label (H_5_1B2_D)
 
@@ -2139,7 +2139,7 @@ if !_rc{
      tostring H_5_1B2_C, replace
 }
 
-label define H_5_1B2_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_1B2_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_1B2_C, gen(h_5_1b2_c) label (H_5_1B2_C)
 
@@ -2150,7 +2150,7 @@ if !_rc{
      tostring H_5_1B3_P, replace
 }
 
-label define H_5_1B3_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_1B3_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_1B3_P, gen(h_5_1b3_p) label (H_5_1B3_P)
 
@@ -2161,7 +2161,7 @@ if !_rc{
      tostring H_5_1B3_D, replace
 }
 
-label define H_5_1B3_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_1B3_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_1B3_D, gen(h_5_1b3_d) label (H_5_1B3_D)
 
@@ -2172,7 +2172,7 @@ if !_rc{
      tostring H_5_1B3_C, replace
 }
 
-label define H_5_1B3_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_1B3_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_1B3_C, gen(h_5_1b3_c) label (H_5_1B3_C)
 
@@ -2183,7 +2183,7 @@ if !_rc{
      tostring H_5_2, replace
 }
 
-label define H_5_2 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_2 .a"." 1 "si" 0 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_2, gen(h_5_2) label (H_5_2)
 
@@ -2194,7 +2194,7 @@ if !_rc{
      tostring H_5_2B_P, replace
 }
 
-label define H_5_2B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_2B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_2B_P, gen(h_5_2b_p) label (H_5_2B_P)
 
@@ -2205,7 +2205,7 @@ if !_rc{
      tostring H_5_2B_D, replace
 }
 
-label define H_5_2B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_2B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_2B_D, gen(h_5_2b_d) label (H_5_2B_D)
 
@@ -2216,7 +2216,7 @@ if !_rc{
      tostring H_5_2B_C, replace
 }
 
-label define H_5_2B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_2B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_2B_C, gen(h_5_2b_c) label (H_5_2B_C)
 
@@ -2227,7 +2227,7 @@ if !_rc{
      tostring H_5_2B2_P, replace
 }
 
-label define H_5_2B2_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_2B2_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_2B2_P, gen(h_5_2b2_p) label (H_5_2B2_P)
 
@@ -2238,7 +2238,7 @@ if !_rc{
      tostring H_5_2B2_D, replace
 }
 
-label define H_5_2B2_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_2B2_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_2B2_D, gen(h_5_2b2_d) label (H_5_2B2_D)
 
@@ -2249,7 +2249,7 @@ if !_rc{
      tostring H_5_2B2_C, replace
 }
 
-label define H_5_2B2_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_2B2_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_2B2_C, gen(h_5_2b2_c) label (H_5_2B2_C)
 
@@ -2260,7 +2260,7 @@ if !_rc{
      tostring H_5_2B3_P, replace
 }
 
-label define H_5_2B3_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_2B3_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_2B3_P, gen(h_5_2b3_p) label (H_5_2B3_P)
 
@@ -2271,7 +2271,7 @@ if !_rc{
      tostring H_5_2B3_D, replace
 }
 
-label define H_5_2B3_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_2B3_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_2B3_D, gen(h_5_2b3_d) label (H_5_2B3_D)
 
@@ -2282,7 +2282,7 @@ if !_rc{
      tostring H_5_2B3_C, replace
 }
 
-label define H_5_2B3_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_2B3_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_2B3_C, gen(h_5_2b3_c) label (H_5_2B3_C)
 
@@ -2293,7 +2293,7 @@ if !_rc{
      tostring H_5_3, replace
 }
 
-label define H_5_3 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_3 .a"." 1 "si" 0 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_3, gen(h_5_3) label (H_5_3)
 
@@ -2304,7 +2304,7 @@ if !_rc{
      tostring H_5_3B_P, replace
 }
 
-label define H_5_3B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_3B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_3B_P, gen(h_5_3b_p) label (H_5_3B_P)
 
@@ -2315,7 +2315,7 @@ if !_rc{
      tostring H_5_3B_D, replace
 }
 
-label define H_5_3B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_3B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_3B_D, gen(h_5_3b_d) label (H_5_3B_D)
 
@@ -2326,7 +2326,7 @@ if !_rc{
      tostring H_5_3B_C, replace
 }
 
-label define H_5_3B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_3B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_3B_C, gen(h_5_3b_c) label (H_5_3B_C)
 
@@ -2337,7 +2337,7 @@ if !_rc{
      tostring H_5_3B2_P, replace
 }
 
-label define H_5_3B2_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_3B2_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_3B2_P, gen(h_5_3b2_p) label (H_5_3B2_P)
 
@@ -2348,7 +2348,7 @@ if !_rc{
      tostring H_5_3B2_D, replace
 }
 
-label define H_5_3B2_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_3B2_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_3B2_D, gen(h_5_3b2_d) label (H_5_3B2_D)
 
@@ -2359,7 +2359,7 @@ if !_rc{
      tostring H_5_3B2_C, replace
 }
 
-label define H_5_3B2_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_3B2_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_3B2_C, gen(h_5_3b2_c) label (H_5_3B2_C)
 
@@ -2370,7 +2370,7 @@ if !_rc{
      tostring H_5_3B3_P, replace
 }
 
-label define H_5_3B3_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_3B3_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_3B3_P, gen(h_5_3b3_p) label (H_5_3B3_P)
 
@@ -2381,7 +2381,7 @@ if !_rc{
      tostring H_5_3B3_D, replace
 }
 
-label define H_5_3B3_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_3B3_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_3B3_D, gen(h_5_3b3_d) label (H_5_3B3_D)
 
@@ -2392,7 +2392,7 @@ if !_rc{
      tostring H_5_3B3_C, replace
 }
 
-label define H_5_3B3_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_3B3_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_3B3_C, gen(h_5_3b3_c) label (H_5_3B3_C)
 
@@ -2403,7 +2403,7 @@ if !_rc{
      tostring H_5_4, replace
 }
 
-label define H_5_4 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_4 .a"." 1 "si" 0 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_4, gen(h_5_4) label (H_5_4)
 
@@ -2414,7 +2414,7 @@ if !_rc{
      tostring H_5_4B_P, replace
 }
 
-label define H_5_4B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_4B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_4B_P, gen(h_5_4b_p) label (H_5_4B_P)
 
@@ -2425,7 +2425,7 @@ if !_rc{
      tostring H_5_4B_D, replace
 }
 
-label define H_5_4B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_4B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_4B_D, gen(h_5_4b_d) label (H_5_4B_D)
 
@@ -2436,7 +2436,7 @@ if !_rc{
      tostring H_5_4B_C, replace
 }
 
-label define H_5_4B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_4B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_4B_C, gen(h_5_4b_c) label (H_5_4B_C)
 
@@ -2447,7 +2447,7 @@ if !_rc{
      tostring H_5_4B2_P, replace
 }
 
-label define H_5_4B2_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_4B2_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_4B2_P, gen(h_5_4b2_p) label (H_5_4B2_P)
 
@@ -2458,7 +2458,7 @@ if !_rc{
      tostring H_5_4B2_D, replace
 }
 
-label define H_5_4B2_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_4B2_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_4B2_D, gen(h_5_4b2_d) label (H_5_4B2_D)
 
@@ -2469,7 +2469,7 @@ if !_rc{
      tostring H_5_4B2_C, replace
 }
 
-label define H_5_4B2_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_4B2_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_4B2_C, gen(h_5_4b2_c) label (H_5_4B2_C)
 
@@ -2480,7 +2480,7 @@ if !_rc{
      tostring H_5_4B3_P, replace
 }
 
-label define H_5_4B3_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_4B3_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_4B3_P, gen(h_5_4b3_p) label (H_5_4B3_P)
 
@@ -2491,7 +2491,7 @@ if !_rc{
      tostring H_5_4B3_D, replace
 }
 
-label define H_5_4B3_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_4B3_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_4B3_D, gen(h_5_4b3_d) label (H_5_4B3_D)
 
@@ -2502,7 +2502,7 @@ if !_rc{
      tostring H_5_4B3_C, replace
 }
 
-label define H_5_4B3_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_4B3_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_4B3_C, gen(h_5_4b3_c) label (H_5_4B3_C)
 
@@ -2513,7 +2513,7 @@ if !_rc{
      tostring H_5_5, replace
 }
 
-label define H_5_5 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_5 .a"." 1 "si" 0 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_5, gen(h_5_5) label (H_5_5)
 
@@ -2524,7 +2524,7 @@ if !_rc{
      tostring H_5_5B_P, replace
 }
 
-label define H_5_5B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_5B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_5B_P, gen(h_5_5b_p) label (H_5_5B_P)
 
@@ -2535,7 +2535,7 @@ if !_rc{
      tostring H_5_5B_D, replace
 }
 
-label define H_5_5B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_5B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_5B_D, gen(h_5_5b_d) label (H_5_5B_D)
 
@@ -2546,7 +2546,7 @@ if !_rc{
      tostring H_5_5B_C, replace
 }
 
-label define H_5_5B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_5B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_5B_C, gen(h_5_5b_c) label (H_5_5B_C)
 
@@ -2557,7 +2557,7 @@ if !_rc{
      tostring H_5_5B2_P, replace
 }
 
-label define H_5_5B2_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_5B2_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_5B2_P, gen(h_5_5b2_p) label (H_5_5B2_P)
 
@@ -2568,7 +2568,7 @@ if !_rc{
      tostring H_5_5B2_D, replace
 }
 
-label define H_5_5B2_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_5B2_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_5B2_D, gen(h_5_5b2_d) label (H_5_5B2_D)
 
@@ -2579,7 +2579,7 @@ if !_rc{
      tostring H_5_5B2_C, replace
 }
 
-label define H_5_5B2_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_5B2_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_5B2_C, gen(h_5_5b2_c) label (H_5_5B2_C)
 
@@ -2590,7 +2590,7 @@ if !_rc{
      tostring H_5_5B3_P, replace
 }
 
-label define H_5_5B3_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_5B3_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_5B3_P, gen(h_5_5b3_p) label (H_5_5B3_P)
 
@@ -2601,7 +2601,7 @@ if !_rc{
      tostring H_5_5B3_D, replace
 }
 
-label define H_5_5B3_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_5B3_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_5B3_D, gen(h_5_5b3_d) label (H_5_5B3_D)
 
@@ -2612,7 +2612,7 @@ if !_rc{
      tostring H_5_5B3_C, replace
 }
 
-label define H_5_5B3_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_5B3_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_5B3_C, gen(h_5_5b3_c) label (H_5_5B3_C)
 
@@ -2623,7 +2623,7 @@ if !_rc{
      tostring H_5_6, replace
 }
 
-label define H_5_6 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_6 .a"." 1 "si" 0 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_6, gen(h_5_6) label (H_5_6)
 
@@ -2634,7 +2634,7 @@ if !_rc{
      tostring H_5_6B_P, replace
 }
 
-label define H_5_6B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_6B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_6B_P, gen(h_5_6b_p) label (H_5_6B_P)
 
@@ -2645,7 +2645,7 @@ if !_rc{
      tostring H_5_6B_D, replace
 }
 
-label define H_5_6B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_6B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_6B_D, gen(h_5_6b_d) label (H_5_6B_D)
 
@@ -2656,7 +2656,7 @@ if !_rc{
      tostring H_5_6B_C, replace
 }
 
-label define H_5_6B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_6B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_6B_C, gen(h_5_6b_c) label (H_5_6B_C)
 
@@ -2667,7 +2667,7 @@ if !_rc{
      tostring H_5_6B2_P, replace
 }
 
-label define H_5_6B2_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_6B2_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_6B2_P, gen(h_5_6b2_p) label (H_5_6B2_P)
 
@@ -2678,7 +2678,7 @@ if !_rc{
      tostring H_5_6B2_D, replace
 }
 
-label define H_5_6B2_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_6B2_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_6B2_D, gen(h_5_6b2_d) label (H_5_6B2_D)
 
@@ -2689,7 +2689,7 @@ if !_rc{
      tostring H_5_6B2_C, replace
 }
 
-label define H_5_6B2_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_6B2_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_6B2_C, gen(h_5_6b2_c) label (H_5_6B2_C)
 
@@ -2700,7 +2700,7 @@ if !_rc{
      tostring H_5_6B3_P, replace
 }
 
-label define H_5_6B3_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_6B3_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_6B3_P, gen(h_5_6b3_p) label (H_5_6B3_P)
 
@@ -2711,7 +2711,7 @@ if !_rc{
      tostring H_5_6B3_D, replace
 }
 
-label define H_5_6B3_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_6B3_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_6B3_D, gen(h_5_6b3_d) label (H_5_6B3_D)
 
@@ -2722,7 +2722,7 @@ if !_rc{
      tostring H_5_6B3_C, replace
 }
 
-label define H_5_6B3_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_6B3_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_6B3_C, gen(h_5_6b3_c) label (H_5_6B3_C)
 
@@ -2733,7 +2733,7 @@ if !_rc{
      tostring H_5_7, replace
 }
 
-label define H_5_7 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_7 .a"." 1 "si" 0 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_7, gen(h_5_7) label (H_5_7)
 
@@ -2744,7 +2744,7 @@ if !_rc{
      tostring H_5_7B_P, replace
 }
 
-label define H_5_7B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_7B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_7B_P, gen(h_5_7b_p) label (H_5_7B_P)
 
@@ -2755,7 +2755,7 @@ if !_rc{
      tostring H_5_7B_D, replace
 }
 
-label define H_5_7B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_7B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_7B_D, gen(h_5_7b_d) label (H_5_7B_D)
 
@@ -2766,7 +2766,7 @@ if !_rc{
      tostring H_5_7B_C, replace
 }
 
-label define H_5_7B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_7B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_7B_C, gen(h_5_7b_c) label (H_5_7B_C)
 
@@ -2777,7 +2777,7 @@ if !_rc{
      tostring H_5_7B2_P, replace
 }
 
-label define H_5_7B2_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_7B2_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_7B2_P, gen(h_5_7b2_p) label (H_5_7B2_P)
 
@@ -2788,7 +2788,7 @@ if !_rc{
      tostring H_5_7B2_D, replace
 }
 
-label define H_5_7B2_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_7B2_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_7B2_D, gen(h_5_7b2_d) label (H_5_7B2_D)
 
@@ -2799,7 +2799,7 @@ if !_rc{
      tostring H_5_7B2_C, replace
 }
 
-label define H_5_7B2_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_7B2_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_7B2_C, gen(h_5_7b2_c) label (H_5_7B2_C)
 
@@ -2810,7 +2810,7 @@ if !_rc{
      tostring H_5_8, replace
 }
 
-label define H_5_8 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_8 .a"." 1 "si" 0 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_8, gen(h_5_8) label (H_5_8)
 
@@ -2821,7 +2821,7 @@ if !_rc{
      tostring H_5_8B_P, replace
 }
 
-label define H_5_8B_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_8B_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_8B_P, gen(h_5_8b_p) label (H_5_8B_P)
 
@@ -2832,7 +2832,7 @@ if !_rc{
      tostring H_5_8B_D, replace
 }
 
-label define H_5_8B_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_8B_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_8B_D, gen(h_5_8b_d) label (H_5_8B_D)
 
@@ -2843,7 +2843,7 @@ if !_rc{
      tostring H_5_8B_C, replace
 }
 
-label define H_5_8B_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_8B_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_8B_C, gen(h_5_8b_c) label (H_5_8B_C)
 
@@ -2854,7 +2854,7 @@ if !_rc{
      tostring H_5_8B2_P, replace
 }
 
-label define H_5_8B2_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_8B2_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_8B2_P, gen(h_5_8b2_p) label (H_5_8B2_P)
 
@@ -2865,7 +2865,7 @@ if !_rc{
      tostring H_5_8B2_D, replace
 }
 
-label define H_5_8B2_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_8B2_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_8B2_D, gen(h_5_8b2_d) label (H_5_8B2_D)
 
@@ -2876,7 +2876,7 @@ if !_rc{
      tostring H_5_8B2_C, replace
 }
 
-label define H_5_8B2_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_5_8B2_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_5_8B2_C, gen(h_5_8b2_c) label (H_5_8B2_C)
 
@@ -2887,7 +2887,7 @@ if !_rc{
      tostring H_6_1, replace
 }
 
-label define H_6_1 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_6_1 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_1, gen(h_6_1) label (H_6_1)
 
@@ -2898,7 +2898,7 @@ if !_rc{
      tostring H_6_1B1_P, replace
 }
 
-label define H_6_1B1_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_6_1B1_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_1B1_P, gen(h_6_1b1_p) label (H_6_1B1_P)
 
@@ -2909,7 +2909,7 @@ if !_rc{
      tostring H_6_1B1_D, replace
 }
 
-label define H_6_1B1_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_6_1B1_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_1B1_D, gen(h_6_1b1_d) label (H_6_1B1_D)
 
@@ -2920,7 +2920,7 @@ if !_rc{
      tostring H_6_1B1_C, replace
 }
 
-label define H_6_1B1_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_6_1B1_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_1B1_C, gen(h_6_1b1_c) label (H_6_1B1_C)
 
@@ -2931,7 +2931,7 @@ if !_rc{
      tostring H_6_1B2_P, replace
 }
 
-label define H_6_1B2_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_6_1B2_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_1B2_P, gen(h_6_1b2_p) label (H_6_1B2_P)
 
@@ -2942,7 +2942,7 @@ if !_rc{
      tostring H_6_1B2_D, replace
 }
 
-label define H_6_1B2_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_6_1B2_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_1B2_D, gen(h_6_1b2_d) label (H_6_1B2_D)
 
@@ -2953,7 +2953,7 @@ if !_rc{
      tostring H_6_1B2_C, replace
 }
 
-label define H_6_1B2_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_6_1B2_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_1B2_C, gen(h_6_1b2_c) label (H_6_1B2_C)
 
@@ -2986,7 +2986,7 @@ if !_rc{
      tostring H_6_41_D, replace
 }
 
-label define H_6_41_D .a"." 1 "si y ya está incluido en los apartados anteriores" 2 "si y no está incluido en los apartados anteriores" 0 "no"8 "no responde"9 "no sabe"
+label define H_6_41_D .a"." 1 "si y ya está incluido en los apartados anteriores" 2 "si y no está incluido en los apartados anteriores" 3 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_41_D, gen(h_6_41_d) label (H_6_41_D)
 
@@ -2997,7 +2997,7 @@ if !_rc{
      tostring H_6_42_D, replace
 }
 
-label define H_6_42_D .a"." 1 "si y ya está incluido en los apartados anteriores" 2 "si y no está incluido en los apartados anteriores" 0 "no"8 "no responde"9 "no sabe"
+label define H_6_42_D .a"." 1 "si y ya está incluido en los apartados anteriores" 2 "si y no está incluido en los apartados anteriores" 3 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_42_D, gen(h_6_42_d) label (H_6_42_D)
 
@@ -3008,7 +3008,7 @@ if !_rc{
      tostring H_6_43_D, replace
 }
 
-label define H_6_43_D .a"." 1 "si y ya está incluido en los apartados anteriores" 2 "si y no está incluido en los apartados anteriores" 0 "no"8 "no responde"9 "no sabe"
+label define H_6_43_D .a"." 1 "si y ya está incluido en los apartados anteriores" 2 "si y no está incluido en los apartados anteriores" 3 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_43_D, gen(h_6_43_d) label (H_6_43_D)
 
@@ -3019,7 +3019,7 @@ if !_rc{
      tostring H_6_44_P, replace
 }
 
-label define H_6_44_P .a"." 1 "si y ya está incluido en los apartados anteriores" 2 "si y no está incluido en los apartados anteriores" 0 "no"8 "no responde"9 "no sabe"
+label define H_6_44_P .a"." 1 "si y ya está incluido en los apartados anteriores" 2 "si y no está incluido en los apartados anteriores" 3 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_44_P, gen(h_6_44_p) label (H_6_44_P)
 
@@ -3030,7 +3030,7 @@ if !_rc{
      tostring H_6_5, replace
 }
 
-label define H_6_5 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_6_5 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_5, gen(h_6_5) label (H_6_5)
 
@@ -3041,7 +3041,7 @@ if !_rc{
      tostring H_6_5B1_P, replace
 }
 
-label define H_6_5B1_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_6_5B1_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_5B1_P, gen(h_6_5b1_p) label (H_6_5B1_P)
 
@@ -3052,7 +3052,7 @@ if !_rc{
      tostring H_6_5B1_D, replace
 }
 
-label define H_6_5B1_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_6_5B1_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_5B1_D, gen(h_6_5b1_d) label (H_6_5B1_D)
 
@@ -3063,7 +3063,7 @@ if !_rc{
      tostring H_6_5B1_C, replace
 }
 
-label define H_6_5B1_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_6_5B1_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_5B1_C, gen(h_6_5b1_c) label (H_6_5B1_C)
 
@@ -3074,7 +3074,7 @@ if !_rc{
      tostring H_6_5B2_P, replace
 }
 
-label define H_6_5B2_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_6_5B2_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_5B2_P, gen(h_6_5b2_p) label (H_6_5B2_P)
 
@@ -3085,7 +3085,7 @@ if !_rc{
      tostring H_6_5B2_D, replace
 }
 
-label define H_6_5B2_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_6_5B2_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_5B2_D, gen(h_6_5b2_d) label (H_6_5B2_D)
 
@@ -3096,7 +3096,7 @@ if !_rc{
      tostring H_6_5B2_C, replace
 }
 
-label define H_6_5B2_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_6_5B2_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_5B2_C, gen(h_6_5b2_c) label (H_6_5B2_C)
 
@@ -3107,7 +3107,7 @@ if !_rc{
      tostring H_6_6, replace
 }
 
-label define H_6_6 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_6_6 .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_6, gen(h_6_6) label (H_6_6)
 
@@ -3118,7 +3118,7 @@ if !_rc{
      tostring H_6_6B1_P, replace
 }
 
-label define H_6_6B1_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_6_6B1_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_6B1_P, gen(h_6_6b1_p) label (H_6_6B1_P)
 
@@ -3129,7 +3129,7 @@ if !_rc{
      tostring H_6_6B1_D, replace
 }
 
-label define H_6_6B1_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_6_6B1_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_6B1_D, gen(h_6_6b1_d) label (H_6_6B1_D)
 
@@ -3140,7 +3140,7 @@ if !_rc{
      tostring H_6_6B1_C, replace
 }
 
-label define H_6_6B1_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_6_6B1_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_6B1_C, gen(h_6_6b1_c) label (H_6_6B1_C)
 
@@ -3151,7 +3151,7 @@ if !_rc{
      tostring H_6_6B2_P, replace
 }
 
-label define H_6_6B2_P .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_6_6B2_P .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_6B2_P, gen(h_6_6b2_p) label (H_6_6B2_P)
 
@@ -3162,7 +3162,7 @@ if !_rc{
      tostring H_6_6B2_D, replace
 }
 
-label define H_6_6B2_D .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_6_6B2_D .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_6B2_D, gen(h_6_6b2_d) label (H_6_6B2_D)
 
@@ -3173,7 +3173,7 @@ if !_rc{
      tostring H_6_6B2_C, replace
 }
 
-label define H_6_6B2_C .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_6_6B2_C .a"." 1 "si" 2 "no" 8 "no responde"9 "no sabe"
 
 encode H_6_6B2_C, gen(h_6_6b2_c) label (H_6_6B2_C)
 
@@ -3184,7 +3184,7 @@ if !_rc{
      tostring H_7_1_P_C, replace
 }
 
-label define H_7_1_P_C .a"." 1 "casa separada" 2 "casa que comparte paredes con otra casa" 3 "apartamento" 4 "pieza en cuartería o parte atras" 5 "vivienda compartida con negocio" 6 "otro" 9 "no sabe"
+label define H_7_1_P_C .a"." 1 "casa separada" 2 "casa que comparte paredes con otra casa" 3 "apartamento" 4 "pieza en cuartería o parte atras" 5 "vivienda compartida con negocio" 77 "otro" 99 "no sabe"
 
 encode H_7_1_P_C, gen(h_7_1_p_c) label (H_7_1_P_C)
 
@@ -3195,7 +3195,7 @@ if !_rc{
      tostring H_7_1_D, replace
 }
 
-label define H_7_1_D .a"." 1 "casa separada" 2 "casa que comparte paredes con otra casa" 3 "apartamento" 4 "pieza en cuartería o parte atras" 5 "vivienda compartida con negocio" 6 "barracón" 7 "otro" 9 "no sabe"
+label define H_7_1_D .a"." 1 "casa separada" 2 "casa que comparte paredes con otra casa" 3 "apartamento" 4 "pieza en cuartería o parte atras" 5 "vivienda compartida con negocio" 6 "barracón" 77 "otro" 99 "no sabe"
 
 encode H_7_1_D, gen(h_7_1_d) label (H_7_1_D)
 
@@ -3206,7 +3206,7 @@ if !_rc{
      tostring H_7_2_1, replace
 }
 
-label define H_7_2_1 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_7_2_1 .a"." 2 "si" 1 "no" 8 "no responde"9 "no sabe"
 
 encode H_7_2_1, gen(h_7_2_1) label (H_7_2_1)
 
@@ -3217,7 +3217,7 @@ if !_rc{
      tostring H_7_2_2, replace
 }
 
-label define H_7_2_2 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_7_2_2 .a"." 2 "si" 1 "no" 8 "no responde"9 "no sabe"
 
 encode H_7_2_2, gen(h_7_2_2) label (H_7_2_2)
 
@@ -3228,7 +3228,7 @@ if !_rc{
      tostring H_7_2_3, replace
 }
 
-label define H_7_2_3 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_7_2_3 .a"." 2 "si" 1 "no" 8 "no responde"9 "no sabe"
 
 encode H_7_2_3, gen(h_7_2_3) label (H_7_2_3)
 
@@ -3239,7 +3239,7 @@ if !_rc{
      tostring H_7_2_4, replace
 }
 
-label define H_7_2_4 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_7_2_4 .a"." 2 "si" 1 "no" 8 "no responde"9 "no sabe"
 
 encode H_7_2_4, gen(h_7_2_4) label (H_7_2_4)
 
@@ -3250,7 +3250,6 @@ if !_rc{
      tostring H_7_2_5, replace
 }
 
-label define H_7_2_5 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+label define H_7_2_5 .a"." 2 "si" 1 "no" 8 "no responde"9 "no sabe"
 
 encode H_7_2_5, gen(h_7_2_5) label (H_7_2_5)
-

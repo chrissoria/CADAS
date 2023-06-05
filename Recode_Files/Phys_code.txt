@@ -5,7 +5,7 @@ if !_rc{
      tostring P2_1, replace
 }
 
-label define P2_1 .a"." 0 "no"1 "si"
+label define P2_1 .a"." 0 "no" 1 "si" 
 
 encode P2_1, gen(p2_1) label (P2_1)
 
@@ -16,7 +16,7 @@ if !_rc{
      tostring P6, replace
 }
 
-label define P6 .a"." 1 "mirada hacia arriba normal" 2 "mirada hacia arriba limitada" 3 "no puede o casi no puede mirar hacia arriba" 4 "no hizo la prueba" 
+label define P6 .a"." 0 "mirada hacia arriba normal" 1 "mirada hacia arriba limitada" 2 "no puede o casi no puede mirar hacia arriba" 6 "no hizo la prueba" 
 
 encode P6, gen(p6) label (P6)
 
@@ -27,7 +27,7 @@ if !_rc{
      tostring P7_1, replace
 }
 
-label define P7_1 .a"." 1 "1-4 golpes" 2 "5 golpes" 3 "6-9 golpes" 4 "10+ golpes" 5 "no intentó la prueba" 
+label define P7_1 .a"." 0 "1-4 golpes" 1 "5 golpes" 2 "6-9 golpes" 3 "10+ golpes" 6 "no intentó la prueba" 
 
 encode P7_1, gen(p7_1) label (P7_1)
 
@@ -38,7 +38,7 @@ if !_rc{
      tostring P7_2, replace
 }
 
-label define P7_2 .a"." 1 "no hace trompa (protruye los labios)" 2 "trompa presente" 3 "no pudo hacerlo" 
+label define P7_2 .a"." 0 "no hace trompa (protruye los labios)" 1 "trompa presente" 6 "no pudo hacerlo" 
 
 encode P7_2, gen(p7_2) label (P7_2)
 
@@ -49,7 +49,7 @@ if !_rc{
      tostring P7_3, replace
 }
 
-label define P7_3 .a"." 1 "no hay contracción facial" 2 "reflejo de contracción facial presente" 3 "no pudo hacerlo" 
+label define P7_3 .a"." 0 "no hay contracción facial" 1 "reflejo de contracción facial presente" 6 "no pudo hacerlo" 
 
 encode P7_3, gen(p7_3) label (P7_3)
 
@@ -60,7 +60,7 @@ if !_rc{
      tostring P8_1, replace
 }
 
-label define P8_1 .a"." 1 "no hay temblor" 2 "lento" 3 "medio" 4 "rápido" 5 "no pudo hacerlo" 
+label define P8_1 .a"." 0 "no hay temblor" 1 "lento" 2 "medio" 3 "rápido" 6 "no pudo hacerlo" 
 
 encode P8_1, gen(p8_1) label (P8_1)
 
@@ -71,7 +71,7 @@ if !_rc{
      tostring P8_2, replace
 }
 
-label define P8_2 .a"." 1 "no hay temblor" 2 "lento" 3 "medio" 4 "rápido" 5 "no pudo hacerlo" 
+label define P8_2 .a"." 0 "no hay temblor" 1 "lento" 2 "medio" 3 "rápido" 6 "no pudo hacerlo" 
 
 encode P8_2, gen(p8_2) label (P8_2)
 
@@ -82,7 +82,7 @@ if !_rc{
      tostring P8_3, replace
 }
 
-label define P8_3 .a"." 1 "no hay temblor" 2 "lento" 3 "medio" 4 "rápido" 5 "no pudo hacerlo" 
+label define P8_3 .a"." 0 "no hay temblor" 1 "lento" 2 "medio" 3 "rápido" 6 "no pudo hacerlo" 
 
 encode P8_3, gen(p8_3) label (P8_3)
 
@@ -93,7 +93,7 @@ if !_rc{
      tostring P9_1, replace
 }
 
-label define P9_1 .a"." 1 "no hay desviación" 2 "desviación presente por causas neurológicas" 3 "desviación presente por otras causas" 4 "no intentó la prueba" 
+label define P9_1 .a"." 0 "no hay desviación" 1 "desviación presente por causas neurológicas" 2 "desviación presente por otras causas" 6 "no intentó la prueba" 
 
 encode P9_1, gen(p9_1) label (P9_1)
 
@@ -104,7 +104,7 @@ if !_rc{
      tostring P9_2, replace
 }
 
-label define P9_2 .a"." 1 "derecho" 2 "izquierdo" 3 "no pudo hacerlo" 4 "no intentó la prueba" 
+label define P9_2 .a"." 0 "derecho" 1 "izquierdo" 6 "no pudo hacerlo" 7 "no intentó la prueba" 
 
 encode P9_2, gen(p9_2) label (P9_2)
 
@@ -115,7 +115,7 @@ if !_rc{
      tostring P10_1_1_1, replace
 }
 
-label define P10_1_1_1 .a"." 1 "tono normal" 2 "tono ligeramente aumentado" 3 "tono muy aumentado" 4 "no intentó la prueba" 
+label define P10_1_1_1 .a"." 0 "tono normal" 1 "tono ligeramente aumentado" 2 "tono muy aumentado" 6 "no intentó la prueba" 
 
 encode P10_1_1_1, gen(p10_1_1_1) label (P10_1_1_1)
 
@@ -126,7 +126,7 @@ if !_rc{
      tostring P10_1_1_2, replace
 }
 
-label define P10_1_1_2 .a"." 1 "tono normal" 2 "tono ligeramente aumentado" 3 "tono muy aumentado" 4 "no intentó la prueba" 
+label define P10_1_1_2 .a"." 0 "tono normal" 1 "tono ligeramente aumentado" 2 "tono muy aumentado" 6 "no intentó la prueba" 
 
 encode P10_1_1_2, gen(p10_1_1_2) label (P10_1_1_2)
 
@@ -137,7 +137,7 @@ if !_rc{
      tostring P10_1_2_1, replace
 }
 
-label define P10_1_2_1 .a"." 1 "tono normal" 2 "tono ligeramente aumentado" 3 "tono muy aumentado" 4 "no intentó la prueba" 
+label define P10_1_2_1 .a"." 0 "tono normal" 1 "tono ligeramente aumentado" 2 "tono muy aumentado" 6 "no intentó la prueba"  
 
 encode P10_1_2_1, gen(p10_1_2_1) label (P10_1_2_1)
 
@@ -148,7 +148,7 @@ if !_rc{
      tostring P10_1_2_2, replace
 }
 
-label define P10_1_2_2 .a"." 1 "tono normal" 2 "tono ligeramente aumentado" 3 "tono muy aumentado" 4 "no intentó la prueba" 
+label define P10_1_2_2 .a"." 0 "tono normal" 1 "tono ligeramente aumentado" 2 "tono muy aumentado" 6 "no intentó la prueba" 
 
 encode P10_1_2_2, gen(p10_1_2_2) label (P10_1_2_2)
 
@@ -159,7 +159,7 @@ if !_rc{
      tostring P10_2_1_1, replace
 }
 
-label define P10_2_1_1 .a"." 1 "tono normal" 2 "tono ligeramente aumentado" 3 "tono muy aumentado" 4 "no intentó la prueba" 
+label define P10_2_1_1 .a"." 0 "tono normal" 1 "tono ligeramente aumentado" 2 "tono muy aumentado" 6 "no intentó la prueba"  
 
 encode P10_2_1_1, gen(p10_2_1_1) label (P10_2_1_1)
 
@@ -170,7 +170,7 @@ if !_rc{
      tostring P10_2_1_2, replace
 }
 
-label define P10_2_1_2 .a"." 1 "tono normal" 2 "tono ligeramente aumentado" 3 "tono muy aumentado" 4 "no intentó la prueba" 
+label define P10_2_1_2 .a"." 0 "tono normal" 1 "tono ligeramente aumentado" 2 "tono muy aumentado" 6 "no intentó la prueba" 
 
 encode P10_2_1_2, gen(p10_2_1_2) label (P10_2_1_2)
 
@@ -181,7 +181,7 @@ if !_rc{
      tostring P10_2_2_1, replace
 }
 
-label define P10_2_2_1 .a"." 1 "tono normal" 2 "tono ligeramente aumentado" 3 "tono muy aumentado" 4 "no intentó la prueba" 
+label define P10_2_2_1 .a"." 0 "tono normal" 1 "tono ligeramente aumentado" 2 "tono muy aumentado" 6 "no intentó la prueba"  
 
 encode P10_2_2_1, gen(p10_2_2_1) label (P10_2_2_1)
 
@@ -192,7 +192,7 @@ if !_rc{
      tostring P10_2_2_2, replace
 }
 
-label define P10_2_2_2 .a"." 1 "tono normal" 2 "tono ligeramente aumentado" 3 "tono muy aumentado" 4 "no intentó la prueba" 
+label define P10_2_2_2 .a"." 0 "tono normal" 1 "tono ligeramente aumentado" 2 "tono muy aumentado" 6 "no intentó la prueba" 
 
 encode P10_2_2_2, gen(p10_2_2_2) label (P10_2_2_2)
 
@@ -203,7 +203,7 @@ if !_rc{
      tostring P11_1, replace
 }
 
-label define P11_1 .a"." 1 "derecha" 2 "izquierda" 8 "no responde"9 "no sabe"
+label define P11_1 .a"." 0 "derecha" 1 "izquierda" 8 "no responde"9 "no sabe"
 
 encode P11_1, gen(p11_1) label (P11_1)
 
@@ -214,7 +214,7 @@ if !_rc{
      tostring P11_2_1, replace
 }
 
-label define P11_2_1 .a"." 1 "no limitaciones" 2 "limitaciones (lentitud y/o torpeza)" 3 "no pudo hacerlo" 
+label define P11_2_1 .a"." 0 "no limitaciones" 1 "limitaciones (lentitud y/o torpeza)" 6 "no pudo hacerlo" 
 
 encode P11_2_1, gen(p11_2_1) label (P11_2_1)
 
@@ -225,7 +225,7 @@ if !_rc{
      tostring P11_2_2, replace
 }
 
-label define P11_2_2 .a"." 1 "no limitaciones" 2 "limitaciones (lentitud y/o torpeza)" 3 "no pudo hacerlo" 
+label define P11_2_2 .a"." 0 "no limitaciones" 1 "limitaciones (lentitud y/o torpeza)" 6 "no pudo hacerlo" 
 
 encode P11_2_2, gen(p11_2_2) label (P11_2_2)
 
@@ -236,7 +236,7 @@ if !_rc{
      tostring P11_3_1_1, replace
 }
 
-label define P11_3_1_1 .a"." 1 "velocidad normal" 2 "lento" 3 "no intentó la prueba" 
+label define P11_3_1_1 .a"." 0 "velocidad normal" 1 "lento" 6 "no intentó la prueba" 
 
 encode P11_3_1_1, gen(p11_3_1_1) label (P11_3_1_1)
 
@@ -247,7 +247,7 @@ if !_rc{
      tostring P11_3_1_2, replace
 }
 
-label define P11_3_1_2 .a"." 1 "velocidad normal" 2 "lento" 3 "no intentó la prueba" 
+label define P11_3_1_2 .a"." 0 "velocidad normal" 1 "lento" 6 "no intentó la prueba" 
 
 encode P11_3_1_2, gen(p11_3_1_2) label (P11_3_1_2)
 
@@ -258,7 +258,7 @@ if !_rc{
      tostring P11_3_2_1, replace
 }
 
-label define P11_3_2_1 .a"." 1 "coordinación normal" 2 "torpe descoordinado" 3 "no intentó la prueba" 
+label define P11_3_2_1 .a"." 0 "coordinación normal" 1 "torpe descoordinado" 6 "no intentó la prueba" 
 
 encode P11_3_2_1, gen(p11_3_2_1) label (P11_3_2_1)
 
@@ -269,7 +269,7 @@ if !_rc{
      tostring P11_3_2_2, replace
 }
 
-label define P11_3_2_2 .a"." 1 "coordinación normal" 2 "torpe descoordinado" 3 "no intentó la prueba" 
+label define P11_3_2_2 .a"." 0 "coordinación normal" 1 "torpe descoordinado" 6 "no intentó la prueba" 
 
 encode P11_3_2_2, gen(p11_3_2_2) label (P11_3_2_2)
 
@@ -280,7 +280,7 @@ if !_rc{
      tostring P12_1, replace
 }
 
-label define P12_1 .a"." 3 "no intentó la prueba" 
+label define P12_1 .a"." 0 "dominante" 1 "no dominante" 6 "no intentó la prueba" 
 
 encode P12_1, gen(p12_1) label (P12_1)
 
@@ -291,7 +291,7 @@ if !_rc{
      tostring P12_2_1, replace
 }
 
-label define P12_2_1 .a"." 1 "requiere sólo una demostración" 2 "requiere 2-3 demostraciones" 3 "requiere 4-5 demostraciones" 4 "incapaz de aprender correctamente con 5 demostraciones" 5 "no intentó la prueba" 
+label define P12_2_1 .a"." 0 "requiere sólo una demostración" 1 "requiere 2-3 demostraciones" 2 "requiere 4-5 demostraciones" 3 "incapaz de aprender correctamente con 5 demostraciones" 6 "no intentó la prueba" 
 
 encode P12_2_1, gen(p12_2_1) label (P12_2_1)
 
@@ -302,7 +302,7 @@ if !_rc{
      tostring P12_2_2, replace
 }
 
-label define P12_2_2 .a"." 1 "5 secuencias correctas" 2 "5 secuencias realizadas con un error" 3 "5 secuencias después de una re-demostración" 4 "incapaz de completar 5 secuencias correctamente (incluye a los pacientes que tienen 3 en aprendizaje)" 5 "no intentó la prueba" 
+label define P12_2_2 .a"." 0 "5 secuencias correctas" 1 "5 secuencias realizadas con un error" 2 "5 secuencias después de una re-demostración" 3 "incapaz de completar 5 secuencias correctamente" 6 "no intentó la prueba" 
 
 encode P12_2_2, gen(p12_2_2) label (P12_2_2)
 
@@ -313,7 +313,7 @@ if !_rc{
      tostring P12_3_1, replace
 }
 
-label define P12_3_1 .a"." 1 "requiere sólo una demostración" 2 "requiere 2-3 demostraciones" 3 "requiere 4-5 demostraciones" 4 "incapaz de aprender correctamente con 5 demostraciones" 5 "no intentó la prueba" 
+label define P12_3_1 .a"." 0 "requiere sólo una demostración" 1 "requiere 2-3 demostraciones" 2 "requiere 4-5 demostraciones" 3 "incapaz de aprender correctamente luego de 5 demostraciones" 6 "no intentó la prueba" 
 
 encode P12_3_1, gen(p12_3_1) label (P12_3_1)
 
@@ -324,7 +324,7 @@ if !_rc{
      tostring P12_3_2, replace
 }
 
-label define P12_3_2 .a"." 1 "5 secuencias correctas" 2 "5 secuencias realizadas con un error" 3 "5 secuencias después de una re-demostración" 4 "incapaz de completar 5 secuencias correctamente (incluye a los pacientes que tienen 3 en aprendizaje)" 5 "no intentó la prueba" 
+label define P12_3_2 .a"." 0 "5 secuencias correctas" 1 "5 secuencias realizadas con un error" 2 "5 secuencias después de una re-demostración" 3 "incapaz de completar las 5 secuencias correctamente" 6 "no intentó la prueba" 
 
 encode P12_3_2, gen(p12_3_2) label (P12_3_2)
 
@@ -335,7 +335,7 @@ if !_rc{
      tostring P13_1, replace
 }
 
-label define P13_1 .a"." 1 "ausente" 2 "normal (+)" 3 "normal rápido (2+)" 4 "patológicamente rápido (3+)" 5 "no intentó la prueba" 
+label define P13_1 .a"." 0 "ausente" 1 "normal (+)" 2 "normal rápido (2+)" 3 "patológicamente rápido (3+)" 6 "no intentó la prueba" 
 
 encode P13_1, gen(p13_1) label (P13_1)
 
@@ -346,7 +346,7 @@ if !_rc{
      tostring P13_2, replace
 }
 
-label define P13_2 .a"." 1 "ausente" 2 "normal (+)" 3 "normal rápido (2+)" 4 "patológicamente rápido (3+)" 5 "no intentó la prueba" 
+label define P13_2 .a"." 0 "ausente" 1 "normal (+)" 2 "normal rápido (2+)" 3 "patológicamente rápido (3+)" 6 "no intentó la prueba" 
 
 encode P13_2, gen(p13_2) label (P13_2)
 
@@ -357,7 +357,7 @@ if !_rc{
      tostring P13_3, replace
 }
 
-label define P13_3 .a"." 1 "ausente" 2 "normal (+)" 3 "normal rápido (2+)" 4 "patológicamente rápido (3+)" 5 "no intentó la prueba" 
+label define P13_3 .a"." 0 "ausente" 1 "normal (+)" 2 "normal rápido (2+)" 3 "patológicamente rápido (3+)" 6 "no intentó la prueba" 
 
 encode P13_3, gen(p13_3) label (P13_3)
 
@@ -368,7 +368,7 @@ if !_rc{
      tostring P13_4, replace
 }
 
-label define P13_4 .a"." 1 "ausente" 2 "normal (+)" 3 "normal rápido (2+)" 4 "patológicamente rápido (3+)" 5 "no intentó la prueba" 
+label define P13_4 .a"." 0 "ausente" 1 "normal (+)" 2 "normal rápido (2+)" 3 "patológicamente rápido (3+)" 6 "no intentó la prueba" 
 
 encode P13_4, gen(p13_4) label (P13_4)
 
@@ -379,7 +379,7 @@ if !_rc{
      tostring P13_5, replace
 }
 
-label define P13_5 .a"." 1 "ausente" 2 "normal (+)" 3 "normal rápido (2+)" 4 "patológicamente rápido (3+)" 5 "no intentó la prueba" 
+label define P13_5 .a"." 0 "ausente" 1 "normal (+)" 2 "normal rápido (2+)" 3 "patológicamente rápido (3+)" 6 "no intentó la prueba" 
 
 encode P13_5, gen(p13_5) label (P13_5)
 
@@ -390,7 +390,7 @@ if !_rc{
      tostring P2_3, replace
 }
 
-label define P2_3 .a"." 0 "no"1 "si"
+label define P2_3 .a"." 0 "no" 1 "si" 
 
 encode P2_3, gen(p2_3) label (P2_3)
 
@@ -401,7 +401,7 @@ if !_rc{
      tostring P14_3_1, replace
 }
 
-label define P14_3_1 .a"." 1 "balanceo de brazos normal" 2 "balanceo de brazos reducido" 3 "no balanceo de brazos" 4 "no intentó por incapacidad" 5 "no pudo por otra razon" 
+label define P14_3_1 .a"." 0 "balanceo de brazos normal" 1 "balanceo de brazos reducido" 2 "no balanceo de brazos" 6 "no intentó por incapacidad" 7 "no pudo por otra razon" 
 
 encode P14_3_1, gen(p14_3_1) label (P14_3_1)
 
@@ -412,7 +412,7 @@ if !_rc{
      tostring P14_3_2, replace
 }
 
-label define P14_3_2 .a"." 1 "balanceo de brazos normal" 2 "balanceo de brazos reducido" 3 "no balanceo de brazos" 4 "no intentó por incapacidad" 5 "no pudo por otra razon" 
+label define P14_3_2 .a"." 0 "balanceo de brazos normal" 1 "balanceo de brazos reducido" 2 "no balanceo de brazos" 6 "no intentó por incapacidad" 7 "no pudo por otra razon" 
 
 encode P14_3_2, gen(p14_3_2) label (P14_3_2)
 
@@ -423,7 +423,7 @@ if !_rc{
      tostring P14_4, replace
 }
 
-label define P14_4 .a"." 1 "marcha normal" 2 "inestable marcha de base ancha" 3 "muy instable marcha de base ancha" 4 "no intentó por incapacidad" 5 "no pudo por otra razon" 
+label define P14_4 .a"." 0 "marcha normal" 1 "inestable marcha de base ancha" 2 "muy instable marcha de base ancha" 6 "no intentó por incapacidad" 7 "no pudo por otra razon" 
 
 encode P14_4, gen(p14_4) label (P14_4)
 
@@ -434,7 +434,7 @@ if !_rc{
      tostring P14_5, replace
 }
 
-label define P14_5 .a"." 1 "velocidad normal" 2 "algo lentos" 3 "muy lentos" 4 "no intentó por incapacidad" 5 "no pudo por otra razon" 
+label define P14_5 .a"." 0 "velocidad normal" 1 "algo lentos" 2 "muy lentos" 6 "no intentó por incapacidad" 7 "no pudo por otra razon" 
 
 encode P14_5, gen(p14_5) label (P14_5)
 
@@ -445,7 +445,7 @@ if !_rc{
      tostring P15_A, replace
 }
 
-label define P15_A .a"." 0 "no"1 "si"
+label define P15_A .a"." 0 "no" 1 "si" 
 
 encode P15_A, gen(p15_a) label (P15_A)
 
@@ -456,7 +456,7 @@ if !_rc{
      tostring P16_1, replace
 }
 
-label define P16_1 .a"." 0 "no"1 "si"
+label define P16_1 .a"." 0 "no" 1 "si" 
 
 encode P16_1, gen(p16_1) label (P16_1)
 
@@ -467,7 +467,7 @@ if !_rc{
      tostring P16_2, replace
 }
 
-label define P16_2 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+label define P16_2 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode P16_2, gen(p16_2) label (P16_2)
 
@@ -478,7 +478,7 @@ if !_rc{
      tostring P17_3, replace
 }
 
-label define P17_3 .a"." 1 "no tiene problemas" 2 "algunos problemas" 3 "muchos problemas" 8 "no responde"9 "no sabe"
+label define P17_3 .a"." 0 "no tiene problemas" 1 "algunos problemas" 2 "muchos problemas" 8 "no responde"9 "no sabe"
 
 encode P17_3, gen(p17_3) label (P17_3)
 
@@ -489,7 +489,7 @@ if !_rc{
      tostring P19_1, replace
 }
 
-label define P19_1 .a"." 1 "no pudo" 2 "pudo pero necesitó ayudarse con las manos" 3 "pudo sin ayuda de las manos" 4 "no intentó" 
+label define P19_1 .a"." 1 "no pudo" 2 "pudo pero necesitó ayudarse con las manos" 3 "pudo sin ayuda de las manos" 6 "no intentó" 
 
 encode P19_1, gen(p19_1) label (P19_1)
 
@@ -500,7 +500,7 @@ if !_rc{
      tostring P20, replace
 }
 
-label define P20 .a"." 1 "en cama / confinado/a a la cama" 2 "confinado/a a la silla (movilidad limitada puede pasarse de la silla a la cama)" 3 "confinada/o a la casa (movilidad limitada se moviliza por la casa exclusivamente)" 4 "movilidad limitada fuera de la casa" 5 "movilidad total dentro y fuera de la casa" 9 "no sabe"
+label define P20 .a"." 0 "en cama / confinado/a a la cama" 1 "confinado/a a la silla (movilidad limitada puede pasarse de la silla a la cama)" 2 "confinada/o a la casa (movilidad limitada se moviliza por la casa exclusivamente)" 3 "movilidad limitada fuera de la casa" 4 "movilidad total dentro y fuera de la casa" 9 "no sabe"
 
 encode P20, gen(p20) label (P20)
 
@@ -511,7 +511,7 @@ if !_rc{
      tostring P21_1, replace
 }
 
-label define P21_1 .a"." 0 "no"1 "si"8 "no responde"
+label define P21_1 .a"." 0 "no" 1 "si" 8 "no responde"
 
 encode P21_1, gen(p21_1) label (P21_1)
 
@@ -533,7 +533,7 @@ if !_rc{
      tostring P22_1, replace
 }
 
-label define P22_1 .a"." 0 "no"1 "si"8 "no responde"
+label define P22_1 .a"." 0 "no" 1 "si" 8 "no responde"
 
 encode P22_1, gen(p22_1) label (P22_1)
 
@@ -547,4 +547,3 @@ if !_rc{
 label define P22_2 .a"." 1 "excelente" 2 "muy buena" 3 "buena" 4 "regular" 5 "mala" 6 "ciego" 8 "no responde"9 "no sabe"
 
 encode P22_2, gen(p22_2) label (P22_2)
-
