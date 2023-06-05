@@ -1703,3 +1703,394 @@ label define C_82 .a"." 0 "excelente" 1 "muy buena" 2 "buena" 3 "regular" 4 "mal
 
 encode C_82, gen(c_82) label (C_82)
 
+rename c_33_a (C_33_A)
+
+label define C_33_A 0 "false" 1 "true"
+
+encode C_33_A, gen (c_33_a) label (C_33_A)
+
+drop C_33_A
+
+rename c_33_1 (C_33_1)
+
+label define C_33_1 0 "false" 1 "true"
+
+encode C_33_1, gen (c_33_1) label (C_33_1)
+
+drop C_33_1
+
+rename c_33_2 (C_33_2)
+
+label define C_33_2 0 "false" 1 "true"
+
+encode C_33_2, gen (c_33_2) label (C_33_2)
+
+drop C_33_2
+
+rename c_33_3 (C_33_3)
+
+label define C_33_3 0 "false" 1 "true"
+
+encode C_33_3, gen (c_33_3) label (C_33_3)
+
+drop C_33_3
+
+rename c_33_4 (C_33_4)
+
+label define C_33_4 0 "false" 1 "true"
+
+encode C_33_4, gen (c_33_4) label (C_33_4)
+
+drop C_33_4
+
+rename c_33_5 (C_33_5)
+
+label define C_33_5 0 "false" 1 "true"
+
+encode C_33_5, gen (c_33_5) label (C_33_5)
+
+drop C_33_5
+
+rename c_33_6 (C_33_6)
+
+label define C_33_6 0 "false" 1 "true"
+
+encode C_33_6, gen (c_33_6) label (C_33_6)
+
+drop C_33_6
+
+rename c_33_7 (C_33_7)
+
+label define C_33_7 0 "false" 1 "true"
+
+encode C_33_7, gen (c_33_7) label (C_33_7)
+
+drop C_33_7
+
+rename c_33_8 (C_33_8)
+
+label define C_33_8 0 "false" 1 "true"
+
+encode C_33_8, gen (c_33_8) label (C_33_8)
+
+drop C_33_8
+
+rename c_33_9 (C_33_9)
+
+label define C_33_9 0 "false" 1 "true"
+
+encode C_33_9, gen (c_33_9) label (C_33_9)
+
+drop C_33_9
+
+rename c_33_10 (C_33_10)
+
+label define C_33_10 0 "false" 1 "true"
+
+encode C_33_10, gen (c_33_10) label (C_33_10)
+
+drop C_33_10
+
+rename c_34_a (C_34_A)
+
+label define C_34_A 0 "false" 1 "true"
+
+encode C_34_A, gen (c_34_a) label (C_34_A)
+
+drop C_34_A
+
+rename c_34_1 (C_34_1)
+
+label define C_34_1 0 "false" 1 "true"
+
+encode C_34_1, gen (c_34_1) label (C_34_1)
+
+drop C_34_1
+
+rename c_34_2 (C_34_2)
+
+label define C_34_2 0 "false" 1 "true"
+
+encode C_34_2, gen (c_34_2) label (C_34_2)
+
+drop C_34_2
+
+rename c_34_3 (C_34_3)
+
+label define C_34_3 0 "false" 1 "true"
+
+encode C_34_3, gen (c_34_3) label (C_34_3)
+
+drop C_34_3
+
+rename c_34_4 (C_34_4)
+
+label define C_34_4 0 "false" 1 "true"
+
+encode C_34_4, gen (c_34_4) label (C_34_4)
+
+drop C_34_4
+
+rename c_34_5 (C_34_5)
+
+label define C_34_5 0 "false" 1 "true"
+
+encode C_34_5, gen (c_34_5) label (C_34_5)
+
+drop C_34_5
+
+rename c_34_6 (C_34_6)
+
+label define C_34_6 0 "false" 1 "true"
+
+encode C_34_6, gen (c_34_6) label (C_34_6)
+
+drop C_34_6
+
+rename c_34_7 (C_34_7)
+
+label define C_34_7 0 "false" 1 "true"
+
+encode C_34_7, gen (c_34_7) label (C_34_7)
+
+drop C_34_7
+
+rename c_34_8 (C_34_8)
+
+label define C_34_8 0 "false" 1 "true"
+
+encode C_34_8, gen (c_34_8) label (C_34_8)
+
+drop C_34_8
+
+rename c_34_9 (C_34_9)
+
+label define C_34_9 0 "false" 1 "true"
+
+encode C_34_9, gen (c_34_9) label (C_34_9)
+
+drop C_34_9
+
+rename c_34_10 (C_34_10)
+
+label define C_34_10 0 "false" 1 "true"
+
+encode C_34_10, gen (c_34_10) label (C_34_10)
+
+drop C_34_10
+
+rename c_35_a (C_35_A)
+
+label define C_35_A 0 "false" 1 "true"
+
+encode C_35_A, gen (c_35_a) label (C_35_A)
+
+drop C_35_A
+
+rename c_35_1 (C_35_1)
+
+label define C_35_1 0 "false" 1 "true"
+
+encode C_35_1, gen (c_35_1) label (C_35_1)
+
+drop C_35_1
+
+rename c_35_2 (C_35_2)
+
+label define C_35_2 0 "false" 1 "true"
+
+encode C_35_2, gen (c_35_2) label (C_35_2)
+
+drop C_35_2
+
+rename c_35_3 (C_35_3)
+
+label define C_35_3 0 "false" 1 "true"
+
+encode C_35_3, gen (c_35_3) label (C_35_3)
+
+drop C_35_3
+
+rename c_35_4 (C_35_4)
+
+label define C_35_4 0 "false" 1 "true"
+
+encode C_35_4, gen (c_35_4) label (C_35_4)
+
+drop C_35_4
+
+rename c_35_5 (C_35_5)
+
+label define C_35_5 0 "false" 1 "true"
+
+encode C_35_5, gen (c_35_5) label (C_35_5)
+
+drop C_35_5
+
+rename c_35_6 (C_35_6)
+
+label define C_35_6 0 "false" 1 "true"
+
+encode C_35_6, gen (c_35_6) label (C_35_6)
+
+drop C_35_6
+
+rename c_35_7 (C_35_7)
+
+label define C_35_7 0 "false" 1 "true"
+
+encode C_35_7, gen (c_35_7) label (C_35_7)
+
+drop C_35_7
+
+rename c_35_8 (C_35_8)
+
+label define C_35_8 0 "false" 1 "true"
+
+encode C_35_8, gen (c_35_8) label (C_35_8)
+
+drop C_35_8
+
+rename c_35_9 (C_35_9)
+
+label define C_35_9 0 "false" 1 "true"
+
+encode C_35_9, gen (c_35_9) label (C_35_9)
+
+drop C_35_9
+
+rename c_35_10 (C_35_10)
+
+label define C_35_10 0 "false" 1 "true"
+
+encode C_35_10, gen (c_35_10) label (C_35_10)
+
+drop C_35_10
+
+rename c_63_a (C_63_A)
+
+label define C_63_A 0 "false" 1 "true"
+
+encode C_63_A, gen (c_63_a) label (C_63_A)
+
+drop C_63_A
+
+rename c_63_1 (C_63_1)
+
+label define C_63_1 0 "false" 1 "true"
+
+encode C_63_1, gen (c_63_1) label (C_63_1)
+
+drop C_63_1
+
+rename c_63_2 (C_63_2)
+
+label define C_63_2 0 "false" 1 "true"
+
+encode C_63_2, gen (c_63_2) label (C_63_2)
+
+drop C_63_2
+
+rename c_63_3 (C_63_3)
+
+label define C_63_3 0 "false" 1 "true"
+
+encode C_63_3, gen (c_63_3) label (C_63_3)
+
+drop C_63_3
+
+rename c_63_4 (C_63_4)
+
+label define C_63_4 0 "false" 1 "true"
+
+encode C_63_4, gen (c_63_4) label (C_63_4)
+
+drop C_63_4
+
+rename c_63_5 (C_63_5)
+
+label define C_63_5 0 "false" 1 "true"
+
+encode C_63_5, gen (c_63_5) label (C_63_5)
+
+drop C_63_5
+
+rename c_63_6 (C_63_6)
+
+label define C_63_6 0 "false" 1 "true"
+
+encode C_63_6, gen (c_63_6) label (C_63_6)
+
+drop C_63_6
+
+rename c_63_7 (C_63_7)
+
+label define C_63_7 0 "false" 1 "true"
+
+encode C_63_7, gen (c_63_7) label (C_63_7)
+
+drop C_63_7
+
+rename c_63_8 (C_63_8)
+
+label define C_63_8 0 "false" 1 "true"
+
+encode C_63_8, gen (c_63_8) label (C_63_8)
+
+drop C_63_8
+
+rename c_63_9 (C_63_9)
+
+label define C_63_9 0 "false" 1 "true"
+
+encode C_63_9, gen (c_63_9) label (C_63_9)
+
+drop C_63_9
+
+rename c_63_10 (C_63_10)
+
+label define C_63_10 0 "false" 1 "true"
+
+encode C_63_10, gen (c_63_10) label (C_63_10)
+
+drop C_63_10
+
+rename c_66_a (C_66_A)
+
+label define C_66_A 0 "false" 1 "true"
+
+encode C_66_A, gen (c_66_a) label (C_66_A)
+
+drop C_66_A
+
+rename c_67_a (C_67_A)
+
+label define C_67_A 0 "false" 1 "true"
+
+encode C_67_A, gen (c_67_a) label (C_67_A)
+
+drop C_67_A
+
+rename c_68_a (C_68_A)
+
+label define C_68_A 0 "false" 1 "true"
+
+encode C_68_A, gen (c_68_a) label (C_68_A)
+
+drop C_68_A
+
+rename c_77_a (C_77_A)
+
+label define C_77_A 0 "false" 1 "true"
+
+encode C_77_A, gen (c_77_a) label (C_77_A)
+
+drop C_77_A
+
+rename c_78_a (C_78_A)
+
+label define C_78_A 0 "false" 1 "true"
+
+encode C_78_A, gen (c_78_a) label (C_78_A)
+
+drop C_78_A
