@@ -302,7 +302,7 @@ if !_rc{
      tostring C_32, replace
 }
 
-label define C_32 .a"." 0 "si" 6 "no pudo (limitación física)"7 "rehúsa"
+label define C_32 .a"." 1 "si" 6 "no pudo (limitación física)"7 "rehúsa"
 
 encode C_32, gen(c_32) label (C_32)
 
@@ -313,7 +313,7 @@ if !_rc{
      tostring G_1, replace
 }
 
-label define G_1 .a"." 0 "sí" 1 "no" 
+label define G_1 .a"." 1 "sí" 2 "no" 
 
 encode G_1, gen(g_1) label (G_1)
 
@@ -324,7 +324,7 @@ if !_rc{
      tostring C_40, replace
 }
 
-label define C_40 .a"." 0 "no" 1 "si" 7 "rehúsa"
+label define C_40 .a"." 0 "no" 1 "si" 777 "rehúsa"
 
 encode C_40, gen(c_40) label (C_40)
 
@@ -335,7 +335,7 @@ if !_rc{
      tostring C_43, replace
 }
 
-label define C_43 .a"." 0 "no" 1 "si" 6 "no pudo (limitación física)"7 "rehúsa"
+label define C_43 .a"." 0 "no" 1 "si" 666 "no pudo (limitación física)"777 "rehúsa"
 
 encode C_43, gen(c_43) label (C_43)
 
@@ -467,7 +467,7 @@ if !_rc{
      tostring C_58, replace
 }
 
-label define C_58 .a"." 0 "sí respondió" 1 "no respondió" 
+label define C_58 .a"." 1 "sí respondió" 2 "no respondió" 
 
 encode C_58, gen(c_58) label (C_58)
 
@@ -478,7 +478,7 @@ if !_rc{
      tostring C_59, replace
 }
 
-label define C_59 .a"." 0 "sí respondió" 1 "no respondió" 
+label define C_59 .a"." 1 "sí respondió" 2 "no respondió" 
 
 encode C_59, gen(c_59) label (C_59)
 
@@ -489,7 +489,7 @@ if !_rc{
      tostring C_60, replace
 }
 
-label define C_60 .a"." 0 "sí respondió" 1 "no respondió" 
+label define C_60 .a"." 1 "sí respondió" 2 "no respondió" 
 
 encode C_60, gen(c_60) label (C_60)
 
@@ -533,7 +533,7 @@ if !_rc{
      tostring G_2, replace
 }
 
-label define G_2 .a"." 0 "sí" 1 "no" 
+label define G_2 .a"." 1 "sí" 2 "no" 
 
 encode G_2, gen(g_2) label (G_2)
 
@@ -907,7 +907,7 @@ if !_rc{
      tostring C_68_01, replace
 }
 
-label define C_68_01 .a"." 0 "sí" 1 "no" 
+label define C_68_01 .a"." 1 "sí" 2 "no" 
 
 encode C_68_01, gen(c_68_01) label (C_68_01)
 
@@ -918,7 +918,7 @@ if !_rc{
      tostring C_68_02, replace
 }
 
-label define C_68_02 .a"." 0 "sí" 1 "no" 
+label define C_68_02 .a"." 1 "sí" 2 "no" 
 
 encode C_68_02, gen(c_68_02) label (C_68_02)
 
@@ -929,7 +929,7 @@ if !_rc{
      tostring C_68_03, replace
 }
 
-label define C_68_03 .a"." 0 "sí" 1 "no" 
+label define C_68_03 .a"." 1 "sí" 2 "no" 
 
 encode C_68_03, gen(c_68_03) label (C_68_03)
 
@@ -940,7 +940,7 @@ if !_rc{
      tostring C_68_04, replace
 }
 
-label define C_68_04 .a"." 0 "sí" 1 "no" 
+label define C_68_04 .a"." 1 "sí" 2 "no" 
 
 encode C_68_04, gen(c_68_04) label (C_68_04)
 
@@ -951,7 +951,7 @@ if !_rc{
      tostring C_68_05, replace
 }
 
-label define C_68_05 .a"." 0 "sí" 1 "no" 
+label define C_68_05 .a"." 1 "sí" 2 "no" 
 
 encode C_68_05, gen(c_68_05) label (C_68_05)
 
@@ -962,7 +962,7 @@ if !_rc{
      tostring C_68_06, replace
 }
 
-label define C_68_06 .a"." 0 "sí" 1 "no" 
+label define C_68_06 .a"." 1 "sí" 2 "no" 
 
 encode C_68_06, gen(c_68_06) label (C_68_06)
 
@@ -973,7 +973,7 @@ if !_rc{
      tostring C_68_07, replace
 }
 
-label define C_68_07 .a"." 0 "sí" 1 "no" 
+label define C_68_07 .a"." 1 "sí" 2 "no" 
 
 encode C_68_07, gen(c_68_07) label (C_68_07)
 
@@ -984,7 +984,7 @@ if !_rc{
      tostring C_68_08, replace
 }
 
-label define C_68_08 .a"." 0 "sí" 1 "no" 
+label define C_68_08 .a"." 1 "sí" 2 "no" 
 
 encode C_68_08, gen(c_68_08) label (C_68_08)
 
@@ -995,7 +995,7 @@ if !_rc{
      tostring C_68_09, replace
 }
 
-label define C_68_09 .a"." 0 "sí" 1 "no" 
+label define C_68_09 .a"." 1 "sí" 2 "no" 
 
 encode C_68_09, gen(c_68_09) label (C_68_09)
 
@@ -1006,7 +1006,7 @@ if !_rc{
      tostring C_68_10, replace
 }
 
-label define C_68_10 .a"." 0 "sí" 1 "no" 
+label define C_68_10 .a"." 1 "sí" 2 "no" 
 
 encode C_68_10, gen(c_68_10) label (C_68_10)
 
@@ -1017,7 +1017,7 @@ if !_rc{
      tostring C_68_11, replace
 }
 
-label define C_68_11 .a"." 0 "sí" 1 "no" 
+label define C_68_11 .a"." 1 "sí" 2 "no" 
 
 encode C_68_11, gen(c_68_11) label (C_68_11)
 
@@ -1028,7 +1028,7 @@ if !_rc{
      tostring C_68_12, replace
 }
 
-label define C_68_12 .a"." 0 "sí" 1 "no" 
+label define C_68_12 .a"." 1 "sí" 2 "no" 
 
 encode C_68_12, gen(c_68_12) label (C_68_12)
 
@@ -1039,7 +1039,7 @@ if !_rc{
      tostring C_68_13, replace
 }
 
-label define C_68_13 .a"." 0 "sí" 1 "no" 
+label define C_68_13 .a"." 1 "sí" 2 "no" 
 
 encode C_68_13, gen(c_68_13) label (C_68_13)
 
@@ -1050,7 +1050,7 @@ if !_rc{
      tostring C_68_14, replace
 }
 
-label define C_68_14 .a"." 0 "sí" 1 "no" 
+label define C_68_14 .a"." 1 "sí" 2 "no" 
 
 encode C_68_14, gen(c_68_14) label (C_68_14)
 
@@ -1061,7 +1061,7 @@ if !_rc{
      tostring C_68_15, replace
 }
 
-label define C_68_15 .a"." 0 "sí" 1 "no" 
+label define C_68_15 .a"." 1 "sí" 2 "no" 
 
 encode C_68_15, gen(c_68_15) label (C_68_15)
 
@@ -1072,7 +1072,7 @@ if !_rc{
      tostring C_68_16, replace
 }
 
-label define C_68_16 .a"." 0 "sí" 1 "no" 
+label define C_68_16 .a"." 1 "sí" 2 "no" 
 
 encode C_68_16, gen(c_68_16) label (C_68_16)
 
@@ -1083,7 +1083,7 @@ if !_rc{
      tostring C_68_17, replace
 }
 
-label define C_68_17 .a"." 0 "sí" 1 "no" 
+label define C_68_17 .a"." 1 "sí" 2 "no" 
 
 encode C_68_17, gen(c_68_17) label (C_68_17)
 
@@ -1094,7 +1094,7 @@ if !_rc{
      tostring C_68_18, replace
 }
 
-label define C_68_18 .a"." 0 "sí" 1 "no" 
+label define C_68_18 .a"." 1 "sí" 2 "no" 
 
 encode C_68_18, gen(c_68_18) label (C_68_18)
 
@@ -1105,7 +1105,7 @@ if !_rc{
      tostring C_68_19, replace
 }
 
-label define C_68_19 .a"." 0 "sí" 1 "no" 
+label define C_68_19 .a"." 1 "sí" 2 "no" 
 
 encode C_68_19, gen(c_68_19) label (C_68_19)
 
@@ -1116,7 +1116,7 @@ if !_rc{
      tostring C_68_20, replace
 }
 
-label define C_68_20 .a"." 0 "sí" 1 "no" 
+label define C_68_20 .a"." 1 "sí" 2 "no" 
 
 encode C_68_20, gen(c_68_20) label (C_68_20)
 
@@ -1215,7 +1215,7 @@ if !_rc{
      tostring C_72_1, replace
 }
 
-label define C_72_1 .a"." 0 "si" 6 "no pudo (limitación física)"7 "rehúsa"
+label define C_72_1 .a"." 1 "si" 6 "no pudo (limitación física)"7 "rehúsa"
 
 encode C_72_1, gen(c_72_1) label (C_72_1)
 
@@ -1226,7 +1226,7 @@ if !_rc{
      tostring C_72_2, replace
 }
 
-label define C_72_2 .a"." 0 "si" 6 "no pudo (limitación física)"7 "rehúsa"
+label define C_72_2 .a"." 1 "si" 6 "no pudo (limitación física)"7 "rehúsa"
 
 encode C_72_2, gen(c_72_2) label (C_72_2)
 
@@ -1237,7 +1237,7 @@ if !_rc{
      tostring C_72_3, replace
 }
 
-label define C_72_3 .a"." 0 "si" 6 "no pudo (limitación física)"7 "rehúsa"
+label define C_72_3 .a"." 1 "si" 6 "no pudo (limitación física)"7 "rehúsa"
 
 encode C_72_3, gen(c_72_3) label (C_72_3)
 
@@ -1248,7 +1248,7 @@ if !_rc{
      tostring C_72_4, replace
 }
 
-label define C_72_4 .a"." 0 "si" 6 "no pudo (limitación física)"7 "rehúsa"
+label define C_72_4 .a"." 1 "si" 6 "no pudo (limitación física)"7 "rehúsa"
 
 encode C_72_4, gen(c_72_4) label (C_72_4)
 
@@ -1259,7 +1259,7 @@ if !_rc{
      tostring G_3, replace
 }
 
-label define G_3 .a"." 0 "sí" 1 "no" 
+label define G_3 .a"." 1 "sí" 2 "no" 
 
 encode G_3, gen(g_3) label (G_3)
 
@@ -1611,7 +1611,7 @@ if !_rc{
      tostring C_79_1, replace
 }
 
-label define C_79_1 .a"." 0 "si" 6 "no pudo (limitación física)"2 "no pudo recordar la figura" 7 "rehúsa"
+label define C_79_1 .a"." 1 "si" 6 "no pudo (limitación física)"4 "no pudo recordar la figura" 7 "rehúsa"
 
 encode C_79_1, gen(c_79_1) label (C_79_1)
 
@@ -1622,7 +1622,7 @@ if !_rc{
      tostring C_79_2, replace
 }
 
-label define C_79_2 .a"." 0 "si" 6 "no pudo (limitación física)"2 "no pudo recordar la figura" 7 "rehúsa"
+label define C_79_2 .a"." 1 "si" 6 "no pudo (limitación física)"4 "no pudo recordar la figura" 7 "rehúsa"
 
 encode C_79_2, gen(c_79_2) label (C_79_2)
 
@@ -1633,7 +1633,7 @@ if !_rc{
      tostring C_79_3, replace
 }
 
-label define C_79_3 .a"." 0 "si" 6 "no pudo (limitación física)"2 "no pudo recordar la figura" 7 "rehúsa"
+label define C_79_3 .a"." 1 "si" 6 "no pudo (limitación física)"4 "no pudo recordar la figura" 7 "rehúsa"
 
 encode C_79_3, gen(c_79_3) label (C_79_3)
 
@@ -1644,7 +1644,7 @@ if !_rc{
      tostring C_79_4, replace
 }
 
-label define C_79_4 .a"." 0 "si" 6 "no pudo (limitación física)"2 "no pudo recordar la figura" 7 "rehúsa"
+label define C_79_4 .a"." 1 "si" 6 "no pudo (limitación física)"4 "no pudo recordar la figura" 7 "rehúsa"
 
 encode C_79_4, gen(c_79_4) label (C_79_4)
 
@@ -1655,7 +1655,7 @@ if !_rc{
      tostring C_80A, replace
 }
 
-label define C_80A .a"." 0 "no" 1 "si" 
+label define C_80A .a"." 2 "no" 1 "si" 
 
 encode C_80A, gen(c_80a) label (C_80A)
 
@@ -1666,7 +1666,7 @@ if !_rc{
      tostring C_80B, replace
 }
 
-label define C_80B .a"." 0 "no" 1 "si" 
+label define C_80B .a"." 2 "no" 1 "si" 
 
 encode C_80B, gen(c_80b) label (C_80B)
 
@@ -1677,7 +1677,7 @@ if !_rc{
      tostring C_80C, replace
 }
 
-label define C_80C .a"." 0 "no" 1 "si" 
+label define C_80C .a"." 2 "no" 1 "si" 
 
 encode C_80C, gen(c_80c) label (C_80C)
 
@@ -1688,7 +1688,7 @@ if !_rc{
      tostring C_81, replace
 }
 
-label define C_81 .a"." 0 "excelente" 1 "muy buena" 2 "buena" 3 "regular" 4 "mala" 5 "ciego" 
+label define C_81 .a"." 1 "excelente" 2 "muy buena" 3 "buena" 4 "regular" 5 "mala" 6 "ciego" 
 
 encode C_81, gen(c_81) label (C_81)
 
@@ -1699,7 +1699,7 @@ if !_rc{
      tostring C_82, replace
 }
 
-label define C_82 .a"." 0 "excelente" 1 "muy buena" 2 "buena" 3 "regular" 4 "mala" 5 "sordo" 
+label define C_82 .a"." 1 "excelente" 2 "muy buena" 3 "buena" 4 "regular" 5 "mala" 6 "sordo" 
 
 encode C_82, gen(c_82) label (C_82)
 
