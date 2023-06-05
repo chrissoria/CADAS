@@ -225,7 +225,7 @@ if !_rc{
      tostring I_D6, replace
 }
 
-label define I_D6 .a"."01 "nunca" 1 "raras veces" 2 "algunas veces" 3 "bastante frecuente" 4 "casi siempre" 8 "no responde"
+label define I_D6 .a"."0 "nunca" 1 "raras veces" 2 "algunas veces" 3 "bastante frecuente" 4 "casi siempre" 8 "no responde"
 
 encode I_D6, gen(i_d6) label (I_D6)
 
@@ -841,7 +841,7 @@ if !_rc{
      tostring I_F_CSID_26, replace
 }
 
-label define I_F_CSID_26 .a"." 1 "no" 2 "si" 
+label define I_F_CSID_26 .a"." 0 "no" 1 "si" 
 
 encode I_F_CSID_26, gen(i_f_csid_26) label (I_F_CSID_26)
 
@@ -1750,12 +1750,12 @@ encode I_LHAS_54, gen(i_lhas_54) label (I_LHAS_54)
 
 
 
-label define I_B7 .a "." 0 "ningunos" 1 "de 1 a 5" 2 "de 6 a 8" 3 "de 9 a 12" 4 "mas que 12" 8 "no responde" 9 "no sabe"
+label define I_B7 .a "." 0 "ninguno" 1 "de 1 a 5" 2 "de 6 a 8" 3 "de 9 a 12" 4 "más que 12" 8 "no responde" 9 "no sabe"
 
 label values i_b7 I_B7
 
 
-label define I_C7_1 .a "." 1 "profesional ejecutivo" 2 "oficinista" 3 "vendedor minorista" 4 "agricultor independiente" 5 "trabajador agricola" 6 "trabajador domestico" 7 "otros servicios" 8 "trabajador especializado" 9 "trabajador no especializado" 10 "trabajos informales" 13 "otros" 88 "no responde"
+label define I_C7_1 .a "." 1 "profesional ejecutivo" 2 "oficinista" 3 "vendedor minorista" 4 "agricultor independiente" 5 "trabajador agricola" 6 "trabajador domestico" 7 "otros servicios" 8 "trabajador especializado" 9 "trabajador no especializado" 10 "trabajos informales" 13 "otros" 88 "no responde" 99 "no sabe"
 
 label values i_c7_1 I_C7_1
 
