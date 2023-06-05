@@ -302,7 +302,7 @@ if !_rc{
      tostring P12_2_2, replace
 }
 
-label define P12_2_2 .a"." 0 "5 secuencias correctas" 1 "5 secuencias realizadas con un error" 2 "5 secuencias después de una re-demostración" 3 "incapaz de completar 5 secuencias correctamente" 6 "no intentó la prueba" 
+label define P12_2_2 .a"." 0 "5 secuencias correctas" 1 "5 secuencias realizadas con un error" 2 "5 secuencias después de una re-demostración" 3 "incapaz de completar 5 (incluye a los pacientes que tienen 3 en aprendizaje)" 6 "no intentó la prueba" 
 
 encode P12_2_2, gen(p12_2_2) label (P12_2_2)
 
@@ -313,7 +313,7 @@ if !_rc{
      tostring P12_3_1, replace
 }
 
-label define P12_3_1 .a"." 0 "requiere sólo una demostración" 1 "requiere 2-3 demostraciones" 2 "requiere 4-5 demostraciones" 3 "incapaz de aprender correctamente luego de 5 demostraciones" 6 "no intentó la prueba" 
+label define P12_3_1 .a"." 0 "requiere sólo una demostración" 1 "requiere 2-3 demostraciones" 2 "requiere 4-5 demostraciones" 3 "incapaz de aprender correctamente con 5 demostraciones" 6 "no intentó la prueba" 
 
 encode P12_3_1, gen(p12_3_1) label (P12_3_1)
 
@@ -324,7 +324,7 @@ if !_rc{
      tostring P12_3_2, replace
 }
 
-label define P12_3_2 .a"." 0 "5 secuencias correctas" 1 "5 secuencias realizadas con un error" 2 "5 secuencias después de una re-demostración" 3 "incapaz de completar las 5 secuencias correctamente" 6 "no intentó la prueba" 
+label define P12_3_2 .a"." 0 "5 secuencias correctas" 1 "5 secuencias realizadas con un error" 2 "5 secuencias después de una re-demostración" 3 "incapaz de completar 5 secuencias correctamente (incluye a los pacientes que tienen 3 en aprendizaje)" 6 "no intentó la prueba" 
 
 encode P12_3_2, gen(p12_3_2) label (P12_3_2)
 
