@@ -1,0 +1,4 @@
+"UniqueKey","RECSTATUS","GlobalRecordId","FirstSaveLogonName","FirstSaveTime","LastSaveLogonName","LastSaveTime","FKEY","P_HOUSEID1","P_CLUSTID1","P_PARTICID1","P_Country1","P_TIME","P_Lat","P_Lon"
+1,1,1aaaa195-7daa-4126-a824-b3f0659c3eb0,,,,,,1,1,1,0 ,4/29/2023 12:59:00 PM,37.8415157,-122.1191572
+2,1,f5373060-e974-4f6b-bb1e-33a88ceaaba5,,,,,,2,2,1,1 ,4/29/2023 1:15:00 PM,37.8415001,-122.1190748
+3,1,6a2e219e-575d-457b-9c7f-0f51ff6b32ec,,,,,,3,3,1,2 ,4/29/2023 1:24:00 PM,,

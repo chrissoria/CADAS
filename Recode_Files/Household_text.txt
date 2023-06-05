@@ -1,0 +1,10 @@
+capture confirm numeric variable h_deviceid1
+if !_rc{
+     tostring h_deviceid1, replace
+}
+
+capture confirm numeric variable h_deviceid2
+if !_rc{
+     tostring h_deviceid2, replace
+}
+

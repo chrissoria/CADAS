@@ -1,0 +1,1705 @@
+rename c_0 (C_0)
+
+capture confirm numeric variable C_0
+if !_rc{
+     tostring C_0, replace
+}
+
+label define C_0 .a"." 1 "correcto"0 "incorrecto"
+
+encode C_0, gen(c_0) label (C_0)
+
+rename c_1 (C_1)
+
+capture confirm numeric variable C_1
+if !_rc{
+     tostring C_1, replace
+}
+
+label define C_1 .a"." 1 "correcto"0 "incorrecto"
+
+encode C_1, gen(c_1) label (C_1)
+
+rename c_2_p_c (C_2_P_C)
+
+capture confirm numeric variable C_2_P_C
+if !_rc{
+     tostring C_2_P_C, replace
+}
+
+label define C_2_P_C .a"." 1 "correcto"0 "incorrecto"
+
+encode C_2_P_C, gen(c_2_p_c) label (C_2_P_C)
+
+rename c_2_d (C_2_D)
+
+capture confirm numeric variable C_2_D
+if !_rc{
+     tostring C_2_D, replace
+}
+
+label define C_2_D .a"." 1 "correcto"0 "incorrecto"
+
+encode C_2_D, gen(c_2_d) label (C_2_D)
+
+rename c_3 (C_3)
+
+capture confirm numeric variable C_3
+if !_rc{
+     tostring C_3, replace
+}
+
+label define C_3 .a"." 1 "correcto"0 "incorrecto"
+
+encode C_3, gen(c_3) label (C_3)
+
+rename c_4 (C_4)
+
+capture confirm numeric variable C_4
+if !_rc{
+     tostring C_4, replace
+}
+
+label define C_4 .a"." 1 "correcto"0 "incorrecto"
+
+encode C_4, gen(c_4) label (C_4)
+
+rename c_5 (C_5)
+
+capture confirm numeric variable C_5
+if !_rc{
+     tostring C_5, replace
+}
+
+label define C_5 .a"." 1 "correcto"0 "incorrecto"
+
+encode C_5, gen(c_5) label (C_5)
+
+rename c_6 (C_6)
+
+capture confirm numeric variable C_6
+if !_rc{
+     tostring C_6, replace
+}
+
+label define C_6 .a"." 1 "correcto"0 "incorrecto"
+
+encode C_6, gen(c_6) label (C_6)
+
+rename c_7_d_c (C_7_D_C)
+
+capture confirm numeric variable C_7_D_C
+if !_rc{
+     tostring C_7_D_C, replace
+}
+
+label define C_7_D_C .a"." 1 "correcto"0 "incorrecto"
+
+encode C_7_D_C, gen(c_7_d_c) label (C_7_D_C)
+
+rename c_7_p (C_7_P)
+
+capture confirm numeric variable C_7_P
+if !_rc{
+     tostring C_7_P, replace
+}
+
+label define C_7_P .a"." 1 "correcto"0 "incorrecto"
+
+encode C_7_P, gen(c_7_p) label (C_7_P)
+
+rename c_8 (C_8)
+
+capture confirm numeric variable C_8
+if !_rc{
+     tostring C_8, replace
+}
+
+label define C_8 .a"." 1 "correcto"0 "incorrecto"
+
+encode C_8, gen(c_8) label (C_8)
+
+rename c_9 (C_9)
+
+capture confirm numeric variable C_9
+if !_rc{
+     tostring C_9, replace
+}
+
+label define C_9 .a"." 1 "correcto"0 "incorrecto"
+
+encode C_9, gen(c_9) label (C_9)
+
+rename c_10 (C_10)
+
+capture confirm numeric variable C_10
+if !_rc{
+     tostring C_10, replace
+}
+
+label define C_10 .a"." 1 "correcto"0 "incorrecto"
+
+encode C_10, gen(c_10) label (C_10)
+
+rename c_11 (C_11)
+
+capture confirm numeric variable C_11
+if !_rc{
+     tostring C_11, replace
+}
+
+label define C_11 .a"." 1 "correcto"0 "incorrecto"
+
+encode C_11, gen(c_11) label (C_11)
+
+rename c_12 (C_12)
+
+capture confirm numeric variable C_12
+if !_rc{
+     tostring C_12, replace
+}
+
+label define C_12 .a"." 1 "correcto"0 "incorrecto"
+
+encode C_12, gen(c_12) label (C_12)
+
+rename c_13 (C_13)
+
+capture confirm numeric variable C_13
+if !_rc{
+     tostring C_13, replace
+}
+
+label define C_13 .a"." 1 "correcto"0 "incorrecto"
+
+encode C_13, gen(c_13) label (C_13)
+
+rename c_21 (C_21)
+
+capture confirm numeric variable C_21
+if !_rc{
+     tostring C_21, replace
+}
+
+label define C_21 .a"." 1 "correcto"0 "incorrecto"
+
+encode C_21, gen(c_21) label (C_21)
+
+rename c_22 (C_22)
+
+capture confirm numeric variable C_22
+if !_rc{
+     tostring C_22, replace
+}
+
+label define C_22 .a"." 1 "correcto"0 "incorrecto"
+
+encode C_22, gen(c_22) label (C_22)
+
+rename c_23 (C_23)
+
+capture confirm numeric variable C_23
+if !_rc{
+     tostring C_23, replace
+}
+
+label define C_23 .a"." 1 "correcto"0 "incorrecto"
+
+encode C_23, gen(c_23) label (C_23)
+
+rename c_24 (C_24)
+
+capture confirm numeric variable C_24
+if !_rc{
+     tostring C_24, replace
+}
+
+label define C_24 .a"." 1 "correcto"0 "incorrecto"6 "no pudo (limitación física)"7 "rehúsa"
+
+encode C_24, gen(c_24) label (C_24)
+
+rename c_25 (C_25)
+
+capture confirm numeric variable C_25
+if !_rc{
+     tostring C_25, replace
+}
+
+label define C_25 .a"." 1 "correcto"0 "incorrecto"6 "no pudo (limitación física)"7 "rehúsa"
+
+encode C_25, gen(c_25) label (C_25)
+
+rename c_26 (C_26)
+
+capture confirm numeric variable C_26
+if !_rc{
+     tostring C_26, replace
+}
+
+label define C_26 .a"." 1 "correcto"0 "incorrecto"7 "rehúsa"
+
+encode C_26, gen(c_26) label (C_26)
+
+rename c_27 (C_27)
+
+capture confirm numeric variable C_27
+if !_rc{
+     tostring C_27, replace
+}
+
+label define C_27 .a"." 1 "correcto"0 "incorrecto"6 "no pudo (limitación física)"7 "rehúsa"
+
+encode C_27, gen(c_27) label (C_27)
+
+rename c_28 (C_28)
+
+capture confirm numeric variable C_28
+if !_rc{
+     tostring C_28, replace
+}
+
+label define C_28 .a"." 1 "correcto"0 "incorrecto"6 "no pudo (limitación física)"7 "rehúsa"
+
+encode C_28, gen(c_28) label (C_28)
+
+rename c_29 (C_29)
+
+capture confirm numeric variable C_29
+if !_rc{
+     tostring C_29, replace
+}
+
+label define C_29 .a"." 1 "correcto"0 "incorrecto"6 "no pudo (limitación física)"7 "rehúsa"
+
+encode C_29, gen(c_29) label (C_29)
+
+rename c_30 (C_30)
+
+capture confirm numeric variable C_30
+if !_rc{
+     tostring C_30, replace
+}
+
+label define C_30 .a"." 1 "correcto"0 "incorrecto"5 "no pudo (anafalbeto)"6 "no pudo (limitación física)"7 "rehúsa"
+
+encode C_30, gen(c_30) label (C_30)
+
+rename c_31 (C_31)
+
+capture confirm numeric variable C_31
+if !_rc{
+     tostring C_31, replace
+}
+
+label define C_31 .a"." 0 "0" 1 "1" 5 "no pudo (anafalbeto)"6 "no pudo (limitación física)"7 "rehúsa"
+
+encode C_31, gen(c_31) label (C_31)
+
+rename c_32 (C_32)
+
+capture confirm numeric variable C_32
+if !_rc{
+     tostring C_32, replace
+}
+
+label define C_32 .a"." 0 "si" 6 "no pudo (limitación física)"7 "rehúsa"
+
+encode C_32, gen(c_32) label (C_32)
+
+rename g_1 (G_1)
+
+capture confirm numeric variable G_1
+if !_rc{
+     tostring G_1, replace
+}
+
+label define G_1 .a"." 0 "sí" 1 "no" 
+
+encode G_1, gen(g_1) label (G_1)
+
+rename c_40 (C_40)
+
+capture confirm numeric variable C_40
+if !_rc{
+     tostring C_40, replace
+}
+
+label define C_40 .a"." 0 "no" 1 "si" 7 "rehúsa"
+
+encode C_40, gen(c_40) label (C_40)
+
+rename c_43 (C_43)
+
+capture confirm numeric variable C_43
+if !_rc{
+     tostring C_43, replace
+}
+
+label define C_43 .a"." 0 "no" 1 "si" 6 "no pudo (limitación física)"7 "rehúsa"
+
+encode C_43, gen(c_43) label (C_43)
+
+rename c_45 (C_45)
+
+capture confirm numeric variable C_45
+if !_rc{
+     tostring C_45, replace
+}
+
+label define C_45 .a"." 1 "correcto"0 "incorrecto"2 "quiere empezar de nuevo" 7 "rehúsa"
+
+encode C_45, gen(c_45) label (C_45)
+
+rename c_46 (C_46)
+
+capture confirm numeric variable C_46
+if !_rc{
+     tostring C_46, replace
+}
+
+label define C_46 .a"." 1 "correcto"0 "incorrecto"7 "rehúsa"
+
+encode C_46, gen(c_46) label (C_46)
+
+rename c_48 (C_48)
+
+capture confirm numeric variable C_48
+if !_rc{
+     tostring C_48, replace
+}
+
+label define C_48 .a"." 1 "correcto"0 "incorrecto"6 "no pudo (limitación física)"7 "rehúsa"
+
+encode C_48, gen(c_48) label (C_48)
+
+rename c_49 (C_49)
+
+capture confirm numeric variable C_49
+if !_rc{
+     tostring C_49, replace
+}
+
+label define C_49 .a"." 1 "correcto"0 "incorrecto"6 "no pudo (limitación física)"7 "rehúsa"
+
+encode C_49, gen(c_49) label (C_49)
+
+rename c_50 (C_50)
+
+capture confirm numeric variable C_50
+if !_rc{
+     tostring C_50, replace
+}
+
+label define C_50 .a"." 1 "correcto"0 "incorrecto"6 "no pudo (limitación física)"7 "rehúsa"
+
+encode C_50, gen(c_50) label (C_50)
+
+rename c_51 (C_51)
+
+capture confirm numeric variable C_51
+if !_rc{
+     tostring C_51, replace
+}
+
+label define C_51 .a"." 1 "correcto"0 "incorrecto"6 "no pudo (limitación física)"7 "rehúsa"
+
+encode C_51, gen(c_51) label (C_51)
+
+rename c_52 (C_52)
+
+capture confirm numeric variable C_52
+if !_rc{
+     tostring C_52, replace
+}
+
+label define C_52 .a"." 1 "correcto"0 "incorrecto"6 "no pudo (limitación física)"7 "rehúsa"
+
+encode C_52, gen(c_52) label (C_52)
+
+rename c_53 (C_53)
+
+capture confirm numeric variable C_53
+if !_rc{
+     tostring C_53, replace
+}
+
+label define C_53 .a"." 1 "correcto"0 "incorrecto"7 "rehúsa"
+
+encode C_53, gen(c_53) label (C_53)
+
+rename c_54 (C_54)
+
+capture confirm numeric variable C_54
+if !_rc{
+     tostring C_54, replace
+}
+
+label define C_54 .a"." 1 "correcto"0 "incorrecto"7 "rehúsa"
+
+encode C_54, gen(c_54) label (C_54)
+
+rename c_55 (C_55)
+
+capture confirm numeric variable C_55
+if !_rc{
+     tostring C_55, replace
+}
+
+label define C_55 .a"." 1 "correcto"0 "incorrecto"7 "rehúsa"
+
+encode C_55, gen(c_55) label (C_55)
+
+rename c_56 (C_56)
+
+capture confirm numeric variable C_56
+if !_rc{
+     tostring C_56, replace
+}
+
+label define C_56 .a"." 1 "correcto"0 "incorrecto"7 "rehúsa"
+
+encode C_56, gen(c_56) label (C_56)
+
+rename c_58 (C_58)
+
+capture confirm numeric variable C_58
+if !_rc{
+     tostring C_58, replace
+}
+
+label define C_58 .a"." 0 "sí respondió" 1 "no respondió" 
+
+encode C_58, gen(c_58) label (C_58)
+
+rename c_59 (C_59)
+
+capture confirm numeric variable C_59
+if !_rc{
+     tostring C_59, replace
+}
+
+label define C_59 .a"." 0 "sí respondió" 1 "no respondió" 
+
+encode C_59, gen(c_59) label (C_59)
+
+rename c_60 (C_60)
+
+capture confirm numeric variable C_60
+if !_rc{
+     tostring C_60, replace
+}
+
+label define C_60 .a"." 0 "sí respondió" 1 "no respondió" 
+
+encode C_60, gen(c_60) label (C_60)
+
+rename c_61 (C_61)
+
+capture confirm numeric variable C_61
+if !_rc{
+     tostring C_61, replace
+}
+
+label define C_61 .a"." 1 "correcto"0 "incorrecto"6 "no pudo (limitación física)"7 "rehúsa"
+
+encode C_61, gen(c_61) label (C_61)
+
+rename c_62 (C_62)
+
+capture confirm numeric variable C_62
+if !_rc{
+     tostring C_62, replace
+}
+
+label define C_62 .a"." 1 "correcto"0 "incorrecto"6 "no pudo (limitación física)"7 "rehúsa"
+
+encode C_62, gen(c_62) label (C_62)
+
+rename c_65 (C_65)
+
+capture confirm numeric variable C_65
+if !_rc{
+     tostring C_65, replace
+}
+
+label define C_65 .a"." 1 "correcto"0 "incorrecto"
+
+encode C_65, gen(c_65) label (C_65)
+
+rename g_2 (G_2)
+
+capture confirm numeric variable G_2
+if !_rc{
+     tostring G_2, replace
+}
+
+label define G_2 .a"." 0 "sí" 1 "no" 
+
+encode G_2, gen(g_2) label (G_2)
+
+rename c_66a (C_66A)
+
+capture confirm numeric variable C_66A
+if !_rc{
+     tostring C_66A, replace
+}
+
+label define C_66A .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_66A, gen(c_66a) label (C_66A)
+
+rename c_66b (C_66B)
+
+capture confirm numeric variable C_66B
+if !_rc{
+     tostring C_66B, replace
+}
+
+label define C_66B .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_66B, gen(c_66b) label (C_66B)
+
+rename c_66c (C_66C)
+
+capture confirm numeric variable C_66C
+if !_rc{
+     tostring C_66C, replace
+}
+
+label define C_66C .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_66C, gen(c_66c) label (C_66C)
+
+rename c_66d (C_66D)
+
+capture confirm numeric variable C_66D
+if !_rc{
+     tostring C_66D, replace
+}
+
+label define C_66D .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_66D, gen(c_66d) label (C_66D)
+
+rename c_66e (C_66E)
+
+capture confirm numeric variable C_66E
+if !_rc{
+     tostring C_66E, replace
+}
+
+label define C_66E .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_66E, gen(c_66e) label (C_66E)
+
+rename c_66f (C_66F)
+
+capture confirm numeric variable C_66F
+if !_rc{
+     tostring C_66F, replace
+}
+
+label define C_66F .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_66F, gen(c_66f) label (C_66F)
+
+rename c_67_01 (C_67_01)
+
+capture confirm numeric variable C_67_01
+if !_rc{
+     tostring C_67_01, replace
+}
+
+label define C_67_01 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_01, gen(c_67_01) label (C_67_01)
+
+rename c_67_02 (C_67_02)
+
+capture confirm numeric variable C_67_02
+if !_rc{
+     tostring C_67_02, replace
+}
+
+label define C_67_02 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_02, gen(c_67_02) label (C_67_02)
+
+rename c_67_03 (C_67_03)
+
+capture confirm numeric variable C_67_03
+if !_rc{
+     tostring C_67_03, replace
+}
+
+label define C_67_03 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_03, gen(c_67_03) label (C_67_03)
+
+rename c_67_04 (C_67_04)
+
+capture confirm numeric variable C_67_04
+if !_rc{
+     tostring C_67_04, replace
+}
+
+label define C_67_04 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_04, gen(c_67_04) label (C_67_04)
+
+rename c_67_05 (C_67_05)
+
+capture confirm numeric variable C_67_05
+if !_rc{
+     tostring C_67_05, replace
+}
+
+label define C_67_05 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_05, gen(c_67_05) label (C_67_05)
+
+rename c_67_06 (C_67_06)
+
+capture confirm numeric variable C_67_06
+if !_rc{
+     tostring C_67_06, replace
+}
+
+label define C_67_06 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_06, gen(c_67_06) label (C_67_06)
+
+rename c_67_07 (C_67_07)
+
+capture confirm numeric variable C_67_07
+if !_rc{
+     tostring C_67_07, replace
+}
+
+label define C_67_07 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_07, gen(c_67_07) label (C_67_07)
+
+rename c_67_08 (C_67_08)
+
+capture confirm numeric variable C_67_08
+if !_rc{
+     tostring C_67_08, replace
+}
+
+label define C_67_08 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_08, gen(c_67_08) label (C_67_08)
+
+rename c_67_09 (C_67_09)
+
+capture confirm numeric variable C_67_09
+if !_rc{
+     tostring C_67_09, replace
+}
+
+label define C_67_09 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_09, gen(c_67_09) label (C_67_09)
+
+rename c_67_10 (C_67_10)
+
+capture confirm numeric variable C_67_10
+if !_rc{
+     tostring C_67_10, replace
+}
+
+label define C_67_10 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_10, gen(c_67_10) label (C_67_10)
+
+rename c_67_11 (C_67_11)
+
+capture confirm numeric variable C_67_11
+if !_rc{
+     tostring C_67_11, replace
+}
+
+label define C_67_11 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_11, gen(c_67_11) label (C_67_11)
+
+rename c_67_12 (C_67_12)
+
+capture confirm numeric variable C_67_12
+if !_rc{
+     tostring C_67_12, replace
+}
+
+label define C_67_12 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_12, gen(c_67_12) label (C_67_12)
+
+rename c_67_13_c (C_67_13_C)
+
+capture confirm numeric variable C_67_13_C
+if !_rc{
+     tostring C_67_13_C, replace
+}
+
+label define C_67_13_C .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_13_C, gen(c_67_13_c) label (C_67_13_C)
+
+rename c_67_13_d (C_67_13_D)
+
+capture confirm numeric variable C_67_13_D
+if !_rc{
+     tostring C_67_13_D, replace
+}
+
+label define C_67_13_D .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_13_D, gen(c_67_13_d) label (C_67_13_D)
+
+rename c_67_13_p (C_67_13_P)
+
+capture confirm numeric variable C_67_13_P
+if !_rc{
+     tostring C_67_13_P, replace
+}
+
+label define C_67_13_P .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_13_P, gen(c_67_13_p) label (C_67_13_P)
+
+rename c_67_14 (C_67_14)
+
+capture confirm numeric variable C_67_14
+if !_rc{
+     tostring C_67_14, replace
+}
+
+label define C_67_14 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_14, gen(c_67_14) label (C_67_14)
+
+rename c_67_15 (C_67_15)
+
+capture confirm numeric variable C_67_15
+if !_rc{
+     tostring C_67_15, replace
+}
+
+label define C_67_15 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_15, gen(c_67_15) label (C_67_15)
+
+rename c_67_16 (C_67_16)
+
+capture confirm numeric variable C_67_16
+if !_rc{
+     tostring C_67_16, replace
+}
+
+label define C_67_16 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_16, gen(c_67_16) label (C_67_16)
+
+rename c_67_17 (C_67_17)
+
+capture confirm numeric variable C_67_17
+if !_rc{
+     tostring C_67_17, replace
+}
+
+label define C_67_17 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_17, gen(c_67_17) label (C_67_17)
+
+rename c_67_18 (C_67_18)
+
+capture confirm numeric variable C_67_18
+if !_rc{
+     tostring C_67_18, replace
+}
+
+label define C_67_18 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_18, gen(c_67_18) label (C_67_18)
+
+rename c_67_19 (C_67_19)
+
+capture confirm numeric variable C_67_19
+if !_rc{
+     tostring C_67_19, replace
+}
+
+label define C_67_19 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_19, gen(c_67_19) label (C_67_19)
+
+rename c_67_20 (C_67_20)
+
+capture confirm numeric variable C_67_20
+if !_rc{
+     tostring C_67_20, replace
+}
+
+label define C_67_20 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_20, gen(c_67_20) label (C_67_20)
+
+rename c_67_21 (C_67_21)
+
+capture confirm numeric variable C_67_21
+if !_rc{
+     tostring C_67_21, replace
+}
+
+label define C_67_21 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_21, gen(c_67_21) label (C_67_21)
+
+rename c_67_22 (C_67_22)
+
+capture confirm numeric variable C_67_22
+if !_rc{
+     tostring C_67_22, replace
+}
+
+label define C_67_22 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_22, gen(c_67_22) label (C_67_22)
+
+rename c_67_23 (C_67_23)
+
+capture confirm numeric variable C_67_23
+if !_rc{
+     tostring C_67_23, replace
+}
+
+label define C_67_23 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_23, gen(c_67_23) label (C_67_23)
+
+rename c_67_24 (C_67_24)
+
+capture confirm numeric variable C_67_24
+if !_rc{
+     tostring C_67_24, replace
+}
+
+label define C_67_24 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_24, gen(c_67_24) label (C_67_24)
+
+rename c_67_25 (C_67_25)
+
+capture confirm numeric variable C_67_25
+if !_rc{
+     tostring C_67_25, replace
+}
+
+label define C_67_25 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_67_25, gen(c_67_25) label (C_67_25)
+
+rename c_68_01 (C_68_01)
+
+capture confirm numeric variable C_68_01
+if !_rc{
+     tostring C_68_01, replace
+}
+
+label define C_68_01 .a"." 0 "sí" 1 "no" 
+
+encode C_68_01, gen(c_68_01) label (C_68_01)
+
+rename c_68_02 (C_68_02)
+
+capture confirm numeric variable C_68_02
+if !_rc{
+     tostring C_68_02, replace
+}
+
+label define C_68_02 .a"." 0 "sí" 1 "no" 
+
+encode C_68_02, gen(c_68_02) label (C_68_02)
+
+rename c_68_03 (C_68_03)
+
+capture confirm numeric variable C_68_03
+if !_rc{
+     tostring C_68_03, replace
+}
+
+label define C_68_03 .a"." 0 "sí" 1 "no" 
+
+encode C_68_03, gen(c_68_03) label (C_68_03)
+
+rename c_68_04 (C_68_04)
+
+capture confirm numeric variable C_68_04
+if !_rc{
+     tostring C_68_04, replace
+}
+
+label define C_68_04 .a"." 0 "sí" 1 "no" 
+
+encode C_68_04, gen(c_68_04) label (C_68_04)
+
+rename c_68_05 (C_68_05)
+
+capture confirm numeric variable C_68_05
+if !_rc{
+     tostring C_68_05, replace
+}
+
+label define C_68_05 .a"." 0 "sí" 1 "no" 
+
+encode C_68_05, gen(c_68_05) label (C_68_05)
+
+rename c_68_06 (C_68_06)
+
+capture confirm numeric variable C_68_06
+if !_rc{
+     tostring C_68_06, replace
+}
+
+label define C_68_06 .a"." 0 "sí" 1 "no" 
+
+encode C_68_06, gen(c_68_06) label (C_68_06)
+
+rename c_68_07 (C_68_07)
+
+capture confirm numeric variable C_68_07
+if !_rc{
+     tostring C_68_07, replace
+}
+
+label define C_68_07 .a"." 0 "sí" 1 "no" 
+
+encode C_68_07, gen(c_68_07) label (C_68_07)
+
+rename c_68_08 (C_68_08)
+
+capture confirm numeric variable C_68_08
+if !_rc{
+     tostring C_68_08, replace
+}
+
+label define C_68_08 .a"." 0 "sí" 1 "no" 
+
+encode C_68_08, gen(c_68_08) label (C_68_08)
+
+rename c_68_09 (C_68_09)
+
+capture confirm numeric variable C_68_09
+if !_rc{
+     tostring C_68_09, replace
+}
+
+label define C_68_09 .a"." 0 "sí" 1 "no" 
+
+encode C_68_09, gen(c_68_09) label (C_68_09)
+
+rename c_68_10 (C_68_10)
+
+capture confirm numeric variable C_68_10
+if !_rc{
+     tostring C_68_10, replace
+}
+
+label define C_68_10 .a"." 0 "sí" 1 "no" 
+
+encode C_68_10, gen(c_68_10) label (C_68_10)
+
+rename c_68_11 (C_68_11)
+
+capture confirm numeric variable C_68_11
+if !_rc{
+     tostring C_68_11, replace
+}
+
+label define C_68_11 .a"." 0 "sí" 1 "no" 
+
+encode C_68_11, gen(c_68_11) label (C_68_11)
+
+rename c_68_12 (C_68_12)
+
+capture confirm numeric variable C_68_12
+if !_rc{
+     tostring C_68_12, replace
+}
+
+label define C_68_12 .a"." 0 "sí" 1 "no" 
+
+encode C_68_12, gen(c_68_12) label (C_68_12)
+
+rename c_68_13 (C_68_13)
+
+capture confirm numeric variable C_68_13
+if !_rc{
+     tostring C_68_13, replace
+}
+
+label define C_68_13 .a"." 0 "sí" 1 "no" 
+
+encode C_68_13, gen(c_68_13) label (C_68_13)
+
+rename c_68_14 (C_68_14)
+
+capture confirm numeric variable C_68_14
+if !_rc{
+     tostring C_68_14, replace
+}
+
+label define C_68_14 .a"." 0 "sí" 1 "no" 
+
+encode C_68_14, gen(c_68_14) label (C_68_14)
+
+rename c_68_15 (C_68_15)
+
+capture confirm numeric variable C_68_15
+if !_rc{
+     tostring C_68_15, replace
+}
+
+label define C_68_15 .a"." 0 "sí" 1 "no" 
+
+encode C_68_15, gen(c_68_15) label (C_68_15)
+
+rename c_68_16 (C_68_16)
+
+capture confirm numeric variable C_68_16
+if !_rc{
+     tostring C_68_16, replace
+}
+
+label define C_68_16 .a"." 0 "sí" 1 "no" 
+
+encode C_68_16, gen(c_68_16) label (C_68_16)
+
+rename c_68_17 (C_68_17)
+
+capture confirm numeric variable C_68_17
+if !_rc{
+     tostring C_68_17, replace
+}
+
+label define C_68_17 .a"." 0 "sí" 1 "no" 
+
+encode C_68_17, gen(c_68_17) label (C_68_17)
+
+rename c_68_18 (C_68_18)
+
+capture confirm numeric variable C_68_18
+if !_rc{
+     tostring C_68_18, replace
+}
+
+label define C_68_18 .a"." 0 "sí" 1 "no" 
+
+encode C_68_18, gen(c_68_18) label (C_68_18)
+
+rename c_68_19 (C_68_19)
+
+capture confirm numeric variable C_68_19
+if !_rc{
+     tostring C_68_19, replace
+}
+
+label define C_68_19 .a"." 0 "sí" 1 "no" 
+
+encode C_68_19, gen(c_68_19) label (C_68_19)
+
+rename c_68_20 (C_68_20)
+
+capture confirm numeric variable C_68_20
+if !_rc{
+     tostring C_68_20, replace
+}
+
+label define C_68_20 .a"." 0 "sí" 1 "no" 
+
+encode C_68_20, gen(c_68_20) label (C_68_20)
+
+rename c_69_c (C_69_C)
+
+capture confirm numeric variable C_69_C
+if !_rc{
+     tostring C_69_C, replace
+}
+
+label define C_69_C .a"." 1 "correcto"0 "incorrecto"
+
+encode C_69_C, gen(c_69_c) label (C_69_C)
+
+rename c_69_d (C_69_D)
+
+capture confirm numeric variable C_69_D
+if !_rc{
+     tostring C_69_D, replace
+}
+
+label define C_69_D .a"." 1 "correcto"0 "incorrecto"
+
+encode C_69_D, gen(c_69_d) label (C_69_D)
+
+rename c_69_p (C_69_P)
+
+capture confirm numeric variable C_69_P
+if !_rc{
+     tostring C_69_P, replace
+}
+
+label define C_69_P .a"." 1 "correcto"0 "incorrecto"
+
+encode C_69_P, gen(c_69_p) label (C_69_P)
+
+rename c_70_d_c (C_70_D_C)
+
+capture confirm numeric variable C_70_D_C
+if !_rc{
+     tostring C_70_D_C, replace
+}
+
+label define C_70_D_C .a"." 1 "correcto"0 "incorrecto"
+
+encode C_70_D_C, gen(c_70_d_c) label (C_70_D_C)
+
+rename c_70_p (C_70_P)
+
+capture confirm numeric variable C_70_P
+if !_rc{
+     tostring C_70_P, replace
+}
+
+label define C_70_P .a"." 1 "correcto"0 "incorrecto"
+
+encode C_70_P, gen(c_70_p) label (C_70_P)
+
+rename c_71_c (C_71_C)
+
+capture confirm numeric variable C_71_C
+if !_rc{
+     tostring C_71_C, replace
+}
+
+label define C_71_C .a"." 1 "correcto"0 "incorrecto"
+
+encode C_71_C, gen(c_71_c) label (C_71_C)
+
+rename c_71_p (C_71_P)
+
+capture confirm numeric variable C_71_P
+if !_rc{
+     tostring C_71_P, replace
+}
+
+label define C_71_P .a"." 1 "correcto"0 "incorrecto"
+
+encode C_71_P, gen(c_71_p) label (C_71_P)
+
+rename c_71_d (C_71_D)
+
+capture confirm numeric variable C_71_D
+if !_rc{
+     tostring C_71_D, replace
+}
+
+label define C_71_D .a"." 1 "correcto"0 "incorrecto"
+
+encode C_71_D, gen(c_71_d) label (C_71_D)
+
+rename c_72_1 (C_72_1)
+
+capture confirm numeric variable C_72_1
+if !_rc{
+     tostring C_72_1, replace
+}
+
+label define C_72_1 .a"." 0 "si" 6 "no pudo (limitación física)"7 "rehúsa"
+
+encode C_72_1, gen(c_72_1) label (C_72_1)
+
+rename c_72_2 (C_72_2)
+
+capture confirm numeric variable C_72_2
+if !_rc{
+     tostring C_72_2, replace
+}
+
+label define C_72_2 .a"." 0 "si" 6 "no pudo (limitación física)"7 "rehúsa"
+
+encode C_72_2, gen(c_72_2) label (C_72_2)
+
+rename c_72_3 (C_72_3)
+
+capture confirm numeric variable C_72_3
+if !_rc{
+     tostring C_72_3, replace
+}
+
+label define C_72_3 .a"." 0 "si" 6 "no pudo (limitación física)"7 "rehúsa"
+
+encode C_72_3, gen(c_72_3) label (C_72_3)
+
+rename c_72_4 (C_72_4)
+
+capture confirm numeric variable C_72_4
+if !_rc{
+     tostring C_72_4, replace
+}
+
+label define C_72_4 .a"." 0 "si" 6 "no pudo (limitación física)"7 "rehúsa"
+
+encode C_72_4, gen(c_72_4) label (C_72_4)
+
+rename g_3 (G_3)
+
+capture confirm numeric variable G_3
+if !_rc{
+     tostring G_3, replace
+}
+
+label define G_3 .a"." 0 "sí" 1 "no" 
+
+encode G_3, gen(g_3) label (G_3)
+
+rename c_77a (C_77A)
+
+capture confirm numeric variable C_77A
+if !_rc{
+     tostring C_77A, replace
+}
+
+label define C_77A .a"." 0 "sí exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_77A, gen(c_77a) label (C_77A)
+
+rename c_77b (C_77B)
+
+capture confirm numeric variable C_77B
+if !_rc{
+     tostring C_77B, replace
+}
+
+label define C_77B .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_77B, gen(c_77b) label (C_77B)
+
+rename c_77c (C_77C)
+
+capture confirm numeric variable C_77C
+if !_rc{
+     tostring C_77C, replace
+}
+
+label define C_77C .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_77C, gen(c_77c) label (C_77C)
+
+rename c_77d (C_77D)
+
+capture confirm numeric variable C_77D
+if !_rc{
+     tostring C_77D, replace
+}
+
+label define C_77D .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_77D, gen(c_77d) label (C_77D)
+
+rename c_77e (C_77E)
+
+capture confirm numeric variable C_77E
+if !_rc{
+     tostring C_77E, replace
+}
+
+label define C_77E .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_77E, gen(c_77e) label (C_77E)
+
+rename c_77f (C_77F)
+
+capture confirm numeric variable C_77F
+if !_rc{
+     tostring C_77F, replace
+}
+
+label define C_77F .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_77F, gen(c_77f) label (C_77F)
+
+rename c_78_01 (C_78_01)
+
+capture confirm numeric variable C_78_01
+if !_rc{
+     tostring C_78_01, replace
+}
+
+label define C_78_01 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_01, gen(c_78_01) label (C_78_01)
+
+rename c_78_02 (C_78_02)
+
+capture confirm numeric variable C_78_02
+if !_rc{
+     tostring C_78_02, replace
+}
+
+label define C_78_02 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_02, gen(c_78_02) label (C_78_02)
+
+rename c_78_03 (C_78_03)
+
+capture confirm numeric variable C_78_03
+if !_rc{
+     tostring C_78_03, replace
+}
+
+label define C_78_03 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_03, gen(c_78_03) label (C_78_03)
+
+rename c_78_04 (C_78_04)
+
+capture confirm numeric variable C_78_04
+if !_rc{
+     tostring C_78_04, replace
+}
+
+label define C_78_04 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_04, gen(c_78_04) label (C_78_04)
+
+rename c_78_05 (C_78_05)
+
+capture confirm numeric variable C_78_05
+if !_rc{
+     tostring C_78_05, replace
+}
+
+label define C_78_05 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_05, gen(c_78_05) label (C_78_05)
+
+rename c_78_06 (C_78_06)
+
+capture confirm numeric variable C_78_06
+if !_rc{
+     tostring C_78_06, replace
+}
+
+label define C_78_06 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_06, gen(c_78_06) label (C_78_06)
+
+rename c_78_07 (C_78_07)
+
+capture confirm numeric variable C_78_07
+if !_rc{
+     tostring C_78_07, replace
+}
+
+label define C_78_07 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_07, gen(c_78_07) label (C_78_07)
+
+rename c_78_08 (C_78_08)
+
+capture confirm numeric variable C_78_08
+if !_rc{
+     tostring C_78_08, replace
+}
+
+label define C_78_08 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_08, gen(c_78_08) label (C_78_08)
+
+rename c_78_09 (C_78_09)
+
+capture confirm numeric variable C_78_09
+if !_rc{
+     tostring C_78_09, replace
+}
+
+label define C_78_09 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_09, gen(c_78_09) label (C_78_09)
+
+rename c_78_10 (C_78_10)
+
+capture confirm numeric variable C_78_10
+if !_rc{
+     tostring C_78_10, replace
+}
+
+label define C_78_10 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_10, gen(c_78_10) label (C_78_10)
+
+rename c_78_11 (C_78_11)
+
+capture confirm numeric variable C_78_11
+if !_rc{
+     tostring C_78_11, replace
+}
+
+label define C_78_11 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_11, gen(c_78_11) label (C_78_11)
+
+rename c_78_12 (C_78_12)
+
+capture confirm numeric variable C_78_12
+if !_rc{
+     tostring C_78_12, replace
+}
+
+label define C_78_12 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_12, gen(c_78_12) label (C_78_12)
+
+rename c_78_13 (C_78_13)
+
+capture confirm numeric variable C_78_13
+if !_rc{
+     tostring C_78_13, replace
+}
+
+label define C_78_13 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_13, gen(c_78_13) label (C_78_13)
+
+rename c_78_14 (C_78_14)
+
+capture confirm numeric variable C_78_14
+if !_rc{
+     tostring C_78_14, replace
+}
+
+label define C_78_14 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_14, gen(c_78_14) label (C_78_14)
+
+rename c_78_15 (C_78_15)
+
+capture confirm numeric variable C_78_15
+if !_rc{
+     tostring C_78_15, replace
+}
+
+label define C_78_15 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_15, gen(c_78_15) label (C_78_15)
+
+rename c_78_16 (C_78_16)
+
+capture confirm numeric variable C_78_16
+if !_rc{
+     tostring C_78_16, replace
+}
+
+label define C_78_16 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_16, gen(c_78_16) label (C_78_16)
+
+rename c_78_17 (C_78_17)
+
+capture confirm numeric variable C_78_17
+if !_rc{
+     tostring C_78_17, replace
+}
+
+label define C_78_17 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_17, gen(c_78_17) label (C_78_17)
+
+rename c_78_18 (C_78_18)
+
+capture confirm numeric variable C_78_18
+if !_rc{
+     tostring C_78_18, replace
+}
+
+label define C_78_18 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_18, gen(c_78_18) label (C_78_18)
+
+rename c_78_19 (C_78_19)
+
+capture confirm numeric variable C_78_19
+if !_rc{
+     tostring C_78_19, replace
+}
+
+label define C_78_19 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_19, gen(c_78_19) label (C_78_19)
+
+rename c_78_20 (C_78_20)
+
+capture confirm numeric variable C_78_20
+if !_rc{
+     tostring C_78_20, replace
+}
+
+label define C_78_20 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_20, gen(c_78_20) label (C_78_20)
+
+rename c_78_21 (C_78_21)
+
+capture confirm numeric variable C_78_21
+if !_rc{
+     tostring C_78_21, replace
+}
+
+label define C_78_21 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_21, gen(c_78_21) label (C_78_21)
+
+rename c_78_22 (C_78_22)
+
+capture confirm numeric variable C_78_22
+if !_rc{
+     tostring C_78_22, replace
+}
+
+label define C_78_22 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_22, gen(c_78_22) label (C_78_22)
+
+rename c_78_23 (C_78_23)
+
+capture confirm numeric variable C_78_23
+if !_rc{
+     tostring C_78_23, replace
+}
+
+label define C_78_23 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_23, gen(c_78_23) label (C_78_23)
+
+rename c_78_24 (C_78_24)
+
+capture confirm numeric variable C_78_24
+if !_rc{
+     tostring C_78_24, replace
+}
+
+label define C_78_24 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_24, gen(c_78_24) label (C_78_24)
+
+rename c_78_25 (C_78_25)
+
+capture confirm numeric variable C_78_25
+if !_rc{
+     tostring C_78_25, replace
+}
+
+label define C_78_25 .a"." 0 "si exacta" 1 "sí aproximada" 2 "olvida el elemento" 
+
+encode C_78_25, gen(c_78_25) label (C_78_25)
+
+rename c_79_1 (C_79_1)
+
+capture confirm numeric variable C_79_1
+if !_rc{
+     tostring C_79_1, replace
+}
+
+label define C_79_1 .a"." 0 "si" 6 "no pudo (limitación física)"2 "no pudo recordar la figura" 7 "rehúsa"
+
+encode C_79_1, gen(c_79_1) label (C_79_1)
+
+rename c_79_2 (C_79_2)
+
+capture confirm numeric variable C_79_2
+if !_rc{
+     tostring C_79_2, replace
+}
+
+label define C_79_2 .a"." 0 "si" 6 "no pudo (limitación física)"2 "no pudo recordar la figura" 7 "rehúsa"
+
+encode C_79_2, gen(c_79_2) label (C_79_2)
+
+rename c_79_3 (C_79_3)
+
+capture confirm numeric variable C_79_3
+if !_rc{
+     tostring C_79_3, replace
+}
+
+label define C_79_3 .a"." 0 "si" 6 "no pudo (limitación física)"2 "no pudo recordar la figura" 7 "rehúsa"
+
+encode C_79_3, gen(c_79_3) label (C_79_3)
+
+rename c_79_4 (C_79_4)
+
+capture confirm numeric variable C_79_4
+if !_rc{
+     tostring C_79_4, replace
+}
+
+label define C_79_4 .a"." 0 "si" 6 "no pudo (limitación física)"2 "no pudo recordar la figura" 7 "rehúsa"
+
+encode C_79_4, gen(c_79_4) label (C_79_4)
+
+rename c_80a (C_80A)
+
+capture confirm numeric variable C_80A
+if !_rc{
+     tostring C_80A, replace
+}
+
+label define C_80A .a"." 0 "no" 1 "si" 
+
+encode C_80A, gen(c_80a) label (C_80A)
+
+rename c_80b (C_80B)
+
+capture confirm numeric variable C_80B
+if !_rc{
+     tostring C_80B, replace
+}
+
+label define C_80B .a"." 0 "no" 1 "si" 
+
+encode C_80B, gen(c_80b) label (C_80B)
+
+rename c_80c (C_80C)
+
+capture confirm numeric variable C_80C
+if !_rc{
+     tostring C_80C, replace
+}
+
+label define C_80C .a"." 0 "no" 1 "si" 
+
+encode C_80C, gen(c_80c) label (C_80C)
+
+rename c_81 (C_81)
+
+capture confirm numeric variable C_81
+if !_rc{
+     tostring C_81, replace
+}
+
+label define C_81 .a"." 0 "excelente" 1 "muy buena" 2 "buena" 3 "regular" 4 "mala" 5 "ciego" 
+
+encode C_81, gen(c_81) label (C_81)
+
+rename c_82 (C_82)
+
+capture confirm numeric variable C_82
+if !_rc{
+     tostring C_82, replace
+}
+
+label define C_82 .a"." 0 "excelente" 1 "muy buena" 2 "buena" 3 "regular" 4 "mala" 5 "sordo" 
+
+encode C_82, gen(c_82) label (C_82)
+

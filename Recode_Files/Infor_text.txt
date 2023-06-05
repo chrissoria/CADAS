@@ -1,0 +1,20 @@
+capture confirm numeric variable i_particid2
+if !_rc{
+     tostring i_particid2, replace
+}
+
+capture confirm numeric variable i_deviceid1
+if !_rc{
+     tostring i_deviceid1, replace
+}
+
+capture confirm numeric variable i_deviceid2
+if !_rc{
+     tostring i_deviceid2, replace
+}
+
+capture confirm numeric variable i_deviceid2
+if !_rc{
+     tostring i_deviceid2, replace
+}
+

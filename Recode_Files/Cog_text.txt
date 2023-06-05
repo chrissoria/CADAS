@@ -1,0 +1,55 @@
+capture confirm numeric variable c_interid
+if !_rc{
+     tostring c_interid, replace
+}
+
+capture confirm numeric variable c_particid2
+if !_rc{
+     tostring c_particid2, replace
+}
+
+capture confirm numeric variable c_deviceid1
+if !_rc{
+     tostring c_deviceid1, replace
+}
+
+capture confirm numeric variable c_20
+if !_rc{
+     tostring c_20, replace
+}
+
+capture confirm numeric variable c_26_1
+if !_rc{
+     tostring c_26_1, replace
+}
+
+capture confirm numeric variable g_1_file
+if !_rc{
+     tostring g_1_file, replace
+}
+
+capture confirm numeric variable g_2_file
+if !_rc{
+     tostring g_2_file, replace
+}
+
+capture confirm numeric variable g_2_file2
+if !_rc{
+     tostring g_2_file2, replace
+}
+
+capture confirm numeric variable g_3_file
+if !_rc{
+     tostring g_3_file, replace
+}
+
+capture confirm numeric variable g_3_file2
+if !_rc{
+     tostring g_3_file2, replace
+}
+
+capture confirm numeric variable c_deviceid2
+if !_rc{
+     tostring c_deviceid2, replace
+}
+

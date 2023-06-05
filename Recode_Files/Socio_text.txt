@@ -1,0 +1,50 @@
+capture confirm numeric variable s_particid2
+if !_rc{
+     tostring s_particid2, replace
+}
+
+capture confirm numeric variable s_deviceid1
+if !_rc{
+     tostring s_deviceid1, replace
+}
+
+capture confirm numeric variable s_1_2
+if !_rc{
+     tostring s_1_2, replace
+}
+
+capture confirm numeric variable s_2_16
+if !_rc{
+     tostring s_2_16, replace
+}
+
+capture confirm numeric variable s_3_3_p
+if !_rc{
+     tostring s_3_3_p, replace
+}
+
+capture confirm numeric variable s_3_3_d
+if !_rc{
+     tostring s_3_3_d, replace
+}
+
+capture confirm numeric variable s_3_3_c
+if !_rc{
+     tostring s_3_3_c, replace
+}
+
+capture confirm numeric variable s_8_3a
+if !_rc{
+     tostring s_8_3a, replace
+}
+
+capture confirm numeric variable s_9_21b
+if !_rc{
+     tostring s_9_21b, replace
+}
+
+capture confirm numeric variable s_deviceid2
+if !_rc{
+     tostring s_deviceid2, replace
+}
+

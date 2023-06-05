@@ -1,0 +1,4 @@
+"UniqueKey","RECSTATUS","GlobalRecordId","FirstSaveLogonName","FirstSaveTime","LastSaveLogonName","LastSaveTime","FKEY","CR_2","CR_3","CR_5","CR_6","CR_7","CR_4"
+1,1,eb78ce04-3019-42e9-84e1-032f1919531a,,,,,7a3dfb5c-ce67-4005-925e-fe02cf6deb7a,1,1,1,0 ,1 ,Hombre
+2,1,bd1a847b-a26f-4ba2-93b8-98e6ebc8509f,,,,,b8ff2670-406c-4364-81e5-f4d3629537cb,2,2,2,1 ,2 ,Mujer
+3,1,84676e5c-d1bf-4a18-bfbb-e39203a9bcd3,,,,,5014f03b-eb11-4073-8cbf-f7b13f47b76b,999,999,999,9 ,9 ,Mujer

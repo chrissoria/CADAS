@@ -1,0 +1,4 @@
+"UniqueKey","RECSTATUS","GlobalRecordId","FirstSaveLogonName","FirstSaveTime","LastSaveLogonName","LastSaveTime","FKEY","S_HOUSEID1","S_CLUSTID1","S_PARTICID1","S_Country1","S_TIME","S_Lat","S_Lon"
+1,1,90bdc85a-a418-4677-a360-21b93c478847,DESKTOP-DKJ3ANL\Ty,4/17/2023 2:58:32 PM,DESKTOP-DKJ3ANL\Ty,4/17/2023 2:58:32 PM,,1,1,1,0,,,
+2,1,01909332-b7e7-43a7-b80d-d1d8a19b2dd7,,,,,,1,1,1,0 ,4/17/2023 1:48:00 PM,37.8415168,-122.1191632
+3,1,ebf2afa6-3029-4e70-bd44-587be48a6f55,,,,,,,,,,,,

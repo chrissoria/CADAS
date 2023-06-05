@@ -1,0 +1,8 @@
+"UniqueKey","RECSTATUS","GlobalRecordId","FirstSaveLogonName","FirstSaveTime","LastSaveLogonName","LastSaveTime","FKEY","D_HOUSEID","D_CLUSTID","D_INTERID","D_Date","D_Country","D_2","D_3","D_4","D_5","D_6","D_15","D_1","D_0"
+1,1,53594586-99b2-4466-856d-6cab12bdc86d,,,DESKTOP-IJDMN3F\super,5/26/2023 6:00:57 PM,0cb38420-fcca-4e13-82ee-9b82c908d244,,,5,1/15/2023 12:00:00 AM,0,2,2,5,1,1,,Miembro del hogar,Si
+2,1,4ebe7281-00ca-45a4-b528-b392fd9e68df,,,,,0cb38420-fcca-4e13-82ee-9b82c908d244,6,25,5,1/15/2023 12:00:00 AM,0,,,,,,Parece habitada pero nadie abrió la puerta,,No
+3,1,683c6e3d-15bc-4b5c-93c8-fc1c14e86908,,,,,0cb38420-fcca-4e13-82ee-9b82c908d244,7,25,5,1/15/2023 12:00:00 AM,0,2,2,1,1,1,,Vecino,Si
+4,1,b7194c23-45a7-4241-b25d-45f3e3f1dd72,,,,,0cb38420-fcca-4e13-82ee-9b82c908d244,8,25,5,1/15/2023 12:00:00 AM,0,0,2,2,0,1,,Vecino,Si
+5,1,f4aadd50-8523-4643-b2bf-05ffd4d5f700,,,,,42bea581-5c1c-4892-b5fc-abeaf2f5d52c,15,10,10,1/16/2023 12:00:00 AM,1,88,88,88,1,0,,No responde,Si
+6,1,f4d71852-2301-45b3-b77f-9f2f8847571e,,,DESKTOP-9J6N1UB\Christopher Soria,1/16/2023 5:25:25 PM,42bea581-5c1c-4892-b5fc-abeaf2f5d52c,16,15,10,1/16/2023 12:00:00 AM,1,,,,,,Rechazada	,,No
+7,1,f5f93586-24a1-4391-9b3a-9f05e5c9bbc7,,,DESKTOP-9J6N1UB\Christopher Soria,1/16/2023 5:25:39 PM,42bea581-5c1c-4892-b5fc-abeaf2f5d52c,18,,10,,1,6,2,3,2,3,,Miembro del hogar,Si

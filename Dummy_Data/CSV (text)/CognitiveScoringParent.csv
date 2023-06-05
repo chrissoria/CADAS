@@ -1,0 +1,4 @@
+"UniqueKey","RECSTATUS","GlobalRecordId","FirstSaveLogonName","FirstSaveTime","LastSaveLogonName","LastSaveTime","FKEY","CS_INTERID","CS_HOUSEID","CS_CLUSTID","CS_Date","CS_PARTICID","CS_Country","CS_HOUSEID2","CS_CONGLID2","CS_PARTICID2","CS_32","CS_40","CS_41","CS_43","CS_44","CS_72_1","CS_72_2","CS_72_3","CS_72_4","CS_79_1","CS_79_2","CS_79_3","CS_79_4"
+1,1,fdcadcdf-5b00-4875-88e3-e1bb3102d5aa,,,,,,1,1,1,4/19/2023 12:00:00 AM,1,0 ,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+2,1,5f8aab19-21e8-4caf-a65d-a5f6e68ad51d,,,,,,2,2,2,4/19/2023 12:00:00 AM,1,1 ,2,2,1,0,2,2,2,2,2,2,2,2,2,2,2,2
+3,1,9ec8f8d5-7d88-4ba0-b69c-af472238b4ca,,,,,,3,3,3,4/19/2023 12:00:00 AM,1,2 ,3,3,1,0,3,3,3,3,0,0,0,0,0,9,9,9

@@ -1,0 +1,1749 @@
+rename i_a2 (I_A2)
+
+capture confirm numeric variable I_A2
+if !_rc{
+     tostring I_A2, replace
+}
+
+label define I_A2 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+
+encode I_A2, gen(i_a2) label (I_A2)
+
+rename i_a3 (I_A3)
+
+capture confirm numeric variable I_A3
+if !_rc{
+     tostring I_A3, replace
+}
+
+label define I_A3 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+
+encode I_A3, gen(i_a3) label (I_A3)
+
+rename i_a4 (I_A4)
+
+capture confirm numeric variable I_A4
+if !_rc{
+     tostring I_A4, replace
+}
+
+label define I_A4 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+
+encode I_A4, gen(i_a4) label (I_A4)
+
+rename i_b1 (I_B1)
+
+capture confirm numeric variable I_B1
+if !_rc{
+     tostring I_B1, replace
+}
+
+label define I_B1 .a"." 1 "miembro del hogar de xxxx?" 2 "hijo no-residente de xxxx?" 3 "otro?" 
+
+encode I_B1, gen(i_b1) label (I_B1)
+
+rename i_b4 (I_B4)
+
+capture confirm numeric variable I_B4
+if !_rc{
+     tostring I_B4, replace
+}
+
+label define I_B4 .a"." 1 "femenino" 2 "masculino" 3 "otro" 
+
+encode I_B4, gen(i_b4) label (I_B4)
+
+rename i_b5 (I_B5)
+
+capture confirm numeric variable I_B5
+if !_rc{
+     tostring I_B5, replace
+}
+
+label define I_B5 .a"." 1 "esposo (a)" 2 "hijo/hija" 3 "nuero/nuera" 4 "hermano (a)" 5 "otro parentesco" 6 "amigo" 7 "vecino(a)" 8 "otro" 8 "no responde"
+
+encode I_B5, gen(i_b5) label (I_B5)
+
+rename i_c1 (I_C1)
+
+capture confirm numeric variable I_C1
+if !_rc{
+     tostring I_C1, replace
+}
+
+label define I_C1 .a"." 1 "necesita cuidado la mayoría del tiempo" 2 "necesita cuidado ocasionalmente" 3 "no necesita cuidado se vale por sí mismo" 8 "no responde"9 "no sabe"
+
+encode I_C1, gen(i_c1) label (I_C1)
+
+rename i_c2 (I_C2)
+
+capture confirm numeric variable I_C2
+if !_rc{
+     tostring I_C2, replace
+}
+
+label define I_C2 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+
+encode I_C2, gen(i_c2) label (I_C2)
+
+rename i_c3 (I_C3)
+
+capture confirm numeric variable I_C3
+if !_rc{
+     tostring I_C3, replace
+}
+
+label define I_C3 .a"." 1 "uno ó más miembros de la familia" 2 "uno ó más amigos o vecinos no pagados" 3 "uno ó más cuidadores pagados" 4 "no recibe cuidado directo" 8 "no responde"9 "no sabe"
+
+encode I_C3, gen(i_c3) label (I_C3)
+
+rename i_c4 (I_C4)
+
+capture confirm numeric variable I_C4
+if !_rc{
+     tostring I_C4, replace
+}
+
+label define I_C4 .a"." 1 "uno de los principales cuidadores directos." 2 "uno de los principales cuidadores de “organización”" 3 "solo ligeramente envuelto en proveer u organizar cuidado (otras personas lo hacen más)" 4 "no está envuelto en proveer u organizar cuidado" 
+
+encode I_C4, gen(i_c4) label (I_C4)
+
+rename i_c5 (I_C5)
+
+capture confirm numeric variable I_C5
+if !_rc{
+     tostring I_C5, replace
+}
+
+label define I_C5 .a"." 1 "sí he dejado de trabajar" 2 "sí he disminuido horas de trabajo" 0 "no"8 "no responde"
+
+encode I_C5, gen(i_c5) label (I_C5)
+
+rename i_c9 (I_C9)
+
+capture confirm numeric variable I_C9
+if !_rc{
+     tostring I_C9, replace
+}
+
+label define I_C9 .a"." 1 "si"0 "no"8 "no responde"
+
+encode I_C9, gen(i_c9) label (I_C9)
+
+rename i_c11 (I_C11)
+
+capture confirm numeric variable I_C11
+if !_rc{
+     tostring I_C11, replace
+}
+
+label define I_C11 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+
+encode I_C11, gen(i_c11) label (I_C11)
+
+rename i_c23 (I_C23)
+
+capture confirm numeric variable I_C23
+if !_rc{
+     tostring I_C23, replace
+}
+
+label define I_C23 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+
+encode I_C23, gen(i_c23) label (I_C23)
+
+rename i_c25 (I_C25)
+
+capture confirm numeric variable I_C25
+if !_rc{
+     tostring I_C25, replace
+}
+
+label define I_C25 .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+
+encode I_C25, gen(i_c25) label (I_C25)
+
+rename i_c26a (I_C26A)
+
+capture confirm numeric variable I_C26A
+if !_rc{
+     tostring I_C26A, replace
+}
+
+label define I_C26A .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+
+encode I_C26A, gen(i_c26a) label (I_C26A)
+
+rename i_c27a (I_C27A)
+
+capture confirm numeric variable I_C27A
+if !_rc{
+     tostring I_C27A, replace
+}
+
+label define I_C27A .a"." 1 "si"0 "no"8 "no responde"9 "no sabe"
+
+encode I_C27A, gen(i_c27a) label (I_C27A)
+
+rename i_d2 (I_D2)
+
+capture confirm numeric variable I_D2
+if !_rc{
+     tostring I_D2, replace
+}
+
+label define I_D2 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+
+encode I_D2, gen(i_d2) label (I_D2)
+
+rename i_d3 (I_D3)
+
+capture confirm numeric variable I_D3
+if !_rc{
+     tostring I_D3, replace
+}
+
+label define I_D3 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+
+encode I_D3, gen(i_d3) label (I_D3)
+
+rename i_d5 (I_D5)
+
+capture confirm numeric variable I_D5
+if !_rc{
+     tostring I_D5, replace
+}
+
+label define I_D5 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+
+encode I_D5, gen(i_d5) label (I_D5)
+
+rename i_d6 (I_D6)
+
+capture confirm numeric variable I_D6
+if !_rc{
+     tostring I_D6, replace
+}
+
+label define I_D6 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+
+encode I_D6, gen(i_d6) label (I_D6)
+
+rename i_d9 (I_D9)
+
+capture confirm numeric variable I_D9
+if !_rc{
+     tostring I_D9, replace
+}
+
+label define I_D9 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+
+encode I_D9, gen(i_d9) label (I_D9)
+
+rename i_d10 (I_D10)
+
+capture confirm numeric variable I_D10
+if !_rc{
+     tostring I_D10, replace
+}
+
+label define I_D10 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+
+encode I_D10, gen(i_d10) label (I_D10)
+
+rename i_d11 (I_D11)
+
+capture confirm numeric variable I_D11
+if !_rc{
+     tostring I_D11, replace
+}
+
+label define I_D11 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+
+encode I_D11, gen(i_d11) label (I_D11)
+
+rename i_d12 (I_D12)
+
+capture confirm numeric variable I_D12
+if !_rc{
+     tostring I_D12, replace
+}
+
+label define I_D12 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+
+encode I_D12, gen(i_d12) label (I_D12)
+
+rename i_d17 (I_D17)
+
+capture confirm numeric variable I_D17
+if !_rc{
+     tostring I_D17, replace
+}
+
+label define I_D17 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+
+encode I_D17, gen(i_d17) label (I_D17)
+
+rename i_d19 (I_D19)
+
+capture confirm numeric variable I_D19
+if !_rc{
+     tostring I_D19, replace
+}
+
+label define I_D19 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+
+encode I_D19, gen(i_d19) label (I_D19)
+
+rename i_d20 (I_D20)
+
+capture confirm numeric variable I_D20
+if !_rc{
+     tostring I_D20, replace
+}
+
+label define I_D20 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+
+encode I_D20, gen(i_d20) label (I_D20)
+
+rename i_d21 (I_D21)
+
+capture confirm numeric variable I_D21
+if !_rc{
+     tostring I_D21, replace
+}
+
+label define I_D21 .a"." 1 "nunca" 2 "raras veces" 3 "algunas veces" 4 "bastante frecuente" 5 "casi siempre" 8 "no responde"
+
+encode I_D21, gen(i_d21) label (I_D21)
+
+rename i_e1 (I_E1)
+
+capture confirm numeric variable I_E1
+if !_rc{
+     tostring I_E1, replace
+}
+
+label define I_E1 .a"." 1 "ha mejorado mucho" 2 "ha mejorado un poco" 3 "apenas ha cambiado" 4 "ha empeorado un poco" 5 "ha empeorado mucho" 8 "no responde"9 "no sabe"
+
+encode I_E1, gen(i_e1) label (I_E1)
+
+rename i_e2 (I_E2)
+
+capture confirm numeric variable I_E2
+if !_rc{
+     tostring I_E2, replace
+}
+
+label define I_E2 .a"." 1 "ha mejorado mucho" 2 "ha mejorado un poco" 3 "apenas ha cambiado" 4 "ha empeorado un poco" 5 "ha empeorado mucho" 8 "no responde"9 "no sabe"
+
+encode I_E2, gen(i_e2) label (I_E2)
+
+rename i_e3 (I_E3)
+
+capture confirm numeric variable I_E3
+if !_rc{
+     tostring I_E3, replace
+}
+
+label define I_E3 .a"." 1 "ha mejorado mucho" 2 "ha mejorado un poco" 3 "apenas ha cambiado" 4 "ha empeorado un poco" 5 "ha empeorado mucho" 8 "no responde"9 "no sabe"
+
+encode I_E3, gen(i_e3) label (I_E3)
+
+rename i_e4 (I_E4)
+
+capture confirm numeric variable I_E4
+if !_rc{
+     tostring I_E4, replace
+}
+
+label define I_E4 .a"." 1 "ha mejorado mucho" 2 "ha mejorado un poco" 3 "apenas ha cambiado" 4 "ha empeorado un poco" 5 "ha empeorado mucho" 8 "no responde"9 "no sabe"
+
+encode I_E4, gen(i_e4) label (I_E4)
+
+rename i_e5 (I_E5)
+
+capture confirm numeric variable I_E5
+if !_rc{
+     tostring I_E5, replace
+}
+
+label define I_E5 .a"." 1 "ha mejorado mucho" 2 "ha mejorado un poco" 3 "apenas ha cambiado" 4 "ha empeorado un poco" 5 "ha empeorado mucho" 8 "no responde"9 "no sabe"
+
+encode I_E5, gen(i_e5) label (I_E5)
+
+rename i_e6 (I_E6)
+
+capture confirm numeric variable I_E6
+if !_rc{
+     tostring I_E6, replace
+}
+
+label define I_E6 .a"." 1 "ha mejorado mucho" 2 "ha mejorado un poco" 3 "apenas ha cambiado" 4 "ha empeorado un poco" 5 "ha empeorado mucho" 8 "no responde"9 "no sabe"
+
+encode I_E6, gen(i_e6) label (I_E6)
+
+rename i_e7 (I_E7)
+
+capture confirm numeric variable I_E7
+if !_rc{
+     tostring I_E7, replace
+}
+
+label define I_E7 .a"." 1 "ha mejorado mucho" 2 "ha mejorado un poco" 3 "apenas ha cambiado" 4 "ha empeorado un poco" 5 "ha empeorado mucho" 8 "no responde"9 "no sabe"
+
+encode I_E7, gen(i_e7) label (I_E7)
+
+rename i_e8 (I_E8)
+
+capture confirm numeric variable I_E8
+if !_rc{
+     tostring I_E8, replace
+}
+
+label define I_E8 .a"." 1 "ha mejorado mucho" 2 "ha mejorado un poco" 3 "apenas ha cambiado" 4 "ha empeorado un poco" 5 "ha empeorado mucho" 8 "no responde"9 "no sabe"
+
+encode I_E8, gen(i_e8) label (I_E8)
+
+rename i_e9 (I_E9)
+
+capture confirm numeric variable I_E9
+if !_rc{
+     tostring I_E9, replace
+}
+
+label define I_E9 .a"." 1 "ha mejorado mucho" 2 "ha mejorado un poco" 3 "apenas ha cambiado" 4 "ha empeorado un poco" 5 "ha empeorado mucho" 8 "no responde"9 "no sabe"
+
+encode I_E9, gen(i_e9) label (I_E9)
+
+rename i_e10 (I_E10)
+
+capture confirm numeric variable I_E10
+if !_rc{
+     tostring I_E10, replace
+}
+
+label define I_E10 .a"." 1 "ha mejorado mucho" 2 "ha mejorado un poco" 3 "apenas ha cambiado" 4 "ha empeorado un poco" 5 "ha empeorado mucho" 8 "no responde"9 "no sabe"
+
+encode I_E10, gen(i_e10) label (I_E10)
+
+rename i_e11 (I_E11)
+
+capture confirm numeric variable I_E11
+if !_rc{
+     tostring I_E11, replace
+}
+
+label define I_E11 .a"." 1 "ha mejorado mucho" 2 "ha mejorado un poco" 3 "apenas ha cambiado" 4 "ha empeorado un poco" 5 "ha empeorado mucho" 8 "no responde"9 "no sabe"
+
+encode I_E11, gen(i_e11) label (I_E11)
+
+rename i_e12 (I_E12)
+
+capture confirm numeric variable I_E12
+if !_rc{
+     tostring I_E12, replace
+}
+
+label define I_E12 .a"." 1 "ha mejorado mucho" 2 "ha mejorado un poco" 3 "apenas ha cambiado" 4 "ha empeorado un poco" 5 "ha empeorado mucho" 8 "no responde"9 "no sabe"
+
+encode I_E12, gen(i_e12) label (I_E12)
+
+rename i_e13 (I_E13)
+
+capture confirm numeric variable I_E13
+if !_rc{
+     tostring I_E13, replace
+}
+
+label define I_E13 .a"." 1 "ha mejorado mucho" 2 "ha mejorado un poco" 3 "apenas ha cambiado" 4 "ha empeorado un poco" 5 "ha empeorado mucho" 8 "no responde"9 "no sabe"
+
+encode I_E13, gen(i_e13) label (I_E13)
+
+rename i_e14 (I_E14)
+
+capture confirm numeric variable I_E14
+if !_rc{
+     tostring I_E14, replace
+}
+
+label define I_E14 .a"." 1 "ha mejorado mucho" 2 "ha mejorado un poco" 3 "apenas ha cambiado" 4 "ha empeorado un poco" 5 "ha empeorado mucho" 8 "no responde"9 "no sabe"
+
+encode I_E14, gen(i_e14) label (I_E14)
+
+rename i_e15 (I_E15)
+
+capture confirm numeric variable I_E15
+if !_rc{
+     tostring I_E15, replace
+}
+
+label define I_E15 .a"." 1 "ha mejorado mucho" 2 "ha mejorado un poco" 3 "apenas ha cambiado" 4 "ha empeorado un poco" 5 "ha empeorado mucho" 8 "no responde"9 "no sabe"
+
+encode I_E15, gen(i_e15) label (I_E15)
+
+rename i_e16 (I_E16)
+
+capture confirm numeric variable I_E16
+if !_rc{
+     tostring I_E16, replace
+}
+
+label define I_E16 .a"." 1 "ha mejorado mucho" 2 "ha mejorado un poco" 3 "apenas ha cambiado" 4 "ha empeorado un poco" 5 "ha empeorado mucho" 8 "no responde"9 "no sabe"
+
+encode I_E16, gen(i_e16) label (I_E16)
+
+rename i_f_csid_1 (I_F_CSID_1)
+
+capture confirm numeric variable I_F_CSID_1
+if !_rc{
+     tostring I_F_CSID_1, replace
+}
+
+label define I_F_CSID_1 .a"." 1 "no hay cambios" 2 "disminución de las actividades y reducida" 
+
+encode I_F_CSID_1, gen(i_f_csid_1) label (I_F_CSID_1)
+
+rename i_f_csid_2 (I_F_CSID_2)
+
+capture confirm numeric variable I_F_CSID_2
+if !_rc{
+     tostring I_F_CSID_2, replace
+}
+
+label define I_F_CSID_2 .a"." 1 "no hay cambios" 2 "deterioro general" 
+
+encode I_F_CSID_2, gen(i_f_csid_2) label (I_F_CSID_2)
+
+rename i_f_csid_3 (I_F_CSID_3)
+
+capture confirm numeric variable I_F_CSID_3
+if !_rc{
+     tostring I_F_CSID_3, replace
+}
+
+label define I_F_CSID_3 .a"." 0 "no"1 "si"
+
+encode I_F_CSID_3, gen(i_f_csid_3) label (I_F_CSID_3)
+
+rename i_f_csid_4 (I_F_CSID_4)
+
+capture confirm numeric variable I_F_CSID_4
+if !_rc{
+     tostring I_F_CSID_4, replace
+}
+
+label define I_F_CSID_4 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+
+encode I_F_CSID_4, gen(i_f_csid_4) label (I_F_CSID_4)
+
+rename i_f_csid_5 (I_F_CSID_5)
+
+capture confirm numeric variable I_F_CSID_5
+if !_rc{
+     tostring I_F_CSID_5, replace
+}
+
+label define I_F_CSID_5 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+
+encode I_F_CSID_5, gen(i_f_csid_5) label (I_F_CSID_5)
+
+rename i_f_bse_3 (I_F_BSE_3)
+
+capture confirm numeric variable I_F_BSE_3
+if !_rc{
+     tostring I_F_BSE_3, replace
+}
+
+label define I_F_BSE_3 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+
+encode I_F_BSE_3, gen(i_f_bse_3) label (I_F_BSE_3)
+
+rename i_f_bse_7 (I_F_BSE_7)
+
+capture confirm numeric variable I_F_BSE_7
+if !_rc{
+     tostring I_F_BSE_7, replace
+}
+
+label define I_F_BSE_7 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+
+encode I_F_BSE_7, gen(i_f_bse_7) label (I_F_BSE_7)
+
+rename i_f_csid_6 (I_F_CSID_6)
+
+capture confirm numeric variable I_F_CSID_6
+if !_rc{
+     tostring I_F_CSID_6, replace
+}
+
+label define I_F_CSID_6 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+
+encode I_F_CSID_6, gen(i_f_csid_6) label (I_F_CSID_6)
+
+rename i_f_csid_7 (I_F_CSID_7)
+
+capture confirm numeric variable I_F_CSID_7
+if !_rc{
+     tostring I_F_CSID_7, replace
+}
+
+label define I_F_CSID_7 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+
+encode I_F_CSID_7, gen(i_f_csid_7) label (I_F_CSID_7)
+
+rename i_f_csid_8 (I_F_CSID_8)
+
+capture confirm numeric variable I_F_CSID_8
+if !_rc{
+     tostring I_F_CSID_8, replace
+}
+
+label define I_F_CSID_8 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+
+encode I_F_CSID_8, gen(i_f_csid_8) label (I_F_CSID_8)
+
+rename i_f_csid_9 (I_F_CSID_9)
+
+capture confirm numeric variable I_F_CSID_9
+if !_rc{
+     tostring I_F_CSID_9, replace
+}
+
+label define I_F_CSID_9 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+
+encode I_F_CSID_9, gen(i_f_csid_9) label (I_F_CSID_9)
+
+rename i_f_csid_10 (I_F_CSID_10)
+
+capture confirm numeric variable I_F_CSID_10
+if !_rc{
+     tostring I_F_CSID_10, replace
+}
+
+label define I_F_CSID_10 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+
+encode I_F_CSID_10, gen(i_f_csid_10) label (I_F_CSID_10)
+
+rename i_f_csid_11 (I_F_CSID_11)
+
+capture confirm numeric variable I_F_CSID_11
+if !_rc{
+     tostring I_F_CSID_11, replace
+}
+
+label define I_F_CSID_11 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+
+encode I_F_CSID_11, gen(i_f_csid_11) label (I_F_CSID_11)
+
+rename i_f_csid_12 (I_F_CSID_12)
+
+capture confirm numeric variable I_F_CSID_12
+if !_rc{
+     tostring I_F_CSID_12, replace
+}
+
+label define I_F_CSID_12 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+
+encode I_F_CSID_12, gen(i_f_csid_12) label (I_F_CSID_12)
+
+rename i_f_csid_13 (I_F_CSID_13)
+
+capture confirm numeric variable I_F_CSID_13
+if !_rc{
+     tostring I_F_CSID_13, replace
+}
+
+label define I_F_CSID_13 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+
+encode I_F_CSID_13, gen(i_f_csid_13) label (I_F_CSID_13)
+
+rename i_f_csid_14 (I_F_CSID_14)
+
+capture confirm numeric variable I_F_CSID_14
+if !_rc{
+     tostring I_F_CSID_14, replace
+}
+
+label define I_F_CSID_14 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+
+encode I_F_CSID_14, gen(i_f_csid_14) label (I_F_CSID_14)
+
+rename i_f_csid_15 (I_F_CSID_15)
+
+capture confirm numeric variable I_F_CSID_15
+if !_rc{
+     tostring I_F_CSID_15, replace
+}
+
+label define I_F_CSID_15 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+
+encode I_F_CSID_15, gen(i_f_csid_15) label (I_F_CSID_15)
+
+rename i_f_csid_16 (I_F_CSID_16)
+
+capture confirm numeric variable I_F_CSID_16
+if !_rc{
+     tostring I_F_CSID_16, replace
+}
+
+label define I_F_CSID_16 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+
+encode I_F_CSID_16, gen(i_f_csid_16) label (I_F_CSID_16)
+
+rename i_f_csid_17 (I_F_CSID_17)
+
+capture confirm numeric variable I_F_CSID_17
+if !_rc{
+     tostring I_F_CSID_17, replace
+}
+
+label define I_F_CSID_17 .a"." 1 "nunca" 2 "si algunas veces" 3 "si regularmente" 
+
+encode I_F_CSID_17, gen(i_f_csid_17) label (I_F_CSID_17)
+
+rename i_f_csid_17a (I_F_CSID_17A)
+
+capture confirm numeric variable I_F_CSID_17A
+if !_rc{
+     tostring I_F_CSID_17A, replace
+}
+
+label define I_F_CSID_17A .a"." 0 "no"1 "si"
+
+encode I_F_CSID_17A, gen(i_f_csid_17a) label (I_F_CSID_17A)
+
+rename i_f_csid_18 (I_F_CSID_18)
+
+capture confirm numeric variable I_F_CSID_18
+if !_rc{
+     tostring I_F_CSID_18, replace
+}
+
+label define I_F_CSID_18 .a"." 0 "no"1 "si"
+
+encode I_F_CSID_18, gen(i_f_csid_18) label (I_F_CSID_18)
+
+rename i_f_csid_19 (I_F_CSID_19)
+
+capture confirm numeric variable I_F_CSID_19
+if !_rc{
+     tostring I_F_CSID_19, replace
+}
+
+label define I_F_CSID_19 .a"." 1 "no muestra dificultad" 2 "alguna dificultad" 3 "no puede manejar el dinero" 
+
+encode I_F_CSID_19, gen(i_f_csid_19) label (I_F_CSID_19)
+
+rename i_f_csid_20 (I_F_CSID_20)
+
+capture confirm numeric variable I_F_CSID_20
+if !_rc{
+     tostring I_F_CSID_20, replace
+}
+
+label define I_F_CSID_20 .a"." 0 "no"2 "si algunas veces" 3 "si regularmente" 
+
+encode I_F_CSID_20, gen(i_f_csid_20) label (I_F_CSID_20)
+
+rename i_f_csid_21 (I_F_CSID_21)
+
+capture confirm numeric variable I_F_CSID_21
+if !_rc{
+     tostring I_F_CSID_21, replace
+}
+
+label define I_F_CSID_21 .a"." 0 "no"2 "si algunas veces" 3 "si regularmente" 
+
+encode I_F_CSID_21, gen(i_f_csid_21) label (I_F_CSID_21)
+
+rename i_f_csid_22_1 (I_F_CSID_22_1)
+
+capture confirm numeric variable I_F_CSID_22_1
+if !_rc{
+     tostring I_F_CSID_22_1, replace
+}
+
+label define I_F_CSID_22_1 .a"." 1 "come de manera limpia y con utensilios apropiados" 2 "se ensucia al comer. solo usa la cuchara" 3 "sólidos simples como galletitas" 4 "tiene que ser alimentada" 
+
+encode I_F_CSID_22_1, gen(i_f_csid_22_1) label (I_F_CSID_22_1)
+
+rename i_f_csid_22_2 (I_F_CSID_22_2)
+
+capture confirm numeric variable I_F_CSID_22_2
+if !_rc{
+     tostring I_F_CSID_22_2, replace
+}
+
+label define I_F_CSID_22_2 .a"." 0 "no"1 "si"
+
+encode I_F_CSID_22_2, gen(i_f_csid_22_2) label (I_F_CSID_22_2)
+
+rename i_f_csid_23_1 (I_F_CSID_23_1)
+
+capture confirm numeric variable I_F_CSID_23_1
+if !_rc{
+     tostring I_F_CSID_23_1, replace
+}
+
+label define I_F_CSID_23_1 .a"." 1 "se viste sola/o" 2 "ocasionalmente salta un botón etc" 3 "secuencia incorrecta a menudo olvida artículos" 4 "incapaz de vestirse" 
+
+encode I_F_CSID_23_1, gen(i_f_csid_23_1) label (I_F_CSID_23_1)
+
+rename i_f_csid_23_2 (I_F_CSID_23_2)
+
+capture confirm numeric variable I_F_CSID_23_2
+if !_rc{
+     tostring I_F_CSID_23_2, replace
+}
+
+label define I_F_CSID_23_2 .a"." 0 "no"1 "si"
+
+encode I_F_CSID_23_2, gen(i_f_csid_23_2) label (I_F_CSID_23_2)
+
+rename i_f_csid_24_1 (I_F_CSID_24_1)
+
+capture confirm numeric variable I_F_CSID_24_1
+if !_rc{
+     tostring I_F_CSID_24_1, replace
+}
+
+label define I_F_CSID_24_1 .a"." 1 "no tiene problemas" 2 "ocasionalmente moja la cama" 3 "frecuentemente moja la cama" 4 "incontinencia doble" 
+
+encode I_F_CSID_24_1, gen(i_f_csid_24_1) label (I_F_CSID_24_1)
+
+rename i_f_csid_24_2 (I_F_CSID_24_2)
+
+capture confirm numeric variable I_F_CSID_24_2
+if !_rc{
+     tostring I_F_CSID_24_2, replace
+}
+
+label define I_F_CSID_24_2 .a"." 0 "no"1 "si"
+
+encode I_F_CSID_24_2, gen(i_f_csid_24_2) label (I_F_CSID_24_2)
+
+rename i_f_csid_25 (I_F_CSID_25)
+
+capture confirm numeric variable I_F_CSID_25
+if !_rc{
+     tostring I_F_CSID_25, replace
+}
+
+label define I_F_CSID_25 .a"." 0 "no"1 "si"
+
+encode I_F_CSID_25, gen(i_f_csid_25) label (I_F_CSID_25)
+
+rename i_f_csid_26 (I_F_CSID_26)
+
+capture confirm numeric variable I_F_CSID_26
+if !_rc{
+     tostring I_F_CSID_26, replace
+}
+
+label define I_F_CSID_26 .a"." 0 "no"1 "si"
+
+encode I_F_CSID_26, gen(i_f_csid_26) label (I_F_CSID_26)
+
+rename i_f_csid_27 (I_F_CSID_27)
+
+capture confirm numeric variable I_F_CSID_27
+if !_rc{
+     tostring I_F_CSID_27, replace
+}
+
+label define I_F_CSID_27 .a"." 0 "no"1 "si"
+
+encode I_F_CSID_27, gen(i_f_csid_27) label (I_F_CSID_27)
+
+rename i_f_csid_28 (I_F_CSID_28)
+
+capture confirm numeric variable I_F_CSID_28
+if !_rc{
+     tostring I_F_CSID_28, replace
+}
+
+label define I_F_CSID_28 .a"." 0 "no"1 "si"
+
+encode I_F_CSID_28, gen(i_f_csid_28) label (I_F_CSID_28)
+
+rename i_g1 (I_G1)
+
+capture confirm numeric variable I_G1
+if !_rc{
+     tostring I_G1, replace
+}
+
+label define I_G1 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_G1, gen(i_g1) label (I_G1)
+
+rename i_g1_2 (I_G1_2)
+
+capture confirm numeric variable I_G1_2
+if !_rc{
+     tostring I_G1_2, replace
+}
+
+label define I_G1_2 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_G1_2, gen(i_g1_2) label (I_G1_2)
+
+rename i_g1_3 (I_G1_3)
+
+capture confirm numeric variable I_G1_3
+if !_rc{
+     tostring I_G1_3, replace
+}
+
+label define I_G1_3 .a"." 1 "ninguna ayuda" 2 "un poco de ayuda" 3 "de mucha ayuda" 8 "no responde"9 "no sabe"
+
+encode I_G1_3, gen(i_g1_3) label (I_G1_3)
+
+rename i_g1_4 (I_G1_4)
+
+capture confirm numeric variable I_G1_4
+if !_rc{
+     tostring I_G1_4, replace
+}
+
+label define I_G1_4 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_G1_4, gen(i_g1_4) label (I_G1_4)
+
+rename i_g1_5 (I_G1_5)
+
+capture confirm numeric variable I_G1_5
+if !_rc{
+     tostring I_G1_5, replace
+}
+
+label define I_G1_5 .a"." 1 "ninguna ayuda" 2 "un poco de ayuda" 3 "de mucha ayuda" 8 "no responde"9 "no sabe"
+
+encode I_G1_5, gen(i_g1_5) label (I_G1_5)
+
+rename i_g_has_2 (I_G_HAS_2)
+
+capture confirm numeric variable I_G_HAS_2
+if !_rc{
+     tostring I_G_HAS_2, replace
+}
+
+label define I_G_HAS_2 .a"." 1 "comienzo rápido de aspectos orgánicos en 1-3 días" 2 "comienzo rápido en más de 3 días pero menos de 3 semanas" 3 "comienzo gradual en un período más largo" 8 "no responde"9 "no sabe"
+
+encode I_G_HAS_2, gen(i_g_has_2) label (I_G_HAS_2)
+
+rename i_g_has_3_1 (I_G_HAS_3_1)
+
+capture confirm numeric variable I_G_HAS_3_1
+if !_rc{
+     tostring I_G_HAS_3_1, replace
+}
+
+label define I_G_HAS_3_1 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_G_HAS_3_1, gen(i_g_has_3_1) label (I_G_HAS_3_1)
+
+rename i_g_has_3_11 (I_G_HAS_3_11)
+
+capture confirm numeric variable I_G_HAS_3_11
+if !_rc{
+     tostring I_G_HAS_3_11, replace
+}
+
+label define I_G_HAS_3_11 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_G_HAS_3_11, gen(i_g_has_3_11) label (I_G_HAS_3_11)
+
+rename i_g_has_3_13 (I_G_HAS_3_13)
+
+capture confirm numeric variable I_G_HAS_3_13
+if !_rc{
+     tostring I_G_HAS_3_13, replace
+}
+
+label define I_G_HAS_3_13 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_G_HAS_3_13, gen(i_g_has_3_13) label (I_G_HAS_3_13)
+
+rename i_g_has_3_14 (I_G_HAS_3_14)
+
+capture confirm numeric variable I_G_HAS_3_14
+if !_rc{
+     tostring I_G_HAS_3_14, replace
+}
+
+label define I_G_HAS_3_14 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_G_HAS_3_14, gen(i_g_has_3_14) label (I_G_HAS_3_14)
+
+rename i_g_has_3_16 (I_G_HAS_3_16)
+
+capture confirm numeric variable I_G_HAS_3_16
+if !_rc{
+     tostring I_G_HAS_3_16, replace
+}
+
+label define I_G_HAS_3_16 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_G_HAS_3_16, gen(i_g_has_3_16) label (I_G_HAS_3_16)
+
+rename i_g_has_3_22 (I_G_HAS_3_22)
+
+capture confirm numeric variable I_G_HAS_3_22
+if !_rc{
+     tostring I_G_HAS_3_22, replace
+}
+
+label define I_G_HAS_3_22 .a"." 1 "en general expresa deterioro" 2 "en general expresa mejoría" 3 "expresa que no hay cambios" 8 "no responde"9 "no sabe"
+
+encode I_G_HAS_3_22, gen(i_g_has_3_22) label (I_G_HAS_3_22)
+
+rename i_g_has_4 (I_G_HAS_4)
+
+capture confirm numeric variable I_G_HAS_4
+if !_rc{
+     tostring I_G_HAS_4, replace
+}
+
+label define I_G_HAS_4 .a"." 1 "no vario" 2 "un curso fluctuante con varios días o semanas de mejoría" 8 "no responde"9 "no sabe"
+
+encode I_G_HAS_4, gen(i_g_has_4) label (I_G_HAS_4)
+
+rename i_g_has_5_1 (I_G_HAS_5_1)
+
+capture confirm numeric variable I_G_HAS_5_1
+if !_rc{
+     tostring I_G_HAS_5_1, replace
+}
+
+label define I_G_HAS_5_1 .a"." 1 "no retornaron a lo normal" 2 "condición descrita como retorno a lo normal o casi normal" 8 "no responde"9 "no sabe"
+
+encode I_G_HAS_5_1, gen(i_g_has_5_1) label (I_G_HAS_5_1)
+
+rename i_g_has_6 (I_G_HAS_6)
+
+capture confirm numeric variable I_G_HAS_6
+if !_rc{
+     tostring I_G_HAS_6, replace
+}
+
+label define I_G_HAS_6 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_G_HAS_6, gen(i_g_has_6) label (I_G_HAS_6)
+
+rename i_g_has_7_1 (I_G_HAS_7_1)
+
+capture confirm numeric variable I_G_HAS_7_1
+if !_rc{
+     tostring I_G_HAS_7_1, replace
+}
+
+label define I_G_HAS_7_1 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_G_HAS_7_1, gen(i_g_has_7_1) label (I_G_HAS_7_1)
+
+rename i_g_has_10 (I_G_HAS_10)
+
+capture confirm numeric variable I_G_HAS_10
+if !_rc{
+     tostring I_G_HAS_10, replace
+}
+
+label define I_G_HAS_10 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_G_HAS_10, gen(i_g_has_10) label (I_G_HAS_10)
+
+rename i_g_has_11 (I_G_HAS_11)
+
+capture confirm numeric variable I_G_HAS_11
+if !_rc{
+     tostring I_G_HAS_11, replace
+}
+
+label define I_G_HAS_11 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_G_HAS_11, gen(i_g_has_11) label (I_G_HAS_11)
+
+rename i_g_has_12 (I_G_HAS_12)
+
+capture confirm numeric variable I_G_HAS_12
+if !_rc{
+     tostring I_G_HAS_12, replace
+}
+
+label define I_G_HAS_12 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_G_HAS_12, gen(i_g_has_12) label (I_G_HAS_12)
+
+rename i_g_has_13 (I_G_HAS_13)
+
+capture confirm numeric variable I_G_HAS_13
+if !_rc{
+     tostring I_G_HAS_13, replace
+}
+
+label define I_G_HAS_13 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_G_HAS_13, gen(i_g_has_13) label (I_G_HAS_13)
+
+rename i_g_has_14_1 (I_G_HAS_14_1)
+
+capture confirm numeric variable I_G_HAS_14_1
+if !_rc{
+     tostring I_G_HAS_14_1, replace
+}
+
+label define I_G_HAS_14_1 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_G_HAS_14_1, gen(i_g_has_14_1) label (I_G_HAS_14_1)
+
+rename i_g_has_15 (I_G_HAS_15)
+
+capture confirm numeric variable I_G_HAS_15
+if !_rc{
+     tostring I_G_HAS_15, replace
+}
+
+label define I_G_HAS_15 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_G_HAS_15, gen(i_g_has_15) label (I_G_HAS_15)
+
+rename i_g_has_17 (I_G_HAS_17)
+
+capture confirm numeric variable I_G_HAS_17
+if !_rc{
+     tostring I_G_HAS_17, replace
+}
+
+label define I_G_HAS_17 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_G_HAS_17, gen(i_g_has_17) label (I_G_HAS_17)
+
+rename i_g_has_18 (I_G_HAS_18)
+
+capture confirm numeric variable I_G_HAS_18
+if !_rc{
+     tostring I_G_HAS_18, replace
+}
+
+label define I_G_HAS_18 .a"." 1 "solo han sucedido recientemente" 2 "una de las primeras cosas" 8 "no responde"9 "no sabe"
+
+encode I_G_HAS_18, gen(i_g_has_18) label (I_G_HAS_18)
+
+rename i_g_has_47 (I_G_HAS_47)
+
+capture confirm numeric variable I_G_HAS_47
+if !_rc{
+     tostring I_G_HAS_47, replace
+}
+
+label define I_G_HAS_47 .a"." 0 "no"2 "si probablemente" 3 "si definitivamente" 8 "no responde"9 "no sabe"
+
+encode I_G_HAS_47, gen(i_g_has_47) label (I_G_HAS_47)
+
+rename i_g_has_48 (I_G_HAS_48)
+
+capture confirm numeric variable I_G_HAS_48
+if !_rc{
+     tostring I_G_HAS_48, replace
+}
+
+label define I_G_HAS_48 .a"." 0 "no"2 "si probablemente" 3 "si definitivamente" 8 "no responde"9 "no sabe"
+
+encode I_G_HAS_48, gen(i_g_has_48) label (I_G_HAS_48)
+
+rename i_g_has_49 (I_G_HAS_49)
+
+capture confirm numeric variable I_G_HAS_49
+if !_rc{
+     tostring I_G_HAS_49, replace
+}
+
+label define I_G_HAS_49 .a"." 0 "no"2 "de unos minutos a una hora" 3 "más de una hora" 8 "no responde"9 "no sabe"
+
+encode I_G_HAS_49, gen(i_g_has_49) label (I_G_HAS_49)
+
+rename i_g_has_50 (I_G_HAS_50)
+
+capture confirm numeric variable I_G_HAS_50
+if !_rc{
+     tostring I_G_HAS_50, replace
+}
+
+label define I_G_HAS_50 .a"." 1 "no han ocurrido tales cambios" 2 "seria condición afectando la cabeza causando cambios" 8 "no responde"9 "no sabe"
+
+encode I_G_HAS_50, gen(i_g_has_50) label (I_G_HAS_50)
+
+rename i_g_has_52 (I_G_HAS_52)
+
+capture confirm numeric variable I_G_HAS_52
+if !_rc{
+     tostring I_G_HAS_52, replace
+}
+
+label define I_G_HAS_52 .a"." 0 "no"1 "si"
+
+encode I_G_HAS_52, gen(i_g_has_52) label (I_G_HAS_52)
+
+rename i_h_npi_1 (I_H_NPI_1)
+
+capture confirm numeric variable I_H_NPI_1
+if !_rc{
+     tostring I_H_NPI_1, replace
+}
+
+label define I_H_NPI_1 .a"." 0 "no"1 "si"3 "no reponde" 9 "no sabe"
+
+encode I_H_NPI_1, gen(i_h_npi_1) label (I_H_NPI_1)
+
+rename i_h_npi_1_1 (I_H_NPI_1_1)
+
+capture confirm numeric variable I_H_NPI_1_1
+if !_rc{
+     tostring I_H_NPI_1_1, replace
+}
+
+label define I_H_NPI_1_1 .a"." 1 "ligero (notable pero no cambios significativos)" 2 "moderado (significativo pero no cambios dramáticos)" 3 "severo (muy marcado y prominente cambio dramático)" 
+
+encode I_H_NPI_1_1, gen(i_h_npi_1_1) label (I_H_NPI_1_1)
+
+rename i_h_npi_1_2 (I_H_NPI_1_2)
+
+capture confirm numeric variable I_H_NPI_1_2
+if !_rc{
+     tostring I_H_NPI_1_2, replace
+}
+
+label define I_H_NPI_1_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+
+encode I_H_NPI_1_2, gen(i_h_npi_1_2) label (I_H_NPI_1_2)
+
+rename i_h_npi_2 (I_H_NPI_2)
+
+capture confirm numeric variable I_H_NPI_2
+if !_rc{
+     tostring I_H_NPI_2, replace
+}
+
+label define I_H_NPI_2 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_H_NPI_2, gen(i_h_npi_2) label (I_H_NPI_2)
+
+rename i_h_npi_2_1 (I_H_NPI_2_1)
+
+capture confirm numeric variable I_H_NPI_2_1
+if !_rc{
+     tostring I_H_NPI_2_1, replace
+}
+
+label define I_H_NPI_2_1 .a"." 1 "ligero (notable pero no cambios significativos)" 2 "moderado (significativo pero no cambios dramáticos)" 3 "severo (muy marcado y prominente cambio dramático)" 
+
+encode I_H_NPI_2_1, gen(i_h_npi_2_1) label (I_H_NPI_2_1)
+
+rename i_h_npi_2_2 (I_H_NPI_2_2)
+
+capture confirm numeric variable I_H_NPI_2_2
+if !_rc{
+     tostring I_H_NPI_2_2, replace
+}
+
+label define I_H_NPI_2_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+
+encode I_H_NPI_2_2, gen(i_h_npi_2_2) label (I_H_NPI_2_2)
+
+rename i_h_npi_3 (I_H_NPI_3)
+
+capture confirm numeric variable I_H_NPI_3
+if !_rc{
+     tostring I_H_NPI_3, replace
+}
+
+label define I_H_NPI_3 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_H_NPI_3, gen(i_h_npi_3) label (I_H_NPI_3)
+
+rename i_h_npi_3_1 (I_H_NPI_3_1)
+
+capture confirm numeric variable I_H_NPI_3_1
+if !_rc{
+     tostring I_H_NPI_3_1, replace
+}
+
+label define I_H_NPI_3_1 .a"." 1 "ligero (notable pero no cambios significativos)" 2 "moderado (significativo pero no cambios dramáticos)" 3 "severo (muy marcado y prominente cambio dramático)" 
+
+encode I_H_NPI_3_1, gen(i_h_npi_3_1) label (I_H_NPI_3_1)
+
+rename i_h_npi_3_2 (I_H_NPI_3_2)
+
+capture confirm numeric variable I_H_NPI_3_2
+if !_rc{
+     tostring I_H_NPI_3_2, replace
+}
+
+label define I_H_NPI_3_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+
+encode I_H_NPI_3_2, gen(i_h_npi_3_2) label (I_H_NPI_3_2)
+
+rename i_h_npi_4 (I_H_NPI_4)
+
+capture confirm numeric variable I_H_NPI_4
+if !_rc{
+     tostring I_H_NPI_4, replace
+}
+
+label define I_H_NPI_4 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_H_NPI_4, gen(i_h_npi_4) label (I_H_NPI_4)
+
+rename i_h_npi_4_1 (I_H_NPI_4_1)
+
+capture confirm numeric variable I_H_NPI_4_1
+if !_rc{
+     tostring I_H_NPI_4_1, replace
+}
+
+label define I_H_NPI_4_1 .a"." 1 "ligero (notable pero no cambios significativos)" 2 "moderado (significativo pero no cambios dramáticos)" 3 "severo (muy marcado y prominente cambio dramático)" 
+
+encode I_H_NPI_4_1, gen(i_h_npi_4_1) label (I_H_NPI_4_1)
+
+rename i_h_npi_4_2 (I_H_NPI_4_2)
+
+capture confirm numeric variable I_H_NPI_4_2
+if !_rc{
+     tostring I_H_NPI_4_2, replace
+}
+
+label define I_H_NPI_4_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+
+encode I_H_NPI_4_2, gen(i_h_npi_4_2) label (I_H_NPI_4_2)
+
+rename i_h_npi_5 (I_H_NPI_5)
+
+capture confirm numeric variable I_H_NPI_5
+if !_rc{
+     tostring I_H_NPI_5, replace
+}
+
+label define I_H_NPI_5 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_H_NPI_5, gen(i_h_npi_5) label (I_H_NPI_5)
+
+rename i_h_npi_5_1 (I_H_NPI_5_1)
+
+capture confirm numeric variable I_H_NPI_5_1
+if !_rc{
+     tostring I_H_NPI_5_1, replace
+}
+
+label define I_H_NPI_5_1 .a"." 1 "ligero (notable pero no cambios significativos)" 2 "moderado (significativo pero no cambios dramáticos)" 3 "severo (muy marcado y prominente cambio dramático)" 
+
+encode I_H_NPI_5_1, gen(i_h_npi_5_1) label (I_H_NPI_5_1)
+
+rename i_h_npi_5_2 (I_H_NPI_5_2)
+
+capture confirm numeric variable I_H_NPI_5_2
+if !_rc{
+     tostring I_H_NPI_5_2, replace
+}
+
+label define I_H_NPI_5_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+
+encode I_H_NPI_5_2, gen(i_h_npi_5_2) label (I_H_NPI_5_2)
+
+rename i_h_npi_6 (I_H_NPI_6)
+
+capture confirm numeric variable I_H_NPI_6
+if !_rc{
+     tostring I_H_NPI_6, replace
+}
+
+label define I_H_NPI_6 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_H_NPI_6, gen(i_h_npi_6) label (I_H_NPI_6)
+
+rename i_h_npi_6_1 (I_H_NPI_6_1)
+
+capture confirm numeric variable I_H_NPI_6_1
+if !_rc{
+     tostring I_H_NPI_6_1, replace
+}
+
+label define I_H_NPI_6_1 .a"." 1 "ligero (notable pero no cambios significativos)" 2 "moderado (significativo pero no cambios dramáticos)" 3 "severo (muy marcado y prominente cambio dramático)" 
+
+encode I_H_NPI_6_1, gen(i_h_npi_6_1) label (I_H_NPI_6_1)
+
+rename i_h_npi_6_2 (I_H_NPI_6_2)
+
+capture confirm numeric variable I_H_NPI_6_2
+if !_rc{
+     tostring I_H_NPI_6_2, replace
+}
+
+label define I_H_NPI_6_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+
+encode I_H_NPI_6_2, gen(i_h_npi_6_2) label (I_H_NPI_6_2)
+
+rename i_h_npi_7 (I_H_NPI_7)
+
+capture confirm numeric variable I_H_NPI_7
+if !_rc{
+     tostring I_H_NPI_7, replace
+}
+
+label define I_H_NPI_7 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_H_NPI_7, gen(i_h_npi_7) label (I_H_NPI_7)
+
+rename i_h_npi_7_1 (I_H_NPI_7_1)
+
+capture confirm numeric variable I_H_NPI_7_1
+if !_rc{
+     tostring I_H_NPI_7_1, replace
+}
+
+label define I_H_NPI_7_1 .a"." 1 "ligero (notable pero no cambios significativos)" 2 "moderado (significativo pero no cambios dramáticos)" 3 "severo (muy marcado y prominente cambio dramático)" 
+
+encode I_H_NPI_7_1, gen(i_h_npi_7_1) label (I_H_NPI_7_1)
+
+rename i_h_npi_7_2 (I_H_NPI_7_2)
+
+capture confirm numeric variable I_H_NPI_7_2
+if !_rc{
+     tostring I_H_NPI_7_2, replace
+}
+
+label define I_H_NPI_7_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+
+encode I_H_NPI_7_2, gen(i_h_npi_7_2) label (I_H_NPI_7_2)
+
+rename i_h_npi_8 (I_H_NPI_8)
+
+capture confirm numeric variable I_H_NPI_8
+if !_rc{
+     tostring I_H_NPI_8, replace
+}
+
+label define I_H_NPI_8 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_H_NPI_8, gen(i_h_npi_8) label (I_H_NPI_8)
+
+rename i_h_npi_8_1 (I_H_NPI_8_1)
+
+capture confirm numeric variable I_H_NPI_8_1
+if !_rc{
+     tostring I_H_NPI_8_1, replace
+}
+
+label define I_H_NPI_8_1 .a"." 1 "ligero (notable pero no cambios significativos)" 2 "moderado (significativo pero no cambios dramáticos)" 3 "severo (muy marcado y prominente cambio dramático)" 
+
+encode I_H_NPI_8_1, gen(i_h_npi_8_1) label (I_H_NPI_8_1)
+
+rename i_h_npi_8_2 (I_H_NPI_8_2)
+
+capture confirm numeric variable I_H_NPI_8_2
+if !_rc{
+     tostring I_H_NPI_8_2, replace
+}
+
+label define I_H_NPI_8_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+
+encode I_H_NPI_8_2, gen(i_h_npi_8_2) label (I_H_NPI_8_2)
+
+rename i_h_npi_9 (I_H_NPI_9)
+
+capture confirm numeric variable I_H_NPI_9
+if !_rc{
+     tostring I_H_NPI_9, replace
+}
+
+label define I_H_NPI_9 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_H_NPI_9, gen(i_h_npi_9) label (I_H_NPI_9)
+
+rename i_h_npi_9_1 (I_H_NPI_9_1)
+
+capture confirm numeric variable I_H_NPI_9_1
+if !_rc{
+     tostring I_H_NPI_9_1, replace
+}
+
+label define I_H_NPI_9_1 .a"." 1 "ligero (notable pero no cambios significativos)" 2 "moderado (significativo pero no cambios dramáticos)" 3 "severo (muy marcado y prominente cambio dramático)" 
+
+encode I_H_NPI_9_1, gen(i_h_npi_9_1) label (I_H_NPI_9_1)
+
+rename i_h_npi_9_2 (I_H_NPI_9_2)
+
+capture confirm numeric variable I_H_NPI_9_2
+if !_rc{
+     tostring I_H_NPI_9_2, replace
+}
+
+label define I_H_NPI_9_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+
+encode I_H_NPI_9_2, gen(i_h_npi_9_2) label (I_H_NPI_9_2)
+
+rename i_h_npi_10 (I_H_NPI_10)
+
+capture confirm numeric variable I_H_NPI_10
+if !_rc{
+     tostring I_H_NPI_10, replace
+}
+
+label define I_H_NPI_10 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_H_NPI_10, gen(i_h_npi_10) label (I_H_NPI_10)
+
+rename i_h_npi_10_1 (I_H_NPI_10_1)
+
+capture confirm numeric variable I_H_NPI_10_1
+if !_rc{
+     tostring I_H_NPI_10_1, replace
+}
+
+label define I_H_NPI_10_1 .a"." 1 "ligero (notable pero no cambios significativos)" 2 "moderado (significativo pero no cambios dramáticos)" 3 "severo (muy marcado y prominente cambio dramático)" 
+
+encode I_H_NPI_10_1, gen(i_h_npi_10_1) label (I_H_NPI_10_1)
+
+rename i_h_npi_10_2 (I_H_NPI_10_2)
+
+capture confirm numeric variable I_H_NPI_10_2
+if !_rc{
+     tostring I_H_NPI_10_2, replace
+}
+
+label define I_H_NPI_10_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+
+encode I_H_NPI_10_2, gen(i_h_npi_10_2) label (I_H_NPI_10_2)
+
+rename i_h_npi_11 (I_H_NPI_11)
+
+capture confirm numeric variable I_H_NPI_11
+if !_rc{
+     tostring I_H_NPI_11, replace
+}
+
+label define I_H_NPI_11 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_H_NPI_11, gen(i_h_npi_11) label (I_H_NPI_11)
+
+rename i_h_npi_11_1 (I_H_NPI_11_1)
+
+capture confirm numeric variable I_H_NPI_11_1
+if !_rc{
+     tostring I_H_NPI_11_1, replace
+}
+
+label define I_H_NPI_11_1 .a"." 1 "ligero (notable pero no cambios significativos)" 2 "moderado (significativo pero no cambios dramáticos)" 3 "severo (muy marcado y prominente cambio dramático)" 
+
+encode I_H_NPI_11_1, gen(i_h_npi_11_1) label (I_H_NPI_11_1)
+
+rename i_h_npi_11_2 (I_H_NPI_11_2)
+
+capture confirm numeric variable I_H_NPI_11_2
+if !_rc{
+     tostring I_H_NPI_11_2, replace
+}
+
+label define I_H_NPI_11_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+
+encode I_H_NPI_11_2, gen(i_h_npi_11_2) label (I_H_NPI_11_2)
+
+rename i_h_npi_12 (I_H_NPI_12)
+
+capture confirm numeric variable I_H_NPI_12
+if !_rc{
+     tostring I_H_NPI_12, replace
+}
+
+label define I_H_NPI_12 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_H_NPI_12, gen(i_h_npi_12) label (I_H_NPI_12)
+
+rename i_h_npi_12_1 (I_H_NPI_12_1)
+
+capture confirm numeric variable I_H_NPI_12_1
+if !_rc{
+     tostring I_H_NPI_12_1, replace
+}
+
+label define I_H_NPI_12_1 .a"." 1 "ligero (notable pero no cambios significativos)" 2 "moderado (significativo pero no cambios dramáticos)" 3 "severo (muy marcado y prominente cambio dramático)" 
+
+encode I_H_NPI_12_1, gen(i_h_npi_12_1) label (I_H_NPI_12_1)
+
+rename i_h_npi_12_2 (I_H_NPI_12_2)
+
+capture confirm numeric variable I_H_NPI_12_2
+if !_rc{
+     tostring I_H_NPI_12_2, replace
+}
+
+label define I_H_NPI_12_2 .a"." 1 "no produce ningún malestar" 2 "mínimo (malestar ligero no es un problema manejarlo)" 3 "ligero (no mucho malestar fácil de manejarlo)" 4 "moderado (bastante malestar no siempre fácil de manejar)" 5 "severo (mucho malestar difícil de manejar)" 6 "extremo ó muy severo (malestar extremo incapaz de manejarlo)" 
+
+encode I_H_NPI_12_2, gen(i_h_npi_12_2) label (I_H_NPI_12_2)
+
+rename i_j1 (I_J1)
+
+capture confirm numeric variable I_J1
+if !_rc{
+     tostring I_J1, replace
+}
+
+label define I_J1 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_J1, gen(i_j1) label (I_J1)
+
+rename i_j2 (I_J2)
+
+capture confirm numeric variable I_J2
+if !_rc{
+     tostring I_J2, replace
+}
+
+label define I_J2 .a"." 1 "hace menos de 5 años" 2 "entre 5 y 10 años" 3 "10 años o más" 8 "no responde"9 "no sabe"
+
+encode I_J2, gen(i_j2) label (I_J2)
+
+rename i_j3 (I_J3)
+
+capture confirm numeric variable I_J3
+if !_rc{
+     tostring I_J3, replace
+}
+
+label define I_J3 .a"." 0 "no"1 "si"8 "no responde"9 "no sabe"
+
+encode I_J3, gen(i_j3) label (I_J3)
+
+rename i_k_act_1 (I_K_ACT_1)
+
+capture confirm numeric variable I_K_ACT_1
+if !_rc{
+     tostring I_K_ACT_1, replace
+}
+
+label define I_K_ACT_1 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 9 "no sabe"8 "no responde"
+
+encode I_K_ACT_1, gen(i_k_act_1) label (I_K_ACT_1)
+
+rename i_k_act_2 (I_K_ACT_2)
+
+capture confirm numeric variable I_K_ACT_2
+if !_rc{
+     tostring I_K_ACT_2, replace
+}
+
+label define I_K_ACT_2 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 9 "no sabe"8 "no responde"
+
+encode I_K_ACT_2, gen(i_k_act_2) label (I_K_ACT_2)
+
+rename i_k_act_5 (I_K_ACT_5)
+
+capture confirm numeric variable I_K_ACT_5
+if !_rc{
+     tostring I_K_ACT_5, replace
+}
+
+label define I_K_ACT_5 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 9 "no sabe"8 "no responde"
+
+encode I_K_ACT_5, gen(i_k_act_5) label (I_K_ACT_5)
+
+rename i_k_act_7 (I_K_ACT_7)
+
+capture confirm numeric variable I_K_ACT_7
+if !_rc{
+     tostring I_K_ACT_7, replace
+}
+
+label define I_K_ACT_7 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 9 "no sabe"8 "no responde"
+
+encode I_K_ACT_7, gen(i_k_act_7) label (I_K_ACT_7)
+
+rename i_k_act_8 (I_K_ACT_8)
+
+capture confirm numeric variable I_K_ACT_8
+if !_rc{
+     tostring I_K_ACT_8, replace
+}
+
+label define I_K_ACT_8 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 9 "no sabe"8 "no responde"
+
+encode I_K_ACT_8, gen(i_k_act_8) label (I_K_ACT_8)
+
+rename i_k_act_10 (I_K_ACT_10)
+
+capture confirm numeric variable I_K_ACT_10
+if !_rc{
+     tostring I_K_ACT_10, replace
+}
+
+label define I_K_ACT_10 .a"." 1 "si"0 "no"3 "no es costumbre del xxx hacerlo" 9 "no sabe"8 "no responde"
+
+encode I_K_ACT_10, gen(i_k_act_10) label (I_K_ACT_10)
+
+rename i_k_act_13 (I_K_ACT_13)
+
+capture confirm numeric variable I_K_ACT_13
+if !_rc{
+     tostring I_K_ACT_13, replace
+}
+
+label define I_K_ACT_13 .a"." 1 "si"0 "no"9 "no sabe"8 "no responde"
+
+encode I_K_ACT_13, gen(i_k_act_13) label (I_K_ACT_13)
+
+rename i_k_act_14 (I_K_ACT_14)
+
+capture confirm numeric variable I_K_ACT_14
+if !_rc{
+     tostring I_K_ACT_14, replace
+}
+
+label define I_K_ACT_14 .a"." 1 "si"0 "no"9 "no sabe"8 "no responde"
+
+encode I_K_ACT_14, gen(i_k_act_14) label (I_K_ACT_14)
+
+rename i_k_act_15 (I_K_ACT_15)
+
+capture confirm numeric variable I_K_ACT_15
+if !_rc{
+     tostring I_K_ACT_15, replace
+}
+
+label define I_K_ACT_15 .a"." 1 "diariamente" 2 "varias veces a la semana" 3 "una vez a la semana" 4 "una vez al mes" 5 "raramente" 6 "nunca" 9 "no sabe"8 "no responde"
+
+encode I_K_ACT_15, gen(i_k_act_15) label (I_K_ACT_15)
+
+rename i_k_act_16 (I_K_ACT_16)
+
+capture confirm numeric variable I_K_ACT_16
+if !_rc{
+     tostring I_K_ACT_16, replace
+}
+
+label define I_K_ACT_16 .a"." 1 "diariamente" 2 "varias veces a la semana" 3 "una vez a la semana" 4 "una vez al mes" 5 "raramente" 6 "nunca" 9 "no sabe"8 "no responde"
+
+encode I_K_ACT_16, gen(i_k_act_16) label (I_K_ACT_16)
+
+rename i_k_act_17 (I_K_ACT_17)
+
+capture confirm numeric variable I_K_ACT_17
+if !_rc{
+     tostring I_K_ACT_17, replace
+}
+
+label define I_K_ACT_17 .a"." 1 "solo" 2 "acompañado" 9 "no sabe"8 "no responde"
+
+encode I_K_ACT_17, gen(i_k_act_17) label (I_K_ACT_17)
+
+rename i_lhas_54 (I_LHAS_54)
+
+capture confirm numeric variable I_LHAS_54
+if !_rc{
+     tostring I_LHAS_54, replace
+}
+
+label define I_LHAS_54 .a"." 1 "razonable" 2 "algunas dudas" 3 "dudas moderadas" 4 "dudas graves" 5 "sin valor" 
+
+encode I_LHAS_54, gen(i_lhas_54) label (I_LHAS_54)
+
