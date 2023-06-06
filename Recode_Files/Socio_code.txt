@@ -577,7 +577,7 @@ if !_rc{
      tostring S_6_5_C, replace
 }
 
-label define S_6_5_C .a"." 2 "un país en américa latina" 3 "canadá" 4 "españa" 5 "otro país europeo" 6 "otro" 
+label define S_6_5_C .a"."1"cuba" 2 "un país en américa latina" 3 "canadá" 4 "españa" 5 "otro país europeo" 6 "otro" 
 
 encode S_6_5_C, gen(s_6_5_c) label (S_6_5_C)
 
@@ -2782,16 +2782,16 @@ label define S_Sex .a"." 0 "hombre" 1 "mujer"
 label values s_sex S_Sex
 
 
-label define S_2_9a .a"." 0 "no ha completado ninguna educacion" 1 "pre-primaria (jardin de infantes guarderia maternal pre-escolar)" 2 "primaria" 3 "intermedio" 4 "secundaria" 5 "educacion terciaria (ej grado asociado o carrera tecnica)" 6 "educacion universitaria o superior" 8 "no responde" 9 "no sabe"
+label define S_2_9a .a"." 0 "no ha completado ninguna educación" 1 "educación pre-primaria (jardín de infantes, guarderia, maternal, pre-escolar)" 2 "educación primaria/básica a secundaria" 3 "educación terciaria (carrera técnica)" 4 "Educación universitaria o superior, sin completar" 5 "educación universitaria o superior completa (licenciatura)" 6 "estudios postgrados (ej. Maestría, doctorado)" 8 "no responde" 9 "no sabe"
 
 label values s_2_9a S_2_9a
 
 
-label define S_3_11 .a"." 1 "profesional ejecutivo" 2 "oficinista" 3 "vendedor minorista" 4 "agricultor independiente" 5 "trabajador agricola" 6 "trabajador domestico" 7 "ostros servicios" 8 "trabajador especializado" 9 "trabajador no especializado" 10 "trabajos informales" 11 "otros" 12 "no trabajo" 13 "no tenia padre o tutor" 88 "no responde" 99 "no sabe"
+label define S_3_11 .a"." 1 "profesional ejecutivo" 2 "oficinista" 3 "vendedor minorista" 4 "agricultor independiente" 5 "trabajador agrícola" 6 "trabajador domestico" 7 "ostros servicios" 8 "trabajador especializado" 9 "trabajador no especializado" 10 "trabajos informales" 11 "otros" 12 "no trabajó" 13 "no tenía padre o tutor" 88 "no responde" 99 "no sabe"
 
 label values s_3_11 S_3_11
 
 
-label define S_6_7 .a"." 1 "usted estaba enfermo?" 2 "usted extranaba a su familia?" 3 "le fue dificil permanecer en el extranjero?" 4 "era muy caro quedarse en el extranjero?" 5 "no ganaba suficiente alla?" 6 "tuvo problemas relacionados con migracion?" 7 "tuvo problemas familiares aqui?" 8 "otra" 88 "no responde" 99 "no sabe"
+label define S_6_7 .a"." 1 "usted estaba enfermo?" 2 "usted extranaba a su familia?" 3 "le fue dificil permanecer en el extranjero?" 4 "era muy caro quedarse en el extranjero?" 5 "no ganaba suficiente allá?" 6 "tuvo problemas relacionados con migración?" 7 "tuvo problemas familiares aqui?" 8 "otra" 88 "no responde" 99 "no sabe"
 
 label values s_6_7 S_6_7
