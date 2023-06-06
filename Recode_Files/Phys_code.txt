@@ -547,3 +547,199 @@ if !_rc{
 label define P22_2 .a"." 1 "excelente" 2 "muy buena" 3 "buena" 4 "regular" 5 "mala" 6 "ciego" 8 "no responde"9 "no sabe"
 
 encode P22_2, gen(p22_2) label (P22_2)
+
+*reorder
+
+order p_deviceid1 p_interid p_clustid p_houseid p_particid p_country p_houseid2 p_conglid2 p_particid2 p2_1 p2_2_1 p2_2_2 p3_d_c p3_p p4_d_c p4_p p5_1_d_c p5_1_p p5_2_d_c p5_2_p p6 p7_1 p7_2 p7_3 p8_1 p8_2 p8_3 p9_1 p9_2 p10_1_1_1 p10_1_1_2 p10_1_2_1 p10_1_2_2 p10_2_1_1 p10_2_1_2 p10_2_2_1 p10_2_2_2 p11_1 p11_2_1 p11_2_2 p11_3_1_1 p11_3_1_2 p11_3_2_1 p11_3_2_2 p12_1 p12_2_1 p12_2_2 p12_3_1 p12_3_2 p13_1 p13_2 p13_3 p13_4 p13_5 p2_3 p2_3_1 p2_3_2 p14_1 p14_2 p14_3_1 p14_3_2 p14_4 p14_5 p15_a p15_1_1 p15_1_2 p15_1_3 p15_2_1 p15_2_2 p15_2_3 p16_1 p16_2 p17_1 p17_2 p17_3 p18_d_c p18_p p19_1 p19_2 p20 p21_1 p21_2 p22_1 p22_2 p_deviceid2 p_deviceid2
+
+*convert missing comment legal and text values to string
+
+capture confirm numeric variable p_deviceid1
+if !_rc{
+     tostring p_deviceid1, replace
+}
+
+capture confirm numeric variable p_particid2
+if !_rc{
+     tostring p_particid2, replace
+}
+
+capture confirm numeric variable p_deviceid2
+if !_rc{
+     tostring p_deviceid2, replace
+}
+
+*add variable labels
+
+label variable p_deviceid1 "Device ID:"
+
+label variable p_interid "Número del entrevistador:"
+
+label variable p_clustid "Número del cluster:"
+
+label variable p_houseid "Número de la casa:"
+
+label variable p_particid "Número del participante:"
+
+label variable p_country "Pais"
+
+label variable p_houseid2 "NÚMERO DE LA CASA"
+
+label variable p_conglid2 "NUMERO DEL CLUSTER:"
+
+label variable p_particid2 "NUMERO DEL PARTICIPANTE"
+
+label variable p2_1 "2.1 ¿Pudo realizar la medición de presión sanguínea?"
+
+label variable p2_2_1 "Sistólica (rango habitual es > 80 o < 200)"
+
+label variable p2_2_2 "Diastólica (rango habitual es >50 o <200)"
+
+label variable p3_d_c "Circunferencia craneana (Centimetros) (rango habitual es >49 o <63)"
+
+label variable p3_p "Circunferencia craneana (Pulgadas) (rango habitual es >19 o <25)"
+
+label variable p4_d_c "Circunferencia de la cintura (Centímetros) (rango habitual es >56 o <129)"
+
+label variable p4_p "Circunferencia de la cintura (Pulgadas) (rango habitual es >21 o <50)"
+
+label variable p5_1_d_c "Altura de la rodilla (Centímetros) (rango habitual es >49 o <59)"
+
+label variable p5_1_p "Altura de la rodilla (Pulgadas) (rango habitual es >19 o <23)"
+
+label variable p5_2_d_c "Estatura (Centímetros) (rango habitual es >131 o <189)"
+
+label variable p5_2_p "Estatura (Pulgadas) (rango habitual es >51 o <74)"
+
+label variable p6 "“Por favor, no mueva su cabeza, solo siga mi dedo con sus ojos”"
+
+label variable p7_1 "7.1 REFLEJO GLABELAR Golpee ligeramente la frente de los participantes por encima del caballete de la nariz. Repita el golpe hasta que el paciente deje de parpadear. Cuente el número de golpes necesarios."
+
+label variable p7_2 "7.2 REFLEJO DE TROMPA Golpee ligeramente los labios del participante con la punta del dedo índice."
+
+label variable p7_3 "7.3 REFLEJO PALMOMENTONIANO Rasque el lateral del dedo meñique de la palma de la mano del participante con una llave mientras observa la barbilla y la boca para ver si hay signos de movimientos."
+
+label variable p8_1 "8.1 CABEZA"
+
+label variable p8_2 "8.2 EXTREMIDAD SUPERIOR DERECHA"
+
+label variable p8_3 "8.3 EXTREMIDAD SUPERIOR IZQUIERDA"
+
+label variable p9_1 "9.1 DESVIACION PRESENTE"
+
+label variable p9_2 "9.2 Lado desviado"
+
+label variable p10_1_1_1 "10.1.1.1 Superiores - Izquierda"
+
+label variable p10_1_1_2 "10.1.1.2 Superiores - Derecha"
+
+label variable p10_1_2_1 "10.1.2.1. Inferiores - Izquierda"
+
+label variable p10_1_2_2 "10.1.2.2. Inferiores - Derecha"
+
+label variable p10_2_1_1 "10.2.1.1 Superiores - Izquierda"
+
+label variable p10_2_1_2 "10.2.1.2. Superiores - Derecha"
+
+label variable p10_2_2_1 "10.2.2.1 Inferiores - Izquierda"
+
+label variable p10_2_2_2 "10.2.2.2 Inferiores - Derecha"
+
+label variable p11_1 "¿Qué mano usa para escribir? (Usted podría usar otra pregunta que sea culturalmente más apropiada para averiguar la dominancia si el participante es iletrado)"
+
+label variable p11_2_1 "11.2.1 DEDOS DE MANO DERECHA"
+
+label variable p11_2_2 "11.2.2 DEDOS DE MANO IZQUIERDA"
+
+label variable p11_3_1_1 "11.3.1.1. Velocidad de movimientos alternantes en la derecha"
+
+label variable p11_3_1_2 "11.3.1.2. Velocidad de movimientos alternantes en la izquierda"
+
+label variable p11_3_2_1 "11.3.2.1. Movimientos alternantes en la derecha"
+
+label variable p11_3_2_2 "11.3.2.2. Movimientos alternantes en la izquierda"
+
+label variable p12_1 "12.1. CUÁL MANO USÓ PARA PALMA-PUÑO LADO"
+
+label variable p12_2_1 "12.2.1. Aprendizaje - PUÑO-PALMA-LADO"
+
+label variable p12_2_2 "12.2.2 Secuencia: - PUÑO-PALMA-LADO."
+
+label variable p12_3_1 "12.3.1. APRENDIZAJE - COORDINACIÓN RECÍPROCA"
+
+label variable p12_3_2 "12.3.2 SECUENCIAS – COORDINACIÓN RECÍPROCA"
+
+label variable p13_1 "13.1 Sacudida (salto) del bicep derecho"
+
+label variable p13_2 "13.2 Sacudida (salto) bicep izquierdo"
+
+label variable p13_3 "13.3 Sacudida (salto) de mandíbula"
+
+label variable p13_4 "13.4 Sacudida (salto) rodilla derecha"
+
+label variable p13_5 "13.5 Sacudida (salto) rodilla izquierda"
+
+label variable p2_3 "2.3 ¿Pudo realizar la medición de presión sanguinea?"
+
+label variable p2_3_1 "PRESIÓN SISTÓLICA (rango habitual: >80 o <200)"
+
+label variable p2_3_2 "PRESIÓN DIASTÓLICA (rango habitual: >50 o <200)"
+
+label variable p14_1 "14.1 Número de pasos dados (usted necesita contarlos): ## 66 NO PUDO HACERLO POR INCAPACIDAD 77 NO PUDO HACERO POR OTRA RAZON"
+
+label variable p14_2 "14.2 Tiempo que le tomó hacerlo (usted necesita tomar el tiempo usando un reloj apropiado): ## 66 NO PUDO HACERLO POR INCAPACIDAD 77 NO PUDO HACERO POR OTRA RAZON"
+
+label variable p14_3_1 "14.3.1 Balanceo del brazo, derecho"
+
+label variable p14_3_2 "14.3.2 Balanceo del brazo, izquierdo"
+
+label variable p14_4 "14.4 Ataxia (inestabilidad)"
+
+label variable p14_5 "14.5 Bradiquinesia (lentitud de movimientos)"
+
+label variable p15_a "15.A ¿Pudo realizar la prueba de fuerza de prensión manual?"
+
+label variable p15_1_1 "15.1.1. 1a PRUEBA"
+
+label variable p15_1_2 "15.1.2. 2a PRUEBA"
+
+label variable p15_1_3 "15.1.3. 3a PRUEBA"
+
+label variable p15_2_1 "15.2.1. 1a PRUEBA"
+
+label variable p15_2_2 "15.2.2. 2a PRUEBA"
+
+label variable p15_2_3 "15.2.3. 3a PRUEBA"
+
+label variable p16_1 "16.1 ¿Tiene dentaduras postizas (planchas)?"
+
+label variable p16_2 "16.2 OBSERVACION: ¿TENÍA PUESTAS DENTADURAS POSTIZAS (PLANCHAS) AL MOMENTO DEL EXAMEN?"
+
+label variable p17_1 "17.1 MANDÍBULA SUPERIOR"
+
+label variable p17_2 "17.2 MANDÍBULA INFERIOR"
+
+label variable p17_3 "17.3 ¿Tiene problemas para masticar?"
+
+label variable p18_d_c "PESO (KILOS)"
+
+label variable p18_p "PESO (LIBRAS)"
+
+label variable p19_1 "19.1 OBSERVACIÓN"
+
+label variable p19_2 "19.2 OBSERVACIÓN Número de repeticiones realizadas en 30 segundos NO INTENTÓ............66"
+
+label variable p20 "20. ENTREVISTADOR: seleccione el número que mejor describa la movilidad del participante como resultado de todo lo que haya podido observar durante la entrevista"
+
+label variable p21_1 "21.1 Normalmente usa usted lentes?"
+
+label variable p21_2 "21.2 ¿Cómo es su visión (con lentes, si normalmente los usa)?"
+
+label variable p22_1 "22.1 ¿Normalmente usa usted audífono o aparato auditivo?"
+
+label variable p22_2 "22.2 ¿Cómo es su alcance de oído/audición (con aparato si normalmente lo usa)?"
+
+label variable p_deviceid2 "Device ID:"
+
+label variable p_deviceid2 "Device ID:"
+

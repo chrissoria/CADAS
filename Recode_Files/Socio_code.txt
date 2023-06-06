@@ -2795,3 +2795,790 @@ label values s_3_11 S_3_11
 label define S_6_7 .a"." 1 "usted estaba enfermo?" 2 "usted extranaba a su familia?" 3 "le fue dificil permanecer en el extranjero?" 4 "era muy caro quedarse en el extranjero?" 5 "no ganaba suficiente allá?" 6 "tuvo problemas relacionados con migración?" 7 "tuvo problemas familiares aqui?" 8 "otra" 88 "no responde" 99 "no sabe"
 
 label values s_6_7 S_6_7
+
+*reorder
+
+order s_interid s_houseid s_particid s_clustid s_country s_houseid2 s_conglid2 s_particid2 s_sex s_deviceid1 s_1_1_p s_1_1_d s_1_1_c s_1_2 s_2_3 s_2_8c s_2_9 s_2_9a s_2_10 s_2_11 s_2_12 s_2_13 s_2_14_p s_2_14_d s_2_14_c s_2_15_p s_2_15_d s_2_15_c s_2_16 s_3_0 s_3_1_p s_3_1_d s_3_1_c s_3_2 s_3_3_p s_3_3_d s_3_3_c s_3_4 s_3_5 s_3_6 s_3_7 s_3_8 s_3_9 s_3_11 s_3_12_1 s_3_12_2 s_3_12_3 s_3_12_6 s_3_12_8 s_3_13 s_3_17 s_3_18 s_3_19_1 s_3_19_2 s_4_1 s_4_2 s_4_3 s_4_6 s_4_7 s_4_8 s_4_11 s_4_12 s_4_13 s_4_16 s_4_17 s_4_18 s_4_20 s_4_21 s_4_22 s_4_23_1 s_4_23_2 s_4_26 s_4_27_1 s_4_27_2 s_4_27a s_4_28 s_4_29_1 s_4_29_2 s_4_29a s_5_1 s_5_2 s_5_3 s_5_4 s_5_5 s_6_1 s_6_2 s_6_3 s_6_4 s_6_5_p s_6_5_d s_6_5_c s_6_6 s_6_7 s_7_0 s_7_1 s_7_2a s_7_2b s_7_2c s_7_3 s_7_4a s_7_4b s_7_4c s_7_5a s_7_5b s_7_5c s_7_6a s_7_6b s_7_7a s_7_7b s_7_7c s_7_7d s_7_7e s_7_7f s_7_7g s_7_7h s_7_7i s_7_7j s_7_7k s_8_1 s_8_2 s_8_3 s_8_3a s_8_4 s_8_5a s_8_5b2 s_8_5b1 s_8_5b4 s_8_5b3 s_8_5b5 s_8_5b6 s_8_5b7 s_8_5b8 s_8_5b9 s_8_5b10 s_8_5c s_8_5d s_8_7 s_8_8 s_8_9 s_8_10 s_8_11 s_8_12 s_8_13 s_8_141 s_8_15 s_8_16 s_9_1 s_9_3 s_9_4 s_9_5 s_9_6 s_9_7 s_9_8 s_9_9 s_9_11 s_9_13 s_9_14 s_9_15 s_9_16 s_9_17 s_9_18 s_9_19 s_9_20 s_9_21a s_9_21b s_9_22 s_9_23 s_9_24 s_9_25 s_9_26 s_9_28 s_9_29 s_9_30 s_9_31 s_9_32 s_9_33 s_9_35 s_9_36 s_9_37 s_9_38a s_9_38g s_9_38b s_9_38f s_9_38c s_9_38d s_9_38j s_9_38e s_9_38k s_9_38h s_9_38l s_9_38i s_9_39 s_9_40 s_9_41 s_9_42 s_9_43a s_9_44 s_9_45a s_9_46 s_9_47 s_9_48 s_9_49 s_9_50 s_9_51 s_9_52 s_9_53 s_9_54 s_9_55 s_9_56 s_9_57 s_9_58 s_9_59 s_9_60 s_9_61 s_9_61a s_9_62 s_9_63 s_9_64_1 s_9_64_2 s_9_64_3 s_9_64_4 s_9_65 s_9_66 s_10_1a s_10_1b s_10_1c s_10_1d s_10_1e s_10_1f s_10_1g s_10_1h s_10_2 s_10_3 s_10_4 s_10_5 s_10_6_1 s_10_6_1a s_10_6_2 s_10_6_2a s_10_6_3 s_10_6_3a s_10_6_4 s_10_6_4a s_10_7_1 s_10_7_2 s_11_1 s_11_2 s_11_3 s_12_1a s_12_1b s_12_1c s_12_2a s_12_2c s_12_3a s_12_3c s_12_4a s_12_4b s_12_4c s_12_5a s_12_5c s_12_6a s_12_6c s_12_7 s_12_8 s_12_9 s_12_10 s_12_11 s_12_13 s_12_14 s_12_15 s_12_16 s_13_1_p_c s_13_1_d s_13_2 s_13_3_p_c s_13_3_d s_13_4 s_13_5 s_13_6_p_c s_13_6_d s_13_7_p_c s_13_7_d s_13_8 s_13_9 s_13_10 s_13_11 s_13_12 s_13_13 s_13_14 s_13_15 s_13_16 s_13_17 s_13_18 s_13_19 s_13_20 s_13_22 s_13_23_p s_13_23_d_c s_13_24 s_13_25_d_c s_13_25_p s_13_26 s_13_27_d_c s_13_27_p s_13_28 s_13_29 s_13_30_d_c s_13_30_p s_14_1_p_d s_14_2a_p s_14_1b_p s_14_2c_p s_14_2d_p s_14_2e_p s_14_2f_p s_14_2g_p s_14_2h_p s_14_2i_p s_14_2j_p s_14_2a_d s_14_2b_d s_14_2c_d s_14_2d_d s_14_2e_d s_14_2f_d s_14_2g_d s_14_3 s_14_4 s_14_5 s_14_6 s_14_8 s_14_9 s_14_11 s_14_12 s_14_13 s_14_14 s_14_15 s_14_16 s_14_17 s_14_18_1 s_14_18_2 s_14_18_3 s_14_18_4 s_14_18_5 s_14_18_6 s_14_20 s_14_22 s_14_23 s_14_24 s_14_25 s_14_30a s_14_30b1_p s_14_30b1_d s_14_30b2_p s_14_30b2_d s_14_30b3_p s_14_30b3_d s_14_31 s_14_32 s_14_33 s_15_1 s_15_2 s_15_3 s_deviceid2
+
+*convert missing comment legal and text values to string
+
+capture confirm numeric variable s_particid2
+if !_rc{
+     tostring s_particid2, replace
+}
+
+capture confirm numeric variable s_deviceid1
+if !_rc{
+     tostring s_deviceid1, replace
+}
+
+capture confirm numeric variable s_1_2
+if !_rc{
+     tostring s_1_2, replace
+}
+
+capture confirm numeric variable s_2_16
+if !_rc{
+     tostring s_2_16, replace
+}
+
+capture confirm numeric variable s_3_3_p
+if !_rc{
+     tostring s_3_3_p, replace
+}
+
+capture confirm numeric variable s_3_3_d
+if !_rc{
+     tostring s_3_3_d, replace
+}
+
+capture confirm numeric variable s_3_3_c
+if !_rc{
+     tostring s_3_3_c, replace
+}
+
+capture confirm numeric variable s_8_3a
+if !_rc{
+     tostring s_8_3a, replace
+}
+
+capture confirm numeric variable s_9_21b
+if !_rc{
+     tostring s_9_21b, replace
+}
+
+capture confirm numeric variable s_deviceid2
+if !_rc{
+     tostring s_deviceid2, replace
+}
+
+*adding variable labels
+
+label variable s_interid "Número del entrevistador:"
+
+label variable s_houseid "Número de la casa:"
+
+label variable s_particid "Número del participante:"
+
+label variable s_clustid "Número del conglomerado:"
+
+label variable s_country "Pais"
+
+label variable s_houseid2 "NÚMERO DE LA CASA"
+
+label variable s_conglid2 "NUMERO DEL CLUSTER:"
+
+label variable s_particid2 "NUMERO DEL PARTICIPANTE"
+
+label variable s_sex "¿Es hombre o mujer?"
+
+label variable s_deviceid1 "Device ID:"
+
+label variable s_1_1_p "1.1 De tener que clasificar al participante en una de las siguientes categorías, ¿en qué categoría le clasificaría? * Trigueño se refiere a la mezcla de blanco y negro. Mestizo se refiere a la mezcla de indio y blanco"
+
+label variable s_1_1_d "1.1 De tener que clasificar al participante en una de las siguientes categorías, ¿en qué categoría le clasificaría?"
+
+label variable s_1_1_c "1.1 De tener que clasificar al participante en una de las siguientes categorías, ¿en qué categoría le clasificaría?"
+
+label variable s_1_2 "1.2 Como usted sabe, los seres humanos muestran una gran variedad de color de piel. En la imagen aparece una escala de color de piel que varía entre 1 (el color más claro) y 11 (el color más oscuro). Por favor observa el color de la cara del participante e indique qué número representa su color más cercano según la TARJETA DE COLORES."
+
+label variable s_2_3 "2.3 Edad que dice el documento oficial: ____ [999 = No hay documentación]"
+
+label variable s_2_8c "2.8c ¿Cuántos años de educación ha completado (excluyendo pre-primaria)? Años ____ No responde............88 No sabe.....................99"
+
+label variable s_2_9 "2.9 ¿Está casado actualmente?"
+
+label variable s_2_9a "2.9a ¿Cuál es el título o nivel escolar más alto que su esposo/a o ex-esposo/a ha completado?"
+
+label variable s_2_10 "2.10 ¿Cuántos hijos has tenido [engendrado / dar a luz]? Por favor no cuente abortos espontáneos o nacimientos muertos o adoptados o hijastros para esta pregunta No responde............88 No sabe.....................99"
+
+label variable s_2_11 "2.11 ¿Es miembro de algún grupo religioso?"
+
+label variable s_2_12 "2.12 ¿Aproximadamente, con qué frecuencia asistió a servicios religiosos durante el año pasado?"
+
+label variable s_2_13 "2.13 ¿Asiste a reuniones de grupos comunitarios o sociales tales como clubes, conferencias o similares?"
+
+label variable s_2_14_p "2.14 De tener que clasificarse en una de las siguientes categorías, ¿en qué categoría se clasificaría usted? ¿Negro(a),mulato(a), trigueño(a), blanco(a), mestizo(a) u otra categoría? * Trigueño se refiere a la mezcla de blanco y negro. Mestizo se refiere a la mezcla de indio y blanco"
+
+label variable s_2_14_d "2.14 De tener que clasificarse en una de las siguientes categorías, ¿en qué categoría se clasificaría usted? ¿Negro(a), mulato(a), blanco(a), indio(a) u otra categoría?"
+
+label variable s_2_14_c "2.14 De tener que clasificarse en una de las siguientes categorías, ¿en qué categoría se clasificaría usted? ¿Negro(a), mulato(a), blanco(a), mestizo(a) u otra categoría?"
+
+label variable s_2_15_p "2.15 Si estuviera caminando por la calle, ¿en qué categoría cree que otra gente que no lo conoce personalmente asumirían automáticamente que es usted, según su apariencia?"
+
+label variable s_2_15_d "2.15 Si estuviera caminando por la calle, ¿en qué categoría cree que otra gente que no lo conoce personalmente asumirían automáticamente que es usted, según su apariencia?"
+
+label variable s_2_15_c "2.15 Si estuviera caminando por la calle, ¿en qué categoría cree que otra gente que no lo conoce personalmente asumirían automáticamente que es usted, según su apariencia?"
+
+label variable s_2_16 "2.16 Como usted sabe, los seres humanos muestran una gran variedad de color de piel. En la imagen aparece una escala de color de piel que varía entre 1 (el color más claro) y 11 (el color más oscuro). Por favor indique qué número representa su color más cercano el color de su cara. MUESTRA TARJETA DE COLORES"
+
+label variable s_3_0 "3.0 ¿Qué tiempo usted ha vivido en esta ciudad/pueblo/distrito? codifique en años (1 año o menos = 0)"
+
+label variable s_3_1_p "3.1 ¿Dónde nació?"
+
+label variable s_3_1_d "3.1 ¿Dónde nació?"
+
+label variable s_3_1_c "3.1 ¿Dónde nació?"
+
+label variable s_3_2 "3.2 ¿Dónde nació?"
+
+label variable s_3_3_p "3.3 ¿En qué municipio nació?"
+
+label variable s_3_3_d "3.3 ¿En qué provincia nació?"
+
+label variable s_3_3_c "3.3 ¿En qué provincia nació?"
+
+label variable s_3_4 "3.4 ¿Dónde vivió la mayor parte del tiempo entre las edades de 20 y 60?"
+
+label variable s_3_5 "3.5 ¿Dónde ha vivido la mayor parte del tiempo desde que cumplió los 60?"
+
+label variable s_3_6 "3.6 ¿Puede leer un periódico?"
+
+label variable s_3_7 "3.7 ¿Podría escribir una carta si lo necesitase?"
+
+label variable s_3_8 "3.8 ¿Cómo le fue en matemáticas en comparación con otros niños de su clase?"
+
+label variable s_3_9 "3.9 ¿Qué tan bien le fue en lectura y escritura en comparación con otros niños de su clase?"
+
+label variable s_3_11 "3.11 (Antes de cumplir 10 años), ¿qué tipo de trabajo realizó su padre o tutor la mayor parte del tiempo…"
+
+label variable s_3_12_1 "3.12.1 ¿Su vivienda tenía el sanitario dentro de la vivienda?"
+
+label variable s_3_12_2 "3.12.2 ¿Su vivienda tenía electricidad?"
+
+label variable s_3_12_3 "3.12.3 ¿Tuvo su familia problemas económicos que no le permitieran comer regularmente, vestirse adecuadamente, o tener el cuidado médico necesario?"
+
+label variable s_3_12_6 "3.12.6 ¿Usted o algún miembro de su familia dormía en el mismo cuarto que se usaba para cocinar?"
+
+label variable s_3_12_8 "3.12.8 ¿Alguno de sus padres o tutores fumaba?"
+
+label variable s_3_13 "3.13 (Antes de cumplir 16 años), ¿comparado con otros niños de su edad, ¿cómo era su condición de salud?"
+
+label variable s_3_17 "3.17 ¿Ha experimentado alguna vez un desastre natural (por ejemplo, un terremoto, un huracán) que lo haya desplazado de su hogar durante al menos una semana?"
+
+label variable s_3_18 "3.18 ¿Qué edad tenía usted cuando sucedió esto por última vez? REGISTRA EDAD NO RESPONDE………………………888 NO SABE ………………………………999"
+
+label variable s_3_19_1 "NÚMERO: NO RESPONDE...........................88 NO SABE ....................................99"
+
+label variable s_3_19_2 "Indique si fue año, mes, semana, o dia"
+
+label variable s_4_1 "4.1. ¿Cuál es el título o nivel escolar más alto que su madre completo?"
+
+label variable s_4_2 "4.2 [SOLO PREGUNTA SI AUN NO ES CLARO] ¿Vive actualmente su madre"
+
+label variable s_4_3 "4.3 ¿Qué edad tiene su madre? NO RESPONDE………………………888 NO SABE ………………………………999"
+
+label variable s_4_6 "4.6 ¿Qué edad tenía su madre cuando murió? NO RESPONDE………………………888 NO SABE ………………………………999"
+
+label variable s_4_7 "4.7 ¿Qué edad tenía usted cuando su madre murió? NO RESPONDE………………………888 NO SABE ………………………………999"
+
+label variable s_4_8 "4.8 ¿Su madre tiene o tuvo demencia, senilidad o cualquier otro deterioro grave de la memoria?"
+
+label variable s_4_11 "4.11. ¿Cuál es el título o nivel escolar más alto que su padre completo?"
+
+label variable s_4_12 "4.12 [SOLO PREGUNTA SI AUN NO ES CLARO] ¿Vive actualmente su padre?"
+
+label variable s_4_13 "4.13 ¿Qué edad tiene su padre? NO RESPONDE………………………888 NO SABE ………………………………999"
+
+label variable s_4_16 "4.16 ¿Qué edad tenía su padre cuando murió? NO RESPONDE………………………888 NO SABE ………………………………999"
+
+label variable s_4_17 "4.17 ¿Qué edad tenía Usted cuando su padre murió? NO RESPONDE………………………888 NO SABE ………………………………999"
+
+label variable s_4_18 "4.18 ¿Su padre tiene o tuvo demencia, senilidad o cualquier otro deterioro grave de la memoria?"
+
+label variable s_4_20 "4.20 ¿Cuántos hermanos y hermanas vivos tiene Usted? NO RESPONDE……………………………….88 NO SABE ………………………………………..99"
+
+label variable s_4_21 "4.21 Durante el último año, ¿generalmente pasó usted por lo menos una hora a la semana ayudando a alguien con actividades básicas como vestirse, comer, o bañarse debido a un problema de salud? Excluya ayuda con actividades del hogar, mandados, transporte."
+
+label variable s_4_22 "4.22 ¿Quién recibió ese apoyo?"
+
+label variable s_4_23_1 "4.23.1 NÚMERO DE HORAS: NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable s_4_23_2 "4.23.2 POR PERIODO"
+
+label variable s_4_26 "4.26 En el último año, ¿usted ha pasado por lo menos una hora a la semana ayudando a sus hijos/nuera/yerno/nietos? Por favor, no incluya la ayuda con actividades básicas ya mencionada antes."
+
+label variable s_4_27_1 "4.27.1 NÚMERO DE HORAS: NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable s_4_27_2 "4.27.2 POR PERIODO"
+
+label variable s_4_27a "4.27a ¿Diría usted que fueron…"
+
+label variable s_4_28 "4.28 En el último año, ¿le han dedicado sus hijos/nuera/yerno/nietos por lo menos 1 hora a la semana para ayudarle a usted con quehaceres del hogar, mandados, transporte?"
+
+label variable s_4_29_1 "4.29.1 NÚMERO DE HORAS NO RESPONDE............ 888 NO SABE ...................... 999"
+
+label variable s_4_29_2 "4.29.2 POR PERIODO"
+
+label variable s_4_29a "4.29a ¿Diría usted que fueron…"
+
+label variable s_5_1 "5.1 En el último año, ¿siempre ha tenido suficiente dinero para comprar la comida que necesita?"
+
+label variable s_5_2 "5.2 Después de cumplir 18 años, ¿alguna vez ha experimentado dificultades económicas severas (como problemas para comprar alimentos)?"
+
+label variable s_5_3 "5.3 ¿Por cuantos años? Años |__|__| Menos de un año ………0 No responde…………….88 No sabe………………….99"
+
+label variable s_5_4 "5.4 Indicar en el peldaño de la escalera donde se colocaría a usted mismo. Número [ ]"
+
+label variable s_5_5 "5.5 Cuando nació, ¿dónde colocaría a sus padres en esta escalera? Número [ ]"
+
+label variable s_6_1 "6.1 Sin contar vacaciones o visitas cortas, ¿alguna vez ha trabajado o vivido usted en los Estados Unidos?"
+
+label variable s_6_2 "6.2 En total, aproximadamente, ¿por cuántos años ha vivido usted en Estados Unidos? 12 MESES O MENOS……………………….01 NO RESPONDE……………………………….88 NO SABE ………………………………………..99"
+
+label variable s_6_3 "6.3 Sin contar vacaciones o visitas cortas, ¿alguna vez ha vivido usted en otro país, que no sea los Estados Unidos?"
+
+label variable s_6_4 "6.4 En total, aproximadamente, ¿por cuántos años ha trabajado o vivido usted en el extranjero que no sea Estados Unidos? 12 MESES O MENOS............................01 NO RESPONDE.....................................88 NO SABE ...............................................99"
+
+label variable s_6_5_p "6.5 ¿En qué país ha pasado más tiempo?"
+
+label variable s_6_5_d "6.5 ¿En qué país ha pasado más tiempo?"
+
+label variable s_6_5_c "6.5 ¿En qué país ha pasado más tiempo?"
+
+label variable s_6_6 "6.6 Ahora piense acerca de la última vez que trabajó o vivió en el extranjero, ¿qué edad tenía usted cuando regresó o llegó a este país? NO RESPONDE……………. 888 NO SABE …………………….. 999"
+
+label variable s_6_7 "6.7 ¿En esa última vez que vino del extranjero, cuál diría usted que fue la razón principal por la que vino…"
+
+label variable s_7_0 "7.0 En general ¿Cómo se siente con su vida?"
+
+label variable s_7_1 "[SOLO PREGUNTA SI AUN NO ES CLARO] 7.1 Tiene hijos que no conviven con usted?"
+
+label variable s_7_2a "7.2a Reunirse (incluir reuniones organizadas y casuales)"
+
+label variable s_7_2b "7.2b Hablar por teléfono"
+
+label variable s_7_2c "7.2c Comunicar por escrito en papel o internet (correo electrónico, WhatsApp, Skype, Facebook u otro redes social)"
+
+label variable s_7_3 "7.3 ¿Con cuántos de sus hijos diría usted que tiene una relación cercana? NO APLICA (no tiene hijos).77 NO RESPONDE...................... 88"
+
+label variable s_7_4a "7.4a Reunirse (incluir reuniones organizadas y casuales)"
+
+label variable s_7_4b "7.4b Hablar por teléfono"
+
+label variable s_7_4c "7.4c Comunicar por escrito en papel o internet (correo electrónico, WhatsApp, Skype, Facebook u otro redes social)"
+
+label variable s_7_5a "7.5a siente que le falta compañía?"
+
+label variable s_7_5b "7.5b se siente ignorado por los demás?"
+
+label variable s_7_5c "7.5c se siente aislado, apartado de los demás?"
+
+label variable s_7_6a "7.6a Usted es tratado con menos cortesía o respeto que otras personas"
+
+label variable s_7_6b "7.6b Recibe un servicio o tratamiento más pobre que otras personas de médicos u hospitales."
+
+label variable s_7_7a "Su ascendencia u origen nacional"
+
+label variable s_7_7b "Su género"
+
+label variable s_7_7c "Su raza"
+
+label variable s_7_7d "Su religión"
+
+label variable s_7_7e "Su peso"
+
+label variable s_7_7f "Una discapacidad física"
+
+label variable s_7_7g "Una discapacidad mental / demencia"
+
+label variable s_7_7h "Un aspecto de su apariencia física"
+
+label variable s_7_7i "Su orientación sexual"
+
+label variable s_7_7j "Su estatus financiero"
+
+label variable s_7_7k "Otro"
+
+label variable s_8_1 "8.1 [SOLO PREGUNTA SI AUN NO ES CLARO] ¿Alguna vez ha tenido un empleo?"
+
+label variable s_8_2 "8.2 ¿Cómo cuánto tiempo en total ha trabajado (trabajo) recibiendo pago o ganancia a lo largo de su vida? Registra años No responde.............................888 No sabe......................................999"
+
+label variable s_8_3 "8.3 ¿Cual fue (ha sido) el trabajo de mayor duración …"
+
+label variable s_8_3a "8.3a Cual fue su ocupación principal?"
+
+label variable s_8_4 "8.4 En ese trabajo de mayor duración, la mayor parte del tiempo ¿usted ha sido (era)..."
+
+label variable s_8_5a "8.5a Actualmente usted:"
+
+label variable s_8_5b2 "Se dedica a los quehaceres del hogar"
+
+label variable s_8_5b1 "Se dedica a los quehaceres del hogar"
+
+label variable s_8_5b4 "Edad avanzada"
+
+label variable s_8_5b3 "Está pensionado(a) o jubilado(a)"
+
+label variable s_8_5b5 "Está enfermo(a) o con incapacidad temporal"
+
+label variable s_8_5b6 "Está incapacitado(a) para trabajar por el resto de su vida "
+
+label variable s_8_5b7 "No tiene clientes/no encuentra trabajo"
+
+label variable s_8_5b8 "Necesidad de proporcionar cuidado familiar"
+
+label variable s_8_5b9 "No Responde"
+
+label variable s_8_5b10 "No Sabe"
+
+label variable s_8_5c "8.5c ¿Hace cuántos años dejó usted el último trabajo que tuvo? Años ____ No responde……………..88 No sabe……………………..99"
+
+label variable s_8_5d "8.5d ¿Cual es su trabajo ahora:"
+
+label variable s_8_7 "8.7 ¿Alguna vez ha tenido un trabajo que requiera que trabaje con frecuencia durante la noche?"
+
+label variable s_8_8 "8.8 En una semana típica, ¿cuántos turnos de noche trabajaría? No responde…………………. 8 No sabe………………………….. 9"
+
+label variable s_8_9 "8.9 ¿Durante cuántos años estuvo en un trabajo que requirió este trabajo nocturno? No responde…………………. 8 No sabe………………………….. 9"
+
+label variable s_8_10 "8.10 El trabajo de usted requirió mucha concentración o atención."
+
+label variable s_8_11 "8.11 El trabajo de usted fue interesante y agradable."
+
+label variable s_8_12 "8.12 El trabajo de usted implicaba mucho estrés."
+
+label variable s_8_13 "8.13 Realmente disfrutaba ir a trabajar."
+
+label variable s_8_141 "8.14 El trabajo era físicamente exigente."
+
+label variable s_8_15 "8.15 En el trabajo, sentía que tenía control sobre lo que sucedía en la mayoría de las situaciones."
+
+label variable s_8_16 "8.16 ¿Cuál fue (ha sido) el trabajo de mayor duración de su esposo/exesposo [el último si hay mas que uno/a exesposos]"
+
+label variable s_9_1 "9.1 Ahora tengo algunas preguntas sobre su salud, ¿diría usted que su salud es..."
+
+label variable s_9_3 "9.3 Problemas de la visión Si afirmativo, cuánto interfiere en sus actividades; para nada, un poco a mucho?"
+
+label variable s_9_4 "9.4 Dificultad auditiva o sordera Si afirmativo, cuánto interfiere con sus actividades; para nada, un poco o mucho?"
+
+label variable s_9_5 "9.5 ¿Le han dicho alguna vez que tenía asma?"
+
+label variable s_9_6 "9.6 ¿Cuántos años tenía cuando se lo dijeron por primera vez? Registra años de edad No responde...................... 888 No sabe................................ 999"
+
+label variable s_9_7 "9.7 ¿Aún sufre de asma?"
+
+label variable s_9_8 "9.8 ¿Le han dicho alguna vez que tenía hipertensión?"
+
+label variable s_9_9 "9.9 ¿Cuántos años tenia cuando se lo dijeron por primera vez? Registra años de edad o Registra año No responde...................... 888 No sabe................................ 999"
+
+label variable s_9_11 "9.11 ¿Está Ud tomando medicamentos para controlar su hipertensión?"
+
+label variable s_9_13 "9.13 ¿Cuándo fue la última vez que usted se midió la presión arterial?"
+
+label variable s_9_14 "9.14 ¿Le ha dicho un médico alguna vez que tenía un trastorno cardíaco?"
+
+label variable s_9_15 "9.15 ¿Cuándo fue la primera vez?"
+
+label variable s_9_16 "9.16 ¿Qué le dijo el doctor que era?"
+
+label variable s_9_17 "9.17 ¿Ha tenido alguna vez una apoplejía (isquemia) cerebral que necesitase atención médica? ¿Qué sucedió?(Asignar sólo si hay historia clara de aparición súbita de parálisis unilateral, y/o pérdida del habla, y/o ceguera que durase al menos 2 días)"
+
+label variable s_9_18 "9.18 ¿Quién diagnosticó este ataque isquémico cerebral?"
+
+label variable s_9_19 "9.19 ¿Ha experimentado alguna vez debilidad repentina de un miembro, pérdida del habla o ceguera parcial que mejoró rápidamente, en menos de un día? (Los médicos les llaman algunas veces ATI a estos ataques)"
+
+label variable s_9_20 "9.20 ¿Ha tenido alguna vez un golpe en la cabeza, una lesión en la cabeza o un traumatismo en la cabeza que fue lo suficientemente grave como para requerir atención médica, para causar pérdida del conocimiento o pérdida de la memoria durante un período de tiempo?"
+
+label variable s_9_21a "9.21a Numero:"
+
+label variable s_9_21b "9.21b Horas o minutos?"
+
+label variable s_9_22 "9.22 ¿Qué edad tenía en ese momento? Si había incidentes múltiples, por favor refiere el primero incidente. Registra años de edad No responde...................... 888 No sabe................................ 999"
+
+label variable s_9_23 "9.23 ¿Le han dicho alguna vez que tenía diabetes?"
+
+label variable s_9_24 "9.24 ¿La diabetes solo estuvo presente durante el embarazo?"
+
+label variable s_9_25 "9.25 ¿A qué edad le dijeron por primera vez que tenía diabetes? Si había incidentes múltiples, por favor refiere el peor incidente. Registra años de edad No responde...................... 888 No sabe................................ 999"
+
+label variable s_9_26 "9.26 ¿Necesita una dieta especial, toma tabletas o se inyecta insulina?"
+
+label variable s_9_28 "9.28 ¿Con que frecuencia se mide usted mismo el nivel de azúcar en la sangre?"
+
+label variable s_9_29 "9.29 ¿Cada cuánto tiempo visita un médico para su diabetes?"
+
+label variable s_9_30 "9.30 Le han dicho alguna vez que tiene el colesterol/ triglicéridos/ las grasas en su sangre, altas, elevadas?"
+
+label variable s_9_31 "9.31 ¿Qué edad tenía en ese momento? Si había incidentes múltiples, por favor refiere el primero incidente. Registra años de edad No responde...................... 888 No sabe................................ 999"
+
+label variable s_9_32 "9.32 Necesita usted una dieta especial para el colesterol?"
+
+label variable s_9_33 "9.33 ¿Está tomando actualmente medicamentos para controlar su colesterol?"
+
+label variable s_9_35 "9.35 ¿Hace cuánto tiempo se midió el colesterol por última vez?"
+
+label variable s_9_36 "9.36 Durante el último año, ¿cuántas veces se ha caído sin razón aparente? Registra el número de caídas No responde...................88 No sabe ...........................99"
+
+label variable s_9_37 "9.37 ¿Alguna vez un médico le dijo que tiene cáncer o tumor maligno, excluyendo pequeños tumores en la piel?"
+
+label variable s_9_38a "Estómago"
+
+label variable s_9_38g "Próstata"
+
+label variable s_9_38b "Otros digestivos"
+
+label variable s_9_38f "Otros respiratorios"
+
+label variable s_9_38c "Sistema urinario"
+
+label variable s_9_38d "Leucemia"
+
+label variable s_9_38j "Otro"
+
+label variable s_9_38e "Pulmón"
+
+label variable s_9_38k "No Responde"
+
+label variable s_9_38h "Útero / cervix"
+
+label variable s_9_38l "No Sabe"
+
+label variable s_9_38i "Mama"
+
+label variable s_9_39 "9.39 ¿Alguna vez ha recibido quimioterapia o radioterapia?"
+
+label variable s_9_40 "9.40 ¿Le faltan algunos dientes o muelas naturales?"
+
+label variable s_9_41 "9.41 Ha tenido usted accidentes de orina? Se le sale la orina, (los pipis) si no puede usted llegar rápido al baño?"
+
+label variable s_9_42 "9.42 ¿Le han dicho alguna vez que tenia enfermedad de Parkinson?"
+
+label variable s_9_43a "9.43a ¿Cuántos años tenia cuando se lo dijeron por primera vez? No responde...................... 888 No sabe................................ 999"
+
+label variable s_9_44 "9.44 ¿Alguna vez un médico le ha dicho que tiene demencia o Alzheimer?"
+
+label variable s_9_45a "9.45a ¿Cuántos años tenia cuando se lo dijeron por primera vez? No responde...................... 888 No sabe................................ 999"
+
+label variable s_9_46 "9.46 ¿El médico le recetó /prescribió alguna medicina?"
+
+label variable s_9_47 "9.47 ¿Ha habido momentos en su vida antes del año pasado en los que padeció síntomas de tristeza, sentimientos vacíos, deprimido, o ha perdido interés en la mayoría de las cosas como el trabajo, pasatiempos, u otras cosas que duraron al menos dos semanas?"
+
+label variable s_9_48 "9.48 ¿Qué edad tenía cuando esto sucedió por primera vez? No responde...................... 888 No sabe................................ 999"
+
+label variable s_9_49 "9.49 ¿Recibió tratamiento de un médico de familia o psiquiatra?"
+
+label variable s_9_50 "9.50 ¿Lo ingresaron en un hospital o sala de psiquiatría?"
+
+label variable s_9_51 "9.51 ¿Examen de audición"
+
+label variable s_9_52 "9.52 ¿Examen de la vista?"
+
+label variable s_9_53 "9.53 ¿Mamografía o radiografía de los senos"
+
+label variable s_9_54 "9.54 ¿Prueba de cáncer de cuello uterino o cérvix (papanicolau)?"
+
+label variable s_9_55 "9.55 ¿Prueba, en sangre, para la próstata?"
+
+label variable s_9_56 "9.56 Prueba rectal, para la próstata?"
+
+label variable s_9_57 "9.57 ¿Qué edad tenía usted cuando empezó su primera menstruación o regla? No responde...................... 88 No sabe................................ 99"
+
+label variable s_9_58 "9.58 [SOLO PREGUNTA SI AUN NO ES CLARO] ¿Ha dado a luz un bebé?"
+
+label variable s_9_59 "9.59 ¿Qué edad tenía usted cuando dio a luz por primera vez (primer bebé)? No responde...................... 88 No sabe................................ 99"
+
+label variable s_9_60 "9.60 ¿Cuántas veces usted ha dado a luz? No responde...................... 88 No sabe................................ 99"
+
+label variable s_9_61 "9.61 ¿Qué edad tenía usted cuando terminó de pasar por su menopausia, es decir, su última menstruación o regla? TODAVÍA MENSTRÚA.........97 No responde......................88 No sabe................................99"
+
+label variable s_9_61a "9.61a ¿Tenía usted..."
+
+label variable s_9_62 "9.62 ¿Le han hecho una histerectomía, es decir una cirugía para quitarle la matriz (útero) y ovarios, o la matriz (útero) solamente?"
+
+label variable s_9_63 "9.63 ¿Ha usado algún anticonceptivo o ha sido esterilizada?"
+
+label variable s_9_64_1 "9.64.1 Píldoras o pastillas"
+
+label variable s_9_64_2 "9.64.2 Inyecciones"
+
+label variable s_9_64_3 "9.64.3 Esterilización"
+
+label variable s_9_64_4 "9.64.4 Otros"
+
+label variable s_9_65 "9.65 ¿A qué edad comenzó a utilizar el primero de los métodos que haya usado? Registra años de edad No responde...................... 88 No sabe................................ 99"
+
+label variable s_9_66 "9.66 ¿Alguna vez ha utilizado hormonas femeninas (estrógenos) en forma de pastillas, parches o crema por 3 años o más para tratar la menopausia?"
+
+label variable s_10_1a "10.1a Se sintió deprimido. ¿Diría si cierto, o no cierto?"
+
+label variable s_10_1b "10.1b Sintió que todo lo que hizo fue un esfuerzo. ¿Diría si o no cierto?"
+
+label variable s_10_1c "10.1c Su sueño fue inquieto. ¿Diría si o no cierto?"
+
+label variable s_10_1d "10.1d Era usted feliz. ¿Diría si o no cierto?"
+
+label variable s_10_1e "10.1e Se sintió solo. ¿Diría si o no cierto?"
+
+label variable s_10_1f "10.1f Disfrutó la vida. ¿Diría si o no cierto?"
+
+label variable s_10_1g "10.1g Se sintió triste. ¿Diría si o no cierto?"
+
+label variable s_10_1h "10.1h No tenía ganas de hacer nada. ¿Diría si o no cierto?"
+
+label variable s_10_2 "10.2 ¿Con qué frecuencia tiene dificultad para quedarse dormido(a)? ¿diría que…"
+
+label variable s_10_3 "10.3 ¿Con qué frecuencia se despierta durante la noche después de que se quedó dormido? ¿diría que..."
+
+label variable s_10_4 "10.4 ¿Con qué frecuencia se despierta temprano y no puede dormirse nuevamente? ¿diría que..."
+
+label variable s_10_5 "10.5 ¿Con qué frecuencia se siente descansado(a) cuando se despierta en las mañanas?"
+
+label variable s_10_6_1 "10.6.1 Su salud: ¿Esto le hace sentir estresada/o o ansiosa/o?"
+
+label variable s_10_6_1a "10.6.1a ¿Cuánto tiempo ha sentido este estrés o ansiedad?"
+
+label variable s_10_6_2 "10.6.2 Su situación financiera: ¿Esto le hace sentir estresada/o o ansiosa/o?"
+
+label variable s_10_6_2a "10.6.2a ¿Cuánto tiempo ha sentido este estrés o ansiedad?"
+
+label variable s_10_6_3 "10.6.3 Problemas de trabajo: ¿Esto le hace sentir estresada/o o ansiosa/o?"
+
+label variable s_10_6_3a "10.6.3a ¿Cuánto tiempo ha sentido este estrés o ansiedad?"
+
+label variable s_10_6_4 "10.6.4 Relaciones familiares: ¿Esto le hace sentir estresada/o o ansiosa/o?"
+
+label variable s_10_6_4a "10.6.4a ¿Cuánto tiempo ha sentido este estrés o ansiedad?"
+
+label variable s_10_7_1 "10.7.1 Una fuente importante de estrés en mi vida han sido mis hijos."
+
+label variable s_10_7_2 "10.7.2 Pensando en retrospectiva, a menudo me sentía agobiado por la responsabilidad de ser padre."
+
+label variable s_11_1 "11.1 En el mes pasado, ¿con qué frecuencia algún estado de salud le ha causado dolor?"
+
+label variable s_11_2 "11.2 En general, ¿cómo clasificaría la severidad del dolor en el último mes? ¿Diría que es un"
+
+label variable s_11_3 "11.3 Cuando el dolor es más intenso, ¿en qué medida restringe las cosas que hace?"
+
+label variable s_12_1a "12.1a Debido a un problema de salud ¿usted tiene dificultad para caminar de un lado a otro de un cuarto?"
+
+label variable s_12_1b "12.1.b ¿Usa usted equipo o aparatos, tales como bastón, andador ortopédico o silla de ruedas para caminar de un lado a otro de un cuarto?"
+
+label variable s_12_1c "12.1.c ¿Alguien le ayuda a usted para caminar de un lado a otro de un cuarto?"
+
+label variable s_12_2a "12.2a Debido a un problema de salud ¿usted tiene dificultad para bañarse en una ducha?"
+
+label variable s_12_2c "12.2.c ¿Alguien le ayuda a usted para bañarse en una ducha?"
+
+label variable s_12_3a "12.3a Debido a un problema de salud ¿usted tiene dificultad al comer, por ejemplo para cortar su comida?"
+
+label variable s_12_3c "12.3.c ¿Alguien le ayuda a usted al comer, por ejemplo para cortar su comida?"
+
+label variable s_12_4a "12.4a Debido a un problema de salud ¿usted tiene dificultad al acostarse y levantarse de la cama?"
+
+label variable s_12_4b "12.4.b ¿Usa usted equipo o aparatos, tales como bastón, andador ortopédico o silla de ruedas...al acostarse y levantarse de la cama?"
+
+label variable s_12_4c "12.4.c ¿Alguien le ayuda a usted..al acostarse y levantarse de la cama?"
+
+label variable s_12_5a "12.5a Debido a un problema de salud ¿usted tiene dificultad al usar el sanitario, incluyendo subirse y bajarse o ponerse en cuclillas?"
+
+label variable s_12_5c "12.5c ¿Alguien le ayuda a usted al usar el sanitario, incluyendo subirse y bajarse o ponerse en cuclillas?"
+
+label variable s_12_6a "12.6a Debido a un problema de salud ¿usted tiene dificultad cortarse las uñas de los pies?"
+
+label variable s_12_6c "12.6c ¿Alguien le ayuda a usted cortarse las uñas de los pies?"
+
+label variable s_12_7 "12.7 Debido a un problema de salud ¿usted tiene dificultad...en preparar una comida caliente?"
+
+label variable s_12_8 "12.8 Debido a un problema de salud ¿usted tiene dificultad...en hacer compras de alimentos/mandado?"
+
+label variable s_12_9 "12.9 Debido a un problema de salud ¿usted tiene dificultad...en tomar sus medicamentos (si toma alguno o tuviera que tomar alguno)?"
+
+label variable s_12_10 "12.10 Debido a un problema de salud ¿usted tiene dificultad...para manejar su dinero?"
+
+label variable s_12_11 "12.11 ¿Puede usted caminar?"
+
+label variable s_12_13 "12.13 ¿Tiene dificultad para caminar varias cuadras?"
+
+label variable s_12_14 "12.14 ¿Tiene dificultad para subir por las escaleras varios pisos sin descansar?"
+
+label variable s_12_15 "12.15 ¿Tiene dificultad para empujar o halar un objeto grande como un sillón?"
+
+label variable s_12_16 "12.16 Por favor levante y estire sus brazos por encima de sus hombros."
+
+label variable s_13_1_p_c "13.1 ¿Alguna vez ha fumado cigarrillos/cigarros?"
+
+label variable s_13_1_d "13.1 ¿Alguna vez ha fumado cigarros/puros?"
+
+label variable s_13_2 "13.2 ¿Cuántos años tenía cuando comenzó a fumar? Registra edad No responde...................... 888 No sabe................................ 999"
+
+label variable s_13_3_p_c "13.3 ¿Fuma cigarrillos/cigarros actualmente?"
+
+label variable s_13_3_d "13.3 ¿Fuma cigarros/puros actualmente?"
+
+label variable s_13_4 "13.4 [Si ya no fuma] ¿Qué edad tenía cuando dejó de fumar? Registra años de edad o Registra año No responde...................... 888 No sabe................................ 999"
+
+label variable s_13_5 "13.5 ¿Qué tan a menudo fuma usted?"
+
+label variable s_13_6_p_c "13.6 ¿Cuántos cigarrillos/cigarros fuma usted normalmente al día? CIGARILLOS/DÍA..............................|_|_| 87 Y MÁS CIGARILLOS/DÍA..................... 87 NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_13_6_d "13.6 ¿Cuántos cigarros/puros fuma usted normalmente al día? CIGARILLOS/DÍA..............................|_|_| 87 Y MÁS CIGARILLOS/DÍA..................... 87 NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_13_7_p_c "13.7 Cuando más fumaba usted, ¿cuántos cigarrillos/cigarros se fumaba en un día? CIGARILLOS/DÍA..............................|_|_| 87 Y MÁS CIGARILLOS/DÍA..................... 87 NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_13_7_d "13.7 Cuando más fumaba usted, ¿cuántos cigarros/puros se fumaba en un día? CIGARILLOS/DÍA..............................|_|_| 87 Y MÁS CIGARILLOS/DÍA..................... 87 NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_13_8 "13.8 ¿En toda su vida, ha tomado Ud. al menos 12 vasos o copas de bebidas alcohólicas de cualquier tipo?"
+
+label variable s_13_9 "13.9 ¿Actualmente toma bebidas alcohólicas de cualquier tipo?"
+
+label variable s_13_10 "13.10 ¿Cuántas bebidas alcohólicas toma Ud usualmente? (Instrucciones al entrevistador: 1 botella de ron = 16 bebidas; 1 botella de vino = 7 bebidas) REGISTRA NÚMERO DE BEBIDAS.........|_|_| NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_13_11 "13.11 Durante el periodo cuando Ud. bebía más alcohol, ¿cuántas bebidas alcohólicas tomaba Ud. en una semana promedio? (Instrucciones al entrevistador: 1 botella de ron = 16 bebidas; 1 botella de vino = 7 bebidas) REGISTRA NÚMERO DE BEBIDAS.........|_|_| NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_13_12 "13.12 ¿Ha habido un período de varios años en el cual habría dicho que era un bebedor empedernido?"
+
+label variable s_13_13 "13.13 ¿Con qué frecuencia come carne?"
+
+label variable s_13_14 "13.14 ¿Con qué frecuencia come pescado?"
+
+label variable s_13_15 "13.15 ¿Con qué frecuencia come fruta?"
+
+label variable s_13_16 "13.16 ¿Con qué frecuencia come verdura?"
+
+label variable s_13_17 "13.17 ¿Con qué frecuencia toma refresco (por ejemplo – Coca Cola, Fanta, etc)?"
+
+label variable s_13_18 "13.18 Considerando tanto el trabajo como el ocio, ¿diría que es"
+
+label variable s_13_19 "13.19 ¿Ha realizado caminatas de medio kilómetro o más en el último mes? (Que normalmente sería caminata CONTINUA durante al menos 10-15 minutos)"
+
+label variable s_13_20 "13.20 En el último mes, ¿cuántas veces hizo caminatas de medio kilómetro o más? NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_13_22 "13.22 En promedio durante el último año, ¿ha hecho ejercicio o trabajo físico pesado tres veces por semana o más? INCLUYE VARIAS ACTIVIDADES COMO DEPORTES, LABORES CASERAS PESADAS, U OTRO TRABAJO FÍSICO"
+
+label variable s_13_23_p "13.23 ¿Qual es su peso actual? REGISTRA PESO en libras NO RESPONDE...................................... 888 NO SABE................................................. 999"
+
+label variable s_13_23_d_c "13.23 ¿Qual es su peso actual? Registra peso en kg (si se responde en libras, divida por 2.2) NO RESPONDE...................................... 888 NO SABE................................................. 999"
+
+label variable s_13_24 "13.24 ¿De acuerdo a estas imágenes, como cree que luce usted actualmente? MUESTRA TARJETA IMAGEN CORPORAL NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_13_25_d_c "13.25 ¿Cual era su peso a la edad de 25 años? Registra peso en kg (si se responde en libras, divida por 2.2) NO RESPONDE...................................... 888 NO SABE................................................. 999"
+
+label variable s_13_25_p "13.25 ¿Cual era su peso a la edad de 25 años? REGISTRA PESO en libras NO RESPONDE...................................... 888 NO SABE................................................. 999"
+
+label variable s_13_26 "13.26 ¿De acuerdo a estas imágenes, como cree que lucía usted en esa época? MUESTRA TARJETA REGISTRA NÚMERO.............................|_|_| NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_13_27_d_c "13.27 ¿Cuándo fue o ha sido su peso máximo durante su vida (si es mujer, no incluya embarazos)? No aplica si necesita proxy Registra peso en kg (si se responde en libras, divida por 2.2) NO RESPONDE...................................... 888 NO SABE................................................. 999"
+
+label variable s_13_27_p "13.27 ¿Cuándo fue o ha sido su peso máximo durante su vida (si es mujer, no incluya embarazos)? REGISTRA PESO en libras NO RESPONDE...................................... 888 NO SABE................................................. 999"
+
+label variable s_13_28 "13.28 ¿De acuerdo a estas imágenes, como cree que lucía usted en esa época? MUESTRA TARJETA “B” NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_13_29 "13.29 ¿Qué edad tenía cuando alcanzo ese peso maximo? NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_13_30_d_c "13.30 ¿En los últimos 6 meses, ha perdido más de 5 kilogramos de peso sin proponérselo?"
+
+label variable s_13_30_p "13.30 ¿En los últimos 6 meses, ha perdido más de 10 libras de peso sin proponérselo?"
+
+label variable s_14_1_p_d "14.1 ¿Tiene usted plan médico?"
+
+label variable s_14_2a_p "Tarjeta del Gobierno, Mi salud o Vital"
+
+label variable s_14_1b_p "Medicare parte A"
+
+label variable s_14_2c_p "Medicare parte B"
+
+label variable s_14_2d_p "Medicare parte D"
+
+label variable s_14_2e_p "Un plan complementario de Medicare"
+
+label variable s_14_2f_p "Un plan advantage de Medicare"
+
+label variable s_14_2g_p "Un plan privado individual de salud"
+
+label variable s_14_2h_p "Otro"
+
+label variable s_14_2i_p "No responde"
+
+label variable s_14_2j_p "No sabe"
+
+label variable s_14_2a_d "SENASA"
+
+label variable s_14_2b_d "SENASA – SUBSIDIADO"
+
+label variable s_14_2c_d "Un plan privado individual de salud"
+
+label variable s_14_2d_d "Un plan privado a través de algún empleador"
+
+label variable s_14_2e_d "Otro"
+
+label variable s_14_2f_d "No responde"
+
+label variable s_14_2g_d "No sabe"
+
+label variable s_14_3 "14.3 ¿En los últimos tres meses ha visitado o consultado un médico general, quiere decir médico primario o médico de familia?"
+
+label variable s_14_4 "14.4 Número total de consultas en los últimos tres meses REGISTRA NÚMERO............................|_|_|_|_| NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_14_5 "14.5 Típicamente, en cada consulta a su doctor normal, ¿cuánto tiempo emplea en viajar (minutos)? NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_14_6 "14.6 Típicamente, en cada consulta a su doctor normal, ¿cuánto dinero emplea en viajar? NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_14_8 "14.8 Típicamente, en cada consulta a so doctor normal, ¿cuánto tiempo total de esperar a la consulta (minutos)?  NO RESPONDE……………………………….. 888 NO SABE…………………………………………. 999"
+
+label variable s_14_9 "14.9 Típicamente, en cada consulta, ¿cuánto paga? [Usted o su familia, sin incluir las cantidades pagadas por el seguro de salud] NO RESPONDE……………………………….. 888 NO SABE…………………………………………. 999"
+
+label variable s_14_11 "14.11 En el último año, ¿cómo cuántas veces ha visitado o consultado con un doctor o personal médico? (No incluye estancias hospitalarias) NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_14_12 "14.12 Incluyendo todas las visitas a doctor o personal médico, ¿cómo cuánto se pagó para estas consultas en el último año? [Usted o su familia, sin incluir las cantidades pagadas por el seguro de salud. NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_14_13 "14.13 En el último año, ¿cómo cuántas veces le tuvieron que hacer procedimientos quirúrgicos sin internarse en el hospital? NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_14_14 "14.14 Incluyendo todos los procedimientos quirúrgicos sin internarse en el hospital, ¿cómo cuánto se pagó para estas consultas? [Usted o su familia, sin incluir las cantidades pagadas por el seguro de salud. No incluya las costos ya mencionados en 14.12.]"
+
+label variable s_14_15 "14.15 En el último año, ¿cómo cuántas veces ha consultado usted a un dentista? NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_14_16 "14.16 Incluyendo todas las consultas con un dentista, ¿cómo cuánto se pagó para estas consultas? [Usted o su familia, sin incluir las cantidades pagadas por el seguro de salud] NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_14_17 "14.17 En el último año, ¿pensó alguna vez que tenía un problema serio de salud, pero no fue al doctor?"
+
+label variable s_14_18_1 "14.18.1 Creyó que no le ayudaría a mejorarse"
+
+label variable s_14_18_2 "14.18.2 Creyó que se tardaría mucho en llegar"
+
+label variable s_14_18_3 "14.18.3 No tenía dinero"
+
+label variable s_14_18_4 "14.18.4 No quiso molestar a alguien para que lo llevara"
+
+label variable s_14_18_5 "14.18.5 Le dio miedo saber lo que el doctor iba a encontrarle"
+
+label variable s_14_18_6 "14.18.6 Le dio miedo el COVID"
+
+label variable s_14_20 "14.20 Incluyendo todas las veces en el último año, ¿como cuántas noches ha estado internado en un hospital? NINGUN....................................................00 NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_14_22 "14.22 Incluyendo todas las veces, ¿cómo cuánto pagó por estas hospitalizaciones? [Usted o su familia, sin incluir las cantidades pagadas por el seguro de salud] NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_14_23 "14.23 Además de los hospitales, otras instalaciones atienden a las personas cuando están enfermas y/o en recuperación. ¿Ha pasado usted otra estancia residencial en el último año?"
+
+label variable s_14_24 "14.24 Incluyendo todas las veces en el último año, ¿Cómo cuántas noches ha estado internado en esta residencia? NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_14_25 "14.25 Incluyendo todas las veces, ¿cómo cuánto se pagó? [Usted o su familia, sin incluir las cantidades pagadas por el seguro de salud] NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_14_30a "14.30a ¿Aproximadamente, cuánto se gastó en total en medicamentos y remedios en el último mes? [Pagado por usted o su familia, sin incluir las cantidades pagadas por el seguro] NO RESPONDE...................................... 88 NO SABE................................................. 99"
+
+label variable s_14_30b1_p "14.30b.1 ¿Diría usted que estos gastos fueron en total Más de $100?"
+
+label variable s_14_30b1_d "14.30b.1 ¿Diría usted que estos gastos fueron en total mas de 5000 pesos?"
+
+label variable s_14_30b2_p "14.30b2 ¿Diría usted que estos gastos fueron en total Más de $50?"
+
+label variable s_14_30b2_d "14.30b2 ¿Diría usted que estos gastos fueron en total mas de 2500 pesos?"
+
+label variable s_14_30b3_p "14.30b3 ¿Diría usted que estos gastos fueron en total Más de $200?"
+
+label variable s_14_30b3_d "14.30b3 ¿Diría usted que estos gastos fueron en total mas de 10,000 pesos?"
+
+label variable s_14_31 "14.31 ¿Se ha vacunado contra el COVID?"
+
+label variable s_14_32 "14.32 ¿Cuántos dosis ha recibido?"
+
+label variable s_14_33 "14.33 ¿Ha tenido el COVID alguna vez?"
+
+label variable s_15_1 "15.1 Esta entrevista de factores de riesgos sociodemográficos fue conducida con:"
+
+label variable s_15_2 "15.2 ¿Qué relación tiene el proxy con (xxx)?"
+
+label variable s_15_3 "15.3 Confianza general en los datos"
+
+label variable s_deviceid2 "Device ID:"
+
