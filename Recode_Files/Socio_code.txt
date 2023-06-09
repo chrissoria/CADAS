@@ -2491,7 +2491,7 @@ rename s_8_5b2 (S_8_5b2)
 
 label define S_8_5b2 0 "false" 1 "true"
 
-encode S_8_5b2, gen (s_8_5b2) label (S_8_5b2)
+encode S_8_5b2, gen (s_8_5b2_delete) label (S_8_5b2)
 
 drop S_8_5b2
 
@@ -2500,6 +2500,8 @@ rename s_8_5b1 (S_8_5b1)
 label define S_8_5b1 0 "false" 1 "true"
 
 encode S_8_5b1, gen (s_8_5b1) label (S_8_5b1)
+
+replace s_8_5b1 = s_8_5b2_delete + s_8_5b1 if s_8_5b2_delete == 1 & s_8_5b1 != 1
 
 drop S_8_5b1
 
