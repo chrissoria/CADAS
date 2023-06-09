@@ -1,3 +1,26 @@
+clear all 
+set more off
+capture log close
+log using Infor, text replace
+
+ cd "/hdir/0/chrissoria/Stata_CADAS/Data/Info"
+ 
+   insheet using "InformantChild.csv", comma names clear
+   
+   ds, has(type string)
+
+  local string_vars = r(varlist)
+
+foreach var of local string_vars {
+
+    gen `var'_trimmed = ustrlower(ustrtrim(`var'))
+
+    replace `var' = `var'_trimmed
+
+    drop `var'_trimmed
+
+}
+
 rename i_a2 (I_A2)
 
 capture confirm numeric variable I_A2
@@ -2170,3 +2193,9 @@ label variable i_deviceid2 "Device ID:"
 
 label variable i_deviceid2 "Device ID:"
 
+ save Infor.dta, replace
+ d
+ sum
+ list
+ 
+ log close

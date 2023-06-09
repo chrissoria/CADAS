@@ -1,3 +1,26 @@
+clear all 
+set more off
+capture log close
+log using Sociodemographic, text replace
+
+ cd "/hdir/0/chrissoria/Stata_CADAS/Data/Socio"
+ 
+   insheet using "SocioDemChildNEW1.csv", comma names clear
+   
+   ds, has(type string)
+
+  local string_vars = r(varlist)
+
+foreach var of local string_vars {
+
+    gen `var'_trimmed = ustrlower(ustrtrim(`var'))
+
+    replace `var' = `var'_trimmed
+
+    drop `var'_trimmed
+
+}
+
 rename s_1_1_p (S_1_1_P)
 
 capture confirm numeric variable S_1_1_P
@@ -3582,3 +3605,9 @@ label variable s_15_3 "15.3 Confianza general en los datos"
 
 label variable s_deviceid2 "Device ID:"
 
+ save Socio.dta, replace
+ d
+ sum
+ list
+ 
+ log close

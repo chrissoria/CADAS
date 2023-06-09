@@ -1,3 +1,26 @@
+clear all 
+set more off
+capture log close
+log using Cognitive, text replace
+
+ cd "/hdir/0/chrissoria/Stata_CADAS/Data/Cog"
+ 
+   insheet using "CognitiveChild.csv", comma names clear
+   
+   ds, has(type string)
+
+  local string_vars = r(varlist)
+
+foreach var of local string_vars {
+
+    gen `var'_trimmed = ustrlower(ustrtrim(`var'))
+
+    replace `var' = `var'_trimmed
+
+    drop `var'_trimmed
+
+}
+
 rename c_0 (C_0)
 
 capture confirm numeric variable C_0
@@ -2626,3 +2649,9 @@ label variable c_82 "82. ¿Cómo es el alcance de oído/audición del participan
 
 label variable c_deviceid2 "Device ID:"
 
+ save Cog.dta, replace
+ d
+ sum
+ list
+ 
+ log close
