@@ -1612,7 +1612,7 @@ if !_rc{
      tostring I_J1, replace
 }
 
-label define I_J1 .a"." 0 "no" 3 "si" 8 "no responde"9 "no sabe"
+label define I_J1 .a"." 0 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode I_J1, gen(i_j1) label (I_J1)
 
@@ -1645,7 +1645,7 @@ if !_rc{
      tostring I_K_ACT_1, replace
 }
 
-label define I_K_ACT_1 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 8 "no sabe"9 "no responde"
+label define I_K_ACT_1 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 9 "no sabe"8 "no responde"
 
 encode I_K_ACT_1, gen(i_k_act_1) label (I_K_ACT_1)
 
@@ -1656,7 +1656,7 @@ if !_rc{
      tostring I_K_ACT_2, replace
 }
 
-label define I_K_ACT_2 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 8 "no sabe"9 "no responde"
+label define I_K_ACT_2 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 9 "no sabe"8 "no responde"
 
 encode I_K_ACT_2, gen(i_k_act_2) label (I_K_ACT_2)
 
@@ -1667,7 +1667,7 @@ if !_rc{
      tostring I_K_ACT_5, replace
 }
 
-label define I_K_ACT_5 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 8 "no sabe"9 "no responde"
+label define I_K_ACT_5 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 9 "no sabe"8 "no responde"
 
 encode I_K_ACT_5, gen(i_k_act_5) label (I_K_ACT_5)
 
@@ -1678,7 +1678,7 @@ if !_rc{
      tostring I_K_ACT_7, replace
 }
 
-label define I_K_ACT_7 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 8 "no sabe"9 "no responde"
+label define I_K_ACT_7 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 9 "no sabe"8 "no responde"
 
 encode I_K_ACT_7, gen(i_k_act_7) label (I_K_ACT_7)
 
@@ -1689,7 +1689,7 @@ if !_rc{
      tostring I_K_ACT_8, replace
 }
 
-label define I_K_ACT_8 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 8 "no sabe"9 "no responde"
+label define I_K_ACT_8 .a"." 1 "cero" 2 "media hora" 3 "una" 4 "dos a tres" 5 "cuatro a seis" 6 "siete o más" 7 "nunca" 9 "no sabe"8 "no responde"
 
 encode I_K_ACT_8, gen(i_k_act_8) label (I_K_ACT_8)
 
@@ -1700,7 +1700,7 @@ if !_rc{
      tostring I_K_ACT_10, replace
 }
 
-label define I_K_ACT_10 .a"." 1 "si" 2 "no" 6 "no es costumbre del xxx hacerlo" 8 "no sabe"9 "no responde"
+label define I_K_ACT_10 .a"." 1 "si" 2 "no" 6 "no es costumbre del xxx hacerlo" 9 "no sabe"8 "no responde"
 
 encode I_K_ACT_10, gen(i_k_act_10) label (I_K_ACT_10)
 
@@ -1711,7 +1711,7 @@ if !_rc{
      tostring I_K_ACT_13, replace
 }
 
-label define I_K_ACT_13 .a"." 1 "si" 2 "no" 8 "no sabe"9 "no responde"
+label define I_K_ACT_13 .a"." 1 "si" 2 "no" 9 "no sabe"8 "no responde"
 
 encode I_K_ACT_13, gen(i_k_act_13) label (I_K_ACT_13)
 
@@ -1722,7 +1722,7 @@ if !_rc{
      tostring I_K_ACT_14, replace
 }
 
-label define I_K_ACT_14 .a"." 1 "si" 2 "no" 8 "no sabe"9 "no responde"
+label define I_K_ACT_14 .a"." 1 "si" 2 "no" 9 "no sabe"8 "no responde"
 
 encode I_K_ACT_14, gen(i_k_act_14) label (I_K_ACT_14)
 
@@ -1733,7 +1733,7 @@ if !_rc{
      tostring I_K_ACT_15, replace
 }
 
-label define I_K_ACT_15 .a"." 1 "diariamente" 2 "varias veces a la semana" 3 "una vez a la semana" 4 "una vez al mes" 5 "raramente" 6 "nunca" 8 "no sabe"9 "no responde"
+label define I_K_ACT_15 .a"." 1 "diariamente" 2 "varias veces a la semana" 3 "una vez a la semana" 4 "una vez al mes" 5 "raramente" 6 "nunca" 9 "no sabe"8 "no responde"
 
 encode I_K_ACT_15, gen(i_k_act_15) label (I_K_ACT_15)
 
@@ -1744,7 +1744,7 @@ if !_rc{
      tostring I_K_ACT_16, replace
 }
 
-label define I_K_ACT_16 .a"." 1 "diariamente" 2 "varias veces a la semana" 3 "una vez a la semana" 4 "una vez al mes" 5 "raramente" 6 "nunca" 8 "no sabe"9 "no responde"
+label define I_K_ACT_16 .a"." 1 "diariamente" 2 "varias veces a la semana" 3 "una vez a la semana" 4 "una vez al mes" 5 "raramente" 6 "nunca" 9 "no sabe"8 "no responde"
 
 encode I_K_ACT_16, gen(i_k_act_16) label (I_K_ACT_16)
 
@@ -1755,7 +1755,7 @@ if !_rc{
      tostring I_K_ACT_17, replace
 }
 
-label define I_K_ACT_17 .a"." 1 "solo" 2 "acompañado" 8 "no sabe"9 "no responde"
+label define I_K_ACT_17 .a"." 1 "solo" 2 "acompañado" 9 "no sabe"8 "no responde"
 
 encode I_K_ACT_17, gen(i_k_act_17) label (I_K_ACT_17)
 

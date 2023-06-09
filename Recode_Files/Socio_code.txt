@@ -1273,7 +1273,7 @@ if !_rc{
      tostring S_9_51, replace
 }
 
-label define S_9_51 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 9 "no responde"8 "no sabe"
+label define S_9_51 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 8 "no responde"9 "no sabe"
 
 encode S_9_51, gen(s_9_51) label (S_9_51)
 
@@ -1284,7 +1284,7 @@ if !_rc{
      tostring S_9_52, replace
 }
 
-label define S_9_52 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 9 "no responde"8 "no sabe"
+label define S_9_52 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 8 "no responde"9 "no sabe"
 
 encode S_9_52, gen(s_9_52) label (S_9_52)
 
@@ -1295,7 +1295,7 @@ if !_rc{
      tostring S_9_53, replace
 }
 
-label define S_9_53 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 9 "no responde"8 "no sabe"
+label define S_9_53 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 8 "no responde"9 "no sabe"
 
 encode S_9_53, gen(s_9_53) label (S_9_53)
 
@@ -1306,7 +1306,7 @@ if !_rc{
      tostring S_9_54, replace
 }
 
-label define S_9_54 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 9 "no responde"8 "no sabe"
+label define S_9_54 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 8 "no responde"9 "no sabe"
 
 encode S_9_54, gen(s_9_54) label (S_9_54)
 
@@ -1317,7 +1317,7 @@ if !_rc{
      tostring S_9_55, replace
 }
 
-label define S_9_55 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 9 "no responde"8 "no sabe"
+label define S_9_55 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 8 "no responde"9 "no sabe"
 
 encode S_9_55, gen(s_9_55) label (S_9_55)
 
@@ -1328,7 +1328,7 @@ if !_rc{
      tostring S_9_56, replace
 }
 
-label define S_9_56 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 9 "no responde"8 "no sabe"
+label define S_9_56 .a"." 1 "< 1 año" 2 "1 a menos de 3 años" 3 "3 a menos de 5 años" 4 "5 años o mas" 5 "nunca" 8 "no responde"9 "no sabe"
 
 encode S_9_56, gen(s_9_56) label (S_9_56)
 
@@ -1438,7 +1438,7 @@ if !_rc{
      tostring S_10_1A, replace
 }
 
-label define S_10_1A .a"." 5 "no" 1 "si" 9 "no responde"8 "no sabe"
+label define S_10_1A .a"." 5 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_10_1A, gen(s_10_1a) label (S_10_1A)
 
@@ -1449,7 +1449,7 @@ if !_rc{
      tostring S_10_1B, replace
 }
 
-label define S_10_1B .a"." 5 "no" 1 "si" 9 "no responde"8 "no sabe"
+label define S_10_1B .a"." 5 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_10_1B, gen(s_10_1b) label (S_10_1B)
 
@@ -1460,7 +1460,7 @@ if !_rc{
      tostring S_10_1C, replace
 }
 
-label define S_10_1C .a"." 5 "no" 1 "si" 9 "no responde"8 "no sabe"
+label define S_10_1C .a"." 5 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_10_1C, gen(s_10_1c) label (S_10_1C)
 
@@ -1471,7 +1471,7 @@ if !_rc{
      tostring S_10_1D, replace
 }
 
-label define S_10_1D .a"." 5 "no" 1 "si" 9 "no responde"8 "no sabe"
+label define S_10_1D .a"." 5 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_10_1D, gen(s_10_1d) label (S_10_1D)
 
@@ -1482,7 +1482,7 @@ if !_rc{
      tostring S_10_1E, replace
 }
 
-label define S_10_1E .a"." 5 "no" 1 "si" 9 "no responde"8 "no sabe"
+label define S_10_1E .a"." 5 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_10_1E, gen(s_10_1e) label (S_10_1E)
 
@@ -1493,7 +1493,7 @@ if !_rc{
      tostring S_10_1F, replace
 }
 
-label define S_10_1F .a"." 5 "no" 1 "si" 9 "no responde"8 "no sabe"
+label define S_10_1F .a"." 5 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_10_1F, gen(s_10_1f) label (S_10_1F)
 
@@ -1504,7 +1504,7 @@ if !_rc{
      tostring S_10_1G, replace
 }
 
-label define S_10_1G .a"." 5 "no" 1 "si" 9 "no responde"8 "no sabe"
+label define S_10_1G .a"." 5 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_10_1G, gen(s_10_1g) label (S_10_1G)
 
@@ -1515,7 +1515,7 @@ if !_rc{
      tostring S_10_1H, replace
 }
 
-label define S_10_1H .a"." 5 "no" 1 "si" 9 "no responde"8 "no sabe"
+label define S_10_1H .a"." 5 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_10_1H, gen(s_10_1h) label (S_10_1H)
 
