@@ -204,7 +204,7 @@ if !_rc{
      tostring S_3_2, replace
 }
 
-label define S_3_2 .a"." 0 "cuidad" 1 "pueblo" 2 "campo" 
+label define S_3_2 .a"." 0 "ciudad" 1 "pueblo" 2 "campo" 
 
 encode S_3_2, gen(s_3_2) label (S_3_2)
 
@@ -215,7 +215,7 @@ if !_rc{
      tostring S_3_4, replace
 }
 
-label define S_3_4 .a"." 0 "ciudad" 1 "pueblo" 2 "campo" 
+label define S_3_4 .a"." 0 "ciudad" 1 "pueblo" 2 "campo" 8 "no responde" 9 "no sabe"
 
 encode S_3_4, gen(s_3_4) label (S_3_4)
 
@@ -226,7 +226,7 @@ if !_rc{
      tostring S_3_5, replace
 }
 
-label define S_3_5 .a"." 0 "ciudad" 1 "pueblo" 2 "campo" 
+label define S_3_5 .a"." 0 "ciudad" 1 "pueblo" 2 "campo" 8 "no responde" 9 "no sabe"
 
 encode S_3_5, gen(s_3_5) label (S_3_5)
 
@@ -501,7 +501,7 @@ if !_rc{
      tostring S_4_28, replace
 }
 
-label define S_4_28 .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
+label define S_4_28 .a"." 2 "no" 1 "si" 3"no tengo ningunos" 8 "no responde"9 "no sabe"
 
 encode S_4_28, gen(s_4_28) label (S_4_28)
 
@@ -578,7 +578,7 @@ if !_rc{
      tostring S_6_5_P, replace
 }
 
-label define S_6_5_P .a"." 1 "puerto rico" 2 "un país en américa latina" 3 "canadá" 4 "españa" 5 "otro país europeo" 6 "otro"
+label define S_6_5_P .a"." 2 "un país en américa latina" 3 "canadá" 4 "españa" 5 "otro país europeo" 6 "otro"
 
 encode S_6_5_P, gen(s_6_5_p) label (S_6_5_P)
 
@@ -600,7 +600,7 @@ if !_rc{
      tostring S_6_5_C, replace
 }
 
-label define S_6_5_C .a"."1"cuba" 2 "un país en américa latina" 3 "canadá" 4 "españa" 5 "otro país europeo" 6 "otro" 
+label define S_6_5_C .a"." 1"cuba" 2 "un país en américa latina" 3 "canadá" 4 "españa" 5 "otro país europeo" 6 "otro" 
 
 encode S_6_5_C, gen(s_6_5_c) label (S_6_5_C)
 
@@ -743,7 +743,7 @@ if !_rc{
      tostring S_7_6B, replace
 }
 
-label define S_7_6B .a"." 1 "siempre o casi siempre" 2 "la major parte del tiempo" 3 "a veces" 4 "casi nunca" 5 "nunca" 88 "no responde"99 "no sabe"
+label define S_7_6B .a"." 1 "siempre o casi siempre" 2 "la mayor parte del tiempo" 3 "a veces" 4 "casi nunca" 5 "nunca" 88 "no responde"99 "no sabe"
 
 encode S_7_6B, gen(s_7_6b) label (S_7_6B)
 
@@ -1438,7 +1438,7 @@ if !_rc{
      tostring S_10_1A, replace
 }
 
-label define S_10_1A .a"." 5 "no" 1 "si" 8 "no responde"9 "no sabe"
+label define S_10_1A .a"." 5 "no cierto" 1 "si cierto" 8 "no responde"9 "no sabe"
 
 encode S_10_1A, gen(s_10_1a) label (S_10_1A)
 
@@ -1449,7 +1449,7 @@ if !_rc{
      tostring S_10_1B, replace
 }
 
-label define S_10_1B .a"." 5 "no" 1 "si" 8 "no responde"9 "no sabe"
+label define S_10_1B .a"." 5 "no cierto" 1 "si cierto" 8 "no responde"9 "no sabe"
 
 encode S_10_1B, gen(s_10_1b) label (S_10_1B)
 
@@ -1460,7 +1460,7 @@ if !_rc{
      tostring S_10_1C, replace
 }
 
-label define S_10_1C .a"." 5 "no" 1 "si" 8 "no responde"9 "no sabe"
+label define S_10_1C .a"." 5 "no cierto" 1 "si cierto" 8 "no responde"9 "no sabe"
 
 encode S_10_1C, gen(s_10_1c) label (S_10_1C)
 
@@ -1471,7 +1471,7 @@ if !_rc{
      tostring S_10_1D, replace
 }
 
-label define S_10_1D .a"." 5 "no" 1 "si" 8 "no responde"9 "no sabe"
+label define S_10_1D .a"." 5 "no cierto" 1 "si cierto" 8 "no responde"9 "no sabe"
 
 encode S_10_1D, gen(s_10_1d) label (S_10_1D)
 
@@ -1482,7 +1482,7 @@ if !_rc{
      tostring S_10_1E, replace
 }
 
-label define S_10_1E .a"." 5 "no" 1 "si" 8 "no responde"9 "no sabe"
+label define S_10_1E .a"." 5 "no cierto" 1 "si cierto" 8 "no responde"9 "no sabe"
 
 encode S_10_1E, gen(s_10_1e) label (S_10_1E)
 
@@ -1493,7 +1493,7 @@ if !_rc{
      tostring S_10_1F, replace
 }
 
-label define S_10_1F .a"." 5 "no" 1 "si" 8 "no responde"9 "no sabe"
+label define S_10_1F .a"." 5 "no cierto" 1 "si cierto" 8 "no responde"9 "no sabe"
 
 encode S_10_1F, gen(s_10_1f) label (S_10_1F)
 
@@ -1504,7 +1504,7 @@ if !_rc{
      tostring S_10_1G, replace
 }
 
-label define S_10_1G .a"." 5 "no" 1 "si" 8 "no responde"9 "no sabe"
+label define S_10_1G .a"." 5 "no cierto" 1 "si cierto" 8 "no responde"9 "no sabe"
 
 encode S_10_1G, gen(s_10_1g) label (S_10_1G)
 
@@ -1515,7 +1515,7 @@ if !_rc{
      tostring S_10_1H, replace
 }
 
-label define S_10_1H .a"." 5 "no" 1 "si" 8 "no responde"9 "no sabe"
+label define S_10_1H .a"." 5 "no cierto" 1 "si cierto" 8 "no responde"9 "no sabe"
 
 encode S_10_1H, gen(s_10_1h) label (S_10_1H)
 
@@ -2289,6 +2289,19 @@ label define S_14_30B1_D .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_14_30B1_D, gen(s_14_30b1_d) label (S_14_30B1_D)
 
+*cuba versions manually inserted
+
+rename s_14_30b1_c (S_14_30B1_C)
+
+capture confirm numeric variable S_14_30B1_C
+if !_rc{
+     tostring S_14_30B1_C, replace
+}
+
+label define S_14_30B1_C .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
+
+encode S_14_30B1_C, gen(s_14_30b1_c) label (S_14_30B1_C)
+
 rename s_14_30b2_p (S_14_30B2_P)
 
 capture confirm numeric variable S_14_30B2_P
@@ -2311,6 +2324,19 @@ label define S_14_30B2_D .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_14_30B2_D, gen(s_14_30b2_d) label (S_14_30B2_D)
 
+*cuba
+
+rename s_14_30b2_c (S_14_30B2_C)
+
+capture confirm numeric variable S_14_30B2_C
+if !_rc{
+     tostring S_14_30B2_C, replace
+}
+
+label define S_14_30B2_C .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
+
+encode S_14_30B2_C, gen(s_14_30b2_C) label (S_14_30B2_C)
+
 rename s_14_30b3_p (S_14_30B3_P)
 
 capture confirm numeric variable S_14_30B3_P
@@ -2332,6 +2358,20 @@ if !_rc{
 label define S_14_30B3_D .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
 
 encode S_14_30B3_D, gen(s_14_30b3_d) label (S_14_30B3_D)
+
+*cuba
+
+rename s_14_30b3_c (S_14_30B3_C)
+
+capture confirm numeric variable S_14_30B3_C
+if !_rc{
+     tostring S_14_30B3_C, replace
+}
+
+label define S_14_30B3_C .a"." 2 "no" 1 "si" 8 "no responde"9 "no sabe"
+
+encode S_14_30B3_C, gen(s_14_30b3_c) label (S_14_30B3_C)
+
 
 rename s_14_31 (S_14_31)
 
@@ -2807,7 +2847,7 @@ label define S_Sex .a"." 0 "hombre" 1 "mujer"
 label values s_sex S_Sex
 
 
-label define S_2_9a .a"." 0 "no ha completado ninguna educación" 1 "educación pre-primaria (jardín de infantes, guarderia, maternal, pre-escolar)" 2 "educación primaria/básica a secundaria" 3 "educación terciaria (carrera técnica)" 4 "Educación universitaria o superior, sin completar" 5 "educación universitaria o superior completa (licenciatura)" 6 "estudios postgrados (ej. Maestría, doctorado)" 8 "no responde" 9 "no sabe"
+label define S_2_9a .a"." 0 "no ha completado ninguna educación" 1 "educación pre-primaria (jardín de infantes, guarderia, maternal, pre-escolar)" 2 "primaria" 3 "intermedio" 4 "secundaria" 5 "educación terciaria (ej grado asociado o carrera técnica)" 6 "educación universitaria o superior" 8 "no responde" 9 "no sabe"
 
 label values s_2_9a S_2_9a
 

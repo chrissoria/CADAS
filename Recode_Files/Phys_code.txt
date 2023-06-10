@@ -237,7 +237,7 @@ if !_rc{
      tostring P11_2_1, replace
 }
 
-label define P11_2_1 .a"." 0 "no limitaciones" 1 "limitaciones (lentitud y/o torpeza)" 6 "no pudo hacerlo" 
+label define P11_2_1 .a"." 0 "no limitaciones" 1 "limitaciones (lentitud y/o torpeza)" 6 "no intentó la prueba" 
 
 encode P11_2_1, gen(p11_2_1) label (P11_2_1)
 
@@ -248,7 +248,7 @@ if !_rc{
      tostring P11_2_2, replace
 }
 
-label define P11_2_2 .a"." 0 "no limitaciones" 1 "limitaciones (lentitud y/o torpeza)" 6 "no pudo hacerlo" 
+label define P11_2_2 .a"." 0 "no limitaciones" 1 "limitaciones (lentitud y/o torpeza)" 6 "no intentó la prueba" 
 
 encode P11_2_2, gen(p11_2_2) label (P11_2_2)
 
