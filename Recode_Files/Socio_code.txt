@@ -600,7 +600,7 @@ if !_rc{
      tostring S_6_5_C, replace
 }
 
-label define S_6_5_C .a"." 1"cuba" 2 "un país en américa latina" 3 "canadá" 4 "españa" 5 "otro país europeo" 6 "otro" 
+label define S_6_5_C .a"." 2 "un país en américa latina" 3 "canadá" 4 "españa" 5 "otro país europeo" 6 "otro" 
 
 encode S_6_5_C, gen(s_6_5_c) label (S_6_5_C)
 
@@ -2540,8 +2540,6 @@ rename s_8_5b1 (S_8_5b1)
 label define S_8_5b1 0 "false" 1 "true"
 
 encode S_8_5b1, gen (s_8_5b1) label (S_8_5b1)
-
-replace s_8_5b1 = s_8_5b2_delete + s_8_5b1 if s_8_5b2_delete == 1 & s_8_5b1 != 1
 
 drop S_8_5b1
 
