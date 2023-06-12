@@ -1728,7 +1728,7 @@ encode C_82, gen(c_82) label (C_82)
 
 rename c_33_a (C_33_A)
 
-label define C_33_A 0 "false" 1 "true"
+label define C_33_A 0 "false" 7 "true"
 
 encode C_33_A, gen (c_33_a) label (C_33_A)
 
@@ -1736,7 +1736,7 @@ drop C_33_A
 
 rename c_33_1 (C_33_1)
 
-label define C_33_1 0 "false" 1 "true"
+label define C_33_1 0 "false" 7 "true"
 
 encode C_33_1, gen (c_33_1) label (C_33_1)
 
@@ -1816,7 +1816,7 @@ drop C_33_10
 
 rename c_34_a (C_34_A)
 
-label define C_34_A 0 "false" 1 "true"
+label define C_34_A 0 "false" 7 "true"
 
 encode C_34_A, gen (c_34_a) label (C_34_A)
 
@@ -1904,7 +1904,7 @@ drop C_34_10
 
 rename c_35_a (C_35_A)
 
-label define C_35_A 0 "false" 1 "true"
+label define C_35_A 0 "false" 7 "true"
 
 encode C_35_A, gen (c_35_a) label (C_35_A)
 
@@ -1992,7 +1992,7 @@ drop C_35_10
 
 rename c_63_a (C_63_A)
 
-label define C_63_A 0 "false" 1 "true"
+label define C_63_A 0 "false" 7 "true"
 
 encode C_63_A, gen (c_63_a) label (C_63_A)
 
@@ -2000,7 +2000,7 @@ drop C_63_A
 
 rename c_63_1 (C_63_1)
 
-label define C_63_1 0 "false" 1 "true"
+label define C_63_1 0 "false" 7 "true"
 
 encode C_63_1, gen (c_63_1) label (C_63_1)
 
@@ -2080,7 +2080,7 @@ drop C_63_10
 
 rename c_66_a (C_66_A)
 
-label define C_66_A 0 "false" 1 "true"
+label define C_66_A 0 "false" 7 "true"
 
 encode C_66_A, gen (c_66_a) label (C_66_A)
 
@@ -2088,7 +2088,7 @@ drop C_66_A
 
 rename c_67_a (C_67_A)
 
-label define C_67_A 0 "false" 1 "true"
+label define C_67_A 0 "false" 7 "true"
 
 encode C_67_A, gen (c_67_a) label (C_67_A)
 
@@ -2096,7 +2096,7 @@ drop C_67_A
 
 rename c_68_a (C_68_A)
 
-label define C_68_A 0 "false" 1 "true"
+label define C_68_A 0 "false" 7 "true"
 
 encode C_68_A, gen (c_68_a) label (C_68_A)
 
@@ -2104,7 +2104,7 @@ drop C_68_A
 
 rename c_77_a (C_77_A)
 
-label define C_77_A 0 "false" 1 "true"
+label define C_77_A 0 "false" 7 "true"
 
 encode C_77_A, gen (c_77_a) label (C_77_A)
 
@@ -2112,7 +2112,7 @@ drop C_77_A
 
 rename c_78_a (C_78_A)
 
-label define C_78_A 0 "false" 1 "true"
+label define C_78_A 0 "false" 7 "true"
 
 encode C_78_A, gen (c_78_a) label (C_78_A)
 

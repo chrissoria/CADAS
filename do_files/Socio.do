@@ -600,7 +600,7 @@ if !_rc{
      tostring S_6_5_C, replace
 }
 
-label define S_6_5_C .a"." 2 "un país en américa latina" 3 "canadá" 4 "españa" 5 "otro país europeo" 6 "otro" 
+label define S_6_5_C .a"." .c"cuba" 2 "un país en américa latina" 3 "canadá" 4 "españa" 5 "otro país europeo" 6 "otro" 
 
 encode S_6_5_C, gen(s_6_5_c) label (S_6_5_C)
 
