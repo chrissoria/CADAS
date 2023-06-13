@@ -3,9 +3,9 @@ set more off
 capture log close
 log using Cognitive, text replace
 
- cd "/hdir/0/chrissoria/Stata_CADAS/Data/Cog"
+ cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
  
-   insheet using "CognitiveChild.csv", comma names clear
+   insheet using "../CUBA_in/Cog_Child.csv", comma names clear
    
    ds, has(type string)
 
@@ -20,6 +20,8 @@ foreach var of local string_vars {
     drop `var'_trimmed
 
 }
+
+drop if inlist(globalrecordid, "eb91435b-3146-43fd-94d6-261a7e7526d2", "8bc87a48-a4a4-4972-b1c8-e2f990c602d9", "a3aaf799-a716-4f62-87fc-0e60b8ee398b", "7fe87507-a24f-4f5e-979b-51ad294b7122", "fcfc1f54-e392-4c0c-a523-6c744a33fcc7", "1040e8ce-1260-43fa-9010-e2e553b549a9")
 
 rename c_0 (C_0)
 
@@ -2650,6 +2652,7 @@ label variable c_82 "82. ¿Cómo es el alcance de oído/audición del participan
 label variable c_deviceid2 "Device ID:"
 
  save Cog.dta, replace
+ export excel using "Cognitive.xlsx", firstrow(variables) nolabel
  d
  sum
  list

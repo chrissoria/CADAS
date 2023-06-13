@@ -3,9 +3,9 @@ set more off
 capture log close
 log using Household, text replace
 
- cd "/hdir/0/chrissoria/Stata_CADAS/Data/House"
+ cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
  
-   insheet using "HouseholdChild.csv", comma names clear
+   insheet using "../CUBA_in/Household_Child.csv", comma names clear
    
    ds, has(type string)
 
@@ -20,6 +20,8 @@ foreach var of local string_vars {
     drop `var'_trimmed
 
 }
+
+drop if inlist(globalrecordid, "877e1f39-a477-4c9d-b11e-af9444311089", "154d9869-68a5-4450-9da6-9d2083777a20")
 
 rename h_3_1 (H_3_1)
 
@@ -4023,6 +4025,7 @@ label variable h_deviceid2 "Device ID:"
 
 
  save Household.dta, replace
+ export excel using "Household.xlsx", firstrow(variables) nolabel
  d
  sum
  list

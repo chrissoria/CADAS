@@ -3,9 +3,9 @@ set more off
 capture log close
 log using Phys_Exam, text replace
 
- cd "/hdir/0/chrissoria/Stata_CADAS/Data/Phys"
+ cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
  
-   insheet using "PhysicalExamChild.csv", comma names clear
+   insheet using "../CUBA_in/Phys_Child.csv", comma names clear
    
    ds, has(type string)
 
@@ -20,6 +20,7 @@ foreach var of local string_vars {
     drop `var'_trimmed
 
 }
+
 
 rename p2_1 (P2_1)
 
@@ -767,6 +768,7 @@ label variable p_deviceid2 "Device ID:"
 label variable p_deviceid2 "Device ID:"
 
  save Phys.dta, replace
+ export excel using "Physical_Exam.xlsx", firstrow(variables) nolabel
  d
  sum
  list

@@ -3,9 +3,9 @@ set more off
 capture log close
 log using Infor, text replace
 
- cd "/hdir/0/chrissoria/Stata_CADAS/Data/Info"
+ cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
  
-   insheet using "InformantChild.csv", comma names clear
+   insheet using "../CUBA_in/Infor_Child.csv", comma names clear
    
    ds, has(type string)
 
@@ -2191,9 +2191,8 @@ label variable i_lhas_54 "L.HAS.54 CLASIFICACIÓN GLOBAL DE LA CONFIANZA EN LOS 
 
 label variable i_deviceid2 "Device ID:"
 
-label variable i_deviceid2 "Device ID:"
-
  save Infor.dta, replace
+ export excel using "Informant.xlsx", firstrow(variables) nolabel
  d
  sum
  list
