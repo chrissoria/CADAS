@@ -23,6 +23,18 @@ foreach var of local string_vars {
 
 drop if inlist(globalrecordid, "877e1f39-a477-4c9d-b11e-af9444311089", "154d9869-68a5-4450-9da6-9d2083777a20")
 
+gen h_country_str = string(h_country, "%12.0f")
+
+gen h_clustid_str = string(h_clustid, "%12.0f")
+replace h_clustid_str = cond(strlen(h_clustid_str) == 1, "0" + h_clustid_str, h_clustid_str)
+
+gen h_houseid_str = string(h_houseid, "%03.0f")
+replace h_houseid_str = cond(strlen(h_houseid_str) == 1, "00" + h_houseid_str, h_clustid_str)
+replace h_houseid_str = cond(strlen(h_houseid_str) == 2, "0" + h_houseid_str, h_clustid_str)
+
+gen uniqid = h_country_str + h_clustid_str + h_houseid_str
+drop h_country_str h_clustid_str h_houseid_str
+
 rename h_3_1 (H_3_1)
 
 capture confirm numeric variable H_3_1
@@ -4025,7 +4037,7 @@ label variable h_deviceid2 "Device ID:"
 
 
  save Household.dta, replace
- export excel using "Household.xlsx", firstrow(variables) nolabel
+ export excel using "Household.xlsx", firstrow(variables) nolabel replace
  d
  sum
  list

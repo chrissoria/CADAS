@@ -21,6 +21,20 @@ foreach var of local string_vars {
 
 }
 
+gen p_country_str = string(p_country, "%12.0f")
+
+gen p_clustid_str = string(p_clustid, "%12.0f")
+replace p_clustid_str = cond(strlen(p_clustid_str) == 1, "0" + p_clustid_str, p_clustid_str)
+
+gen p_houseid_str = string(p_houseid, "%03.0f")
+replace p_houseid_str = cond(strlen(p_houseid_str) == 1, "00" + p_houseid_str, p_houseid_str)
+replace p_houseid_str = cond(strlen(p_houseid_str) == 2, "0" + p_houseid_str, p_houseid_str)
+
+gen p_particid_str = string(p_particid, "%12.0f")
+replace p_particid_str = cond(strlen(p_particid_str) == 1, "0" + p_particid_str, p_particid_str)
+
+gen uniqid = p_country_str + p_clustid_str + p_houseid_str + p_particid_str
+drop p_country_str p_clustid_str p_houseid_str p_particid_str
 
 rename p2_1 (P2_1)
 
@@ -768,7 +782,7 @@ label variable p_deviceid2 "Device ID:"
 label variable p_deviceid2 "Device ID:"
 
  save Phys.dta, replace
- export excel using "Physical_Exam.xlsx", firstrow(variables) nolabel
+ export excel using "Physical_Exam.xlsx", firstrow(variables) nolabel replace
  d
  sum
  list

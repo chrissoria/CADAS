@@ -23,6 +23,21 @@ foreach var of local string_vars {
 
 drop if inlist(globalrecordid, "eb91435b-3146-43fd-94d6-261a7e7526d2", "8bc87a48-a4a4-4972-b1c8-e2f990c602d9", "a3aaf799-a716-4f62-87fc-0e60b8ee398b", "7fe87507-a24f-4f5e-979b-51ad294b7122", "fcfc1f54-e392-4c0c-a523-6c744a33fcc7", "1040e8ce-1260-43fa-9010-e2e553b549a9")
 
+gen c_country_str = string(c_country, "%12.0f")
+
+gen c_clustid_str = string(c_clustid, "%12.0f")
+replace c_clustid_str = cond(strlen(c_clustid_str) == 1, "0" + c_clustid_str, c_clustid_str)
+
+gen c_houseid_str = string(c_houseid, "%03.0f")
+replace c_houseid_str = cond(strlen(c_houseid_str) == 1, "00" + c_houseid_str, c_houseid_str)
+replace c_houseid_str = cond(strlen(c_houseid_str) == 2, "0" + c_houseid_str, c_houseid_str)
+
+gen c_particid_str = string(c_particid, "%12.0f")
+replace c_particid_str = cond(strlen(c_particid_str) == 1, "0" + c_particid_str, c_particid_str)
+
+gen uniqid = c_country_str + c_clustid_str + c_houseid_str + c_particid_str
+drop c_country_str c_clustid_str c_houseid_str c_particid_str
+
 rename c_0 (C_0)
 
 capture confirm numeric variable C_0
@@ -2652,7 +2667,7 @@ label variable c_82 "82. ¿Cómo es el alcance de oído/audición del participan
 label variable c_deviceid2 "Device ID:"
 
  save Cog.dta, replace
- export excel using "Cognitive.xlsx", firstrow(variables) nolabel
+ export excel using "Cognitive.xlsx", firstrow(variables) nolabel replace
  d
  sum
  list
