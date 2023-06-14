@@ -21,6 +21,9 @@ foreach var of local string_vars {
 
 }
 
+drop if inlist(globalrecordid, "38ddf6b0-7465-425a-9534-1f042dbbe352", "985efbd2-5bd0-42c9-b9db-ca9205a8369d","70fa9041-5a26-4751-bf75-f9326e11a783", "99db8029-9609-4fb6-baac-852b38db7e36")
+drop if inlist(globalrecordid, "48135c80-626c-4114-b103-a8a32e5a86a2")
+
 gen p_country_str = string(p_country, "%12.0f")
 
 gen p_clustid_str = string(p_clustid, "%12.0f")
@@ -33,7 +36,7 @@ replace p_houseid_str = cond(strlen(p_houseid_str) == 2, "0" + p_houseid_str, p_
 gen p_particid_str = string(p_particid, "%12.0f")
 replace p_particid_str = cond(strlen(p_particid_str) == 1, "0" + p_particid_str, p_particid_str)
 
-gen uniqid = p_country_str + p_clustid_str + p_houseid_str + p_particid_str
+gen CADAS_ID = p_country_str + p_clustid_str + p_houseid_str + p_particid_str
 drop p_country_str p_clustid_str p_houseid_str p_particid_str
 
 rename p2_1 (P2_1)
@@ -786,5 +789,11 @@ label variable p_deviceid2 "Device ID:"
  d
  sum
  list
+ 
+ log close
+ 
+ log using Phys_Checks, text replace
+ 
+ tab CADAS_ID
  
  log close

@@ -33,7 +33,9 @@ replace i_houseid_str = cond(strlen(i_houseid_str) == 2, "0" + i_houseid_str, i_
 gen i_particid_str = string(i_particid, "%12.0f")
 replace i_particid_str = cond(strlen(i_particid_str) == 1, "0" + i_particid_str, i_particid_str)
 
-gen uniqid = i_country_str + i_clustid_str + i_houseid_str + i_particid_str
+gen CADAS_ID = i_country_str + i_clustid_str + i_houseid_str + i_particid_str
+gen CADAS_PLACE_ID = i_country_str + i_clustid_str + i_houseid_str
+
 drop i_country_str i_clustid_str i_houseid_str i_particid_str
 
 rename i_a2 (I_A2)
@@ -2211,5 +2213,11 @@ label variable i_deviceid2 "Device ID:"
  d
  sum
  list
+ 
+ log close
+ 
+ log using Infor_Checks, text replace
+ 
+ tab CADAS_ID
  
  log close
