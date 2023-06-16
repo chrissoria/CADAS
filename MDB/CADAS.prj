@@ -1,0 +1,7 @@
+<Project id="f217381a-2dfc-b16b-ba7e-6907921eb425" name="CADAS" location="C:\Users\super\OneDrive\Documents\CADAS\Old files" description="" schemaVersion="102" epiVersion="" createDate="06/15/2023 22:32:55" useMetadataDbForCollectedData="" useBackgroundOnAllPages="False">
+  <CollectedData>
+    <Database connectionString="zHDkaR2yI5Pbh2/LYHfZ7ljYKFwMFLb6TrxCvYEORi7csqJucXA0eUm4ILZ7oROET0aWVJSiw/Mh+3B51iM8kVH6PWIjTmj3u2cb4tlv+ibggCZFVla2c/SZG4aI32dZqYIBhPT44igW4fhZDF9B7j33ickjrcqRoFQpvtW2U80=" dataDriver="Epi.Data.Office.AccessDBFactory, Epi.Data.Office" />
+  </CollectedData>
+  <Metadata source="2" />
+  <EnterMakeviewInterpreter source="Epi.Core.EnterInterpreter" />
+</Project>
