@@ -1,0 +1,100 @@
+label define checkbox_label 0 "unchecked" 1 "checked", replace
+
+label values c_33_a checkbox_label
+
+label values c_33_1 checkbox_label
+
+label values c_33_2 checkbox_label
+
+label values c_33_3 checkbox_label
+
+label values c_33_4 checkbox_label
+
+label values c_33_5 checkbox_label
+
+label values c_33_6 checkbox_label
+
+label values c_33_7 checkbox_label
+
+label values c_33_8 checkbox_label
+
+label values c_33_9 checkbox_label
+
+label values c_33_10 checkbox_label
+
+label values c_34_a checkbox_label
+
+label values c_34_1 checkbox_label
+
+label values c_34_2 checkbox_label
+
+label values c_34_3 checkbox_label
+
+label values c_34_4 checkbox_label
+
+label values c_34_5 checkbox_label
+
+label values c_34_6 checkbox_label
+
+label values c_34_7 checkbox_label
+
+label values c_34_8 checkbox_label
+
+label values c_34_9 checkbox_label
+
+label values c_34_10 checkbox_label
+
+label values c_35_a checkbox_label
+
+label values c_35_1 checkbox_label
+
+label values c_35_2 checkbox_label
+
+label values c_35_3 checkbox_label
+
+label values c_35_4 checkbox_label
+
+label values c_35_5 checkbox_label
+
+label values c_35_6 checkbox_label
+
+label values c_35_7 checkbox_label
+
+label values c_35_8 checkbox_label
+
+label values c_35_9 checkbox_label
+
+label values c_35_10 checkbox_label
+
+label values c_63_a checkbox_label
+
+label values c_63_1 checkbox_label
+
+label values c_63_2 checkbox_label
+
+label values c_63_3 checkbox_label
+
+label values c_63_4 checkbox_label
+
+label values c_63_5 checkbox_label
+
+label values c_63_6 checkbox_label
+
+label values c_63_7 checkbox_label
+
+label values c_63_8 checkbox_label
+
+label values c_63_9 checkbox_label
+
+label values c_63_10 checkbox_label
+
+label values c_66_a checkbox_label
+
+label values c_67_a checkbox_label
+
+label values c_68_a checkbox_label
+
+label values c_77_a checkbox_label
+
+label values c_78_a checkbox_label
+

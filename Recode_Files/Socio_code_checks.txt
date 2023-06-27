@@ -6,6 +6,8 @@ encode S_7_7a, gen (s_7_7a) label (S_7_7a)
 
 drop S_7_7a
 
+label values s_7_7a checkbox_label
+
 rename s_7_7b (S_7_7b)
 
 label define S_7_7b 0 "false" 1 "true"
@@ -13,6 +15,8 @@ label define S_7_7b 0 "false" 1 "true"
 encode S_7_7b, gen (s_7_7b) label (S_7_7b)
 
 drop S_7_7b
+
+label values s_7_7b checkbox_label
 
 rename s_7_7c (S_7_7c)
 
@@ -22,6 +26,8 @@ encode S_7_7c, gen (s_7_7c) label (S_7_7c)
 
 drop S_7_7c
 
+label values s_7_7c checkbox_label
+
 rename s_7_7d (S_7_7d)
 
 label define S_7_7d 0 "false" 1 "true"
@@ -29,6 +35,8 @@ label define S_7_7d 0 "false" 1 "true"
 encode S_7_7d, gen (s_7_7d) label (S_7_7d)
 
 drop S_7_7d
+
+label values s_7_7d checkbox_label
 
 rename s_7_7e (S_7_7e)
 
@@ -38,6 +46,8 @@ encode S_7_7e, gen (s_7_7e) label (S_7_7e)
 
 drop S_7_7e
 
+label values s_7_7e checkbox_label
+
 rename s_7_7f (S_7_7f)
 
 label define S_7_7f 0 "false" 1 "true"
@@ -45,6 +55,8 @@ label define S_7_7f 0 "false" 1 "true"
 encode S_7_7f, gen (s_7_7f) label (S_7_7f)
 
 drop S_7_7f
+
+label values s_7_7f checkbox_label
 
 rename s_7_7g (S_7_7g)
 
@@ -54,6 +66,8 @@ encode S_7_7g, gen (s_7_7g) label (S_7_7g)
 
 drop S_7_7g
 
+label values s_7_7g checkbox_label
+
 rename s_7_7h (S_7_7h)
 
 label define S_7_7h 0 "false" 1 "true"
@@ -61,6 +75,8 @@ label define S_7_7h 0 "false" 1 "true"
 encode S_7_7h, gen (s_7_7h) label (S_7_7h)
 
 drop S_7_7h
+
+label values s_7_7h checkbox_label
 
 rename s_7_7i (S_7_7i)
 
@@ -70,6 +86,8 @@ encode S_7_7i, gen (s_7_7i) label (S_7_7i)
 
 drop S_7_7i
 
+label values s_7_7i checkbox_label
+
 rename s_7_7j (S_7_7j)
 
 label define S_7_7j 0 "false" 1 "true"
@@ -77,6 +95,8 @@ label define S_7_7j 0 "false" 1 "true"
 encode S_7_7j, gen (s_7_7j) label (S_7_7j)
 
 drop S_7_7j
+
+label values s_7_7j checkbox_label
 
 rename s_7_7k (S_7_7k)
 
@@ -86,6 +106,8 @@ encode S_7_7k, gen (s_7_7k) label (S_7_7k)
 
 drop S_7_7k
 
+label values s_7_7k checkbox_label
+
 rename s_8_5b2 (S_8_5b2)
 
 label define S_8_5b2 0 "false" 1 "true"
@@ -93,6 +115,8 @@ label define S_8_5b2 0 "false" 1 "true"
 encode S_8_5b2, gen (s_8_5b2) label (S_8_5b2)
 
 drop S_8_5b2
+
+label values s_8_5b2 checkbox_label
 
 rename s_8_5b1 (S_8_5b1)
 
@@ -102,6 +126,8 @@ encode S_8_5b1, gen (s_8_5b1) label (S_8_5b1)
 
 drop S_8_5b1
 
+label values s_8_5b1 checkbox_label
+
 rename s_8_5b4 (S_8_5b4)
 
 label define S_8_5b4 0 "false" 1 "true"
@@ -109,6 +135,8 @@ label define S_8_5b4 0 "false" 1 "true"
 encode S_8_5b4, gen (s_8_5b4) label (S_8_5b4)
 
 drop S_8_5b4
+
+label values s_8_5b4 checkbox_label
 
 rename s_8_5b3 (S_8_5b3)
 
@@ -118,6 +146,8 @@ encode S_8_5b3, gen (s_8_5b3) label (S_8_5b3)
 
 drop S_8_5b3
 
+label values s_8_5b3 checkbox_label
+
 rename s_8_5b5 (S_8_5b5)
 
 label define S_8_5b5 0 "false" 1 "true"
@@ -125,6 +155,8 @@ label define S_8_5b5 0 "false" 1 "true"
 encode S_8_5b5, gen (s_8_5b5) label (S_8_5b5)
 
 drop S_8_5b5
+
+label values s_8_5b5 checkbox_label
 
 rename s_8_5b6 (S_8_5b6)
 
@@ -134,6 +166,8 @@ encode S_8_5b6, gen (s_8_5b6) label (S_8_5b6)
 
 drop S_8_5b6
 
+label values s_8_5b6 checkbox_label
+
 rename s_8_5b7 (S_8_5b7)
 
 label define S_8_5b7 0 "false" 1 "true"
@@ -141,6 +175,8 @@ label define S_8_5b7 0 "false" 1 "true"
 encode S_8_5b7, gen (s_8_5b7) label (S_8_5b7)
 
 drop S_8_5b7
+
+label values s_8_5b7 checkbox_label
 
 rename s_8_5b8 (S_8_5b8)
 
@@ -150,6 +186,8 @@ encode S_8_5b8, gen (s_8_5b8) label (S_8_5b8)
 
 drop S_8_5b8
 
+label values s_8_5b8 checkbox_label
+
 rename s_8_5b9 (S_8_5b9)
 
 label define S_8_5b9 0 "false" 1 "true"
@@ -157,6 +195,8 @@ label define S_8_5b9 0 "false" 1 "true"
 encode S_8_5b9, gen (s_8_5b9) label (S_8_5b9)
 
 drop S_8_5b9
+
+label values s_8_5b9 checkbox_label
 
 rename s_8_5b10 (S_8_5b10)
 
@@ -166,6 +206,8 @@ encode S_8_5b10, gen (s_8_5b10) label (S_8_5b10)
 
 drop S_8_5b10
 
+label values s_8_5b10 checkbox_label
+
 rename s_9_38a (S_9_38a)
 
 label define S_9_38a 0 "false" 1 "true"
@@ -173,6 +215,8 @@ label define S_9_38a 0 "false" 1 "true"
 encode S_9_38a, gen (s_9_38a) label (S_9_38a)
 
 drop S_9_38a
+
+label values s_9_38a checkbox_label
 
 rename s_9_38g (S_9_38g)
 
@@ -182,6 +226,8 @@ encode S_9_38g, gen (s_9_38g) label (S_9_38g)
 
 drop S_9_38g
 
+label values s_9_38g checkbox_label
+
 rename s_9_38b (S_9_38b)
 
 label define S_9_38b 0 "false" 1 "true"
@@ -189,6 +235,8 @@ label define S_9_38b 0 "false" 1 "true"
 encode S_9_38b, gen (s_9_38b) label (S_9_38b)
 
 drop S_9_38b
+
+label values s_9_38b checkbox_label
 
 rename s_9_38f (S_9_38f)
 
@@ -198,6 +246,8 @@ encode S_9_38f, gen (s_9_38f) label (S_9_38f)
 
 drop S_9_38f
 
+label values s_9_38f checkbox_label
+
 rename s_9_38c (S_9_38c)
 
 label define S_9_38c 0 "false" 1 "true"
@@ -205,6 +255,8 @@ label define S_9_38c 0 "false" 1 "true"
 encode S_9_38c, gen (s_9_38c) label (S_9_38c)
 
 drop S_9_38c
+
+label values s_9_38c checkbox_label
 
 rename s_9_38d (S_9_38d)
 
@@ -214,6 +266,8 @@ encode S_9_38d, gen (s_9_38d) label (S_9_38d)
 
 drop S_9_38d
 
+label values s_9_38d checkbox_label
+
 rename s_9_38j (S_9_38j)
 
 label define S_9_38j 0 "false" 1 "true"
@@ -221,6 +275,8 @@ label define S_9_38j 0 "false" 1 "true"
 encode S_9_38j, gen (s_9_38j) label (S_9_38j)
 
 drop S_9_38j
+
+label values s_9_38j checkbox_label
 
 rename s_9_38e (S_9_38e)
 
@@ -230,6 +286,8 @@ encode S_9_38e, gen (s_9_38e) label (S_9_38e)
 
 drop S_9_38e
 
+label values s_9_38e checkbox_label
+
 rename s_9_38k (S_9_38k)
 
 label define S_9_38k 0 "false" 1 "true"
@@ -237,6 +295,8 @@ label define S_9_38k 0 "false" 1 "true"
 encode S_9_38k, gen (s_9_38k) label (S_9_38k)
 
 drop S_9_38k
+
+label values s_9_38k checkbox_label
 
 rename s_9_38h (S_9_38h)
 
@@ -246,6 +306,8 @@ encode S_9_38h, gen (s_9_38h) label (S_9_38h)
 
 drop S_9_38h
 
+label values s_9_38h checkbox_label
+
 rename s_9_38l (S_9_38l)
 
 label define S_9_38l 0 "false" 1 "true"
@@ -253,6 +315,8 @@ label define S_9_38l 0 "false" 1 "true"
 encode S_9_38l, gen (s_9_38l) label (S_9_38l)
 
 drop S_9_38l
+
+label values s_9_38l checkbox_label
 
 rename s_9_38i (S_9_38i)
 
@@ -262,6 +326,8 @@ encode S_9_38i, gen (s_9_38i) label (S_9_38i)
 
 drop S_9_38i
 
+label values s_9_38i checkbox_label
+
 rename s_14_2a_p (S_14_2a_P)
 
 label define S_14_2a_P 0 "false" 1 "true"
@@ -269,6 +335,8 @@ label define S_14_2a_P 0 "false" 1 "true"
 encode S_14_2a_P, gen (s_14_2a_p) label (S_14_2a_P)
 
 drop S_14_2a_P
+
+label values s_14_2a_p checkbox_label
 
 rename s_14_1b_p (S_14_1b_P)
 
@@ -278,6 +346,8 @@ encode S_14_1b_P, gen (s_14_1b_p) label (S_14_1b_P)
 
 drop S_14_1b_P
 
+label values s_14_1b_p checkbox_label
+
 rename s_14_2c_p (S_14_2c_P)
 
 label define S_14_2c_P 0 "false" 1 "true"
@@ -285,6 +355,8 @@ label define S_14_2c_P 0 "false" 1 "true"
 encode S_14_2c_P, gen (s_14_2c_p) label (S_14_2c_P)
 
 drop S_14_2c_P
+
+label values s_14_2c_p checkbox_label
 
 rename s_14_2d_p (S_14_2d_P)
 
@@ -294,6 +366,8 @@ encode S_14_2d_P, gen (s_14_2d_p) label (S_14_2d_P)
 
 drop S_14_2d_P
 
+label values s_14_2d_p checkbox_label
+
 rename s_14_2e_p (S_14_2e_P)
 
 label define S_14_2e_P 0 "false" 1 "true"
@@ -301,6 +375,8 @@ label define S_14_2e_P 0 "false" 1 "true"
 encode S_14_2e_P, gen (s_14_2e_p) label (S_14_2e_P)
 
 drop S_14_2e_P
+
+label values s_14_2e_p checkbox_label
 
 rename s_14_2f_p (S_14_2f_P)
 
@@ -310,6 +386,8 @@ encode S_14_2f_P, gen (s_14_2f_p) label (S_14_2f_P)
 
 drop S_14_2f_P
 
+label values s_14_2f_p checkbox_label
+
 rename s_14_2g_p (S_14_2g_P)
 
 label define S_14_2g_P 0 "false" 1 "true"
@@ -317,6 +395,8 @@ label define S_14_2g_P 0 "false" 1 "true"
 encode S_14_2g_P, gen (s_14_2g_p) label (S_14_2g_P)
 
 drop S_14_2g_P
+
+label values s_14_2g_p checkbox_label
 
 rename s_14_2h_p (S_14_2h_P)
 
@@ -326,6 +406,8 @@ encode S_14_2h_P, gen (s_14_2h_p) label (S_14_2h_P)
 
 drop S_14_2h_P
 
+label values s_14_2h_p checkbox_label
+
 rename s_14_2i_p (S_14_2i_P)
 
 label define S_14_2i_P 0 "false" 1 "true"
@@ -333,6 +415,8 @@ label define S_14_2i_P 0 "false" 1 "true"
 encode S_14_2i_P, gen (s_14_2i_p) label (S_14_2i_P)
 
 drop S_14_2i_P
+
+label values s_14_2i_p checkbox_label
 
 rename s_14_2j_p (S_14_2j_P)
 
@@ -342,6 +426,8 @@ encode S_14_2j_P, gen (s_14_2j_p) label (S_14_2j_P)
 
 drop S_14_2j_P
 
+label values s_14_2j_p checkbox_label
+
 rename s_14_2a_d (S_14_2a_D)
 
 label define S_14_2a_D 0 "false" 1 "true"
@@ -349,6 +435,8 @@ label define S_14_2a_D 0 "false" 1 "true"
 encode S_14_2a_D, gen (s_14_2a_d) label (S_14_2a_D)
 
 drop S_14_2a_D
+
+label values s_14_2a_d checkbox_label
 
 rename s_14_2b_d (S_14_2b_D)
 
@@ -358,6 +446,8 @@ encode S_14_2b_D, gen (s_14_2b_d) label (S_14_2b_D)
 
 drop S_14_2b_D
 
+label values s_14_2b_d checkbox_label
+
 rename s_14_2c_d (S_14_2c_D)
 
 label define S_14_2c_D 0 "false" 1 "true"
@@ -365,6 +455,8 @@ label define S_14_2c_D 0 "false" 1 "true"
 encode S_14_2c_D, gen (s_14_2c_d) label (S_14_2c_D)
 
 drop S_14_2c_D
+
+label values s_14_2c_d checkbox_label
 
 rename s_14_2d_d (S_14_2d_D)
 
@@ -374,6 +466,8 @@ encode S_14_2d_D, gen (s_14_2d_d) label (S_14_2d_D)
 
 drop S_14_2d_D
 
+label values s_14_2d_d checkbox_label
+
 rename s_14_2e_d (S_14_2e_D)
 
 label define S_14_2e_D 0 "false" 1 "true"
@@ -381,6 +475,8 @@ label define S_14_2e_D 0 "false" 1 "true"
 encode S_14_2e_D, gen (s_14_2e_d) label (S_14_2e_D)
 
 drop S_14_2e_D
+
+label values s_14_2e_d checkbox_label
 
 rename s_14_2f_d (S_14_2f_D)
 
@@ -390,6 +486,8 @@ encode S_14_2f_D, gen (s_14_2f_d) label (S_14_2f_D)
 
 drop S_14_2f_D
 
+label values s_14_2f_d checkbox_label
+
 rename s_14_2g_d (S_14_2g_D)
 
 label define S_14_2g_D 0 "false" 1 "true"
@@ -397,4 +495,6 @@ label define S_14_2g_D 0 "false" 1 "true"
 encode S_14_2g_D, gen (s_14_2g_d) label (S_14_2g_D)
 
 drop S_14_2g_D
+
+label values s_14_2g_d checkbox_label
 

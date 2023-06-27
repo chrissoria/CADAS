@@ -35,8 +35,8 @@ replace c_houseid_str = cond(strlen(c_houseid_str) == 2, "0" + c_houseid_str, c_
 gen c_particid_str = string(c_particid, "%12.0f")
 replace c_particid_str = cond(strlen(c_particid_str) == 1, "0" + c_particid_str, c_particid_str)
 
-gen CADAS_ID = c_country_str + c_clustid_str + c_houseid_str + c_particid_str
-gen CADAS_PLACE_ID = c_country_str + c_clustid_str + c_houseid_str
+gen personid = c_country_str + c_clustid_str + c_houseid_str + c_particid_str
+gen c_placeid = c_country_str + c_clustid_str + c_houseid_str
 drop c_country_str c_clustid_str c_houseid_str c_particid_str
 
 rename c_0 (C_0)
@@ -2667,16 +2667,110 @@ label variable c_82 "82. ¿Cómo es el alcance de oído/audición del participan
 
 label variable c_deviceid2 "Device ID:"
 
+label define checkbox_label 0 "unchecked" 1 "checked", replace
+
+label values c_33_a checkbox_label
+
+label values c_33_1 checkbox_label
+
+label values c_33_2 checkbox_label
+
+label values c_33_3 checkbox_label
+
+label values c_33_4 checkbox_label
+
+label values c_33_5 checkbox_label
+
+label values c_33_6 checkbox_label
+
+label values c_33_7 checkbox_label
+
+label values c_33_8 checkbox_label
+
+label values c_33_9 checkbox_label
+
+label values c_33_10 checkbox_label
+
+label values c_34_a checkbox_label
+
+label values c_34_1 checkbox_label
+
+label values c_34_2 checkbox_label
+
+label values c_34_3 checkbox_label
+
+label values c_34_4 checkbox_label
+
+label values c_34_5 checkbox_label
+
+label values c_34_6 checkbox_label
+
+label values c_34_7 checkbox_label
+
+label values c_34_8 checkbox_label
+
+label values c_34_9 checkbox_label
+
+label values c_34_10 checkbox_label
+
+label values c_35_a checkbox_label
+
+label values c_35_1 checkbox_label
+
+label values c_35_2 checkbox_label
+
+label values c_35_3 checkbox_label
+
+label values c_35_4 checkbox_label
+
+label values c_35_5 checkbox_label
+
+label values c_35_6 checkbox_label
+
+label values c_35_7 checkbox_label
+
+label values c_35_8 checkbox_label
+
+label values c_35_9 checkbox_label
+
+label values c_35_10 checkbox_label
+
+label values c_63_a checkbox_label
+
+label values c_63_1 checkbox_label
+
+label values c_63_2 checkbox_label
+
+label values c_63_3 checkbox_label
+
+label values c_63_4 checkbox_label
+
+label values c_63_5 checkbox_label
+
+label values c_63_6 checkbox_label
+
+label values c_63_7 checkbox_label
+
+label values c_63_8 checkbox_label
+
+label values c_63_9 checkbox_label
+
+label values c_63_10 checkbox_label
+
+label values c_66_a checkbox_label
+
+label values c_67_a checkbox_label
+
+label values c_68_a checkbox_label
+
+label values c_77_a checkbox_label
+
+label values c_78_a checkbox_label
+
  save Cog.dta, replace
  export excel using "Cognitive.xlsx", firstrow(variables) nolabel replace
  d
  sum
  list
- 
- log close
- 
- log using Cog_Checks, text replace
- 
- tab CADAS_ID
  
  log close

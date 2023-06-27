@@ -27,6 +27,9 @@ drop if inlist(globalrecordid, "e6a08058-b663-467b-a8fe-808fa9092300", "b8a6b8c6
 drop if inlist(globalrecordid, "0de6bf32-7dbd-4a95-9ab0-989213e5a210")
 gen s_country_str = string(s_country, "%12.0f")
 
+*is dropped because duplicate personid and less complete
+drop if inlist(globalrecordid, "9d73f0c1-9b16-4731-afc1-8f059b174d6f")
+
 gen s_clustid_str = string(s_clustid, "%12.0f")
 replace s_clustid_str = cond(strlen(s_clustid_str) == 1, "0" + s_clustid_str, s_clustid_str)
 
@@ -37,7 +40,8 @@ replace s_houseid_str = cond(strlen(s_houseid_str) == 2, "0" + s_houseid_str, s_
 gen s_particid_str = string(s_particid, "%12.0f")
 replace s_particid_str = cond(strlen(s_particid_str) == 1, "0" + s_particid_str, s_particid_str)
 
-gen CADAS_ID = s_country_str + s_clustid_str + s_houseid_str + s_particid_str
+gen personid = s_country_str + s_clustid_str + s_houseid_str + s_particid_str
+gen s_placeid = s_country_str + s_clustid_str + s_houseid_str
 drop s_country_str s_clustid_str s_houseid_str s_particid_str
 
 rename s_1_1_p (S_1_1_P)
@@ -2455,6 +2459,8 @@ if !_rc{
 
 label define S_15_3 .a"." 0 "razonable (el entrevistado respondió de manera apropiada a más o menos a todas las preguntas)" 1 "algunas dudas" 2 "moderadas dudas" 3 "graves dudas (el entrevistador consideró que el entrevistado fue incapaz o no cooperó en responder de manera apropiada a la mayoría de las preguntas)" 4 "sin valor alguno (las preguntas fueron respondidas al azar)" 
 
+*addressing checkboxes below
+
 encode S_15_3, gen(s_15_3) label (S_15_3)
 
 rename s_7_7a (S_7_7a)
@@ -2733,7 +2739,8 @@ rename s_14_1b_p (S_14_1b_P)
 
 label define S_14_1b_P 0 "false" 1 "true"
 
-encode S_14_1b_P, gen (s_14_1b_p) label (S_14_1b_P)
+encode S_14_1b_P, gen (s_14_2b_p) label (S_14_1b_P) 
+*we renamed this because it was incorrect in the DD and tablet
 
 drop S_14_1b_P
 
@@ -2879,7 +2886,7 @@ label values s_6_7 S_6_7
 
 *reorder
 
-order s_interid s_houseid s_particid s_clustid s_country s_houseid2 s_conglid2 s_particid2 s_sex s_deviceid1 s_1_1_p s_1_1_d s_1_1_c s_1_2 s_2_3 s_2_8c s_2_9 s_2_9a s_2_10 s_2_11 s_2_12 s_2_13 s_2_14_p s_2_14_d s_2_14_c s_2_15_p s_2_15_d s_2_15_c s_2_16 s_3_0 s_3_1_p s_3_1_d s_3_1_c s_3_2 s_3_3_p s_3_3_d s_3_3_c s_3_4 s_3_5 s_3_6 s_3_7 s_3_8 s_3_9 s_3_11 s_3_12_1 s_3_12_2 s_3_12_3 s_3_12_6 s_3_12_8 s_3_13 s_3_17 s_3_18 s_3_19_1 s_3_19_2 s_4_1 s_4_2 s_4_3 s_4_6 s_4_7 s_4_8 s_4_11 s_4_12 s_4_13 s_4_16 s_4_17 s_4_18 s_4_20 s_4_21 s_4_22 s_4_23_1 s_4_23_2 s_4_26 s_4_27_1 s_4_27_2 s_4_27a s_4_28 s_4_29_1 s_4_29_2 s_4_29a s_5_1 s_5_2 s_5_3 s_5_4 s_5_5 s_6_1 s_6_2 s_6_3 s_6_4 s_6_5_p s_6_5_d s_6_5_c s_6_6 s_6_7 s_7_0 s_7_1 s_7_2a s_7_2b s_7_2c s_7_3 s_7_4a s_7_4b s_7_4c s_7_5a s_7_5b s_7_5c s_7_6a s_7_6b s_7_7a s_7_7b s_7_7c s_7_7d s_7_7e s_7_7f s_7_7g s_7_7h s_7_7i s_7_7j s_7_7k s_8_1 s_8_2 s_8_3 s_8_3a s_8_4 s_8_5a s_8_5b2 s_8_5b1 s_8_5b4 s_8_5b3 s_8_5b5 s_8_5b6 s_8_5b7 s_8_5b8 s_8_5b9 s_8_5b10 s_8_5c s_8_5d s_8_7 s_8_8 s_8_9 s_8_10 s_8_11 s_8_12 s_8_13 s_8_14 s_8_15 s_8_16 s_9_1 s_9_3 s_9_4 s_9_5 s_9_6 s_9_7 s_9_8 s_9_9 s_9_11 s_9_13 s_9_14 s_9_15 s_9_16 s_9_17 s_9_18 s_9_19 s_9_20 s_9_21a s_9_21b s_9_22 s_9_23 s_9_24 s_9_25 s_9_26 s_9_28 s_9_29 s_9_30 s_9_31 s_9_32 s_9_33 s_9_35 s_9_36 s_9_37 s_9_38a s_9_38g s_9_38b s_9_38f s_9_38c s_9_38d s_9_38j s_9_38e s_9_38k s_9_38h s_9_38l s_9_38i s_9_39 s_9_40 s_9_41 s_9_42 s_9_43a s_9_44 s_9_45a s_9_46 s_9_47 s_9_48 s_9_49 s_9_50 s_9_51 s_9_52 s_9_53 s_9_54 s_9_55 s_9_56 s_9_57 s_9_58 s_9_59 s_9_60 s_9_61 s_9_61a s_9_62 s_9_63 s_9_64_1 s_9_64_2 s_9_64_3 s_9_64_4 s_9_65 s_9_66 s_10_1a s_10_1b s_10_1c s_10_1d s_10_1e s_10_1f s_10_1g s_10_1h s_10_2 s_10_3 s_10_4 s_10_5 s_10_6_1 s_10_6_1a s_10_6_2 s_10_6_2a s_10_6_3 s_10_6_3a s_10_6_4 s_10_6_4a s_10_7_1 s_10_7_2 s_11_1 s_11_2 s_11_3 s_12_1a s_12_1b s_12_1c s_12_2a s_12_2c s_12_3a s_12_3c s_12_4a s_12_4b s_12_4c s_12_5a s_12_5c s_12_6a s_12_6c s_12_7 s_12_8 s_12_9 s_12_10 s_12_11 s_12_13 s_12_14 s_12_15 s_12_16 s_13_1_p_c s_13_1_d s_13_2 s_13_3_p_c s_13_3_d s_13_4 s_13_5 s_13_6_p_c s_13_6_d s_13_7_p_c s_13_7_d s_13_8 s_13_9 s_13_10 s_13_11 s_13_12 s_13_13 s_13_14 s_13_15 s_13_16 s_13_17 s_13_18 s_13_19 s_13_20 s_13_22 s_13_23_p s_13_23_d_c s_13_24 s_13_25_d_c s_13_25_p s_13_26 s_13_27_d_c s_13_27_p s_13_28 s_13_29 s_13_30_d_c s_13_30_p s_14_1_p_d s_14_2a_p s_14_1b_p s_14_2c_p s_14_2d_p s_14_2e_p s_14_2f_p s_14_2g_p s_14_2h_p s_14_2i_p s_14_2j_p s_14_2a_d s_14_2b_d s_14_2c_d s_14_2d_d s_14_2e_d s_14_2f_d s_14_2g_d s_14_3 s_14_4 s_14_5 s_14_6 s_14_8 s_14_9 s_14_11 s_14_12 s_14_13 s_14_14 s_14_15 s_14_16 s_14_17 s_14_18_1 s_14_18_2 s_14_18_3 s_14_18_4 s_14_18_5 s_14_18_6 s_14_20 s_14_22 s_14_23 s_14_24 s_14_25 s_14_30a s_14_30b1_p s_14_30b1_d s_14_30b2_p s_14_30b2_d s_14_30b3_p s_14_30b3_d s_14_31 s_14_32 s_14_33 s_15_1 s_15_2 s_15_3 s_deviceid2
+order s_interid s_houseid s_particid s_clustid s_country s_houseid2 s_conglid2 s_particid2 s_sex s_deviceid1 s_1_1_p s_1_1_d s_1_1_c s_1_2 s_2_3 s_2_8c s_2_9 s_2_9a s_2_10 s_2_11 s_2_12 s_2_13 s_2_14_p s_2_14_d s_2_14_c s_2_15_p s_2_15_d s_2_15_c s_2_16 s_3_0 s_3_1_p s_3_1_d s_3_1_c s_3_2 s_3_3_p s_3_3_d s_3_3_c s_3_4 s_3_5 s_3_6 s_3_7 s_3_8 s_3_9 s_3_11 s_3_12_1 s_3_12_2 s_3_12_3 s_3_12_6 s_3_12_8 s_3_13 s_3_17 s_3_18 s_3_19_1 s_3_19_2 s_4_1 s_4_2 s_4_3 s_4_6 s_4_7 s_4_8 s_4_11 s_4_12 s_4_13 s_4_16 s_4_17 s_4_18 s_4_20 s_4_21 s_4_22 s_4_23_1 s_4_23_2 s_4_26 s_4_27_1 s_4_27_2 s_4_27a s_4_28 s_4_29_1 s_4_29_2 s_4_29a s_5_1 s_5_2 s_5_3 s_5_4 s_5_5 s_6_1 s_6_2 s_6_3 s_6_4 s_6_5_p s_6_5_d s_6_5_c s_6_6 s_6_7 s_7_0 s_7_1 s_7_2a s_7_2b s_7_2c s_7_3 s_7_4a s_7_4b s_7_4c s_7_5a s_7_5b s_7_5c s_7_6a s_7_6b s_7_7a s_7_7b s_7_7c s_7_7d s_7_7e s_7_7f s_7_7g s_7_7h s_7_7i s_7_7j s_7_7k s_8_1 s_8_2 s_8_3 s_8_3a s_8_4 s_8_5a s_8_5b2 s_8_5b1 s_8_5b4 s_8_5b3 s_8_5b5 s_8_5b6 s_8_5b7 s_8_5b8 s_8_5b9 s_8_5b10 s_8_5c s_8_5d s_8_7 s_8_8 s_8_9 s_8_10 s_8_11 s_8_12 s_8_13 s_8_14 s_8_15 s_8_16 s_9_1 s_9_3 s_9_4 s_9_5 s_9_6 s_9_7 s_9_8 s_9_9 s_9_11 s_9_13 s_9_14 s_9_15 s_9_16 s_9_17 s_9_18 s_9_19 s_9_20 s_9_21a s_9_21b s_9_22 s_9_23 s_9_24 s_9_25 s_9_26 s_9_28 s_9_29 s_9_30 s_9_31 s_9_32 s_9_33 s_9_35 s_9_36 s_9_37 s_9_38a s_9_38g s_9_38b s_9_38f s_9_38c s_9_38d s_9_38j s_9_38e s_9_38k s_9_38h s_9_38l s_9_38i s_9_39 s_9_40 s_9_41 s_9_42 s_9_43a s_9_44 s_9_45a s_9_46 s_9_47 s_9_48 s_9_49 s_9_50 s_9_51 s_9_52 s_9_53 s_9_54 s_9_55 s_9_56 s_9_57 s_9_58 s_9_59 s_9_60 s_9_61 s_9_61a s_9_62 s_9_63 s_9_64_1 s_9_64_2 s_9_64_3 s_9_64_4 s_9_65 s_9_66 s_10_1a s_10_1b s_10_1c s_10_1d s_10_1e s_10_1f s_10_1g s_10_1h s_10_2 s_10_3 s_10_4 s_10_5 s_10_6_1 s_10_6_1a s_10_6_2 s_10_6_2a s_10_6_3 s_10_6_3a s_10_6_4 s_10_6_4a s_10_7_1 s_10_7_2 s_11_1 s_11_2 s_11_3 s_12_1a s_12_1b s_12_1c s_12_2a s_12_2c s_12_3a s_12_3c s_12_4a s_12_4b s_12_4c s_12_5a s_12_5c s_12_6a s_12_6c s_12_7 s_12_8 s_12_9 s_12_10 s_12_11 s_12_13 s_12_14 s_12_15 s_12_16 s_13_1_p_c s_13_1_d s_13_2 s_13_3_p_c s_13_3_d s_13_4 s_13_5 s_13_6_p_c s_13_6_d s_13_7_p_c s_13_7_d s_13_8 s_13_9 s_13_10 s_13_11 s_13_12 s_13_13 s_13_14 s_13_15 s_13_16 s_13_17 s_13_18 s_13_19 s_13_20 s_13_22 s_13_23_p s_13_23_d_c s_13_24 s_13_25_d_c s_13_25_p s_13_26 s_13_27_d_c s_13_27_p s_13_28 s_13_29 s_13_30_d_c s_13_30_p s_14_1_p_d s_14_2a_p s_14_2b_p s_14_2c_p s_14_2d_p s_14_2e_p s_14_2f_p s_14_2g_p s_14_2h_p s_14_2i_p s_14_2j_p s_14_2a_d s_14_2b_d s_14_2c_d s_14_2d_d s_14_2e_d s_14_2f_d s_14_2g_d s_14_3 s_14_4 s_14_5 s_14_6 s_14_8 s_14_9 s_14_11 s_14_12 s_14_13 s_14_14 s_14_15 s_14_16 s_14_17 s_14_18_1 s_14_18_2 s_14_18_3 s_14_18_4 s_14_18_5 s_14_18_6 s_14_20 s_14_22 s_14_23 s_14_24 s_14_25 s_14_30a s_14_30b1_p s_14_30b1_d s_14_30b2_p s_14_30b2_d s_14_30b3_p s_14_30b3_d s_14_31 s_14_32 s_14_33 s_15_1 s_15_2 s_15_3 s_deviceid2
 
 *convert missing comment legal and text values to string
 
@@ -3555,7 +3562,7 @@ label variable s_14_1_p_d "14.1 ¿Tiene usted plan médico?"
 
 label variable s_14_2a_p "Tarjeta del Gobierno, Mi salud o Vital"
 
-label variable s_14_1b_p "Medicare parte A"
+label variable s_14_2b_p "Medicare parte A"
 
 label variable s_14_2c_p "Medicare parte B"
 
@@ -3663,17 +3670,116 @@ label variable s_15_3 "15.3 Confianza general en los datos"
 
 label variable s_deviceid2 "Device ID:"
 
+*here we are renaming all checkboxes to checked/unchecked
+
+label define checkbox_label 0 "unchecked" 1 "checked", replace
+
+label values s_7_7a checkbox_label
+
+label values s_7_7b checkbox_label
+
+label values s_7_7c checkbox_label
+
+label values s_7_7d checkbox_label
+
+label values s_7_7e checkbox_label
+
+label values s_7_7f checkbox_label
+
+label values s_7_7g checkbox_label
+
+label values s_7_7h checkbox_label
+
+label values s_7_7i checkbox_label
+
+label values s_7_7j checkbox_label
+
+label values s_7_7k checkbox_label
+
+label values s_8_5b2 checkbox_label
+
+label values s_8_5b1 checkbox_label
+
+label values s_8_5b4 checkbox_label
+
+label values s_8_5b3 checkbox_label
+
+label values s_8_5b5 checkbox_label
+
+label values s_8_5b6 checkbox_label
+
+label values s_8_5b7 checkbox_label
+
+label values s_8_5b8 checkbox_label
+
+label values s_8_5b9 checkbox_label
+
+label values s_8_5b10 checkbox_label
+
+label values s_9_38a checkbox_label
+
+label values s_9_38g checkbox_label
+
+label values s_9_38b checkbox_label
+
+label values s_9_38f checkbox_label
+
+label values s_9_38c checkbox_label
+
+label values s_9_38d checkbox_label
+
+label values s_9_38j checkbox_label
+
+label values s_9_38e checkbox_label
+
+label values s_9_38k checkbox_label
+
+label values s_9_38h checkbox_label
+
+label values s_9_38l checkbox_label
+
+label values s_9_38i checkbox_label
+
+label values s_14_2a_p checkbox_label
+
+label values s_14_1b_p checkbox_label
+
+label values s_14_2c_p checkbox_label
+
+label values s_14_2d_p checkbox_label
+
+label values s_14_2e_p checkbox_label
+
+label values s_14_2f_p checkbox_label
+
+label values s_14_2g_p checkbox_label
+
+label values s_14_2h_p checkbox_label
+
+label values s_14_2i_p checkbox_label
+
+label values s_14_2j_p checkbox_label
+
+label values s_14_2a_d checkbox_label
+
+label values s_14_2b_d checkbox_label
+
+label values s_14_2c_d checkbox_label
+
+label values s_14_2d_d checkbox_label
+
+label values s_14_2e_d checkbox_label
+
+label values s_14_2f_d checkbox_label
+
+label values s_14_2g_d checkbox_label
+
+
  save Socio.dta, replace
  export excel using "Sociodemographic.xlsx", firstrow(variables) nolabel replace
 
  d
  sum
  list
- 
- log close
- 
- log using Socio_Checks, text replace
- 
- tab CADAS_ID
  
  log close

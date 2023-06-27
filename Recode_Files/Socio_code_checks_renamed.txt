@@ -1,0 +1,102 @@
+label define checkbox_label 0 "unchecked" 1 "checked", replace
+
+label values s_7_7a checkbox_label
+
+label values s_7_7b checkbox_label
+
+label values s_7_7c checkbox_label
+
+label values s_7_7d checkbox_label
+
+label values s_7_7e checkbox_label
+
+label values s_7_7f checkbox_label
+
+label values s_7_7g checkbox_label
+
+label values s_7_7h checkbox_label
+
+label values s_7_7i checkbox_label
+
+label values s_7_7j checkbox_label
+
+label values s_7_7k checkbox_label
+
+label values s_8_5b2 checkbox_label
+
+label values s_8_5b1 checkbox_label
+
+label values s_8_5b4 checkbox_label
+
+label values s_8_5b3 checkbox_label
+
+label values s_8_5b5 checkbox_label
+
+label values s_8_5b6 checkbox_label
+
+label values s_8_5b7 checkbox_label
+
+label values s_8_5b8 checkbox_label
+
+label values s_8_5b9 checkbox_label
+
+label values s_8_5b10 checkbox_label
+
+label values s_9_38a checkbox_label
+
+label values s_9_38g checkbox_label
+
+label values s_9_38b checkbox_label
+
+label values s_9_38f checkbox_label
+
+label values s_9_38c checkbox_label
+
+label values s_9_38d checkbox_label
+
+label values s_9_38j checkbox_label
+
+label values s_9_38e checkbox_label
+
+label values s_9_38k checkbox_label
+
+label values s_9_38h checkbox_label
+
+label values s_9_38l checkbox_label
+
+label values s_9_38i checkbox_label
+
+label values s_14_2a_p checkbox_label
+
+label values s_14_1b_p checkbox_label
+
+label values s_14_2c_p checkbox_label
+
+label values s_14_2d_p checkbox_label
+
+label values s_14_2e_p checkbox_label
+
+label values s_14_2f_p checkbox_label
+
+label values s_14_2g_p checkbox_label
+
+label values s_14_2h_p checkbox_label
+
+label values s_14_2i_p checkbox_label
+
+label values s_14_2j_p checkbox_label
+
+label values s_14_2a_d checkbox_label
+
+label values s_14_2b_d checkbox_label
+
+label values s_14_2c_d checkbox_label
+
+label values s_14_2d_d checkbox_label
+
+label values s_14_2e_d checkbox_label
+
+label values s_14_2f_d checkbox_label
+
+label values s_14_2g_d checkbox_label
+
