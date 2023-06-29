@@ -1754,7 +1754,7 @@ drop C_33_A
 
 rename c_33_1 (C_33_1)
 
-label define C_33_1 0 "false" 7 "true"
+label define C_33_1 0 "false" 1 "true"
 
 encode C_33_1, gen (c_33_1) label (C_33_1)
 
