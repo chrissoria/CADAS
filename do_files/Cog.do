@@ -35,8 +35,8 @@ replace c_houseid_str = cond(strlen(c_houseid_str) == 2, "0" + c_houseid_str, c_
 gen c_particid_str = string(c_particid, "%12.0f")
 replace c_particid_str = cond(strlen(c_particid_str) == 1, "0" + c_particid_str, c_particid_str)
 
-gen personid = c_country_str + c_clustid_str + c_houseid_str + c_particid_str
-gen c_placeid = c_country_str + c_clustid_str + c_houseid_str
+gen pid = c_country_str + c_clustid_str + c_houseid_str + c_particid_str
+gen hhid = c_country_str + c_clustid_str + c_houseid_str
 drop c_country_str c_clustid_str c_houseid_str c_particid_str
 
 rename c_0 (C_0)

@@ -3,9 +3,9 @@ set more off
 capture log close
 log using Rosters, text replace
 
- cd "/hdir/0/chrissoria/Stata_CADAS/Data/Rosters"
+ cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
  
-  insheet using "Rosters_Parent.csv", comma names clear
+  insheet using "../CUBA_in/Roster_Parent.csv", comma names clear
 // The only key variable here is the GPS coordinates. 
 // There's no need label these
  
@@ -15,7 +15,7 @@ log using Rosters, text replace
     
     clear all
     
-  insheet using "Participants.csv", comma names clear
+  insheet using "../CUBA_in/Participants.csv", comma names clear
   
    drop globalrecordid
    rename fkey globalrecordid
@@ -140,7 +140,7 @@ log using Rosters, text replace
     
     clear all
     
-  insheet using "NonParticipants.csv", comma names clear
+  insheet using "../CUBA_in/NonParticipants.csv", comma names clear
   
    drop globalrecordid
    rename fkey globalrecordid
@@ -265,7 +265,7 @@ log using Rosters, text replace
     
     clear all
     
-  insheet using "NonResidentChildren.csv", comma names clear
+  insheet using "../CUBA_in/NonResidentChildren.csv", comma names clear
      
     drop globalrecordid
    rename fkey globalrecordid
@@ -319,7 +319,7 @@ log using Rosters, text replace
     clear all
 
 
- insheet using "MainHousehold.csv", comma names clear
+ insheet using "../CUBA_in/MainHousehold.csv", comma names clear
 //the key variables here are
 
    drop fkey
@@ -335,7 +335,7 @@ log using Rosters, text replace
    replace r_date = subinstr(r_date, "/", "-",.)
    gen r_survey_date = date(r_date, "MDY")
    format r_survey_date %td
-
+   
   save MainHousehold.dta, replace
 
  d
@@ -345,8 +345,43 @@ log using Rosters, text replace
   merge 1:m globalrecordid using "Participants.dta"
   
   drop _merge
+  
+  *dropped below because junk
+  drop if inlist(globalrecordid, "6960e6a6-29c2-4567-8826-48f40918d8e0","dd6d514a-0dc6-4ba6-ac6b-6d6ba99b9585","6960e6a6-29c2-4567-8826-48f40918d8e0","44842eb7-f3f0-4a28-bd83-e4d895bf44fe","0d9ad36e-e19e-4a95-8a75-fae393587e17")
+  *is dropped below has person id 201004, for which there appears to be two entries for (both have the same age, gender, etc) I'm dropping the one that looks more correct
+  drop if inlist(globalrecordid, "34bab32c-fbce-492b-b488-e9bbeed4f14f")
+  *is dropped because duplicate, contradicting gender, and missing info has personid 20103501
+  drop if inlist(globalrecordid, "1444788e-6d3b-439d-b241-468191f55b5a")
+  *is dropped below because suplicate and another case has all of the exact same information
+  drop if inlist(globalrecordid, "1e5c9452-4c2a-4a43-831d-dbb2616b8d1e")
+  *two weird things about the case below
+  *First, both cases have the same male gender
+  *Second, both have the same person number, but one is "esposo/a" and the other is si mismo
+  *for now, I will recode the case the came after as person 2
+  
+  replace pr_person_number = 2 if globalrecordid == "1303aefe-487f-4e40-a58b-c4e1ffc323c2"
 
- save rosters_merged1.dta,replace
+  gen r_country_str = string(r_country, "%12.0f")
+
+gen r_clustid_str = string(r_clustid, "%12.0f")
+replace r_clustid_str = cond(strlen(r_clustid_str) == 1, "0" + r_clustid_str, r_clustid_str)
+
+gen r_houseid_str = string(r_houseid, "%03.0f")
+replace r_houseid_str = cond(strlen(r_houseid_str) == 1, "00" + r_houseid_str, r_houseid_str)
+replace r_houseid_str = cond(strlen(r_houseid_str) == 2, "0" + r_houseid_str, r_houseid_str)
+
+recode pr_person_number (missing = "0")
+gen pr_particid_str = string(pr_person_number, "%12.0f")
+
+replace pr_particid_str = cond(strlen(pr_particid_str) == 1, "0" + pr_particid_str, pr_particid_str)
+
+gen pid = r_country_str + r_clustid_str + r_houseid_str + pr_particid_str
+gen hhid = r_country_str + r_clustid_str + r_houseid_str
+drop r_country_str r_clustid_str r_houseid_str pr_particid_str
+
+ save rosters_participants.dta,replace
+ export excel using "Rosters_Participants.xlsx", firstrow(variables) nolabel replace
+
  
   clear all
   
@@ -368,11 +403,14 @@ log using Rosters, text replace
  
  //now we append all three
  
- use "rosters_merged1.dta"
+ use "rosters_participants.dta"
  append using "rosters_merged2.dta"
  append using "rosters_merged3.dta"
- 
+
+drop _merge
+
  save rosters_merged.dta,replace
+ export excel using "Rosters_Merged.xlsx", firstrow(variables) nolabel replace
  
    d
  sum
@@ -381,5 +419,3 @@ log using Rosters, text replace
   
  log close
  exit, clear
- 
- 

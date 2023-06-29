@@ -32,7 +32,7 @@ gen h_houseid_str = string(h_houseid, "%03.0f")
 replace h_houseid_str = cond(strlen(h_houseid_str) == 1, "00" + h_houseid_str, h_houseid_str)
 replace h_houseid_str = cond(strlen(h_houseid_str) == 2, "0" + h_houseid_str, h_houseid_str)
 
-gen CADAS_PLACE_ID = h_country_str + h_clustid_str + h_houseid_str
+gen hhid = h_country_str + h_clustid_str + h_houseid_str
 drop h_country_str h_clustid_str h_houseid_str
 
 rename h_3_1 (H_3_1)
@@ -4041,11 +4041,5 @@ label variable h_deviceid2 "Device ID:"
  d
  sum
  list
- 
- log close
- 
- log using House_Checks, text replace
- 
- tab CADAS_PLACE_ID
  
  log close

@@ -36,7 +36,8 @@ replace p_houseid_str = cond(strlen(p_houseid_str) == 2, "0" + p_houseid_str, p_
 gen p_particid_str = string(p_particid, "%12.0f")
 replace p_particid_str = cond(strlen(p_particid_str) == 1, "0" + p_particid_str, p_particid_str)
 
-gen CADAS_ID = p_country_str + p_clustid_str + p_houseid_str + p_particid_str
+gen pid = p_country_str + p_clustid_str + p_houseid_str + p_particid_str
+gen hhid = p_country_str + p_clustid_str + p_houseid_str
 drop p_country_str p_clustid_str p_houseid_str p_particid_str
 
 rename p2_1 (P2_1)
@@ -789,11 +790,5 @@ label variable p_deviceid2 "Device ID:"
  d
  sum
  list
- 
- log close
- 
- log using Phys_Checks, text replace
- 
- tab CADAS_ID
  
  log close

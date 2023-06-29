@@ -40,8 +40,8 @@ replace s_houseid_str = cond(strlen(s_houseid_str) == 2, "0" + s_houseid_str, s_
 gen s_particid_str = string(s_particid, "%12.0f")
 replace s_particid_str = cond(strlen(s_particid_str) == 1, "0" + s_particid_str, s_particid_str)
 
-gen personid = s_country_str + s_clustid_str + s_houseid_str + s_particid_str
-gen s_placeid = s_country_str + s_clustid_str + s_houseid_str
+gen pid = s_country_str + s_clustid_str + s_houseid_str + s_particid_str
+gen hhid = s_country_str + s_clustid_str + s_houseid_str
 drop s_country_str s_clustid_str s_houseid_str s_particid_str
 
 rename s_1_1_p (S_1_1_P)
