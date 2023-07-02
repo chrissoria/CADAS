@@ -308,8 +308,25 @@ save Household_checks.dta, replace\
 \
 clear all\
 \
-*Next, I will merge each child with the parent and see if things are matching\
-*Parents match to child with the fkey to globalrecordid, so I will need to rename the fkey to globalrecordid in the child\
+use Cog_Scoring\
+\
+ duplicates report pid\
+ sort pid\
+ gen is_duplicate = pid[_n] == pid[_n-1]\
+ list if is_duplicate\
+ \
+ *globalrecordid 88e80078-4ca7-44ee-855e-387ca80b8299 and 0d543ac7-900d-4057-a324-72467116cfca have same pid 20100901\
+ *both could be valid, there must be two people in same household, but not sure which goes where \
+ \
+ *ideally we would have these linked, maybe not too late?\
+\
+ *globalrecordid acda0aac-79fa-48dd-8932-f434536d9a8c and 35220af8-d6a0-43b6-b0bc-4f2032d7ef89 have same pid 20101401\
+ *acda0aac-79fa-48dd-8932-f434536d9a8c is less complete but both have some answers \
+\
+ *Next, I will merge each child with the parent and see if things are matching\
+ *Parents match to child with the fkey to globalrecordid, so I will need to rename the fkey to globalrecordid in the child\
+ \
+ clear all\
 \
 cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"\
 insheet using "../CUBA_in/Socio_Parent.csv"\
@@ -415,4 +432,34 @@ list\
 *after i remove the above, I get all matches but there are 80 matches instead of the 76 that Tania reports\
 *two households have duplicate hhid's but not clear which of the two are valid\
 \
-clear all}
+clear all\
+\
+*next, I want to find out if we have the right amount of cog scoring and cog surveys\
+\
+cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"\
+use Cog_Scoring\
+\
+*for no, I will do m:m because I have't been able to pin down which unique cases are the true/correct ones\
+merge m:m pid using Cog\
+\
+keep if _merge != 3\
+list\
+\
+*e07eb881-5c85-4d8b-a4e7-59ec774cbd70 and 348c3d1d-e5c5-495f-87dd-e31bc8115251 are two cognitive scoring files with no cogntive survey\
+\
+/*globalrecordid\
+bd349b37-ff38-4271-b099-12b6845b964c no particid or houseid\
+c8799648-57ad-4864-8a0e-f2cce230e3d2 no particid or houseid\
+b81579ca-4945-46da-8d06-45273fcfbeb5 pid 20100201, probably junk\
+5133ce8a-22c6-4432-b2d0-3b9885b5a885 pid 20103901, probably junk\
+the above are all cognitve surveys with no cognitve scoring files.*/\
+\
+*next, I want to merge with cog scoring to put a file together where we can see answer and pictures in the same doc\
+\
+clear all\
+\
+use Cog\
+\
+merge m:m pid using Cog_Scoring\
+\
+keep cs_32 cs_40 cs_41 cs_43 cs_44 cs_72_1 cs_72_2 cs_72_3 cs_72_4 cs_79_1 cs_79_2 cs_72_3 cs_72_4 }
