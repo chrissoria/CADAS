@@ -154,7 +154,20 @@ drop p_country_str p_clustid_str p_houseid_str p_particid_str\
  \
  *this is all junk that was entered before the study began\
  drop if inlist(globalrecordid, "91c4212a-a2bc-4e2c-8f43-70d1a2002986")\
- drop if inlist(globalrecordid, "eb91435b-3146-43fd-94d6-261a7e7526d2", "8bc87a48-a4a4-4972-b1c8-e2f990c602d9", "a3aaf799-a716-4f62-87fc-0e60b8ee398b", "7fe87507-a24f-4f5e-979b-51ad294b7122", "fcfc1f54-e392-4c0c-a523-6c744a33fcc7", "1040e8ce-1260-43fa-9010-e2e553b549a9")\
+ drop if inlist(globalrecordid, "eb91435b-3146-43fd-94d6-261a7e7526d2", "8bc87a48-a4a4-4972-b1c8-e2f990c602d9", "a3aaf799-a716-4f62-87fc-0e60b8ee398b", "7fe87507-a24f-4f5e-979b-51ad294b7122", "HERE", "1040e8ce-1260-43fa-9010-e2e553b549a9")\
+\
+*the case below says houseid is 456, fkey = feeb956a-217b-4bcc-b27d-e20c4dd0ed48, I will assume junk\
+\
+drop if inlist(fkey, "feeb956a-217b-4bcc-b27d-e20c4dd0ed48")\
+\
+*the two cases below have no parent files, are duplicates, and we already have two pid 20100101 in Cog\
+\
+drop if inlist(fkey, "0fcf7696-252b-4e0d-82ff-cb628198ac15","69583114-a60a-4575-943a-2215144dd18f")\
+\
+*the case below is junk I entered\
+\
+drop if inlist(fkey, "4938554b-7b33-4784-b0ef-efd01ede07a3")\
+\
 \
 gen c_country_str = string(c_country, "%12.0f")\
 \
@@ -176,12 +189,19 @@ drop c_country_str c_clustid_str c_houseid_str c_particid_str\
  sort pid\
  gen is_duplicate = pid[_n] == pid[_n-1]\
  list if is_duplicate\
+ drop is_duplicate\
  \
  *The parent is exporting person id, etc, but not the child. It makes no sense that this would be the case.\
  *Confirm that this is the case in epi info sync file. \
  *There's 101 cases so it's possible these are just junk. I'll need to confirm. \
  *I'll need to merge the child to the parent to extract pid and try to process all the data again\
  *skip for now\
+ \
+save Cog.dta, replace\
+\
+keep pid\
+\
+save cog_check.dta, replace\
  \
  log close\
  clear all\
@@ -258,6 +278,12 @@ drop i_country_str i_clustid_str i_houseid_str i_particid_str\
  \
  use Household\
  \
+*It looks like epi info is spitting out duplicate household cases\
+*I will drop the duplicate junk file for now, but will have to get to the bottom of what's going here later\
+*interestingly they have the same fkey but all have unique parents! weird\
+ \
+ drop if inlist(hhid, "20000.")\
+ \
  duplicates report hhid\
  sort hhid\
  gen is_duplicate = hhid[_n] == hhid[_n-1]\
@@ -266,15 +292,25 @@ drop i_country_str i_clustid_str i_houseid_str i_particid_str\
  *7ac9fe02-99d7-412c-86f2-89d25b243930 was created by me, delete\
  *globalrecordid: 8d81d273-cf4a-495f-820d-2398360babc8, b91b8627-bc88-476c-944a-4157eafead99, 8aea5f27-6c25-4e9a-8fcc-b135f9ca3157, 8c27f197-12d2-45d6-873e-42fa3df6adcc, 2448b616-5773-403a-a24b-2128524a783c\
  *the above record ID have mostly missing data, including house number. For now, I will delete, but I will have to dig into this a bit more to make sure they aren't corrupted data\
- *I believe there might be some corruption, given that the first few variables are missing, yet they are required (and later questions are answered)\
+ *I believe these might be junk\
+ \
+ *hhid 201035 is duplicated and both look like they could be valid, but slightly different.\
+ *I'll have to reach out to Tania to find out which of the two is valid\
+ *same thing with 201043\
 \
 drop is_duplicate\
+\
+save Household.dta, replace\
+\
+keep hhid\
+\
+save Household_checks.dta, replace\
 \
 clear all\
 \
 *Next, I will merge each child with the parent and see if things are matching\
 *Parents match to child with the fkey to globalrecordid, so I will need to rename the fkey to globalrecordid in the child\
-set more off\
+\
 cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"\
 insheet using "../CUBA_in/Socio_Parent.csv"\
 \
@@ -282,6 +318,8 @@ drop fkey lastsavelogonname lastsavetime\
 rename globalrecordid fkey\
 \
 merge 1:1 fkey using Socio\
+\
+save Socio_Child_Parent_Merged.dta, replace\
 \
 keep if _merge != 3\
 list\
@@ -295,7 +333,86 @@ list\
 *global record id c5caa2b1-c7e6-40d9-bb55-7a6b18164f76 is not in the parent data but I see it in the child data.\
 *the parent says a48e9e97-6bee-48d7-a040-c106fb781225 should be linked to this child which is linked to 1c5a2a7c-e19c-4ea9-8d18-6b2707e9c93c in the child\
 *1c5a2a7c-e19c-4ea9-8d18-6b2707e9c93c was previously being deleted because it looked like junk, but looks to be the correct case instead of c5caa2b1-c7e6-40d9-bb55-7a6b18164f76\
-*for now, I'll delete c5caa2b1-c7e6-40d9-bb55-7a6b18164f76 as it doesn't match completo rechazo and reach out to Tania for confirmation\
-*after I do this, all parent/child match except global = 6e69f965-5df9-4705-bd20-bdc9de2883a4\
+*for now, I'll delete c5caa2b1-c7e6-40d9-bb55-7a6b18164f76 as it doesn't match completo rechazo and reach out to Tania for confirmation and ask about incompleteness\
+*after I do this, all parent/child match except global = 6e69f965-5df9-4705-bd20-bdc9de2883a4, which is not in the child\
 \
-}
+clear all\
+\
+\
+cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"\
+insheet using "../CUBA_in/Cog_Parent.csv"\
+\
+drop fkey lastsavelogonname lastsavetime\
+rename globalrecordid fkey\
+\
+*3a6d1efa-a1ad-4318-aece-39c8144e894a appears to be a junk file in the child form.\
+*It's almost entirely empty and also interesting that there is no duplicate for that file\
+*In the the child form and see where else 20100101 is 357016cd-a3d1-4774-8876-a3767affe462 and another for fcfc1f54-e392-4c0c-a523-6c744a33fcc7\
+\
+merge 1:1 fkey using Cog\
+\
+save Cog_Child_Parent_Merged.dta, replace\
+\
+keep if _merge != 3\
+list\
+\
+*after merge, three fkeys remain\
+\
+/* fkey\
+0ad59e9a-06ab-40c4-a6a2-7bf248bcab80 has no child and we already have a pid that matches this, fkey = da856b52-2014-424f-83ef-2644f8b47cbb, so I will assume junk\
+253db5a8-ac79-4fc9-9ef5-5f6994d17af1 has no child and we already have a pid that matchis this, fkey = f8946b79-c516-46c9-9746-223733de8097, so I will assume junk\
+4938554b-7b33-4784-b0ef-efd01ede07a3 is junk I entered*/\
+\
+clear all\
+\
+cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"\
+insheet using "../CUBA_in/Phys_Parent.csv"\
+\
+drop fkey lastsavelogonname lastsavetime\
+rename globalrecordid fkey\
+\
+merge 1:1 fkey using Phys\
+\
+keep if _merge != 3\
+list\
+\
+*all children are matched with parents (an ideal world) so I will assume that these are all valid cases\
+\
+clear all\
+\
+cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"\
+insheet using "../CUBA_in/Infor_Parent.csv"\
+\
+drop fkey lastsavelogonname lastsavetime firstsavelogonname firstsavetime\
+rename globalrecordid fkey\
+\
+merge 1:1 fkey using Infor\
+\
+keep if _merge != 3\
+list\
+\
+*non-matched are mostly junk from the parent file except for fkey cd171634-306a-447c-9a31-167f2042fe68 which is childfree\
+*I'll have to check sync files and export from epi info again to make sure these are \
+\
+clear all\
+\
+cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"\
+insheet using "../CUBA_in/Household_Parent.csv"\
+\
+drop fkey lastsavelogonname lastsavetime firstsavelogonname firstsavetime\
+rename globalrecordid fkey\
+\
+clear all\
+use Household\
+gen is_duplicate = fkey[_n] == fkey[_n-1]\
+list if is_duplicate\
+\
+merge 1:1 fkey using Household\
+\
+keep if _merge != 3\
+list\
+\
+*after i remove the above, I get all matches but there are 80 matches instead of the 76 that Tania reports\
+*two households have duplicate hhid's but not clear which of the two are valid\
+\
+clear all}
