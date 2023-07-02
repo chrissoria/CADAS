@@ -29,6 +29,50 @@ gen hhid = cs_country_str + cs_clustid_str + cs_houseid_str\
 \
 drop firstsavelogonname firstsavetime lastsavelogonname lastsavetime fkey\
 \
+order cs_interid cs_houseid cs_clustid cs_particid cs_country cs_houseid2 cs_conglid2 cs_particid2 cs_32 cs_40 cs_41 cs_43 cs_44 cs_72_1 cs_72_2 cs_72_3 cs_72_4 cs_79_1 cs_79_2 cs_79_3 cs_79_4\
+\
+label variable cs_interid "NUMERO DEL ENTREVISTADOR"\
+\
+label variable cs_houseid "N\'daMERO DE LA CASA"\
+\
+label variable cs_clustid "NUMERO DEL CLUSTER:"\
+\
+label variable cs_particid "NUMERO DEL PARTICIPANTE"\
+\
+label variable cs_country "Pais"\
+\
+label variable cs_houseid2 "N\'daMERO DE LA CASA"\
+\
+label variable cs_conglid2 "NUMERO DEL CLUSTER:"\
+\
+label variable cs_particid2 "NUMERO DEL PARTICIPANTE"\
+\
+label variable cs_32 "32. Dibujo de pentagonos (0-1)"\
+\
+label variable cs_40 "40.# Animales"\
+\
+label variable cs_41 "41.# Repetitiones"\
+\
+label variable cs_43 "43. Correctas"\
+\
+label variable cs_44 "44. Incorrectas"\
+\
+label variable cs_72_1 "72.1. El c\'edrculo (0-2)"\
+\
+label variable cs_72_2 "72.2. El diamante (0-3)"\
+\
+label variable cs_72_3 "72.3. Rect\'e1ngulos cruzados (0-2)"\
+\
+label variable cs_72_4 "72.4. El cubo (0-4)"\
+\
+label variable cs_79_1 "79.1. El c\'edrculo (0-2)"\
+\
+label variable cs_79_2 "79.2. El diamante (0-3)"\
+\
+label variable cs_79_3 "79.3. Rect\'e1ngulos cruzados (0-2)"\
+\
+label variable cs_79_4 "79.4. El cubo (0-4)"\
+\
  save Cog_Scoring.dta, replace\
  export excel using "Cognitive_Scoring.xlsx", firstrow(variables) nolabel replace\
 \
