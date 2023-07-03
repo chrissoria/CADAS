@@ -21,14 +21,7 @@ foreach var of local string_vars {
 
 }
 
-*deleting these "junk" files from cuba
-drop if inlist(globalrecordid, "f2bfcfe6-4438-4158-b4b8-29ddca8ad2fb", "a48e9e97-6bee-48d7-a040-c106fb781225", "b1337629-fae7-4957-b30c-f45d4d72b267", "c7f1bca0-9624-418d-a35a-20c50602fbb6", "4cc82be3-48e9-4c22-87ac-382ddb7c4f24", "bd2ddd15-66ad-49ff-b1fa-c585c9927176", "9e39dc33-c4bc-4b8a-a1bb-11e5b54668d9")
-drop if inlist(globalrecordid, "e6a08058-b663-467b-a8fe-808fa9092300", "b8a6b8c6-255d-4ae9-a0f7-08d60f68a9b6", "78ef6060-de63-4c55-b46a-58bdbdbd96a5", "95233fc6-a441-4368-ad47-c8e70c7dadaf", "51897609-91c6-43eb-8fe6-76919121b287", "6cb0313e-103d-460d-8cca-5f7796845b85", "1c5a2a7c-e19c-4ea9-8d18-6b2707e9c93c")
-drop if inlist(globalrecordid, "0de6bf32-7dbd-4a95-9ab0-989213e5a210")
 gen s_country_str = string(s_country, "%12.0f")
-
-*is dropped because duplicate personid and less complete
-drop if inlist(globalrecordid, "9d73f0c1-9b16-4731-afc1-8f059b174d6f")
 
 gen s_clustid_str = string(s_clustid, "%12.0f")
 replace s_clustid_str = cond(strlen(s_clustid_str) == 1, "0" + s_clustid_str, s_clustid_str)
@@ -3791,3 +3784,5 @@ label values s_14_2g_d checkbox_label
  list
  
  log close
+
+clear all

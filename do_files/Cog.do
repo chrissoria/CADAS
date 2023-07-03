@@ -21,8 +21,6 @@ foreach var of local string_vars {
 
 }
 
-drop if inlist(globalrecordid, "eb91435b-3146-43fd-94d6-261a7e7526d2", "8bc87a48-a4a4-4972-b1c8-e2f990c602d9", "a3aaf799-a716-4f62-87fc-0e60b8ee398b", "7fe87507-a24f-4f5e-979b-51ad294b7122", "fcfc1f54-e392-4c0c-a523-6c744a33fcc7", "1040e8ce-1260-43fa-9010-e2e553b549a9")
-
 gen c_country_str = string(c_country, "%12.0f")
 
 gen c_clustid_str = string(c_clustid, "%12.0f")
@@ -2774,3 +2772,5 @@ label values c_78_a checkbox_label
  list
  
  log close
+
+clear all

@@ -21,9 +21,6 @@ foreach var of local string_vars {
 
 }
 
-drop if inlist(globalrecordid, "38ddf6b0-7465-425a-9534-1f042dbbe352", "985efbd2-5bd0-42c9-b9db-ca9205a8369d","70fa9041-5a26-4751-bf75-f9326e11a783", "99db8029-9609-4fb6-baac-852b38db7e36")
-drop if inlist(globalrecordid, "48135c80-626c-4114-b103-a8a32e5a86a2")
-
 gen p_country_str = string(p_country, "%12.0f")
 
 gen p_clustid_str = string(p_clustid, "%12.0f")
