@@ -2016,7 +2016,7 @@ drop C_63_A
 
 rename c_63_1 (C_63_1)
 
-label define C_63_1 0 "false" 7 "true"
+label define C_63_1 0 "false" 1 "true"
 
 encode C_63_1, gen (c_63_1) label (C_63_1)
 
