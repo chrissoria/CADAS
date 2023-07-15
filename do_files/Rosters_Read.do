@@ -3,9 +3,28 @@ set more off
 capture log close
 log using Rosters, text replace
 
- cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
- 
-  insheet using "../CUBA_in/Roster_Parent.csv", comma names clear
+local country = 1
+
+if `country' == 0 {
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
+}
+else if `country' == 1 {
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+}
+else if `country' == 2 {
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
+}
+
+if `country' == 0 {
+    insheet using "../PR_in/Roster_Parent.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/Roster_Parent.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/Roster_Parent.csv", comma names clear
+}
+
 // The only key variable here is the GPS coordinates. 
 // There's no need label these
  
@@ -15,7 +34,15 @@ log using Rosters, text replace
     
     clear all
     
-  insheet using "../CUBA_in/Participants.csv", comma names clear
+if `country' == 0 {
+    insheet using "../PR_in/Participants.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/Participants.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/Participants.csv", comma names clear
+}
   
    drop globalrecordid
    rename fkey globalrecordid
@@ -139,8 +166,16 @@ log using Rosters, text replace
     save Participants.dta, replace
     
     clear all
-    
-  insheet using "../CUBA_in/NonParticipants.csv", comma names clear
+ 
+if `country' == 0 {
+    insheet using "../PR_in/NonParticipants.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/NonParticipants.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/NonParticipants.csv", comma names clear
+}
   
    drop globalrecordid
    rename fkey globalrecordid
@@ -264,8 +299,16 @@ log using Rosters, text replace
     save NonParticipants.dta, replace
     
     clear all
-    
-  insheet using "../CUBA_in/NonResidentChildren.csv", comma names clear
+
+if `country' == 0 {
+    insheet using "../PR_in/NonResidentChildren.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/NonResidentChildren.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/NonResidentChildren.csv", comma names clear
+}
      
     drop globalrecordid
    rename fkey globalrecordid
@@ -318,8 +361,16 @@ log using Rosters, text replace
     
     clear all
 
+if `country' == 0 {
+    insheet using "../PR_in/MainHousehold.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/MainHousehold.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/MainHousehold.csv", comma names clear
+}
 
- insheet using "../CUBA_in/MainHousehold.csv", comma names clear
 //the key variables here are
 
    drop fkey
@@ -345,21 +396,6 @@ log using Rosters, text replace
   merge 1:m globalrecordid using "Participants.dta"
   
   drop _merge
-  
-  *dropped below because junk
-  drop if inlist(globalrecordid, "6960e6a6-29c2-4567-8826-48f40918d8e0","dd6d514a-0dc6-4ba6-ac6b-6d6ba99b9585","6960e6a6-29c2-4567-8826-48f40918d8e0","44842eb7-f3f0-4a28-bd83-e4d895bf44fe","0d9ad36e-e19e-4a95-8a75-fae393587e17")
-  *is dropped below has person id 201004, for which there appears to be two entries for (both have the same age, gender, etc) I'm dropping the one that looks more correct
-  drop if inlist(globalrecordid, "34bab32c-fbce-492b-b488-e9bbeed4f14f")
-  *is dropped because duplicate, contradicting gender, and missing info has personid 20103501
-  drop if inlist(globalrecordid, "1444788e-6d3b-439d-b241-468191f55b5a")
-  *is dropped below because suplicate and another case has all of the exact same information
-  drop if inlist(globalrecordid, "1e5c9452-4c2a-4a43-831d-dbb2616b8d1e")
-  *two weird things about the case below
-  *First, both cases have the same male gender
-  *Second, both have the same person number, but one is "esposo/a" and the other is si mismo
-  *for now, I will recode the case the came after as person 2
-  
-  replace pr_person_number = 2 if globalrecordid == "1303aefe-487f-4e40-a58b-c4e1ffc323c2"
 
   gen r_country_str = string(r_country, "%12.0f")
 

@@ -6,12 +6,36 @@
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \f0\fs24 \cf0 clear all\
+set more off\
+capture log close\
+log using Cognitive_Socring, text replace\
 \
 *next, I want to find out if we have the right amount of cog scoring and cog surveys\
 \
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"\
-insheet using "../CUBA_in/Cog_Scoring.csv"\
+local country = 1\
 \
+if `country' == 0 \{\
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"\
+\}\
+else if `country' == 1 \{\
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"\
+\}\
+else if `country' == 2 \{\
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"\
+\}\
+\
+*below we read in a country-specific file\
+\
+if `country' == 0 \{\
+    insheet using "../PR_in/Cog_Scoring.csv", comma names clear\
+\}\
+else if `country' == 1 \{\
+    insheet using "../DR_in/Cog_Scoring.csv", comma names clear\
+\}\
+else if `country' == 2 \{\
+    insheet using "../CUBA_in/Cog_Scoring.csv", comma names clear\
+\}\
+ \
 gen cs_country_str = string(cs_country, "%12.0f")\
 \
 gen cs_clustid_str = string(cs_clustid, "%12.0f")\
@@ -82,4 +106,5 @@ label variable cs_79_4 "79.4. El cubo (0-4)"\
  \
  log close\
 \
-clear all}
+clear all\
+}

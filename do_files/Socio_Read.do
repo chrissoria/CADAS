@@ -3,9 +3,27 @@ set more off
 capture log close
 log using Sociodemographic, text replace
 
- cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
- 
-   insheet using "../CUBA_in/Socio_Child.csv", comma names clear
+local country = 1
+
+if `country' == 0 {
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
+}
+else if `country' == 1 {
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+}
+else if `country' == 2 {
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
+}
+
+if `country' == 0 {
+    insheet using "../PR_in/Socio_Child.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/Socio_Child.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/Socio_Child.csv", comma names clear
+}
    
    ds, has(type string)
 
@@ -2314,7 +2332,7 @@ program define s_14_30b_cuba
     if !_rc {
         capture tostring S_14_30B1_C, replace
     }
-    label define S_14_30B1_C_lbl . "no sabe" 2 "no" 1 "si" 8 "no responde" 9 "no sabe"
+    label define S_14_30B1_C_lbl .a "." 2 "no" 1 "si" 8 "no responde" 9 "no sabe"
     capture encode S_14_30B1_C, gen(s_14_30b1_c) label(S_14_30B1_C_lbl)
 
     capture rename s_14_30b2_c S_14_30B2_C
@@ -2322,7 +2340,7 @@ program define s_14_30b_cuba
     if !_rc {
         capture tostring S_14_30B2_C, replace
     }
-    label define S_14_30B2_C_lbl . "no sabe" 2 "no" 1 "si" 8 "no responde" 9 "no sabe"
+    label define S_14_30B2_C_lbl .a "." 2 "no" 1 "si" 8 "no responde" 9 "no sabe"
     capture encode S_14_30B2_C, gen(s_14_30b2_c) label(S_14_30B2_C_lbl)
 
     capture rename s_14_30b3_c S_14_30B3_C
@@ -2330,7 +2348,7 @@ program define s_14_30b_cuba
     if !_rc {
         capture tostring S_14_30B3_C, replace
     }
-    label define S_14_30B3_C_lbl . "no sabe" 2 "no" 1 "si" 8 "no responde" 9 "no sabe"
+    label define S_14_30B3_C_lbl .a "." 2 "no" 1 "si" 8 "no responde" 9 "no sabe"
     capture encode S_14_30B3_C, gen(s_14_30b3_c) label(S_14_30B3_C_lbl)
 end
 

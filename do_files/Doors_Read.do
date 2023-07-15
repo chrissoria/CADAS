@@ -3,9 +3,30 @@ set more off
 capture log close
 log using Door, text replace
 
- cd "/hdir/0/chrissoria/Stata_CADAS/Data/Door"
+local country = 1
+
+if `country' == 0 {
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
+}
+else if `country' == 1 {
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+}
+else if `country' == 2 {
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
+}
+
+*below we read in a country-specific file
+
+if `country' == 0 {
+    insheet using "../PR_in/InformationDoor.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/InformationDoor.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/InformationDoor.csv", comma names clear
+}
    
-   insheet using "InformationDoor.csv", comma names clear
    
    rename globalrecordid globalrecordid1
    rename fkey globalrecordid
@@ -80,7 +101,16 @@ log using Door, text replace
    
    clear all
    
-   insheet using "InformationDoorParticipant.csv", comma names clear
+ if `country' == 0 {
+    insheet using "../PR_in/InformationDoorParticipants.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/InformationDoorParticipants.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/InformationDoorParticipants.csv", comma names clear
+}
+
    
    drop globalrecordid
    rename fkey globalrecordid1
@@ -148,9 +178,17 @@ log using Door, text replace
    
    save InformationDoorParticipants.dta, replace
    
-   clear all
+   clear
    
-   insheet using "Door.csv", comma names clear
+    if `country' == 0 {
+    insheet using "../PR_in/Door_Parent.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/Door_Parent.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/Door_Parent.csv", comma names clear
+}
    
    drop uniquekey recstatus firstsavelogonname lastsavelogonname lastsavetime fkey firstsavetime
    

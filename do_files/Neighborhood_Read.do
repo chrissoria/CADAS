@@ -4,9 +4,28 @@ set more off
 capture log close
 log using Neighborhood_Dummy, text replace
 
- cd "/hdir/0/chrissoria/Stata_CADAS/Data/Neigh"
- 
-insheet using "Neighborhood.csv", comma names clear
+local country = 1
+
+if `country' == 0 {
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
+}
+else if `country' == 1 {
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+}
+else if `country' == 2 {
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
+}
+
+if `country' == 0 {
+    insheet using "../PR_in/Neighborhood.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/Neighborhood.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/Neighborhood.csv", comma names clear
+}
+
 
 //create a variable for date of survey
 replace n_date = subinstr(n_date,substr(n_date, strlen(n_date)-11, strlen(n_date)), "",.) if strlen(n_date)>=12
@@ -129,7 +148,8 @@ label variable n_37 "Ruido, contaminación sónica, alto parlantes"
 
 label variable n_38 "Humo de automóviles o quemar basura"
 
-save Neighborhood
+save Neighborhood.dta, replace
+export excel using "Neighborhood.xlsx", firstrow(variables) nolabel replace
 
  d
  sum
@@ -138,6 +158,7 @@ save Neighborhood
 clear all 
 set more off
 
+/*
  cd "/Users/chrissoria/Documents/Research/CADAS/Dummy_Data/Neighborhood"
 
 use Neighborhood_Dummy
@@ -164,4 +185,4 @@ by n_interid: egen missing_interid = total(missing_row)
 tabulate n_interid, summarize(missing_interid) means
 
  log close
- exit, clear
+ exit, clear*/

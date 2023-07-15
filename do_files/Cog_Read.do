@@ -3,11 +3,35 @@ set more off
 capture log close
 log using Cognitive, text replace
 
- cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
+*Here we will identify the country we want before we run the file
+*0 = PR, 1 = DR, 2 = CU
+
+local country = 1
+
+if `country' == 0 {
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
+}
+else if `country' == 1 {
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+}
+else if `country' == 2 {
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
+}
+
+*below we read in a country-specific file
+
+if `country' == 0 {
+    insheet using "../PR_in/Cog_Child.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/Cog_Child.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/Cog_Child.csv", comma names clear
+}
  
-   insheet using "../CUBA_in/Cog_Child.csv", comma names clear
    
-   ds, has(type string)
+  ds, has(type string)
 
   local string_vars = r(varlist)
 
@@ -2016,7 +2040,7 @@ drop C_63_A
 
 rename c_63_1 (C_63_1)
 
-label define C_63_1 0 "false" 1 "true"
+label define C_63_1 0 "false" 7 "true"
 
 encode C_63_1, gen (c_63_1) label (C_63_1)
 

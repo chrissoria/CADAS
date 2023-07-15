@@ -1,0 +1,89 @@
+IF H_Country = 0 THEN
+			HIDE H_3_3a_D H_3_3a_C H_3_3b_D H_3_3b_C H_3_3c_D H_3_3c_C H_3_4_D H_3_4_C H_3_27_D H_3_27_C H_6_5a_D H_6_41_D
+			HIDE H_3_5a_D H_3_5a_C H_3_5b_D H_3_5b_C H_3_5c_D H_3_5c_C H_3_6_D H_3_6_C H_3_31a_C H_3_31b_C H_3_31c_C
+			HIDE H_3_7a_D H_3_7a_C H_3_7b_D H_3_7b_C H_3_7c_D H_3_7c_C H_3_16_D H_3_16_C H_3_31a_D H_3_31b_D H_3_31c_D
+			HIDE H_3_17a_D H_3_17a_C H_3_17b_D H_3_17b_C H_3_17c_D H_3_17c_C  H_3_19_D H_3_19_C H_3_20a_D H_3_20a_C
+			HIDE H_3_20b_D H_3_20b_C H_3_20c_D H_3_20c_C H_3_2_D H_3_2_C H_3_22_D H_3_22_C H_3_25_D H_3_25_C H_6_5a_D
+			HIDE H_3_23a_D H_3_23a_C H_3_23b_D H_3_23b_C H_3_23c_D H_3_23c_C H_3_26a_D H_3_26a_C H_3_26b_D H_3_26b_C H_3_26c_D H_3_26c_C
+			HIDE H_3_28a_D H_3_28a_C H_3_28b_D H_3_28b_C H_3_28c_D H_3_28c_C H_3_30_D H_3_30_C H_6_1a_D H_6_1a_C H_6_1b1_D H_6_1b1_C H_6_1b2_D H_6_1b2_C
+			HIDE H_3_33a_D H_3_33b_D H_3_33c_D H_3_33a_C H_3_33b_C H_3_33c_C H_3_32_D H_3_32_C H_6_6a_D H_6_6a_C H_6_42_D H_6_43_D
+			HIDE H_6_5b1_D H_6_5b2_D H_6_5b1_C H_6_5b2_C H_6_5a_C H_6_6b1_D H_6_6b1_C H_6_6b2_D H_6_6b2_C H_7_1_D
+			HIDE H_4_1b_D H_4_1b2_D H_4_1b3_D H_4_2b_D H_4_2b2_D H_4_2b3_D H_4_3b_D H_4_3b2_D H_4_3b3_D H_4_4b_D H_4_4b2_D H_4_4b3_D H_4_5b_D H_4_5b2_D H_4_5b3_D H_4_6b_D H_4_6b2_D H_4_6b3_D H_4_7b_D H_4_7b2_D H_4_8b_D H_4_8b2_D  
+			HIDE H_4_1b_C H_4_1b2_C H_4_1b3_C H_4_2b_C H_4_2b2_C H_4_2b3_C H_4_3b_C H_4_3b2_C H_4_3b3_C H_4_4b_C H_4_4b2_C H_4_4b3_C H_4_5b_C H_4_5b2_C H_4_5b3_C H_4_6b_C H_4_6b2_C H_4_6b3_C H_4_7b_C H_4_7b2_C H_4_8b_C H_4_8b2_C  
+			HIDE H_5_1b_D H_5_1b2_D H_5_1b3_D H_5_2b_D H_5_2b2_D H_5_2b3_D H_5_3b_D H_5_3b2_D H_5_3b3_D H_5_4b_D H_5_4b2_D H_5_4b3_D H_5_5b_D H_5_5b2_D H_5_5b3_D H_5_6b_D H_5_6b2_D H_5_6b3_D H_5_7b_D H_5_7b2_D H_5_8b_D H_5_8b2_D  
+			HIDE H_5_1b_C H_5_1b2_C H_5_1b3_C H_5_2b_C H_5_2b2_C H_5_2b3_C H_5_3b_C H_5_3b2_C H_5_3b3_C H_5_4b_C H_5_4b2_C H_5_4b3_C H_5_5b_C H_5_5b2_C H_5_5b3_C H_5_6b_C H_5_6b2_C H_5_6b3_C H_5_7b_C H_5_7b2_C H_5_8b_C H_5_8b2_C  
+
+END-IF
+		
+IF H_Country = 0 THEN
+			UNHIDE H_3_3a_P H_3_3b_P H_3_3c_P H_3_4_P H_3_5a_P H_3_5b_P H_3_5c_P H_3_6_P H_3_2_P H_3_22_P H_6_6a_P H_7_1_P_C H_6_44_P
+			UNHIDE H_3_7a_P H_3_7b_P H_3_7c_P H_3_6_P H_3_17a_P H_3_17b_P H_3_17c_P H_3_19_P H_3_20a_P H_3_20b_P H_3_20c_P	
+			UNHIDE H_3_23a_P H_3_23b_P H_3_23c_P H_3_25_P H_3_26a_P H_3_26b_P H_3_26c_P H_3_27_P H_3_28a_P H_3_28b_P H_3_28c_P
+			UNHIDE H_3_30_P H_3_31a_P H_3_31b_P H_3_31c_P H_3_32_P H_3_32_P H_3_33a_P H_3_33b_P H_3_33c_P H_6_1a_P H_6_1b1_P H_6_1b2_P H_6_6b1_P H_6_6b2_P
+			UNHIDE H_6_5a_P H_6_5b1_P H_6_5b2_P H_4_1b_P H_4_1b2_P H_4_1b3_P H_4_2b_P H_4_2b2_P H_4_2b3_P H_4_3b_P H_4_3b2_P H_4_3b3_P 
+			UNHIDE H_4_4b_P H_4_4b2_P H_4_4b3_P H_4_5b_P H_4_5b2_P H_4_5b3_P H_4_6b_P H_4_6b2_P H_4_6b3_P H_4_7b_P H_4_7b2_P H_4_8b_P H_4_8b2_P 
+			UNHIDE H_5_1b_P H_5_1b2_P H_5_1b3_P H_5_2b_P H_5_2b2_P H_5_2b3_P H_5_3b_P H_5_3b2_P H_5_3b3_P H_5_4b_P H_5_4b2_P H_5_4b3_P H_5_5b_P H_5_5b2_P H_5_5b3_P H_5_6b_P H_5_6b2_P H_5_6b3_P H_5_7b_P H_5_7b2_P H_5_8b_P H_5_8b2_P   
+		END-IF
+
+		IF H_Country = 1 THEN
+			HIDE H_3_3a_P H_3_3a_C  H_3_3b_P H_3_3b_C  H_3_3c_P H_3_3c_C H_3_4_P H_3_4_C H_3_27_P H_3_27_C H_6_6a_P H_6_44_P
+			HIDE H_3_5a_P H_3_5a_C H_3_5b_P H_3_5b_C H_3_5c_P H_3_5c_C H_3_6_P H_3_6_C H_3_7a_P H_3_7a_C H_3_7b_P
+			HIDE H_3_7b_C H_3_7c_P H_3_7c_C H_3_16_P H_3_16_C H_3_2_P H_3_2_C H_3_26a_P H_3_26a_C H_3_26b_P H_3_26b_C H_3_26c_P H_3_26c_C
+			HIDE H_3_17a_P H_3_17a_C H_3_17b_P H_3_17b_C H_3_17c_P H_3_22_P H_3_22_C H_3_31a_P H_3_31b_P H_3_31c_P
+			HIDE H_3_17c_C H_3_19_P H_3_19_C H_3_20a_P H_3_20a_C H_3_20b_P H_3_20b_C H_3_20c_P H_3_20c_C H_6_6a_C
+			HIDE H_3_23a_P H_3_23a_C H_3_23b_P H_3_23b_C H_3_23c_P H_3_23c_C H_3_25_P H_3_25_C H_3_30_P H_3_30_C H_7_1_P_C
+			HIDE H_3_28a_P H_3_28a_C H_3_28b_P H_3_28b_C H_3_28c_P H_3_28c_C H_3_31a_C H_3_31b_C H_3_31c_C H_6_5a_P
+			HIDE H_3_33a_P H_3_33b_P H_3_33c_P H_3_33a_C H_3_33b_C H_3_33c_C H_3_32_P H_3_32_C H_6_1a_P H_6_1a_C
+			HIDE H_6_5a_C H_6_5b1_P H_6_5b2_P H_6_5b1_C H_6_5b2_C H_6_1b1_P H_6_1b2_P H_6_1b1_C H_6_1b2_C H_6_6b1_P H_6_6b2_P H_6_6b1_C H_6_6b2_C
+			HIDE H_4_2b_C H_4_2b2_C H_4_2b3_C H_4_3b_C H_4_3b2_C H_4_3b3_C H_4_4b_C H_4_4b2_C H_4_4b3_C H_4_5b_C H_4_5b2_C H_4_5b3_C H_4_6b_C H_4_6b2_C H_4_6b3_C H_4_7b_C H_4_7b2_C H_4_8b_C H_4_8b2_C  
+			HIDE H_4_2b_P H_4_2b2_P H_4_2b3_P H_4_3b_P H_4_3b2_P H_4_3b3_P H_4_4b_P H_4_4b2_P H_4_4b3_P H_4_5b_P H_4_5b2_P H_4_5b3_P H_4_6b_P H_4_6b2_P H_4_6b3_P H_4_7b_P H_4_7b2_P H_4_8b_P H_4_8b2_P  
+			HIDE H_5_1b_P H_5_1b2_P H_5_1b3_P H_5_2b_P H_5_2b2_P H_5_2b3_P H_5_3b_P H_5_3b2_P H_5_3b3_P H_5_4b_P H_5_4b2_P H_5_4b3_P H_5_5b_P H_5_5b2_P H_5_5b3_P H_5_6b_P H_5_6b2_P H_5_6b3_P H_5_7b_P H_5_7b2_P H_5_8b_P H_5_8b2_P   
+			HIDE H_5_1b_C H_5_1b2_C H_5_1b3_C H_5_2b_C H_5_2b2_C H_5_2b3_C H_5_3b_C H_5_3b2_C H_5_3b3_C H_5_4b_C H_5_4b2_C H_5_4b3_C H_5_5b_C H_5_5b2_C H_5_5b3_C H_5_6b_C H_5_6b2_C H_5_6b3_C H_5_7b_C H_5_7b2_C H_5_8b_C H_5_8b2_C
+		END-IF
+ 
+IF H_Country = 1 THEN
+			UNHIDE H_3_3a_D H_3_3b_D H_3_3c_D H_3_4_D H_3_5a_D H_3_5b_D H_3_5c_D H_3_6_D H_3_7a_D H_3_2_D H_3_22_D 
+			UNHIDE H_3_7b_D H_3_7c_D H_3_16_D H_3_17a_D H_3_17b_D H_3_17c_D H_3_19_D H_3_20a_D H_3_20b_D H_3_20c_D
+			UNHIDE H_3_23a_D H_3_23b_D H_3_23c_D H_3_25_D H_3_26a_D H_3_26b_D H_3_26c_D H_3_27_D H_3_28a_D H_3_28b_D H_3_28c_D
+			UNHIDE H_3_30_D H_3_31a_D H_3_31b_D H_3_31c_D H_3_32_D H_3_33a_D H_3_33b_D H_3_33c_D H_6_1a_D H_6_6a_D
+			UNHIDE H_6_5a_D H_6_5b1_D H_6_5b2_D H_6_1b1_D H_6_1b2_D H_6_6b1_D H_6_6b2_D H_7_1_D H_6_42_D H_6_43_D
+			UNHIDE H_4_2b_D H_4_2b2_D H_4_2b3_D H_4_3b_D H_4_3b2_D H_4_3b3_D H_4_4b_D H_4_4b2_D H_4_4b3_D H_4_5b_D H_4_5b2_D H_4_5b3_D H_4_6b_D H_4_6b2_D H_4_6b3_D H_4_7b_D H_4_7b2_D H_4_8b_D H_4_8b2_D
+			UNHIDE H_5_1b_D H_5_1b2_D H_5_1b3_D H_5_2b_D H_5_2b2_D H_5_2b3_D H_5_3b_D H_5_3b2_D H_5_3b3_D H_5_4b_D H_5_4b2_D H_5_4b3_D H_5_5b_D H_5_5b2_D H_5_5b3_D H_5_6b_D H_5_6b2_D H_5_6b3_D H_5_7b_D H_5_7b2_D H_5_8b_D H_5_8b2_D  
+
+		END-IF
+
+IF H_Country = 2 THEN
+			HIDE H_3_19_P H_4_1b_P H_4_1b2_P H_4_1b3_P H_4_1b_D H_4_1b2_D H_4_1b3_D H_6_6a_P H_6_44_P
+			HIDE H_3_3a_P H_3_3a_D H_3_3b_P H_3_3b_D H_3_3c_P H_3_3c_D H_3_4_P H_3_4_D H_3_5a_P H_6_6a_D H_3_16_D 
+			HIDE H_3_5a_D H_3_5b_P H_3_5b_D H_3_5c_P H_3_5c_D H_3_6_P H_3_6_D H_3_2_P H_3_2_D H_6_1a_P H_6_1a_D
+
+			HIDE H_3_7a_P H_3_7a_D H_3_7b_P H_3_7b_D H_3_7c_P H_3_7c_D H_3_22_P H_3_22_D H_3_27_P H_3_27_D
+			HIDE H_3_16_P H_3_17a_D H_3_17a_P H_3_17b_D H_3_17b_P H_3_17c_D H_3_17c_P H_3_19_D H_6_42_D H_6_43_D
+			HIDE  H_3_20a_P H_3_20a_D H_3_20b_P H_3_20b_D H_3_20c_P H_3_20c_D H_3_3a_P H_6_5a_P H_6_5a_D
+			HIDE  H_3_3a_D H_3_3b_P H_3_3b_D H_3_3c_P H_3_3c_D H_3_4_P H_3_4_D H_3_26a_D H_3_26a_P H_3_26b_D H_3_26b_P H_3_26c_D H_3_26c_P
+
+			HIDE H_3_5a_P H_3_5a_D H_3_5b_P H_3_5b_D H_3_5c_P H_3_5c_D H_3_6_P H_3_6_D H_3_33a_D H_3_33b_D H_3_33c_D
+			HIDE H_3_7a_P H_3_7a_D H_3_7b_P H_3_7b_D H_3_7c_P H_3_7c_D H_3_31a_P H_3_31b_P H_3_31c_P H_7_1_D
+			HIDE H_3_17a_D H_3_17a_P H_3_17b_D H_3_17b_P H_3_16_P H_3_30_P H_3_30_D H_3_33a_P H_3_33b_P H_3_33c_P
+			HIDE H_3_17c_D H_3_17c_P H_3_19_D H_3_20a_P H_3_20a_D H_3_20b_P H_3_20b_D H_3_20c_P H_3_20c_D
+			HIDE H_3_23a_P H_3_23a_D H_3_23b_P H_3_23b_D H_3_23c_P H_3_23c_D H_3_25_P H_3_25_D H_3_32_D H_3_32_P
+			HIDE H_3_28a_D H_3_28a_P H_3_28b_D H_3_28b_P H_3_28c_D H_3_28c_P H_3_31a_D H_3_31b_D H_3_31c_D
+			HIDE H_6_5b1_D H_6_5b2_D H_6_5b1_P H_6_5b2_P H_6_1b1_P H_6_1b2_P H_6_1b1_D H_6_1b2_D 
+			HIDE H_6_6b1_P H_6_6b2_P H_6_6b1_D H_6_6b2_D
+			HIDE H_4_2b_D H_4_2b2_D H_4_2b3_D H_4_3b_D H_4_3b2_D H_4_3b3_D H_4_4b_D H_4_4b2_D H_4_4b3_D H_4_5b_D H_4_5b2_D H_4_5b3_D H_4_6b_D H_4_6b2_D H_4_6b3_D H_4_7b_D H_4_7b2_D H_4_8b_D H_4_8b2_D
+			HIDE H_4_2b_P H_4_2b2_P H_4_2b3_P H_4_3b_P H_4_3b2_P H_4_3b3_P H_4_4b_P H_4_4b2_P H_4_4b3_P H_4_5b_P H_4_5b2_P H_4_5b3_P H_4_6b_P H_4_6b2_P H_4_6b3_P H_4_7b_P H_4_7b2_P H_4_8b_P H_4_8b2_P
+			HIDE H_5_1b_D H_5_1b2_D H_5_1b3_D H_5_2b_D H_5_2b2_D H_5_2b3_D H_5_3b_D H_5_3b2_D H_5_3b3_D H_5_4b_D H_5_4b2_D H_5_4b3_D H_5_5b_D H_5_5b2_D H_5_5b3_D H_5_6b_D H_5_6b2_D H_5_6b3_D H_5_7b_D H_5_7b2_D H_5_8b_D H_5_8b2_D  
+			HIDE H_5_1b_P H_5_1b2_P H_5_1b3_P H_5_2b_P H_5_2b2_P H_5_2b3_P H_5_3b_P H_5_3b2_P H_5_3b3_P H_5_4b_P H_5_4b2_P H_5_4b3_P H_5_5b_P H_5_5b2_P H_5_5b3_P H_5_6b_P H_5_6b2_P H_5_6b3_P H_5_7b_P H_5_7b2_P H_5_8b_P H_5_8b2_P 
+		END-IF
+
+IF H_Country = 2 THEN
+			UNHIDE H_3_3a_C H_3_3b_C H_3_3c_C H_3_4_C H_3_22_C H_3_30_C H_3_31a_C H_3_31b_C H_3_31c_C H_6_6a_C
+			UNHIDE H_3_5a_C H_3_5b_C H_3_5c_C H_3_6_C H_3_7a_C H_3_7b_C H_3_7c_C H_3_16_C H_3_17a_C H_3_17b_C
+			UNHIDE H_3_17c_C H_3_19_C H_3_20a_C H_3_20b_C H_3_20c_C H_3_2_C H_3_28a_C H_3_28b_C H_3_28c_C
+			UNHIDE H_3_23a_C H_3_23b_C H_3_23c_C H_3_25_C H_3_26a_C H_3_26b_C H_3_26c_C H_3_27_C H_3_32_C H_7_1_P_C
+			UNHIDE H_3_33a_C H_3_33b_C H_3_33c_C H_6_1a_C H_6_5a_C H_6_5b1_C H_6_5b2_C H_6_1b1_C H_6_1b2_C H_6_6b1_C H_6_6b2_C
+			UNHIDE H_4_2b_C H_4_2b2_C H_4_2b3_C H_4_3b_C H_4_3b2_C H_4_3b3_C H_4_4b_C H_4_4b2_C H_4_4b3_C H_4_5b_C H_4_5b2_C H_4_5b3_C H_4_6b_C H_4_6b2_C H_4_6b3_C H_4_7b_C H_4_7b2_C H_4_8b_C H_4_8b2_C
+			UNHIDE H_5_1b_C H_5_1b2_C H_5_1b3_C H_5_2b_C H_5_2b2_C H_5_2b3_C H_5_3b_C H_5_3b2_C H_5_3b3_C H_5_4b_C H_5_4b2_C H_5_4b3_C H_5_5b_C H_5_5b2_C H_5_5b3_C H_5_6b_C H_5_6b2_C H_5_6b3_C H_5_7b_C H_5_7b2_C H_5_8b_C H_5_8b2_C  
+
+		END-IF
+

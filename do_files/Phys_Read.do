@@ -3,9 +3,27 @@ set more off
 capture log close
 log using Phys_Exam, text replace
 
- cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
- 
-   insheet using "../CUBA_in/Phys_Child.csv", comma names clear
+local country = 1
+
+if `country' == 0 {
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
+}
+else if `country' == 1 {
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+}
+else if `country' == 2 {
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
+}
+
+if `country' == 0 {
+    insheet using "../PR_in/Phys_Child.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/Phys_Child.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/Phys_Child.csv", comma names clear
+}
    
    ds, has(type string)
 
