@@ -10,7 +10,8 @@ set more off\
 capture log close\
 log using Cognitive_Socring, text replace\
 \
-*next, I want to find out if we have the right amount of cog scoring and cog surveys\
+*Here we will identify the country we want before we run the file\
+*0 = PR, 1 = DR, 2 = CU\
 \
 local country = 1\
 \

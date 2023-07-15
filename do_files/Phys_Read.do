@@ -3,6 +3,9 @@ set more off
 capture log close
 log using Phys_Exam, text replace
 
+*Here we will identify the country we want before we run the file
+*0 = PR, 1 = DR, 2 = CU
+
 local country = 1
 
 if `country' == 0 {
