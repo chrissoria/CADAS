@@ -48,6 +48,11 @@ keep pid i_b3\
 save infor_check, replace\
 clear\
 \
+use Cog_Scoring\
+keep pid\
+save cog_scoring_check.dta, replace\
+clear\
+\
 use Household\
 keep hhid\
 save Household_checks.dta, replace\
@@ -104,6 +109,9 @@ rename _merge merge_phys\
 quietly merge 1:1 pid using "cog_check.dta"\
 rename _merge merge_cog\
 \
+/*quietly merge 1:1 pid using "cog_scoring_check.dta"\
+rename merge merge_cog_scoring*/\
+\
 quietly merge 1:1 pid using "infor_check.dta"\
 rename _merge merge_infor\
 \
@@ -134,6 +142,4 @@ list pid if merge_rosters != 3 | merge_socio != 3 | merge_phys != 3 | merge_cog 
 \
  log close\
 \
-clear all\
-\
-}
+clear all}

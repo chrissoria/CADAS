@@ -80,7 +80,7 @@ replace i_f_csid_22_2 = .i if (i_f_csid_22_2 == . | i_f_csid_22_2 == .a) & i_f_c
 
 replace i_f_csid_23_2 = .i if (i_f_csid_23_2 == . | i_f_csid_23_2 == .a) & i_f_csid_23_1 ~= 0
 
-replace i_f_csid_24_2 = .i if (i_f_csid_24_2 == . | i_f_csid_24_2 == .a) & i_f_csid_22_1 ~= 0
+replace i_f_csid_24_2 = .i if (i_f_csid_24_2 == . | i_f_csid_24_2 == .a) & i_f_csid_24_1 ~= 0
 
 *lines 6 and 9 did not skip to section H after answering si to f.csid.28
 
@@ -499,6 +499,99 @@ replace i_deviceid2 = ".i" if i_deviceid2 == ""
 
 
 
+
+*drop all uppercase variables
+
+drop I_*
+
+
+
+
+
+*COUNTS NUMBER OF .i IN EACH OBSERVATION UNDER NEW VARIABLE CALLED i_countmissing
+local i 1
+gen i_countmissing = 0
+
+quietly ds hhid pid i_time2 i_time1 i_date fkey lastsavetime lastsavelogonname firstsavetime firstsavelogonname globalrecordid recstatus uniquekey i_deviceid2, not
+local allvar `r(varlist)'
+
+
+foreach v in `allvar' {
+	local allvarR `v' `allvarR'
+	}
+
+
+
+
+quietly forvalues i = 1(1) `=_N' {
+	foreach v of local allvarR {
+		capture confirm str var `v'
+		if _rc == 0 {
+			if `v'[`i'] == ".i" {
+				replace i_countmissing = i_countmissing[`i'] + 1 in `i'
+			}
+			else {
+			}
+		}
+		else {
+			if `v'[`i'] == .i {
+				replace i_countmissing = i_countmissing[`i'] + 1 in `i'
+			}
+			else{
+			}
+		}
+	}
+}
+
+
+
+
+*SHOWS LAST QUESTION ANSWERED FOR EACH OBSERVATION UNDER NEW VARIABLE CALLED i_last
+local i 1
+gen i_last = "AllAnswered"
+
+quietly ds i_countmissing hhid pid i_last i_time2 i_time1 i_date fkey lastsavetime lastsavelogonname firstsavetime firstsavelogonname globalrecordid recstatus uniquekey i_deviceid2, not
+local allvar `r(varlist)'
+
+
+foreach v in `allvar' {
+	local allvarR `v' `allvarR'
+	}
+
+
+
+
+quietly forvalues i = 1(1) `=_N' {
+	foreach v of local allvarR {
+		capture confirm str var `v'
+		if _rc == 0 {
+			if (`v'[`i'] == ".i" | `v'[`i'] == ".v") {
+				continue
+			}
+			else {
+				replace i_last = "`v'" in `i'
+				continue, break
+			}
+		}
+		else {
+			if (`v'[`i'] == .i | `v'[`i'] == .v) {
+				continue
+			}
+			else{
+				replace i_last = "`v'" in `i'
+				continue, break
+			}
+		}
+	}
+}
+
+
+
+
+gen i_TotalTime = (Clock(i_time2, "MDYhms") - Clock(i_time1, "MDYhms"))/1000/60
+
+
+
 capture log close
 log using InforMissingCodebook, text replace
 
@@ -506,6 +599,32 @@ codebook
 
    save InforMissing, replace
 
+
+log close
+log using InforOnlyMissing, text replace
+
+local missvarlist
+foreach v of var * {
+	capture confirm str var `v'
+	if _rc == 0 {
+		quietly count if `v' == ".i"
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+	else {
+		quietly count if `v' == .i
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+}
+
+macro list _missvarlist
+
+foreach v of local missvarlist {
+	codebook `v'
+}
 
 log close
 exit, clear

@@ -417,15 +417,15 @@ replace s_14_30b1_d = .i if (s_14_30b1_d == . | s_14_30b1_d == .a) & ((s_14_30a 
 
 *replace s_14_30b1_c = .i if (s_14_30b1_c == . | s_14_30b1_c == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & s_country  == 2)
 
-*replace s_14_30b2_p = .i if (s_14_30b2_p == . | s_14_30b2_p == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 0) & (s_14_30b1_p == 2 | s_14_30b1_p == .i))
+replace s_14_30b2_p = .i if (s_14_30b2_p == . | s_14_30b2_p == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 0) & (s_14_30b1_p == 2 | s_14_30b1_p == .i))
 
-*replace s_14_30b2_d = .i if (s_14_30b2_d == . | s_14_30b2_d == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 1) & (s_14_30b1_d == 2 | s_14_30b1_d == .i))
+replace s_14_30b2_d = .i if (s_14_30b2_d == . | s_14_30b2_d == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 1) & (s_14_30b1_d == 2 | s_14_30b1_d == .i))
 
 *replace s_14_30b2_c = .i if (s_14_30b2_c == . | s_14_30b2_c == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 2) & (s_14_30b1_c == 2 | s_14_30b1_c == .i))
 
-*replace s_14_30b3_p = .i if (s_14_30b3_p == . | s_14_30b3_p == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 0) & (s_14_30b1_p == 1 | s_14_30b1_p == .i))
+replace s_14_30b3_p = .i if (s_14_30b3_p == . | s_14_30b3_p == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 0) & (s_14_30b1_p == 1 | s_14_30b1_p == .i))
 
-*replace s_14_30b3_d = .i if (s_14_30b3_d == . | s_14_30b3_d == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 1) & (s_14_30b1_d == 1 | s_14_30b1_d == .i))
+replace s_14_30b3_d = .i if (s_14_30b3_d == . | s_14_30b3_d == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 1) & (s_14_30b1_d == 1 | s_14_30b1_d == .i))
 
 *replace s_14_30b3_c = .i if (s_14_30b3_c == . | s_14_30b3_c == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 2) & (s_14_30b1_c == 1 | s_14_30b1_c == .i))
 
@@ -493,11 +493,11 @@ replace s_14_2g_d = .v if (s_14_2g_d == 0 | s_14_2g_d == .a) & (s_country ~= 1 |
 replace s_14_30b1_p = .v if (s_14_30b1_p == . | s_14_30b1_p == .a) & s_country ~= 0
 replace s_14_30b1_d = .v if (s_14_30b1_d == . | s_14_30b1_d == .a) & s_country ~= 1
 *replace s_14_30b1_c = .v if (s_14_30b1_c == . | s_14_30b1_c == .a) & s_country ~= 2
-*replace s_14_30b2_p = .v if (s_14_30b2_p == . | s_14_30b2_p == .a) & s_country ~= 0
-*replace s_14_30b2_d = .v if (s_14_30b2_d == . | s_14_30b2_d == .a) & s_country ~= 1
+replace s_14_30b2_p = .v if (s_14_30b2_p == . | s_14_30b2_p == .a) & s_country ~= 0
+replace s_14_30b2_d = .v if (s_14_30b2_d == . | s_14_30b2_d == .a) & s_country ~= 1
 *replace s_14_30b2_c = .v if (s_14_30b2_c == . | s_14_30b2_c == .a) & s_country ~= 2
-*replace s_14_30b3_p = .v if (s_14_30b3_p == . | s_14_30b3_p == .a) & s_country ~= 0
-*replace s_14_30b3_d = .v if (s_14_30b3_d == . | s_14_30b3_d == .a) & s_country ~= 1
+replace s_14_30b3_p = .v if (s_14_30b3_p == . | s_14_30b3_p == .a) & s_country ~= 0
+replace s_14_30b3_d = .v if (s_14_30b3_d == . | s_14_30b3_d == .a) & s_country ~= 1
 *replace s_14_30b3_c = .v if (s_14_30b3_c == . | s_14_30b3_c == .a) & s_country ~= 2
 
 
@@ -563,7 +563,7 @@ replace s_8_5b6 = .v if (s_8_5b6 == 0 | s_8_5b6 == .a) & ((s_8_1 == 2 | s_8_1 ==
 replace s_8_5b7 = .v if (s_8_5b7 == 0 | s_8_5b7 == .a) & ((s_8_1 == 2 | s_8_1 == 8 | s_8_1 == 9) & (s_8_5a == 1 | s_8_5a == 2 | s_8_5a == 8))
 replace s_8_5b8 = .v if (s_8_5b8 == 0 | s_8_5b8 == .a) & ((s_8_1 == 2 | s_8_1 == 8 | s_8_1 == 9) & (s_8_5a == 1 | s_8_5a == 2 | s_8_5a == 8))
 replace s_8_5b9 = .v if (s_8_5b9 == 0 | s_8_5b9 == .a) & ((s_8_1 == 2 | s_8_1 == 8 | s_8_1 == 9) & (s_8_5a == 1 | s_8_5a == 2 | s_8_5a == 8))
-replace s_8_5b10 = .v if (s_8_5b10 == 0 | s_8_5b10 == .a) & ((s_8_1 == 2 | s_8_1 == 8 | s_8_1 == 9) & (s_8_5a == 1 | s_8_5a == 2 | s_8_5a == 8))
+*replace s_8_5b10 = .v if (s_8_5b10 == 0 | s_8_5b10 == .a) & ((s_8_1 == 2 | s_8_1 == 8 | s_8_1 == 9) & (s_8_5a == 1 | s_8_5a == 2 | s_8_5a == 8))
 replace s_8_5c = .v if (s_8_5c == . | s_8_5c == .a)
 replace s_8_5d = .v if (s_8_5d == . | s_8_5d == .a)
 replace s_8_7 = .v if (s_8_7 == . | s_8_7 == .a)
@@ -698,11 +698,11 @@ replace s_14_25 = .v if (s_14_25 == . | s_14_25 == .a)
 replace s_14_30b1_p = .v if (s_14_30b1_p == . | s_14_30b1_p == .a)
 replace s_14_30b1_d = .v if (s_14_30b1_d == . | s_14_30b1_d == .a)
 *replace s_14_30b1_c = .v if (s_14_30b1_c == . | s_14_30b1_c == .a)
-*replace s_14_30b2_p = .v if (s_14_30b2_p == . | s_14_30b2_p == .a)
-*replace s_14_30b2_d = .v if (s_14_30b2_d == . | s_14_30b2_d == .a)
+replace s_14_30b2_p = .v if (s_14_30b2_p == . | s_14_30b2_p == .a)
+replace s_14_30b2_d = .v if (s_14_30b2_d == . | s_14_30b2_d == .a)
 *replace s_14_30b2_c = .v if (s_14_30b2_c == . | s_14_30b2_c == .a)
-*replace s_14_30b3_p = .v if (s_14_30b3_p == . | s_14_30b3_p == .a)
-*replace s_14_30b3_d = .v if (s_14_30b3_d == . | s_14_30b3_d == .a)
+replace s_14_30b3_p = .v if (s_14_30b3_p == . | s_14_30b3_p == .a)
+replace s_14_30b3_d = .v if (s_14_30b3_d == . | s_14_30b3_d == .a)
 *replace s_14_30b3_c = .v if (s_14_30b3_c == . | s_14_30b3_c == .a)
 replace s_14_32 = .v if (s_14_32 == . | s_14_32 == .a)
 replace s_15_2 = .v if (s_15_2 == . | s_15_2 == .a)
@@ -1087,6 +1087,94 @@ replace s_deviceid2 = ".i" if s_deviceid2 == ""
 
 
 
+*drop all uppercase variables
+
+drop S_*
+
+
+
+
+*COUNTS NUMBER OF .i IN EACH OBSERVATION UNDER NEW VARIABLE CALLED s_countmissing
+local i 1
+gen s_countmissing = 0
+
+quietly ds hhid pid s_8_5b2_delete s_time2 s_time1 s_date fkey lastsavetime lastsavelogonname firstsavetime firstsavelogonname globalrecordid recstatus uniquekey s_deviceid2, not
+local allvar `r(varlist)'
+
+
+foreach v in `allvar' {
+	local allvarR `v' `allvarR'
+	}
+
+
+
+
+quietly forvalues i = 1(1) `=_N' {
+	foreach v of local allvarR {
+		capture confirm str var `v'
+		if _rc == 0 {
+			if `v'[`i'] == ".i" {
+				replace s_countmissing = s_countmissing[`i'] + 1 in `i'
+			}
+			else {
+			}
+		}
+		else {
+			if `v'[`i'] == .i {
+				replace s_countmissing = s_countmissing[`i'] + 1 in `i'
+			}
+			else{
+			}
+		}
+	}
+}
+
+
+
+
+*SHOWS LAST QUESTION ANSWERED FOR EACH OBSERVATION UNDER NEW VARIABLE CALLED s_last
+local i 1
+gen s_last = "AllAnswered"
+
+quietly ds s_countmissing s_8_5b2_delete hhid pid s_last s_time2 s_time1 s_date fkey lastsavetime lastsavelogonname firstsavetime firstsavelogonname globalrecordid recstatus uniquekey s_deviceid2, not
+local allvar `r(varlist)'
+
+
+foreach v in `allvar' {
+	local allvarR `v' `allvarR'
+	}
+
+
+
+
+quietly forvalues i = 1(1) `=_N' {
+	foreach v of local allvarR {
+		capture confirm str var `v'
+		if _rc == 0 {
+			if (`v'[`i'] == ".i" | `v'[`i'] == ".v") {
+				continue
+			}
+			else {
+				replace s_last = "`v'" in `i'
+				continue, break
+			}
+		}
+		else {
+			if (`v'[`i'] == .i | `v'[`i'] == .v) {
+				continue
+			}
+			else{
+				replace s_last = "`v'" in `i'
+				continue, break
+			}
+		}
+	}
+}
+
+
+
+gen s_TotalTime = (Clock(s_time2, "MDYhms") - Clock(s_time1, "MDYhms"))/1000/60
+
 
 
 capture log close
@@ -1096,6 +1184,32 @@ codebook
 
    save SocioMissing, replace
 
+
+log close
+log using SocioOnlyMissing, text replace
+
+local missvarlist
+foreach v of var * {
+	capture confirm str var `v'
+	if _rc == 0 {
+		quietly count if `v' == ".i"
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+	else {
+		quietly count if `v' == .i
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+}
+
+macro list _missvarlist
+
+foreach v of local missvarlist {
+	codebook `v'
+}
 
 log close
 exit, clear

@@ -469,7 +469,7 @@ replace c_29 = .i if (c_29 == . | c_29 == .a)
 replace c_30 = .i if (c_30 == . | c_30 == .a)
 replace c_31 = .i if (c_31 == . | c_31 == .a)
 replace c_32 = .i if (c_32 == . | c_32 == .a)
-replace pent_pic = .i if (pent_pic == . | pent_pic == .a)
+replace pent_pic = ".i" if pent_pic == ""
 /*
 replace c_33_a = .i if (c_33_a == . | c_33_a == .a)
 replace c_33_1 = .i if (c_33_1 == . | c_33_1 == .a)
@@ -508,9 +508,9 @@ replace c_35_10 = .i if (c_35_10 == . | c_35_10 == .a)
 replace g_1 = .i if (g_1 == . | g_1 == .a)
 replace g_1_file = ".i" if g_1_file == ""
 replace c_40 = .i if (c_40 == . | c_40 == .a)
-replace anim_pic = .i if (anim_pic == . | anim_pic == .a)
+replace anim_pic = ".i" if anim_pic == ""
 replace c_43 = .i if (c_43 == . | c_43 == .a)
-replace symb_pic = .i if (symb_pic == . | symb_pic == .a)
+replace symb_pic = ".i" if (symb_pic == "" | symb_pic == ".a")
 replace c_45 = .i if (c_45 == . | c_45 == .a)
 replace c_45_a = .i if (c_45_a == . | c_45_a == .a)
 replace c_46 = .i if (c_46 == . | c_46 == .a)
@@ -614,7 +614,7 @@ replace c_72_1 = .i if (c_72_1 == . | c_72_1 == .a)
 replace c_72_2 = .i if (c_72_2 == . | c_72_2 == .a)
 replace c_72_3 = .i if (c_72_3 == . | c_72_3 == .a)
 replace c_72_4 = .i if (c_72_4 == . | c_72_4 == .a)
-replace c_72_4_pic = .i if (c_72_4_pic == . | c_72_4_pic == .a)
+replace c_72_4_pic = ".i" if (c_72_4_pic == "" | c_72_4_pic == ".a")
 replace g_3 = .i if (g_3 == . | g_3 == .a)
 replace c_77_a = .i if (c_77_a == . | c_77_a == .a)
 replace g_3_file = ".i" if g_3_file == ""
@@ -655,7 +655,7 @@ replace c_79_1 = .i if (c_79_1 == . | c_79_1 == .a)
 replace c_79_2 = .i if (c_79_2 == . | c_79_2 == .a)
 replace c_79_3 = .i if (c_79_3 == . | c_79_3 == .a)
 replace c_79_4 = .i if (c_79_4 == . | c_79_4 == .a)
-replace c_79_4_pic = .i if (c_79_4_pic == . | c_79_4_pic == .a)
+replace c_79_4_pic = ".i" if (c_79_4_pic == "" | c_79_4_pic == ".a")
 replace c_80a = .i if (c_80a == . | c_80a == .a)
 replace c_80b = .i if (c_80b == . | c_80b == .a)
 replace c_80c = .i if (c_80c == . | c_80c == .a)
@@ -666,6 +666,108 @@ replace c_deviceid2 = ".i" if c_deviceid2 == ""
 
 
 
+*drop all uppercase variables
+
+drop C_*
+drop G_*
+
+
+
+
+*COUNTS NUMBER OF .i IN EACH OBSERVATION UNDER NEW VARIABLE CALLED c_countmissing
+local i 1
+gen c_countmissing = 0
+
+quietly ds hhid pid c_time2 c_time1 c_date fkey lastsavetime lastsavelogonname firstsavetime firstsavelogonname globalrecordid recstatus uniquekey c_deviceid2, not
+local allvar `r(varlist)'
+
+
+foreach v in `allvar' {
+	local allvarR `v' `allvarR'
+	}
+
+
+
+
+quietly forvalues i = 1(1) `=_N' {
+	foreach v of local allvarR {
+		capture confirm str var `v'
+		if _rc == 0 {
+			if `v'[`i'] == ".i" {
+				replace c_countmissing = c_countmissing[`i'] + 1 in `i'
+			}
+			else {
+			}
+		}
+		else {
+			if `v'[`i'] == .i {
+				replace c_countmissing = c_countmissing[`i'] + 1 in `i'
+			}
+			else{
+			}
+		}
+	}
+}
+
+
+
+
+
+
+*SHOWS LAST QUESTION ANSWERED FOR EACH OBSERVATION UNDER NEW VARIABLE CALLED c_last
+local i 1
+gen c_last = "AllAnswered"
+
+quietly ds c_countmissing hhid pid c_last c_time2 c_time1 c_date fkey lastsavetime lastsavelogonname firstsavetime firstsavelogonname globalrecordid recstatus uniquekey c_deviceid2, not
+local allvar `r(varlist)'
+
+
+foreach v in `allvar' {
+	local allvarR `v' `allvarR'
+	}
+
+
+
+
+quietly forvalues i = 1(1) `=_N' {
+	foreach v of local allvarR {
+		capture confirm str var `v'
+		if _rc == 0 {
+			if (`v'[`i'] == ".i" | `v'[`i'] == ".v") {
+				continue
+			}
+			else {
+				replace c_last = "`v'" in `i'
+				continue, break
+			}
+		}
+		else {
+			if (`v'[`i'] == .i | `v'[`i'] == .v) {
+				continue
+			}
+			else{
+				replace c_last = "`v'" in `i'
+				continue, break
+			}
+		}
+	}
+}
+
+
+
+/*
+*time taken in minutes
+gen c_TotalTime = (Clock(C_Time_END, "MDYhms") - Clock(C_Time1, "MDYhms"))/1000/60
+gen c_ThreeWordDelay = (Clock(C_Time3, "MDYhms") - Clock(C_Time2, "MDYhms"))/1000/60
+gen c_TenWordDelay = (Clock(C_Time5, "MDYhms") - Clock(C_Time4, "MDYhms"))/1000/60
+gen c_TenWordRecognition = (Clock(C_Time8, "MDYhms") - Clock(C_Time4, "MDYhms"))/1000/60
+gen c_Story1Delay = (Clock(C_Time10, "MDYhms") - Clock(C_Time6, "MDYhms"))/1000/60
+gen c_Story2Delay = (Clock(C_Time11, "MDYhms") - Clock(C_Time7, "MDYhms"))/1000/60
+gen c_FigureDelay = (Clock(C_Time_END, "MDYhms") - Clock(C_Time9, "MDYhms"))/1000/60
+*/
+gen c_TotalTime = (Clock(c_time2, "MDYhms") - Clock(c_time1, "MDYhms"))/1000/60
+
+
 
 capture log close
 log using CogMissingCodebook, text replace
@@ -674,6 +776,32 @@ codebook
 
    save CogMissing, replace
 
+
+log close
+log using CogOnlyMissing, text replace
+
+local missvarlist
+foreach v of var * {
+	capture confirm str var `v'
+	if _rc == 0 {
+		quietly count if `v' == ".i"
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+	else {
+		quietly count if `v' == .i
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+}
+
+macro list _missvarlist
+
+foreach v of local missvarlist {
+	codebook `v'
+}
 
 log close
 exit, clear

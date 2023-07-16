@@ -157,6 +157,96 @@ replace p_deviceid2 = ".i" if p_deviceid2 == ""
 
 
 
+*drop all uppercase variables
+
+drop P*
+
+
+
+
+*COUNTS NUMBER OF .i IN EACH OBSERVATION UNDER NEW VARIABLE CALLED p_countmissing
+local i 1
+gen p_countmissing = 0
+
+quietly ds hhid pid p_time2 p_time1 p_date fkey lastsavetime lastsavelogonname firstsavetime firstsavelogonname globalrecordid recstatus uniquekey p_deviceid2, not
+local allvar `r(varlist)'
+
+
+foreach v in `allvar' {
+	local allvarR `v' `allvarR'
+	}
+
+
+
+
+quietly forvalues i = 1(1) `=_N' {
+	foreach v of local allvarR {
+		capture confirm str var `v'
+		if _rc == 0 {
+			if `v'[`i'] == ".i" {
+				replace p_countmissing = p_countmissing[`i'] + 1 in `i'
+			}
+			else {
+			}
+		}
+		else {
+			if `v'[`i'] == .i {
+				replace p_countmissing = p_countmissing[`i'] + 1 in `i'
+			}
+			else{
+			}
+		}
+	}
+}
+
+
+
+
+*SHOWS LAST QUESTION ANSWERED FOR EACH OBSERVATION UNDER NEW VARIABLE CALLED p_last
+local i 1
+gen p_last = "AllAnswered"
+
+quietly ds p_countmissing hhid pid p_last p_time2 p_time1 p_date fkey lastsavetime lastsavelogonname firstsavetime firstsavelogonname globalrecordid recstatus uniquekey p_deviceid2, not
+local allvar `r(varlist)'
+
+
+foreach v in `allvar' {
+	local allvarR `v' `allvarR'
+	}
+
+
+
+
+quietly forvalues i = 1(1) `=_N' {
+	foreach v of local allvarR {
+		capture confirm str var `v'
+		if _rc == 0 {
+			if (`v'[`i'] == ".i" | `v'[`i'] == ".v") {
+				continue
+			}
+			else {
+				replace p_last = "`v'" in `i'
+				continue, break
+			}
+		}
+		else {
+			if (`v'[`i'] == .i | `v'[`i'] == .v) {
+				continue
+			}
+			else{
+				replace p_last = "`v'" in `i'
+				continue, break
+			}
+		}
+	}
+}
+
+
+
+gen p_TotalTime = (Clock(p_time2, "MDYhms") - Clock(p_time1, "MDYhms"))/1000/60
+
+
+
 capture log close
 log using PhysMissingCodebook, text replace
 
@@ -164,6 +254,32 @@ codebook
 
    save PhysMissing, replace
 
+
+log close
+log using PhysOnlyMissing, text replace
+
+local missvarlist
+foreach v of var * {
+	capture confirm str var `v'
+	if _rc == 0 {
+		quietly count if `v' == ".i"
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+	else {
+		quietly count if `v' == .i
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+}
+
+macro list _missvarlist
+
+foreach v of local missvarlist {
+	codebook `v'
+}
 
 log close
 exit, clear

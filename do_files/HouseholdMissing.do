@@ -9,10 +9,16 @@ log using HouseholdMissing, text replace
    
 
 
+
+
+
 *response on line 6 did invalid skip on 3_3a_c, but answered 3_3b_c so my code marked 3_3c_c as invalid (valid because 3_3b_c was answered, but i can change if we want to)
 *response on line 8 should not have answered 3_3a_c, but they did so it also let them answer 3_3c_c (which also should have been skipped because of their answer to 3_2_c)
 
 *all cuba invalid
+
+if h_country == 2 {
+replace h_3_1 = .i if (h_3_1 == . | h_3_1 == .a)
 
 replace h_3_2_c = .i if (h_3_2_c == . | h_3_2_c == .a) & (h_country == 2 & h_3_1 ~= 2 & h_3_1 ~= 3)
 
@@ -51,7 +57,7 @@ replace h_3_12 = .i if (h_3_12 == . | h_3_12 == .a) & h_3_11 ~= 4
 
 
 /*
-replace s_3_13 = .i if (s_3_13 == . | s_3_13 == .a)
+replace h_3_13 = .i if (h_3_13 == . | h_3_13 == .a)
 this variable was incorrectly(??) labeled with an s instead of h
 */
 
@@ -148,6 +154,8 @@ replace h_3_33b_c = .i if (h_3_33b_c == . | h_3_33b_c == .a) & (h_country == 2 &
 replace h_3_33c_c = .i if (h_3_33c_c == . | h_3_33c_c == .a) & (h_country == 2 & (h_3_32_c == 88 | h_3_32_c == 99 | h_3_32_c == .i) & (h_3_33a_c == 1 | h_3_33a_c == .i))
 
 replace h_3_34 = .i if (h_3_34 == . | h_3_34 == .a)
+
+replace h_4 = .i if (h_4 == . | h_4 == .a)
 
 replace h_4_1 = .i if (h_4_1 == . | h_4_1 == .a)
 
@@ -307,9 +315,9 @@ replace h_6_1 = .i if (h_6_1 == . | h_6_1 == .a)
 
 replace h_6_1a_c = .i if (h_6_1a_c == . | h_6_1a_c == .a) & (h_country == 2 & (h_6_1 == 1 | h_6_1 == .i))
 
-replace h_6_1b1_c = .i if (h_6_1b1_c == . | h_6_1b1_c == .a) & (h_country == 2 & (h_6_1a_c == 88 | h_6_1a_c == 99 | h_6_1a_c == .i))
+replace h_6_1b1_c = .i if (h_6_1b1_c == . | h_6_1b1_c == .a) & (h_country == 2 & (h_6_1 == 1 | h_6_1 == .i) & (h_6_1a_c == 88 | h_6_1a_c == 99 | h_6_1a_c == .i))
 
-replace h_6_1b2_c = .i if (h_6_1b2_c == . | h_6_1b2_c == .a) & (h_country == 2 & (h_6_1b1_c == 1 | h_6_1b1_c == .i))
+replace h_6_1b2_c = .i if (h_6_1b2_c == . | h_6_1b2_c == .a) & (h_country == 2 & (h_6_1 == 1 | h_6_1 == .i) & (h_6_1b1_c == 1 | h_6_1b1_c == .i))
 
 replace h_6_2 = .i if (h_6_2 == . | h_6_2 == .a)
 
@@ -319,17 +327,17 @@ replace h_6_5 = .i if (h_6_5 == . | h_6_5 == .a)
 
 replace h_6_5a_c = .i if (h_6_5a_c == . | h_6_5a_c == .a) & (h_country == 2 & (h_6_5 == 1 | h_6_5 == .i))
 
-replace h_6_5b1_c = .i if (h_6_5b1_c == . | h_6_5b1_c == .a) & (h_country == 2 & (h_6_5a_c == 88 | h_6_5a_c == 99 | h_6_5a_c == .i))
+replace h_6_5b1_c = .i if (h_6_5b1_c == . | h_6_5b1_c == .a) & (h_country == 2 & (h_6_5 == 1 | h_6_5 == .i) & (h_6_5a_c == 88 | h_6_5a_c == 99 | h_6_5a_c == .i))
 
-replace h_6_5b2_c = .i if (h_6_5b2_c == . | h_6_5b2_c == .a) & (h_country == 2 & (h_6_5b1_c == 1 | h_6_5b1_c == .i))
+replace h_6_5b2_c = .i if (h_6_5b2_c == . | h_6_5b2_c == .a) & (h_country == 2 & (h_6_5 == 1 | h_6_5 == .i) & (h_6_5b1_c == 1 | h_6_5b1_c == .i))
 
 replace h_6_6 = .i if (h_6_6 == . | h_6_6 == .a)
 
 replace h_6_6a_c = .i if (h_6_6a_c == . | h_6_6a_c == .a) & (h_country == 2 & (h_6_6 == 1 | h_6_6 == .i))
 
-replace h_6_6b1_c = .i if (h_6_6b1_c == . | h_6_6b1_c == .a) & (h_country == 2 & (h_6_6a_c == 88 | h_6_6a_c == 99 | h_6_6a_c == .i))
+replace h_6_6b1_c = .i if (h_6_6b1_c == . | h_6_6b1_c == .a) & (h_country == 2 & (h_6_6 == 1 | h_6_6 == .i) & (h_6_6a_c == 88 | h_6_6a_c == 99 | h_6_6a_c == .i))
 
-replace h_6_6b2_c = .i if (h_6_6b2_c == . | h_6_6b2_c == .a) & (h_country == 2 & (h_6_6b1_c == 1 | h_6_6b1_c == .i))
+replace h_6_6b2_c = .i if (h_6_6b2_c == . | h_6_6b2_c == .a) & (h_country == 2 & (h_6_6 == 1 | h_6_6 == .i) & (h_6_6b1_c == 1 | h_6_6b1_c == .i))
 
 replace h_7_1_p_c = .i if (h_7_1_p_c == . | h_7_1_p_c == .a) & (h_country == 0 | h_country == 2)
 
@@ -342,12 +350,13 @@ replace h_7_2_3 = .i if (h_7_2_3 == . | h_7_2_3 == .a)
 replace h_7_2_4 = .i if (h_7_2_4 == . | h_7_2_4 == .a)
 
 replace h_7_2_5 = .i if (h_7_2_5 == . | h_7_2_5 == .a)
-
+}
 
 
 
 *all puerto rico invalid
 
+if h_country == 0 {
 replace h_3_2_p = .i if (h_3_2_p == . | h_3_2_p == .a) & (h_country == 0 & h_3_1 ~= 2 & h_3_1 ~= 3)
 
 replace h_3_3a_p = .i if (h_3_3a_p == . | h_3_3a_p == .a) & (h_country == 0 & h_3_1 ~= 2 & h_3_1 ~= 3 & (h_3_2_p == 88 | h_3_2_p == 99 | h_3_2_p == .i))
@@ -385,7 +394,7 @@ replace h_3_12 = .i if (h_3_12 == . | h_3_12 == .a) & h_3_11 ~= 4
 
 
 /*
-replace s_3_13 = .i if (s_3_13 == . | s_3_13 == .a)
+replace h_3_13 = .i if (h_3_13 == . | h_3_13 == .a)
 this variable was incorrectly(??) labeled with an s instead of h
 */
 
@@ -641,9 +650,9 @@ replace h_6_1 = .i if (h_6_1 == . | h_6_1 == .a)
 
 replace h_6_1a_p = .i if (h_6_1a_p == . | h_6_1a_p == .a) & (h_country == 0 & (h_6_1 == 1 | h_6_1 == .i))
 
-replace h_6_1b1_p = .i if (h_6_1b1_p == . | h_6_1b1_p == .a) & (h_country == 0 & (h_6_1a_p == 88 | h_6_1a_p == 99 | h_6_1a_p == .i))
+replace h_6_1b1_p = .i if (h_6_1b1_p == . | h_6_1b1_p == .a) & (h_country == 0 & (h_6_1 == 1 | h_6_1 == .i) & (h_6_1a_p == 88 | h_6_1a_p == 99 | h_6_1a_p == .i))
 
-replace h_6_1b2_p = .i if (h_6_1b2_p == . | h_6_1b2_p == .a) & (h_country == 0 & (h_6_1b1_p == 1 | h_6_1b1_p == .i))
+replace h_6_1b2_p = .i if (h_6_1b2_p == . | h_6_1b2_p == .a) & (h_country == 0 & (h_6_1 == 1 | h_6_1 == .i) & (h_6_1b1_p == 1 | h_6_1b1_p == .i))
 
 replace h_6_2 = .i if (h_6_2 == . | h_6_2 == .a)
 
@@ -655,17 +664,17 @@ replace h_6_5 = .i if (h_6_5 == . | h_6_5 == .a)
 
 replace h_6_5a_p = .i if (h_6_5a_p == . | h_6_5a_p == .a) & (h_country == 0 & (h_6_5 == 1 | h_6_5 == .i))
 
-replace h_6_5b1_p = .i if (h_6_5b1_p == . | h_6_5b1_p == .a) & (h_country == 0 & (h_6_5a_p == 88 | h_6_5a_p == 99 | h_6_5a_p == .i))
+replace h_6_5b1_p = .i if (h_6_5b1_p == . | h_6_5b1_p == .a) & (h_country == 0 & (h_6_5 == 1 | h_6_5 == .i) & (h_6_5a_p == 88 | h_6_5a_p == 99 | h_6_5a_p == .i))
 
-replace h_6_5b2_p = .i if (h_6_5b2_p == . | h_6_5b2_p == .a) & (h_country == 0 & (h_6_5b1_p == 1 | h_6_5b1_p == .i))
+replace h_6_5b2_p = .i if (h_6_5b2_p == . | h_6_5b2_p == .a) & (h_country == 0 & (h_6_5 == 1 | h_6_5 == .i) & (h_6_5b1_p == 1 | h_6_5b1_p == .i))
 
 replace h_6_6 = .i if (h_6_6 == . | h_6_6 == .a)
 
 replace h_6_6a_p = .i if (h_6_6a_p == . | h_6_6a_p == .a) & (h_country == 0 & (h_6_6 == 1 | h_6_6 == .i))
 
-replace h_6_6b1_p = .i if (h_6_6b1_p == . | h_6_6b1_p == .a) & (h_country == 0 & (h_6_6a_p == 88 | h_6_6a_p == 99 | h_6_6a_p == .i))
+replace h_6_6b1_p = .i if (h_6_6b1_p == . | h_6_6b1_p == .a) & (h_country == 0 & (h_6_6 == 1 | h_6_6 == .i) & (h_6_6a_p == 88 | h_6_6a_p == 99 | h_6_6a_p == .i))
 
-replace h_6_6b2_p = .i if (h_6_6b2_p == . | h_6_6b2_p == .a) & (h_country == 0 & (h_6_6b1_p == 1 | h_6_6b1_p == .i))
+replace h_6_6b2_p = .i if (h_6_6b2_p == . | h_6_6b2_p == .a) & (h_country == 0 & (h_6_6 == 1 | h_6_6 == .i) & (h_6_6b1_p == 1 | h_6_6b1_p == .i))
 
 replace h_7_1_p_c = .i if (h_7_1_p_c == . | h_7_1_p_c == .a) & (h_country == 0 | h_country == 2)
 
@@ -678,12 +687,13 @@ replace h_7_2_3 = .i if (h_7_2_3 == . | h_7_2_3 == .a)
 replace h_7_2_4 = .i if (h_7_2_4 == . | h_7_2_4 == .a)
 
 replace h_7_2_5 = .i if (h_7_2_5 == . | h_7_2_5 == .a)
-
+}
 
 
 
 *all dominican republic invalid
 
+if h_country == 1 {
 replace h_3_2_d = .i if (h_3_2_d == . | h_3_2_d == .a) & (h_country == 1 & h_3_1 ~= 2 & h_3_1 ~= 3)
 
 replace h_3_3a_d = .i if (h_3_3a_d == . | h_3_3a_d == .a) & (h_country == 1 & h_3_1 ~= 2 & h_3_1 ~= 3 & (h_3_2_d == 88 | h_3_2_d == 99 | h_3_2_d == .i))
@@ -721,7 +731,7 @@ replace h_3_12 = .i if (h_3_12 == . | h_3_12 == .a) & h_3_11 ~= 4
 
 
 /*
-replace s_3_13 = .i if (s_3_13 == . | s_3_13 == .a)
+replace h_3_13 = .i if (h_3_13 == . | h_3_13 == .a)
 this variable was incorrectly(??) labeled with an s instead of h
 */
 
@@ -977,9 +987,9 @@ replace h_6_1 = .i if (h_6_1 == . | h_6_1 == .a)
 
 replace h_6_1a_d = .i if (h_6_1a_d == . | h_6_1a_d == .a) & (h_country == 1 & (h_6_1 == 1 | h_6_1 == .i))
 
-replace h_6_1b1_d = .i if (h_6_1b1_d == . | h_6_1b1_d == .a) & (h_country == 1 & (h_6_1a_d == 88 | h_6_1a_d == 99 | h_6_1a_d == .i))
+replace h_6_1b1_d = .i if (h_6_1b1_d == . | h_6_1b1_d == .a) & (h_country == 1 & (h_6_1 == 1 | h_6_1 == .i) & (h_6_1a_d == 88 | h_6_1a_d == 99 | h_6_1a_d == .i))
 
-replace h_6_1b2_d = .i if (h_6_1b2_d == . | h_6_1b2_d == .a) & (h_country == 1 & (h_6_1b1_d == 1 | h_6_1b1_d == .i))
+replace h_6_1b2_d = .i if (h_6_1b2_d == . | h_6_1b2_d == .a) & (h_country == 1 & (h_6_1 == 1 | h_6_1 == .i) & (h_6_1b1_d == 1 | h_6_1b1_d == .i))
 
 replace h_6_2 = .i if (h_6_2 == . | h_6_2 == .a)
 
@@ -995,17 +1005,17 @@ replace h_6_5 = .i if (h_6_5 == . | h_6_5 == .a)
 
 replace h_6_5a_d = .i if (h_6_5a_d == . | h_6_5a_d == .a) & (h_country == 1 & (h_6_5 == 1 | h_6_5 == .i))
 
-replace h_6_5b1_d = .i if (h_6_5b1_d == . | h_6_5b1_d == .a) & (h_country == 1 & (h_6_5a_d == 88 | h_6_5a_d == 99 | h_6_5a_d == .i))
+replace h_6_5b1_d = .i if (h_6_5b1_d == . | h_6_5b1_d == .a) & (h_country == 1 & (h_6_5 == 1 | h_6_5 == .i) & (h_6_5a_d == 88 | h_6_5a_d == 99 | h_6_5a_d == .i))
 
-replace h_6_5b2_d = .i if (h_6_5b2_d == . | h_6_5b2_d == .a) & (h_country == 1 & (h_6_5b1_d == 1 | h_6_5b1_d == .i))
+replace h_6_5b2_d = .i if (h_6_5b2_d == . | h_6_5b2_d == .a) & (h_country == 1 & (h_6_5 == 1 | h_6_5 == .i) & (h_6_5b1_d == 1 | h_6_5b1_d == .i))
 
 replace h_6_6 = .i if (h_6_6 == . | h_6_6 == .a)
 
 replace h_6_6a_d = .i if (h_6_6a_d == . | h_6_6a_d == .a) & (h_country == 1 & (h_6_6 == 1 | h_6_6 == .i))
 
-replace h_6_6b1_d = .i if (h_6_6b1_d == . | h_6_6b1_d == .a) & (h_country == 1 & (h_6_6a_d == 88 | h_6_6a_d == 99 | h_6_6a_d == .i))
+replace h_6_6b1_d = .i if (h_6_6b1_d == . | h_6_6b1_d == .a) & (h_country == 1 & (h_6_6 == 1 | h_6_6 == .i) & (h_6_6a_d == 88 | h_6_6a_d == 99 | h_6_6a_d == .i))
 
-replace h_6_6b2_d = .i if (h_6_6b2_d == . | h_6_6b2_d == .a) & (h_country == 1 & (h_6_6b1_d == 1 | h_6_6b1_d == .i))
+replace h_6_6b2_d = .i if (h_6_6b2_d == . | h_6_6b2_d == .a) & (h_country == 1 & (h_6_6 == 1 | h_6_6 == .i) & (h_6_6b1_d == 1 | h_6_6b1_d == .i))
 
 replace h_7_1_d = .i if (h_7_1_d == . | h_7_1_d == .a) & (h_country == 1)
 
@@ -1018,7 +1028,7 @@ replace h_7_2_3 = .i if (h_7_2_3 == . | h_7_2_3 == .a)
 replace h_7_2_4 = .i if (h_7_2_4 == . | h_7_2_4 == .a)
 
 replace h_7_2_5 = .i if (h_7_2_5 == . | h_7_2_5 == .a)
-
+}
 
 
 
@@ -1513,6 +1523,126 @@ replace h_7_2_5 = .v if (h_7_2_5 == . | h_7_2_5 == .a)
 *questions that are not country specific are repeated, but that shouldn't affect anything
 
 
+
+*h_6_41_d thru h_6_44_p are changed to .v if they did not have the proper country
+
+replace h_6_41_d = .v if h_country ~= 1
+replace h_6_42_d = .v if h_country ~= 1
+replace h_6_43_d = .v if h_country ~= 1
+replace h_6_44_p = .v if h_country ~= 0
+
+
+
+
+*drop all uppercase variables
+
+drop H_*
+drop S_3_13
+drop N10ENESTAVIVIENDATIENEN
+
+
+
+*remove all variables not related to the country (0 == p , 1 == d , 2 == c)
+if h_country == 0 {
+	drop h_3_3a_d h_3_3a_c h_3_3b_d h_3_3b_c h_3_3c_d h_3_3c_c h_3_4_d h_3_4_c h_3_27_d h_3_27_c h_6_5a_d h_6_41_d h_3_5a_d h_3_5a_c h_3_5b_d h_3_5b_c h_3_5c_d h_3_5c_c h_3_6_d h_3_6_c h_3_31a_c h_3_31b_c h_3_31c_c h_3_7a_d h_3_7a_c h_3_7b_d h_3_7b_c h_3_7c_d h_3_7c_c h_3_16_d h_3_16_c h_3_31a_d h_3_31b_d h_3_31c_d h_3_17a_d h_3_17a_c h_3_17b_d h_3_17b_c h_3_17c_d h_3_17c_c  h_3_19_d h_3_19_c h_3_20a_d h_3_20a_c h_3_20b_d h_3_20b_c h_3_20c_d h_3_20c_c h_3_2_d h_3_2_c h_3_22_d h_3_22_c h_3_25_d h_3_25_c h_6_5a_d h_3_23a_d h_3_23a_c h_3_23b_d h_3_23b_c h_3_23c_d h_3_23c_c h_3_26a_d h_3_26a_c h_3_26b_d h_3_26b_c h_3_26c_d h_3_26c_c h_3_28a_d h_3_28a_c h_3_28b_d h_3_28b_c h_3_28c_d h_3_28c_c h_3_30_d h_3_30_c h_6_1a_d h_6_1a_c h_6_1b1_d h_6_1b1_c h_6_1b2_d h_6_1b2_c h_3_33a_d h_3_33b_d h_3_33c_d h_3_33a_c h_3_33b_c h_3_33c_c h_3_32_d h_3_32_c h_6_6a_d h_6_6a_c h_6_42_d h_6_43_d h_6_5b1_d h_6_5b2_d h_6_5b1_c h_6_5b2_c h_6_5a_c h_6_6b1_d h_6_6b1_c h_6_6b2_d h_6_6b2_c h_7_1_d h_4_1b_d h_4_1b2_d h_4_1b3_d h_4_2b_d h_4_2b2_d h_4_2b3_d h_4_3b_d h_4_3b2_d h_4_3b3_d h_4_4b_d h_4_4b2_d h_4_4b3_d h_4_5b_d h_4_5b2_d h_4_5b3_d h_4_6b_d h_4_6b2_d h_4_6b3_d h_4_7b_d h_4_7b2_d h_4_8b_d h_4_8b2_d   h_4_1b_c h_4_1b2_c h_4_1b3_c h_4_2b_c h_4_2b2_c h_4_2b3_c h_4_3b_c h_4_3b2_c h_4_3b3_c h_4_4b_c h_4_4b2_c h_4_4b3_c h_4_5b_c h_4_5b2_c h_4_5b3_c h_4_6b_c h_4_6b2_c h_4_6b3_c h_4_7b_c h_4_7b2_c h_4_8b_c h_4_8b2_c h_5_1b_d h_5_1b2_d h_5_1b3_d h_5_2b_d h_5_2b2_d h_5_2b3_d h_5_3b_d h_5_3b2_d h_5_3b3_d h_5_4b_d h_5_4b2_d h_5_4b3_d h_5_5b_d h_5_5b2_d h_5_5b3_d h_5_6b_d h_5_6b2_d h_5_6b3_d h_5_7b_d h_5_7b2_d h_5_8b_d h_5_8b2_d h_5_1b_c h_5_1b2_c h_5_1b3_c h_5_2b_c h_5_2b2_c h_5_2b3_c h_5_3b_c h_5_3b2_c h_5_3b3_c h_5_4b_c h_5_4b2_c h_5_4b3_c h_5_5b_c h_5_5b2_c h_5_5b3_c h_5_6b_c h_5_6b2_c h_5_6b3_c h_5_7b_c h_5_7b2_c h_5_8b_c h_5_8b2_c
+}
+if h_country == 1 {
+	drop h_3_3a_p h_3_3a_c h_3_3b_p h_3_3b_c h_3_3c_p h_3_3c_c h_3_4_p h_3_4_c h_3_27_p h_3_27_c h_6_6a_p h_6_44_p h_3_5a_p h_3_5a_c h_3_5b_p h_3_5b_c h_3_5c_p h_3_5c_c h_3_6_p h_3_6_c h_3_7a_p h_3_7a_c h_3_7b_p h_3_7b_c h_3_7c_p h_3_7c_c h_3_16_p h_3_16_c h_3_2_p h_3_2_c h_3_26a_p h_3_26a_c h_3_26b_p h_3_26b_c h_3_26c_p h_3_26c_c h_3_17a_p h_3_17a_c h_3_17b_p h_3_17b_c h_3_17c_p h_3_22_p h_3_22_c h_3_31a_p h_3_31b_p h_3_31c_p h_3_17c_c h_3_19_p h_3_19_c h_3_20a_p h_3_20a_c h_3_20b_p h_3_20b_c h_3_20c_p h_3_20c_c h_6_6a_c h_3_23a_p h_3_23a_c h_3_23b_p h_3_23b_c h_3_23c_p h_3_23c_c h_3_25_p h_3_25_c h_3_30_p h_3_30_c h_7_1_p_c h_3_28a_p h_3_28a_c h_3_28b_p h_3_28b_c h_3_28c_p h_3_28c_c h_3_31a_c h_3_31b_c h_3_31c_c h_6_5a_p h_3_33a_p h_3_33b_p h_3_33c_p h_3_33a_c h_3_33b_c h_3_33c_c h_3_32_p h_3_32_c h_6_1a_p h_6_1a_c h_6_5a_c h_6_5b1_p h_6_5b2_p h_6_5b1_c h_6_5b2_c h_6_1b1_p h_6_1b2_p h_6_1b1_c h_6_1b2_c h_6_6b1_p h_6_6b2_p h_6_6b1_c h_6_6b2_c h_4_2b_c h_4_2b2_c h_4_2b3_c h_4_3b_c h_4_3b2_c h_4_3b3_c h_4_4b_c h_4_4b2_c h_4_4b3_c h_4_5b_c h_4_5b2_c h_4_5b3_c h_4_6b_c h_4_6b2_c h_4_6b3_c h_4_7b_c h_4_7b2_c h_4_8b_c h_4_8b2_c h_4_2b_p h_4_2b2_p h_4_2b3_p h_4_3b_p h_4_3b2_p h_4_3b3_p h_4_4b_p h_4_4b2_p h_4_4b3_p h_4_5b_p h_4_5b2_p h_4_5b3_p h_4_6b_p h_4_6b2_p h_4_6b3_p h_4_7b_p h_4_7b2_p h_4_8b_p h_4_8b2_p h_5_1b_p h_5_1b2_p h_5_1b3_p h_5_2b_p h_5_2b2_p h_5_2b3_p h_5_3b_p h_5_3b2_p h_5_3b3_p h_5_4b_p h_5_4b2_p h_5_4b3_p h_5_5b_p h_5_5b2_p h_5_5b3_p h_5_6b_p h_5_6b2_p h_5_6b3_p h_5_7b_p h_5_7b2_p h_5_8b_p h_5_8b2_p h_5_1b_c h_5_1b2_c h_5_1b3_c h_5_2b_c h_5_2b2_c h_5_2b3_c h_5_3b_c h_5_3b2_c h_5_3b3_c h_5_4b_c h_5_4b2_c h_5_4b3_c h_5_5b_c h_5_5b2_c h_5_5b3_c h_5_6b_c h_5_6b2_c h_5_6b3_c h_5_7b_c h_5_7b2_c h_5_8b_c h_5_8b2_c
+}
+if h_country == 2 {
+	drop h_3_19_p h_4_1b_p h_4_1b2_p h_4_1b3_p h_4_1b_d h_4_1b2_d h_4_1b3_d h_6_6a_p h_6_44_p h_3_3a_p h_3_3a_d h_3_3b_p h_3_3b_d h_3_3c_p h_3_3c_d h_3_4_p h_3_4_d h_3_5a_p h_6_6a_d h_3_16_d h_3_5a_d h_3_5b_p h_3_5b_d h_3_5c_p h_3_5c_d h_3_6_p h_3_6_d h_3_2_p h_3_2_d h_6_1a_p h_6_1a_d h_3_7a_p h_3_7a_d h_3_7b_p h_3_7b_d h_3_7c_p h_3_7c_d h_3_22_p h_3_22_d h_3_27_p h_3_27_d h_3_16_p h_3_17a_d h_3_17a_p h_3_17b_d h_3_17b_p h_3_17c_d h_3_17c_p h_3_19_d h_6_42_d h_6_43_d h_3_20a_p h_3_20a_d h_3_20b_p h_3_20b_d h_3_20c_p h_3_20c_d h_3_3a_p h_6_5a_p h_6_5a_d h_3_3a_d h_3_3b_p h_3_3b_d h_3_3c_p h_3_3c_d h_3_4_p h_3_4_d h_3_26a_d h_3_26a_p h_3_26b_d h_3_26b_p h_3_26c_d h_3_26c_p h_3_5a_p h_3_5a_d h_3_5b_p h_3_5b_d h_3_5c_p h_3_5c_d h_3_6_p h_3_6_d h_3_33a_d h_3_33b_d h_3_33c_d h_3_7a_p h_3_7a_d h_3_7b_p h_3_7b_d h_3_7c_p h_3_7c_d h_3_31a_p h_3_31b_p h_3_31c_p h_7_1_d h_3_17a_d h_3_17a_p h_3_17b_d h_3_17b_p h_3_16_p h_3_30_p h_3_30_d h_3_33a_p h_3_33b_p h_3_33c_p h_3_17c_d h_3_17c_p h_3_19_d h_3_20a_p h_3_20a_d h_3_20b_p h_3_20b_d h_3_20c_p h_3_20c_d h_3_23a_p h_3_23a_d h_3_23b_p h_3_23b_d h_3_23c_p h_3_23c_d h_3_25_p h_3_25_d h_3_32_d h_3_32_p h_3_28a_d h_3_28a_p h_3_28b_d h_3_28b_p h_3_28c_d h_3_28c_p h_3_31a_d h_3_31b_d h_3_31c_d h_6_5b1_d h_6_5b2_d h_6_5b1_p h_6_5b2_p h_6_1b1_p h_6_1b2_p h_6_1b1_d h_6_1b2_d h_6_6b1_p h_6_6b2_p h_6_6b1_d h_6_6b2_d h_4_2b_d h_4_2b2_d h_4_2b3_d h_4_3b_d h_4_3b2_d h_4_3b3_d h_4_4b_d h_4_4b2_d h_4_4b3_d h_4_5b_d h_4_5b2_d h_4_5b3_d h_4_6b_d h_4_6b2_d h_4_6b3_d h_4_7b_d h_4_7b2_d h_4_8b_d h_4_8b2_d h_4_2b_p h_4_2b2_p h_4_2b3_p h_4_3b_p h_4_3b2_p h_4_3b3_p h_4_4b_p h_4_4b2_p h_4_4b3_p h_4_5b_p h_4_5b2_p h_4_5b3_p h_4_6b_p h_4_6b2_p h_4_6b3_p h_4_7b_p h_4_7b2_p h_4_8b_p h_4_8b2_p h_5_1b_d h_5_1b2_d h_5_1b3_d h_5_2b_d h_5_2b2_d h_5_2b3_d h_5_3b_d h_5_3b2_d h_5_3b3_d h_5_4b_d h_5_4b2_d h_5_4b3_d h_5_5b_d h_5_5b2_d h_5_5b3_d h_5_6b_d h_5_6b2_d h_5_6b3_d h_5_7b_d h_5_7b2_d h_5_8b_d h_5_8b2_d h_5_1b_p h_5_1b2_p h_5_1b3_p h_5_2b_p h_5_2b2_p h_5_2b3_p h_5_3b_p h_5_3b2_p h_5_3b3_p h_5_4b_p h_5_4b2_p h_5_4b3_p h_5_5b_p h_5_5b2_p h_5_5b3_p h_5_6b_p h_5_6b2_p h_5_6b3_p h_5_7b_p h_5_7b2_p h_5_8b_p h_5_8b2_p
+}
+
+
+
+
+
+*COUNTS NUMBER OF .i IN EACH OBSERVATION UNDER NEW VARIABLE CALLED h_countmissing
+local i 1
+gen h_countmissing = 0
+
+quietly ds hhid h_time2 h_time1 h_date fkey lastsavetime lastsavelogonname firstsavetime firstsavelogonname globalrecordid recstatus uniquekey h_deviceid2, not
+local allvar `r(varlist)'
+
+
+foreach v in `allvar' {
+	local allvarR `v' `allvarR'
+	}
+
+
+
+
+quietly forvalues i = 1(1) `=_N' {
+	foreach v of local allvarR {
+		capture confirm str var `v'
+		if _rc == 0 {
+			if `v'[`i'] == ".i" {
+				replace h_countmissing = h_countmissing[`i'] + 1 in `i'
+			}
+			else {
+			}
+		}
+		else {
+			if `v'[`i'] == .i {
+				replace h_countmissing = h_countmissing[`i'] + 1 in `i'
+			}
+			else{
+			}
+		}
+	}
+}
+
+
+
+
+
+
+*SHOWS LAST QUESTION ANSWERED FOR EACH OBSERVATION UNDER NEW VARIABLE CALLED h_last
+local i 1
+gen h_last = "AllAnswered"
+
+quietly ds hhid h_countmissing h_last h_time2 h_time1 h_date fkey lastsavetime lastsavelogonname firstsavetime firstsavelogonname globalrecordid recstatus uniquekey h_deviceid2, not
+local allvar `r(varlist)'
+
+
+foreach v in `allvar' {
+	local allvarR `v' `allvarR'
+	}
+
+
+
+
+quietly forvalues i = 1(1) `=_N' {
+	foreach v of local allvarR {
+		capture confirm str var `v'
+		if _rc == 0 {
+			if (`v'[`i'] == ".i" | `v'[`i'] == ".v") {
+				continue
+			}
+			else {
+				replace h_last = "`v'" in `i'
+				continue, break
+			}
+		}
+		else {
+			if (`v'[`i'] == .i | `v'[`i'] == .v) {
+				continue
+			}
+			else{
+				replace h_last = "`v'" in `i'
+				continue, break
+			}
+		}
+	}
+}
+
+
+
+gen h_TotalTime = (Clock(h_time2, "MDYhms") - Clock(h_time1, "MDYhms"))/1000/60
+
+
+
+
 capture log close
 log using HouseholdMissingCodebook, text replace
 
@@ -1520,6 +1650,32 @@ codebook
 
    save HouseholdMissing, replace
 
+
+log close
+log using HouseholdOnlyMissing, text replace
+
+local missvarlist
+foreach v of var * {
+	capture confirm str var `v'
+	if _rc == 0 {
+		quietly count if `v' == ".i"
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+	else {
+		quietly count if `v' == .i
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+}
+
+macro list _missvarlist
+
+foreach v of local missvarlist {
+	codebook `v'
+}
 
 log close
 exit, clear
