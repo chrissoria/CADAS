@@ -2823,31 +2823,6 @@ codebook
 
 
 log close
-log using InforOnlyMissing, text replace
-
-local missvarlist
-foreach v of var * {
-	capture confirm str var `v'
-	if _rc == 0 {
-		quietly count if `v' == ".i"
-		if r(N) > 5 {
-			local missvarlist `missvarlist' `v'
-		}
-	}
-	else {
-		quietly count if `v' == .i
-		if r(N) > 5 {
-			local missvarlist `missvarlist' `v'
-		}
-	}
-}
-
-macro list _missvarlist
-
-foreach v of local missvarlist {
-	codebook `v'
-}
 
  save Infor.dta, replace
-log close
 clear all

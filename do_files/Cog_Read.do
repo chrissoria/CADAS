@@ -3449,17 +3449,12 @@ replace c_82 = .i if (c_82 == . | c_82 == .a)
 replace c_deviceid2 = ".i" if c_deviceid2 == ""
 
 
-
-
 *drop all uppercase variables
 
 drop C_*
 drop G_*
 
-
-
-
-*COUNTS NUMBER OF .i IN EACH OBSERVATION UNDER NEW VARIABLE CALLED c_countmissing
+*COUNTS NUMBER OF .i IN EACH OBERVATION UNDER NEW VARIABLE CALLED c_countmissing
 local i 1
 gen c_countmissing = 0
 
@@ -3470,8 +3465,6 @@ local allvar `r(varlist)'
 foreach v in `allvar' {
 	local allvarR `v' `allvarR'
 	}
-
-
 
 
 quietly forvalues i = 1(1) `=_N' {
@@ -3493,10 +3486,6 @@ quietly forvalues i = 1(1) `=_N' {
 		}
 	}
 }
-
-
-
-
 
 
 *SHOWS LAST QUESTION ANSWERED FOR EACH OBSERVATION UNDER NEW VARIABLE CALLED c_last

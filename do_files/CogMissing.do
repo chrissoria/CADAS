@@ -674,7 +674,7 @@ drop G_*
 
 
 
-*COUNTS NUMBER OF .i IN EACH OBSERVATION UNDER NEW VARIABLE CALLED c_countmissing
+*COUNTS NUMBER OF .i IN EACH OBERVATION UNDER NEW VARIABLE CALLED c_countmissing
 local i 1
 gen c_countmissing = 0
 
