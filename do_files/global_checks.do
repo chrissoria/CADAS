@@ -139,6 +139,34 @@ replace s_particid_str = cond(strlen(s_particid_str) == 1, "0" + s_particid_str,
 gen pid = s_country_str + s_clustid_str + s_houseid_str + s_particid_str
 gen hhid = s_country_str + s_clustid_str + s_houseid_str
 drop s_country_str s_clustid_str s_houseid_str s_particid_str
+
+log using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out/logs/SocioOnlyMissing", text replace
+
+
+local missvarlist
+foreach v of var * {
+	capture confirm str var `v'
+	if _rc == 0 {
+		quietly count if `v' == ".i"
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+	else {
+		quietly count if `v' == .i
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+}
+
+macro list _missvarlist
+
+foreach v of local missvarlist {
+	codebook `v'
+}
+
+log close
  
  duplicates report pid
  sort pid
@@ -274,6 +302,34 @@ replace p_particid_str = cond(strlen(p_particid_str) == 1, "0" + p_particid_str,
 gen pid = p_country_str + p_clustid_str + p_houseid_str + p_particid_str
 gen hhid = p_country_str + p_clustid_str + p_houseid_str
 drop p_country_str p_clustid_str p_houseid_str p_particid_str
+
+log using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out/logs/PhysOnlyMissing", text replace
+
+
+local missvarlist
+foreach v of var * {
+	capture confirm str var `v'
+	if _rc == 0 {
+		quietly count if `v' == ".i"
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+	else {
+		quietly count if `v' == .i
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+}
+
+macro list _missvarlist
+
+foreach v of local missvarlist {
+	codebook `v'
+}
+
+log close
  
  duplicates report pid
  sort pid
@@ -323,6 +379,34 @@ replace c_particid_str = cond(strlen(c_particid_str) == 1, "0" + c_particid_str,
 gen pid = c_country_str + c_clustid_str + c_houseid_str + c_particid_str
 gen hhid = c_country_str + c_clustid_str + c_houseid_str
 drop c_country_str c_clustid_str c_houseid_str c_particid_str
+
+log using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out/logs/CogOnlyMissing", text replace
+
+
+local missvarlist
+foreach v of var * {
+	capture confirm str var `v'
+	if _rc == 0 {
+		quietly count if `v' == ".i"
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+	else {
+		quietly count if `v' == .i
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+}
+
+macro list _missvarlist
+
+foreach v of local missvarlist {
+	codebook `v'
+}
+
+log close
  
  duplicates report pid
  gen is_duplicate = pid[_n] == pid[_n-1]
@@ -471,6 +555,34 @@ gen pid = i_country_str + i_clustid_str + i_houseid_str + i_particid_str
 gen hhid = i_country_str + i_clustid_str + i_houseid_str
 
 drop i_country_str i_clustid_str i_houseid_str i_particid_str
+
+log using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out/logs/InforOnlyMissing", text replace
+
+
+local missvarlist
+foreach v of var * {
+	capture confirm str var `v'
+	if _rc == 0 {
+		quietly count if `v' == ".i"
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+	else {
+		quietly count if `v' == .i
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+}
+
+macro list _missvarlist
+
+foreach v of local missvarlist {
+	codebook `v'
+}
+
+log close
  
  duplicates report pid
  sort pid
@@ -516,6 +628,34 @@ export excel using "duplicates/informant_duplicates.xlsx", replace firstrow(vari
  *this looks like junk (mostly empty)
  
  drop if inlist(globalrecordid, "cb2296d9-7344-40ff-a971-d3d5fe0b089d")
+ 
+ log using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out/logs/HouseholdOnlyMissing", text replace
+
+
+local missvarlist
+foreach v of var * {
+	capture confirm str var `v'
+	if _rc == 0 {
+		quietly count if `v' == ".i"
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+	else {
+		quietly count if `v' == .i
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+}
+
+macro list _missvarlist
+
+foreach v of local missvarlist {
+	codebook `v'
+}
+
+log close
  
  duplicates report hhid
  sort hhid
@@ -607,7 +747,7 @@ insheet using "../CUBA_in/Socio_Parent.csv"
 drop fkey lastsavelogonname lastsavetime
 rename globalrecordid fkey
 
-merge 1:1 fkey using Socio
+merge 1:1 fkey using Socio, force
 
 save Socio_Child_Parent_Merged.dta, replace
 
@@ -664,7 +804,7 @@ rename globalrecordid fkey
 duplicates report
 duplicates drop fkey, force
 
-merge m:m fkey using Phys
+merge m:m fkey using Phys, force
 
 keep if _merge != 3
 list
@@ -716,7 +856,7 @@ cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
 use Cog_Scoring
 
 *for no, I will do m:m because I have't been able to pin down which unique cases are the true/correct ones
-merge m:m pid using Cog
+merge m:m pid using Cog, force
 
 keep if _merge != 3
 
@@ -742,3 +882,4 @@ c8799648-57ad-4864-8a0e-f2cce230e3d2 no particid or houseid
 b81579ca-4945-46da-8d06-45273fcfbeb5 pid 20100201, probably junk
 5133ce8a-22c6-4432-b2d0-3b9885b5a885 pid 20103901, probably junk
 the above are all cognitve surveys with no cognitve scoring files.*/
+
