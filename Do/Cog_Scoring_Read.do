@@ -8,10 +8,8 @@
 \f0\fs24 \cf0 clear all\
 set more off\
 capture log close\
-log using Cognitive_Socring, text replace\
 \
-*Here we will identify the country we want before we run the file\
-*0 = PR, 1 = DR, 2 = CU\
+*next, I want to find out if we have the right amount of cog scoring and cog surveys\
 \
 local country = 1\
 \
@@ -99,13 +97,6 @@ label variable cs_79_3 "79.3. Rect\'e1ngulos cruzados (0-2)"\
 label variable cs_79_4 "79.4. El cubo (0-4)"\
 \
  save Cog_Scoring.dta, replace\
- export excel using "Cognitive_Scoring.xlsx", firstrow(variables) nolabel replace\
-\
- d\
- sum\
- list\
- \
- log close\
 \
 clear all\
 }

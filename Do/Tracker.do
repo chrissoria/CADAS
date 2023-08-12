@@ -2,13 +2,37 @@
 clear all 
 set more off
 capture log close
-log using tracker.log, text replace
+log using "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out/logs/tracker.log", text replace
 
-* cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
+*Here we will identify the country we want before we run the file
+*0 = PR, 1 = DR, 2 = CU
 
-/* 
+local country = 1
 
-The goal of this do file is to:
+if `country' == 0 {
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
+}
+else if `country' == 1 {
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+}
+else if `country' == 2 {
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
+}
+
+*below we read in a country-specific file
+
+if `country' == 0 {
+    insheet using "../PR_in/Cog_Child.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/Cog_Child.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/Cog_Child.csv", comma names clear
+}
+
+
+/*The goal of this do file is to:
 A. Track which individuals took one survey but not the others
 B. Count Unique Households
 C. Check to see gender in Socio matches gender in Roster
@@ -197,6 +221,18 @@ sum in*
 
 drop R_in S_in P_in C_in CS_in I_in H_in
 save tracker, replace
+
+* Get the list of variable names
+unab varlist : _all
+
+* Convert variables with value labels into string variables
+foreach var of varlist `varlist' {
+    if "`: value label `var''" != "" {
+        tostring `var', replace
+    }
+}
+
+export excel using "duplicates/tracker.xlsx", replace firstrow(variables)
 
 log close
 exit, clear

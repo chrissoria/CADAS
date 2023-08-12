@@ -5,7 +5,7 @@ capture log close
 *Here we will identify the country we want before we run the file
 *0 = PR, 1 = DR, 2 = CU
 
-local country = 2
+local country = 1
 
 if `country' == 0 {
     cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
@@ -28,7 +28,8 @@ else if `country' == 1 {
 else if `country' == 2 {
     insheet using "../CUBA_in/Cog_Child.csv", comma names clear
 }
- 
+
+drop if inlist(firstsavelogonname, "DESKTOP-IJDMN3F\super")
    
   ds, has(type string)
 
@@ -3208,6 +3209,8 @@ replace c_71_p = .v if (c_71_p == . | c_71_p == .a) & (c_country == 1 | c_countr
 
 
 *change all remaining . to .i
+
+destring c_interid, replace force
 
 replace c_interid = .i if c_interid == .
 replace c_houseid = .i if (c_houseid == . | c_houseid == .a)
