@@ -1,0 +1,864 @@
+generate S_1_1_P = cond(s_1_1_p ==  0, "negro(a)", cond(s_1_1_p ==  1, "mulato(a) mezclado(a) o trigueño (blanco o negro)", cond(s_1_1_p ==  2, "blanco(a)", cond(s_1_1_p ==  3, "mestizo(a) (indio con blanco)", cond(s_1_1_p ==  4, "otra", cond(s_1_1_p ==  5, "no responde", cond(s_1_1_p ==  6, "no sabe", "")))))))
+
+drop s_1_1_p
+
+generate S_1_1_D = cond(s_1_1_d ==  0, "negro(a)", cond(s_1_1_d ==  1, "mulato(a)", cond(s_1_1_d ==  2, "blanco(a)", cond(s_1_1_d ==  3, "indio(a)", cond(s_1_1_d ==  4, "otra", cond(s_1_1_d ==  5, "no responde", cond(s_1_1_d ==  6, "no sabe", "")))))))
+
+drop s_1_1_d
+
+generate S_1_1_C = cond(s_1_1_c ==  0, "negro(a)", cond(s_1_1_c ==  1, "blanco(a)", cond(s_1_1_c ==  2, "mulato(a) / mestizo(a)", cond(s_1_1_c ==  3, "otra", cond(s_1_1_c ==  4, "no responde", cond(s_1_1_c ==  5, "no sabe", ""))))))
+
+drop s_1_1_c
+
+generate S_2_9 = cond(s_2_9 ==  0, "nunca se ha casado", cond(s_2_9 ==  1, "casado/union consensual", cond(s_2_9 ==  2, "viudo", cond(s_2_9 ==  3, "divorciado/separado", ""))))
+
+drop s_2_9
+
+generate S_2_11 = cond(s_2_11 ==  0, "agnóstico/ateo", cond(s_2_11 ==  1, "católico romano", cond(s_2_11 ==  2, "evangélico / pentecostal", cond(s_2_11 ==  3, "otro cristiano", cond(s_2_11 ==  4, "santería", cond(s_2_11 ==  5, "judío", cond(s_2_11 ==  6, "otro", cond(s_2_11 ==  7, "ninguna", cond(s_2_11 ==  8, "no responde", cond(s_2_11 ==  9, "no sabe", ""))))))))))
+
+drop s_2_11
+
+generate S_2_12 = cond(s_2_12 ==  0, "cada día", cond(s_2_12 ==  1, "más que una vez a la semana", cond(s_2_12 ==  2, "una vez a la semana", cond(s_2_12 ==  3, "dos o tres veces al mes", cond(s_2_12 ==  4, "uno o más veces al año", cond(s_2_12 ==  5, "nunca", cond(s_2_12 ==  6, "no responde", cond(s_2_12 ==  7, "no sabe", ""))))))))
+
+drop s_2_12
+
+generate S_2_13 = cond(s_2_13 ==  0, "no", cond(s_2_13 ==  1, "sí regularmente", cond(s_2_13 ==  2, "sí ocasionalmente", cond(s_2_13 ==  3, "no responde", cond(s_2_13 ==  4, "no sabe", "")))))
+
+drop s_2_13
+
+generate S_2_14_P = cond(s_2_14_p ==  0, "negro(a)", cond(s_2_14_p ==  1, "mulato(a) mezclado(a) o trigueño (blanco o negro)", cond(s_2_14_p ==  2, "blanco(a)", cond(s_2_14_p ==  3, "mestizo(a) (indio con blanco)", cond(s_2_14_p ==  4, "otra", cond(s_2_14_p ==  5, "no responde", cond(s_2_14_p ==  6, "no sabe", "")))))))
+
+drop s_2_14_p
+
+generate S_2_14_D = cond(s_2_14_d ==  0, "negro(a)", cond(s_2_14_d ==  1, "mulato(a)", cond(s_2_14_d ==  2, "blanco(a)", cond(s_2_14_d ==  3, "indio(a)", cond(s_2_14_d ==  4, "otra", cond(s_2_14_d ==  5, "no responde", cond(s_2_14_d ==  6, "no sabe", "")))))))
+
+drop s_2_14_d
+
+generate S_2_14_C = cond(s_2_14_c ==  0, "negro(a)", cond(s_2_14_c ==  1, "mulato(a)", cond(s_2_14_c ==  2, "blanco(a)", cond(s_2_14_c ==  3, "mestizo(a)", cond(s_2_14_c ==  4, "otra", cond(s_2_14_c ==  5, "no responde", cond(s_2_14_c ==  6, "no sabe", "")))))))
+
+drop s_2_14_c
+
+generate S_2_15_P = cond(s_2_15_p ==  0, "negro(a)", cond(s_2_15_p ==  1, "mulato(a) mezclado(a) o trigueño (blanco o negro)", cond(s_2_15_p ==  2, "blanco(a)", cond(s_2_15_p ==  3, "mestizo(a) (indio con blanco)", cond(s_2_15_p ==  4, "otra", cond(s_2_15_p ==  5, "no responde", cond(s_2_15_p ==  6, "no sabe", "")))))))
+
+drop s_2_15_p
+
+generate S_2_15_D = cond(s_2_15_d ==  0, "negro(a)", cond(s_2_15_d ==  1, "mulato(a)", cond(s_2_15_d ==  2, "blanco(a)", cond(s_2_15_d ==  3, "indio(a)", cond(s_2_15_d ==  4, "otra", cond(s_2_15_d ==  5, "no responde", cond(s_2_15_d ==  6, "no sabe", "")))))))
+
+drop s_2_15_d
+
+generate S_2_15_C = cond(s_2_15_c ==  0, "negro(a)", cond(s_2_15_c ==  1, "mulato(a)", cond(s_2_15_c ==  2, "blanco(a)", cond(s_2_15_c ==  3, "mestizo(a)", cond(s_2_15_c ==  4, "otra", cond(s_2_15_c ==  5, "no responde", cond(s_2_15_c ==  6, "no sabe", "")))))))
+
+drop s_2_15_c
+
+generate S_3_1_P = cond(s_3_1_p ==  0, "puerto rico", cond(s_3_1_p ==  1, "estados unidos", cond(s_3_1_p ==  2, "otro pais", "")))
+
+drop s_3_1_p
+
+generate S_3_1_D = cond(s_3_1_d ==  0, "república dominicana", cond(s_3_1_d ==  1, "estados unidos", cond(s_3_1_d ==  2, "haiti", cond(s_3_1_d ==  3, "otro pais", ""))))
+
+drop s_3_1_d
+
+generate S_3_1_C = cond(s_3_1_c ==  0, "cuba", cond(s_3_1_c ==  1, "otro pais", ""))
+
+drop s_3_1_c
+
+generate S_3_2 = cond(s_3_2 ==  0, "cuidad", cond(s_3_2 ==  1, "pueblo", cond(s_3_2 ==  2, "campo", "")))
+
+drop s_3_2
+
+generate S_3_4 = cond(s_3_4 ==  0, "ciudad", cond(s_3_4 ==  1, "pueblo", cond(s_3_4 ==  2, "campo", "")))
+
+drop s_3_4
+
+generate S_3_5 = cond(s_3_5 ==  0, "ciudad", cond(s_3_5 ==  1, "pueblo", cond(s_3_5 ==  2, "campo", "")))
+
+drop s_3_5
+
+generate S_3_6 = cond(s_3_6 ==  0, "no", cond(s_3_6 ==  1, "si", cond(s_3_6 ==  2, "no responde", cond(s_3_6 ==  3, "no sabe", ""))))
+
+drop s_3_6
+
+generate S_3_7 = cond(s_3_7 ==  0, "no", cond(s_3_7 ==  1, "si", cond(s_3_7 ==  2, "no responde", cond(s_3_7 ==  3, "no sabe", ""))))
+
+drop s_3_7
+
+generate S_3_8 = cond(s_3_8 ==  0, "mucho mejor", cond(s_3_8 ==  1, "mejor", cond(s_3_8 ==  2, "promedio", cond(s_3_8 ==  3, "peor", cond(s_3_8 ==  4, "mucho peor", cond(s_3_8 ==  5, "no responde", cond(s_3_8 ==  6, "no sabe", cond(s_3_8 ==  7, "no fue a la escuela", ""))))))))
+
+drop s_3_8
+
+generate S_3_9 = cond(s_3_9 ==  0, "mucho mejor", cond(s_3_9 ==  1, "mejor", cond(s_3_9 ==  2, "promedio", cond(s_3_9 ==  3, "peor", cond(s_3_9 ==  4, "mucho peor", cond(s_3_9 ==  5, "no responde", cond(s_3_9 ==  6, "no sabe", cond(s_3_9 ==  7, "no fue a la escuela", ""))))))))
+
+drop s_3_9
+
+generate S_3_12_1 = cond(s_3_12_1 ==  0, "no", cond(s_3_12_1 ==  1, "si", cond(s_3_12_1 ==  2, "no responde", cond(s_3_12_1 ==  3, "no sabe", ""))))
+
+drop s_3_12_1
+
+generate S_3_12_2 = cond(s_3_12_2 ==  0, "no", cond(s_3_12_2 ==  1, "si", cond(s_3_12_2 ==  2, "no responde", cond(s_3_12_2 ==  3, "no sabe", ""))))
+
+drop s_3_12_2
+
+generate S_3_12_3 = cond(s_3_12_3 ==  0, "no", cond(s_3_12_3 ==  1, "si", cond(s_3_12_3 ==  2, "no responde", cond(s_3_12_3 ==  3, "no sabe", ""))))
+
+drop s_3_12_3
+
+generate S_3_12_6 = cond(s_3_12_6 ==  0, "no", cond(s_3_12_6 ==  1, "si", cond(s_3_12_6 ==  2, "no responde", cond(s_3_12_6 ==  3, "no sabe", ""))))
+
+drop s_3_12_6
+
+generate S_3_12_8 = cond(s_3_12_8 ==  0, "no", cond(s_3_12_8 ==  1, "si", cond(s_3_12_8 ==  2, "no responde", cond(s_3_12_8 ==  3, "no sabe", ""))))
+
+drop s_3_12_8
+
+generate S_3_13 = cond(s_3_13 ==  0, "mejor", cond(s_3_13 ==  1, "mas o menos igual", cond(s_3_13 ==  2, "peor", cond(s_3_13 ==  3, "no responde", cond(s_3_13 ==  4, "no sabe", "")))))
+
+drop s_3_13
+
+generate S_3_17 = cond(s_3_17 ==  0, "no", cond(s_3_17 ==  1, "si", cond(s_3_17 ==  2, "no responde", cond(s_3_17 ==  3, "no sabe", ""))))
+
+drop s_3_17
+
+generate S_3_19_2 = cond(s_3_19_2 ==  0, "dias", cond(s_3_19_2 ==  1, "semanas", cond(s_3_19_2 ==  2, "meses", cond(s_3_19_2 ==  3, "años", ""))))
+
+drop s_3_19_2
+
+generate S_4_1 = cond(s_4_1 ==  0, "no ha completado ninguna educación", cond(s_4_1 ==  1, "pre-primaria (jardín de infantes guarderia maternal pre-escolar)", cond(s_4_1 ==  2, "primaria", cond(s_4_1 ==  3, "intermedio", cond(s_4_1 ==  4, "secundaria", cond(s_4_1 ==  5, "terciaria (ej grado asociado o carrera técnica)", cond(s_4_1 ==  6, "universitaria o superior", cond(s_4_1 ==  7, "no responde", cond(s_4_1 ==  8, "no sabe", "")))))))))
+
+drop s_4_1
+
+generate S_4_2 = cond(s_4_2 ==  0, "no", cond(s_4_2 ==  1, "si", cond(s_4_2 ==  2, "no responde", cond(s_4_2 ==  3, "no sabe", ""))))
+
+drop s_4_2
+
+generate S_4_8 = cond(s_4_8 ==  0, "no", cond(s_4_8 ==  1, "si", cond(s_4_8 ==  2, "no responde", cond(s_4_8 ==  3, "no sabe", ""))))
+
+drop s_4_8
+
+generate S_4_11 = cond(s_4_11 ==  0, "no ha completado ninguna educación", cond(s_4_11 ==  1, "pre-primaria (jardín de infantes guarderia maternal pre-escolar)", cond(s_4_11 ==  2, "primaria", cond(s_4_11 ==  3, "intermedio", cond(s_4_11 ==  4, "secundaria", cond(s_4_11 ==  5, "terciaria (ej grado asociado o carrera técnica)", cond(s_4_11 ==  6, "universitaria o superior", cond(s_4_11 ==  7, "no responde", cond(s_4_11 ==  8, "no sabe", "")))))))))
+
+drop s_4_11
+
+generate S_4_12 = cond(s_4_12 ==  0, "no", cond(s_4_12 ==  1, "si", cond(s_4_12 ==  2, "no responde", cond(s_4_12 ==  3, "no sabe", ""))))
+
+drop s_4_12
+
+generate S_4_18 = cond(s_4_18 ==  0, "no", cond(s_4_18 ==  1, "si", cond(s_4_18 ==  2, "no responde", cond(s_4_18 ==  3, "no sabe", ""))))
+
+drop s_4_18
+
+generate S_4_21 = cond(s_4_21 ==  0, "no", cond(s_4_21 ==  1, "si", cond(s_4_21 ==  2, "no responde", cond(s_4_21 ==  3, "no sabe", ""))))
+
+drop s_4_21
+
+generate S_4_22 = cond(s_4_22 ==  0, "esposo/a", cond(s_4_22 ==  1, "madre", cond(s_4_22 ==  2, "padre", cond(s_4_22 ==  3, "suegra", cond(s_4_22 ==  4, "suegro", cond(s_4_22 ==  5, "hija", cond(s_4_22 ==  6, "hijo", cond(s_4_22 ==  7, "nieta", cond(s_4_22 ==  8, "nieto", cond(s_4_22 ==  9, "amigo/a", cond(s_4_22 ==  10, "otra familiar", cond(s_4_22 ==  11, "otra persona", cond(s_4_22 ==  12, "no responde", cond(s_4_22 ==  13, "no sabe", ""))))))))))))))
+
+drop s_4_22
+
+generate S_4_23_2 = cond(s_4_23_2 ==  0, "dia", cond(s_4_23_2 ==  1, "semana", cond(s_4_23_2 ==  2, "mes", cond(s_4_23_2 ==  3, "año", ""))))
+
+drop s_4_23_2
+
+generate S_4_26 = cond(s_4_26 ==  0, "no", cond(s_4_26 ==  1, "si", cond(s_4_26 ==  2, "no tengo ningunos", cond(s_4_26 ==  3, "no responde", cond(s_4_26 ==  4, "no sabe", "")))))
+
+drop s_4_26
+
+generate S_4_27_2 = cond(s_4_27_2 ==  0, "día", cond(s_4_27_2 ==  1, "semana", cond(s_4_27_2 ==  2, "mes", cond(s_4_27_2 ==  3, "año", ""))))
+
+drop s_4_27_2
+
+generate S_4_27A = cond(s_4_27a ==  0, "menos de 2 horas por semana?", cond(s_4_27a ==  1, "de 2 a 4 horas por semana?", cond(s_4_27a ==  2, "más de 4 horas por semana?", cond(s_4_27a ==  3, "no responde", cond(s_4_27a ==  4, "no sabe", "")))))
+
+drop s_4_27a
+
+generate S_4_28 = cond(s_4_28 ==  0, "no", cond(s_4_28 ==  1, "si", cond(s_4_28 ==  2, "no responde", cond(s_4_28 ==  3, "no sabe", ""))))
+
+drop s_4_28
+
+generate S_4_29_2 = cond(s_4_29_2 ==  0, "día", cond(s_4_29_2 ==  1, "semana", cond(s_4_29_2 ==  2, "mes", cond(s_4_29_2 ==  3, "año", ""))))
+
+drop s_4_29_2
+
+generate S_4_29A = cond(s_4_29a ==  0, "menos de 2 horas por semana", cond(s_4_29a ==  1, "de 2 a 4 horas por semana", cond(s_4_29a ==  2, "más de 4 horas por semana", cond(s_4_29a ==  3, "no responde", cond(s_4_29a ==  4, "no sabe", "")))))
+
+drop s_4_29a
+
+generate S_5_1 = cond(s_5_1 ==  0, "no", cond(s_5_1 ==  1, "si", cond(s_5_1 ==  2, "no responde", cond(s_5_1 ==  3, "no sabe", ""))))
+
+drop s_5_1
+
+generate S_5_2 = cond(s_5_2 ==  0, "no", cond(s_5_2 ==  1, "si", cond(s_5_2 ==  2, "no responde", cond(s_5_2 ==  3, "no sabe", ""))))
+
+drop s_5_2
+
+generate S_6_1 = cond(s_6_1 ==  0, "no", cond(s_6_1 ==  1, "si", cond(s_6_1 ==  2, "nació en estados unidos", cond(s_6_1 ==  3, "no responde", cond(s_6_1 ==  4, "no sabe", "")))))
+
+drop s_6_1
+
+generate S_6_3 = cond(s_6_3 ==  0, "no", cond(s_6_3 ==  1, "si", cond(s_6_3 ==  2, "nació en otro pais", cond(s_6_3 ==  3, "no responde", cond(s_6_3 ==  4, "no sabe", "")))))
+
+drop s_6_3
+
+generate S_6_5_P = cond(s_6_5_p ==  0, "puerto rico", cond(s_6_5_p ==  1, "un país en américa latina", cond(s_6_5_p ==  2, "canadá", cond(s_6_5_p ==  3, "españa", cond(s_6_5_p ==  4, "otro país europeo", cond(s_6_5_p ==  5, "otro", ""))))))
+
+drop s_6_5_p
+
+generate S_6_5_D = cond(s_6_5_d ==  0, "haití", cond(s_6_5_d ==  1, "un país en américa latina", cond(s_6_5_d ==  2, "canadá", cond(s_6_5_d ==  3, "españa", cond(s_6_5_d ==  4, "otro país europeo", cond(s_6_5_d ==  5, "otro", ""))))))
+
+drop s_6_5_d
+
+generate S_6_5_C = cond(s_6_5_c ==  0, "cuba", cond(s_6_5_c ==  1, "un país en américa latina", cond(s_6_5_c ==  2, "canadá", cond(s_6_5_c ==  3, "españa", cond(s_6_5_c ==  4, "otro país europeo", cond(s_6_5_c ==  5, "otro", ""))))))
+
+drop s_6_5_c
+
+generate S_7_0 = cond(s_7_0 ==  0, "muy satisfecho", cond(s_7_0 ==  1, "algo satisfecho", cond(s_7_0 ==  2, "algo insatisfecho", cond(s_7_0 ==  3, "muy insatisfecho", cond(s_7_0 ==  4, "no responde", cond(s_7_0 ==  5, "no sabe", ""))))))
+
+drop s_7_0
+
+generate S_7_1 = cond(s_7_1 ==  0, "no", cond(s_7_1 ==  1, "si", cond(s_7_1 ==  2, "no responde", cond(s_7_1 ==  3, "no sabe", ""))))
+
+drop s_7_1
+
+generate S_7_2A = cond(s_7_2a ==  0, "nunca", cond(s_7_2a ==  1, "menos de una vez por mes", cond(s_7_2a ==  2, "una vez por mes", cond(s_7_2a ==  3, "varias veces al mes", cond(s_7_2a ==  4, "una vez por semana", cond(s_7_2a ==  5, "varias veces a la semana", cond(s_7_2a ==  6, "cada día", cond(s_7_2a ==  7, "varias veces al día", cond(s_7_2a ==  8, "no responde", cond(s_7_2a ==  9, "no sabe", ""))))))))))
+
+drop s_7_2a
+
+generate S_7_2B = cond(s_7_2b ==  0, "nunca", cond(s_7_2b ==  1, "menos de una vez por mes", cond(s_7_2b ==  2, "una vez por mes", cond(s_7_2b ==  3, "varias veces al mes", cond(s_7_2b ==  4, "una vez por semana", cond(s_7_2b ==  5, "varias veces a la semana", cond(s_7_2b ==  6, "cada día", cond(s_7_2b ==  7, "varias veces al día", cond(s_7_2b ==  8, "no responde", cond(s_7_2b ==  9, "no sabe", ""))))))))))
+
+drop s_7_2b
+
+generate S_7_2C = cond(s_7_2c ==  0, "nunca", cond(s_7_2c ==  1, "menos de una vez por mes", cond(s_7_2c ==  2, "una vez por mes", cond(s_7_2c ==  3, "varias veces al mes", cond(s_7_2c ==  4, "una vez por semana", cond(s_7_2c ==  5, "varias veces a la semana", cond(s_7_2c ==  6, "cada día", cond(s_7_2c ==  7, "varias veces al día", cond(s_7_2c ==  8, "no responde", cond(s_7_2c ==  9, "no sabe", ""))))))))))
+
+drop s_7_2c
+
+generate S_7_4A = cond(s_7_4a ==  0, "nunca", cond(s_7_4a ==  1, "menos de una vez por mes", cond(s_7_4a ==  2, "una vez por mes", cond(s_7_4a ==  3, "varias veces al mes", cond(s_7_4a ==  4, "una vez por semana", cond(s_7_4a ==  5, "varias veces a la semana", cond(s_7_4a ==  6, "cada día", cond(s_7_4a ==  7, "varias veces al día", cond(s_7_4a ==  8, "no responde", cond(s_7_4a ==  9, "no sabe", ""))))))))))
+
+drop s_7_4a
+
+generate S_7_4B = cond(s_7_4b ==  0, "nunca", cond(s_7_4b ==  1, "menos de una vez por mes", cond(s_7_4b ==  2, "una vez por mes", cond(s_7_4b ==  3, "varias veces al mes", cond(s_7_4b ==  4, "una vez por semana", cond(s_7_4b ==  5, "varias veces a la semana", cond(s_7_4b ==  6, "cada día", cond(s_7_4b ==  7, "varias veces al día", cond(s_7_4b ==  8, "no responde", cond(s_7_4b ==  9, "no sabe", ""))))))))))
+
+drop s_7_4b
+
+generate S_7_4C = cond(s_7_4c ==  0, "nunca", cond(s_7_4c ==  1, "menos de una vez por mes", cond(s_7_4c ==  2, "una vez por mes", cond(s_7_4c ==  3, "varias veces al mes", cond(s_7_4c ==  4, "una vez por semana", cond(s_7_4c ==  5, "varias veces a la semana", cond(s_7_4c ==  6, "cada día", cond(s_7_4c ==  7, "varias veces al día", cond(s_7_4c ==  8, "no responde", cond(s_7_4c ==  9, "no sabe", ""))))))))))
+
+drop s_7_4c
+
+generate S_7_5A = cond(s_7_5a ==  0, "casi nunca", cond(s_7_5a ==  1, "a veces", cond(s_7_5a ==  2, "frecuentemente", cond(s_7_5a ==  3, "no responde", cond(s_7_5a ==  4, "no sabe", "")))))
+
+drop s_7_5a
+
+generate S_7_5B = cond(s_7_5b ==  0, "casi nunca", cond(s_7_5b ==  1, "a veces", cond(s_7_5b ==  2, "frecuentemente", cond(s_7_5b ==  3, "no responde", cond(s_7_5b ==  4, "no sabe", "")))))
+
+drop s_7_5b
+
+generate S_7_5C = cond(s_7_5c ==  0, "casi nunca", cond(s_7_5c ==  1, "a veces", cond(s_7_5c ==  2, "frecuentemente", cond(s_7_5c ==  3, "no responde", cond(s_7_5c ==  4, "no sabe", "")))))
+
+drop s_7_5c
+
+generate S_7_6A = cond(s_7_6a ==  0, "casi cada dia", cond(s_7_6a ==  1, "al menos una ves a la semana", cond(s_7_6a ==  2, "algunas veces al mes", cond(s_7_6a ==  3, "algunas veces al año", cond(s_7_6a ==  4, "menos que una vez al año", cond(s_7_6a ==  5, "nunca", cond(s_7_6a ==  6, "no responde", cond(s_7_6a ==  7, "no sabe", ""))))))))
+
+drop s_7_6a
+
+generate S_7_6B = cond(s_7_6b ==  0, "siempre o casi siempre", cond(s_7_6b ==  1, "la major parte del tiempo", cond(s_7_6b ==  2, "a veces", cond(s_7_6b ==  3, "casi nunca", cond(s_7_6b ==  4, "nunca", cond(s_7_6b ==  5, "no responde", cond(s_7_6b ==  6, "no sabe", "")))))))
+
+drop s_7_6b
+
+generate S_8_1 = cond(s_8_1 ==  0, "no", cond(s_8_1 ==  1, "si", cond(s_8_1 ==  2, "no responde", cond(s_8_1 ==  3, "no sabe", ""))))
+
+drop s_8_1
+
+generate S_8_3 = cond(s_8_3 ==  0, "profesional ejecutivo", cond(s_8_3 ==  1, "oficinista", cond(s_8_3 ==  2, "vendedor minorista", cond(s_8_3 ==  3, "agricultor independiente", cond(s_8_3 ==  4, "trabajador agrícola", cond(s_8_3 ==  5, "trabajador domestico", cond(s_8_3 ==  6, "otros servicios", cond(s_8_3 ==  7, "trabajador especializado", cond(s_8_3 ==  8, "trabajador no especializado", cond(s_8_3 ==  9, "trabajos informales", cond(s_8_3 ==  10, "otros", cond(s_8_3 ==  11, "no responde", cond(s_8_3 ==  12, "no sabe", "")))))))))))))
+
+drop s_8_3
+
+generate S_8_4 = cond(s_8_4 ==  0, "director o jefe", cond(s_8_4 ==  1, "trabajador por su cuenta", cond(s_8_4 ==  2, "trabajador cooperativista", cond(s_8_4 ==  3, "trabajador a sueldo fijo salario o jornal", cond(s_8_4 ==  4, "trabajador a destajo comisión", cond(s_8_4 ==  5, "trabajador familiar sin pago", cond(s_8_4 ==  6, "trabajador no familiar sin pago", cond(s_8_4 ==  7, "otro", cond(s_8_4 ==  8, "no responde", cond(s_8_4 ==  9, "no sabe", ""))))))))))
+
+drop s_8_4
+
+generate S_8_5A = cond(s_8_5a ==  0, "trabaja", cond(s_8_5a ==  1, "busca trabajo", cond(s_8_5a ==  2, "no trabaja", cond(s_8_5a ==  3, "no responde", ""))))
+
+drop s_8_5a
+
+generate S_8_5D = cond(s_8_5d ==  0, "profesional ejecutivo", cond(s_8_5d ==  1, "oficinista", cond(s_8_5d ==  2, "vendedor minorista", cond(s_8_5d ==  3, "agricultor independiente", cond(s_8_5d ==  4, "trabajador agrícola", cond(s_8_5d ==  5, "trabajador domestico", cond(s_8_5d ==  6, "otros servicios", cond(s_8_5d ==  7, "trabajador especializado", cond(s_8_5d ==  8, "trabajador no especializado", cond(s_8_5d ==  9, "trabajos informales", cond(s_8_5d ==  10, "otros", cond(s_8_5d ==  11, "no responde", cond(s_8_5d ==  12, "no sabe", "")))))))))))))
+
+drop s_8_5d
+
+generate S_8_7 = cond(s_8_7 ==  0, "no", cond(s_8_7 ==  1, "si", cond(s_8_7 ==  2, "no responde", cond(s_8_7 ==  3, "no sabe", ""))))
+
+drop s_8_7
+
+generate S_8_10 = cond(s_8_10 ==  0, "siempre o casi siempre", cond(s_8_10 ==  1, "la mayor parte del tiempo", cond(s_8_10 ==  2, "a veces", cond(s_8_10 ==  3, "casi nunca", cond(s_8_10 ==  4, "nunca", cond(s_8_10 ==  5, "no responde", cond(s_8_10 ==  6, "no sabe", "")))))))
+
+drop s_8_10
+
+generate S_8_11 = cond(s_8_11 ==  0, "siempre o casi siempre", cond(s_8_11 ==  1, "la mayor parte del tiempo", cond(s_8_11 ==  2, "a veces", cond(s_8_11 ==  3, "casi nunca", cond(s_8_11 ==  4, "nunca", cond(s_8_11 ==  5, "no responde", cond(s_8_11 ==  6, "no sabe", "")))))))
+
+drop s_8_11
+
+generate S_8_12 = cond(s_8_12 ==  0, "muy en desacuerdo", cond(s_8_12 ==  1, "desacuerdo", cond(s_8_12 ==  2, "acuerdo", cond(s_8_12 ==  3, "muy en acuerdo", cond(s_8_12 ==  4, "no se aplica", cond(s_8_12 ==  5, "no responde", cond(s_8_12 ==  6, "no sabe", "")))))))
+
+drop s_8_12
+
+generate S_8_13 = cond(s_8_13 ==  0, "muy en desacuerdo", cond(s_8_13 ==  1, "desacuerdo", cond(s_8_13 ==  2, "acuerdo", cond(s_8_13 ==  3, "muy en acuerdo", cond(s_8_13 ==  4, "no se aplica", cond(s_8_13 ==  5, "no responde", cond(s_8_13 ==  6, "no sabe", "")))))))
+
+drop s_8_13
+
+generate S_8_141 = cond(s_8_141 ==  0, "muy en desacuerdo", cond(s_8_141 ==  1, "desacuerdo", cond(s_8_141 ==  2, "acuerdo", cond(s_8_141 ==  3, "muy en acuerdo", cond(s_8_141 ==  4, "no se aplica", cond(s_8_141 ==  5, "no responde", cond(s_8_141 ==  6, "no sabe", "")))))))
+
+drop s_8_141
+
+generate S_8_15 = cond(s_8_15 ==  0, "muy en desacuerdo", cond(s_8_15 ==  1, "desacuerdo", cond(s_8_15 ==  2, "acuerdo", cond(s_8_15 ==  3, "muy en acuerdo", cond(s_8_15 ==  4, "no se aplica", cond(s_8_15 ==  5, "no responde", cond(s_8_15 ==  6, "no sabe", "")))))))
+
+drop s_8_15
+
+generate S_8_16 = cond(s_8_16 ==  0, "profesional ejecutivo", cond(s_8_16 ==  1, "oficinista", cond(s_8_16 ==  2, "vendedor minorista", cond(s_8_16 ==  3, "agricultor independiente", cond(s_8_16 ==  4, "trabajador agrícola", cond(s_8_16 ==  5, "trabajador domestico", cond(s_8_16 ==  6, "otros servicios", cond(s_8_16 ==  7, "trabajador especializado", cond(s_8_16 ==  8, "trabajador no especializado", cond(s_8_16 ==  9, "trabajos informales", cond(s_8_16 ==  10, "otros", cond(s_8_16 ==  11, "no responde", cond(s_8_16 ==  12, "no sabe", "")))))))))))))
+
+drop s_8_16
+
+generate S_9_1 = cond(s_9_1 ==  0, "excelente", cond(s_9_1 ==  1, "muy buena", cond(s_9_1 ==  2, "buena", cond(s_9_1 ==  3, "regular", cond(s_9_1 ==  4, "mala", cond(s_9_1 ==  5, "no responde", cond(s_9_1 ==  6, "no sabe", "")))))))
+
+drop s_9_1
+
+generate S_9_3 = cond(s_9_3 ==  0, "no tiene ese problema de salud", cond(s_9_3 ==  1, "tiene ese problema pero no interfiere", cond(s_9_3 ==  2, "tiene ese problema e interfiere un poco", cond(s_9_3 ==  3, "tiene ese problema e interfiere mucho", cond(s_9_3 ==  4, "no responde", cond(s_9_3 ==  5, "no sabe", ""))))))
+
+drop s_9_3
+
+generate S_9_4 = cond(s_9_4 ==  0, "no tiene ese problema de salud", cond(s_9_4 ==  1, "tiene ese problema pero no interfiere", cond(s_9_4 ==  2, "tiene ese problema e interfiere un poco", cond(s_9_4 ==  3, "tiene ese problema e interfiere mucho", cond(s_9_4 ==  4, "no responde", cond(s_9_4 ==  5, "no sabe", ""))))))
+
+drop s_9_4
+
+generate S_9_5 = cond(s_9_5 ==  0, "no", cond(s_9_5 ==  1, "si", cond(s_9_5 ==  2, "no responde", cond(s_9_5 ==  3, "no sabe", ""))))
+
+drop s_9_5
+
+generate S_9_7 = cond(s_9_7 ==  0, "no", cond(s_9_7 ==  1, "si", cond(s_9_7 ==  2, "no responde", cond(s_9_7 ==  3, "no sabe", ""))))
+
+drop s_9_7
+
+generate S_9_8 = cond(s_9_8 ==  0, "no", cond(s_9_8 ==  1, "si", cond(s_9_8 ==  2, "no responde", cond(s_9_8 ==  3, "no sabe", ""))))
+
+drop s_9_8
+
+generate S_9_11 = cond(s_9_11 ==  0, "no", cond(s_9_11 ==  1, "si", cond(s_9_11 ==  2, "no responde", cond(s_9_11 ==  3, "no sabe", ""))))
+
+drop s_9_11
+
+generate S_9_13 = cond(s_9_13 ==  0, "menos que 6 meses", cond(s_9_13 ==  1, "de 6 a 11 meses", cond(s_9_13 ==  2, "de 1 a 2 años", cond(s_9_13 ==  3, "mas que 2 años", cond(s_9_13 ==  4, "nunca", cond(s_9_13 ==  5, "no responde", cond(s_9_13 ==  6, "no sabe", "")))))))
+
+drop s_9_13
+
+generate S_9_14 = cond(s_9_14 ==  0, "no", cond(s_9_14 ==  1, "si", cond(s_9_14 ==  2, "no responde", cond(s_9_14 ==  3, "no sabe", ""))))
+
+drop s_9_14
+
+generate S_9_15 = cond(s_9_15 ==  0, "hace 0-5 años", cond(s_9_15 ==  1, "hace 5-10 años", cond(s_9_15 ==  2, "hace 10 o más años", cond(s_9_15 ==  3, "no responde", cond(s_9_15 ==  4, "no sabe", "")))))
+
+drop s_9_15
+
+generate S_9_16 = cond(s_9_16 ==  0, "infarto", cond(s_9_16 ==  1, "angina", cond(s_9_16 ==  2, "paro cardíaco", cond(s_9_16 ==  3, "enfermedad valvular", cond(s_9_16 ==  4, "otro", cond(s_9_16 ==  5, "no responde", cond(s_9_16 ==  6, "no sabe", "")))))))
+
+drop s_9_16
+
+generate S_9_17 = cond(s_9_17 ==  0, "no", cond(s_9_17 ==  1, "si", cond(s_9_17 ==  2, "no responde", cond(s_9_17 ==  3, "no sabe", ""))))
+
+drop s_9_17
+
+generate S_9_18 = cond(s_9_18 ==  0, "nadie", cond(s_9_18 ==  1, "médico general", cond(s_9_18 ==  2, "especialista", cond(s_9_18 ==  3, "no responde", cond(s_9_18 ==  4, "no sabe", "")))))
+
+drop s_9_18
+
+generate S_9_19 = cond(s_9_19 ==  0, "no", cond(s_9_19 ==  1, "si", cond(s_9_19 ==  2, "no responde", cond(s_9_19 ==  3, "no sabe", ""))))
+
+drop s_9_19
+
+generate S_9_20 = cond(s_9_20 ==  0, "no", cond(s_9_20 ==  1, "si", cond(s_9_20 ==  2, "no responde", cond(s_9_20 ==  3, "no sabe", ""))))
+
+drop s_9_20
+
+generate S_9_23 = cond(s_9_23 ==  0, "no", cond(s_9_23 ==  1, "si", cond(s_9_23 ==  2, "no responde", cond(s_9_23 ==  3, "no sabe", ""))))
+
+drop s_9_23
+
+generate S_9_24 = cond(s_9_24 ==  0, "no", cond(s_9_24 ==  1, "si", cond(s_9_24 ==  2, "no responde", cond(s_9_24 ==  3, "no sabe", ""))))
+
+drop s_9_24
+
+generate S_9_26 = cond(s_9_26 ==  0, "sólo dieta", cond(s_9_26 ==  1, "hipoglicemiantes orales", cond(s_9_26 ==  2, "insulina", cond(s_9_26 ==  3, "ningún tratamiento", cond(s_9_26 ==  4, "no responde", cond(s_9_26 ==  5, "no sabe", ""))))))
+
+drop s_9_26
+
+generate S_9_28 = cond(s_9_28 ==  0, "nunca", cond(s_9_28 ==  1, "menos de una vez por mes", cond(s_9_28 ==  2, "una vez por mes", cond(s_9_28 ==  3, "varias veces al mes", cond(s_9_28 ==  4, "una vez por semana", cond(s_9_28 ==  5, "varias veces a la semana", cond(s_9_28 ==  6, "cada día", cond(s_9_28 ==  7, "varias veces al día", cond(s_9_28 ==  8, "no responde", cond(s_9_28 ==  9, "no sabe", ""))))))))))
+
+drop s_9_28
+
+generate S_9_29 = cond(s_9_29 ==  0, "una vez cada tres meses", cond(s_9_29 ==  1, "una vez cada seis meses", cond(s_9_29 ==  2, "una vez al año", cond(s_9_29 ==  3, "menos de una vez por año", cond(s_9_29 ==  4, "no tiene", cond(s_9_29 ==  5, "no responde", cond(s_9_29 ==  6, "no sabe", "")))))))
+
+drop s_9_29
+
+generate S_9_30 = cond(s_9_30 ==  0, "no", cond(s_9_30 ==  1, "si", cond(s_9_30 ==  2, "no responde", cond(s_9_30 ==  3, "no sabe", ""))))
+
+drop s_9_30
+
+generate S_9_32 = cond(s_9_32 ==  0, "no", cond(s_9_32 ==  1, "si", cond(s_9_32 ==  2, "no responde", cond(s_9_32 ==  3, "no sabe", ""))))
+
+drop s_9_32
+
+generate S_9_33 = cond(s_9_33 ==  0, "no", cond(s_9_33 ==  1, "si", cond(s_9_33 ==  2, "no responde", cond(s_9_33 ==  3, "no sabe", ""))))
+
+drop s_9_33
+
+generate S_9_35 = cond(s_9_35 ==  0, "menos que 6 meses", cond(s_9_35 ==  1, "de 6 a 11 meses", cond(s_9_35 ==  2, "de 1 a 2 años", cond(s_9_35 ==  3, "mas que 2 años", cond(s_9_35 ==  4, "nunca", cond(s_9_35 ==  5, "no responde", cond(s_9_35 ==  6, "no sabe", "")))))))
+
+drop s_9_35
+
+generate S_9_37 = cond(s_9_37 ==  0, "no", cond(s_9_37 ==  1, "si", cond(s_9_37 ==  2, "no responde", cond(s_9_37 ==  3, "no sabe", ""))))
+
+drop s_9_37
+
+generate S_9_39 = cond(s_9_39 ==  0, "no", cond(s_9_39 ==  1, "si", cond(s_9_39 ==  2, "no responde", cond(s_9_39 ==  3, "no sabe", ""))))
+
+drop s_9_39
+
+generate S_9_40 = cond(s_9_40 ==  0, "si unos pocos (hasta 4)", cond(s_9_40 ==  1, "si bastante (más de 4 y menos de la mitad)", cond(s_9_40 ==  2, "si la mayoría (la mitad o más)", cond(s_9_40 ==  3, "no", cond(s_9_40 ==  4, "no responde", cond(s_9_40 ==  5, "no sabe", ""))))))
+
+drop s_9_40
+
+generate S_9_41 = cond(s_9_41 ==  0, "no", cond(s_9_41 ==  1, "si raramente", cond(s_9_41 ==  2, "si frecuentemente", cond(s_9_41 ==  3, "si muy frecuentemente", cond(s_9_41 ==  4, "no responde", cond(s_9_41 ==  5, "no sabe", ""))))))
+
+drop s_9_41
+
+generate S_9_42 = cond(s_9_42 ==  0, "no", cond(s_9_42 ==  1, "si", cond(s_9_42 ==  2, "no responde", cond(s_9_42 ==  3, "no sabe", ""))))
+
+drop s_9_42
+
+generate S_9_44 = cond(s_9_44 ==  0, "no", cond(s_9_44 ==  1, "si", cond(s_9_44 ==  2, "no responde", cond(s_9_44 ==  3, "no sabe", ""))))
+
+drop s_9_44
+
+generate S_9_46 = cond(s_9_46 ==  0, "no", cond(s_9_46 ==  1, "si", cond(s_9_46 ==  2, "no responde", cond(s_9_46 ==  3, "no sabe", ""))))
+
+drop s_9_46
+
+generate S_9_47 = cond(s_9_47 ==  0, "no", cond(s_9_47 ==  1, "si", cond(s_9_47 ==  2, "no responde", cond(s_9_47 ==  3, "no sabe", ""))))
+
+drop s_9_47
+
+generate S_9_49 = cond(s_9_49 ==  0, "no", cond(s_9_49 ==  1, "si", cond(s_9_49 ==  2, "no responde", cond(s_9_49 ==  3, "no sabe", ""))))
+
+drop s_9_49
+
+generate S_9_50 = cond(s_9_50 ==  0, "no", cond(s_9_50 ==  1, "si", cond(s_9_50 ==  2, "no responde", cond(s_9_50 ==  3, "no sabe", ""))))
+
+drop s_9_50
+
+generate S_9_51 = cond(s_9_51 ==  0, "< 1 año", cond(s_9_51 ==  1, "1 a menos de 3 años", cond(s_9_51 ==  2, "3 a menos de 5 años", cond(s_9_51 ==  3, "5 años o mas", cond(s_9_51 ==  4, "nunca", cond(s_9_51 ==  5, "no responde", cond(s_9_51 ==  6, "no sabe", "")))))))
+
+drop s_9_51
+
+generate S_9_52 = cond(s_9_52 ==  0, "< 1 año", cond(s_9_52 ==  1, "1 a menos de 3 años", cond(s_9_52 ==  2, "3 a menos de 5 años", cond(s_9_52 ==  3, "5 años o mas", cond(s_9_52 ==  4, "nunca", cond(s_9_52 ==  5, "no responde", cond(s_9_52 ==  6, "no sabe", "")))))))
+
+drop s_9_52
+
+generate S_9_53 = cond(s_9_53 ==  0, "< 1 año", cond(s_9_53 ==  1, "1 a menos de 3 años", cond(s_9_53 ==  2, "3 a menos de 5 años", cond(s_9_53 ==  3, "5 años o mas", cond(s_9_53 ==  4, "nunca", cond(s_9_53 ==  5, "no responde", cond(s_9_53 ==  6, "no sabe", "")))))))
+
+drop s_9_53
+
+generate S_9_54 = cond(s_9_54 ==  0, "< 1 año", cond(s_9_54 ==  1, "1 a menos de 3 años", cond(s_9_54 ==  2, "3 a menos de 5 años", cond(s_9_54 ==  3, "5 años o mas", cond(s_9_54 ==  4, "nunca", cond(s_9_54 ==  5, "no responde", cond(s_9_54 ==  6, "no sabe", "")))))))
+
+drop s_9_54
+
+generate S_9_55 = cond(s_9_55 ==  0, "< 1 año", cond(s_9_55 ==  1, "1 a menos de 3 años", cond(s_9_55 ==  2, "3 a menos de 5 años", cond(s_9_55 ==  3, "5 años o mas", cond(s_9_55 ==  4, "nunca", cond(s_9_55 ==  5, "no responde", cond(s_9_55 ==  6, "no sabe", "")))))))
+
+drop s_9_55
+
+generate S_9_56 = cond(s_9_56 ==  0, "< 1 año", cond(s_9_56 ==  1, "1 a menos de 3 años", cond(s_9_56 ==  2, "3 a menos de 5 años", cond(s_9_56 ==  3, "5 años o mas", cond(s_9_56 ==  4, "nunca", cond(s_9_56 ==  5, "no responde", cond(s_9_56 ==  6, "no sabe", "")))))))
+
+drop s_9_56
+
+generate S_9_58 = cond(s_9_58 ==  0, "no", cond(s_9_58 ==  1, "si", cond(s_9_58 ==  2, "no responde", cond(s_9_58 ==  3, "no sabe", ""))))
+
+drop s_9_58
+
+generate S_9_61A = cond(s_9_61a ==  0, "menos de 45 años", cond(s_9_61a ==  1, "más o menos 50 años", cond(s_9_61a ==  2, "más de 55 años", cond(s_9_61a ==  3, "no responde", cond(s_9_61a ==  4, "no sabe", "")))))
+
+drop s_9_61a
+
+generate S_9_62 = cond(s_9_62 ==  0, "no", cond(s_9_62 ==  1, "si", cond(s_9_62 ==  2, "no responde", cond(s_9_62 ==  3, "no sabe", ""))))
+
+drop s_9_62
+
+generate S_9_63 = cond(s_9_63 ==  0, "no", cond(s_9_63 ==  1, "si", cond(s_9_63 ==  2, "no responde", cond(s_9_63 ==  3, "no sabe", ""))))
+
+drop s_9_63
+
+generate S_9_64_1 = cond(s_9_64_1 ==  0, "no", cond(s_9_64_1 ==  1, "si", cond(s_9_64_1 ==  2, "no responde", cond(s_9_64_1 ==  3, "no sabe", ""))))
+
+drop s_9_64_1
+
+generate S_9_64_2 = cond(s_9_64_2 ==  0, "no", cond(s_9_64_2 ==  1, "si", cond(s_9_64_2 ==  2, "no responde", cond(s_9_64_2 ==  3, "no sabe", ""))))
+
+drop s_9_64_2
+
+generate S_9_64_3 = cond(s_9_64_3 ==  0, "no", cond(s_9_64_3 ==  1, "si", cond(s_9_64_3 ==  2, "no responde", cond(s_9_64_3 ==  3, "no sabe", ""))))
+
+drop s_9_64_3
+
+generate S_9_64_4 = cond(s_9_64_4 ==  0, "no", cond(s_9_64_4 ==  1, "si", cond(s_9_64_4 ==  2, "no responde", cond(s_9_64_4 ==  3, "no sabe", ""))))
+
+drop s_9_64_4
+
+generate S_9_66 = cond(s_9_66 ==  0, "no", cond(s_9_66 ==  1, "si", cond(s_9_66 ==  2, "no responde", cond(s_9_66 ==  3, "no sabe", ""))))
+
+drop s_9_66
+
+generate S_10_1A = cond(s_10_1a ==  0, "no", cond(s_10_1a ==  1, "si", cond(s_10_1a ==  2, "no responde", cond(s_10_1a ==  3, "no sabe", ""))))
+
+drop s_10_1a
+
+generate S_10_1B = cond(s_10_1b ==  0, "no", cond(s_10_1b ==  1, "si", cond(s_10_1b ==  2, "no responde", cond(s_10_1b ==  3, "no sabe", ""))))
+
+drop s_10_1b
+
+generate S_10_1C = cond(s_10_1c ==  0, "no", cond(s_10_1c ==  1, "si", cond(s_10_1c ==  2, "no responde", cond(s_10_1c ==  3, "no sabe", ""))))
+
+drop s_10_1c
+
+generate S_10_1D = cond(s_10_1d ==  0, "no", cond(s_10_1d ==  1, "si", cond(s_10_1d ==  2, "no responde", cond(s_10_1d ==  3, "no sabe", ""))))
+
+drop s_10_1d
+
+generate S_10_1E = cond(s_10_1e ==  0, "no", cond(s_10_1e ==  1, "si", cond(s_10_1e ==  2, "no responde", cond(s_10_1e ==  3, "no sabe", ""))))
+
+drop s_10_1e
+
+generate S_10_1F = cond(s_10_1f ==  0, "no", cond(s_10_1f ==  1, "si", cond(s_10_1f ==  2, "no responde", cond(s_10_1f ==  3, "no sabe", ""))))
+
+drop s_10_1f
+
+generate S_10_1G = cond(s_10_1g ==  0, "no", cond(s_10_1g ==  1, "si", cond(s_10_1g ==  2, "no responde", cond(s_10_1g ==  3, "no sabe", ""))))
+
+drop s_10_1g
+
+generate S_10_1H = cond(s_10_1h ==  0, "no", cond(s_10_1h ==  1, "si", cond(s_10_1h ==  2, "no responde", cond(s_10_1h ==  3, "no sabe", ""))))
+
+drop s_10_1h
+
+generate S_10_2 = cond(s_10_2 ==  0, "la mayoría de las noches", cond(s_10_2 ==  1, "algunas noches", cond(s_10_2 ==  2, "casi nunca o nunca", cond(s_10_2 ==  3, "no responde", cond(s_10_2 ==  4, "no sabe", "")))))
+
+drop s_10_2
+
+generate S_10_3 = cond(s_10_3 ==  0, "la mayoría de las noches", cond(s_10_3 ==  1, "algunas noches", cond(s_10_3 ==  2, "casi nunca o nunca", cond(s_10_3 ==  3, "no responde", cond(s_10_3 ==  4, "no sabe", "")))))
+
+drop s_10_3
+
+generate S_10_4 = cond(s_10_4 ==  0, "la mayoría de las veces", cond(s_10_4 ==  1, "algunas veces", cond(s_10_4 ==  2, "casi nunca o nunca", cond(s_10_4 ==  3, "no responde", cond(s_10_4 ==  4, "no sabe", "")))))
+
+drop s_10_4
+
+generate S_10_5 = cond(s_10_5 ==  0, "la mayoría de las veces", cond(s_10_5 ==  1, "algunas veces", cond(s_10_5 ==  2, "casi nunca o nunca", cond(s_10_5 ==  3, "no responde", cond(s_10_5 ==  4, "no sabe", "")))))
+
+drop s_10_5
+
+generate S_10_6_1 = cond(s_10_6_1 ==  0, "no", cond(s_10_6_1 ==  1, "si", cond(s_10_6_1 ==  2, "no responde", cond(s_10_6_1 ==  3, "no sabe", ""))))
+
+drop s_10_6_1
+
+generate S_10_6_1A = cond(s_10_6_1a ==  0, "más de un año", cond(s_10_6_1a ==  1, "menos de un año", cond(s_10_6_1a ==  2, "no responde", cond(s_10_6_1a ==  3, "no sabe", ""))))
+
+drop s_10_6_1a
+
+generate S_10_6_2 = cond(s_10_6_2 ==  0, "no", cond(s_10_6_2 ==  1, "si", cond(s_10_6_2 ==  2, "no responde", cond(s_10_6_2 ==  3, "no sabe", ""))))
+
+drop s_10_6_2
+
+generate S_10_6_2A = cond(s_10_6_2a ==  0, "más de un año", cond(s_10_6_2a ==  1, "menos de un año", cond(s_10_6_2a ==  2, "no responde", cond(s_10_6_2a ==  3, "no sabe", ""))))
+
+drop s_10_6_2a
+
+generate S_10_6_3 = cond(s_10_6_3 ==  0, "no", cond(s_10_6_3 ==  1, "si", cond(s_10_6_3 ==  2, "no responde", cond(s_10_6_3 ==  3, "no sabe", cond(s_10_6_3 ==  4, "no se aplica (no trabaja)", "")))))
+
+drop s_10_6_3
+
+generate S_10_6_3A = cond(s_10_6_3a ==  0, "más de un año", cond(s_10_6_3a ==  1, "menos de un año", cond(s_10_6_3a ==  2, "no responde", cond(s_10_6_3a ==  3, "no sabe", ""))))
+
+drop s_10_6_3a
+
+generate S_10_6_4 = cond(s_10_6_4 ==  0, "no", cond(s_10_6_4 ==  1, "si", cond(s_10_6_4 ==  2, "no responde", cond(s_10_6_4 ==  3, "no sabe", ""))))
+
+drop s_10_6_4
+
+generate S_10_6_4A = cond(s_10_6_4a ==  0, "más de un año", cond(s_10_6_4a ==  1, "menos de un año", cond(s_10_6_4a ==  2, "no responde", cond(s_10_6_4a ==  3, "no sabe", ""))))
+
+drop s_10_6_4a
+
+generate S_10_7_1 = cond(s_10_7_1 ==  0, "muy en desacuerdo", cond(s_10_7_1 ==  1, "desacuerdo", cond(s_10_7_1 ==  2, "acuerdo", cond(s_10_7_1 ==  3, "muy en acuerdo", cond(s_10_7_1 ==  4, "no se aplica", cond(s_10_7_1 ==  5, "no responde", cond(s_10_7_1 ==  6, "no sabe", "")))))))
+
+drop s_10_7_1
+
+generate S_10_7_2 = cond(s_10_7_2 ==  0, "muy en desacuerdo", cond(s_10_7_2 ==  1, "desacuerdo", cond(s_10_7_2 ==  2, "acuerdo", cond(s_10_7_2 ==  3, "muy en acuerdo", cond(s_10_7_2 ==  4, "no se aplica", cond(s_10_7_2 ==  5, "no responde", cond(s_10_7_2 ==  6, "no sabe", "")))))))
+
+drop s_10_7_2
+
+generate S_11_1 = cond(s_11_1 ==  0, "nunca", cond(s_11_1 ==  1, "2-3 veces el mes pasado", cond(s_11_1 ==  2, "aproximadamente una vez a la semana", cond(s_11_1 ==  3, "2-3 días a la semana", cond(s_11_1 ==  4, "todos los días", cond(s_11_1 ==  5, "no responde", cond(s_11_1 ==  6, "no sabe", "")))))))
+
+drop s_11_1
+
+generate S_11_2 = cond(s_11_2 ==  0, "dolor leve", cond(s_11_2 ==  1, "dolor moderado", cond(s_11_2 ==  2, "dolor severo", cond(s_11_2 ==  3, "dolor muy severo", cond(s_11_2 ==  4, "dolor insoportable", cond(s_11_2 ==  5, "no responde", cond(s_11_2 ==  6, "no sabe", "")))))))
+
+drop s_11_2
+
+generate S_11_3 = cond(s_11_3 ==  0, "en lo absoluto", cond(s_11_3 ==  1, "no mucho", cond(s_11_3 ==  2, "moderadamente", cond(s_11_3 ==  3, "mucho", cond(s_11_3 ==  4, "no responde", cond(s_11_3 ==  5, "no sabe", ""))))))
+
+drop s_11_3
+
+generate S_12_1A = cond(s_12_1a ==  0, "no", cond(s_12_1a ==  1, "si", cond(s_12_1a ==  2, "no puede", cond(s_12_1a ==  3, "no lo hace", cond(s_12_1a ==  4, "no responde", cond(s_12_1a ==  5, "no sabe", ""))))))
+
+drop s_12_1a
+
+generate S_12_1B = cond(s_12_1b ==  0, "no", cond(s_12_1b ==  1, "si", cond(s_12_1b ==  2, "no responde", cond(s_12_1b ==  3, "no sabe", ""))))
+
+drop s_12_1b
+
+generate S_12_1C = cond(s_12_1c ==  0, "no", cond(s_12_1c ==  1, "si", cond(s_12_1c ==  2, "no responde", cond(s_12_1c ==  3, "no sabe", ""))))
+
+drop s_12_1c
+
+generate S_12_2A = cond(s_12_2a ==  0, "no", cond(s_12_2a ==  1, "si", cond(s_12_2a ==  2, "no puede", cond(s_12_2a ==  3, "no lo hace", cond(s_12_2a ==  4, "no responde", cond(s_12_2a ==  5, "no sabe", ""))))))
+
+drop s_12_2a
+
+generate S_12_2C = cond(s_12_2c ==  0, "no", cond(s_12_2c ==  1, "si", cond(s_12_2c ==  2, "no responde", cond(s_12_2c ==  3, "no sabe", ""))))
+
+drop s_12_2c
+
+generate S_12_3A = cond(s_12_3a ==  0, "no", cond(s_12_3a ==  1, "si", cond(s_12_3a ==  2, "no puede", cond(s_12_3a ==  3, "no lo hace", cond(s_12_3a ==  4, "no responde", cond(s_12_3a ==  5, "no sabe", ""))))))
+
+drop s_12_3a
+
+generate S_12_3C = cond(s_12_3c ==  0, "no", cond(s_12_3c ==  1, "si", cond(s_12_3c ==  2, "no responde", cond(s_12_3c ==  3, "no sabe", ""))))
+
+drop s_12_3c
+
+generate S_12_4A = cond(s_12_4a ==  0, "no", cond(s_12_4a ==  1, "si", cond(s_12_4a ==  2, "no puede", cond(s_12_4a ==  3, "no lo hace", cond(s_12_4a ==  4, "no responde", cond(s_12_4a ==  5, "no sabe", ""))))))
+
+drop s_12_4a
+
+generate S_12_4B = cond(s_12_4b ==  0, "no", cond(s_12_4b ==  1, "si", cond(s_12_4b ==  2, "no responde", cond(s_12_4b ==  3, "no sabe", ""))))
+
+drop s_12_4b
+
+generate S_12_4C = cond(s_12_4c ==  0, "no", cond(s_12_4c ==  1, "si", cond(s_12_4c ==  2, "no responde", cond(s_12_4c ==  3, "no sabe", ""))))
+
+drop s_12_4c
+
+generate S_12_5A = cond(s_12_5a ==  0, "no", cond(s_12_5a ==  1, "si", cond(s_12_5a ==  2, "no puede", cond(s_12_5a ==  3, "no lo hace", cond(s_12_5a ==  4, "no responde", cond(s_12_5a ==  5, "no sabe", ""))))))
+
+drop s_12_5a
+
+generate S_12_5C = cond(s_12_5c ==  0, "no", cond(s_12_5c ==  1, "si", cond(s_12_5c ==  2, "no responde", cond(s_12_5c ==  3, "no sabe", ""))))
+
+drop s_12_5c
+
+generate S_12_6A = cond(s_12_6a ==  0, "no", cond(s_12_6a ==  1, "si", cond(s_12_6a ==  2, "no puede", cond(s_12_6a ==  3, "no lo hace", cond(s_12_6a ==  4, "no responde", cond(s_12_6a ==  5, "no sabe", ""))))))
+
+drop s_12_6a
+
+generate S_12_6C = cond(s_12_6c ==  0, "no", cond(s_12_6c ==  1, "si", cond(s_12_6c ==  2, "no responde", cond(s_12_6c ==  3, "no sabe", ""))))
+
+drop s_12_6c
+
+generate S_12_7 = cond(s_12_7 ==  0, "no", cond(s_12_7 ==  1, "si", cond(s_12_7 ==  2, "no puede", cond(s_12_7 ==  3, "no lo hace", cond(s_12_7 ==  4, "no responde", cond(s_12_7 ==  5, "no sabe", ""))))))
+
+drop s_12_7
+
+generate S_12_8 = cond(s_12_8 ==  0, "no", cond(s_12_8 ==  1, "si", cond(s_12_8 ==  2, "no puede", cond(s_12_8 ==  3, "no lo hace", cond(s_12_8 ==  4, "no responde", cond(s_12_8 ==  5, "no sabe", ""))))))
+
+drop s_12_8
+
+generate S_12_9 = cond(s_12_9 ==  0, "no", cond(s_12_9 ==  1, "si", cond(s_12_9 ==  2, "no puede", cond(s_12_9 ==  3, "no lo hace", cond(s_12_9 ==  4, "no responde", cond(s_12_9 ==  5, "no sabe", ""))))))
+
+drop s_12_9
+
+generate S_12_10 = cond(s_12_10 ==  0, "no", cond(s_12_10 ==  1, "si", cond(s_12_10 ==  2, "no puede", cond(s_12_10 ==  3, "no lo hace", cond(s_12_10 ==  4, "no responde", cond(s_12_10 ==  5, "no sabe", ""))))))
+
+drop s_12_10
+
+generate S_12_11 = cond(s_12_11 ==  0, "no", cond(s_12_11 ==  1, "si", cond(s_12_11 ==  2, "no responde", cond(s_12_11 ==  3, "no sabe", ""))))
+
+drop s_12_11
+
+generate S_12_13 = cond(s_12_13 ==  0, "no", cond(s_12_13 ==  1, "si", cond(s_12_13 ==  2, "no responde", cond(s_12_13 ==  3, "no sabe", ""))))
+
+drop s_12_13
+
+generate S_12_14 = cond(s_12_14 ==  0, "no", cond(s_12_14 ==  1, "si", cond(s_12_14 ==  2, "no responde", cond(s_12_14 ==  3, "no sabe", ""))))
+
+drop s_12_14
+
+generate S_12_15 = cond(s_12_15 ==  0, "no", cond(s_12_15 ==  1, "si", cond(s_12_15 ==  2, "no responde", cond(s_12_15 ==  3, "no sabe", ""))))
+
+drop s_12_15
+
+generate S_12_16 = cond(s_12_16 ==  0, "los levantó totalmente", cond(s_12_16 ==  1, "los levantó parcialmente", cond(s_12_16 ==  2, "no puede levantarlos", cond(s_12_16 ==  3, "no aceptó realizar la prueba", ""))))
+
+drop s_12_16
+
+generate S_13_1_P_C = cond(s_13_1_p_c ==  0, "no", cond(s_13_1_p_c ==  1, "si", cond(s_13_1_p_c ==  2, "no responde", cond(s_13_1_p_c ==  3, "no sabe", ""))))
+
+drop s_13_1_p_c
+
+generate S_13_1_D = cond(s_13_1_d ==  0, "no", cond(s_13_1_d ==  1, "si", cond(s_13_1_d ==  2, "no responde", cond(s_13_1_d ==  3, "no sabe", ""))))
+
+drop s_13_1_d
+
+generate S_13_3_P_C = cond(s_13_3_p_c ==  0, "no", cond(s_13_3_p_c ==  1, "si", cond(s_13_3_p_c ==  2, "no responde", cond(s_13_3_p_c ==  3, "no sabe", ""))))
+
+drop s_13_3_p_c
+
+generate S_13_3_D = cond(s_13_3_d ==  0, "no", cond(s_13_3_d ==  1, "si", cond(s_13_3_d ==  2, "no responde", cond(s_13_3_d ==  3, "no sabe", ""))))
+
+drop s_13_3_d
+
+generate S_13_5 = cond(s_13_5 ==  0, "a diario", cond(s_13_5 ==  1, "no todos los dias", cond(s_13_5 ==  2, "no responde", cond(s_13_5 ==  3, "no sabe", ""))))
+
+drop s_13_5
+
+generate S_13_8 = cond(s_13_8 ==  0, "no", cond(s_13_8 ==  1, "si", cond(s_13_8 ==  2, "no responde", cond(s_13_8 ==  3, "no sabe", ""))))
+
+drop s_13_8
+
+generate S_13_9 = cond(s_13_9 ==  0, "no", cond(s_13_9 ==  1, "si", cond(s_13_9 ==  2, "no responde", cond(s_13_9 ==  3, "no sabe", ""))))
+
+drop s_13_9
+
+generate S_13_12 = cond(s_13_12 ==  0, "no", cond(s_13_12 ==  1, "si", cond(s_13_12 ==  2, "no responde", cond(s_13_12 ==  3, "no sabe", ""))))
+
+drop s_13_12
+
+generate S_13_13 = cond(s_13_13 ==  0, "nunca", cond(s_13_13 ==  1, "algunos días", cond(s_13_13 ==  2, "la mayoría de los días", cond(s_13_13 ==  3, "una vez al dia", cond(s_13_13 ==  4, "más que una vez al dia", cond(s_13_13 ==  5, "no responde", cond(s_13_13 ==  6, "no sabe", "")))))))
+
+drop s_13_13
+
+generate S_13_14 = cond(s_13_14 ==  0, "nunca", cond(s_13_14 ==  1, "algunos días", cond(s_13_14 ==  2, "la mayoría de los días", cond(s_13_14 ==  3, "una vez al dia", cond(s_13_14 ==  4, "más que una vez al dia", cond(s_13_14 ==  5, "no responde", cond(s_13_14 ==  6, "no sabe", "")))))))
+
+drop s_13_14
+
+generate S_13_15 = cond(s_13_15 ==  0, "nunca", cond(s_13_15 ==  1, "algunos días", cond(s_13_15 ==  2, "la mayoría de los días", cond(s_13_15 ==  3, "una vez al dia", cond(s_13_15 ==  4, "más que una vez al dia", cond(s_13_15 ==  5, "no responde", cond(s_13_15 ==  6, "no sabe", "")))))))
+
+drop s_13_15
+
+generate S_13_16 = cond(s_13_16 ==  0, "nunca", cond(s_13_16 ==  1, "algunos días", cond(s_13_16 ==  2, "la mayoría de los días", cond(s_13_16 ==  3, "una vez al dia", cond(s_13_16 ==  4, "más que una vez al dia", cond(s_13_16 ==  5, "no responde", cond(s_13_16 ==  6, "no sabe", "")))))))
+
+drop s_13_16
+
+generate S_13_17 = cond(s_13_17 ==  0, "nunca", cond(s_13_17 ==  1, "algunos días", cond(s_13_17 ==  2, "la mayoría de los días", cond(s_13_17 ==  3, "una vez al dia", cond(s_13_17 ==  4, "más que una vez al dia", cond(s_13_17 ==  5, "no responde", cond(s_13_17 ==  6, "no sabe", "")))))))
+
+drop s_13_17
+
+generate S_13_18 = cond(s_13_18 ==  0, "físicamente muy activo", cond(s_13_18 ==  1, "físicamente bastante activo", cond(s_13_18 ==  2, "físicamente no muy activo", cond(s_13_18 ==  3, "físicamente nada activo", cond(s_13_18 ==  4, "no responde", cond(s_13_18 ==  5, "no sabe", ""))))))
+
+drop s_13_18
+
+generate S_13_19 = cond(s_13_19 ==  0, "no", cond(s_13_19 ==  1, "si", cond(s_13_19 ==  2, "no responde", cond(s_13_19 ==  3, "no sabe", ""))))
+
+drop s_13_19
+
+generate S_13_22 = cond(s_13_22 ==  0, "no", cond(s_13_22 ==  1, "si", cond(s_13_22 ==  2, "no responde", cond(s_13_22 ==  3, "no sabe", ""))))
+
+drop s_13_22
+
+generate S_13_30_D_C = cond(s_13_30_d_c ==  0, "no", cond(s_13_30_d_c ==  1, "si", cond(s_13_30_d_c ==  2, "no responde", cond(s_13_30_d_c ==  3, "no sabe", ""))))
+
+drop s_13_30_d_c
+
+generate S_13_30_P = cond(s_13_30_p ==  0, "no", cond(s_13_30_p ==  1, "si", cond(s_13_30_p ==  2, "no responde", cond(s_13_30_p ==  3, "no sabe", ""))))
+
+drop s_13_30_p
+
+generate S_14_1_P_D = cond(s_14_1_p_d ==  0, "no", cond(s_14_1_p_d ==  1, "si", cond(s_14_1_p_d ==  2, "no responde", cond(s_14_1_p_d ==  3, "no sabe", ""))))
+
+drop s_14_1_p_d
+
+generate S_14_3 = cond(s_14_3 ==  0, "no", cond(s_14_3 ==  1, "si", cond(s_14_3 ==  2, "no responde", cond(s_14_3 ==  3, "no sabe", ""))))
+
+drop s_14_3
+
+generate S_14_17 = cond(s_14_17 ==  0, "no", cond(s_14_17 ==  1, "si", cond(s_14_17 ==  2, "no responde", cond(s_14_17 ==  3, "no sabe", ""))))
+
+drop s_14_17
+
+generate S_14_18_1 = cond(s_14_18_1 ==  0, "no", cond(s_14_18_1 ==  1, "si", cond(s_14_18_1 ==  2, "no responde", cond(s_14_18_1 ==  3, "no sabe", ""))))
+
+drop s_14_18_1
+
+generate S_14_18_2 = cond(s_14_18_2 ==  0, "no", cond(s_14_18_2 ==  1, "si", cond(s_14_18_2 ==  2, "no responde", cond(s_14_18_2 ==  3, "no sabe", ""))))
+
+drop s_14_18_2
+
+generate S_14_18_3 = cond(s_14_18_3 ==  0, "no", cond(s_14_18_3 ==  1, "si", cond(s_14_18_3 ==  2, "no responde", cond(s_14_18_3 ==  3, "no sabe", ""))))
+
+drop s_14_18_3
+
+generate S_14_18_4 = cond(s_14_18_4 ==  0, "no", cond(s_14_18_4 ==  1, "si", cond(s_14_18_4 ==  2, "no responde", cond(s_14_18_4 ==  3, "no sabe", ""))))
+
+drop s_14_18_4
+
+generate S_14_18_5 = cond(s_14_18_5 ==  0, "no", cond(s_14_18_5 ==  1, "si", cond(s_14_18_5 ==  2, "no responde", cond(s_14_18_5 ==  3, "no sabe", ""))))
+
+drop s_14_18_5
+
+generate S_14_18_6 = cond(s_14_18_6 ==  0, "no", cond(s_14_18_6 ==  1, "si", cond(s_14_18_6 ==  2, "no responde", cond(s_14_18_6 ==  3, "no sabe", ""))))
+
+drop s_14_18_6
+
+generate S_14_23 = cond(s_14_23 ==  0, "no", cond(s_14_23 ==  1, "si", cond(s_14_23 ==  2, "no responde", cond(s_14_23 ==  3, "no sabe", ""))))
+
+drop s_14_23
+
+generate S_14_30B1_P = cond(s_14_30b1_p ==  0, "no", cond(s_14_30b1_p ==  1, "si", cond(s_14_30b1_p ==  2, "no responde", cond(s_14_30b1_p ==  3, "no sabe", ""))))
+
+drop s_14_30b1_p
+
+generate S_14_30B1_D = cond(s_14_30b1_d ==  0, "no", cond(s_14_30b1_d ==  1, "si", cond(s_14_30b1_d ==  2, "no responde", cond(s_14_30b1_d ==  3, "no sabe", ""))))
+
+drop s_14_30b1_d
+
+generate S_14_30B2_P = cond(s_14_30b2_p ==  0, "no", cond(s_14_30b2_p ==  1, "si", cond(s_14_30b2_p ==  2, "no responde", cond(s_14_30b2_p ==  3, "no sabe", ""))))
+
+drop s_14_30b2_p
+
+generate S_14_30B2_D = cond(s_14_30b2_d ==  0, "no", cond(s_14_30b2_d ==  1, "si", cond(s_14_30b2_d ==  2, "no responde", cond(s_14_30b2_d ==  3, "no sabe", ""))))
+
+drop s_14_30b2_d
+
+generate S_14_30B3_P = cond(s_14_30b3_p ==  0, "no", cond(s_14_30b3_p ==  1, "si", cond(s_14_30b3_p ==  2, "no responde", cond(s_14_30b3_p ==  3, "no sabe", ""))))
+
+drop s_14_30b3_p
+
+generate S_14_30B3_D = cond(s_14_30b3_d ==  0, "no", cond(s_14_30b3_d ==  1, "si", cond(s_14_30b3_d ==  2, "no responde", cond(s_14_30b3_d ==  3, "no sabe", ""))))
+
+drop s_14_30b3_d
+
+generate S_14_31 = cond(s_14_31 ==  0, "no", cond(s_14_31 ==  1, "si", cond(s_14_31 ==  2, "no responde", cond(s_14_31 ==  3, "no sabe", ""))))
+
+drop s_14_31
+
+generate S_14_32 = cond(s_14_32 ==  0, "1", cond(s_14_32 ==  1, "2", cond(s_14_32 ==  2, "3", cond(s_14_32 ==  3, "4 o más", cond(s_14_32 ==  4, "no responde", cond(s_14_32 ==  5, "no sabe", ""))))))
+
+drop s_14_32
+
+generate S_14_33 = cond(s_14_33 ==  0, "no", cond(s_14_33 ==  1, "si", cond(s_14_33 ==  2, "no responde", cond(s_14_33 ==  3, "no sabe", ""))))
+
+drop s_14_33
+
+generate S_15_1 = cond(s_15_1 ==  0, "el participante solamente", cond(s_15_1 ==  1, "participante y proxy", cond(s_15_1 ==  2, "proxy solo", "")))
+
+drop s_15_1
+
+generate S_15_2 = cond(s_15_2 ==  0, "esposo (a)", cond(s_15_2 ==  1, "hijo/hija", cond(s_15_2 ==  2, "nuero/nuera", cond(s_15_2 ==  3, "hermano (a)", cond(s_15_2 ==  4, "otro parentesco", cond(s_15_2 ==  5, "amigo", cond(s_15_2 ==  6, "vecino(a)", cond(s_15_2 ==  7, "otro", ""))))))))
+
+drop s_15_2
+
+generate S_15_3 = cond(s_15_3 ==  0, "razonable (el entrevistado respondió de manera apropiada a más o menos a todas las preguntas)", cond(s_15_3 ==  1, "algunas dudas", cond(s_15_3 ==  2, "moderadas dudas", cond(s_15_3 ==  3, "graves dudas (el entrevistador consideró que el entrevistado fue incapaz o no cooperó en responder de manera apropiada a la mayoría de las preguntas)", cond(s_15_3 ==  4, "sin valor alguno (las preguntas fueron respondidas al azar)", "")))))
+
+drop s_15_3
+

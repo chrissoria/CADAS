@@ -1,0 +1,318 @@
+generate I_A2 = cond(i_a2 ==  0, "si", cond(i_a2 ==  1, "no", cond(i_a2 ==  2, "no responde", cond(i_a2 ==  3, "no sabe", ""))))
+
+generate I_A3 = cond(i_a3 ==  0, "si", cond(i_a3 ==  1, "no", cond(i_a3 ==  2, "no responde", cond(i_a3 ==  3, "no sabe", ""))))
+
+generate I_A4 = cond(i_a4 ==  0, "si", cond(i_a4 ==  1, "no", cond(i_a4 ==  2, "no responde", cond(i_a4 ==  3, "no sabe", ""))))
+
+generate I_B1 = cond(i_b1 ==  0, "miembro del hogar de xxxx?", cond(i_b1 ==  1, "hijo no-residente de xxxx?", cond(i_b1 ==  2, "otro?", "")))
+
+generate I_B4 = cond(i_b4 ==  0, "femenino", cond(i_b4 ==  1, "masculino", cond(i_b4 ==  2, "otro", "")))
+
+generate I_B5 = cond(i_b5 ==  0, "esposo (a)", cond(i_b5 ==  1, "hijo/hija", cond(i_b5 ==  2, "nuero/nuera", cond(i_b5 ==  3, "hermano (a)", cond(i_b5 ==  4, "otro parentesco", cond(i_b5 ==  5, "amigo", cond(i_b5 ==  6, "vecino(a)", cond(i_b5 ==  7, "otro", cond(i_b5 ==  8, "no responde", "")))))))))
+
+generate I_C1 = cond(i_c1 ==  0, "necesita cuidado la mayoría del tiempo", cond(i_c1 ==  1, "necesita cuidado ocasionalmente", cond(i_c1 ==  2, "no necesita cuidado se vale por sí mismo", cond(i_c1 ==  3, "no responde", cond(i_c1 ==  4, "no sabe", "")))))
+
+generate I_C2 = cond(i_c2 ==  0, "si", cond(i_c2 ==  1, "no", cond(i_c2 ==  2, "no responde", cond(i_c2 ==  3, "no sabe", ""))))
+
+generate I_C3 = cond(i_c3 ==  0, "uno ó más miembros de la familia", cond(i_c3 ==  1, "uno ó más amigos o vecinos no pagados", cond(i_c3 ==  2, "uno ó más cuidadores pagados", cond(i_c3 ==  3, "no recibe cuidado directo", cond(i_c3 ==  4, "no responde", cond(i_c3 ==  5, "no sabe", ""))))))
+
+generate I_C4 = cond(i_c4 ==  0, "uno de los principales cuidadores directos.", cond(i_c4 ==  1, "uno de los principales cuidadores de “organización”", cond(i_c4 ==  2, "solo ligeramente envuelto en proveer u organizar cuidado (otras personas lo hacen más)", cond(i_c4 ==  3, "no está envuelto en proveer u organizar cuidado", ""))))
+
+generate I_C5 = cond(i_c5 ==  0, "sí he dejado de trabajar", cond(i_c5 ==  1, "sí he disminuido horas de trabajo", cond(i_c5 ==  2, "no", cond(i_c5 ==  3, "no responde", ""))))
+
+generate I_C9 = cond(i_c9 ==  0, "si", cond(i_c9 ==  1, "no", cond(i_c9 ==  2, "no responde", "")))
+
+generate I_C11 = cond(i_c11 ==  0, "si", cond(i_c11 ==  1, "no", cond(i_c11 ==  2, "no responde", cond(i_c11 ==  3, "no sabe", ""))))
+
+generate I_C23 = cond(i_c23 ==  0, "si", cond(i_c23 ==  1, "no", cond(i_c23 ==  2, "no responde", cond(i_c23 ==  3, "no sabe", ""))))
+
+generate I_C25 = cond(i_c25 ==  0, "si", cond(i_c25 ==  1, "no", cond(i_c25 ==  2, "no responde", cond(i_c25 ==  3, "no sabe", ""))))
+
+generate I_C26A = cond(i_c26a ==  0, "si", cond(i_c26a ==  1, "no", cond(i_c26a ==  2, "no responde", cond(i_c26a ==  3, "no sabe", ""))))
+
+generate I_C27A = cond(i_c27a ==  0, "si", cond(i_c27a ==  1, "no", cond(i_c27a ==  2, "no responde", cond(i_c27a ==  3, "no sabe", ""))))
+
+generate I_D2 = cond(i_d2 ==  0, "nunca", cond(i_d2 ==  1, "raras veces", cond(i_d2 ==  2, "algunas veces", cond(i_d2 ==  3, "bastante frecuente", cond(i_d2 ==  4, "casi siempre", cond(i_d2 ==  5, "no responde", ""))))))
+
+generate I_D3 = cond(i_d3 ==  0, "nunca", cond(i_d3 ==  1, "raras veces", cond(i_d3 ==  2, "algunas veces", cond(i_d3 ==  3, "bastante frecuente", cond(i_d3 ==  4, "casi siempre", cond(i_d3 ==  5, "no responde", ""))))))
+
+generate I_D5 = cond(i_d5 ==  0, "nunca", cond(i_d5 ==  1, "raras veces", cond(i_d5 ==  2, "algunas veces", cond(i_d5 ==  3, "bastante frecuente", cond(i_d5 ==  4, "casi siempre", cond(i_d5 ==  5, "no responde", ""))))))
+
+generate I_D6 = cond(i_d6 ==  0, "nunca", cond(i_d6 ==  1, "raras veces", cond(i_d6 ==  2, "algunas veces", cond(i_d6 ==  3, "bastante frecuente", cond(i_d6 ==  4, "casi siempre", cond(i_d6 ==  5, "no responde", ""))))))
+
+generate I_D9 = cond(i_d9 ==  0, "nunca", cond(i_d9 ==  1, "raras veces", cond(i_d9 ==  2, "algunas veces", cond(i_d9 ==  3, "bastante frecuente", cond(i_d9 ==  4, "casi siempre", cond(i_d9 ==  5, "no responde", ""))))))
+
+generate I_D10 = cond(i_d10 ==  0, "nunca", cond(i_d10 ==  1, "raras veces", cond(i_d10 ==  2, "algunas veces", cond(i_d10 ==  3, "bastante frecuente", cond(i_d10 ==  4, "casi siempre", cond(i_d10 ==  5, "no responde", ""))))))
+
+generate I_D11 = cond(i_d11 ==  0, "nunca", cond(i_d11 ==  1, "raras veces", cond(i_d11 ==  2, "algunas veces", cond(i_d11 ==  3, "bastante frecuente", cond(i_d11 ==  4, "casi siempre", cond(i_d11 ==  5, "no responde", ""))))))
+
+generate I_D12 = cond(i_d12 ==  0, "nunca", cond(i_d12 ==  1, "raras veces", cond(i_d12 ==  2, "algunas veces", cond(i_d12 ==  3, "bastante frecuente", cond(i_d12 ==  4, "casi siempre", cond(i_d12 ==  5, "no responde", ""))))))
+
+generate I_D17 = cond(i_d17 ==  0, "nunca", cond(i_d17 ==  1, "raras veces", cond(i_d17 ==  2, "algunas veces", cond(i_d17 ==  3, "bastante frecuente", cond(i_d17 ==  4, "casi siempre", cond(i_d17 ==  5, "no responde", ""))))))
+
+generate I_D19 = cond(i_d19 ==  0, "nunca", cond(i_d19 ==  1, "raras veces", cond(i_d19 ==  2, "algunas veces", cond(i_d19 ==  3, "bastante frecuente", cond(i_d19 ==  4, "casi siempre", cond(i_d19 ==  5, "no responde", ""))))))
+
+generate I_D20 = cond(i_d20 ==  0, "nunca", cond(i_d20 ==  1, "raras veces", cond(i_d20 ==  2, "algunas veces", cond(i_d20 ==  3, "bastante frecuente", cond(i_d20 ==  4, "casi siempre", cond(i_d20 ==  5, "no responde", ""))))))
+
+generate I_D21 = cond(i_d21 ==  0, "nunca", cond(i_d21 ==  1, "raras veces", cond(i_d21 ==  2, "algunas veces", cond(i_d21 ==  3, "bastante frecuente", cond(i_d21 ==  4, "casi siempre", cond(i_d21 ==  5, "no responde", ""))))))
+
+generate I_E1 = cond(i_e1 ==  0, "ha mejorado mucho", cond(i_e1 ==  1, "ha mejorado un poco", cond(i_e1 ==  2, "apenas ha cambiado", cond(i_e1 ==  3, "ha empeorado un poco", cond(i_e1 ==  4, "ha empeorado mucho", cond(i_e1 ==  5, "no responde", cond(i_e1 ==  6, "no sabe", "")))))))
+
+generate I_E2 = cond(i_e2 ==  0, "ha mejorado mucho", cond(i_e2 ==  1, "ha mejorado un poco", cond(i_e2 ==  2, "apenas ha cambiado", cond(i_e2 ==  3, "ha empeorado un poco", cond(i_e2 ==  4, "ha empeorado mucho", cond(i_e2 ==  5, "no responde", cond(i_e2 ==  6, "no sabe", "")))))))
+
+generate I_E3 = cond(i_e3 ==  0, "ha mejorado mucho", cond(i_e3 ==  1, "ha mejorado un poco", cond(i_e3 ==  2, "apenas ha cambiado", cond(i_e3 ==  3, "ha empeorado un poco", cond(i_e3 ==  4, "ha empeorado mucho", cond(i_e3 ==  5, "no responde", cond(i_e3 ==  6, "no sabe", "")))))))
+
+generate I_E4 = cond(i_e4 ==  0, "ha mejorado mucho", cond(i_e4 ==  1, "ha mejorado un poco", cond(i_e4 ==  2, "apenas ha cambiado", cond(i_e4 ==  3, "ha empeorado un poco", cond(i_e4 ==  4, "ha empeorado mucho", cond(i_e4 ==  5, "no responde", cond(i_e4 ==  6, "no sabe", "")))))))
+
+generate I_E5 = cond(i_e5 ==  0, "ha mejorado mucho", cond(i_e5 ==  1, "ha mejorado un poco", cond(i_e5 ==  2, "apenas ha cambiado", cond(i_e5 ==  3, "ha empeorado un poco", cond(i_e5 ==  4, "ha empeorado mucho", cond(i_e5 ==  5, "no responde", cond(i_e5 ==  6, "no sabe", "")))))))
+
+generate I_E6 = cond(i_e6 ==  0, "ha mejorado mucho", cond(i_e6 ==  1, "ha mejorado un poco", cond(i_e6 ==  2, "apenas ha cambiado", cond(i_e6 ==  3, "ha empeorado un poco", cond(i_e6 ==  4, "ha empeorado mucho", cond(i_e6 ==  5, "no responde", cond(i_e6 ==  6, "no sabe", "")))))))
+
+generate I_E7 = cond(i_e7 ==  0, "ha mejorado mucho", cond(i_e7 ==  1, "ha mejorado un poco", cond(i_e7 ==  2, "apenas ha cambiado", cond(i_e7 ==  3, "ha empeorado un poco", cond(i_e7 ==  4, "ha empeorado mucho", cond(i_e7 ==  5, "no responde", cond(i_e7 ==  6, "no sabe", "")))))))
+
+generate I_E8 = cond(i_e8 ==  0, "ha mejorado mucho", cond(i_e8 ==  1, "ha mejorado un poco", cond(i_e8 ==  2, "apenas ha cambiado", cond(i_e8 ==  3, "ha empeorado un poco", cond(i_e8 ==  4, "ha empeorado mucho", cond(i_e8 ==  5, "no responde", cond(i_e8 ==  6, "no sabe", "")))))))
+
+generate I_E9 = cond(i_e9 ==  0, "ha mejorado mucho", cond(i_e9 ==  1, "ha mejorado un poco", cond(i_e9 ==  2, "apenas ha cambiado", cond(i_e9 ==  3, "ha empeorado un poco", cond(i_e9 ==  4, "ha empeorado mucho", cond(i_e9 ==  5, "no responde", cond(i_e9 ==  6, "no sabe", "")))))))
+
+generate I_E10 = cond(i_e10 ==  0, "ha mejorado mucho", cond(i_e10 ==  1, "ha mejorado un poco", cond(i_e10 ==  2, "apenas ha cambiado", cond(i_e10 ==  3, "ha empeorado un poco", cond(i_e10 ==  4, "ha empeorado mucho", cond(i_e10 ==  5, "no responde", cond(i_e10 ==  6, "no sabe", "")))))))
+
+generate I_E11 = cond(i_e11 ==  0, "ha mejorado mucho", cond(i_e11 ==  1, "ha mejorado un poco", cond(i_e11 ==  2, "apenas ha cambiado", cond(i_e11 ==  3, "ha empeorado un poco", cond(i_e11 ==  4, "ha empeorado mucho", cond(i_e11 ==  5, "no responde", cond(i_e11 ==  6, "no sabe", "")))))))
+
+generate I_E12 = cond(i_e12 ==  0, "ha mejorado mucho", cond(i_e12 ==  1, "ha mejorado un poco", cond(i_e12 ==  2, "apenas ha cambiado", cond(i_e12 ==  3, "ha empeorado un poco", cond(i_e12 ==  4, "ha empeorado mucho", cond(i_e12 ==  5, "no responde", cond(i_e12 ==  6, "no sabe", "")))))))
+
+generate I_E13 = cond(i_e13 ==  0, "ha mejorado mucho", cond(i_e13 ==  1, "ha mejorado un poco", cond(i_e13 ==  2, "apenas ha cambiado", cond(i_e13 ==  3, "ha empeorado un poco", cond(i_e13 ==  4, "ha empeorado mucho", cond(i_e13 ==  5, "no responde", cond(i_e13 ==  6, "no sabe", "")))))))
+
+generate I_E14 = cond(i_e14 ==  0, "ha mejorado mucho", cond(i_e14 ==  1, "ha mejorado un poco", cond(i_e14 ==  2, "apenas ha cambiado", cond(i_e14 ==  3, "ha empeorado un poco", cond(i_e14 ==  4, "ha empeorado mucho", cond(i_e14 ==  5, "no responde", cond(i_e14 ==  6, "no sabe", "")))))))
+
+generate I_E15 = cond(i_e15 ==  0, "ha mejorado mucho", cond(i_e15 ==  1, "ha mejorado un poco", cond(i_e15 ==  2, "apenas ha cambiado", cond(i_e15 ==  3, "ha empeorado un poco", cond(i_e15 ==  4, "ha empeorado mucho", cond(i_e15 ==  5, "no responde", cond(i_e15 ==  6, "no sabe", "")))))))
+
+generate I_E16 = cond(i_e16 ==  0, "ha mejorado mucho", cond(i_e16 ==  1, "ha mejorado un poco", cond(i_e16 ==  2, "apenas ha cambiado", cond(i_e16 ==  3, "ha empeorado un poco", cond(i_e16 ==  4, "ha empeorado mucho", cond(i_e16 ==  5, "no responde", cond(i_e16 ==  6, "no sabe", "")))))))
+
+generate I_F_CSID_1 = cond(i_f_csid_1 ==  0, "no hay cambios", cond(i_f_csid_1 ==  1, "disminución de las actividades y reducida", ""))
+
+generate I_F_CSID_2 = cond(i_f_csid_2 ==  0, "no hay cambios", cond(i_f_csid_2 ==  1, "deterioro general", ""))
+
+generate I_F_CSID_3 = cond(i_f_csid_3 ==  0, "no", cond(i_f_csid_3 ==  1, "si", ""))
+
+generate I_F_CSID_4 = cond(i_f_csid_4 ==  0, "nunca", cond(i_f_csid_4 ==  1, "si algunas veces", cond(i_f_csid_4 ==  2, "si regularmente", "")))
+
+generate I_F_CSID_5 = cond(i_f_csid_5 ==  0, "nunca", cond(i_f_csid_5 ==  1, "si algunas veces", cond(i_f_csid_5 ==  2, "si regularmente", "")))
+
+generate I_F_BSE_3 = cond(i_f_bse_3 ==  0, "nunca", cond(i_f_bse_3 ==  1, "si algunas veces", cond(i_f_bse_3 ==  2, "si regularmente", "")))
+
+generate I_F_BSE_7 = cond(i_f_bse_7 ==  0, "nunca", cond(i_f_bse_7 ==  1, "si algunas veces", cond(i_f_bse_7 ==  2, "si regularmente", "")))
+
+generate I_F_CSID_6 = cond(i_f_csid_6 ==  0, "nunca", cond(i_f_csid_6 ==  1, "si algunas veces", cond(i_f_csid_6 ==  2, "si regularmente", "")))
+
+generate I_F_CSID_7 = cond(i_f_csid_7 ==  0, "nunca", cond(i_f_csid_7 ==  1, "si algunas veces", cond(i_f_csid_7 ==  2, "si regularmente", "")))
+
+generate I_F_CSID_8 = cond(i_f_csid_8 ==  0, "nunca", cond(i_f_csid_8 ==  1, "si algunas veces", cond(i_f_csid_8 ==  2, "si regularmente", "")))
+
+generate I_F_CSID_9 = cond(i_f_csid_9 ==  0, "nunca", cond(i_f_csid_9 ==  1, "si algunas veces", cond(i_f_csid_9 ==  2, "si regularmente", "")))
+
+generate I_F_CSID_10 = cond(i_f_csid_10 ==  0, "nunca", cond(i_f_csid_10 ==  1, "si algunas veces", cond(i_f_csid_10 ==  2, "si regularmente", "")))
+
+generate I_F_CSID_11 = cond(i_f_csid_11 ==  0, "nunca", cond(i_f_csid_11 ==  1, "si algunas veces", cond(i_f_csid_11 ==  2, "si regularmente", "")))
+
+generate I_F_CSID_12 = cond(i_f_csid_12 ==  0, "nunca", cond(i_f_csid_12 ==  1, "si algunas veces", cond(i_f_csid_12 ==  2, "si regularmente", "")))
+
+generate I_F_CSID_13 = cond(i_f_csid_13 ==  0, "nunca", cond(i_f_csid_13 ==  1, "si algunas veces", cond(i_f_csid_13 ==  2, "si regularmente", "")))
+
+generate I_F_CSID_14 = cond(i_f_csid_14 ==  0, "nunca", cond(i_f_csid_14 ==  1, "si algunas veces", cond(i_f_csid_14 ==  2, "si regularmente", "")))
+
+generate I_F_CSID_15 = cond(i_f_csid_15 ==  0, "nunca", cond(i_f_csid_15 ==  1, "si algunas veces", cond(i_f_csid_15 ==  2, "si regularmente", "")))
+
+generate I_F_CSID_16 = cond(i_f_csid_16 ==  0, "nunca", cond(i_f_csid_16 ==  1, "si algunas veces", cond(i_f_csid_16 ==  2, "si regularmente", "")))
+
+generate I_F_CSID_17 = cond(i_f_csid_17 ==  0, "nunca", cond(i_f_csid_17 ==  1, "si algunas veces", cond(i_f_csid_17 ==  2, "si regularmente", "")))
+
+generate I_F_CSID_17A = cond(i_f_csid_17a ==  0, "no", cond(i_f_csid_17a ==  1, "si", ""))
+
+generate I_F_CSID_18 = cond(i_f_csid_18 ==  0, "no", cond(i_f_csid_18 ==  1, "si", ""))
+
+generate I_F_CSID_19 = cond(i_f_csid_19 ==  0, "no muestra dificultad", cond(i_f_csid_19 ==  1, "alguna dificultad", cond(i_f_csid_19 ==  2, "no puede manejar el dinero", "")))
+
+generate I_F_CSID_20 = cond(i_f_csid_20 ==  0, "no", cond(i_f_csid_20 ==  1, "si algunas veces", cond(i_f_csid_20 ==  2, "si regularmente", "")))
+
+generate I_F_CSID_21 = cond(i_f_csid_21 ==  0, "no", cond(i_f_csid_21 ==  1, "si algunas veces", cond(i_f_csid_21 ==  2, "si regularmente", "")))
+
+generate I_F_CSID_22_1 = cond(i_f_csid_22_1 ==  0, "come de manera limpia y con utensilios apropiados", cond(i_f_csid_22_1 ==  1, "se ensucia al comer. solo usa la cuchara", cond(i_f_csid_22_1 ==  2, "sólidos simples como galletitas", cond(i_f_csid_22_1 ==  3, "tiene que ser alimentada", ""))))
+
+generate I_F_CSID_22_2 = cond(i_f_csid_22_2 ==  0, "no", cond(i_f_csid_22_2 ==  1, "si", ""))
+
+generate I_F_CSID_23_1 = cond(i_f_csid_23_1 ==  0, "se viste sola/o", cond(i_f_csid_23_1 ==  1, "ocasionalmente salta un botón etc", cond(i_f_csid_23_1 ==  2, "secuencia incorrecta a menudo olvida artículos", cond(i_f_csid_23_1 ==  3, "incapaz de vestirse", ""))))
+
+generate I_F_CSID_23_2 = cond(i_f_csid_23_2 ==  0, "no", cond(i_f_csid_23_2 ==  1, "si", ""))
+
+generate I_F_CSID_24_1 = cond(i_f_csid_24_1 ==  0, "no tiene problemas", cond(i_f_csid_24_1 ==  1, "ocasionalmente moja la cama", cond(i_f_csid_24_1 ==  2, "frecuentemente moja la cama", cond(i_f_csid_24_1 ==  3, "incontinencia doble", ""))))
+
+generate I_F_CSID_24_2 = cond(i_f_csid_24_2 ==  0, "no", cond(i_f_csid_24_2 ==  1, "si", ""))
+
+generate I_F_CSID_25 = cond(i_f_csid_25 ==  0, "no", cond(i_f_csid_25 ==  1, "si", ""))
+
+generate I_F_CSID_26 = cond(i_f_csid_26 ==  0, "no", cond(i_f_csid_26 ==  1, "si", ""))
+
+generate I_F_CSID_27 = cond(i_f_csid_27 ==  0, "no", cond(i_f_csid_27 ==  1, "si", ""))
+
+generate I_F_CSID_28 = cond(i_f_csid_28 ==  0, "no", cond(i_f_csid_28 ==  1, "si", ""))
+
+generate I_G1 = cond(i_g1 ==  0, "no", cond(i_g1 ==  1, "si", cond(i_g1 ==  2, "no responde", cond(i_g1 ==  3, "no sabe", ""))))
+
+generate I_G1_2 = cond(i_g1_2 ==  0, "no", cond(i_g1_2 ==  1, "si", cond(i_g1_2 ==  2, "no responde", cond(i_g1_2 ==  3, "no sabe", ""))))
+
+generate I_G1_3 = cond(i_g1_3 ==  0, "ninguna ayuda", cond(i_g1_3 ==  1, "un poco de ayuda", cond(i_g1_3 ==  2, "de mucha ayuda", cond(i_g1_3 ==  3, "no responde", cond(i_g1_3 ==  4, "no sabe", "")))))
+
+generate I_G1_4 = cond(i_g1_4 ==  0, "no", cond(i_g1_4 ==  1, "si", cond(i_g1_4 ==  2, "no responde", cond(i_g1_4 ==  3, "no sabe", ""))))
+
+generate I_G1_5 = cond(i_g1_5 ==  0, "ninguna ayuda", cond(i_g1_5 ==  1, "un poco de ayuda", cond(i_g1_5 ==  2, "de mucha ayuda", cond(i_g1_5 ==  3, "no responde", cond(i_g1_5 ==  4, "no sabe", "")))))
+
+generate I_G_HAS_2 = cond(i_g_has_2 ==  0, "comienzo rápido de aspectos orgánicos en 1-3 días", cond(i_g_has_2 ==  1, "comienzo rápido en más de 3 días pero menos de 3 semanas", cond(i_g_has_2 ==  2, "comienzo gradual en un período más largo", cond(i_g_has_2 ==  3, "no responde", cond(i_g_has_2 ==  4, "no sabe", "")))))
+
+generate I_G_HAS_3_1 = cond(i_g_has_3_1 ==  0, "no", cond(i_g_has_3_1 ==  1, "si", cond(i_g_has_3_1 ==  2, "no responde", cond(i_g_has_3_1 ==  3, "no sabe", ""))))
+
+generate I_G_HAS_3_11 = cond(i_g_has_3_11 ==  0, "no", cond(i_g_has_3_11 ==  1, "si", cond(i_g_has_3_11 ==  2, "no responde", cond(i_g_has_3_11 ==  3, "no sabe", ""))))
+
+generate I_G_HAS_3_13 = cond(i_g_has_3_13 ==  0, "no", cond(i_g_has_3_13 ==  1, "si", cond(i_g_has_3_13 ==  2, "no responde", cond(i_g_has_3_13 ==  3, "no sabe", ""))))
+
+generate I_G_HAS_3_14 = cond(i_g_has_3_14 ==  0, "no", cond(i_g_has_3_14 ==  1, "si", cond(i_g_has_3_14 ==  2, "no responde", cond(i_g_has_3_14 ==  3, "no sabe", ""))))
+
+generate I_G_HAS_3_16 = cond(i_g_has_3_16 ==  0, "no", cond(i_g_has_3_16 ==  1, "si", cond(i_g_has_3_16 ==  2, "no responde", cond(i_g_has_3_16 ==  3, "no sabe", ""))))
+
+generate I_G_HAS_3_22 = cond(i_g_has_3_22 ==  0, "en general expresa deterioro", cond(i_g_has_3_22 ==  1, "en general expresa mejoría", cond(i_g_has_3_22 ==  2, "expresa que no hay cambios", cond(i_g_has_3_22 ==  3, "no responde", cond(i_g_has_3_22 ==  4, "no sabe", "")))))
+
+generate I_G_HAS_4 = cond(i_g_has_4 ==  0, "no vario", cond(i_g_has_4 ==  1, "un curso fluctuante con varios días o semanas de mejoría", cond(i_g_has_4 ==  2, "no responde", cond(i_g_has_4 ==  3, "no sabe", ""))))
+
+generate I_G_HAS_5_1 = cond(i_g_has_5_1 ==  0, "no retornaron a lo normal", cond(i_g_has_5_1 ==  1, "condición descrita como retorno a lo normal o casi normal", cond(i_g_has_5_1 ==  2, "no responde", cond(i_g_has_5_1 ==  3, "no sabe", ""))))
+
+generate I_G_HAS_6 = cond(i_g_has_6 ==  0, "no", cond(i_g_has_6 ==  1, "si", cond(i_g_has_6 ==  2, "no responde", cond(i_g_has_6 ==  3, "no sabe", ""))))
+
+generate I_G_HAS_7_1 = cond(i_g_has_7_1 ==  0, "no", cond(i_g_has_7_1 ==  1, "si", cond(i_g_has_7_1 ==  2, "no responde", cond(i_g_has_7_1 ==  3, "no sabe", ""))))
+
+generate I_G_HAS_10 = cond(i_g_has_10 ==  0, "no", cond(i_g_has_10 ==  1, "si", cond(i_g_has_10 ==  2, "no responde", cond(i_g_has_10 ==  3, "no sabe", ""))))
+
+generate I_G_HAS_11 = cond(i_g_has_11 ==  0, "no", cond(i_g_has_11 ==  1, "si", cond(i_g_has_11 ==  2, "no responde", cond(i_g_has_11 ==  3, "no sabe", ""))))
+
+generate I_G_HAS_12 = cond(i_g_has_12 ==  0, "no", cond(i_g_has_12 ==  1, "si", cond(i_g_has_12 ==  2, "no responde", cond(i_g_has_12 ==  3, "no sabe", ""))))
+
+generate I_G_HAS_13 = cond(i_g_has_13 ==  0, "no", cond(i_g_has_13 ==  1, "si", cond(i_g_has_13 ==  2, "no responde", cond(i_g_has_13 ==  3, "no sabe", ""))))
+
+generate I_G_HAS_14_1 = cond(i_g_has_14_1 ==  0, "no", cond(i_g_has_14_1 ==  1, "si", cond(i_g_has_14_1 ==  2, "no responde", cond(i_g_has_14_1 ==  3, "no sabe", ""))))
+
+generate I_G_HAS_15 = cond(i_g_has_15 ==  0, "no", cond(i_g_has_15 ==  1, "si", cond(i_g_has_15 ==  2, "no responde", cond(i_g_has_15 ==  3, "no sabe", ""))))
+
+generate I_G_HAS_17 = cond(i_g_has_17 ==  0, "no", cond(i_g_has_17 ==  1, "si", cond(i_g_has_17 ==  2, "no responde", cond(i_g_has_17 ==  3, "no sabe", ""))))
+
+generate I_G_HAS_18 = cond(i_g_has_18 ==  0, "solo han sucedido recientemente", cond(i_g_has_18 ==  1, "una de las primeras cosas", cond(i_g_has_18 ==  2, "no responde", cond(i_g_has_18 ==  3, "no sabe", ""))))
+
+generate I_G_HAS_47 = cond(i_g_has_47 ==  0, "no", cond(i_g_has_47 ==  1, "si probablemente", cond(i_g_has_47 ==  2, "si definitivamente", cond(i_g_has_47 ==  3, "no responde", cond(i_g_has_47 ==  4, "no sabe", "")))))
+
+generate I_G_HAS_48 = cond(i_g_has_48 ==  0, "no", cond(i_g_has_48 ==  1, "si probablemente", cond(i_g_has_48 ==  2, "si definitivamente", cond(i_g_has_48 ==  3, "no responde", cond(i_g_has_48 ==  4, "no sabe", "")))))
+
+generate I_G_HAS_49 = cond(i_g_has_49 ==  0, "no", cond(i_g_has_49 ==  1, "de unos minutos a una hora", cond(i_g_has_49 ==  2, "más de una hora", cond(i_g_has_49 ==  3, "no responde", cond(i_g_has_49 ==  4, "no sabe", "")))))
+
+generate I_G_HAS_50 = cond(i_g_has_50 ==  0, "no han ocurrido tales cambios", cond(i_g_has_50 ==  1, "seria condición afectando la cabeza causando cambios", cond(i_g_has_50 ==  2, "no responde", cond(i_g_has_50 ==  3, "no sabe", ""))))
+
+generate I_G_HAS_52 = cond(i_g_has_52 ==  0, "no", cond(i_g_has_52 ==  1, "si", ""))
+
+generate I_H_NPI_1 = cond(i_h_npi_1 ==  0, "no", cond(i_h_npi_1 ==  1, "si", cond(i_h_npi_1 ==  2, "no reponde", cond(i_h_npi_1 ==  3, "no sabe", ""))))
+
+generate I_H_NPI_1_1 = cond(i_h_npi_1_1 ==  0, "ligero (notable pero no cambios significativos)", cond(i_h_npi_1_1 ==  1, "moderado (significativo pero no cambios dramáticos)", cond(i_h_npi_1_1 ==  2, "severo (muy marcado y prominente cambio dramático)", "")))
+
+generate I_H_NPI_1_2 = cond(i_h_npi_1_2 ==  0, "no produce ningún malestar", cond(i_h_npi_1_2 ==  1, "mínimo (malestar ligero no es un problema manejarlo)", cond(i_h_npi_1_2 ==  2, "ligero (no mucho malestar fácil de manejarlo)", cond(i_h_npi_1_2 ==  3, "moderado (bastante malestar no siempre fácil de manejar)", cond(i_h_npi_1_2 ==  4, "severo (mucho malestar difícil de manejar)", cond(i_h_npi_1_2 ==  5, "extremo ó muy severo (malestar extremo incapaz de manejarlo)", ""))))))
+
+generate I_H_NPI_2 = cond(i_h_npi_2 ==  0, "no", cond(i_h_npi_2 ==  1, "si", cond(i_h_npi_2 ==  2, "no responde", cond(i_h_npi_2 ==  3, "no sabe", ""))))
+
+generate I_H_NPI_2_1 = cond(i_h_npi_2_1 ==  0, "ligero (notable pero no cambios significativos)", cond(i_h_npi_2_1 ==  1, "moderado (significativo pero no cambios dramáticos)", cond(i_h_npi_2_1 ==  2, "severo (muy marcado y prominente cambio dramático)", "")))
+
+generate I_H_NPI_2_2 = cond(i_h_npi_2_2 ==  0, "no produce ningún malestar", cond(i_h_npi_2_2 ==  1, "mínimo (malestar ligero no es un problema manejarlo)", cond(i_h_npi_2_2 ==  2, "ligero (no mucho malestar fácil de manejarlo)", cond(i_h_npi_2_2 ==  3, "moderado (bastante malestar no siempre fácil de manejar)", cond(i_h_npi_2_2 ==  4, "severo (mucho malestar difícil de manejar)", cond(i_h_npi_2_2 ==  5, "extremo ó muy severo (malestar extremo incapaz de manejarlo)", ""))))))
+
+generate I_H_NPI_3 = cond(i_h_npi_3 ==  0, "no", cond(i_h_npi_3 ==  1, "si", cond(i_h_npi_3 ==  2, "no responde", cond(i_h_npi_3 ==  3, "no sabe", ""))))
+
+generate I_H_NPI_3_1 = cond(i_h_npi_3_1 ==  0, "ligero (notable pero no cambios significativos)", cond(i_h_npi_3_1 ==  1, "moderado (significativo pero no cambios dramáticos)", cond(i_h_npi_3_1 ==  2, "severo (muy marcado y prominente cambio dramático)", "")))
+
+generate I_H_NPI_3_2 = cond(i_h_npi_3_2 ==  0, "no produce ningún malestar", cond(i_h_npi_3_2 ==  1, "mínimo (malestar ligero no es un problema manejarlo)", cond(i_h_npi_3_2 ==  2, "ligero (no mucho malestar fácil de manejarlo)", cond(i_h_npi_3_2 ==  3, "moderado (bastante malestar no siempre fácil de manejar)", cond(i_h_npi_3_2 ==  4, "severo (mucho malestar difícil de manejar)", cond(i_h_npi_3_2 ==  5, "extremo ó muy severo (malestar extremo incapaz de manejarlo)", ""))))))
+
+generate I_H_NPI_4 = cond(i_h_npi_4 ==  0, "no", cond(i_h_npi_4 ==  1, "si", cond(i_h_npi_4 ==  2, "no responde", cond(i_h_npi_4 ==  3, "no sabe", ""))))
+
+generate I_H_NPI_4_1 = cond(i_h_npi_4_1 ==  0, "ligero (notable pero no cambios significativos)", cond(i_h_npi_4_1 ==  1, "moderado (significativo pero no cambios dramáticos)", cond(i_h_npi_4_1 ==  2, "severo (muy marcado y prominente cambio dramático)", "")))
+
+generate I_H_NPI_4_2 = cond(i_h_npi_4_2 ==  0, "no produce ningún malestar", cond(i_h_npi_4_2 ==  1, "mínimo (malestar ligero no es un problema manejarlo)", cond(i_h_npi_4_2 ==  2, "ligero (no mucho malestar fácil de manejarlo)", cond(i_h_npi_4_2 ==  3, "moderado (bastante malestar no siempre fácil de manejar)", cond(i_h_npi_4_2 ==  4, "severo (mucho malestar difícil de manejar)", cond(i_h_npi_4_2 ==  5, "extremo ó muy severo (malestar extremo incapaz de manejarlo)", ""))))))
+
+generate I_H_NPI_5 = cond(i_h_npi_5 ==  0, "no", cond(i_h_npi_5 ==  1, "si", cond(i_h_npi_5 ==  2, "no responde", cond(i_h_npi_5 ==  3, "no sabe", ""))))
+
+generate I_H_NPI_5_1 = cond(i_h_npi_5_1 ==  0, "ligero (notable pero no cambios significativos)", cond(i_h_npi_5_1 ==  1, "moderado (significativo pero no cambios dramáticos)", cond(i_h_npi_5_1 ==  2, "severo (muy marcado y prominente cambio dramático)", "")))
+
+generate I_H_NPI_5_2 = cond(i_h_npi_5_2 ==  0, "no produce ningún malestar", cond(i_h_npi_5_2 ==  1, "mínimo (malestar ligero no es un problema manejarlo)", cond(i_h_npi_5_2 ==  2, "ligero (no mucho malestar fácil de manejarlo)", cond(i_h_npi_5_2 ==  3, "moderado (bastante malestar no siempre fácil de manejar)", cond(i_h_npi_5_2 ==  4, "severo (mucho malestar difícil de manejar)", cond(i_h_npi_5_2 ==  5, "extremo ó muy severo (malestar extremo incapaz de manejarlo)", ""))))))
+
+generate I_H_NPI_6 = cond(i_h_npi_6 ==  0, "no", cond(i_h_npi_6 ==  1, "si", cond(i_h_npi_6 ==  2, "no responde", cond(i_h_npi_6 ==  3, "no sabe", ""))))
+
+generate I_H_NPI_6_1 = cond(i_h_npi_6_1 ==  0, "ligero (notable pero no cambios significativos)", cond(i_h_npi_6_1 ==  1, "moderado (significativo pero no cambios dramáticos)", cond(i_h_npi_6_1 ==  2, "severo (muy marcado y prominente cambio dramático)", "")))
+
+generate I_H_NPI_6_2 = cond(i_h_npi_6_2 ==  0, "no produce ningún malestar", cond(i_h_npi_6_2 ==  1, "mínimo (malestar ligero no es un problema manejarlo)", cond(i_h_npi_6_2 ==  2, "ligero (no mucho malestar fácil de manejarlo)", cond(i_h_npi_6_2 ==  3, "moderado (bastante malestar no siempre fácil de manejar)", cond(i_h_npi_6_2 ==  4, "severo (mucho malestar difícil de manejar)", cond(i_h_npi_6_2 ==  5, "extremo ó muy severo (malestar extremo incapaz de manejarlo)", ""))))))
+
+generate I_H_NPI_7 = cond(i_h_npi_7 ==  0, "no", cond(i_h_npi_7 ==  1, "si", cond(i_h_npi_7 ==  2, "no responde", cond(i_h_npi_7 ==  3, "no sabe", ""))))
+
+generate I_H_NPI_7_1 = cond(i_h_npi_7_1 ==  0, "ligero (notable pero no cambios significativos)", cond(i_h_npi_7_1 ==  1, "moderado (significativo pero no cambios dramáticos)", cond(i_h_npi_7_1 ==  2, "severo (muy marcado y prominente cambio dramático)", "")))
+
+generate I_H_NPI_7_2 = cond(i_h_npi_7_2 ==  0, "no produce ningún malestar", cond(i_h_npi_7_2 ==  1, "mínimo (malestar ligero no es un problema manejarlo)", cond(i_h_npi_7_2 ==  2, "ligero (no mucho malestar fácil de manejarlo)", cond(i_h_npi_7_2 ==  3, "moderado (bastante malestar no siempre fácil de manejar)", cond(i_h_npi_7_2 ==  4, "severo (mucho malestar difícil de manejar)", cond(i_h_npi_7_2 ==  5, "extremo ó muy severo (malestar extremo incapaz de manejarlo)", ""))))))
+
+generate I_H_NPI_8 = cond(i_h_npi_8 ==  0, "no", cond(i_h_npi_8 ==  1, "si", cond(i_h_npi_8 ==  2, "no responde", cond(i_h_npi_8 ==  3, "no sabe", ""))))
+
+generate I_H_NPI_8_1 = cond(i_h_npi_8_1 ==  0, "ligero (notable pero no cambios significativos)", cond(i_h_npi_8_1 ==  1, "moderado (significativo pero no cambios dramáticos)", cond(i_h_npi_8_1 ==  2, "severo (muy marcado y prominente cambio dramático)", "")))
+
+generate I_H_NPI_8_2 = cond(i_h_npi_8_2 ==  0, "no produce ningún malestar", cond(i_h_npi_8_2 ==  1, "mínimo (malestar ligero no es un problema manejarlo)", cond(i_h_npi_8_2 ==  2, "ligero (no mucho malestar fácil de manejarlo)", cond(i_h_npi_8_2 ==  3, "moderado (bastante malestar no siempre fácil de manejar)", cond(i_h_npi_8_2 ==  4, "severo (mucho malestar difícil de manejar)", cond(i_h_npi_8_2 ==  5, "extremo ó muy severo (malestar extremo incapaz de manejarlo)", ""))))))
+
+generate I_H_NPI_9 = cond(i_h_npi_9 ==  0, "no", cond(i_h_npi_9 ==  1, "si", cond(i_h_npi_9 ==  2, "no responde", cond(i_h_npi_9 ==  3, "no sabe", ""))))
+
+generate I_H_NPI_9_1 = cond(i_h_npi_9_1 ==  0, "ligero (notable pero no cambios significativos)", cond(i_h_npi_9_1 ==  1, "moderado (significativo pero no cambios dramáticos)", cond(i_h_npi_9_1 ==  2, "severo (muy marcado y prominente cambio dramático)", "")))
+
+generate I_H_NPI_9_2 = cond(i_h_npi_9_2 ==  0, "no produce ningún malestar", cond(i_h_npi_9_2 ==  1, "mínimo (malestar ligero no es un problema manejarlo)", cond(i_h_npi_9_2 ==  2, "ligero (no mucho malestar fácil de manejarlo)", cond(i_h_npi_9_2 ==  3, "moderado (bastante malestar no siempre fácil de manejar)", cond(i_h_npi_9_2 ==  4, "severo (mucho malestar difícil de manejar)", cond(i_h_npi_9_2 ==  5, "extremo ó muy severo (malestar extremo incapaz de manejarlo)", ""))))))
+
+generate I_H_NPI_10 = cond(i_h_npi_10 ==  0, "no", cond(i_h_npi_10 ==  1, "si", cond(i_h_npi_10 ==  2, "no responde", cond(i_h_npi_10 ==  3, "no sabe", ""))))
+
+generate I_H_NPI_10_1 = cond(i_h_npi_10_1 ==  0, "ligero (notable pero no cambios significativos)", cond(i_h_npi_10_1 ==  1, "moderado (significativo pero no cambios dramáticos)", cond(i_h_npi_10_1 ==  2, "severo (muy marcado y prominente cambio dramático)", "")))
+
+generate I_H_NPI_10_2 = cond(i_h_npi_10_2 ==  0, "no produce ningún malestar", cond(i_h_npi_10_2 ==  1, "mínimo (malestar ligero no es un problema manejarlo)", cond(i_h_npi_10_2 ==  2, "ligero (no mucho malestar fácil de manejarlo)", cond(i_h_npi_10_2 ==  3, "moderado (bastante malestar no siempre fácil de manejar)", cond(i_h_npi_10_2 ==  4, "severo (mucho malestar difícil de manejar)", cond(i_h_npi_10_2 ==  5, "extremo ó muy severo (malestar extremo incapaz de manejarlo)", ""))))))
+
+generate I_H_NPI_11 = cond(i_h_npi_11 ==  0, "no", cond(i_h_npi_11 ==  1, "si", cond(i_h_npi_11 ==  2, "no responde", cond(i_h_npi_11 ==  3, "no sabe", ""))))
+
+generate I_H_NPI_11_1 = cond(i_h_npi_11_1 ==  0, "ligero (notable pero no cambios significativos)", cond(i_h_npi_11_1 ==  1, "moderado (significativo pero no cambios dramáticos)", cond(i_h_npi_11_1 ==  2, "severo (muy marcado y prominente cambio dramático)", "")))
+
+generate I_H_NPI_11_2 = cond(i_h_npi_11_2 ==  0, "no produce ningún malestar", cond(i_h_npi_11_2 ==  1, "mínimo (malestar ligero no es un problema manejarlo)", cond(i_h_npi_11_2 ==  2, "ligero (no mucho malestar fácil de manejarlo)", cond(i_h_npi_11_2 ==  3, "moderado (bastante malestar no siempre fácil de manejar)", cond(i_h_npi_11_2 ==  4, "severo (mucho malestar difícil de manejar)", cond(i_h_npi_11_2 ==  5, "extremo ó muy severo (malestar extremo incapaz de manejarlo)", ""))))))
+
+generate I_H_NPI_12 = cond(i_h_npi_12 ==  0, "no", cond(i_h_npi_12 ==  1, "si", cond(i_h_npi_12 ==  2, "no responde", cond(i_h_npi_12 ==  3, "no sabe", ""))))
+
+generate I_H_NPI_12_1 = cond(i_h_npi_12_1 ==  0, "ligero (notable pero no cambios significativos)", cond(i_h_npi_12_1 ==  1, "moderado (significativo pero no cambios dramáticos)", cond(i_h_npi_12_1 ==  2, "severo (muy marcado y prominente cambio dramático)", "")))
+
+generate I_H_NPI_12_2 = cond(i_h_npi_12_2 ==  0, "no produce ningún malestar", cond(i_h_npi_12_2 ==  1, "mínimo (malestar ligero no es un problema manejarlo)", cond(i_h_npi_12_2 ==  2, "ligero (no mucho malestar fácil de manejarlo)", cond(i_h_npi_12_2 ==  3, "moderado (bastante malestar no siempre fácil de manejar)", cond(i_h_npi_12_2 ==  4, "severo (mucho malestar difícil de manejar)", cond(i_h_npi_12_2 ==  5, "extremo ó muy severo (malestar extremo incapaz de manejarlo)", ""))))))
+
+generate I_J1 = cond(i_j1 ==  0, "no", cond(i_j1 ==  1, "si", cond(i_j1 ==  2, "no responde", cond(i_j1 ==  3, "no sabe", ""))))
+
+generate I_J2 = cond(i_j2 ==  0, "hace menos de 5 años", cond(i_j2 ==  1, "entre 5 y 10 años", cond(i_j2 ==  2, "10 años o más", cond(i_j2 ==  3, "no responde", cond(i_j2 ==  4, "no sabe", "")))))
+
+generate I_J3 = cond(i_j3 ==  0, "no", cond(i_j3 ==  1, "si", cond(i_j3 ==  2, "no responde", cond(i_j3 ==  3, "no sabe", ""))))
+
+generate I_K_ACT_1 = cond(i_k_act_1 ==  0, "cero", cond(i_k_act_1 ==  1, "media hora", cond(i_k_act_1 ==  2, "una", cond(i_k_act_1 ==  3, "dos a tres", cond(i_k_act_1 ==  4, "cuatro a seis", cond(i_k_act_1 ==  5, "siete o más", cond(i_k_act_1 ==  6, "nunca", cond(i_k_act_1 ==  7, "no sabe", cond(i_k_act_1 ==  8, "no responde", "")))))))))
+
+generate I_K_ACT_2 = cond(i_k_act_2 ==  0, "cero", cond(i_k_act_2 ==  1, "media hora", cond(i_k_act_2 ==  2, "una", cond(i_k_act_2 ==  3, "dos a tres", cond(i_k_act_2 ==  4, "cuatro a seis", cond(i_k_act_2 ==  5, "siete o más", cond(i_k_act_2 ==  6, "nunca", cond(i_k_act_2 ==  7, "no sabe", cond(i_k_act_2 ==  8, "no responde", "")))))))))
+
+generate I_K_ACT_5 = cond(i_k_act_5 ==  0, "cero", cond(i_k_act_5 ==  1, "media hora", cond(i_k_act_5 ==  2, "una", cond(i_k_act_5 ==  3, "dos a tres", cond(i_k_act_5 ==  4, "cuatro a seis", cond(i_k_act_5 ==  5, "siete o más", cond(i_k_act_5 ==  6, "nunca", cond(i_k_act_5 ==  7, "no sabe", cond(i_k_act_5 ==  8, "no responde", "")))))))))
+
+generate I_K_ACT_7 = cond(i_k_act_7 ==  0, "cero", cond(i_k_act_7 ==  1, "media hora", cond(i_k_act_7 ==  2, "una", cond(i_k_act_7 ==  3, "dos a tres", cond(i_k_act_7 ==  4, "cuatro a seis", cond(i_k_act_7 ==  5, "siete o más", cond(i_k_act_7 ==  6, "nunca", cond(i_k_act_7 ==  7, "no sabe", cond(i_k_act_7 ==  8, "no responde", "")))))))))
+
+generate I_K_ACT_8 = cond(i_k_act_8 ==  0, "cero", cond(i_k_act_8 ==  1, "media hora", cond(i_k_act_8 ==  2, "una", cond(i_k_act_8 ==  3, "dos a tres", cond(i_k_act_8 ==  4, "cuatro a seis", cond(i_k_act_8 ==  5, "siete o más", cond(i_k_act_8 ==  6, "nunca", cond(i_k_act_8 ==  7, "no sabe", cond(i_k_act_8 ==  8, "no responde", "")))))))))
+
+generate I_K_ACT_10 = cond(i_k_act_10 ==  0, "si", cond(i_k_act_10 ==  1, "no", cond(i_k_act_10 ==  2, "no es costumbre del xxx hacerlo", cond(i_k_act_10 ==  3, "no sabe", cond(i_k_act_10 ==  4, "no responde", "")))))
+
+generate I_K_ACT_13 = cond(i_k_act_13 ==  0, "si", cond(i_k_act_13 ==  1, "no", cond(i_k_act_13 ==  2, "no sabe", cond(i_k_act_13 ==  3, "no responde", ""))))
+
+generate I_K_ACT_14 = cond(i_k_act_14 ==  0, "si", cond(i_k_act_14 ==  1, "no", cond(i_k_act_14 ==  2, "no sabe", cond(i_k_act_14 ==  3, "no responde", ""))))
+
+generate I_K_ACT_15 = cond(i_k_act_15 ==  0, "diariamente", cond(i_k_act_15 ==  1, "varias veces a la semana", cond(i_k_act_15 ==  2, "una vez a la semana", cond(i_k_act_15 ==  3, "una vez al mes", cond(i_k_act_15 ==  4, "raramente", cond(i_k_act_15 ==  5, "nunca", cond(i_k_act_15 ==  6, "no sabe", cond(i_k_act_15 ==  7, "no responde", ""))))))))
+
+generate I_K_ACT_16 = cond(i_k_act_16 ==  0, "diariamente", cond(i_k_act_16 ==  1, "varias veces a la semana", cond(i_k_act_16 ==  2, "una vez a la semana", cond(i_k_act_16 ==  3, "una vez al mes", cond(i_k_act_16 ==  4, "raramente", cond(i_k_act_16 ==  5, "nunca", cond(i_k_act_16 ==  6, "no sabe", cond(i_k_act_16 ==  7, "no responde", ""))))))))
+
+generate I_K_ACT_17 = cond(i_k_act_17 ==  0, "solo", cond(i_k_act_17 ==  1, "acompañado", cond(i_k_act_17 ==  2, "no sabe", cond(i_k_act_17 ==  3, "no responde", ""))))
+
+generate I_LHAS_54 = cond(i_lhas_54 ==  0, "razonable", cond(i_lhas_54 ==  1, "algunas dudas", cond(i_lhas_54 ==  2, "dudas moderadas", cond(i_lhas_54 ==  3, "dudas graves", cond(i_lhas_54 ==  4, "sin valor", "")))))
+

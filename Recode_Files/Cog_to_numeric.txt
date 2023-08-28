@@ -1,0 +1,620 @@
+generate C_0 = cond(c_0 ==  0, "correcto", cond(c_0 ==  1, "incorrecto", ""))
+
+drop c_0
+
+generate C_1 = cond(c_1 ==  0, "correcto", cond(c_1 ==  1, "incorrecto", ""))
+
+drop c_1
+
+generate C_2_P_C = cond(c_2_p_c ==  0, "correcto", cond(c_2_p_c ==  1, "incorrecto", ""))
+
+drop c_2_p_c
+
+generate C_2_D = cond(c_2_d ==  0, "correcto", cond(c_2_d ==  1, "incorrecto", ""))
+
+drop c_2_d
+
+generate C_3 = cond(c_3 ==  0, "correcto", cond(c_3 ==  1, "incorrecto", ""))
+
+drop c_3
+
+generate C_4 = cond(c_4 ==  0, "correcto", cond(c_4 ==  1, "incorrecto", ""))
+
+drop c_4
+
+generate C_5 = cond(c_5 ==  0, "correcto", cond(c_5 ==  1, "incorrecto", ""))
+
+drop c_5
+
+generate C_6 = cond(c_6 ==  0, "correcto", cond(c_6 ==  1, "incorrecto", ""))
+
+drop c_6
+
+generate C_7_D_C = cond(c_7_d_c ==  0, "correcto", cond(c_7_d_c ==  1, "incorrecto", ""))
+
+drop c_7_d_c
+
+generate C_7_P = cond(c_7_p ==  0, "correcto", cond(c_7_p ==  1, "incorrecto", ""))
+
+drop c_7_p
+
+generate C_8 = cond(c_8 ==  0, "correcto", cond(c_8 ==  1, "incorrecto", ""))
+
+drop c_8
+
+generate C_9 = cond(c_9 ==  0, "correcto", cond(c_9 ==  1, "incorrecto", ""))
+
+drop c_9
+
+generate C_10 = cond(c_10 ==  0, "correcto", cond(c_10 ==  1, "incorrecto", ""))
+
+drop c_10
+
+generate C_11 = cond(c_11 ==  0, "correcto", cond(c_11 ==  1, "incorrecto", ""))
+
+drop c_11
+
+generate C_12 = cond(c_12 ==  0, "correcto", cond(c_12 ==  1, "incorrecto", ""))
+
+drop c_12
+
+generate C_13 = cond(c_13 ==  0, "correcto", cond(c_13 ==  1, "incorrecto", ""))
+
+drop c_13
+
+generate C_21 = cond(c_21 ==  0, "correcto", cond(c_21 ==  1, "incorrecto", ""))
+
+drop c_21
+
+generate C_22 = cond(c_22 ==  0, "correcto", cond(c_22 ==  1, "incorrecto", ""))
+
+drop c_22
+
+generate C_23 = cond(c_23 ==  0, "correcto", cond(c_23 ==  1, "incorrecto", ""))
+
+drop c_23
+
+generate C_24 = cond(c_24 ==  0, "correcto", cond(c_24 ==  1, "incorrecto", cond(c_24 ==  2, "no pudo (limitación física)", cond(c_24 ==  3, "rehúsa", ""))))
+
+drop c_24
+
+generate C_25 = cond(c_25 ==  0, "correcto", cond(c_25 ==  1, "incorrecto", cond(c_25 ==  2, "no pudo (limitación física)", cond(c_25 ==  3, "rehúsa", ""))))
+
+drop c_25
+
+generate C_26 = cond(c_26 ==  0, "correcto", cond(c_26 ==  1, "incorrecto", cond(c_26 ==  2, "rehúsa", "")))
+
+drop c_26
+
+generate C_27 = cond(c_27 ==  0, "correcto", cond(c_27 ==  1, "incorrecto", cond(c_27 ==  2, "no pudo (limitación física)", cond(c_27 ==  3, "rehúsa", ""))))
+
+drop c_27
+
+generate C_28 = cond(c_28 ==  0, "correcto", cond(c_28 ==  1, "incorrecto", cond(c_28 ==  2, "no pudo (limitación física)", cond(c_28 ==  3, "rehúsa", ""))))
+
+drop c_28
+
+generate C_29 = cond(c_29 ==  0, "correcto", cond(c_29 ==  1, "incorrecto", cond(c_29 ==  2, "no pudo (limitación física)", cond(c_29 ==  3, "rehúsa", ""))))
+
+drop c_29
+
+generate C_30 = cond(c_30 ==  0, "correcto", cond(c_30 ==  1, "incorrecto", cond(c_30 ==  2, "no pudo (anafalbeto)", cond(c_30 ==  3, "no pudo (limitación física)", cond(c_30 ==  4, "rehúsa", "")))))
+
+drop c_30
+
+generate C_31 = cond(c_31 ==  0, "0", cond(c_31 ==  1, "1", cond(c_31 ==  2, "no pudo (anafalbeto)", cond(c_31 ==  3, "no pudo (limitación física)", cond(c_31 ==  4, "rehúsa", "")))))
+
+drop c_31
+
+generate C_32 = cond(c_32 ==  0, "si", cond(c_32 ==  1, "no pudo (limitación física)", cond(c_32 ==  2, "rehúsa", "")))
+
+drop c_32
+
+generate G_1 = cond(g_1 ==  0, "sí", cond(g_1 ==  1, "no", ""))
+
+drop g_1
+
+generate C_40 = cond(c_40 ==  0, "no", cond(c_40 ==  1, "si", cond(c_40 ==  2, "rehúsa", "")))
+
+drop c_40
+
+generate C_43 = cond(c_43 ==  0, "no", cond(c_43 ==  1, "si", cond(c_43 ==  2, "no pudo (limitación física)", cond(c_43 ==  3, "rehúsa", ""))))
+
+drop c_43
+
+generate C_45 = cond(c_45 ==  0, "correcto", cond(c_45 ==  1, "incorrecto", cond(c_45 ==  2, "quiere empezar de nuevo", cond(c_45 ==  3, "rehúsa", ""))))
+
+drop c_45
+
+generate C_46 = cond(c_46 ==  0, "correcto", cond(c_46 ==  1, "incorrecto", cond(c_46 ==  2, "rehúsa", "")))
+
+drop c_46
+
+generate C_48 = cond(c_48 ==  0, "correcto", cond(c_48 ==  1, "incorrecto", cond(c_48 ==  2, "no pudo (limitación física)", cond(c_48 ==  3, "rehúsa", ""))))
+
+drop c_48
+
+generate C_49 = cond(c_49 ==  0, "correcto", cond(c_49 ==  1, "incorrecto", cond(c_49 ==  2, "no pudo (limitación física)", cond(c_49 ==  3, "rehúsa", ""))))
+
+drop c_49
+
+generate C_50 = cond(c_50 ==  0, "correcto", cond(c_50 ==  1, "incorrecto", cond(c_50 ==  2, "no pudo (limitación física)", cond(c_50 ==  3, "rehúsa", ""))))
+
+drop c_50
+
+generate C_51 = cond(c_51 ==  0, "correcto", cond(c_51 ==  1, "incorrecto", cond(c_51 ==  2, "no pudo (limitación física)", cond(c_51 ==  3, "rehúsa", ""))))
+
+drop c_51
+
+generate C_52 = cond(c_52 ==  0, "correcto", cond(c_52 ==  1, "incorrecto", cond(c_52 ==  2, "no pudo (limitación física)", cond(c_52 ==  3, "rehúsa", ""))))
+
+drop c_52
+
+generate C_53 = cond(c_53 ==  0, "correcto", cond(c_53 ==  1, "incorrecto", cond(c_53 ==  2, "rehúsa", "")))
+
+drop c_53
+
+generate C_54 = cond(c_54 ==  0, "correcto", cond(c_54 ==  1, "incorrecto", cond(c_54 ==  2, "rehúsa", "")))
+
+drop c_54
+
+generate C_55 = cond(c_55 ==  0, "correcto", cond(c_55 ==  1, "incorrecto", cond(c_55 ==  2, "rehúsa", "")))
+
+drop c_55
+
+generate C_56 = cond(c_56 ==  0, "correcto", cond(c_56 ==  1, "incorrecto", cond(c_56 ==  2, "rehúsa", "")))
+
+drop c_56
+
+generate C_58 = cond(c_58 ==  0, "sí respondió", cond(c_58 ==  1, "no respondió", ""))
+
+drop c_58
+
+generate C_59 = cond(c_59 ==  0, "sí respondió", cond(c_59 ==  1, "no respondió", ""))
+
+drop c_59
+
+generate C_60 = cond(c_60 ==  0, "sí respondió", cond(c_60 ==  1, "no respondió", ""))
+
+drop c_60
+
+generate C_61 = cond(c_61 ==  0, "correcto", cond(c_61 ==  1, "incorrecto", cond(c_61 ==  2, "no pudo (limitación física)", cond(c_61 ==  3, "rehúsa", ""))))
+
+drop c_61
+
+generate C_62 = cond(c_62 ==  0, "correcto", cond(c_62 ==  1, "incorrecto", cond(c_62 ==  2, "no pudo (limitación física)", cond(c_62 ==  3, "rehúsa", ""))))
+
+drop c_62
+
+generate C_65 = cond(c_65 ==  0, "correcto", cond(c_65 ==  1, "incorrecto", ""))
+
+drop c_65
+
+generate G_2 = cond(g_2 ==  0, "sí", cond(g_2 ==  1, "no", ""))
+
+drop g_2
+
+generate C_66A = cond(c_66a ==  0, "si exacta", cond(c_66a ==  1, "sí aproximada", cond(c_66a ==  2, "olvida el elemento", "")))
+
+drop c_66a
+
+generate C_66B = cond(c_66b ==  0, "si exacta", cond(c_66b ==  1, "sí aproximada", cond(c_66b ==  2, "olvida el elemento", "")))
+
+drop c_66b
+
+generate C_66C = cond(c_66c ==  0, "si exacta", cond(c_66c ==  1, "sí aproximada", cond(c_66c ==  2, "olvida el elemento", "")))
+
+drop c_66c
+
+generate C_66D = cond(c_66d ==  0, "si exacta", cond(c_66d ==  1, "sí aproximada", cond(c_66d ==  2, "olvida el elemento", "")))
+
+drop c_66d
+
+generate C_66E = cond(c_66e ==  0, "si exacta", cond(c_66e ==  1, "sí aproximada", cond(c_66e ==  2, "olvida el elemento", "")))
+
+drop c_66e
+
+generate C_66F = cond(c_66f ==  0, "si exacta", cond(c_66f ==  1, "sí aproximada", cond(c_66f ==  2, "olvida el elemento", "")))
+
+drop c_66f
+
+generate C_67_01 = cond(c_67_01 ==  0, "si exacta", cond(c_67_01 ==  1, "sí aproximada", cond(c_67_01 ==  2, "olvida el elemento", "")))
+
+drop c_67_01
+
+generate C_67_02 = cond(c_67_02 ==  0, "si exacta", cond(c_67_02 ==  1, "sí aproximada", cond(c_67_02 ==  2, "olvida el elemento", "")))
+
+drop c_67_02
+
+generate C_67_03 = cond(c_67_03 ==  0, "si exacta", cond(c_67_03 ==  1, "sí aproximada", cond(c_67_03 ==  2, "olvida el elemento", "")))
+
+drop c_67_03
+
+generate C_67_04 = cond(c_67_04 ==  0, "si exacta", cond(c_67_04 ==  1, "sí aproximada", cond(c_67_04 ==  2, "olvida el elemento", "")))
+
+drop c_67_04
+
+generate C_67_05 = cond(c_67_05 ==  0, "si exacta", cond(c_67_05 ==  1, "sí aproximada", cond(c_67_05 ==  2, "olvida el elemento", "")))
+
+drop c_67_05
+
+generate C_67_06 = cond(c_67_06 ==  0, "si exacta", cond(c_67_06 ==  1, "sí aproximada", cond(c_67_06 ==  2, "olvida el elemento", "")))
+
+drop c_67_06
+
+generate C_67_07 = cond(c_67_07 ==  0, "si exacta", cond(c_67_07 ==  1, "sí aproximada", cond(c_67_07 ==  2, "olvida el elemento", "")))
+
+drop c_67_07
+
+generate C_67_08 = cond(c_67_08 ==  0, "si exacta", cond(c_67_08 ==  1, "sí aproximada", cond(c_67_08 ==  2, "olvida el elemento", "")))
+
+drop c_67_08
+
+generate C_67_09 = cond(c_67_09 ==  0, "si exacta", cond(c_67_09 ==  1, "sí aproximada", cond(c_67_09 ==  2, "olvida el elemento", "")))
+
+drop c_67_09
+
+generate C_67_10 = cond(c_67_10 ==  0, "si exacta", cond(c_67_10 ==  1, "sí aproximada", cond(c_67_10 ==  2, "olvida el elemento", "")))
+
+drop c_67_10
+
+generate C_67_11 = cond(c_67_11 ==  0, "si exacta", cond(c_67_11 ==  1, "sí aproximada", cond(c_67_11 ==  2, "olvida el elemento", "")))
+
+drop c_67_11
+
+generate C_67_12 = cond(c_67_12 ==  0, "si exacta", cond(c_67_12 ==  1, "sí aproximada", cond(c_67_12 ==  2, "olvida el elemento", "")))
+
+drop c_67_12
+
+generate C_67_13_C = cond(c_67_13_c ==  0, "si exacta", cond(c_67_13_c ==  1, "sí aproximada", cond(c_67_13_c ==  2, "olvida el elemento", "")))
+
+drop c_67_13_c
+
+generate C_67_13_D = cond(c_67_13_d ==  0, "si exacta", cond(c_67_13_d ==  1, "sí aproximada", cond(c_67_13_d ==  2, "olvida el elemento", "")))
+
+drop c_67_13_d
+
+generate C_67_13_P = cond(c_67_13_p ==  0, "si exacta", cond(c_67_13_p ==  1, "sí aproximada", cond(c_67_13_p ==  2, "olvida el elemento", "")))
+
+drop c_67_13_p
+
+generate C_67_14 = cond(c_67_14 ==  0, "si exacta", cond(c_67_14 ==  1, "sí aproximada", cond(c_67_14 ==  2, "olvida el elemento", "")))
+
+drop c_67_14
+
+generate C_67_15 = cond(c_67_15 ==  0, "si exacta", cond(c_67_15 ==  1, "sí aproximada", cond(c_67_15 ==  2, "olvida el elemento", "")))
+
+drop c_67_15
+
+generate C_67_16 = cond(c_67_16 ==  0, "si exacta", cond(c_67_16 ==  1, "sí aproximada", cond(c_67_16 ==  2, "olvida el elemento", "")))
+
+drop c_67_16
+
+generate C_67_17 = cond(c_67_17 ==  0, "si exacta", cond(c_67_17 ==  1, "sí aproximada", cond(c_67_17 ==  2, "olvida el elemento", "")))
+
+drop c_67_17
+
+generate C_67_18 = cond(c_67_18 ==  0, "si exacta", cond(c_67_18 ==  1, "sí aproximada", cond(c_67_18 ==  2, "olvida el elemento", "")))
+
+drop c_67_18
+
+generate C_67_19 = cond(c_67_19 ==  0, "si exacta", cond(c_67_19 ==  1, "sí aproximada", cond(c_67_19 ==  2, "olvida el elemento", "")))
+
+drop c_67_19
+
+generate C_67_20 = cond(c_67_20 ==  0, "si exacta", cond(c_67_20 ==  1, "sí aproximada", cond(c_67_20 ==  2, "olvida el elemento", "")))
+
+drop c_67_20
+
+generate C_67_21 = cond(c_67_21 ==  0, "si exacta", cond(c_67_21 ==  1, "sí aproximada", cond(c_67_21 ==  2, "olvida el elemento", "")))
+
+drop c_67_21
+
+generate C_67_22 = cond(c_67_22 ==  0, "si exacta", cond(c_67_22 ==  1, "sí aproximada", cond(c_67_22 ==  2, "olvida el elemento", "")))
+
+drop c_67_22
+
+generate C_67_23 = cond(c_67_23 ==  0, "si exacta", cond(c_67_23 ==  1, "sí aproximada", cond(c_67_23 ==  2, "olvida el elemento", "")))
+
+drop c_67_23
+
+generate C_67_24 = cond(c_67_24 ==  0, "si exacta", cond(c_67_24 ==  1, "sí aproximada", cond(c_67_24 ==  2, "olvida el elemento", "")))
+
+drop c_67_24
+
+generate C_67_25 = cond(c_67_25 ==  0, "si exacta", cond(c_67_25 ==  1, "sí aproximada", cond(c_67_25 ==  2, "olvida el elemento", "")))
+
+drop c_67_25
+
+generate C_68_01 = cond(c_68_01 ==  0, "sí", cond(c_68_01 ==  1, "no", ""))
+
+drop c_68_01
+
+generate C_68_02 = cond(c_68_02 ==  0, "sí", cond(c_68_02 ==  1, "no", ""))
+
+drop c_68_02
+
+generate C_68_03 = cond(c_68_03 ==  0, "sí", cond(c_68_03 ==  1, "no", ""))
+
+drop c_68_03
+
+generate C_68_04 = cond(c_68_04 ==  0, "sí", cond(c_68_04 ==  1, "no", ""))
+
+drop c_68_04
+
+generate C_68_05 = cond(c_68_05 ==  0, "sí", cond(c_68_05 ==  1, "no", ""))
+
+drop c_68_05
+
+generate C_68_06 = cond(c_68_06 ==  0, "sí", cond(c_68_06 ==  1, "no", ""))
+
+drop c_68_06
+
+generate C_68_07 = cond(c_68_07 ==  0, "sí", cond(c_68_07 ==  1, "no", ""))
+
+drop c_68_07
+
+generate C_68_08 = cond(c_68_08 ==  0, "sí", cond(c_68_08 ==  1, "no", ""))
+
+drop c_68_08
+
+generate C_68_09 = cond(c_68_09 ==  0, "sí", cond(c_68_09 ==  1, "no", ""))
+
+drop c_68_09
+
+generate C_68_10 = cond(c_68_10 ==  0, "sí", cond(c_68_10 ==  1, "no", ""))
+
+drop c_68_10
+
+generate C_68_11 = cond(c_68_11 ==  0, "sí", cond(c_68_11 ==  1, "no", ""))
+
+drop c_68_11
+
+generate C_68_12 = cond(c_68_12 ==  0, "sí", cond(c_68_12 ==  1, "no", ""))
+
+drop c_68_12
+
+generate C_68_13 = cond(c_68_13 ==  0, "sí", cond(c_68_13 ==  1, "no", ""))
+
+drop c_68_13
+
+generate C_68_14 = cond(c_68_14 ==  0, "sí", cond(c_68_14 ==  1, "no", ""))
+
+drop c_68_14
+
+generate C_68_15 = cond(c_68_15 ==  0, "sí", cond(c_68_15 ==  1, "no", ""))
+
+drop c_68_15
+
+generate C_68_16 = cond(c_68_16 ==  0, "sí", cond(c_68_16 ==  1, "no", ""))
+
+drop c_68_16
+
+generate C_68_17 = cond(c_68_17 ==  0, "sí", cond(c_68_17 ==  1, "no", ""))
+
+drop c_68_17
+
+generate C_68_18 = cond(c_68_18 ==  0, "sí", cond(c_68_18 ==  1, "no", ""))
+
+drop c_68_18
+
+generate C_68_19 = cond(c_68_19 ==  0, "sí", cond(c_68_19 ==  1, "no", ""))
+
+drop c_68_19
+
+generate C_68_20 = cond(c_68_20 ==  0, "sí", cond(c_68_20 ==  1, "no", ""))
+
+drop c_68_20
+
+generate C_69_C = cond(c_69_c ==  0, "correcto", cond(c_69_c ==  1, "incorrecto", ""))
+
+drop c_69_c
+
+generate C_69_D = cond(c_69_d ==  0, "correcto", cond(c_69_d ==  1, "incorrecto", ""))
+
+drop c_69_d
+
+generate C_69_P = cond(c_69_p ==  0, "correcto", cond(c_69_p ==  1, "incorrecto", ""))
+
+drop c_69_p
+
+generate C_70_D_C = cond(c_70_d_c ==  0, "correcto", cond(c_70_d_c ==  1, "incorrecto", ""))
+
+drop c_70_d_c
+
+generate C_70_P = cond(c_70_p ==  0, "correcto", cond(c_70_p ==  1, "incorrecto", ""))
+
+drop c_70_p
+
+generate C_71_C = cond(c_71_c ==  0, "correcto", cond(c_71_c ==  1, "incorrecto", ""))
+
+drop c_71_c
+
+generate C_71_P = cond(c_71_p ==  0, "correcto", cond(c_71_p ==  1, "incorrecto", ""))
+
+drop c_71_p
+
+generate C_71_D = cond(c_71_d ==  0, "correcto", cond(c_71_d ==  1, "incorrecto", ""))
+
+drop c_71_d
+
+generate C_72_1 = cond(c_72_1 ==  0, "si", cond(c_72_1 ==  1, "no pudo (limitación física)", cond(c_72_1 ==  2, "rehúsa", "")))
+
+drop c_72_1
+
+generate C_72_2 = cond(c_72_2 ==  0, "si", cond(c_72_2 ==  1, "no pudo (limitación física)", cond(c_72_2 ==  2, "rehúsa", "")))
+
+drop c_72_2
+
+generate C_72_3 = cond(c_72_3 ==  0, "si", cond(c_72_3 ==  1, "no pudo (limitación física)", cond(c_72_3 ==  2, "rehúsa", "")))
+
+drop c_72_3
+
+generate C_72_4 = cond(c_72_4 ==  0, "si", cond(c_72_4 ==  1, "no pudo (limitación física)", cond(c_72_4 ==  2, "rehúsa", "")))
+
+drop c_72_4
+
+generate G_3 = cond(g_3 ==  0, "sí", cond(g_3 ==  1, "no", ""))
+
+drop g_3
+
+generate C_77A = cond(c_77a ==  0, "sí exacta", cond(c_77a ==  1, "sí aproximada", cond(c_77a ==  2, "olvida el elemento", "")))
+
+drop c_77a
+
+generate C_77B = cond(c_77b ==  0, "si exacta", cond(c_77b ==  1, "sí aproximada", cond(c_77b ==  2, "olvida el elemento", "")))
+
+drop c_77b
+
+generate C_77C = cond(c_77c ==  0, "si exacta", cond(c_77c ==  1, "sí aproximada", cond(c_77c ==  2, "olvida el elemento", "")))
+
+drop c_77c
+
+generate C_77D = cond(c_77d ==  0, "si exacta", cond(c_77d ==  1, "sí aproximada", cond(c_77d ==  2, "olvida el elemento", "")))
+
+drop c_77d
+
+generate C_77E = cond(c_77e ==  0, "si exacta", cond(c_77e ==  1, "sí aproximada", cond(c_77e ==  2, "olvida el elemento", "")))
+
+drop c_77e
+
+generate C_77F = cond(c_77f ==  0, "si exacta", cond(c_77f ==  1, "sí aproximada", cond(c_77f ==  2, "olvida el elemento", "")))
+
+drop c_77f
+
+generate C_78_01 = cond(c_78_01 ==  0, "si exacta", cond(c_78_01 ==  1, "sí aproximada", cond(c_78_01 ==  2, "olvida el elemento", "")))
+
+drop c_78_01
+
+generate C_78_02 = cond(c_78_02 ==  0, "si exacta", cond(c_78_02 ==  1, "sí aproximada", cond(c_78_02 ==  2, "olvida el elemento", "")))
+
+drop c_78_02
+
+generate C_78_03 = cond(c_78_03 ==  0, "si exacta", cond(c_78_03 ==  1, "sí aproximada", cond(c_78_03 ==  2, "olvida el elemento", "")))
+
+drop c_78_03
+
+generate C_78_04 = cond(c_78_04 ==  0, "si exacta", cond(c_78_04 ==  1, "sí aproximada", cond(c_78_04 ==  2, "olvida el elemento", "")))
+
+drop c_78_04
+
+generate C_78_05 = cond(c_78_05 ==  0, "si exacta", cond(c_78_05 ==  1, "sí aproximada", cond(c_78_05 ==  2, "olvida el elemento", "")))
+
+drop c_78_05
+
+generate C_78_06 = cond(c_78_06 ==  0, "si exacta", cond(c_78_06 ==  1, "sí aproximada", cond(c_78_06 ==  2, "olvida el elemento", "")))
+
+drop c_78_06
+
+generate C_78_07 = cond(c_78_07 ==  0, "si exacta", cond(c_78_07 ==  1, "sí aproximada", cond(c_78_07 ==  2, "olvida el elemento", "")))
+
+drop c_78_07
+
+generate C_78_08 = cond(c_78_08 ==  0, "si exacta", cond(c_78_08 ==  1, "sí aproximada", cond(c_78_08 ==  2, "olvida el elemento", "")))
+
+drop c_78_08
+
+generate C_78_09 = cond(c_78_09 ==  0, "si exacta", cond(c_78_09 ==  1, "sí aproximada", cond(c_78_09 ==  2, "olvida el elemento", "")))
+
+drop c_78_09
+
+generate C_78_10 = cond(c_78_10 ==  0, "si exacta", cond(c_78_10 ==  1, "sí aproximada", cond(c_78_10 ==  2, "olvida el elemento", "")))
+
+drop c_78_10
+
+generate C_78_11 = cond(c_78_11 ==  0, "si exacta", cond(c_78_11 ==  1, "sí aproximada", cond(c_78_11 ==  2, "olvida el elemento", "")))
+
+drop c_78_11
+
+generate C_78_12 = cond(c_78_12 ==  0, "si exacta", cond(c_78_12 ==  1, "sí aproximada", cond(c_78_12 ==  2, "olvida el elemento", "")))
+
+drop c_78_12
+
+generate C_78_13 = cond(c_78_13 ==  0, "si exacta", cond(c_78_13 ==  1, "sí aproximada", cond(c_78_13 ==  2, "olvida el elemento", "")))
+
+drop c_78_13
+
+generate C_78_14 = cond(c_78_14 ==  0, "si exacta", cond(c_78_14 ==  1, "sí aproximada", cond(c_78_14 ==  2, "olvida el elemento", "")))
+
+drop c_78_14
+
+generate C_78_15 = cond(c_78_15 ==  0, "si exacta", cond(c_78_15 ==  1, "sí aproximada", cond(c_78_15 ==  2, "olvida el elemento", "")))
+
+drop c_78_15
+
+generate C_78_16 = cond(c_78_16 ==  0, "si exacta", cond(c_78_16 ==  1, "sí aproximada", cond(c_78_16 ==  2, "olvida el elemento", "")))
+
+drop c_78_16
+
+generate C_78_17 = cond(c_78_17 ==  0, "si exacta", cond(c_78_17 ==  1, "sí aproximada", cond(c_78_17 ==  2, "olvida el elemento", "")))
+
+drop c_78_17
+
+generate C_78_18 = cond(c_78_18 ==  0, "si exacta", cond(c_78_18 ==  1, "sí aproximada", cond(c_78_18 ==  2, "olvida el elemento", "")))
+
+drop c_78_18
+
+generate C_78_19 = cond(c_78_19 ==  0, "si exacta", cond(c_78_19 ==  1, "sí aproximada", cond(c_78_19 ==  2, "olvida el elemento", "")))
+
+drop c_78_19
+
+generate C_78_20 = cond(c_78_20 ==  0, "si exacta", cond(c_78_20 ==  1, "sí aproximada", cond(c_78_20 ==  2, "olvida el elemento", "")))
+
+drop c_78_20
+
+generate C_78_21 = cond(c_78_21 ==  0, "si exacta", cond(c_78_21 ==  1, "sí aproximada", cond(c_78_21 ==  2, "olvida el elemento", "")))
+
+drop c_78_21
+
+generate C_78_22 = cond(c_78_22 ==  0, "si exacta", cond(c_78_22 ==  1, "sí aproximada", cond(c_78_22 ==  2, "olvida el elemento", "")))
+
+drop c_78_22
+
+generate C_78_23 = cond(c_78_23 ==  0, "si exacta", cond(c_78_23 ==  1, "sí aproximada", cond(c_78_23 ==  2, "olvida el elemento", "")))
+
+drop c_78_23
+
+generate C_78_24 = cond(c_78_24 ==  0, "si exacta", cond(c_78_24 ==  1, "sí aproximada", cond(c_78_24 ==  2, "olvida el elemento", "")))
+
+drop c_78_24
+
+generate C_78_25 = cond(c_78_25 ==  0, "si exacta", cond(c_78_25 ==  1, "sí aproximada", cond(c_78_25 ==  2, "olvida el elemento", "")))
+
+drop c_78_25
+
+generate C_79_1 = cond(c_79_1 ==  0, "si", cond(c_79_1 ==  1, "no pudo (limitación física)", cond(c_79_1 ==  2, "no pudo recordar la figura", cond(c_79_1 ==  3, "rehúsa", ""))))
+
+drop c_79_1
+
+generate C_79_2 = cond(c_79_2 ==  0, "si", cond(c_79_2 ==  1, "no pudo (limitación física)", cond(c_79_2 ==  2, "no pudo recordar la figura", cond(c_79_2 ==  3, "rehúsa", ""))))
+
+drop c_79_2
+
+generate C_79_3 = cond(c_79_3 ==  0, "si", cond(c_79_3 ==  1, "no pudo (limitación física)", cond(c_79_3 ==  2, "no pudo recordar la figura", cond(c_79_3 ==  3, "rehúsa", ""))))
+
+drop c_79_3
+
+generate C_79_4 = cond(c_79_4 ==  0, "si", cond(c_79_4 ==  1, "no pudo (limitación física)", cond(c_79_4 ==  2, "no pudo recordar la figura", cond(c_79_4 ==  3, "rehúsa", ""))))
+
+drop c_79_4
+
+generate C_80A = cond(c_80a ==  0, "no", cond(c_80a ==  1, "si", ""))
+
+drop c_80a
+
+generate C_80B = cond(c_80b ==  0, "no", cond(c_80b ==  1, "si", ""))
+
+drop c_80b
+
+generate C_80C = cond(c_80c ==  0, "no", cond(c_80c ==  1, "si", ""))
+
+drop c_80c
+
+generate C_81 = cond(c_81 ==  0, "excelente", cond(c_81 ==  1, "muy buena", cond(c_81 ==  2, "buena", cond(c_81 ==  3, "regular", cond(c_81 ==  4, "mala", cond(c_81 ==  5, "ciego", ""))))))
+
+drop c_81
+
+generate C_82 = cond(c_82 ==  0, "excelente", cond(c_82 ==  1, "muy buena", cond(c_82 ==  2, "buena", cond(c_82 ==  3, "regular", cond(c_82 ==  4, "mala", cond(c_82 ==  5, "sordo", ""))))))
+
+drop c_82
+
