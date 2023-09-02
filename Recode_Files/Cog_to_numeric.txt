@@ -454,10 +454,6 @@ generate C_72_4 = cond(c_72_4 ==  0, "si", cond(c_72_4 ==  1, "no pudo (limitaci
 
 drop c_72_4
 
-generate G_3 = cond(g_3 ==  0, "sí", cond(g_3 ==  1, "no", ""))
-
-drop g_3
-
 generate C_77A = cond(c_77a ==  0, "sí exacta", cond(c_77a ==  1, "sí aproximada", cond(c_77a ==  2, "olvida el elemento", "")))
 
 drop c_77a

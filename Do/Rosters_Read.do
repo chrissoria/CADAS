@@ -3,10 +3,7 @@ set more off
 capture log close
 log using Rosters, text replace
 
-*Here we will identify the country we want before we run the file
-*0 = PR, 1 = DR, 2 = CU
-
-local country = 1
+local country = 2
 
 if `country' == 0 {
     cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
@@ -33,7 +30,7 @@ else if `country' == 2 {
  
    drop uniquekey recstatus firstsavelogonname lastsavelogonname lastsavetime
   
-    save Roster_GPS.dta, replace
+    save Roster_Parent.dta, replace
     
     clear all
     
@@ -458,3 +455,5 @@ drop _merge
   
  log close
  exit, clear
+ 
+ 
