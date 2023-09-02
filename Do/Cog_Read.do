@@ -18,13 +18,13 @@ else if `country' == 2 {
 }
 
 if `country' == 0 {
-    insheet using "../PR_in/cog_child.csv", comma names clear
+    insheet using "../PR_in/Cog_Child.csv", comma names clear
 }
 else if `country' == 1 {
-    insheet using "../DR_in/cog_child.csv", comma names clear
+    insheet using "../DR_in/Cog_Child.csv", comma names clear
 }
 else if `country' == 2 {
-    insheet using "../CUBA_in/cog_child.csv", comma names clear
+    insheet using "../CUBA_in/Cog_Child.csv", comma names clear
 }
 
 *converting from numeric to string
@@ -484,10 +484,6 @@ drop c_72_3
 generate C_72_4 = cond(c_72_4 ==  0, "si", cond(c_72_4 ==  1, "no pudo (limitación física)", cond(c_72_4 ==  2, "rehúsa", "")))
 
 drop c_72_4
-
-generate G_3 = cond(g_3 ==  0, "sí", cond(g_3 ==  1, "no", ""))
-
-drop g_3
 
 generate C_77A = cond(c_77a ==  0, "sí exacta", cond(c_77a ==  1, "sí aproximada", cond(c_77a ==  2, "olvida el elemento", "")))
 
@@ -4200,6 +4196,18 @@ else if `country' == 2 {
     insheet using "../CUBA_in/Cog_Scoring.csv", comma names clear
 }
 
+rename cs_country CS_Country
+
+label define CS_country .a"." 0 "0 - Puerto Rico" 1 "1 - República Dominicana" 2 "2 - Cuba" 
+
+encode CS_Country, gen(cs_country) label (CS_country)
+
+drop CS_Country
+
+label define cs_country .a"." 0 "Puerto Rico" 1 "República Dominicana" 2 "Cuba"
+
+label values cs_country cs_country
+
 gen cs_country_str = string(cs_country, "%12.0f")
 
 gen cs_clustid_str = string(cs_clustid, "%12.0f")
@@ -4214,8 +4222,6 @@ replace cs_particid_str = cond(strlen(cs_particid_str) == 1, "0" + cs_particid_s
 
 gen pid = cs_country_str + cs_clustid_str + cs_houseid_str + cs_particid_str
 gen hhid = cs_country_str + cs_clustid_str + cs_houseid_str
-
-drop firstsavelogonname lastsavelogonname lastsavetime fkey
 
 order cs_interid cs_houseid cs_clustid cs_particid cs_country cs_houseid2 cs_conglid2 cs_particid2 cs_32 cs_40 cs_41 cs_43 cs_44 cs_72_1 cs_72_2 cs_72_3 cs_72_4 cs_79_1 cs_79_2 cs_79_3 cs_79_4
 
