@@ -2,7 +2,7 @@ clear all
 set more off
 capture log close
 
-local country = 2
+local country = 1
 
 if `country' == 0 {
     cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
@@ -23,6 +23,1216 @@ else if `country' == 1 {
 else if `country' == 2 {
     insheet using "../CUBA_in/Household_Child.csv", comma names clear
 }
+
+*converting numeric to strings
+
+generate H_3_1 = cond(h_3_1 ==  0, "propietario", cond(h_3_1 ==  1, "alquilada", cond(h_3_1 ==  2, "otro", "")))
+
+drop h_3_1
+
+generate H_3_3A_P = cond(h_3_3a_p ==  0, "si", cond(h_3_3a_p ==  1, "no", cond(h_3_3a_p ==  2, "no responde", cond(h_3_3a_p ==  3, "no sabe", ""))))
+
+drop h_3_3a_p
+
+generate H_3_3A_D = cond(h_3_3a_d ==  0, "si", cond(h_3_3a_d ==  1, "no", cond(h_3_3a_d ==  2, "no responde", cond(h_3_3a_d ==  3, "no sabe", ""))))
+
+drop h_3_3a_d
+
+generate H_3_3A_C = cond(h_3_3a_c ==  0, "si", cond(h_3_3a_c ==  1, "no", cond(h_3_3a_c ==  2, "no responde", cond(h_3_3a_c ==  3, "no sabe", ""))))
+
+drop h_3_3a_c
+
+generate H_3_3B_P = cond(h_3_3b_p ==  0, "si", cond(h_3_3b_p ==  1, "no", cond(h_3_3b_p ==  2, "no responde", cond(h_3_3b_p ==  3, "no sabe", ""))))
+
+drop h_3_3b_p
+
+generate H_3_3B_D = cond(h_3_3b_d ==  0, "si", cond(h_3_3b_d ==  1, "no", cond(h_3_3b_d ==  2, "no responde", cond(h_3_3b_d ==  3, "no sabe", ""))))
+
+drop h_3_3b_d
+
+generate H_3_3B_C = cond(h_3_3b_c ==  0, "si", cond(h_3_3b_c ==  1, "no", cond(h_3_3b_c ==  2, "no responde", cond(h_3_3b_c ==  3, "no sabe", ""))))
+
+drop h_3_3b_c
+
+generate H_3_3C_P = cond(h_3_3c_p ==  0, "si", cond(h_3_3c_p ==  1, "no", cond(h_3_3c_p ==  2, "no responde", cond(h_3_3c_p ==  3, "no sabe", ""))))
+
+drop h_3_3c_p
+
+generate H_3_3C_D = cond(h_3_3c_d ==  0, "si", cond(h_3_3c_d ==  1, "no", cond(h_3_3c_d ==  2, "no responde", cond(h_3_3c_d ==  3, "no sabe", ""))))
+
+drop h_3_3c_d
+
+generate H_3_3C_C = cond(h_3_3c_c ==  0, "si", cond(h_3_3c_c ==  1, "no", cond(h_3_3c_c ==  2, "no responde", cond(h_3_3c_c ==  3, "no sabe", ""))))
+
+drop h_3_3c_c
+
+generate H_3_5A_P = cond(h_3_5a_p ==  0, "si", cond(h_3_5a_p ==  1, "no", cond(h_3_5a_p ==  2, "no responde", cond(h_3_5a_p ==  3, "no sabe", ""))))
+
+drop h_3_5a_p
+
+generate H_3_5A_D = cond(h_3_5a_d ==  0, "si", cond(h_3_5a_d ==  1, "no", cond(h_3_5a_d ==  2, "no responde", cond(h_3_5a_d ==  3, "no sabe", ""))))
+
+drop h_3_5a_d
+
+generate H_3_5A_C = cond(h_3_5a_c ==  0, "si", cond(h_3_5a_c ==  1, "no", cond(h_3_5a_c ==  2, "no responde", cond(h_3_5a_c ==  3, "no sabe", ""))))
+
+drop h_3_5a_c
+
+generate H_3_5B_P = cond(h_3_5b_p ==  0, "si", cond(h_3_5b_p ==  1, "no", cond(h_3_5b_p ==  2, "no responde", cond(h_3_5b_p ==  3, "no sabe", ""))))
+
+drop h_3_5b_p
+
+generate H_3_5B_D = cond(h_3_5b_d ==  0, "si", cond(h_3_5b_d ==  1, "no", cond(h_3_5b_d ==  2, "no responde", cond(h_3_5b_d ==  3, "no sabe", ""))))
+
+drop h_3_5b_d
+
+generate H_3_5B_C = cond(h_3_5b_c ==  0, "si", cond(h_3_5b_c ==  1, "no", cond(h_3_5b_c ==  2, "no responde", cond(h_3_5b_c ==  3, "no sabe", ""))))
+
+drop h_3_5b_c
+
+generate H_3_5C_P = cond(h_3_5c_p ==  0, "si", cond(h_3_5c_p ==  1, "no", cond(h_3_5c_p ==  2, "no responde", cond(h_3_5c_p ==  3, "no sabe", ""))))
+
+drop h_3_5c_p
+
+generate H_3_5C_D = cond(h_3_5c_d ==  0, "si", cond(h_3_5c_d ==  1, "no", cond(h_3_5c_d ==  2, "no responde", cond(h_3_5c_d ==  3, "no sabe", ""))))
+
+drop h_3_5c_d
+
+generate H_3_5C_C = cond(h_3_5c_c ==  0, "si", cond(h_3_5c_c ==  1, "no", cond(h_3_5c_c ==  2, "no responde", cond(h_3_5c_c ==  3, "no sabe", ""))))
+
+drop h_3_5c_c
+
+generate H_3_7A_P = cond(h_3_7a_p ==  0, "si", cond(h_3_7a_p ==  1, "no", cond(h_3_7a_p ==  2, "no responde", cond(h_3_7a_p ==  3, "no sabe", ""))))
+
+drop h_3_7a_p
+
+generate H_3_7A_D = cond(h_3_7a_d ==  0, "si", cond(h_3_7a_d ==  1, "no", cond(h_3_7a_d ==  2, "no responde", cond(h_3_7a_d ==  3, "no sabe", ""))))
+
+drop h_3_7a_d
+
+generate H_3_7A_C = cond(h_3_7a_c ==  0, "si", cond(h_3_7a_c ==  1, "no", cond(h_3_7a_c ==  2, "no responde", cond(h_3_7a_c ==  3, "no sabe", ""))))
+
+drop h_3_7a_c
+
+generate H_3_7B_P = cond(h_3_7b_p ==  0, "si", cond(h_3_7b_p ==  1, "no", cond(h_3_7b_p ==  2, "no responde", cond(h_3_7b_p ==  3, "no sabe", ""))))
+
+drop h_3_7b_p
+
+generate H_3_7B_D = cond(h_3_7b_d ==  0, "si", cond(h_3_7b_d ==  1, "no", cond(h_3_7b_d ==  2, "no responde", cond(h_3_7b_d ==  3, "no sabe", ""))))
+
+drop h_3_7b_d
+
+generate H_3_7B_C = cond(h_3_7b_c ==  0, "si", cond(h_3_7b_c ==  1, "no", cond(h_3_7b_c ==  2, "no responde", cond(h_3_7b_c ==  3, "no sabe", ""))))
+
+drop h_3_7b_c
+
+generate H_3_7C_P = cond(h_3_7c_p ==  0, "si", cond(h_3_7c_p ==  1, "no", cond(h_3_7c_p ==  2, "no responde", cond(h_3_7c_p ==  3, "no sabe", ""))))
+
+drop h_3_7c_p
+
+generate H_3_7C_D = cond(h_3_7c_d ==  0, "si", cond(h_3_7c_d ==  1, "no", cond(h_3_7c_d ==  2, "no responde", cond(h_3_7c_d ==  3, "no sabe", ""))))
+
+drop h_3_7c_d
+
+generate H_3_7C_C = cond(h_3_7c_c ==  0, "si", cond(h_3_7c_c ==  1, "no", cond(h_3_7c_c ==  2, "no responde", cond(h_3_7c_c ==  3, "no sabe", ""))))
+
+drop h_3_7c_c
+
+generate H_3_8 = cond(h_3_8 ==  0, "concreto", cond(h_3_8 ==  1, "tejas", cond(h_3_8 ==  2, "madera", cond(h_3_8 ==  3, "zinc", cond(h_3_8 ==  4, "otro", cond(h_3_8 ==  5, "no responde", cond(h_3_8 ==  6, "no sabe", "")))))))
+
+drop h_3_8
+
+generate N10ENESTAVIVIENDATIENEN = cond(n10enestaviviendatienen ==  0, "agua de tuberia dentro de la vivienda?", cond(n10enestaviviendatienen ==  1, "agua de tuberia fuera de la vivienda pero dentro del terreno?", cond(n10enestaviviendatienen ==  2, "otra agua de tuberia?", cond(n10enestaviviendatienen ==  3, "otra no de tuberia (pipa pozo río otro)?", cond(n10enestaviviendatienen ==  4, "no responde", cond(n10enestaviviendatienen ==  5, "no sabe", ""))))))
+
+drop n10enestaviviendatienen
+
+generate H_3_11 = cond(h_3_11 ==  0, "tiene conexión de agua?", cond(h_3_11 ==  1, "le echan agua con cubeta?", cond(h_3_11 ==  2, "no se le echa agua? (letrina)", cond(h_3_11 ==  3, "no tiene", cond(h_3_11 ==  4, "no responde", cond(h_3_11 ==  5, "no sabe", ""))))))
+
+drop h_3_11
+
+generate H_3_12 = cond(h_3_12 ==  0, "si", cond(h_3_12 ==  1, "no", cond(h_3_12 ==  2, "no responde", cond(h_3_12 ==  3, "no sabe", ""))))
+
+drop h_3_12
+
+generate S_3_13 = cond(s_3_13 ==  0, "gas?", cond(s_3_13 ==  1, "leña o carbón?", cond(s_3_13 ==  2, "electricidad", cond(s_3_13 ==  3, "otro", cond(s_3_13 ==  4, "no responde", cond(s_3_13 ==  5, "no sabe", ""))))))
+
+drop s_3_13
+
+generate H_3_14_1 = cond(h_3_14_1 ==  0, "si", cond(h_3_14_1 ==  1, "no", cond(h_3_14_1 ==  2, "no responde", cond(h_3_14_1 ==  3, "no sabe", ""))))
+
+drop h_3_14_1
+
+generate H_3_14_2 = cond(h_3_14_2 ==  0, "si", cond(h_3_14_2 ==  1, "no", cond(h_3_14_2 ==  2, "no responde", cond(h_3_14_2 ==  3, "no sabe", ""))))
+
+drop h_3_14_2
+
+generate H_3_14_3 = cond(h_3_14_3 ==  0, "si", cond(h_3_14_3 ==  1, "no", cond(h_3_14_3 ==  2, "no responde", cond(h_3_14_3 ==  3, "no sabe", ""))))
+
+drop h_3_14_3
+
+generate H_3_14_4 = cond(h_3_14_4 ==  0, "si", cond(h_3_14_4 ==  1, "no", cond(h_3_14_4 ==  2, "no responde", cond(h_3_14_4 ==  3, "no sabe", ""))))
+
+drop h_3_14_4
+
+generate H_3_14_5 = cond(h_3_14_5 ==  0, "si", cond(h_3_14_5 ==  1, "no", cond(h_3_14_5 ==  2, "no responde", cond(h_3_14_5 ==  3, "no sabe", ""))))
+
+drop h_3_14_5
+
+generate H_3_14_6 = cond(h_3_14_6 ==  0, "si", cond(h_3_14_6 ==  1, "no", cond(h_3_14_6 ==  2, "no responde", cond(h_3_14_6 ==  3, "no sabe", ""))))
+
+drop h_3_14_6
+
+generate H_3_14_7 = cond(h_3_14_7 ==  0, "si", cond(h_3_14_7 ==  1, "no", cond(h_3_14_7 ==  2, "no responde", cond(h_3_14_7 ==  3, "no sabe", ""))))
+
+drop h_3_14_7
+
+generate H_3_14_8 = cond(h_3_14_8 ==  0, "si", cond(h_3_14_8 ==  1, "no", cond(h_3_14_8 ==  2, "no responde", cond(h_3_14_8 ==  3, "no sabe", ""))))
+
+drop h_3_14_8
+
+generate H_3_14_9 = cond(h_3_14_9 ==  0, "si", cond(h_3_14_9 ==  1, "no", cond(h_3_14_9 ==  2, "no responde", cond(h_3_14_9 ==  3, "no sabe", ""))))
+
+drop h_3_14_9
+
+generate H_3_14_10 = cond(h_3_14_10 ==  0, "si", cond(h_3_14_10 ==  1, "no", cond(h_3_14_10 ==  2, "no responde", cond(h_3_14_10 ==  3, "no sabe", ""))))
+
+drop h_3_14_10
+
+generate H_3_14_11 = cond(h_3_14_11 ==  0, "si", cond(h_3_14_11 ==  1, "no", cond(h_3_14_11 ==  2, "no responde", cond(h_3_14_11 ==  3, "no sabe", ""))))
+
+drop h_3_14_11
+
+generate H_3_14_12 = cond(h_3_14_12 ==  0, "si", cond(h_3_14_12 ==  1, "no", cond(h_3_14_12 ==  2, "no responde", cond(h_3_14_12 ==  3, "no sabe", ""))))
+
+drop h_3_14_12
+
+generate H_3_17A_P = cond(h_3_17a_p ==  0, "si", cond(h_3_17a_p ==  1, "no", cond(h_3_17a_p ==  2, "no responde", cond(h_3_17a_p ==  3, "no sabe", ""))))
+
+drop h_3_17a_p
+
+generate H_3_17A_D = cond(h_3_17a_d ==  0, "si", cond(h_3_17a_d ==  1, "no", cond(h_3_17a_d ==  2, "no responde", cond(h_3_17a_d ==  3, "no sabe", ""))))
+
+drop h_3_17a_d
+
+generate H_3_17A_C = cond(h_3_17a_c ==  0, "si", cond(h_3_17a_c ==  1, "no", cond(h_3_17a_c ==  2, "no responde", cond(h_3_17a_c ==  3, "no sabe", ""))))
+
+drop h_3_17a_c
+
+generate H_3_17B_P = cond(h_3_17b_p ==  0, "si", cond(h_3_17b_p ==  1, "no", cond(h_3_17b_p ==  2, "no responde", cond(h_3_17b_p ==  3, "no sabe", ""))))
+
+drop h_3_17b_p
+
+generate H_3_17B_D = cond(h_3_17b_d ==  0, "si", cond(h_3_17b_d ==  1, "no", cond(h_3_17b_d ==  2, "no responde", cond(h_3_17b_d ==  3, "no sabe", ""))))
+
+drop h_3_17b_d
+
+generate H_3_17B_C = cond(h_3_17b_c ==  0, "si", cond(h_3_17b_c ==  1, "no", cond(h_3_17b_c ==  2, "no responde", cond(h_3_17b_c ==  3, "no sabe", ""))))
+
+drop h_3_17b_c
+
+generate H_3_17C_P = cond(h_3_17c_p ==  0, "si", cond(h_3_17c_p ==  1, "no", cond(h_3_17c_p ==  2, "no responde", cond(h_3_17c_p ==  3, "no sabe", ""))))
+
+drop h_3_17c_p
+
+generate H_3_17C_D = cond(h_3_17c_d ==  0, "si", cond(h_3_17c_d ==  1, "no", cond(h_3_17c_d ==  2, "no responde", cond(h_3_17c_d ==  3, "no sabe", ""))))
+
+drop h_3_17c_d
+
+generate H_3_17C_C = cond(h_3_17c_c ==  0, "si", cond(h_3_17c_c ==  1, "no", cond(h_3_17c_c ==  2, "no responde", cond(h_3_17c_c ==  3, "no sabe", ""))))
+
+drop h_3_17c_c
+
+generate H_3_18 = cond(h_3_18 ==  0, "si", cond(h_3_18 ==  1, "no", cond(h_3_18 ==  2, "no responde", cond(h_3_18 ==  3, "no sabe", ""))))
+
+drop h_3_18
+
+generate H_3_20A_P = cond(h_3_20a_p ==  0, "si", cond(h_3_20a_p ==  1, "no", cond(h_3_20a_p ==  2, "no responde", cond(h_3_20a_p ==  3, "no sabe", ""))))
+
+drop h_3_20a_p
+
+generate H_3_20A_D = cond(h_3_20a_d ==  0, "si", cond(h_3_20a_d ==  1, "no", cond(h_3_20a_d ==  2, "no responde", cond(h_3_20a_d ==  3, "no sabe", ""))))
+
+drop h_3_20a_d
+
+generate H_3_20A_C = cond(h_3_20a_c ==  0, "si", cond(h_3_20a_c ==  1, "no", cond(h_3_20a_c ==  2, "no responde", cond(h_3_20a_c ==  3, "no sabe", ""))))
+
+drop h_3_20a_c
+
+generate H_3_20B_P = cond(h_3_20b_p ==  0, "si", cond(h_3_20b_p ==  1, "no", cond(h_3_20b_p ==  2, "no responde", cond(h_3_20b_p ==  3, "no sabe", ""))))
+
+drop h_3_20b_p
+
+generate H_3_20B_D = cond(h_3_20b_d ==  0, "si", cond(h_3_20b_d ==  1, "no", cond(h_3_20b_d ==  2, "no responde", cond(h_3_20b_d ==  3, "no sabe", ""))))
+
+drop h_3_20b_d
+
+generate H_3_20B_C = cond(h_3_20b_c ==  0, "si", cond(h_3_20b_c ==  1, "no", cond(h_3_20b_c ==  2, "no responde", cond(h_3_20b_c ==  3, "no sabe", ""))))
+
+drop h_3_20b_c
+
+generate H_3_20C_P = cond(h_3_20c_p ==  0, "si", cond(h_3_20c_p ==  1, "no", cond(h_3_20c_p ==  2, "no responde", cond(h_3_20c_p ==  3, "no sabe", ""))))
+
+drop h_3_20c_p
+
+generate H_3_20C_D = cond(h_3_20c_d ==  0, "si", cond(h_3_20c_d ==  1, "no", cond(h_3_20c_d ==  2, "no responde", cond(h_3_20c_d ==  3, "no sabe", ""))))
+
+drop h_3_20c_d
+
+generate H_3_20C_C = cond(h_3_20c_c ==  0, "si", cond(h_3_20c_c ==  1, "no", cond(h_3_20c_c ==  2, "no responde", cond(h_3_20c_c ==  3, "no sabe", ""))))
+
+drop h_3_20c_c
+
+generate H_3_21 = cond(h_3_21 ==  0, "si", cond(h_3_21 ==  1, "no", cond(h_3_21 ==  2, "no responde", cond(h_3_21 ==  3, "no sabe", ""))))
+
+drop h_3_21
+
+generate H_3_23A_P = cond(h_3_23a_p ==  0, "si", cond(h_3_23a_p ==  1, "no", cond(h_3_23a_p ==  2, "no responde", cond(h_3_23a_p ==  3, "no sabe", ""))))
+
+drop h_3_23a_p
+
+generate H_3_23A_D = cond(h_3_23a_d ==  0, "si", cond(h_3_23a_d ==  1, "no", cond(h_3_23a_d ==  2, "no responde", cond(h_3_23a_d ==  3, "no sabe", ""))))
+
+drop h_3_23a_d
+
+generate H_3_23A_C = cond(h_3_23a_c ==  0, "si", cond(h_3_23a_c ==  1, "no", cond(h_3_23a_c ==  2, "no responde", cond(h_3_23a_c ==  3, "no sabe", ""))))
+
+drop h_3_23a_c
+
+generate H_3_23B_P = cond(h_3_23b_p ==  0, "si", cond(h_3_23b_p ==  1, "no", cond(h_3_23b_p ==  2, "no responde", cond(h_3_23b_p ==  3, "no sabe", ""))))
+
+drop h_3_23b_p
+
+generate H_3_23B_D = cond(h_3_23b_d ==  0, "si", cond(h_3_23b_d ==  1, "no", cond(h_3_23b_d ==  2, "no responde", cond(h_3_23b_d ==  3, "no sabe", ""))))
+
+drop h_3_23b_d
+
+generate H_3_23B_C = cond(h_3_23b_c ==  0, "si", cond(h_3_23b_c ==  1, "no", cond(h_3_23b_c ==  2, "no responde", cond(h_3_23b_c ==  3, "no sabe", ""))))
+
+drop h_3_23b_c
+
+generate H_3_23C_P = cond(h_3_23c_p ==  0, "si", cond(h_3_23c_p ==  1, "no", cond(h_3_23c_p ==  2, "no responde", cond(h_3_23c_p ==  3, "no sabe", ""))))
+
+drop h_3_23c_p
+
+generate H_3_23C_D = cond(h_3_23c_d ==  0, "si", cond(h_3_23c_d ==  1, "no", cond(h_3_23c_d ==  2, "no responde", cond(h_3_23c_d ==  3, "no sabe", ""))))
+
+drop h_3_23c_d
+
+generate H_3_23C_C = cond(h_3_23c_c ==  0, "si", cond(h_3_23c_c ==  1, "no", cond(h_3_23c_c ==  2, "no responde", cond(h_3_23c_c ==  3, "no sabe", ""))))
+
+drop h_3_23c_c
+
+generate H_3_24 = cond(h_3_24 ==  0, "si", cond(h_3_24 ==  1, "no", cond(h_3_24 ==  2, "no responde", cond(h_3_24 ==  3, "no sabe", ""))))
+
+drop h_3_24
+
+generate H_3_26A_P = cond(h_3_26a_p ==  0, "si", cond(h_3_26a_p ==  1, "no", cond(h_3_26a_p ==  2, "no responde", cond(h_3_26a_p ==  3, "no sabe", ""))))
+
+drop h_3_26a_p
+
+generate H_3_26A_D = cond(h_3_26a_d ==  0, "si", cond(h_3_26a_d ==  1, "no", cond(h_3_26a_d ==  2, "no responde", cond(h_3_26a_d ==  3, "no sabe", ""))))
+
+drop h_3_26a_d
+
+generate H_3_26A_C = cond(h_3_26a_c ==  0, "si", cond(h_3_26a_c ==  1, "no", cond(h_3_26a_c ==  2, "no responde", cond(h_3_26a_c ==  3, "no sabe", ""))))
+
+drop h_3_26a_c
+
+generate H_3_26B_P = cond(h_3_26b_p ==  0, "si", cond(h_3_26b_p ==  1, "no", cond(h_3_26b_p ==  2, "no responde", cond(h_3_26b_p ==  3, "no sabe", ""))))
+
+drop h_3_26b_p
+
+generate H_3_26B_D = cond(h_3_26b_d ==  0, "si", cond(h_3_26b_d ==  1, "no", cond(h_3_26b_d ==  2, "no responde", cond(h_3_26b_d ==  3, "no sabe", ""))))
+
+drop h_3_26b_d
+
+generate H_3_26B_C = cond(h_3_26b_c ==  0, "si", cond(h_3_26b_c ==  1, "no", cond(h_3_26b_c ==  2, "no responde", cond(h_3_26b_c ==  3, "no sabe", ""))))
+
+drop h_3_26b_c
+
+generate H_3_26C_P = cond(h_3_26c_p ==  0, "si", cond(h_3_26c_p ==  1, "no", cond(h_3_26c_p ==  2, "no responde", cond(h_3_26c_p ==  3, "no sabe", ""))))
+
+drop h_3_26c_p
+
+generate H_3_26C_D = cond(h_3_26c_d ==  0, "si", cond(h_3_26c_d ==  1, "no", cond(h_3_26c_d ==  2, "no responde", cond(h_3_26c_d ==  3, "no sabe", ""))))
+
+drop h_3_26c_d
+
+generate H_3_26C_C = cond(h_3_26c_c ==  0, "si", cond(h_3_26c_c ==  1, "no", cond(h_3_26c_c ==  2, "no responde", cond(h_3_26c_c ==  3, "no sabe", ""))))
+
+drop h_3_26c_c
+
+generate H_3_28A_P = cond(h_3_28a_p ==  0, "si", cond(h_3_28a_p ==  1, "no", cond(h_3_28a_p ==  2, "no responde", cond(h_3_28a_p ==  3, "no sabe", ""))))
+
+drop h_3_28a_p
+
+generate H_3_28A_D = cond(h_3_28a_d ==  0, "si", cond(h_3_28a_d ==  1, "no", cond(h_3_28a_d ==  2, "no responde", cond(h_3_28a_d ==  3, "no sabe", ""))))
+
+drop h_3_28a_d
+
+generate H_3_28A_C = cond(h_3_28a_c ==  0, "si", cond(h_3_28a_c ==  1, "no", cond(h_3_28a_c ==  2, "no responde", cond(h_3_28a_c ==  3, "no sabe", ""))))
+
+drop h_3_28a_c
+
+generate H_3_28B_P = cond(h_3_28b_p ==  0, "si", cond(h_3_28b_p ==  1, "no", cond(h_3_28b_p ==  2, "no responde", cond(h_3_28b_p ==  3, "no sabe", ""))))
+
+drop h_3_28b_p
+
+generate H_3_28B_D = cond(h_3_28b_d ==  0, "si", cond(h_3_28b_d ==  1, "no", cond(h_3_28b_d ==  2, "no responde", cond(h_3_28b_d ==  3, "no sabe", ""))))
+
+drop h_3_28b_d
+
+generate H_3_28B_C = cond(h_3_28b_c ==  0, "si", cond(h_3_28b_c ==  1, "no", cond(h_3_28b_c ==  2, "no responde", cond(h_3_28b_c ==  3, "no sabe", ""))))
+
+drop h_3_28b_c
+
+generate H_3_28C_P = cond(h_3_28c_p ==  0, "si", cond(h_3_28c_p ==  1, "no", cond(h_3_28c_p ==  2, "no responde", cond(h_3_28c_p ==  3, "no sabe", ""))))
+
+drop h_3_28c_p
+
+generate H_3_28C_D = cond(h_3_28c_d ==  0, "si", cond(h_3_28c_d ==  1, "no", cond(h_3_28c_d ==  2, "no responde", cond(h_3_28c_d ==  3, "no sabe", ""))))
+
+drop h_3_28c_d
+
+generate H_3_28C_C = cond(h_3_28c_c ==  0, "si", cond(h_3_28c_c ==  1, "no", cond(h_3_28c_c ==  2, "no responde", cond(h_3_28c_c ==  3, "no sabe", ""))))
+
+drop h_3_28c_c
+
+generate H_3_29 = cond(h_3_29 ==  0, "si", cond(h_3_29 ==  1, "no", cond(h_3_29 ==  2, "no responde", cond(h_3_29 ==  3, "no sabe", ""))))
+
+drop h_3_29
+
+generate H_3_31A_P = cond(h_3_31a_p ==  0, "si", cond(h_3_31a_p ==  1, "no", cond(h_3_31a_p ==  2, "no responde", cond(h_3_31a_p ==  3, "no sabe", ""))))
+
+drop h_3_31a_p
+
+generate H_3_31A_D = cond(h_3_31a_d ==  0, "si", cond(h_3_31a_d ==  1, "no", cond(h_3_31a_d ==  2, "no responde", cond(h_3_31a_d ==  3, "no sabe", ""))))
+
+drop h_3_31a_d
+
+generate H_3_31A_C = cond(h_3_31a_c ==  0, "si", cond(h_3_31a_c ==  1, "no", cond(h_3_31a_c ==  2, "no responde", cond(h_3_31a_c ==  3, "no sabe", ""))))
+
+drop h_3_31a_c
+
+generate H_3_31B_P = cond(h_3_31b_p ==  0, "si", cond(h_3_31b_p ==  1, "no", cond(h_3_31b_p ==  2, "no responde", cond(h_3_31b_p ==  3, "no sabe", ""))))
+
+drop h_3_31b_p
+
+generate H_3_31B_D = cond(h_3_31b_d ==  0, "si", cond(h_3_31b_d ==  1, "no", cond(h_3_31b_d ==  2, "no responde", cond(h_3_31b_d ==  3, "no sabe", ""))))
+
+drop h_3_31b_d
+
+generate H_3_31B_C = cond(h_3_31b_c ==  0, "si", cond(h_3_31b_c ==  1, "no", cond(h_3_31b_c ==  2, "no responde", cond(h_3_31b_c ==  3, "no sabe", ""))))
+
+drop h_3_31b_c
+
+generate H_3_31C_P = cond(h_3_31c_p ==  0, "si", cond(h_3_31c_p ==  1, "no", cond(h_3_31c_p ==  2, "no responde", cond(h_3_31c_p ==  3, "no sabe", ""))))
+
+drop h_3_31c_p
+
+generate H_3_31C_D = cond(h_3_31c_d ==  0, "si", cond(h_3_31c_d ==  1, "no", cond(h_3_31c_d ==  2, "no responde", cond(h_3_31c_d ==  3, "no sabe", ""))))
+
+drop h_3_31c_d
+
+generate H_3_31C_C = cond(h_3_31c_c ==  0, "si", cond(h_3_31c_c ==  1, "no", cond(h_3_31c_c ==  2, "no responde", cond(h_3_31c_c ==  3, "no sabe", ""))))
+
+drop h_3_31c_c
+
+generate H_3_33A_P = cond(h_3_33a_p ==  0, "si", cond(h_3_33a_p ==  1, "no", cond(h_3_33a_p ==  2, "no responde", cond(h_3_33a_p ==  3, "no sabe", ""))))
+
+drop h_3_33a_p
+
+generate H_3_33A_D = cond(h_3_33a_d ==  0, "si", cond(h_3_33a_d ==  1, "no", cond(h_3_33a_d ==  2, "no responde", cond(h_3_33a_d ==  3, "no sabe", ""))))
+
+drop h_3_33a_d
+
+generate H_3_33A_C = cond(h_3_33a_c ==  0, "si", cond(h_3_33a_c ==  1, "no", cond(h_3_33a_c ==  2, "no responde", cond(h_3_33a_c ==  3, "no sabe", ""))))
+
+drop h_3_33a_c
+
+generate H_3_33B_P = cond(h_3_33b_p ==  0, "si", cond(h_3_33b_p ==  1, "no", cond(h_3_33b_p ==  2, "no responde", cond(h_3_33b_p ==  3, "no sabe", ""))))
+
+drop h_3_33b_p
+
+generate H_3_33B_D = cond(h_3_33b_d ==  0, "si", cond(h_3_33b_d ==  1, "no", cond(h_3_33b_d ==  2, "no responde", cond(h_3_33b_d ==  3, "no sabe", ""))))
+
+drop h_3_33b_d
+
+generate H_3_33B_C = cond(h_3_33b_c ==  0, "si", cond(h_3_33b_c ==  1, "no", cond(h_3_33b_c ==  2, "no responde", cond(h_3_33b_c ==  3, "no sabe", ""))))
+
+drop h_3_33b_c
+
+generate H_3_33C_P = cond(h_3_33c_p ==  0, "si", cond(h_3_33c_p ==  1, "no", cond(h_3_33c_p ==  2, "no responde", cond(h_3_33c_p ==  3, "no sabe", ""))))
+
+drop h_3_33c_p
+
+generate H_3_33C_D = cond(h_3_33c_d ==  0, "si", cond(h_3_33c_d ==  1, "no", cond(h_3_33c_d ==  2, "no responde", cond(h_3_33c_d ==  3, "no sabe", ""))))
+
+drop h_3_33c_d
+
+generate H_3_33C_C = cond(h_3_33c_c ==  0, "si", cond(h_3_33c_c ==  1, "no", cond(h_3_33c_c ==  2, "no responde", cond(h_3_33c_c ==  3, "no sabe", ""))))
+
+drop h_3_33c_c
+
+generate H_3_34 = cond(h_3_34 ==  0, "si", cond(h_3_34 ==  1, "no", cond(h_3_34 ==  2, "no responde", cond(h_3_34 ==  3, "no sabe", ""))))
+
+drop h_3_34
+
+generate H_4_1 = cond(h_4_1 ==  0, "si", cond(h_4_1 ==  1, "no", cond(h_4_1 ==  2, "no responde", cond(h_4_1 ==  3, "no sabe", ""))))
+
+drop h_4_1
+
+generate H_4_1B_P = cond(h_4_1b_p ==  0, "si", cond(h_4_1b_p ==  1, "no", cond(h_4_1b_p ==  2, "no responde", cond(h_4_1b_p ==  3, "no sabe", ""))))
+
+drop h_4_1b_p
+
+generate H_4_1B_D = cond(h_4_1b_d ==  0, "si", cond(h_4_1b_d ==  1, "no", cond(h_4_1b_d ==  2, "no responde", cond(h_4_1b_d ==  3, "no sabe", ""))))
+
+drop h_4_1b_d
+
+generate H_4_1B_C = cond(h_4_1b_c ==  0, "si", cond(h_4_1b_c ==  1, "no", cond(h_4_1b_c ==  2, "no responde", cond(h_4_1b_c ==  3, "no sabe", ""))))
+
+drop h_4_1b_c
+
+generate H_4_1B2_P = cond(h_4_1b2_p ==  0, "si", cond(h_4_1b2_p ==  1, "no", cond(h_4_1b2_p ==  2, "no responde", cond(h_4_1b2_p ==  3, "no sabe", ""))))
+
+drop h_4_1b2_p
+
+generate H_4_1B2_D = cond(h_4_1b2_d ==  0, "si", cond(h_4_1b2_d ==  1, "no", cond(h_4_1b2_d ==  2, "no responde", cond(h_4_1b2_d ==  3, "no sabe", ""))))
+
+drop h_4_1b2_d
+
+generate H_4_1B2_C = cond(h_4_1b2_c ==  0, "si", cond(h_4_1b2_c ==  1, "no", cond(h_4_1b2_c ==  2, "no responde", cond(h_4_1b2_c ==  3, "no sabe", ""))))
+
+drop h_4_1b2_c
+
+generate H_4_1B3_P = cond(h_4_1b3_p ==  0, "si", cond(h_4_1b3_p ==  1, "no", cond(h_4_1b3_p ==  2, "no responde", cond(h_4_1b3_p ==  3, "no sabe", ""))))
+
+drop h_4_1b3_p
+
+generate H_4_1B3_D = cond(h_4_1b3_d ==  0, "si", cond(h_4_1b3_d ==  1, "no", cond(h_4_1b3_d ==  2, "no responde", cond(h_4_1b3_d ==  3, "no sabe", ""))))
+
+drop h_4_1b3_d
+
+generate H_4_1B3_C = cond(h_4_1b3_c ==  0, "si", cond(h_4_1b3_c ==  1, "no", cond(h_4_1b3_c ==  2, "no responde", cond(h_4_1b3_c ==  3, "no sabe", ""))))
+
+drop h_4_1b3_c
+
+generate H_4_2 = cond(h_4_2 ==  0, "si", cond(h_4_2 ==  1, "no", cond(h_4_2 ==  2, "no responde", cond(h_4_2 ==  3, "no sabe", ""))))
+
+drop h_4_2
+
+generate H_4_2B_P = cond(h_4_2b_p ==  0, "si", cond(h_4_2b_p ==  1, "no", cond(h_4_2b_p ==  2, "no responde", cond(h_4_2b_p ==  3, "no sabe", ""))))
+
+drop h_4_2b_p
+
+generate H_4_2B_D = cond(h_4_2b_d ==  0, "si", cond(h_4_2b_d ==  1, "no", cond(h_4_2b_d ==  2, "no responde", cond(h_4_2b_d ==  3, "no sabe", ""))))
+
+drop h_4_2b_d
+
+generate H_4_2B_C = cond(h_4_2b_c ==  0, "si", cond(h_4_2b_c ==  1, "no", cond(h_4_2b_c ==  2, "no responde", cond(h_4_2b_c ==  3, "no sabe", ""))))
+
+drop h_4_2b_c
+
+generate H_4_2B2_P = cond(h_4_2b2_p ==  0, "si", cond(h_4_2b2_p ==  1, "no", cond(h_4_2b2_p ==  2, "no responde", cond(h_4_2b2_p ==  3, "no sabe", ""))))
+
+drop h_4_2b2_p
+
+generate H_4_2B2_D = cond(h_4_2b2_d ==  0, "si", cond(h_4_2b2_d ==  1, "no", cond(h_4_2b2_d ==  2, "no responde", cond(h_4_2b2_d ==  3, "no sabe", ""))))
+
+drop h_4_2b2_d
+
+generate H_4_2B2_C = cond(h_4_2b2_c ==  0, "si", cond(h_4_2b2_c ==  1, "no", cond(h_4_2b2_c ==  2, "no responde", cond(h_4_2b2_c ==  3, "no sabe", ""))))
+
+drop h_4_2b2_c
+
+generate H_4_2B3_P = cond(h_4_2b3_p ==  0, "si", cond(h_4_2b3_p ==  1, "no", cond(h_4_2b3_p ==  2, "no responde", cond(h_4_2b3_p ==  3, "no sabe", ""))))
+
+drop h_4_2b3_p
+
+generate H_4_2B3_D = cond(h_4_2b3_d ==  0, "si", cond(h_4_2b3_d ==  1, "no", cond(h_4_2b3_d ==  2, "no responde", cond(h_4_2b3_d ==  3, "no sabe", ""))))
+
+drop h_4_2b3_d
+
+generate H_4_2B3_C = cond(h_4_2b3_c ==  0, "si", cond(h_4_2b3_c ==  1, "no", cond(h_4_2b3_c ==  2, "no responde", cond(h_4_2b3_c ==  3, "no sabe", ""))))
+
+drop h_4_2b3_c
+
+generate H_4_3 = cond(h_4_3 ==  0, "si", cond(h_4_3 ==  1, "no", cond(h_4_3 ==  2, "no responde", cond(h_4_3 ==  3, "no sabe", ""))))
+
+drop h_4_3
+
+generate H_4_3B_P = cond(h_4_3b_p ==  0, "si", cond(h_4_3b_p ==  1, "no", cond(h_4_3b_p ==  2, "no responde", cond(h_4_3b_p ==  3, "no sabe", ""))))
+
+drop h_4_3b_p
+
+generate H_4_3B_D = cond(h_4_3b_d ==  0, "si", cond(h_4_3b_d ==  1, "no", cond(h_4_3b_d ==  2, "no responde", cond(h_4_3b_d ==  3, "no sabe", ""))))
+
+drop h_4_3b_d
+
+generate H_4_3B_C = cond(h_4_3b_c ==  0, "si", cond(h_4_3b_c ==  1, "no", cond(h_4_3b_c ==  2, "no responde", cond(h_4_3b_c ==  3, "no sabe", ""))))
+
+drop h_4_3b_c
+
+generate H_4_3B2_P = cond(h_4_3b2_p ==  0, "si", cond(h_4_3b2_p ==  1, "no", cond(h_4_3b2_p ==  2, "no responde", cond(h_4_3b2_p ==  3, "no sabe", ""))))
+
+drop h_4_3b2_p
+
+generate H_4_3B2_D = cond(h_4_3b2_d ==  0, "si", cond(h_4_3b2_d ==  1, "no", cond(h_4_3b2_d ==  2, "no responde", cond(h_4_3b2_d ==  3, "no sabe", ""))))
+
+drop h_4_3b2_d
+
+generate H_4_3B2_C = cond(h_4_3b2_c ==  0, "si", cond(h_4_3b2_c ==  1, "no", cond(h_4_3b2_c ==  2, "no responde", cond(h_4_3b2_c ==  3, "no sabe", ""))))
+
+drop h_4_3b2_c
+
+generate H_4_3B3_P = cond(h_4_3b3_p ==  0, "si", cond(h_4_3b3_p ==  1, "no", cond(h_4_3b3_p ==  2, "no responde", cond(h_4_3b3_p ==  3, "no sabe", ""))))
+
+drop h_4_3b3_p
+
+generate H_4_3B3_D = cond(h_4_3b3_d ==  0, "si", cond(h_4_3b3_d ==  1, "no", cond(h_4_3b3_d ==  2, "no responde", cond(h_4_3b3_d ==  3, "no sabe", ""))))
+
+drop h_4_3b3_d
+
+generate H_4_3B3_C = cond(h_4_3b3_c ==  0, "si", cond(h_4_3b3_c ==  1, "no", cond(h_4_3b3_c ==  2, "no responde", cond(h_4_3b3_c ==  3, "no sabe", ""))))
+
+drop h_4_3b3_c
+
+generate H_4_4 = cond(h_4_4 ==  0, "si", cond(h_4_4 ==  1, "no", cond(h_4_4 ==  2, "no responde", cond(h_4_4 ==  3, "no sabe", ""))))
+
+drop h_4_4
+
+generate H_4_4B_P = cond(h_4_4b_p ==  0, "si", cond(h_4_4b_p ==  1, "no", cond(h_4_4b_p ==  2, "no responde", cond(h_4_4b_p ==  3, "no sabe", ""))))
+
+drop h_4_4b_p
+
+generate H_4_4B_D = cond(h_4_4b_d ==  0, "si", cond(h_4_4b_d ==  1, "no", cond(h_4_4b_d ==  2, "no responde", cond(h_4_4b_d ==  3, "no sabe", ""))))
+
+drop h_4_4b_d
+
+generate H_4_4B_C = cond(h_4_4b_c ==  0, "si", cond(h_4_4b_c ==  1, "no", cond(h_4_4b_c ==  2, "no responde", cond(h_4_4b_c ==  3, "no sabe", ""))))
+
+drop h_4_4b_c
+
+generate H_4_4B2_P = cond(h_4_4b2_p ==  0, "si", cond(h_4_4b2_p ==  1, "no", cond(h_4_4b2_p ==  2, "no responde", cond(h_4_4b2_p ==  3, "no sabe", ""))))
+
+drop h_4_4b2_p
+
+generate H_4_4B2_D = cond(h_4_4b2_d ==  0, "si", cond(h_4_4b2_d ==  1, "no", cond(h_4_4b2_d ==  2, "no responde", cond(h_4_4b2_d ==  3, "no sabe", ""))))
+
+drop h_4_4b2_d
+
+generate H_4_4B2_C = cond(h_4_4b2_c ==  0, "si", cond(h_4_4b2_c ==  1, "no", cond(h_4_4b2_c ==  2, "no responde", cond(h_4_4b2_c ==  3, "no sabe", ""))))
+
+drop h_4_4b2_c
+
+generate H_4_4B3_P = cond(h_4_4b3_p ==  0, "si", cond(h_4_4b3_p ==  1, "no", cond(h_4_4b3_p ==  2, "no responde", cond(h_4_4b3_p ==  3, "no sabe", ""))))
+
+drop h_4_4b3_p
+
+generate H_4_4B3_D = cond(h_4_4b3_d ==  0, "si", cond(h_4_4b3_d ==  1, "no", cond(h_4_4b3_d ==  2, "no responde", cond(h_4_4b3_d ==  3, "no sabe", ""))))
+
+drop h_4_4b3_d
+
+generate H_4_4B3_C = cond(h_4_4b3_c ==  0, "si", cond(h_4_4b3_c ==  1, "no", cond(h_4_4b3_c ==  2, "no responde", cond(h_4_4b3_c ==  3, "no sabe", ""))))
+
+drop h_4_4b3_c
+
+generate H_4_5 = cond(h_4_5 ==  0, "si", cond(h_4_5 ==  1, "no", cond(h_4_5 ==  2, "no responde", cond(h_4_5 ==  3, "no sabe", ""))))
+
+drop h_4_5
+
+generate H_4_5B_P = cond(h_4_5b_p ==  0, "si", cond(h_4_5b_p ==  1, "no", cond(h_4_5b_p ==  2, "no responde", cond(h_4_5b_p ==  3, "no sabe", ""))))
+
+drop h_4_5b_p
+
+generate H_4_5B_D = cond(h_4_5b_d ==  0, "si", cond(h_4_5b_d ==  1, "no", cond(h_4_5b_d ==  2, "no responde", cond(h_4_5b_d ==  3, "no sabe", ""))))
+
+drop h_4_5b_d
+
+generate H_4_5B_C = cond(h_4_5b_c ==  0, "si", cond(h_4_5b_c ==  1, "no", cond(h_4_5b_c ==  2, "no responde", cond(h_4_5b_c ==  3, "no sabe", ""))))
+
+drop h_4_5b_c
+
+generate H_4_5B2_P = cond(h_4_5b2_p ==  0, "si", cond(h_4_5b2_p ==  1, "no", cond(h_4_5b2_p ==  2, "no responde", cond(h_4_5b2_p ==  3, "no sabe", ""))))
+
+drop h_4_5b2_p
+
+generate H_4_5B2_D = cond(h_4_5b2_d ==  0, "si", cond(h_4_5b2_d ==  1, "no", cond(h_4_5b2_d ==  2, "no responde", cond(h_4_5b2_d ==  3, "no sabe", ""))))
+
+drop h_4_5b2_d
+
+generate H_4_5B2_C = cond(h_4_5b2_c ==  0, "si", cond(h_4_5b2_c ==  1, "no", cond(h_4_5b2_c ==  2, "no responde", cond(h_4_5b2_c ==  3, "no sabe", ""))))
+
+drop h_4_5b2_c
+
+generate H_4_5B3_P = cond(h_4_5b3_p ==  0, "si", cond(h_4_5b3_p ==  1, "no", cond(h_4_5b3_p ==  2, "no responde", cond(h_4_5b3_p ==  3, "no sabe", ""))))
+
+drop h_4_5b3_p
+
+generate H_4_5B3_D = cond(h_4_5b3_d ==  0, "si", cond(h_4_5b3_d ==  1, "no", cond(h_4_5b3_d ==  2, "no responde", cond(h_4_5b3_d ==  3, "no sabe", ""))))
+
+drop h_4_5b3_d
+
+generate H_4_5B3_C = cond(h_4_5b3_c ==  0, "si", cond(h_4_5b3_c ==  1, "no", cond(h_4_5b3_c ==  2, "no responde", cond(h_4_5b3_c ==  3, "no sabe", ""))))
+
+drop h_4_5b3_c
+
+generate H_4_6 = cond(h_4_6 ==  0, "si", cond(h_4_6 ==  1, "no", cond(h_4_6 ==  2, "no responde", cond(h_4_6 ==  3, "no sabe", ""))))
+
+drop h_4_6
+
+generate H_4_6B_P = cond(h_4_6b_p ==  0, "si", cond(h_4_6b_p ==  1, "no", cond(h_4_6b_p ==  2, "no responde", cond(h_4_6b_p ==  3, "no sabe", ""))))
+
+drop h_4_6b_p
+
+generate H_4_6B_D = cond(h_4_6b_d ==  0, "si", cond(h_4_6b_d ==  1, "no", cond(h_4_6b_d ==  2, "no responde", cond(h_4_6b_d ==  3, "no sabe", ""))))
+
+drop h_4_6b_d
+
+generate H_4_6B_C = cond(h_4_6b_c ==  0, "si", cond(h_4_6b_c ==  1, "no", cond(h_4_6b_c ==  2, "no responde", cond(h_4_6b_c ==  3, "no sabe", ""))))
+
+drop h_4_6b_c
+
+generate H_4_6B2_P = cond(h_4_6b2_p ==  0, "si", cond(h_4_6b2_p ==  1, "no", cond(h_4_6b2_p ==  2, "no responde", cond(h_4_6b2_p ==  3, "no sabe", ""))))
+
+drop h_4_6b2_p
+
+generate H_4_6B2_D = cond(h_4_6b2_d ==  0, "si", cond(h_4_6b2_d ==  1, "no", cond(h_4_6b2_d ==  2, "no responde", cond(h_4_6b2_d ==  3, "no sabe", ""))))
+
+drop h_4_6b2_d
+
+generate H_4_6B2_C = cond(h_4_6b2_c ==  0, "si", cond(h_4_6b2_c ==  1, "no", cond(h_4_6b2_c ==  2, "no responde", cond(h_4_6b2_c ==  3, "no sabe", ""))))
+
+drop h_4_6b2_c
+
+generate H_4_6B3_P = cond(h_4_6b3_p ==  0, "si", cond(h_4_6b3_p ==  1, "no", cond(h_4_6b3_p ==  2, "no responde", cond(h_4_6b3_p ==  3, "no sabe", ""))))
+
+drop h_4_6b3_p
+
+generate H_4_6B3_D = cond(h_4_6b3_d ==  0, "si", cond(h_4_6b3_d ==  1, "no", cond(h_4_6b3_d ==  2, "no responde", cond(h_4_6b3_d ==  3, "no sabe", ""))))
+
+drop h_4_6b3_d
+
+generate H_4_6B3_C = cond(h_4_6b3_c ==  0, "si", cond(h_4_6b3_c ==  1, "no", cond(h_4_6b3_c ==  2, "no responde", cond(h_4_6b3_c ==  3, "no sabe", ""))))
+
+drop h_4_6b3_c
+
+generate H_4_7 = cond(h_4_7 ==  0, "si", cond(h_4_7 ==  1, "no", cond(h_4_7 ==  2, "no responde", cond(h_4_7 ==  3, "no sabe", ""))))
+
+drop h_4_7
+
+generate H_4_7B_P = cond(h_4_7b_p ==  0, "si", cond(h_4_7b_p ==  1, "no", cond(h_4_7b_p ==  2, "no responde", cond(h_4_7b_p ==  3, "no sabe", ""))))
+
+drop h_4_7b_p
+
+generate H_4_7B_D = cond(h_4_7b_d ==  0, "si", cond(h_4_7b_d ==  1, "no", cond(h_4_7b_d ==  2, "no responde", cond(h_4_7b_d ==  3, "no sabe", ""))))
+
+drop h_4_7b_d
+
+generate H_4_7B_C = cond(h_4_7b_c ==  0, "si", cond(h_4_7b_c ==  1, "no", cond(h_4_7b_c ==  2, "no responde", cond(h_4_7b_c ==  3, "no sabe", ""))))
+
+drop h_4_7b_c
+
+generate H_4_7B2_P = cond(h_4_7b2_p ==  0, "si", cond(h_4_7b2_p ==  1, "no", cond(h_4_7b2_p ==  2, "no responde", cond(h_4_7b2_p ==  3, "no sabe", ""))))
+
+drop h_4_7b2_p
+
+generate H_4_7B2_D = cond(h_4_7b2_d ==  0, "si", cond(h_4_7b2_d ==  1, "no", cond(h_4_7b2_d ==  2, "no responde", cond(h_4_7b2_d ==  3, "no sabe", ""))))
+
+drop h_4_7b2_d
+
+generate H_4_7B2_C = cond(h_4_7b2_c ==  0, "si", cond(h_4_7b2_c ==  1, "no", cond(h_4_7b2_c ==  2, "no responde", cond(h_4_7b2_c ==  3, "no sabe", ""))))
+
+drop h_4_7b2_c
+
+generate H_4_8 = cond(h_4_8 ==  0, "si", cond(h_4_8 ==  1, "no", cond(h_4_8 ==  2, "no responde", cond(h_4_8 ==  3, "no sabe", ""))))
+
+drop h_4_8
+
+generate H_4_8B_P = cond(h_4_8b_p ==  0, "si", cond(h_4_8b_p ==  1, "no", cond(h_4_8b_p ==  2, "no responde", cond(h_4_8b_p ==  3, "no sabe", ""))))
+
+drop h_4_8b_p
+
+generate H_4_8B_D = cond(h_4_8b_d ==  0, "si", cond(h_4_8b_d ==  1, "no", cond(h_4_8b_d ==  2, "no responde", cond(h_4_8b_d ==  3, "no sabe", ""))))
+
+drop h_4_8b_d
+
+generate H_4_8B_C = cond(h_4_8b_c ==  0, "si", cond(h_4_8b_c ==  1, "no", cond(h_4_8b_c ==  2, "no responde", cond(h_4_8b_c ==  3, "no sabe", ""))))
+
+drop h_4_8b_c
+
+generate H_4_8B2_P = cond(h_4_8b2_p ==  0, "si", cond(h_4_8b2_p ==  1, "no", cond(h_4_8b2_p ==  2, "no responde", cond(h_4_8b2_p ==  3, "no sabe", ""))))
+
+drop h_4_8b2_p
+
+generate H_4_8B2_D = cond(h_4_8b2_d ==  0, "si", cond(h_4_8b2_d ==  1, "no", cond(h_4_8b2_d ==  2, "no responde", cond(h_4_8b2_d ==  3, "no sabe", ""))))
+
+drop h_4_8b2_d
+
+generate H_4_8B2_C = cond(h_4_8b2_c ==  0, "si", cond(h_4_8b2_c ==  1, "no", cond(h_4_8b2_c ==  2, "no responde", cond(h_4_8b2_c ==  3, "no sabe", ""))))
+
+drop h_4_8b2_c
+
+generate H_5 = cond(h_5 ==  0, "si", cond(h_5 ==  1, "no", ""))
+
+drop h_5
+
+generate H_5_1 = cond(h_5_1 ==  0, "si", cond(h_5_1 ==  1, "no", cond(h_5_1 ==  2, "no responde", cond(h_5_1 ==  3, "no sabe", ""))))
+
+drop h_5_1
+
+generate H_5_1B_P = cond(h_5_1b_p ==  0, "si", cond(h_5_1b_p ==  1, "no", cond(h_5_1b_p ==  2, "no responde", cond(h_5_1b_p ==  3, "no sabe", ""))))
+
+drop h_5_1b_p
+
+generate H_5_1B_D = cond(h_5_1b_d ==  0, "si", cond(h_5_1b_d ==  1, "no", cond(h_5_1b_d ==  2, "no responde", cond(h_5_1b_d ==  3, "no sabe", ""))))
+
+drop h_5_1b_d
+
+generate H_5_1B_C = cond(h_5_1b_c ==  0, "si", cond(h_5_1b_c ==  1, "no", cond(h_5_1b_c ==  2, "no responde", cond(h_5_1b_c ==  3, "no sabe", ""))))
+
+drop h_5_1b_c
+
+generate H_5_1B2_P = cond(h_5_1b2_p ==  0, "si", cond(h_5_1b2_p ==  1, "no", cond(h_5_1b2_p ==  2, "no responde", cond(h_5_1b2_p ==  3, "no sabe", ""))))
+
+drop h_5_1b2_p
+
+generate H_5_1B2_D = cond(h_5_1b2_d ==  0, "si", cond(h_5_1b2_d ==  1, "no", cond(h_5_1b2_d ==  2, "no responde", cond(h_5_1b2_d ==  3, "no sabe", ""))))
+
+drop h_5_1b2_d
+
+generate H_5_1B2_C = cond(h_5_1b2_c ==  0, "si", cond(h_5_1b2_c ==  1, "no", cond(h_5_1b2_c ==  2, "no responde", cond(h_5_1b2_c ==  3, "no sabe", ""))))
+
+drop h_5_1b2_c
+
+generate H_5_1B3_P = cond(h_5_1b3_p ==  0, "si", cond(h_5_1b3_p ==  1, "no", cond(h_5_1b3_p ==  2, "no responde", cond(h_5_1b3_p ==  3, "no sabe", ""))))
+
+drop h_5_1b3_p
+
+generate H_5_1B3_D = cond(h_5_1b3_d ==  0, "si", cond(h_5_1b3_d ==  1, "no", cond(h_5_1b3_d ==  2, "no responde", cond(h_5_1b3_d ==  3, "no sabe", ""))))
+
+drop h_5_1b3_d
+
+generate H_5_1B3_C = cond(h_5_1b3_c ==  0, "si", cond(h_5_1b3_c ==  1, "no", cond(h_5_1b3_c ==  2, "no responde", cond(h_5_1b3_c ==  3, "no sabe", ""))))
+
+drop h_5_1b3_c
+
+generate H_5_2 = cond(h_5_2 ==  0, "si", cond(h_5_2 ==  1, "no", cond(h_5_2 ==  2, "no responde", cond(h_5_2 ==  3, "no sabe", ""))))
+
+drop h_5_2
+
+generate H_5_2B_P = cond(h_5_2b_p ==  0, "si", cond(h_5_2b_p ==  1, "no", cond(h_5_2b_p ==  2, "no responde", cond(h_5_2b_p ==  3, "no sabe", ""))))
+
+drop h_5_2b_p
+
+generate H_5_2B_D = cond(h_5_2b_d ==  0, "si", cond(h_5_2b_d ==  1, "no", cond(h_5_2b_d ==  2, "no responde", cond(h_5_2b_d ==  3, "no sabe", ""))))
+
+drop h_5_2b_d
+
+generate H_5_2B_C = cond(h_5_2b_c ==  0, "si", cond(h_5_2b_c ==  1, "no", cond(h_5_2b_c ==  2, "no responde", cond(h_5_2b_c ==  3, "no sabe", ""))))
+
+drop h_5_2b_c
+
+generate H_5_2B2_P = cond(h_5_2b2_p ==  0, "si", cond(h_5_2b2_p ==  1, "no", cond(h_5_2b2_p ==  2, "no responde", cond(h_5_2b2_p ==  3, "no sabe", ""))))
+
+drop h_5_2b2_p
+
+generate H_5_2B2_D = cond(h_5_2b2_d ==  0, "si", cond(h_5_2b2_d ==  1, "no", cond(h_5_2b2_d ==  2, "no responde", cond(h_5_2b2_d ==  3, "no sabe", ""))))
+
+drop h_5_2b2_d
+
+generate H_5_2B2_C = cond(h_5_2b2_c ==  0, "si", cond(h_5_2b2_c ==  1, "no", cond(h_5_2b2_c ==  2, "no responde", cond(h_5_2b2_c ==  3, "no sabe", ""))))
+
+drop h_5_2b2_c
+
+generate H_5_2B3_P = cond(h_5_2b3_p ==  0, "si", cond(h_5_2b3_p ==  1, "no", cond(h_5_2b3_p ==  2, "no responde", cond(h_5_2b3_p ==  3, "no sabe", ""))))
+
+drop h_5_2b3_p
+
+generate H_5_2B3_D = cond(h_5_2b3_d ==  0, "si", cond(h_5_2b3_d ==  1, "no", cond(h_5_2b3_d ==  2, "no responde", cond(h_5_2b3_d ==  3, "no sabe", ""))))
+
+drop h_5_2b3_d
+
+generate H_5_2B3_C = cond(h_5_2b3_c ==  0, "si", cond(h_5_2b3_c ==  1, "no", cond(h_5_2b3_c ==  2, "no responde", cond(h_5_2b3_c ==  3, "no sabe", ""))))
+
+drop h_5_2b3_c
+
+generate H_5_3 = cond(h_5_3 ==  0, "si", cond(h_5_3 ==  1, "no", cond(h_5_3 ==  2, "no responde", cond(h_5_3 ==  3, "no sabe", ""))))
+
+drop h_5_3
+
+generate H_5_3B_P = cond(h_5_3b_p ==  0, "si", cond(h_5_3b_p ==  1, "no", cond(h_5_3b_p ==  2, "no responde", cond(h_5_3b_p ==  3, "no sabe", ""))))
+
+drop h_5_3b_p
+
+generate H_5_3B_D = cond(h_5_3b_d ==  0, "si", cond(h_5_3b_d ==  1, "no", cond(h_5_3b_d ==  2, "no responde", cond(h_5_3b_d ==  3, "no sabe", ""))))
+
+drop h_5_3b_d
+
+generate H_5_3B_C = cond(h_5_3b_c ==  0, "si", cond(h_5_3b_c ==  1, "no", cond(h_5_3b_c ==  2, "no responde", cond(h_5_3b_c ==  3, "no sabe", ""))))
+
+drop h_5_3b_c
+
+generate H_5_3B2_P = cond(h_5_3b2_p ==  0, "si", cond(h_5_3b2_p ==  1, "no", cond(h_5_3b2_p ==  2, "no responde", cond(h_5_3b2_p ==  3, "no sabe", ""))))
+
+drop h_5_3b2_p
+
+generate H_5_3B2_D = cond(h_5_3b2_d ==  0, "si", cond(h_5_3b2_d ==  1, "no", cond(h_5_3b2_d ==  2, "no responde", cond(h_5_3b2_d ==  3, "no sabe", ""))))
+
+drop h_5_3b2_d
+
+generate H_5_3B2_C = cond(h_5_3b2_c ==  0, "si", cond(h_5_3b2_c ==  1, "no", cond(h_5_3b2_c ==  2, "no responde", cond(h_5_3b2_c ==  3, "no sabe", ""))))
+
+drop h_5_3b2_c
+
+generate H_5_3B3_P = cond(h_5_3b3_p ==  0, "si", cond(h_5_3b3_p ==  1, "no", cond(h_5_3b3_p ==  2, "no responde", cond(h_5_3b3_p ==  3, "no sabe", ""))))
+
+drop h_5_3b3_p
+
+generate H_5_3B3_D = cond(h_5_3b3_d ==  0, "si", cond(h_5_3b3_d ==  1, "no", cond(h_5_3b3_d ==  2, "no responde", cond(h_5_3b3_d ==  3, "no sabe", ""))))
+
+drop h_5_3b3_d
+
+generate H_5_3B3_C = cond(h_5_3b3_c ==  0, "si", cond(h_5_3b3_c ==  1, "no", cond(h_5_3b3_c ==  2, "no responde", cond(h_5_3b3_c ==  3, "no sabe", ""))))
+
+drop h_5_3b3_c
+
+generate H_5_4 = cond(h_5_4 ==  0, "si", cond(h_5_4 ==  1, "no", cond(h_5_4 ==  2, "no responde", cond(h_5_4 ==  3, "no sabe", ""))))
+
+drop h_5_4
+
+generate H_5_4B_P = cond(h_5_4b_p ==  0, "si", cond(h_5_4b_p ==  1, "no", cond(h_5_4b_p ==  2, "no responde", cond(h_5_4b_p ==  3, "no sabe", ""))))
+
+drop h_5_4b_p
+
+generate H_5_4B_D = cond(h_5_4b_d ==  0, "si", cond(h_5_4b_d ==  1, "no", cond(h_5_4b_d ==  2, "no responde", cond(h_5_4b_d ==  3, "no sabe", ""))))
+
+drop h_5_4b_d
+
+generate H_5_4B_C = cond(h_5_4b_c ==  0, "si", cond(h_5_4b_c ==  1, "no", cond(h_5_4b_c ==  2, "no responde", cond(h_5_4b_c ==  3, "no sabe", ""))))
+
+drop h_5_4b_c
+
+generate H_5_4B2_P = cond(h_5_4b2_p ==  0, "si", cond(h_5_4b2_p ==  1, "no", cond(h_5_4b2_p ==  2, "no responde", cond(h_5_4b2_p ==  3, "no sabe", ""))))
+
+drop h_5_4b2_p
+
+generate H_5_4B2_D = cond(h_5_4b2_d ==  0, "si", cond(h_5_4b2_d ==  1, "no", cond(h_5_4b2_d ==  2, "no responde", cond(h_5_4b2_d ==  3, "no sabe", ""))))
+
+drop h_5_4b2_d
+
+generate H_5_4B2_C = cond(h_5_4b2_c ==  0, "si", cond(h_5_4b2_c ==  1, "no", cond(h_5_4b2_c ==  2, "no responde", cond(h_5_4b2_c ==  3, "no sabe", ""))))
+
+drop h_5_4b2_c
+
+generate H_5_4B3_P = cond(h_5_4b3_p ==  0, "si", cond(h_5_4b3_p ==  1, "no", cond(h_5_4b3_p ==  2, "no responde", cond(h_5_4b3_p ==  3, "no sabe", ""))))
+
+drop h_5_4b3_p
+
+generate H_5_4B3_D = cond(h_5_4b3_d ==  0, "si", cond(h_5_4b3_d ==  1, "no", cond(h_5_4b3_d ==  2, "no responde", cond(h_5_4b3_d ==  3, "no sabe", ""))))
+
+drop h_5_4b3_d
+
+generate H_5_4B3_C = cond(h_5_4b3_c ==  0, "si", cond(h_5_4b3_c ==  1, "no", cond(h_5_4b3_c ==  2, "no responde", cond(h_5_4b3_c ==  3, "no sabe", ""))))
+
+drop h_5_4b3_c
+
+generate H_5_5 = cond(h_5_5 ==  0, "si", cond(h_5_5 ==  1, "no", cond(h_5_5 ==  2, "no responde", cond(h_5_5 ==  3, "no sabe", ""))))
+
+drop h_5_5
+
+generate H_5_5B_P = cond(h_5_5b_p ==  0, "si", cond(h_5_5b_p ==  1, "no", cond(h_5_5b_p ==  2, "no responde", cond(h_5_5b_p ==  3, "no sabe", ""))))
+
+drop h_5_5b_p
+
+generate H_5_5B_D = cond(h_5_5b_d ==  0, "si", cond(h_5_5b_d ==  1, "no", cond(h_5_5b_d ==  2, "no responde", cond(h_5_5b_d ==  3, "no sabe", ""))))
+
+drop h_5_5b_d
+
+generate H_5_5B_C = cond(h_5_5b_c ==  0, "si", cond(h_5_5b_c ==  1, "no", cond(h_5_5b_c ==  2, "no responde", cond(h_5_5b_c ==  3, "no sabe", ""))))
+
+drop h_5_5b_c
+
+generate H_5_5B2_P = cond(h_5_5b2_p ==  0, "si", cond(h_5_5b2_p ==  1, "no", cond(h_5_5b2_p ==  2, "no responde", cond(h_5_5b2_p ==  3, "no sabe", ""))))
+
+drop h_5_5b2_p
+
+generate H_5_5B2_D = cond(h_5_5b2_d ==  0, "si", cond(h_5_5b2_d ==  1, "no", cond(h_5_5b2_d ==  2, "no responde", cond(h_5_5b2_d ==  3, "no sabe", ""))))
+
+drop h_5_5b2_d
+
+generate H_5_5B2_C = cond(h_5_5b2_c ==  0, "si", cond(h_5_5b2_c ==  1, "no", cond(h_5_5b2_c ==  2, "no responde", cond(h_5_5b2_c ==  3, "no sabe", ""))))
+
+drop h_5_5b2_c
+
+generate H_5_5B3_P = cond(h_5_5b3_p ==  0, "si", cond(h_5_5b3_p ==  1, "no", cond(h_5_5b3_p ==  2, "no responde", cond(h_5_5b3_p ==  3, "no sabe", ""))))
+
+drop h_5_5b3_p
+
+generate H_5_5B3_D = cond(h_5_5b3_d ==  0, "si", cond(h_5_5b3_d ==  1, "no", cond(h_5_5b3_d ==  2, "no responde", cond(h_5_5b3_d ==  3, "no sabe", ""))))
+
+drop h_5_5b3_d
+
+generate H_5_5B3_C = cond(h_5_5b3_c ==  0, "si", cond(h_5_5b3_c ==  1, "no", cond(h_5_5b3_c ==  2, "no responde", cond(h_5_5b3_c ==  3, "no sabe", ""))))
+
+drop h_5_5b3_c
+
+generate H_5_6 = cond(h_5_6 ==  0, "si", cond(h_5_6 ==  1, "no", cond(h_5_6 ==  2, "no responde", cond(h_5_6 ==  3, "no sabe", ""))))
+
+drop h_5_6
+
+generate H_5_6B_P = cond(h_5_6b_p ==  0, "si", cond(h_5_6b_p ==  1, "no", cond(h_5_6b_p ==  2, "no responde", cond(h_5_6b_p ==  3, "no sabe", ""))))
+
+drop h_5_6b_p
+
+generate H_5_6B_D = cond(h_5_6b_d ==  0, "si", cond(h_5_6b_d ==  1, "no", cond(h_5_6b_d ==  2, "no responde", cond(h_5_6b_d ==  3, "no sabe", ""))))
+
+drop h_5_6b_d
+
+generate H_5_6B_C = cond(h_5_6b_c ==  0, "si", cond(h_5_6b_c ==  1, "no", cond(h_5_6b_c ==  2, "no responde", cond(h_5_6b_c ==  3, "no sabe", ""))))
+
+drop h_5_6b_c
+
+generate H_5_6B2_P = cond(h_5_6b2_p ==  0, "si", cond(h_5_6b2_p ==  1, "no", cond(h_5_6b2_p ==  2, "no responde", cond(h_5_6b2_p ==  3, "no sabe", ""))))
+
+drop h_5_6b2_p
+
+generate H_5_6B2_D = cond(h_5_6b2_d ==  0, "si", cond(h_5_6b2_d ==  1, "no", cond(h_5_6b2_d ==  2, "no responde", cond(h_5_6b2_d ==  3, "no sabe", ""))))
+
+drop h_5_6b2_d
+
+generate H_5_6B2_C = cond(h_5_6b2_c ==  0, "si", cond(h_5_6b2_c ==  1, "no", cond(h_5_6b2_c ==  2, "no responde", cond(h_5_6b2_c ==  3, "no sabe", ""))))
+
+drop h_5_6b2_c
+
+generate H_5_6B3_P = cond(h_5_6b3_p ==  0, "si", cond(h_5_6b3_p ==  1, "no", cond(h_5_6b3_p ==  2, "no responde", cond(h_5_6b3_p ==  3, "no sabe", ""))))
+
+drop h_5_6b3_p
+
+generate H_5_6B3_D = cond(h_5_6b3_d ==  0, "si", cond(h_5_6b3_d ==  1, "no", cond(h_5_6b3_d ==  2, "no responde", cond(h_5_6b3_d ==  3, "no sabe", ""))))
+
+drop h_5_6b3_d
+
+generate H_5_6B3_C = cond(h_5_6b3_c ==  0, "si", cond(h_5_6b3_c ==  1, "no", cond(h_5_6b3_c ==  2, "no responde", cond(h_5_6b3_c ==  3, "no sabe", ""))))
+
+drop h_5_6b3_c
+
+generate H_5_7 = cond(h_5_7 ==  0, "si", cond(h_5_7 ==  1, "no", cond(h_5_7 ==  2, "no responde", cond(h_5_7 ==  3, "no sabe", ""))))
+
+drop h_5_7
+
+generate H_5_7B_P = cond(h_5_7b_p ==  0, "si", cond(h_5_7b_p ==  1, "no", cond(h_5_7b_p ==  2, "no responde", cond(h_5_7b_p ==  3, "no sabe", ""))))
+
+drop h_5_7b_p
+
+generate H_5_7B_D = cond(h_5_7b_d ==  0, "si", cond(h_5_7b_d ==  1, "no", cond(h_5_7b_d ==  2, "no responde", cond(h_5_7b_d ==  3, "no sabe", ""))))
+
+drop h_5_7b_d
+
+generate H_5_7B_C = cond(h_5_7b_c ==  0, "si", cond(h_5_7b_c ==  1, "no", cond(h_5_7b_c ==  2, "no responde", cond(h_5_7b_c ==  3, "no sabe", ""))))
+
+drop h_5_7b_c
+
+generate H_5_7B2_P = cond(h_5_7b2_p ==  0, "si", cond(h_5_7b2_p ==  1, "no", cond(h_5_7b2_p ==  2, "no responde", cond(h_5_7b2_p ==  3, "no sabe", ""))))
+
+drop h_5_7b2_p
+
+generate H_5_7B2_D = cond(h_5_7b2_d ==  0, "si", cond(h_5_7b2_d ==  1, "no", cond(h_5_7b2_d ==  2, "no responde", cond(h_5_7b2_d ==  3, "no sabe", ""))))
+
+drop h_5_7b2_d
+
+generate H_5_7B2_C = cond(h_5_7b2_c ==  0, "si", cond(h_5_7b2_c ==  1, "no", cond(h_5_7b2_c ==  2, "no responde", cond(h_5_7b2_c ==  3, "no sabe", ""))))
+
+drop h_5_7b2_c
+
+generate H_5_8 = cond(h_5_8 ==  0, "si", cond(h_5_8 ==  1, "no", cond(h_5_8 ==  2, "no responde", cond(h_5_8 ==  3, "no sabe", ""))))
+
+drop h_5_8
+
+generate H_5_8B_P = cond(h_5_8b_p ==  0, "si", cond(h_5_8b_p ==  1, "no", cond(h_5_8b_p ==  2, "no responde", cond(h_5_8b_p ==  3, "no sabe", ""))))
+
+drop h_5_8b_p
+
+generate H_5_8B_D = cond(h_5_8b_d ==  0, "si", cond(h_5_8b_d ==  1, "no", cond(h_5_8b_d ==  2, "no responde", cond(h_5_8b_d ==  3, "no sabe", ""))))
+
+drop h_5_8b_d
+
+generate H_5_8B_C = cond(h_5_8b_c ==  0, "si", cond(h_5_8b_c ==  1, "no", cond(h_5_8b_c ==  2, "no responde", cond(h_5_8b_c ==  3, "no sabe", ""))))
+
+drop h_5_8b_c
+
+generate H_5_8B2_P = cond(h_5_8b2_p ==  0, "si", cond(h_5_8b2_p ==  1, "no", cond(h_5_8b2_p ==  2, "no responde", cond(h_5_8b2_p ==  3, "no sabe", ""))))
+
+drop h_5_8b2_p
+
+generate H_5_8B2_D = cond(h_5_8b2_d ==  0, "si", cond(h_5_8b2_d ==  1, "no", cond(h_5_8b2_d ==  2, "no responde", cond(h_5_8b2_d ==  3, "no sabe", ""))))
+
+drop h_5_8b2_d
+
+generate H_5_8B2_C = cond(h_5_8b2_c ==  0, "si", cond(h_5_8b2_c ==  1, "no", cond(h_5_8b2_c ==  2, "no responde", cond(h_5_8b2_c ==  3, "no sabe", ""))))
+
+drop h_5_8b2_c
+
+generate H_6_1 = cond(h_6_1 ==  0, "si", cond(h_6_1 ==  1, "no", cond(h_6_1 ==  2, "no responde", cond(h_6_1 ==  3, "no sabe", ""))))
+
+drop h_6_1
+
+generate H_6_1B1_P = cond(h_6_1b1_p ==  0, "si", cond(h_6_1b1_p ==  1, "no", cond(h_6_1b1_p ==  2, "no responde", cond(h_6_1b1_p ==  3, "no sabe", ""))))
+
+drop h_6_1b1_p
+
+generate H_6_1B1_D = cond(h_6_1b1_d ==  0, "si", cond(h_6_1b1_d ==  1, "no", cond(h_6_1b1_d ==  2, "no responde", cond(h_6_1b1_d ==  3, "no sabe", ""))))
+
+drop h_6_1b1_d
+
+generate H_6_1B1_C = cond(h_6_1b1_c ==  0, "si", cond(h_6_1b1_c ==  1, "no", cond(h_6_1b1_c ==  2, "no responde", cond(h_6_1b1_c ==  3, "no sabe", ""))))
+
+drop h_6_1b1_c
+
+generate H_6_1B2_P = cond(h_6_1b2_p ==  0, "si", cond(h_6_1b2_p ==  1, "no", cond(h_6_1b2_p ==  2, "no responde", cond(h_6_1b2_p ==  3, "no sabe", ""))))
+
+drop h_6_1b2_p
+
+generate H_6_1B2_D = cond(h_6_1b2_d ==  0, "si", cond(h_6_1b2_d ==  1, "no", cond(h_6_1b2_d ==  2, "no responde", cond(h_6_1b2_d ==  3, "no sabe", ""))))
+
+drop h_6_1b2_d
+
+generate H_6_1B2_C = cond(h_6_1b2_c ==  0, "si", cond(h_6_1b2_c ==  1, "no", cond(h_6_1b2_c ==  2, "no responde", cond(h_6_1b2_c ==  3, "no sabe", ""))))
+
+drop h_6_1b2_c
+
+generate H_6_2 = cond(h_6_2 ==  0, "más que suficiente?", cond(h_6_2 ==  1, "suficiente?", cond(h_6_2 ==  2, "no es suficiente", cond(h_6_2 ==  3, "no responde", cond(h_6_2 ==  4, "no sabe", "")))))
+
+drop h_6_2
+
+generate H_6_3 = cond(h_6_3 ==  0, "más que suficiente?", cond(h_6_3 ==  1, "suficiente?", cond(h_6_3 ==  2, "no es suficiente", cond(h_6_3 ==  3, "no responde", cond(h_6_3 ==  4, "no sabe", "")))))
+
+drop h_6_3
+
+generate H_6_41_D = cond(h_6_41_d ==  0, "si y ya está incluido en los apartados anteriores", cond(h_6_41_d ==  1, "si y no está incluido en los apartados anteriores", cond(h_6_41_d ==  2, "no", cond(h_6_41_d ==  3, "no responde", cond(h_6_41_d ==  4, "no sabe", "")))))
+
+drop h_6_41_d
+
+generate H_6_42_D = cond(h_6_42_d ==  0, "si y ya está incluido en los apartados anteriores", cond(h_6_42_d ==  1, "si y no está incluido en los apartados anteriores", cond(h_6_42_d ==  2, "no", cond(h_6_42_d ==  3, "no responde", cond(h_6_42_d ==  4, "no sabe", "")))))
+
+drop h_6_42_d
+
+generate H_6_43_D = cond(h_6_43_d ==  0, "si y ya está incluido en los apartados anteriores", cond(h_6_43_d ==  1, "si y no está incluido en los apartados anteriores", cond(h_6_43_d ==  2, "no", cond(h_6_43_d ==  3, "no responde", cond(h_6_43_d ==  4, "no sabe", "")))))
+
+drop h_6_43_d
+
+generate H_6_44_P = cond(h_6_44_p ==  0, "si y ya está incluido en los apartados anteriores", cond(h_6_44_p ==  1, "si y no está incluido en los apartados anteriores", cond(h_6_44_p ==  2, "no", cond(h_6_44_p ==  3, "no responde", cond(h_6_44_p ==  4, "no sabe", "")))))
+
+drop h_6_44_p
+
+generate H_6_5 = cond(h_6_5 ==  0, "si", cond(h_6_5 ==  1, "no", cond(h_6_5 ==  2, "no responde", cond(h_6_5 ==  3, "no sabe", ""))))
+
+drop h_6_5
+
+generate H_6_5B1_P = cond(h_6_5b1_p ==  0, "si", cond(h_6_5b1_p ==  1, "no", cond(h_6_5b1_p ==  2, "no responde", cond(h_6_5b1_p ==  3, "no sabe", ""))))
+
+drop h_6_5b1_p
+
+generate H_6_5B1_D = cond(h_6_5b1_d ==  0, "si", cond(h_6_5b1_d ==  1, "no", cond(h_6_5b1_d ==  2, "no responde", cond(h_6_5b1_d ==  3, "no sabe", ""))))
+
+drop h_6_5b1_d
+
+generate H_6_5B1_C = cond(h_6_5b1_c ==  0, "si", cond(h_6_5b1_c ==  1, "no", cond(h_6_5b1_c ==  2, "no responde", cond(h_6_5b1_c ==  3, "no sabe", ""))))
+
+drop h_6_5b1_c
+
+generate H_6_5B2_P = cond(h_6_5b2_p ==  0, "si", cond(h_6_5b2_p ==  1, "no", cond(h_6_5b2_p ==  2, "no responde", cond(h_6_5b2_p ==  3, "no sabe", ""))))
+
+drop h_6_5b2_p
+
+generate H_6_5B2_D = cond(h_6_5b2_d ==  0, "si", cond(h_6_5b2_d ==  1, "no", cond(h_6_5b2_d ==  2, "no responde", cond(h_6_5b2_d ==  3, "no sabe", ""))))
+
+drop h_6_5b2_d
+
+generate H_6_5B2_C = cond(h_6_5b2_c ==  0, "si", cond(h_6_5b2_c ==  1, "no", cond(h_6_5b2_c ==  2, "no responde", cond(h_6_5b2_c ==  3, "no sabe", ""))))
+
+drop h_6_5b2_c
+
+generate H_6_6 = cond(h_6_6 ==  0, "si", cond(h_6_6 ==  1, "no", cond(h_6_6 ==  2, "no responde", cond(h_6_6 ==  3, "no sabe", ""))))
+
+drop h_6_6
+
+generate H_6_6B1_P = cond(h_6_6b1_p ==  0, "si", cond(h_6_6b1_p ==  1, "no", cond(h_6_6b1_p ==  2, "no responde", cond(h_6_6b1_p ==  3, "no sabe", ""))))
+
+drop h_6_6b1_p
+
+generate H_6_6B1_D = cond(h_6_6b1_d ==  0, "si", cond(h_6_6b1_d ==  1, "no", cond(h_6_6b1_d ==  2, "no responde", cond(h_6_6b1_d ==  3, "no sabe", ""))))
+
+drop h_6_6b1_d
+
+generate H_6_6B1_C = cond(h_6_6b1_c ==  0, "si", cond(h_6_6b1_c ==  1, "no", cond(h_6_6b1_c ==  2, "no responde", cond(h_6_6b1_c ==  3, "no sabe", ""))))
+
+drop h_6_6b1_c
+
+generate H_6_6B2_P = cond(h_6_6b2_p ==  0, "si", cond(h_6_6b2_p ==  1, "no", cond(h_6_6b2_p ==  2, "no responde", cond(h_6_6b2_p ==  3, "no sabe", ""))))
+
+drop h_6_6b2_p
+
+generate H_6_6B2_D = cond(h_6_6b2_d ==  0, "si", cond(h_6_6b2_d ==  1, "no", cond(h_6_6b2_d ==  2, "no responde", cond(h_6_6b2_d ==  3, "no sabe", ""))))
+
+drop h_6_6b2_d
+
+generate H_6_6B2_C = cond(h_6_6b2_c ==  0, "si", cond(h_6_6b2_c ==  1, "no", cond(h_6_6b2_c ==  2, "no responde", cond(h_6_6b2_c ==  3, "no sabe", ""))))
+
+drop h_6_6b2_c
+
+generate H_7_1_P_C = cond(h_7_1_p_c ==  0, "casa separada", cond(h_7_1_p_c ==  1, "casa que comparte paredes con otra casa", cond(h_7_1_p_c ==  2, "apartamento", cond(h_7_1_p_c ==  3, "pieza en cuartería o parte atras", cond(h_7_1_p_c ==  4, "vivienda compartida con negocio", cond(h_7_1_p_c ==  5, "otro", cond(h_7_1_p_c ==  6, "no sabe", "")))))))
+
+drop h_7_1_p_c
+
+generate H_7_1_D = cond(h_7_1_d ==  0, "casa separada", cond(h_7_1_d ==  1, "casa que comparte paredes con otra casa", cond(h_7_1_d ==  2, "apartamento", cond(h_7_1_d ==  3, "pieza en cuartería o parte atras", cond(h_7_1_d ==  4, "vivienda compartida con negocio", cond(h_7_1_d ==  5, "barracón", cond(h_7_1_d ==  6, "otro", cond(h_7_1_d ==  7, "no sabe", ""))))))))
+
+drop h_7_1_d
+
+generate H_7_2_1 = cond(h_7_2_1 ==  0, "si", cond(h_7_2_1 ==  1, "no", cond(h_7_2_1 ==  2, "no responde", cond(h_7_2_1 ==  3, "no sabe", ""))))
+
+drop h_7_2_1
+
+generate H_7_2_2 = cond(h_7_2_2 ==  0, "si", cond(h_7_2_2 ==  1, "no", cond(h_7_2_2 ==  2, "no responde", cond(h_7_2_2 ==  3, "no sabe", ""))))
+
+drop h_7_2_2
+
+generate H_7_2_3 = cond(h_7_2_3 ==  0, "si", cond(h_7_2_3 ==  1, "no", cond(h_7_2_3 ==  2, "no responde", cond(h_7_2_3 ==  3, "no sabe", ""))))
+
+drop h_7_2_3
+
+generate H_7_2_4 = cond(h_7_2_4 ==  0, "si", cond(h_7_2_4 ==  1, "no", cond(h_7_2_4 ==  2, "no responde", cond(h_7_2_4 ==  3, "no sabe", ""))))
+
+drop h_7_2_4
+
+generate H_7_2_5 = cond(h_7_2_5 ==  0, "si", cond(h_7_2_5 ==  1, "no", cond(h_7_2_5 ==  2, "no responde", cond(h_7_2_5 ==  3, "no sabe", ""))))
+
+drop h_7_2_5
+
+if `country' == 0 {
+    export delimited using "../PR_in/Household_Child_String.csv", replace
+}
+else if `country' == 1 {
+    export delimited using "../DR_in/Household_Child_String.csv", replace
+}
+else if `country' == 2 {
+    export delimited using "../CUBA_in/Household_Child_String.csv", replace
+}
+
+
+if `country' == 0 {
+    insheet using "../PR_in/Household_Child_String.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/Household_Child_String.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/Household_Child_String.csv", comma names clear
+}
+
+
+*encoding
    
    ds, has(type string)
 
@@ -5605,7 +6815,7 @@ if h_country == 2 {
 local i 1
 gen h_countmissing = 0
 
-quietly ds hhid h_time2 h_time1 h_date fkey lastsavetime lastsavelogonname firstsavetime firstsavelogonname globalrecordid recstatus uniquekey h_deviceid2, not
+quietly ds hhid h_time2 h_time1 h_date fkey globalrecordid h_deviceid2, not
 local allvar `r(varlist)'
 
 
@@ -5645,7 +6855,7 @@ quietly forvalues i = 1(1) `=_N' {
 local i 1
 gen h_last = "AllAnswered"
 
-quietly ds hhid h_countmissing h_last h_time2 h_time1 h_date fkey lastsavetime lastsavelogonname firstsavetime firstsavelogonname globalrecordid recstatus uniquekey h_deviceid2, not
+quietly ds hhid h_countmissing h_last h_time2 h_time1 h_date fkey globalrecordid h_deviceid2, not
 local allvar `r(varlist)'
 
 

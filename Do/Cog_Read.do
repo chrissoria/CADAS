@@ -648,24 +648,24 @@ drop c_82
 export delimited using "Cognitive_Child.csv", replace
 
 if `country' == 0 {
-    export delimited using "../PR_in/Cognitive_Child.csv", replace
+    export delimited using "../PR_in/Cognitive_Child_String.csv", replace
 }
 else if `country' == 1 {
-    export delimited using "../DR_in/Cognitive_Child.csv", replace
+    export delimited using "../DR_in/Cognitive_Child_String.csv", replace
 }
 else if `country' == 2 {
-    export delimited using "../CUBA_in/Cognitive_Child.csv", replace
+    export delimited using "../CUBA_in/Cognitive_Child_String.csv", replace
 }
 
 
 if `country' == 0 {
-    insheet using "../PR_in/Cognitive_Child.csv", comma names clear
+    insheet using "../PR_in/Cognitive_Child_String.csv", comma names clear
 }
 else if `country' == 1 {
-    insheet using "../DR_in/Cognitive_Child.csv", comma names clear
+    insheet using "../DR_in/Cognitive_Child_String.csv", comma names clear
 }
 else if `country' == 2 {
-    insheet using "../CUBA_in/Cognitive_Child.csv", comma names clear
+    insheet using "../CUBA_in/Cognitive_Child_String.csv", comma names clear
 }
 
 *now, we convert all to numeric and add value labels

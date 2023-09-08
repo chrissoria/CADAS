@@ -3,7 +3,7 @@ set more off
 capture log close
 log using Rosters, text replace
 
-local country = 2
+local country = 1
 
 if `country' == 0 {
     cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
@@ -27,8 +27,6 @@ else if `country' == 2 {
 
 // The only key variable here is the GPS coordinates. 
 // There's no need label these
- 
-   drop uniquekey recstatus firstsavelogonname lastsavelogonname lastsavetime
   
     save Roster_Parent.dta, replace
     
@@ -43,14 +41,40 @@ else if `country' == 1 {
 else if `country' == 2 {
     insheet using "../CUBA_in/Participants.csv", comma names clear
 }
+
+
   
    drop globalrecordid
    rename fkey globalrecordid
-   drop uniquekey recstatus firstsavelogonname lastsavelogonname lastsavetime
    
     label variable pr_2_1 "¿Cuál es la relación de este miembro con el participante (#1)?"
    
-   label define PR_2_1 0 "si mismo" ///
+rename pr_2_1 PR_2_1
+   
+    label define PR_2_1 0 "0- si mismo" ///
+    1 "1- esposo/a, pareja" ///
+    2 "2- hijo(a)" ///
+    3 "3- hijastro(a)" ///
+    4 "4- hijo(a) adoptivo(a)" ///
+    5 "5- hijo(a) de crianza" ///
+    6 "6- madre/padre" ///
+    7 "7- suegro(a)" ///
+    8 "8- abuelo(a)" ///
+    9 "9- nieto(a)" ///
+    10 "10- bisnieto(a)" ///
+    11 "11- yerno/nuera" ///
+    12 "12- hermano(a)/hermanastro(a)" ///
+    13 "13- cuñado(a)/concuños/primos" ///
+    14 "14- tío(a)" ///
+    15 "15- sobrino(a)" ///
+    16 "16- otro pariente" ///
+    17 "17- no pariente" ///
+    88 "88- no responde" ///
+    99 "99- no sabe"
+    
+encode PR_2_1, gen(pr_2_1) label(PR_2_1)
+   
+   label define PR_2_1_ 0 "si mismo" ///
     1 "esposo/a, pareja" ///
     2 "hijo(a)" ///
     3 "hijastro(a)" ///
@@ -71,57 +95,29 @@ else if `country' == 2 {
     88 "no responde" ///
     99 "no sabe"
 
-   label values pr_2_1 PR_2_1
+   label values pr_2_1 PR_2_1_
+   
+drop PR_2_1
    
    label variable pr_2_2 "¿Cuál es la relación de este miembro con el participante (#2)?"
    
-   label define PR_2_2 0 "si mismo" ///
-    1 "esposo/a, pareja" ///
-    2 "hijo(a)" ///
-    3 "hijastro(a)" ///
-    4 "hijo(a) adoptivo(a)" ///
-    5 "hijo(a) de crianza" ///
-    6 "madre/padre" ///
-    7 "suegro(a)" ///
-    8 "abuelo(a)" ///
-    9 "nieto(a)" ///
-    10 "bisnieto(a)" ///
-    11 "yerno/nuera" ///
-    12 "hermano(a)/hermanastro(a)" ///
-    13 "cuñado(a)/concuños/primos" ///
-    14 "tío(a)" ///
-    15 "sobrino(a)" ///
-    16 "otro pariente" ///
-    17 "no pariente" ///
-    88 "no responde" ///
-    99 "no sabe"
-
-   label values pr_2_2 PR_2_2
+rename pr_2_2 PR_2_2
    
+encode PR_2_2, gen(pr_2_2) label(PR_2_1)
+   
+label values pr_2_2 PR_2_1_
+   
+drop PR_2_2  
+ 
    label variable pr_2_3 "¿Cuál es la relación de este miembro con el participante (#3)?"
    
-   label define PR_2_3 0 "si mismo" ///
-    1 "esposo/a, pareja" ///
-    2 "hijo(a)" ///
-    3 "hijastro(a)" ///
-    4 "hijo(a) adoptivo(a)" ///
-    5 "hijo(a) de crianza" ///
-    6 "madre/padre" ///
-    7 "suegro(a)" ///
-    8 "abuelo(a)" ///
-    9 "nieto(a)" ///
-    10 "bisnieto(a)" ///
-    11 "yerno/nuera" ///
-    12 "hermano(a)/hermanastro(a)" ///
-    13 "cuñado(a)/concuños/primos" ///
-    14 "tío(a)" ///
-    15 "sobrino(a)" ///
-    16 "otro pariente" ///
-    17 "no pariente" ///
-    88 "no responde" ///
-    99 "no sabe"
+rename pr_2_3 PR_2_3
+   
+encode PR_2_3, gen(pr_2_3) label(PR_2_1)
 
-   label values pr_2_3 PR_2_3
+label values pr_2_3 PR_2_1
+
+drop PR_2_3
 
    label variable pr_3 "¿Es hombre o mujer?"
    
@@ -141,8 +137,20 @@ else if `country' == 2 {
    encode PR_3, gen(pr_3) label (PR_3)
    
    label variable pr_4 "¿Cuántos años tiene? Registrar en años (edad aproximada si no se sabe exactamente)"
+ 
+label define PR_5 0 "0- ninguno" ///
+    1 "1- de 1 a 5" ///
+    2 "2- de 6 a 8" ///
+    3 "3- de 9 a 12" ///
+    4 "4- más que 12" ///
+    8 "8- no responde" ///
+    9 "9- no sabe"   
+    
+rename pr_5 PR_5
+
+encode PR_5, gen(pr_5) label(PR_5)
    
-   label define PR_5 0 "ninguno" ///
+   label define PR_5_ 0 "ninguno" ///
     1 "de 1 a 5" ///
     2 "de 6 a 8" ///
     3 "de 9 a 12" ///
@@ -150,9 +158,22 @@ else if `country' == 2 {
     8 "no responde" ///
     9 "no sabe"
     
-    label values pr_5 PR_5
+    label values pr_5 PR_5_
 
-    label define PR_6 1 "empleo pagado a tiempo completo" ///
+    label define PR_6 1 "1- empleo pagado a tiempo completo" ///
+    2 "2- empleo pagado a tiempo parcial" ///
+    3 "3- desempleado (buscando trabajo)" ///
+    4 "4- estudiante" ///
+    5 "5- ama/amo de casa" ///
+    6 "6- retirado" ///
+    8 "8- no responde" ///
+    9 "9- no sabe"
+
+rename pr_6 PR_6
+
+encode PR_6, gen(pr_6) label(PR_6)
+
+label define PR_6_ 1 "empleo pagado a tiempo completo" ///
     2 "empleo pagado a tiempo parcial" ///
     3 "desempleado (buscando trabajo)" ///
     4 "estudiante" ///
@@ -161,7 +182,9 @@ else if `country' == 2 {
     8 "no responde" ///
     9 "no sabe"
     
-    label values pr_6 PR_6
+    label values pr_6 PR_6_
+    
+drop PR_6
     
     save Participants.dta, replace
     
@@ -179,11 +202,35 @@ else if `country' == 2 {
   
    drop globalrecordid
    rename fkey globalrecordid
-   drop uniquekey recstatus firstsavelogonname lastsavelogonname lastsavetime
    
    label variable r_2_1 "¿Cuál es la relación de este miembro con el participante (#1)?"
    
-   label define R_2_1 0 "si mismo" ///
+rename r_2_1 R_2_1
+   
+   label define R_2_1 0 "0- si mismo" ///
+    1 "1- esposo/a, pareja" ///
+    2 "2- hijo(a)" ///
+    3 "3- hijastro(a)" ///
+    4 "4- hijo(a) adoptivo(a)" ///
+    5 "5- hijo(a) de crianza" ///
+    6 "6- madre/padre" ///
+    7 "7- suegro(a)" ///
+    8 "8- abuelo(a)" ///
+    9 "9- nieto(a)" ///
+    10 "10- bisnieto(a)" ///
+    11 "11- yerno/nuera" ///
+    12 "12- hermano(a)/hermanastro(a)" ///
+    13 "13- cuñado(a)/concuños/primos" ///
+    14 "14- tío(a)" ///
+    15 "15- sobrino(a)" ///
+    16 "16- otro pariente" ///
+    17 "17- no pariente" ///
+    88 "88- no responde" ///
+    99 "99- no sabe"
+    
+encode R_2_1, gen(r_2_1) label(R_2_1)
+
+label define R_2_1_ 0 "si mismo" ///
     1 "esposo/a, pareja" ///
     2 "hijo(a)" ///
     3 "hijastro(a)" ///
@@ -204,55 +251,29 @@ else if `country' == 2 {
     88 "no responde" ///
     99 "no sabe"
 
-   label values r_2_1 R_2_1
+   label values r_2_1 R_2_1_
+   
+drop R_2_1
    
    label variable r_2_2 "¿Cuál es la relación de este miembro con el participante (#2)?"
    
-   label define R_2_2 0 "si mismo" ///
-    1 "esposo/a, pareja" ///
-    2 "hijo(a)" ///
-    3 "hijastro(a)" ///
-    4 "hijo(a) adoptivo(a)" ///
-    5 "hijo(a) de crianza" ///
-    6 "madre/padre" ///
-    7 "suegro(a)" ///
-    8 "abuelo(a)" ///
-    9 "nieto(a)" ///
-    10 "bisnieto(a)" ///
-    11 "yerno/nuera" ///
-    12 "hermano(a)/hermanastro(a)" ///
-    13 "cuñado(a)/concuños/primos" ///
-    14 "tío(a)" ///
-    15 "sobrino(a)" ///
-    16 "otro pariente" ///
-    17 "no pariente" ///
-    88 "no responde" ///
-    99 "no sabe"
+rename r_2_2 R_2_2
 
-   label values r_2_2 R_2_2
+encode R_2_2, gen(r_2_2) label(R_2_1)
+
+label values r_2_2 R_2_1_
+
+drop R_2_2
    
    label variable r_2_3 "¿Cuál es la relación de este miembro con el participante (#3)?"
    
-   label define R_2_3 0 "si mismo" ///
-    1 "esposo/a, pareja" ///
-    2 "hijo(a)" ///
-    3 "hijastro(a)" ///
-    4 "hijo(a) adoptivo(a)" ///
-    5 "hijo(a) de crianza" ///
-    6 "madre/padre" ///
-    7 "suegro(a)" ///
-    8 "abuelo(a)" ///
-    9 "nieto(a)" ///
-    10 "bisnieto(a)" ///
-    11 "yerno/nuera" ///
-    12 "hermano(a)/hermanastro(a)" ///
-    13 "cuñado(a)/concuños/primos" ///
-    14 "tío(a)" ///
-    15 "sobrino(a)" ///
-    16 "otro pariente" ///
-    17 "no pariente" ///
-    88 "no responde" ///
-    99 "no sabe"
+rename r_2_3 R_2_3
+
+encode R_2_3, gen(r_2_3) label(R_2_1)
+
+label values r_2_3 R_2_1_
+
+drop R_2_3
 
    label values r_2_3 R_2_3
 
@@ -275,7 +296,19 @@ else if `country' == 2 {
    
    label variable r_4 "¿Cuántos años tiene? Registrar en años (edad aproximada si no se sabe exactamente)"
    
-   label define R_5 0 "ninguno" ///
+rename r_5 R_5
+   
+   label define R_5 0 "0- ninguno" ///
+    1 "1- de 1 a 5" ///
+    2 "2- de 6 a 8" ///
+    3 "3- de 9 a 12" ///
+    4 "4- más que 12" ///
+    8 "8- no responde" ///
+    9 "9- no sabe"
+    
+encode R_5, gen(r_5) label (R_5)
+
+label define R_5_ 0 "ninguno" ///
     1 "de 1 a 5" ///
     2 "de 6 a 8" ///
     3 "de 9 a 12" ///
@@ -283,9 +316,24 @@ else if `country' == 2 {
     8 "no responde" ///
     9 "no sabe"
     
-    label values r_5 R_5
+label values r_5 R_5_
+    
+drop R_5
 
-    label define R_6 1 "empleo pagado a tiempo completo" ///
+rename r_6 R_6
+
+label define R_6 1 "1- empleo pagado a tiempo completo" ///
+    2 "2- empleo pagado a tiempo parcial" ///
+    3 "3- desempleado (buscando trabajo)" ///
+    4 "4- estudiante" ///
+    5 "5- ama/amo de casa" ///
+    6 "6- retirado" ///
+    8 "8- no responde" ///
+    9 "9- no sabe"
+    
+encode R_6, gen(r_6) label(R_6)
+
+    label define R_6_ 1 "empleo pagado a tiempo completo" ///
     2 "empleo pagado a tiempo parcial" ///
     3 "desempleado (buscando trabajo)" ///
     4 "estudiante" ///
@@ -294,7 +342,9 @@ else if `country' == 2 {
     8 "no responde" ///
     9 "no sabe"
     
-    label values r_6 R_6
+    label values r_6 R_6_
+    
+drop R_6
     
     save NonParticipants.dta, replace
     
@@ -312,7 +362,6 @@ else if `country' == 2 {
      
     drop globalrecordid
    rename fkey globalrecordid
-   drop uniquekey recstatus firstsavelogonname lastsavelogonname lastsavetime
    
    label variable cr_2 "2. ¿Cuál es el número de código de su madre?"
    
@@ -337,7 +386,19 @@ else if `country' == 2 {
    
    label variable cr_5 "¿Cuántos años tiene? Registrar en años (edad aproximada si no se sabe exactamente)"
    
-   label define CR_6 0 "ninguno" ///
+rename cr_6 CR_6
+   
+   label define CR_6 0 "0- ninguno" ///
+    1 "1- de 1 a 5" ///
+    2 "2- de 6 a 8" ///
+    3 "3- de 9 a 12" ///
+    4 "4- más que 12" ///
+    8 "8- no responde" ///
+    9 "9- no sabe"
+    
+encode CR_6, gen(cr_6) label(CR_6)
+
+label define CR_6_ 0 "ninguno" ///
     1 "de 1 a 5" ///
     2 "de 6 a 8" ///
     3 "de 9 a 12" ///
@@ -345,9 +406,23 @@ else if `country' == 2 {
     8 "no responde" ///
     9 "no sabe"
     
-    label values cr_6 CR_6
+    label values cr_6 CR_6_
     
-    label define CR_7 1 "dentro de 15 minutos de aquí" ///
+drop CR_6
+
+rename cr_7 CR_7
+    
+    label define CR_7 1 "1- dentro de 15 minutos de aquí" ///
+    2 "2- dentro de una hora de aquí" ///
+    3 "3- otra parte del país" ///
+    4 "4- otra parte, estados unidos" ///
+    5 "5- otro país" ///
+    8 "8- no responde" ///
+    9 "9- no sabe"
+    
+encode CR_7, gen(cr_7) label(CR_7)
+
+label define CR_7_ 1 "dentro de 15 minutos de aquí" ///
     2 "dentro de una hora de aquí" ///
     3 "otra parte del país" ///
     4 "otra parte, estados unidos" ///
@@ -355,7 +430,9 @@ else if `country' == 2 {
     8 "no responde" ///
     9 "no sabe"
     
-    label values cr_7 CR_7
+    label values cr_7 CR_7_
+    
+drop CR_7
 
     save NonResidentChildren.dta, replace
     
@@ -455,5 +532,3 @@ drop _merge
   
  log close
  exit, clear
- 
- 

@@ -1,100 +1,200 @@
 generate P2_1 = cond(p2_1 ==  0, "no", cond(p2_1 ==  1, "si", ""))
 
+drop p2_1
+
 generate P6 = cond(p6 ==  0, "mirada hacia arriba normal", cond(p6 ==  1, "mirada hacia arriba limitada", cond(p6 ==  2, "no puede o casi no puede mirar hacia arriba", cond(p6 ==  3, "no hizo la prueba", ""))))
+
+drop p6
 
 generate P7_1 = cond(p7_1 ==  0, "1-4 golpes", cond(p7_1 ==  1, "5 golpes", cond(p7_1 ==  2, "6-9 golpes", cond(p7_1 ==  3, "10+ golpes", cond(p7_1 ==  4, "no intentó la prueba", "")))))
 
+drop p7_1
+
 generate P7_2 = cond(p7_2 ==  0, "no hace trompa (protruye los labios)", cond(p7_2 ==  1, "trompa presente", cond(p7_2 ==  2, "no pudo hacerlo", "")))
+
+drop p7_2
 
 generate P7_3 = cond(p7_3 ==  0, "no hay contracción facial", cond(p7_3 ==  1, "reflejo de contracción facial presente", cond(p7_3 ==  2, "no pudo hacerlo", "")))
 
+drop p7_3
+
 generate P8_1 = cond(p8_1 ==  0, "no hay temblor", cond(p8_1 ==  1, "lento", cond(p8_1 ==  2, "medio", cond(p8_1 ==  3, "rápido", cond(p8_1 ==  4, "no pudo hacerlo", "")))))
+
+drop p8_1
 
 generate P8_2 = cond(p8_2 ==  0, "no hay temblor", cond(p8_2 ==  1, "lento", cond(p8_2 ==  2, "medio", cond(p8_2 ==  3, "rápido", cond(p8_2 ==  4, "no pudo hacerlo", "")))))
 
+drop p8_2
+
 generate P8_3 = cond(p8_3 ==  0, "no hay temblor", cond(p8_3 ==  1, "lento", cond(p8_3 ==  2, "medio", cond(p8_3 ==  3, "rápido", cond(p8_3 ==  4, "no pudo hacerlo", "")))))
+
+drop p8_3
 
 generate P9_1 = cond(p9_1 ==  0, "no hay desviación", cond(p9_1 ==  1, "desviación presente por causas neurológicas", cond(p9_1 ==  2, "desviación presente por otras causas", cond(p9_1 ==  3, "no intentó la prueba", ""))))
 
+drop p9_1
+
 generate P9_2 = cond(p9_2 ==  0, "derecho", cond(p9_2 ==  1, "izquierdo", cond(p9_2 ==  2, "no pudo hacerlo", cond(p9_2 ==  3, "no intentó la prueba", ""))))
+
+drop p9_2
 
 generate P10_1_1_1 = cond(p10_1_1_1 ==  0, "tono normal", cond(p10_1_1_1 ==  1, "tono ligeramente aumentado", cond(p10_1_1_1 ==  2, "tono muy aumentado", cond(p10_1_1_1 ==  3, "no intentó la prueba", ""))))
 
+drop p10_1_1_1
+
 generate P10_1_1_2 = cond(p10_1_1_2 ==  0, "tono normal", cond(p10_1_1_2 ==  1, "tono ligeramente aumentado", cond(p10_1_1_2 ==  2, "tono muy aumentado", cond(p10_1_1_2 ==  3, "no intentó la prueba", ""))))
+
+drop p10_1_1_2
 
 generate P10_1_2_1 = cond(p10_1_2_1 ==  0, "tono normal", cond(p10_1_2_1 ==  1, "tono ligeramente aumentado", cond(p10_1_2_1 ==  2, "tono muy aumentado", cond(p10_1_2_1 ==  3, "no intentó la prueba", ""))))
 
+drop p10_1_2_1
+
 generate P10_1_2_2 = cond(p10_1_2_2 ==  0, "tono normal", cond(p10_1_2_2 ==  1, "tono ligeramente aumentado", cond(p10_1_2_2 ==  2, "tono muy aumentado", cond(p10_1_2_2 ==  3, "no intentó la prueba", ""))))
+
+drop p10_1_2_2
 
 generate P10_2_1_1 = cond(p10_2_1_1 ==  0, "tono normal", cond(p10_2_1_1 ==  1, "tono ligeramente aumentado", cond(p10_2_1_1 ==  2, "tono muy aumentado", cond(p10_2_1_1 ==  3, "no intentó la prueba", ""))))
 
+drop p10_2_1_1
+
 generate P10_2_1_2 = cond(p10_2_1_2 ==  0, "tono normal", cond(p10_2_1_2 ==  1, "tono ligeramente aumentado", cond(p10_2_1_2 ==  2, "tono muy aumentado", cond(p10_2_1_2 ==  3, "no intentó la prueba", ""))))
+
+drop p10_2_1_2
 
 generate P10_2_2_1 = cond(p10_2_2_1 ==  0, "tono normal", cond(p10_2_2_1 ==  1, "tono ligeramente aumentado", cond(p10_2_2_1 ==  2, "tono muy aumentado", cond(p10_2_2_1 ==  3, "no intentó la prueba", ""))))
 
+drop p10_2_2_1
+
 generate P10_2_2_2 = cond(p10_2_2_2 ==  0, "tono normal", cond(p10_2_2_2 ==  1, "tono ligeramente aumentado", cond(p10_2_2_2 ==  2, "tono muy aumentado", cond(p10_2_2_2 ==  3, "no intentó la prueba", ""))))
+
+drop p10_2_2_2
 
 generate P11_1 = cond(p11_1 ==  0, "derecha", cond(p11_1 ==  1, "izquierda", cond(p11_1 ==  2, "no responde", cond(p11_1 ==  3, "no sabe", ""))))
 
-generate P11_2_1 = cond(p11_2_1 ==  0, "no limitaciones", cond(p11_2_1 ==  1, "limitaciones (lentitud y/o torpeza)", cond(p11_2_1 ==  2, "no pudo hacerlo", "")))
+drop p11_1
 
-generate P11_2_2 = cond(p11_2_2 ==  0, "no limitaciones", cond(p11_2_2 ==  1, "limitaciones (lentitud y/o torpeza)", cond(p11_2_2 ==  2, "no pudo hacerlo", "")))
+generate P11_2_1 = cond(p11_2_1 ==  0, "no limitaciones", cond(p11_2_1 ==  1, "limitaciones (lentitud y/o torpeza)", cond(p11_2_1 ==  2, "no intentó la prueba", "")))
+
+drop p11_2_1
+
+generate P11_2_2 = cond(p11_2_2 ==  0, "no limitaciones", cond(p11_2_2 ==  1, "limitaciones (lentitud y/o torpeza)", cond(p11_2_2 ==  2, "no intentó la prueba", "")))
+
+drop p11_2_2
 
 generate P11_3_1_1 = cond(p11_3_1_1 ==  0, "velocidad normal", cond(p11_3_1_1 ==  1, "lento", cond(p11_3_1_1 ==  2, "no intentó la prueba", "")))
 
+drop p11_3_1_1
+
 generate P11_3_1_2 = cond(p11_3_1_2 ==  0, "velocidad normal", cond(p11_3_1_2 ==  1, "lento", cond(p11_3_1_2 ==  2, "no intentó la prueba", "")))
+
+drop p11_3_1_2
 
 generate P11_3_2_1 = cond(p11_3_2_1 ==  0, "coordinación normal", cond(p11_3_2_1 ==  1, "torpe descoordinado", cond(p11_3_2_1 ==  2, "no intentó la prueba", "")))
 
+drop p11_3_2_1
+
 generate P11_3_2_2 = cond(p11_3_2_2 ==  0, "coordinación normal", cond(p11_3_2_2 ==  1, "torpe descoordinado", cond(p11_3_2_2 ==  2, "no intentó la prueba", "")))
+
+drop p11_3_2_2
 
 generate P12_1 = cond(p12_1 ==  2, "no intentó la prueba", "")))
 
+drop p12_1
+
 generate P12_2_1 = cond(p12_2_1 ==  0, "requiere sólo una demostración", cond(p12_2_1 ==  1, "requiere 2-3 demostraciones", cond(p12_2_1 ==  2, "requiere 4-5 demostraciones", cond(p12_2_1 ==  3, "incapaz de aprender correctamente con 5 demostraciones", cond(p12_2_1 ==  4, "no intentó la prueba", "")))))
 
-generate P12_2_2 = cond(p12_2_2 ==  0, "5 secuencias correctas", cond(p12_2_2 ==  1, "5 secuencias realizadas con un error", cond(p12_2_2 ==  2, "5 secuencias después de una re-demostración", cond(p12_2_2 ==  3, "incapaz de completar 5 secuencias correctamente (incluye a los pacientes que tienen 3 en aprendizaje)", cond(p12_2_2 ==  4, "no intentó la prueba", "")))))
+drop p12_2_1
 
-generate P12_3_1 = cond(p12_3_1 ==  0, "requiere sólo una demostración", cond(p12_3_1 ==  1, "requiere 2-3 demostraciones", cond(p12_3_1 ==  2, "requiere 4-5 demostraciones", cond(p12_3_1 ==  3, "incapaz de aprender correctamente con 5 demostraciones", cond(p12_3_1 ==  4, "no intentó la prueba", "")))))
+generate P12_2_2 = cond(p12_2_2 ==  0, "5 secuencias correctas", cond(p12_2_2 ==  1, "5 secuencias realizadas con un error", cond(p12_2_2 ==  2, "5 secuencias después de una re-demostración", cond(p12_2_2 ==  3, "incapaz de completar 5 secuencias correctamente", cond(p12_2_2 ==  4, "no intentó la prueba", "")))))
 
-generate P12_3_2 = cond(p12_3_2 ==  0, "5 secuencias correctas", cond(p12_3_2 ==  1, "5 secuencias realizadas con un error", cond(p12_3_2 ==  2, "5 secuencias después de una re-demostración", cond(p12_3_2 ==  3, "incapaz de completar 5 secuencias correctamente (incluye a los pacientes que tienen 3 en aprendizaje)", cond(p12_3_2 ==  4, "no intentó la prueba", "")))))
+drop p12_2_2
+
+generate P12_3_1 = cond(p12_3_1 ==  0, "requiere sólo una demostración", cond(p12_3_1 ==  1, "requiere 2-3 demostraciones", cond(p12_3_1 ==  2, "requiere 4-5 demostraciones", cond(p12_3_1 ==  3, "incapaz de aprender correctamente luego de 5 demostraciones", cond(p12_3_1 ==  4, "no intentó la prueba", "")))))
+
+drop p12_3_1
+
+generate P12_3_2 = cond(p12_3_2 ==  0, "5 secuencias correctas", cond(p12_3_2 ==  1, "5 secuencias realizadas con un error", cond(p12_3_2 ==  2, "5 secuencias después de una re-demostración", cond(p12_3_2 ==  3, "incapaz de completar las 5 secuencias correctamente", cond(p12_3_2 ==  4, "no intentó la prueba", "")))))
+
+drop p12_3_2
 
 generate P13_1 = cond(p13_1 ==  0, "ausente", cond(p13_1 ==  1, "normal (+)", cond(p13_1 ==  2, "normal rápido (2+)", cond(p13_1 ==  3, "patológicamente rápido (3+)", cond(p13_1 ==  4, "no intentó la prueba", "")))))
 
+drop p13_1
+
 generate P13_2 = cond(p13_2 ==  0, "ausente", cond(p13_2 ==  1, "normal (+)", cond(p13_2 ==  2, "normal rápido (2+)", cond(p13_2 ==  3, "patológicamente rápido (3+)", cond(p13_2 ==  4, "no intentó la prueba", "")))))
+
+drop p13_2
 
 generate P13_3 = cond(p13_3 ==  0, "ausente", cond(p13_3 ==  1, "normal (+)", cond(p13_3 ==  2, "normal rápido (2+)", cond(p13_3 ==  3, "patológicamente rápido (3+)", cond(p13_3 ==  4, "no intentó la prueba", "")))))
 
+drop p13_3
+
 generate P13_4 = cond(p13_4 ==  0, "ausente", cond(p13_4 ==  1, "normal (+)", cond(p13_4 ==  2, "normal rápido (2+)", cond(p13_4 ==  3, "patológicamente rápido (3+)", cond(p13_4 ==  4, "no intentó la prueba", "")))))
+
+drop p13_4
 
 generate P13_5 = cond(p13_5 ==  0, "ausente", cond(p13_5 ==  1, "normal (+)", cond(p13_5 ==  2, "normal rápido (2+)", cond(p13_5 ==  3, "patológicamente rápido (3+)", cond(p13_5 ==  4, "no intentó la prueba", "")))))
 
+drop p13_5
+
 generate P2_3 = cond(p2_3 ==  0, "no", cond(p2_3 ==  1, "si", ""))
+
+drop p2_3
 
 generate P14_3_1 = cond(p14_3_1 ==  0, "balanceo de brazos normal", cond(p14_3_1 ==  1, "balanceo de brazos reducido", cond(p14_3_1 ==  2, "no balanceo de brazos", cond(p14_3_1 ==  3, "no intentó por incapacidad", cond(p14_3_1 ==  4, "no pudo por otra razon", "")))))
 
+drop p14_3_1
+
 generate P14_3_2 = cond(p14_3_2 ==  0, "balanceo de brazos normal", cond(p14_3_2 ==  1, "balanceo de brazos reducido", cond(p14_3_2 ==  2, "no balanceo de brazos", cond(p14_3_2 ==  3, "no intentó por incapacidad", cond(p14_3_2 ==  4, "no pudo por otra razon", "")))))
+
+drop p14_3_2
 
 generate P14_4 = cond(p14_4 ==  0, "marcha normal", cond(p14_4 ==  1, "inestable marcha de base ancha", cond(p14_4 ==  2, "muy instable marcha de base ancha", cond(p14_4 ==  3, "no intentó por incapacidad", cond(p14_4 ==  4, "no pudo por otra razon", "")))))
 
+drop p14_4
+
 generate P14_5 = cond(p14_5 ==  0, "velocidad normal", cond(p14_5 ==  1, "algo lentos", cond(p14_5 ==  2, "muy lentos", cond(p14_5 ==  3, "no intentó por incapacidad", cond(p14_5 ==  4, "no pudo por otra razon", "")))))
+
+drop p14_5
 
 generate P15_A = cond(p15_a ==  0, "no", cond(p15_a ==  1, "si", ""))
 
+drop p15_a
+
 generate P16_1 = cond(p16_1 ==  0, "no", cond(p16_1 ==  1, "si", ""))
+
+drop p16_1
 
 generate P16_2 = cond(p16_2 ==  0, "no", cond(p16_2 ==  1, "si", cond(p16_2 ==  2, "no responde", cond(p16_2 ==  3, "no sabe", ""))))
 
+drop p16_2
+
 generate P17_3 = cond(p17_3 ==  0, "no tiene problemas", cond(p17_3 ==  1, "algunos problemas", cond(p17_3 ==  2, "muchos problemas", cond(p17_3 ==  3, "no responde", cond(p17_3 ==  4, "no sabe", "")))))
+
+drop p17_3
 
 generate P19_1 = cond(p19_1 ==  0, "no pudo", cond(p19_1 ==  1, "pudo pero necesitó ayudarse con las manos", cond(p19_1 ==  2, "pudo sin ayuda de las manos", cond(p19_1 ==  3, "no intentó", ""))))
 
+drop p19_1
+
 generate P20 = cond(p20 ==  0, "en cama / confinado/a a la cama", cond(p20 ==  1, "confinado/a a la silla (movilidad limitada puede pasarse de la silla a la cama)", cond(p20 ==  2, "confinada/o a la casa (movilidad limitada se moviliza por la casa exclusivamente)", cond(p20 ==  3, "movilidad limitada fuera de la casa", cond(p20 ==  4, "movilidad total dentro y fuera de la casa", cond(p20 ==  5, "no sabe", ""))))))
+
+drop p20
 
 generate P21_1 = cond(p21_1 ==  0, "no", cond(p21_1 ==  1, "si", cond(p21_1 ==  2, "no responde", "")))
 
+drop p21_1
+
 generate P21_2 = cond(p21_2 ==  0, "excelente", cond(p21_2 ==  1, "muy buena", cond(p21_2 ==  2, "buena", cond(p21_2 ==  3, "regular", cond(p21_2 ==  4, "mala", cond(p21_2 ==  5, "ciego", cond(p21_2 ==  6, "no responde", cond(p21_2 ==  7, "no sabe", ""))))))))
+
+drop p21_2
 
 generate P22_1 = cond(p22_1 ==  0, "no", cond(p22_1 ==  1, "si", cond(p22_1 ==  2, "no responde", "")))
 
-generate P22_2 = cond(p22_2 ==  0, "excelente", cond(p22_2 ==  1, "muy buena", cond(p22_2 ==  2, "buena", cond(p22_2 ==  3, "regular", cond(p22_2 ==  4, "mala", cond(p22_2 ==  5, "ciego", cond(p22_2 ==  6, "no responde", cond(p22_2 ==  7, "no sabe", ""))))))))
+drop p22_1
+
+generate P22_2 = cond(p22_2 ==  0, "excelente", cond(p22_2 ==  1, "muy buena", cond(p22_2 ==  2, "buena", cond(p22_2 ==  3, "regular", cond(p22_2 ==  4, "mala", cond(p22_2 ==  5, "sordo", cond(p22_2 ==  6, "no responde", cond(p22_2 ==  7, "no sabe", ""))))))))
+
+drop p22_2
 
