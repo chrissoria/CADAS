@@ -26,10 +26,10 @@ else if `country' == 2 {
     insheet using "../CUBA_in/InformationDoor.csv", comma names clear
 }
    
+
    
    rename globalrecordid globalrecordid1
    rename fkey globalrecordid
-   drop uniquekey recstatus firstsavelogonname lastsavelogonname lastsavetime firstsavetime
    
    label variable d_1 "Relation to the household"
  
@@ -57,32 +57,15 @@ else if `country' == 2 {
    
    label variable d_15 "15. Cual es la razón por no poder hacer la entrevista? [Marque la primera respuesta que corresponda]"
    
-   rename d_0 (D_0)
-   
-   capture confirm numeric variable D_0
-   if !_rc{
-       tostring D_0, replace
-   } 
-   
-   gen D_0_trimmed = ustrlower(ustrtrim(D_0))
-   replace D_0 = D_0_trimmed
-   drop D_0_trimmed
-   
    label define D_0 .a"." 0 "no"1 "si"
-   
-   encode D_0, gen(d_0) label (D_0)
 
-   rename d_1 D_1
-   capture confirm numeric variable D_1
-   if !_rc{
-       tostring D_1, replace
-   } 
-   gen D_1_trimmed = ustrlower(ustrtrim(D_1))
-   replace D_1 = D_1_trimmed
-   drop D_1_trimmed
+label values d_0 D_0
 
-   label define D_1 .a"." 1 "miembro del hogar"2 "vecino"3 "otro"8 "no responde"9 "no sabe"
-   encode D_1, gen(d_1) label (D_1)
+recode d_1 (0=1) (1=2) (2=3) (3=8) (4=9)
+
+label define D_1 .a"." 1 "miembro del hogar"2 "vecino"3 "otro"8 "no responde"9 "no sabe"
+
+label values d_1 D_1
    
    rename d_15 D_15
    capture confirm numeric variable D_15
@@ -113,7 +96,6 @@ else if `country' == 2 {
    
    drop globalrecordid
    rename fkey globalrecordid1
-   drop uniquekey recstatus firstsavelogonname lastsavelogonname lastsavetime firstsavetime
     
    label variable d_7_1 "7.1 Edad aproximada"
 
@@ -180,16 +162,15 @@ else if `country' == 2 {
    clear
    
     if `country' == 0 {
-    insheet using "../PR_in/Door_Parent.csv", comma names clear
+    insheet using "../PR_in/Door.csv", comma names clear
 }
 else if `country' == 1 {
-    insheet using "../DR_in/Door_Parent.csv", comma names clear
+    insheet using "../DR_in/Door.csv", comma names clear
 }
 else if `country' == 2 {
-    insheet using "../CUBA_in/Door_Parent.csv", comma names clear
+    insheet using "../CUBA_in/Door.csv", comma names clear
 }
    
-   drop uniquekey recstatus firstsavelogonname lastsavelogonname lastsavetime fkey firstsavetime
    
    save Door.dta, replace
    
