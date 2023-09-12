@@ -663,6 +663,8 @@ generate I_LHAS_54 = cond(i_lhas_54 ==  0, "razonable", cond(i_lhas_54 ==  1, "a
 
 drop i_lhas_54
 
+drop v1
+
 
 if `country' == 0 {
     export delimited using "../PR_in/Infor_Child_String.csv", replace
@@ -2482,7 +2484,7 @@ label values i_b7 I_B7_
 
 rename i_c7_1 I_C7_1
 
-label define I_C7_1_1 .a "." 1 "1- profesional ejecutivo" 2 "2- oficinista" 3 "3- vendedor minorista" 4 "4- agricultor independiente" 5 "5- trabajador agricola" 6 "6- trabajador domestico" 7 "7- otros servicios" 8 "8- trabajador especializado" 9 "9- trabajador no especializado" 10 "10- trabajos informales" 13 "13- otros" 88 "88- no responde" 99 "99- no sabe"
+label define I_C7_1 .a "." 1 "1 - profesional ejecutivo" 2 "2 - oficinista" 3 "3 - vendedor, minorista" 4 "4 - agricultor independiente" 5 "5 - trabajador agricola" 6 "6 - trabajador domestico" 7 "7 - otros servicios" 8 "8 - trabajador especializado" 9 "9 - trabajador no especializado" 10 "10 - trabajos informales" 13 "13- otros" 88 "88 - no responde" 99 "99 - no sabe"
 
 encode I_C7_1, gen(i_c7_1) label (I_C7_1)
 
@@ -2494,7 +2496,7 @@ drop I_C7_1
 
 rename i_c8a I_C8A
 
-label define I_C8A .a "." 1 "1- todo el tiempo enfocado exclusivamente en su (xxx)" 2 "2- la mayor parte del tiempo enfocado en su (xxx)" 3 "3- mitad y mitad" 4 "4- la mayor parte del tiempo haciendo otras tareas u ocio" 8 "8- no responde" 9 "9- no sabe"
+label define I_C8A .a "." 1 "1 - todo el tiempo enfocado exclusivamente en su (xxx)" 2 "2 - la mayor parte del tiempo enfocado en su (xxx)" 3 "3 - mitad y mitad" 4 "4 - la mayor parte del tiempo haciendo otras tareas u ocio" 8 "8 - no responde" 9 "9 - no sabe"
 
 encode I_C8A, gen(i_c8a) label (I_C8A)
 
