@@ -1,0 +1,36 @@
+Variable,CADAS_Match
+pencil,c_24
+watch,c_25
+chair,c_48
+shoes,c_49
+knuckle,c_50
+elbow,c_51
+should,c_52
+bridge,c_53
+hammer,c_54
+pray,c_55
+chemist,c_56
+repeat,c_26
+town,c_8
+chief,c_70 (CU/DR)/c_71(PR)
+street,c_58
+store,c_59
+address,c_60
+longmem,c_3
+month,c_5
+day,c_61
+year,c_3
+season,c_5
+nod,c_61
+point,"c_62,"
+circle,c_72_1
+pentag,c_32
+animals,c_40
+wordimm,sum of c_11-13
+worddel,sum of c_21-23
+paper,sum of c_27-29
+story,sum of c_66
+learn1,"c_33,"
+learn2,c_34
+learn3,c_35
+recall,c_63
