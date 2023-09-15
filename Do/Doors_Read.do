@@ -101,61 +101,51 @@ else if `country' == 2 {
 
    label variable d_7_2 "7.2 Sexo"
    
-   rename d_7_2 D_7_2
-   capture confirm numeric variable D_7_2
-   if !_rc{
-       tostring D_7_2, replace
-   } 
-   gen D_7_2_trimmed = ustrlower(ustrtrim(D_7_2))
-   replace D_7_2 = D_7_2_trimmed
-   drop D_7_2_trimmed
+generate D_7_2 = cond(d_7_2 == 0, "hombre", cond(d_7_2 == 1, "mujer", cond(d_7_2 == 2, "no responde", "")))
 
-   label define D_7_2 .a"." 1 "hombre"2 "mujer"8 "no responde"
-  
-   encode D_7_2, gen(d_7_2) label (D_7_2)
+drop d_7_2
+
+   label define D_7_2 .a"." 0 "hombre"1 "mujer"2 "no responde"
+   
+encode D_7_2, gen(d_7_2) label (D_7_2)
+
+drop D_7_2
    
    label variable d_7_3 "7.3 Salud física"
    
-   rename d_7_3 D_7_3
-   capture confirm numeric variable D_7_3
-   if !_rc{
-       tostring D_7_3, replace
-   } 
-   gen D_7_3_trimmed = ustrlower(ustrtrim(D_7_3))
-   replace D_7_3 = D_7_3_trimmed
-   drop D_7_3_trimmed
+generate D_7_3 = cond(d_7_3 == 1, "buena/regular", cond(d_7_3 == 2, "mala", cond(d_7_3 == 8, "no responde", cond(d_7_3 == 9, "no sabe", ""))))
+
+drop d_7_3
 
    label define D_7_3 .a"." 1 "buena/regular"2 "mala"8 "no responde"9 "no sabe"
+   
    encode D_7_3, gen(d_7_3) label (D_7_3)
    
+drop D_7_3
+   
    label variable d_7_4 "7.4 Salud Cognitiva"
+   
+generate D_7_4 = cond(d_7_4 == 1, "buena/regular", cond(d_7_4 == 2, "mala", cond(d_7_4 == 8, "no responde", cond(d_7_4 == 9, "no sabe", ""))))
 
-   rename d_7_4 D_7_4
-   capture confirm numeric variable D_7_4
-   if !_rc{
-       tostring D_7_4, replace
-   } 
-   gen D_7_4_trimmed = ustrlower(ustrtrim(D_7_4))
-   replace D_7_4 = D_7_4_trimmed
-   drop D_7_4_trimmed
+drop d_7_4
 
    label define D_7_4 .a"." 1 "buena/regular"2 "mala"8 "no responde"9 "no sabe"
+   
    encode D_7_4, gen(d_7_4) label (D_7_4)
    
+drop D_7_4
+   
    label variable d_7_5 "7.5 Resultados del intento de las entrevistas"
+   
+generate D_7_5 = cond(d_7_5 == 1, "completa", cond(d_7_5 == 2, "parcial", cond(d_7_5 == 3, "incapacitado", cond(d_7_5 == 4, "indisponible", cond(d_7_5 == 5,"rechazada", "")))))
 
-   rename d_7_5 D_7_5
-   capture confirm numeric variable D_7_5
-   if !_rc{
-       tostring D_7_5, replace
-   } 
-   gen D_7_5_trimmed = ustrlower(ustrtrim(D_7_5))
-   replace D_7_5 = D_7_5_trimmed
-   drop D_7_5_trimmed
+drop d_7_5
 
    label define D_7_5 .a"." 1 "completa"2 "parcial"3 "incapacitado"4 "indisponible"5 "rechazada"
+   
    encode D_7_5, gen(d_7_5) label (D_7_5)
 
+drop D_7_5
    
    save InformationDoorParticipants.dta, replace
    

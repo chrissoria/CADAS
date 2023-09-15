@@ -51,26 +51,26 @@ else if `country' == 2 {
    
 rename pr_2_1 PR_2_1
    
-    label define PR_2_1 0 "0- si mismo" ///
-    1 "1- esposo/a, pareja" ///
-    2 "2- hijo(a)" ///
-    3 "3- hijastro(a)" ///
-    4 "4- hijo(a) adoptivo(a)" ///
-    5 "5- hijo(a) de crianza" ///
-    6 "6- madre/padre" ///
-    7 "7- suegro(a)" ///
-    8 "8- abuelo(a)" ///
-    9 "9- nieto(a)" ///
-    10 "10- bisnieto(a)" ///
-    11 "11- yerno/nuera" ///
-    12 "12- hermano(a)/hermanastro(a)" ///
-    13 "13- cuñado(a)/concuños/primos" ///
-    14 "14- tío(a)" ///
-    15 "15- sobrino(a)" ///
-    16 "16- otro pariente" ///
-    17 "17- no pariente" ///
-    88 "88- no responde" ///
-    99 "99- no sabe"
+    label define PR_2_1 0 "0 - Si Mismo" ///
+    1 "1 - Esposo/a, pareja" ///
+    2 "2 - Hijo(a)" ///
+    3 "3 - Hijastro(a)" ///
+    4 "4 - Hijo(a) adoptivo(a)" ///
+    5 "5 - Hijo(a) de crianza" ///
+    6 "6 - Madre/padre" ///
+    7 "7 - Suegro(a)" ///
+    8 "8 - Abuelo(a)" ///
+    9 "9 - Nieto(a)" ///
+    10 "10 - Bisnieto(a)" ///
+    11 "11 - Yerno/nuera" ///
+    12 "12 - Hermano(a)/Hermanastro(a)" ///
+    13 "13 - Cuñado(a)/Concuños/Primos" ///
+    14 "14 - Tío(a)" ///
+    15 "15 - Sobrino(a)" ///
+    16 "16 - Otro pariente" ///
+    17 "17 - No pariente" ///
+    88 "88 - No responde" ///
+    99 "99 - No sabe"
     
 encode PR_2_1, gen(pr_2_1) label(PR_2_1)
    
@@ -97,15 +97,59 @@ encode PR_2_1, gen(pr_2_1) label(PR_2_1)
 
    label values pr_2_1 PR_2_1_
    
-drop PR_2_1
+*drop PR_2_1
    
    label variable pr_2_2 "¿Cuál es la relación de este miembro con el participante (#2)?"
    
 rename pr_2_2 PR_2_2
+
+label define PR_2_2 0 "0 - Si Mismo" ///
+    1 "1 - Esposo/a, pareja" ///
+    2 "2 - Hijo(a)" ///
+    3 "3 - Hijastro(a)" ///
+    4 "4 - Hijo(a) adoptivo(a)" ///
+    5 "5 - Hijo(a) de crianza" ///
+    6 "6 - Madre/padre" ///
+    7 "7 - Suegro(a)" ///
+    8 "8 - Abuelo(a)" ///
+    9 "9 - Nieto(a)" ///
+    10 "10 - Bisnieto(a)" ///
+    11 "11 - Yerno/nuera" ///
+    12 "12 - Hermano(a)/Hermanastro(a)" ///
+    13 "13 - Cuñado(a)/Concuños/Primos" ///
+    14 "14 - Tío(a)" ///
+    15 "15 - Sobrino(a)" ///
+    16 "16 - Otro pariente" ///
+    17 "17 - No pariente" ///
+18 "18 - No Hay Otro Participante" ///
+    88 "88 - No responde" ///
+    99 "99 - No sabe"
    
-encode PR_2_2, gen(pr_2_2) label(PR_2_1)
+encode PR_2_2, gen(pr_2_2) label(PR_2_2)
+
+label define PR_2_2_ 0 "si mismo" ///
+    1 "esposo/a, pareja" ///
+    2 "hijo(a)" ///
+    3 "hijastro(a)" ///
+    4 "hijo(a) adoptivo(a)" ///
+    5 "hijo(a) de crianza" ///
+    6 "madre/padre" ///
+    7 "suegro(a)" ///
+    8 "abuelo(a)" ///
+    9 "nieto(a)" ///
+    10 "bisnieto(a)" ///
+    11 "yerno/nuera" ///
+    12 "hermano(a)/hermanastro(a)" ///
+    13 "cuñado(a)/concuños/primos" ///
+    14 "tío(a)" ///
+    15 "sobrino(a)" ///
+    16 "otro pariente" ///
+    17 "no pariente" ///
+18 "no hay otro participante" ///
+    88 "no responde" ///
+    99 "no sabe"
    
-label values pr_2_2 PR_2_1_
+label values pr_2_2 PR_2_2_
    
 drop PR_2_2  
  
@@ -113,38 +157,33 @@ drop PR_2_2
    
 rename pr_2_3 PR_2_3
    
-encode PR_2_3, gen(pr_2_3) label(PR_2_1)
+encode PR_2_3, gen(pr_2_3) label(PR_2_2)
 
-label values pr_2_3 PR_2_1
+label values pr_2_3 PR_2_2_
 
 drop PR_2_3
 
    label variable pr_3 "¿Es hombre o mujer?"
-   
-   rename pr_3 (PR_3)
+ 
+generate PR_3 = cond(pr_3 == 1, "hombre", cond(pr_3 == 2, "mujer", ".a"))
 
-   capture confirm numeric variable PR_3
-   if !_rc{
-        tostring PR_3, replace
-   }
-
-   gen PR_3_trimmed = ustrlower(ustrtrim(PR_3))
-   replace PR_3 = PR_3_trimmed
-   drop PR_3_trimmed
+drop pr_3
 
    label define PR_3 .a"." 1 "hombre" 2 "mujer"
 
    encode PR_3, gen(pr_3) label (PR_3)
    
+drop PR_3
+   
    label variable pr_4 "¿Cuántos años tiene? Registrar en años (edad aproximada si no se sabe exactamente)"
  
-label define PR_5 0 "0- ninguno" ///
-    1 "1- de 1 a 5" ///
-    2 "2- de 6 a 8" ///
-    3 "3- de 9 a 12" ///
-    4 "4- más que 12" ///
-    8 "8- no responde" ///
-    9 "9- no sabe"   
+label define PR_5 0 "0 - Ninguno" ///
+    1 "1 - De 1 a 5" ///
+    2 "2 - De 6 a 8" ///
+    3 "3 - De 9 a 12" ///
+    4 "4 - Más que 12" ///
+    8 "8 - No responde" ///
+    9 "9 - No sabe"   
     
 rename pr_5 PR_5
 
@@ -160,14 +199,14 @@ encode PR_5, gen(pr_5) label(PR_5)
     
     label values pr_5 PR_5_
 
-    label define PR_6 1 "1- empleo pagado a tiempo completo" ///
-    2 "2- empleo pagado a tiempo parcial" ///
-    3 "3- desempleado (buscando trabajo)" ///
-    4 "4- estudiante" ///
-    5 "5- ama/amo de casa" ///
-    6 "6- retirado" ///
-    8 "8- no responde" ///
-    9 "9- no sabe"
+    label define PR_6 1 "1 - Empleo pagado a tiempo completo" ///
+    2 "2 - Empleo pagado a tiempo parcial" ///
+    3 "3 - Desempleado (buscando trabajo)" ///
+    4 "4 - Estudiante" ///
+    5 "5 - Ama/Amo de casa" ///
+    6 "6 - Retirado" ///
+    8 "8 - No responde" ///
+    9 "9 - No sabe"
 
 rename pr_6 PR_6
 
@@ -207,26 +246,26 @@ else if `country' == 2 {
    
 rename r_2_1 R_2_1
    
-   label define R_2_1 0 "0- si mismo" ///
-    1 "1- esposo/a, pareja" ///
-    2 "2- hijo(a)" ///
-    3 "3- hijastro(a)" ///
-    4 "4- hijo(a) adoptivo(a)" ///
-    5 "5- hijo(a) de crianza" ///
-    6 "6- madre/padre" ///
-    7 "7- suegro(a)" ///
-    8 "8- abuelo(a)" ///
-    9 "9- nieto(a)" ///
-    10 "10- bisnieto(a)" ///
-    11 "11- yerno/nuera" ///
-    12 "12- hermano(a)/hermanastro(a)" ///
-    13 "13- cuñado(a)/concuños/primos" ///
-    14 "14- tío(a)" ///
-    15 "15- sobrino(a)" ///
-    16 "16- otro pariente" ///
-    17 "17- no pariente" ///
-    88 "88- no responde" ///
-    99 "99- no sabe"
+   label define R_2_1 0 "0 - Si Mismo" ///
+    1 "1 - Esposo/a, pareja" ///
+    2 "2 - Hijo(a)" ///
+    3 "3 - Hijastro(a)" ///
+    4 "4 - Hijo(a) adoptivo(a)" ///
+    5 "5 - Hijo(a) de crianza" ///
+    6 "6 - Madre/padre" ///
+    7 "7 - Suegro(a)" ///
+    8 "8 - Abuelo(a)" ///
+    9 "9 - Nieto(a)" ///
+    10 "10 - Bisnieto(a)" ///
+    11 "11 - Yerno/Nuera" ///
+    12 "12 - Hermano(a)/Hermanastro(a)" ///
+    13 "13 - Cuñado(a)/Concuños/Primos" ///
+    14 "14 - Tío(a)" ///
+    15 "15 - Sobrino(a)" ///
+    16 "16 - Otro pariente" ///
+    17 "17 - No Pariente" ///
+    88 "88 - No responde" ///
+    99 "99 - No sabe"
     
 encode R_2_1, gen(r_2_1) label(R_2_1)
 
@@ -259,9 +298,53 @@ drop R_2_1
    
 rename r_2_2 R_2_2
 
-encode R_2_2, gen(r_2_2) label(R_2_1)
+label define R_2_2 0 "0 - Si Mismo" ///
+    1 "1 - Esposo/a, pareja" ///
+    2 "2 - Hijo(a)" ///
+    3 "3 - Hijastro(a)" ///
+    4 "4 - Hijo(a) adoptivo(a)" ///
+    5 "5 - Hijo(a) de crianza" ///
+    6 "6 - Madre/padre" ///
+    7 "7 - Suegro(a)" ///
+    8 "8 - Abuelo(a)" ///
+    9 "9 - Nieto(a)" ///
+    10 "10 - Bisnieto(a)" ///
+    11 "11 - Yerno/Nuera" ///
+    12 "12 - Hermano(a)/Hermanastro(a)" ///
+    13 "13 - Cuñado(a)/Concuños/Primos" ///
+    14 "14 - Tío(a)" ///
+    15 "15 - Sobrino(a)" ///
+    16 "16 - Otro pariente" ///
+    17 "17 - No Pariente" ///
+18 "18 - No Hay Otro Participante" ///
+    88 "88 - No responde" ///
+    99 "99 - No sabe"
 
-label values r_2_2 R_2_1_
+encode R_2_2, gen(r_2_2) label(R_2_2)
+
+label define R_2_2_ 0 "si mismo" ///
+    1 "esposo/a, pareja" ///
+    2 "hijo(a)" ///
+    3 "hijastro(a)" ///
+    4 "hijo(a) adoptivo(a)" ///
+    5 "hijo(a) de crianza" ///
+    6 "madre/padre" ///
+    7 "suegro(a)" ///
+    8 "abuelo(a)" ///
+    9 "nieto(a)" ///
+    10 "bisnieto(a)" ///
+    11 "yerno/nuera" ///
+    12 "hermano(a)/hermanastro(a)" ///
+    13 "cuñado(a)/concuños/primos" ///
+    14 "tío(a)" ///
+    15 "sobrino(a)" ///
+    16 "otro pariente" ///
+    17 "no pariente" ///
+18 "no hay otro participante" ///
+    88 "no responde" ///
+    99 "no sabe"
+
+label values r_2_2 R_2_2_
 
 drop R_2_2
    
@@ -269,42 +352,35 @@ drop R_2_2
    
 rename r_2_3 R_2_3
 
-encode R_2_3, gen(r_2_3) label(R_2_1)
+encode R_2_3, gen(r_2_3) label(R_2_2)
 
-label values r_2_3 R_2_1_
+label values r_2_3 R_2_2_
 
-drop R_2_3
-
-   label values r_2_3 R_2_3
+*drop R_2_3
 
    label variable r_3 "¿Es hombre o mujer?"
    
-   rename r_3 (R_3)
+generate R_3 = cond(r_3 == 1, "hombre", cond(r_3 == 2, "mujer", ".a"))
 
-   capture confirm numeric variable R_3
-   if !_rc{
-        tostring R_3, replace
-   }
-
-   gen R_3_trimmed = ustrlower(ustrtrim(R_3))
-   replace R_3 = R_3_trimmed
-   drop R_3_trimmed
+drop r_3
 
    label define R_3 .a"." 1 "hombre" 2 "mujer"
 
    encode R_3, gen(r_3) label (R_3)
    
+drop R_3
+   
    label variable r_4 "¿Cuántos años tiene? Registrar en años (edad aproximada si no se sabe exactamente)"
    
 rename r_5 R_5
    
-   label define R_5 0 "0- ninguno" ///
-    1 "1- de 1 a 5" ///
-    2 "2- de 6 a 8" ///
-    3 "3- de 9 a 12" ///
-    4 "4- más que 12" ///
-    8 "8- no responde" ///
-    9 "9- no sabe"
+   label define R_5 0 "0 - Ninguno" ///
+    1 "1 - De 1 a 5" ///
+    2 "2 - De 6 a 8" ///
+    3 "3 - De 9 a 12" ///
+    4 "4 - Más que 12" ///
+    8 "8 - No responde" ///
+    9 "9 - No sabe"
     
 encode R_5, gen(r_5) label (R_5)
 
@@ -322,14 +398,14 @@ drop R_5
 
 rename r_6 R_6
 
-label define R_6 1 "1- empleo pagado a tiempo completo" ///
-    2 "2- empleo pagado a tiempo parcial" ///
-    3 "3- desempleado (buscando trabajo)" ///
-    4 "4- estudiante" ///
-    5 "5- ama/amo de casa" ///
-    6 "6- retirado" ///
-    8 "8- no responde" ///
-    9 "9- no sabe"
+label define R_6 1 "1 - Empleo pagado a tiempo completo" ///
+    2 "2-  Empleo pagado a tiempo parcial" ///
+    3 "3 - Desempleado (buscando trabajo)" ///
+    4 "4 - Estudiante" ///
+    5 "5 - Ama/Amo de casa" ///
+    6 "6 - Retirado" ///
+    8 "8-  No responde" ///
+    9 "9 - No sabe"
     
 encode R_6, gen(r_6) label(R_6)
 
@@ -368,33 +444,28 @@ else if `country' == 2 {
    label variable cr_3 "2. ¿Cuál es el número de código de su padre?"
    
    label variable cr_4 "¿Es hombre o mujer?"
-   
-   rename cr_4 (CR_4)
+  
+generate CR_4 = cond(cr_4 == 1, "hombre", cond(cr_4 == 2, "mujer", ".a"))
 
-   capture confirm numeric variable CR_4
-   if !_rc{
-        tostring CR_4, replace
-   }
-
-   gen CR_4_trimmed = ustrlower(ustrtrim(CR_4))
-   replace CR_4 = CR_4_trimmed
-   drop CR_4_trimmed
+drop cr_4
 
    label define CR_4 .a"." 1 "hombre" 2 "mujer"
 
    encode CR_4, gen(cr_4) label (CR_4)
    
+drop CR_4
+   
    label variable cr_5 "¿Cuántos años tiene? Registrar en años (edad aproximada si no se sabe exactamente)"
    
 rename cr_6 CR_6
    
-   label define CR_6 0 "0- ninguno" ///
-    1 "1- de 1 a 5" ///
-    2 "2- de 6 a 8" ///
-    3 "3- de 9 a 12" ///
-    4 "4- más que 12" ///
-    8 "8- no responde" ///
-    9 "9- no sabe"
+   label define CR_6 0 "0 - Ninguno" ///
+    1 "1 - De 1 a 5" ///
+    2 "2 - De 6 a 8" ///
+    3 "3 - De 9 a 12" ///
+    4 "4 - Más que 12" ///
+    8 "8 - No responde" ///
+    9 "9 - No sabe"
     
 encode CR_6, gen(cr_6) label(CR_6)
 
@@ -412,13 +483,13 @@ drop CR_6
 
 rename cr_7 CR_7
     
-    label define CR_7 1 "1- dentro de 15 minutos de aquí" ///
-    2 "2- dentro de una hora de aquí" ///
-    3 "3- otra parte del país" ///
-    4 "4- otra parte, estados unidos" ///
-    5 "5- otro país" ///
-    8 "8- no responde" ///
-    9 "9- no sabe"
+    label define CR_7 1 "1 - Dentro de 15 minutos de aquí" ///
+    2 "2 - Dentro de una hora de aquí" ///
+    3 "3 - Otra parte del país" ///
+    4 "4 - Otra parte, Estados Unidos" ///
+    5 "5 - Otro país" ///
+    8 "8 - No responde" ///
+    9 "9 - No sabe"
     
 encode CR_7, gen(cr_7) label(CR_7)
 
@@ -531,4 +602,6 @@ drop _merge
  
   
  log close
- exit, clear
+ *exit, clear
+ 
+ 
