@@ -4,14 +4,18 @@ capture log close
 
 local country = 1
 
+*Change the filepath name here to the folder containing the data and output folders
+*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+
 if `country' == 0 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
+    cd "`path'/PR_out"
 }
 else if `country' == 1 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+    cd "`path'/DR_out"
 }
 else if `country' == 2 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
+    cd "`path'/CUBA_out"
 }
 
 if `country' == 0 {
@@ -3416,7 +3420,7 @@ drop I_*
 local i 1
 gen i_countmissing = 0
 
-quietly ds hhid pid i_time2 i_time1 i_date fkey globalrecordid i_deviceid2, not
+quietly ds i_countmissing hhid pid i_date_end i_time_end_1 i_time_end i_time1 i_date fkey globalrecordid i_deviceid2, not
 local allvar `r(varlist)'
 
 
@@ -3454,7 +3458,7 @@ quietly forvalues i = 1(1) `=_N' {
 local i 1
 gen i_last = "AllAnswered"
 
-quietly ds i_countmissing hhid pid i_last i_time2 i_time1 i_date fkey globalrecordid i_deviceid2, not
+quietly ds i_last i_countmissing hhid pid i_date_end i_time_end_1 i_time_end i_time1 i_date fkey globalrecordid i_deviceid2, not
 local allvar `r(varlist)'
 
 
@@ -3492,7 +3496,7 @@ quietly forvalues i = 1(1) `=_N' {
 
 
 
-gen i_TotalTime = (Clock(i_time2, "MDYhms") - Clock(i_time1, "MDYhms"))/1000/60
+gen i_TotalTime = (Clock(i_time_end, "MDYhms") - Clock(i_time1, "MDYhms"))/1000/60
 
 
 

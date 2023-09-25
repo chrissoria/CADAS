@@ -4,14 +4,18 @@ capture log close
 
 local country = 1
 
+*Change the filepath name here to the folder containing the data and output folders
+*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+
 if `country' == 0 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
+    cd "`path'/PR_out"
 }
 else if `country' == 1 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+    cd "`path'/DR_out"
 }
 else if `country' == 2 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
+    cd "`path'/CUBA_out"
 }
 
 *below we read in a country-specific file
@@ -32,14 +36,6 @@ else if `country' == 2 {
    rename fkey globalrecordid
    
    label variable d_1 "Relation to the household"
- 
-   replace d_date = subinstr(d_date,substr(d_date, strlen(d_date)-11, strlen(d_date)), "",.) if strlen(d_date)>=12
-   replace d_date = subinstr(d_date, " ", "",.)
-   replace d_date = subinstr(d_date, "/", "-",.)
-   gen d_survey_date = date(d_date, "MDY")
-   format d_survey_date %td
-   
-   drop d_date
  
    label variable d_2 "2. Número de personas de edad <= 15"
  
@@ -160,6 +156,14 @@ else if `country' == 1 {
 else if `country' == 2 {
     insheet using "../CUBA_in/Door.csv", comma names clear
 }
+
+   replace p_date = subinstr(p_date,substr(p_date, strlen(p_date)-11, strlen(p_date)), "",.) if strlen(p_date)>=12
+   replace p_date = subinstr(p_date, " ", "",.)
+   replace p_date = subinstr(p_date, "/", "-",.)
+   gen d_survey_date = date(p_date, "MDY")
+   format d_survey_date %td
+   
+   drop p_date
    
    
    save Door.dta, replace

@@ -1,0 +1,724 @@
+label variable h_interid "Número del entrevistador:"
+
+label variable h_houseid "Número de la casa:"
+
+label variable h_clustid "Número del cluster"
+
+label variable h_houseid2 "Número de la casa:"
+
+label variable h_conglid2 "Número del cluster"
+
+label variable h_country "Pais:"
+
+label variable h_deviceid1 "Device ID:"
+
+label variable h_3_1 "3.1 La familia es propietaria o alquila la casa?"
+
+label variable h_3_2_p "3.2 Si la vendiera hoy y pagara lo que debe sobre esta propiedad (contando terreno y vivienda), ¿cuánto dinero le daría? |_|_|_|_|_|_| $ NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_2_d "3.2 Si la vendiera hoy y pagara lo que debe sobre esta propiedad (contando terreno y vivienda), ¿cuánto dinero le daría? |_|_|_|_|_|_| pesos NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_2_c "3.2 Si la vendiera hoy y pagara lo que debe sobre esta propiedad (contando terreno y vivienda), ¿cuánto dinero le daría? |_|_|_|_|_|_| CUP NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_3a_p "3.3a más de $36 000?"
+
+label variable h_3_3a_d "3.3a más de $500 000 pesos?"
+
+label variable h_3_3a_c "3.3a más de 1 100 000 CUP?"
+
+label variable h_3_3b_p "3.3b más de $18 500?"
+
+label variable h_3_3b_d "3.3b más de $250 000 pesos?"
+
+label variable h_3_3b_c "3.3b más de 550 000 CUP?"
+
+label variable h_3_3c_p "3.3c más de $180 000?"
+
+label variable h_3_3c_d "3.3c más de $2 500 000 pesos?"
+
+label variable h_3_3c_c "3.3c más de 5 500 000 CUP?"
+
+label variable h_3_4_p "3.4 Si esta casa la fueran a alquilar a otra persona, ¿cuánto sería el alquiler mensual? REGISTRA CANTIDAD |_|_|_|_| $ NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_4_d "3.4 Si esta casa la fueran a alquilar a otra persona, ¿cuánto sería el alquiler mensual? REGISTRA CANTIDAD |_|_|_|_| pesos NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_4_c "3.4 Si esta casa la fueran a alquilar a otra persona, ¿cuánto sería el alquiler mensual? REGISTRA CANTIDAD |_|_|_|_| CUP NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_5a_p "3.5a más de $1 200 al mes?"
+
+label variable h_3_5a_d "3.5a más de $15 000 pesos al mes?"
+
+label variable h_3_5a_c "3.5a más de 35 000 CUP"
+
+label variable h_3_5b_p "3.5b más de $400 al mes?"
+
+label variable h_3_5b_d "3.5b más de $5 000 pesos al mes?"
+
+label variable h_3_5b_c "3.5b más de 12 500 CUP?"
+
+label variable h_3_5c_p "3.5c más de $3 600?"
+
+label variable h_3_5c_d "3.5c más de $50 000 pesos?"
+
+label variable h_3_5c_c "3.5c más de 110,000 CUP"
+
+label variable h_3_6_p "3.6 ¿Cuánto se paga de alquiler al mes? REGISTRA CANTIDAD |_|_|_|_| $ NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_6_d "3.6 ¿Cuánto se paga de alquiler al mes? REGISTRA CANTIDAD |_|_|_|_| pesos NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_6_c "3.6 ¿Cuánto se paga de alquiler al mes? REGISTRA CANTIDAD |_|_|_|_| CUP NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_7a_p "3.7a más de $1 200 al mes?"
+
+label variable h_3_7a_d "3.7a más de $15 000 pesos al mes?"
+
+label variable h_3_7a_c "3.7a más de 35 000 CUP?"
+
+label variable h_3_7b_p "3.7b más de $400 al mes?"
+
+label variable h_3_7b_d "3.7b más de $5 000 pesos al mes?"
+
+label variable h_3_7b_c "3.7b más de 12 500 CUP?"
+
+label variable h_3_7c_p "3.7c más de $3 600 pesos al mes?"
+
+label variable h_3_7c_d "3.7c más de $50 000 pesos al mes?"
+
+label variable h_3_7c_c "3.7c más de 110 000 CUP?"
+
+label variable h_3_8 "3.8 ¿De qué material es la mayor parte de los techos de esta vivienda?"
+
+label variable h_3_9 "3.9 ¿Cuantos dormitorios tiene?"
+
+label variable n10enestaviviendatienen "3.10 ¿En esta vivienda tienen"
+
+label variable h_3_11 "3.11 ¿El servicio sanitario que ustedes usan..."
+
+label variable h_3_12 "3.12 ¿Este servicio lo usan solamente las personas de esta vivienda?"
+
+label variable s_3_13 "3.13 ¿El combustible que más usan para cocinar es..."
+
+label variable h_3_14_1 "3.14.1 televisión"
+
+label variable h_3_14_2 "3.14.2 nevera y/o congelador"
+
+label variable h_3_14_3 "3.14.3 electricidad"
+
+label variable h_3_14_4 "3.14.4 Teléfono residencial/fijo"
+
+label variable h_3_14_5 "3.14.5 Algún miembro del hogar tiene celular?"
+
+label variable h_3_14_6 "3.14.6 bañera de plomería"
+
+label variable h_3_14_7 "3.14.7 radio"
+
+label variable h_3_14_8 "3.14.8 máquina de coser"
+
+label variable h_3_14_9 "3.14.9 computadora"
+
+label variable h_3_14_10 "3.14.10 internet"
+
+label variable h_3_14_11 "3.14.11 aire acondicionado"
+
+label variable h_3_14_12 "3.14.12 abanico eléctrico"
+
+label variable h_3_15 "3.15 ¿Cuantos vehículos de motor (carros, camionetas, camiones, etc.) poseen los miembros de la familia?"
+
+label variable h_3_16_p "3.16 Si vendiera hoy todos estos vehículos ¿como cuánto le darían? |_|_|_|_|_|_| $ NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_16_d "3.16 Si vendiera hoy todos estos vehículos ¿como cuánto le darían? |_|_|_|_|_|_| pesos NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_16_c "3.16 Si vendiera hoy todos estos vehículos ¿como cuánto le darían? |_|_|_|_|_|_| CUP NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_17a_p "3.17a más de $36 000?"
+
+label variable h_3_17a_d "3.17a más de $500 000 pesos?"
+
+label variable h_3_17a_c "3.17a más de 1 110 000 CUP?"
+
+label variable h_3_17b_p "3.17b más de $18 500?"
+
+label variable h_3_17b_d "3.17b más de $250 000 pesos?"
+
+label variable h_3_17b_c "3.17b más de 550 000 CUP?"
+
+label variable h_3_17c_p "3.17c más de $100 000?"
+
+label variable h_3_17c_d "3.17c más de $1 400 000 pesos?"
+
+label variable h_3_17c_c "3.17b más de 5 500 000 CUP"
+
+label variable h_3_18 "3.18 Usted (o su cónyuge u otro adulto mayor de esta casa) es propietario de alguna otra casa o condominio, o alguna propiedad de bienes raíces como tierras y/o lotes?"
+
+label variable h_3_19_p "3.19 Si los vendiera hoy y pagara lo que debe sobre estas propiedades, ¿cuánto le darían? |_|_|_|_|_|_| $ NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_19_d "3.19 Si los vendiera hoy y pagara lo que debe sobre estas propiedades, ¿cuánto le darían? |_|_|_|_|_|_| pesos NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_19_c "3.19 Si los vendiera hoy y pagara lo que debe sobre estas propiedades, ¿cuánto le darían? |_|_|_|_|_|_| CUP NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_20a_p "3.20a más de $36 000?"
+
+label variable h_3_20a_d "3.20a más de $500 000 pesos?"
+
+label variable h_3_20a_c "3.20a más de 1 110 000 CUP"
+
+label variable h_3_20b_p "3.20b más de $18 500?"
+
+label variable h_3_20b_d "3.20b más de $250 000 pesos?"
+
+label variable h_3_20b_c "3.20b más de 550 000 CUP"
+
+label variable h_3_20c_p "3.20c más de $180 000?"
+
+label variable h_3_20c_d "3.20c más de $2 500 000 pesos?"
+
+label variable h_3_20c_c "3.20c más de 5 500 000 CUP"
+
+label variable h_3_21 "3.21 ¿Es propietario usted (y/o su cónyuge u otro adulto mayor de esta casa) de algún negocio, tierra de cultivo o cría de animales?"
+
+label variable h_3_22_p "3.22 Si lo vendiera ahora (y pagara lo que debe), ¿cuánto le darían? [Incluya el valor del equipo del negocio, animales, etc., pero excluya el valor de la propiedad ya estimado anteriormente] |_|_|_|_|_|_| $ NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_22_d "3.22 Si lo vendiera ahora (y pagara lo que debe), ¿cuánto le darían? [Incluya el valor del equipo del negocio, animales, etc., pero excluya el valor de la propiedad ya estimado anteriormente] |_|_|_|_|_|_| pesos NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_22_c "3.22 Si lo vendiera ahora (y pagara lo que debe), ¿cuánto le darían? [Incluya el valor del equipo del negocio, animales, etc., pero excluya el valor de la propiedad ya estimado anteriormente] |_|_|_|_|_|_| CUP NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_23a_p "3.23a más de $30 000?"
+
+label variable h_3_23a_d "3.23a más de $400 000 pesos?"
+
+label variable h_3_23a_c "3.23a más de 150 000 CUP?"
+
+label variable h_3_23b_p "3.23b más de $10 000?"
+
+label variable h_3_23b_d "3.23b más de $140 000 pesos?"
+
+label variable h_3_23b_c "3.23b más de 75 000 CUP?"
+
+label variable h_3_23c_p "3.23c más de $100 000?"
+
+label variable h_3_23c_d "3.23c más de $1 400 000 pesos?"
+
+label variable h_3_23c_c "3.23c más de 550 000 CUP?"
+
+label variable h_3_24 "3.24 Usted (y/o su cónyuge u otro adulto mayor de esta casa) tiene(n) cuentas de cheques, ahorro, inversiones a plazo fijo, préstamos hechos a terceros, acciones, bonos, etc.?"
+
+label variable h_3_25_p "3.25 Sumando todas las cuentas ¿como cuánto es el valor de estas(os)…? |_|_|_|_|_|_| $ NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_25_d "3.25 Sumando todas las cuentas ¿como cuánto es el valor de estas(os)…? |_|_|_|_|_|_| pesos NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_25_c "3.25 Sumando todas las cuentas ¿como cuánto es el valor de estas(os)…? |_|_|_|_|_|_| CUP NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_26a_p "3.26a más de $5 000?"
+
+label variable h_3_26a_d "3.26a más de $70 000 pesos?"
+
+label variable h_3_26a_c "3.26a más de 150 000 CUP?"
+
+label variable h_3_26b_p "3.26b más de $2 500?"
+
+label variable h_3_26b_d "3.26b más de $32 000 pesos?"
+
+label variable h_3_26b_c "3.26b más de 75 000 CUP?"
+
+label variable h_3_26c_p "3.26c más de $18 000?"
+
+label variable h_3_26c_d "3.26c más de $240 000 pesos?"
+
+label variable h_3_26c_c "3.26c más de 550 000 CUP?"
+
+label variable h_3_27_p "3.27 En caso de una urgencia familiar por la que tuviera que vender todos los demás bienes que no me ha mencionado, ¿cuánto le darían? |_|_|_|_|_|_| $ NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_27_d "3.27 En caso de una urgencia familiar por la que tuviera que vender todos los demás bienes que no me ha mencionado, ¿cuánto le darían? |_|_|_|_|_|_| pesos NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_27_c "3.27 En caso de una urgencia familiar por la que tuviera que vender todos los demás bienes que no me ha mencionado, ¿cuánto le darían? REGISTRA CANTIDAD |_|_|_|_|_|_| CUP NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_28a_p "3.28a más de $36 000?"
+
+label variable h_3_28a_d "3.28a más de $500 000 pesos?"
+
+label variable h_3_28a_c "3.28a más de 1 110 000 CUP?"
+
+label variable h_3_28b_p "3.28b más de $18 500?"
+
+label variable h_3_28b_d "3.28b más de $250 000 pesos?"
+
+label variable h_3_28b_c "3.28b más de 550 000 CUP?"
+
+label variable h_3_28c_p "3.28c más de $100 000?"
+
+label variable h_3_28c_d "3.28c más de $ 1400 000 pesos?"
+
+label variable h_3_28c_c "3.28c más de 3 000 000 CUP?"
+
+label variable h_3_29 "3.29¿Usted (y/o su cónyuge u otro adulto mayor de esta casa) tiene deudas sobre las que no hemos preguntado, como en tarjetas de crédito, deudas médicas, préstamos sobre seguros de vida, préstamos de parientes, y demás?"
+
+label variable h_3_30_p "3.30 Tomando todas estas juntas, ¿como cuánto debe? |_|_|_|_|_|_| $ NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_30_d "3.30 Tomando todas estas juntas, ¿como cuánto debe? |_|_|_|_|_|_| pesos NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_30_c "3.30 Tomando todas estas juntas, ¿como cuánto debe? |_|_|_|_|_|_| CUP NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_31a_p "3.31a más de $5 000?"
+
+label variable h_3_31a_d "3.31a más de $70 000 pesos?"
+
+label variable h_3_31a_c "3.31a más de 150 000 CUP?"
+
+label variable h_3_31b_p "3.31b más de $2 500?"
+
+label variable h_3_31b_d "3.31b más de $32 000 pesos?"
+
+label variable h_3_31b_c "3.31b más de 75 000 CUP?"
+
+label variable h_3_31c_p "3.31c más de $18 000?"
+
+label variable h_3_31c_d "3.31c más de $ 240 000 pesos?"
+
+label variable h_3_31c_c "3.31c más de 550 000 CUP?"
+
+label variable h_3_32_p "3.32 En total, ¿como cuánto gastan al mes para el hogar? Excluya lo que se produce en el hogar para autoconsumo. |_|_|_|_|_|_| $ NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_32_d "3.32 En total, ¿como cuánto gastan al mes para el hogar? Excluya lo que se produce en el hogar para autoconsumo. |_|_|_|_|_|_| pesos NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_32_c "3.32 En total, ¿como cuánto gastan al mes para el hogar? Excluya lo que se produce en el hogar para autoconsumo. |_|_|_|_|_|_| CUP NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_3_33a_p "3.33a más de $1 600?"
+
+label variable h_3_33a_d "3.33a más de $20 000 pesos?"
+
+label variable h_3_33a_c "3.33a más de 47 500 CUP?"
+
+label variable h_3_33b_p "3.33b más de $800?"
+
+label variable h_3_33b_d "3.33b más de $11 000 pesos?"
+
+label variable h_3_33b_c "3.33b más de 25 000 CUP?"
+
+label variable h_3_33c_p "3.33c más de $2 400?"
+
+label variable h_3_33c_d "3.33c más de $ 32 000 pesos?"
+
+label variable h_3_33c_c "3.33c más de 75 000 CUP?"
+
+label variable h_3_34 "3.34 ¿Usted o alguna otra persona en el hogar hace ropa, cría animales, o cosecha alimentos para ser consumidos en el hogar?"
+
+label variable h_4 "4. Anote el Código para el Participante cuyos ingresos está preguntando en esta sección:"
+
+label variable h_4_1 "4.1 ¿Recibe alguna entrada por trabajo pagado?"
+
+label variable h_4_1a "4.1.A ¿Como cuánto recibe cada mes? NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_4_1b_p "4.1.B más de $1 600?"
+
+label variable h_4_1b_d "4.1.B más de $20 000 pesos?"
+
+label variable h_4_1b_c "4.1.B más de 47 500 CUP?"
+
+label variable h_4_1b2_p "4.1.B.2 más de $400 al mes?"
+
+label variable h_4_1b2_d "4.1.B.2 más de $5 000 pesos?"
+
+label variable h_4_1b2_c "4.1.B.2 más de 12 500 CUP?"
+
+label variable h_4_1b3_p "4.1.B.3 más de $3 000?"
+
+label variable h_4_1b3_d "4.1.B.3 más de $40 000 pesos?"
+
+label variable h_4_1b3_c "4.1.B.3 más de 90 000 CUP?"
+
+label variable h_4_2 "4.2 ¿Recibe alguna pensión gubernamental?"
+
+label variable h_4_2a "4.2.A ¿Como cuánto recibe cada mes? NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_4_2b_p "4.2.B más de $400?"
+
+label variable h_4_2b_d "4.2.B más de $5 000 pesos?"
+
+label variable h_4_2b_c "4.2.B más de 12 000 CUP?"
+
+label variable h_4_2b2_p "4.2.B.2 más de $200?"
+
+label variable h_4_2b2_d "4.2.B.2 más de $2 500 pesos?"
+
+label variable h_4_2b2_c "4.2.B.2 más de 6 250 CUP?"
+
+label variable h_4_2b3_p "4.2.B.3 más de $1400?"
+
+label variable h_4_2b3_d "4.2.B.3 más de $20 000 pesos?"
+
+label variable h_4_2b3_c "4.2.B.3 más de 42 500 CUP?"
+
+label variable h_4_3 "4.3 ¿Recibe alguna pensión ocupacional?"
+
+label variable h_4_3a "4.3.A ¿Como cuánto recibe cada mes? NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_4_3b_p "4.3.B más de $400?"
+
+label variable h_4_3b_d "4.3.B más de $5 000 pesos?"
+
+label variable h_4_3b_c "4.3.B más de 12 000 CUP?"
+
+label variable h_4_3b2_p "4.3.B.2 más de $200?"
+
+label variable h_4_3b2_d "4.3.B.2 más de $2 500 pesos?"
+
+label variable h_4_3b2_c "4.3.B.2 más de 6 250 CUP?"
+
+label variable h_4_3b3_p "4.3.B.3 más de $1400?"
+
+label variable h_4_3b3_d "4.3.B.3 más de $20 000 pesos?"
+
+label variable h_4_3b3_c "4.3.B.3 más de 42 500 CUP?"
+
+label variable h_4_4 "4.4 ¿Recibe alguna pensión o beneficio por discapacidad?"
+
+label variable h_4_4a "4.4.A ¿Como cuánto recibe cada mes? NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_4_4b_p "4.4B más de $400?"
+
+label variable h_4_4b_d "4.4.B más de $5 000 pesos?"
+
+label variable h_4_4b_c "4.4.B más de 12 000 CUP?"
+
+label variable h_4_4b2_p "4.4.B.2 más de $200?"
+
+label variable h_4_4b2_d "4.4.B.2 más de $2 500 pesos?"
+
+label variable h_4_4b2_c "4.4.B.2 más de 6 250 CUP?"
+
+label variable h_4_4b3_p "4.4.B.3 más de $1400?"
+
+label variable h_4_4b3_d "4.4.B.3 más de $20 000 pesos?"
+
+label variable h_4_4b3_c "4.4.B.3 más de 42 500 CUP?"
+
+label variable h_4_5 "4.5 ¿Recibe alguna entrada por tierra o propiedad alquilada ?"
+
+label variable h_4_5a "4.5.A ¿Como cuánto recibe cada mes? NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_4_5b_p "4.5.B más de $1 200?"
+
+label variable h_4_5b_d "4.5.B más de $15 000 pesos?"
+
+label variable h_4_5b_c "4.5.B más de 35 000 CUP?"
+
+label variable h_4_5b2_p "4.5.B.2 más de $400?"
+
+label variable h_4_5b2_d "4.5.B.2 más de $5 000 pesos?"
+
+label variable h_4_5b2_c "4.5.B.2 más de 12 500 CUP?"
+
+label variable h_4_5b3_p "4.5.B.3 más de $3 600?"
+
+label variable h_4_5b3_d "4.5.B.3 más de $50 000 pesos?"
+
+label variable h_4_5b3_c "4.5.B.3 más de 110 000 CUP?"
+
+label variable h_4_6 "4.6 ¿Recibe alguna Ganancia por otro negocio (ingresos menos gastos)?"
+
+label variable h_4_6a "4.6.A ¿Como cuánto recibe cada mes? NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_4_6b_p "4.6.B más de $4 000?"
+
+label variable h_4_6b_d "4.6.B más de $50 000 pesos?"
+
+label variable h_4_6b_c "4.6.B más de 120 000 CUP?"
+
+label variable h_4_6b2_p "4.6.B.2 más de $1 600?"
+
+label variable h_4_6b2_d "4.6.B.2 más de $20 000 pesos?"
+
+label variable h_4_6b2_c "4.6.B.2 más de 47 500 CUP?"
+
+label variable h_4_6b3_p "4.6.B.3 más de $12 000?"
+
+label variable h_4_6b3_d "4.6.B.3 más de $150 000 pesos?"
+
+label variable h_4_6b3_c "4.6.B.3 más de 350 000 CUP?"
+
+label variable h_4_7 "4.7 ¿Recibe dinero regularmente de sus nietos o hijos?"
+
+label variable h_4_7a "4.7.A ¿Como cuánto recibe cada mes? NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_4_7b_p "4.7.B más de $50?"
+
+label variable h_4_7b_d "4.7.B más de $700 pesos?"
+
+label variable h_4_7b_c "4.7.B más de 1 250 CUP?"
+
+label variable h_4_7b2_p "4.7.B.2 más de $100?"
+
+label variable h_4_7b2_d "4.7.B.2 más de $1 500 pesos?"
+
+label variable h_4_7b2_c "4.7.B.2 más de 2 500 CUP?"
+
+label variable h_4_8 "4.8 ¿Recibe otra entrada regular?"
+
+label variable h_4_8a "4.8.A ¿Como cuánto recibe cada mes? NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_4_8b_p "4.8.B más de $50?"
+
+label variable h_4_8b_d "4.8.B más de $700 pesos?"
+
+label variable h_4_8b_c "4.8.B más de 1 250 CUP?"
+
+label variable h_4_8b2_p "4.8.B.2 más de $100?"
+
+label variable h_4_8b2_d "4..B.2 más de $1 500 pesos?"
+
+label variable h_4_8b2_c "4.8.B.2 más de 2 500 CUP?"
+
+label variable h_5 "5¿El participante tiene un cónyuge/pareja co-residente, o hay otros Participantes en el hogar?"
+
+label variable h_5_1 "5.1 ¿Recibe alguna entrada por trabajo pagado?"
+
+label variable h_5_1a "5.1.A ¿Como cuánto recibe cada mes? NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_5_1b_p "5.1.B más de $1 600?"
+
+label variable h_5_1b_d "5.1.B más de $20 000 pesos?"
+
+label variable h_5_1b_c "5.1.B más de 47 500 CUP?"
+
+label variable h_5_1b2_p "5.1.B.2 más de $400 al mes?"
+
+label variable h_5_1b2_d "5.1.B.2 más de $5 000 pesos?"
+
+label variable h_5_1b2_c "5.1.B.2 más de 12 500 CUP?"
+
+label variable h_5_1b3_p "5.1.B.3 más de $3 000?"
+
+label variable h_5_1b3_d "5.1.B.3 más de $40 000 pesos?"
+
+label variable h_5_1b3_c "5.1.B.3 más de 90 000 CUP?"
+
+label variable h_5_2 "5.2 ¿Recibe alguna pensión gubernamental?"
+
+label variable h_5_2a "5.2.A ¿Como cuánto recibe cada mes? NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_5_2b_p "5.2.B más de $400?"
+
+label variable h_5_2b_d "5.2.B más de $5 000 pesos?"
+
+label variable h_5_2b_c "5.2.B más de 12 000 CUP?"
+
+label variable h_5_2b2_p "5.2.B.2 más de $200?"
+
+label variable h_5_2b2_d "5.2.B.2 más de $2 500 pesos?"
+
+label variable h_5_2b2_c "5.2.B.2 más de 6 250 CUP?"
+
+label variable h_5_2b3_p "5.2.B.3 más de $1400?"
+
+label variable h_5_2b3_d "5.2.B.3 más de $20 000 pesos?"
+
+label variable h_5_2b3_c "5.2.B.3 más de 42 500 CUP?"
+
+label variable h_5_3 "5.3 ¿Recibe alguna pensión ocupacional?"
+
+label variable h_5_3a "5.3.A ¿Como cuánto recibe cada mes? NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_5_3b_p "5.3.B más de $400?"
+
+label variable h_5_3b_d "5.3.B más de $5 000 pesos?"
+
+label variable h_5_3b_c "5.3.B más de 12 000 CUP?"
+
+label variable h_5_3b2_p "5.3.B.2 más de $200?"
+
+label variable h_5_3b2_d "5.3.B.2 más de $2 500 pesos?"
+
+label variable h_5_3b2_c "5.3.B.2 más de 6 250 CUP?"
+
+label variable h_5_3b3_p "5.3.B.3 más de $1400?"
+
+label variable h_5_3b3_d "5.3.B.3 más de $20 000 pesos?"
+
+label variable h_5_3b3_c "5.3.B.3 más de 42 500 CUP?"
+
+label variable h_5_4 "5.4 ¿Recibe alguna pensión o beneficio por discapacidad?"
+
+label variable h_5_4a "5.4.A ¿Como cuánto recibe cada mes? NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_5_4b_p "5.4B más de $400?"
+
+label variable h_5_4b_d "5.4.B más de $5 000 pesos?"
+
+label variable h_5_4b_c "5.4.B más de 12 000 CUP?"
+
+label variable h_5_4b2_p "5.4.B.2 más de $200?"
+
+label variable h_5_4b2_d "5.4.B.2 más de $2 500 pesos?"
+
+label variable h_5_4b2_c "5.4.B.2 más de 6 250 CUP?"
+
+label variable h_5_4b3_p "5.4.B.3 más de $1400?"
+
+label variable h_5_4b3_d "5.4.B.3 más de $20 000 pesos?"
+
+label variable h_5_4b3_c "5.4.B.3 más de 42 500 CUP?"
+
+label variable h_5_5 "5.5 ¿Recibe alguna entrada por tierra o propiedad alquilada?"
+
+label variable h_5_5a "5.5.A ¿Como cuánto recibe cada mes? NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_5_5b_p "5.5.B más de $1 200?"
+
+label variable h_5_5b_d "5.5.B más de $15 000 pesos?"
+
+label variable h_5_5b_c "5.5.B más de 35 000 CUP?"
+
+label variable h_5_5b2_p "5.5.B.2 más de $400?"
+
+label variable h_5_5b2_d "5.5.B.2 más de $5 000 pesos?"
+
+label variable h_5_5b2_c "5.5.B.2 más de 12 500 CUP?"
+
+label variable h_5_5b3_p "5.5.B.3 más de $3 600?"
+
+label variable h_5_5b3_d "5.5.B.3 más de $50 000 pesos?"
+
+label variable h_5_5b3_c "5.5.B.3 más de 110 000 CUP?"
+
+label variable h_5_6 "5.6 ¿Recibe alguna Ganancia por otro negocio (ingresos menos gastos)?"
+
+label variable h_5_6a "5.6.A ¿Como cuánto recibe cada mes? NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_5_6b_p "5.6.B más de $4 000?"
+
+label variable h_5_6b_d "5.6.B más de $50 000 pesos?"
+
+label variable h_5_6b_c "5.6.B más de 120 000 CUP?"
+
+label variable h_5_6b2_p "5.6.B.2 más de $1 600?"
+
+label variable h_5_6b2_d "5.6.B.2 más de $20 000 pesos?"
+
+label variable h_5_6b2_c "5.6.B.2 más de 47 500 CUP?"
+
+label variable h_5_6b3_p "5.6.B.3 más de $12 000?"
+
+label variable h_5_6b3_d "5.6.B.3 más de $150 000 pesos?"
+
+label variable h_5_6b3_c "5.6.B.3 más de 350 000 CUP?"
+
+label variable h_5_7 "5.7 ¿Recibe dinero regularmente de sus nietos o hijos?"
+
+label variable h_5_7a "5.7.A ¿Como cuánto recibe cada mes? NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_5_7b_p "5.7.B más de $50?"
+
+label variable h_5_7b_d "5.7.B más de $700 pesos?"
+
+label variable h_5_7b_c "5.7.B más de 1 250 CUP?"
+
+label variable h_5_7b2_p "5.7.B.2 más de $100?"
+
+label variable h_5_7b2_d "5.7.B.2 más de $1 500 pesos?"
+
+label variable h_5_7b2_c "5.7.B.2 más de 2 500 CUP?"
+
+label variable h_5_8 "5.8 ¿Recibe otra entrada regular?"
+
+label variable h_5_8a "5.8.A ¿Como cuánto recibe cada mes? NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_5_8b_p "5.8.B más de $50?"
+
+label variable h_5_8b_d "5.8.B más de $700 pesos?"
+
+label variable h_5_8b_c "5.8.B más de 1 250 CUP?"
+
+label variable h_5_8b2_p "5.8.B.2 más de $100?"
+
+label variable h_5_8b2_d "5.B.2 más de $1 500 pesos?"
+
+label variable h_5_8b2_c "5.8.B.2 más de 2 500 CUP?"
+
+label variable h_6_1 "6.1 En el último año, cualquier participante o su cónyuge ha recibido ayuda en dinero o en bienes de sus hijos y/o nietos que no viven en este hogar? (No incluye el ayuda mensual ya mencionado)?"
+
+label variable h_6_1a_p "6.1a ¿Aproximadamente, cuánto fue esa ayuda en el último año? (No incluye el ayuda mensual ya mencionado) CANTIDAD $ NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_6_1a_d "6.1a ¿Aproximadamente, cuánto fue esa ayuda en el último año? (No incluye el ayuda mensual ya mencionado) CANTIDAD pesos NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_6_1a_c "6.1a ¿Aproximadamente, cuánto fue esa ayuda en el último año? (No incluye el ayuda mensual ya mencionado) CANTIDAD CUP NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_6_1b1_p "6.1b1 más de $250?"
+
+label variable h_6_1b1_d "6.1b1 más de 15 000 pesos?"
+
+label variable h_6_1b1_c "6.1b1 más de 35 000 CUP?"
+
+label variable h_6_1b2_p "6.1b2 más de $500?"
+
+label variable h_6_1b2_d "6.1b2 más de 30 000 pesos?"
+
+label variable h_6_1b2_c "6.1b2 más de 70 000 CUP?"
+
+label variable h_6_2 "6.2 La ayuda en dinero o en bienes que usted recibe de sus hijos/nuera/yerno/nietos (y los de su cónyuge). ¿Cree usted que es..."
+
+label variable h_6_3 "6.3 La ayuda con quehaceres del hogar, cuidados, mandados y transporte que usted recibe de sus hijos/nuera/yerno/nietos (y los de su cónyuge), ¿cree usted que es..."
+
+label variable h_6_41_d "6.4.1 ¿Recibe usted (y/o cónyuge u otro adulto mayor) la tarjeta de solidaridad (para comprar comida en supermercados)?"
+
+label variable h_6_42_d "6.4.2 ¿Recibe usted (y/o cónyuge u otro adulto mayor) un bono llamado bono-gas?"
+
+label variable h_6_43_d "6.4.3 ¿Recibe usted (y/o cónyuge u otro adulto mayor) un bono llamado bono-luz?"
+
+label variable h_6_44_p "6.4.4 ¿Recibe usted (y/o cónyuge u otro adulto mayor) la Carta de Pan (para comprar comida)?"
+
+label variable h_6_5 "6.5 En el último año, ¿usted (o su cónyuge u otro adulto mayor) ha dado ayuda en dinero o en bienes a sus hijos y/o nietos?"
+
+label variable h_6_5a_p "6.5a ¿Aproximademente, cuánto fue esa ayuda en el último año? CANTIDAD $ NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_6_5a_d "6.5a ¿Aproximademente, cuánto fue esa ayuda en el último año? CANTIDAD pesos NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_6_5a_c "6.5a ¿Aproximademente, cuánto fue esa ayuda en el último año? CANTIDAD CUP NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_6_5b1_p "6.5b1 más de $500?"
+
+label variable h_6_5b1_d "6.5b1 más de $7 000 pesos?"
+
+label variable h_6_5b1_c "6.5b1 más de 15 000 CUP?"
+
+label variable h_6_5b2_p "6.5b2 más de $1 000?"
+
+label variable h_6_5b2_d "6.5b2 más de $15 000 pesos?"
+
+label variable h_6_5b2_c "6.5b2 más de 30 000 CUP?"
+
+label variable h_6_6 "6.6 Durante el último año, ¿usted (y/o su cónyuge u otro adulto mayor) dio apoyo económico a sus padres (y/o sus suegros) que no viven en esta hogar?"
+
+label variable h_6_6a_p "6.6a ¿Aproximadamente, cuánto dinero fue ese apoyo en el último año? CANTIDAD $ NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_6_6a_d "6.6a ¿Aproximadamente, cuánto dinero fue ese apoyo en el último año? CANTIDAD pesos NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_6_6a_c "6.6a ¿Aproximadamente, cuánto dinero fue ese apoyo en el último año? CANTIDAD CUP NO RESPONDE............ 88 NO SABE ...................... 99"
+
+label variable h_6_6b1_p "6.6b1 más de $500?"
+
+label variable h_6_6b1_d "6.6b1 más de $7 000 pesos?"
+
+label variable h_6_6b1_c "6.6b1 más de 15 000 CUP?"
+
+label variable h_6_6b2_p "6.6b2 más de $1 000?"
+
+label variable h_6_6b2_d "6.6b2 más de $15 000 pesos?"
+
+label variable h_6_6b2_c "6.6b2 más de 30 000 CUP?"
+
+label variable h_7_1_p_c "7.1 Esta vivienda es..."
+
+label variable h_7_1_d "7.1 Esta vivienda es..."
+
+label variable h_7_2_1 "7.2.1 sobre calle pavimentada?"
+
+label variable h_7_2_2 "7.2.2 sobre una carretera?"
+
+label variable h_7_2_3 "7.2.3 sobre un camino o vereda?"
+
+label variable h_7_2_4 "7.2.4 a un lado de campos de cultivo?"
+
+label variable h_7_2_5 "7.2.5 A menos de 500 metros (como tres cuadras) de una avenida grande, de más de dos carriles?"
+
+label variable h_deviceid2 "Device ID:"
+

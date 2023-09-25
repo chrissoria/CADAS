@@ -6,14 +6,18 @@ log using Neighborhood_Dummy, text replace
 
 local country = 1
 
+*Change the filepath name here to the folder containing the data and output folders
+*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+
 if `country' == 0 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
+    cd "`path'/PR_out"
 }
 else if `country' == 1 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+    cd "`path'/DR_out"
 }
 else if `country' == 2 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
+    cd "`path'/CUBA_out"
 }
 
 if `country' == 0 {

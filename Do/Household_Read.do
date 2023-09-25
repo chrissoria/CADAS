@@ -4,14 +4,18 @@ capture log close
 
 local country = 1
 
+*Change the filepath name here to the folder containing the data and output folders
+*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+
 if `country' == 0 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
+    cd "`path'/PR_out"
 }
 else if `country' == 1 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+    cd "`path'/DR_out"
 }
 else if `country' == 2 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
+    cd "`path'/CUBA_out"
 }
 
 if `country' == 0 {
@@ -6815,7 +6819,7 @@ if h_country == 2 {
 local i 1
 gen h_countmissing = 0
 
-quietly ds hhid h_time2 h_time1 h_date fkey globalrecordid h_deviceid2, not
+quietly ds h_countmissing hhid h_date_end h_time_end_1 h_time_end h_time1 h_date fkey globalrecordid v1 h_deviceid2, not
 local allvar `r(varlist)'
 
 
@@ -6855,7 +6859,7 @@ quietly forvalues i = 1(1) `=_N' {
 local i 1
 gen h_last = "AllAnswered"
 
-quietly ds hhid h_countmissing h_last h_time2 h_time1 h_date fkey globalrecordid h_deviceid2, not
+quietly ds h_last h_countmissing hhid h_date_end h_time_end_1 h_time_end h_time1 h_date fkey globalrecordid v1 h_deviceid2, not
 local allvar `r(varlist)'
 
 

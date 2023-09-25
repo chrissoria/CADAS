@@ -1,0 +1,110 @@
+capture confirm numeric variable c_particid2
+if !_rc{
+     tostring c_particid2, replace
+}
+
+capture confirm numeric variable c_deviceid1
+if !_rc{
+     tostring c_deviceid1, replace
+}
+
+capture confirm numeric variable c_time2_1
+if !_rc{
+     tostring c_time2_1, replace
+}
+
+capture confirm numeric variable c_20
+if !_rc{
+     tostring c_20, replace
+}
+
+capture confirm numeric variable c_time3_1
+if !_rc{
+     tostring c_time3_1, replace
+}
+
+capture confirm numeric variable c_26_1
+if !_rc{
+     tostring c_26_1, replace
+}
+
+capture confirm numeric variable c_time4_1
+if !_rc{
+     tostring c_time4_1, replace
+}
+
+capture confirm numeric variable g_1_file
+if !_rc{
+     tostring g_1_file, replace
+}
+
+capture confirm numeric variable c_time5_1
+if !_rc{
+     tostring c_time5_1, replace
+}
+
+capture confirm numeric variable c_time6_1
+if !_rc{
+     tostring c_time6_1, replace
+}
+
+capture confirm numeric variable g_2_file
+if !_rc{
+     tostring g_2_file, replace
+}
+
+capture confirm numeric variable c_time7_1
+if !_rc{
+     tostring c_time7_1, replace
+}
+
+capture confirm numeric variable g_2_file2
+if !_rc{
+     tostring g_2_file2, replace
+}
+
+capture confirm numeric variable c_time8_1
+if !_rc{
+     tostring c_time8_1, replace
+}
+
+capture confirm numeric variable c_time9_1
+if !_rc{
+     tostring c_time9_1, replace
+}
+
+capture confirm numeric variable g_3_file
+if !_rc{
+     tostring g_3_file, replace
+}
+
+capture confirm numeric variable c_time11_1
+if !_rc{
+     tostring c_time11_1, replace
+}
+
+capture confirm numeric variable g_3_file2
+if !_rc{
+     tostring g_3_file2, replace
+}
+
+capture confirm numeric variable c_time_end
+if !_rc{
+     tostring c_time_end, replace
+}
+
+capture confirm numeric variable c_deviceid2
+if !_rc{
+     tostring c_deviceid2, replace
+}
+
+capture confirm numeric variable c_time_end_1
+if !_rc{
+     tostring c_time_end_1, replace
+}
+
+capture confirm numeric variable c_date_end
+if !_rc{
+     tostring c_date_end, replace
+}
+

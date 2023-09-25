@@ -7,14 +7,18 @@ capture log close
 
 local country = 1
 
+*Change the filepath name here to the folder containing the data and output folders
+*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+
 if `country' == 0 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
+    cd "`path'/PR_out"
 }
 else if `country' == 1 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+    cd "`path'/DR_out"
 }
 else if `country' == 2 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
+    cd "`path'/CUBA_out"
 }
 
 if `country' == 0 {
@@ -644,8 +648,6 @@ drop c_81
 generate C_82 = cond(c_82 ==  0, "excelente", cond(c_82 ==  1, "muy buena", cond(c_82 ==  2, "buena", cond(c_82 ==  3, "regular", cond(c_82 ==  4, "mala", cond(c_82 ==  5, "sordo", ""))))))
 
 drop c_82
-
-export delimited using "Cognitive_Child.csv", replace
 
 if `country' == 0 {
     export delimited using "../PR_in/Cognitive_Child_String.csv", replace
@@ -1958,6 +1960,7 @@ label define C_72_4 .a"." 1 "si" 6 "no pudo (limitación física)"7 "rehúsa"
 
 encode C_72_4, gen(c_72_4) label (C_72_4)
 
+/*
 rename g_3 (G_3)
 
 capture confirm numeric variable G_3
@@ -1968,6 +1971,7 @@ if !_rc{
 label define G_3 .a"." 1 "sí" 2 "no" 
 
 encode G_3, gen(g_3) label (G_3)
+*/
 
 rename c_77a (C_77A)
 
@@ -2860,7 +2864,7 @@ if !_rc{
 
 *reorder
 
-order c_interid c_houseid c_clustid c_particid c_country c_houseid2 c_conglid2 c_particid2 c_deviceid1 c_0 c_1 c_2_p_c c_2_d c_3 c_4 c_5 c_6 c_7_d_c c_7_p c_8 c_9 c_10 c_11 c_12 c_13 c_14 c_15 c_16 c_17 c_18 c_19 c_20 c_21 c_22 c_23 c_24 c_25 c_26 c_26_1 c_27 c_28 c_29 c_30 c_31 c_32 pent_pic c_33_a c_33_1 c_33_2 c_33_3 c_33_4 c_33_5 c_33_6 c_33_7 c_33_8 c_33_9 c_33_10 c_34_a c_34_1 c_34_2 c_34_3 c_34_4 c_34_5 c_34_6 c_34_7 c_34_8 c_34_9 c_34_10 c_35_a c_35_1 c_35_2 c_35_3 c_35_4 c_35_5 c_35_6 c_35_7 c_35_8 c_35_9 c_35_10 g_1 g_1_file c_40 anim_pic c_43 symb_pic c_45 c_45_a c_46 c_46_a c_48 c_49 c_50 c_51 c_52 c_53 c_54 c_55 c_56 c_58 c_59 c_60 c_61 c_62 c_63_a c_63_1 c_63_2 c_63_3 c_63_4 c_63_5 c_63_6 c_63_7 c_63_8 c_63_9 c_63_10 c_65 g_2 c_66_a g_2_file c_66a c_66b c_66c c_66d c_66e c_66f c_67_a g_2_file2 c_67_01 c_67_02 c_67_03 c_67_04 c_67_05 c_67_06 c_67_07 c_67_08 c_67_09 c_67_10 c_67_11 c_67_12 c_67_13_c c_67_13_d c_67_13_p c_67_14 c_67_15 c_67_16 c_67_17 c_67_18 c_67_19 c_67_20 c_67_21 c_67_22 c_67_23 c_67_24 c_67_25 c_68_a c_68_01 c_68_02 c_68_03 c_68_04 c_68_05 c_68_06 c_68_07 c_68_08 c_68_09 c_68_10 c_68_11 c_68_12 c_68_13 c_68_14 c_68_15 c_68_16 c_68_17 c_68_18 c_68_19 c_68_20 c_69_c c_69_d c_69_p c_70_d_c c_70_p c_71_c c_71_p c_71_d c_72_1 c_72_2 c_72_3 c_72_4 c_72_4_pic g_3 c_77_a g_3_file c_77a c_77b c_77c c_77d c_77e c_77f c_78_a g_3_file2 c_78_01 c_78_02 c_78_03 c_78_04 c_78_05 c_78_06 c_78_07 c_78_08 c_78_09 c_78_10 c_78_11 c_78_12 c_78_13 c_78_14 c_78_15 c_78_16 c_78_17 c_78_18 c_78_19 c_78_20 c_78_21 c_78_22 c_78_23 c_78_24 c_78_25 c_79_1 c_79_2 c_79_3 c_79_4 c_79_4_pic c_80a c_80b c_80c c_81 c_82 c_deviceid2
+order c_interid c_houseid c_clustid c_particid c_country c_houseid2 c_conglid2 c_particid2 c_deviceid1 c_0 c_1 c_2_p_c c_2_d c_3 c_4 c_5 c_6 c_7_d_c c_7_p c_8 c_9 c_10 c_11 c_12 c_13 c_14 c_15 c_16 c_17 c_18 c_19 c_20 c_21 c_22 c_23 c_24 c_25 c_26 c_26_1 c_27 c_28 c_29 c_30 c_31 c_32 pent_pic c_33_a c_33_1 c_33_2 c_33_3 c_33_4 c_33_5 c_33_6 c_33_7 c_33_8 c_33_9 c_33_10 c_34_a c_34_1 c_34_2 c_34_3 c_34_4 c_34_5 c_34_6 c_34_7 c_34_8 c_34_9 c_34_10 c_35_a c_35_1 c_35_2 c_35_3 c_35_4 c_35_5 c_35_6 c_35_7 c_35_8 c_35_9 c_35_10 g_1 g_1_file c_40 anim_pic c_43 symb_pic c_45 c_45_a c_46 c_46_a c_48 c_49 c_50 c_51 c_52 c_53 c_54 c_55 c_56 c_58 c_59 c_60 c_61 c_62 c_63_a c_63_1 c_63_2 c_63_3 c_63_4 c_63_5 c_63_6 c_63_7 c_63_8 c_63_9 c_63_10 c_65 g_2 c_66_a g_2_file c_66a c_66b c_66c c_66d c_66e c_66f c_67_a g_2_file2 c_67_01 c_67_02 c_67_03 c_67_04 c_67_05 c_67_06 c_67_07 c_67_08 c_67_09 c_67_10 c_67_11 c_67_12 c_67_13_c c_67_13_d c_67_13_p c_67_14 c_67_15 c_67_16 c_67_17 c_67_18 c_67_19 c_67_20 c_67_21 c_67_22 c_67_23 c_67_24 c_67_25 c_68_a c_68_01 c_68_02 c_68_03 c_68_04 c_68_05 c_68_06 c_68_07 c_68_08 c_68_09 c_68_10 c_68_11 c_68_12 c_68_13 c_68_14 c_68_15 c_68_16 c_68_17 c_68_18 c_68_19 c_68_20 c_69_c c_69_d c_69_p c_70_d_c c_70_p c_71_c c_71_p c_71_d c_72_1 c_72_2 c_72_3 c_72_4 c_72_4_pic /*g_3*/ c_77_a g_3_file c_77a c_77b c_77c c_77d c_77e c_77f c_78_a g_3_file2 c_78_01 c_78_02 c_78_03 c_78_04 c_78_05 c_78_06 c_78_07 c_78_08 c_78_09 c_78_10 c_78_11 c_78_12 c_78_13 c_78_14 c_78_15 c_78_16 c_78_17 c_78_18 c_78_19 c_78_20 c_78_21 c_78_22 c_78_23 c_78_24 c_78_25 c_79_1 c_79_2 c_79_3 c_79_4 c_79_4_pic c_80a c_80b c_80c c_81 c_82 c_deviceid2
 
 *variable labels
 
@@ -3238,7 +3242,9 @@ label variable c_72_4 "72.4. Intentó dibujar el cubo?"
 
 label variable c_72_4_pic "TOMA UNA FOTO PARA ESTAS RESPUESTAS"
 
+/*
 label variable g_3 "G.3. “Está bien si grabamos esta actividad?”"
+*/
 
 label variable c_77_a "Se rehúsa a contestar?"
 
@@ -4043,7 +4049,9 @@ replace c_72_2 = .i if (c_72_2 == . | c_72_2 == .a)
 replace c_72_3 = .i if (c_72_3 == . | c_72_3 == .a)
 replace c_72_4 = .i if (c_72_4 == . | c_72_4 == .a)
 replace c_72_4_pic = ".i" if (c_72_4_pic == "" | c_72_4_pic == ".a")
+/*
 replace g_3 = .i if (g_3 == . | g_3 == .a)
+*/
 replace c_77_a = .i if (c_77_a == . | c_77_a == .a)
 replace g_3_file = ".i" if g_3_file == ""
 replace c_77a = .i if (c_77a == . | c_77a == .a)
@@ -4135,7 +4143,7 @@ quietly forvalues i = 1(1) `=_N' {
 local i 1
 gen c_last = "AllAnswered"
 
-quietly ds c_countmissing hhid pid c_last c_time2 c_time1 c_date fkey globalrecordid c_deviceid2, not
+quietly ds c_countmissing hhid pid c_last fkey globalrecordid c_deviceid2 c_date c_date_end c_time_end_1 c_time_end c_time11_1 c_time11 c_time10_1 c_time10 c_time9_1 c_time9 c_time8_1 c_time8 c_time7_1 c_time7 c_time6_1 c_time6 c_time5_1 c_time5 c_time4_1 c_time4 c_time3_1 c_time3 c_time2_1 c_time2 c_time1 v1, not
 local allvar `r(varlist)'
 
 
@@ -4184,7 +4192,9 @@ gen c_FigureDelay = (Clock(C_Time_END, "MDYhms") - Clock(C_Time9, "MDYhms"))/100
 */
 gen c_TotalTime = (Clock(c_time2, "MDYhms") - Clock(c_time1, "MDYhms"))/1000/60
 
+/*
 drop g_3
+*/
 
 save Cog.dta, replace
  

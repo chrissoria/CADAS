@@ -5,14 +5,18 @@ log using Rosters, text replace
 
 local country = 1
 
+*Change the filepath name here to the folder containing the data and output folders
+*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+
 if `country' == 0 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
+    cd "`path'/PR_out"
 }
 else if `country' == 1 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+    cd "`path'/DR_out"
 }
 else if `country' == 2 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
+    cd "`path'/CUBA_out"
 }
 
 if `country' == 0 {
@@ -360,7 +364,7 @@ label values r_2_3 R_2_2_
 
    label variable r_3 "¿Es hombre o mujer?"
    
-generate R_3 = cond(r_3 == 1, "hombre", cond(r_3 == 2, "mujer", ".a"))
+generate R_3 = cond(r_3 == 0, "hombre", cond(r_3 == 1, "mujer", ".a"))
 
 drop r_3
 

@@ -7,14 +7,18 @@ capture log close
 
 local country = 1
 
+*Change the filepath name here to the folder containing the data and output folders
+*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+
 if `country' == 0 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
+    cd "`path'/PR_out"
 }
 else if `country' == 1 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+    cd "`path'/DR_out"
 }
 else if `country' == 2 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
+    cd "`path'/CUBA_out"
 }
 
 if `country' == 0 {
@@ -28,6 +32,7 @@ else if `country' == 2 {
 }
 
 *converting from numeric to string
+
 
 generate S_1_1_P = cond(s_1_1_p ==  0, "negro(a)", cond(s_1_1_p ==  1, "mulato(a) mezclado(a) o trigueño (blanco o negro)", cond(s_1_1_p ==  2, "blanco(a)", cond(s_1_1_p ==  3, "mestizo(a) (indio con blanco)", cond(s_1_1_p ==  4, "otra", cond(s_1_1_p ==  5, "no responde", cond(s_1_1_p ==  6, "no sabe", "")))))))
 
@@ -97,11 +102,11 @@ generate S_3_2 = cond(s_3_2 ==  0, "ciudad", cond(s_3_2 ==  1, "pueblo", cond(s_
 
 drop s_3_2
 
-generate S_3_4 = cond(s_3_4 ==  0, "ciudad", cond(s_3_4 ==  1, "pueblo", cond(s_3_4 ==  2, "campo", cond(s_3_4 ==  3, "no responde", cond(s_3_4 ==  4, "no sabe", "")))))
+generate S_3_4 = cond(s_3_4 ==  0, "ciudad", cond(s_3_4 ==  1, "pueblo", cond(s_3_4 ==  2, "campo", "")))
 
 drop s_3_4
 
-generate S_3_5 = cond(s_3_5 ==  0, "ciudad", cond(s_3_5 ==  1, "pueblo", cond(s_3_5 ==  2, "campo", cond(s_3_5 ==  3, "no responde", cond(s_3_5 ==  4, "no sabe", "")))))
+generate S_3_5 = cond(s_3_5 ==  0, "ciudad", cond(s_3_5 ==  1, "pueblo", cond(s_3_5 ==  2, "campo", "")))
 
 drop s_3_5
 
@@ -201,7 +206,7 @@ generate S_4_27A = cond(s_4_27a ==  0, "menos de 2 horas por semana?", cond(s_4_
 
 drop s_4_27a
 
-generate S_4_28 = cond(s_4_28 ==  0, "no", cond(s_4_28 ==  1, "si", cond(s_4_28 ==  2, "no tengo ningunos", cond(s_4_28 ==  3, "no responde", cond(s_4_28 ==  4, "no sabe", "")))))
+generate S_4_28 = cond(s_4_28 ==  0, "no", cond(s_4_28 ==  1, "si", cond(s_4_28 ==  2, "no responde", cond(s_4_28 ==  3, "no sabe", ""))))
 
 drop s_4_28
 
@@ -229,7 +234,7 @@ generate S_6_3 = cond(s_6_3 ==  0, "no", cond(s_6_3 ==  1, "si", cond(s_6_3 ==  
 
 drop s_6_3
 
-generate S_6_5_P = cond(s_6_5_p ==  0, "un país en américa latina", cond(s_6_5_p ==  1, "canadá", cond(s_6_5_p ==  2, "españa", cond(s_6_5_p ==  3, "otro país europeo", cond(s_6_5_p ==  4, "otro", "")))))
+generate S_6_5_P = cond(s_6_5_p ==  0, "puerto rico", cond(s_6_5_p ==  1, "un país en américa latina", cond(s_6_5_p ==  2, "canadá", cond(s_6_5_p ==  3, "españa", cond(s_6_5_p ==  4, "otro país europeo", cond(s_6_5_p ==  5, "otro", ""))))))
 
 drop s_6_5_p
 
@@ -237,7 +242,7 @@ generate S_6_5_D = cond(s_6_5_d ==  0, "haití", cond(s_6_5_d ==  1, "un país e
 
 drop s_6_5_d
 
-generate S_6_5_C = cond(s_6_5_c ==  0, "un país en américa latina", cond(s_6_5_c ==  1, "canadá", cond(s_6_5_c ==  2, "españa", cond(s_6_5_c ==  3, "otro país europeo", cond(s_6_5_c ==  4, "otro", "")))))
+generate S_6_5_C = cond(s_6_5_c ==  0, "cuba", cond(s_6_5_c ==  1, "un país en américa latina", cond(s_6_5_c ==  2, "canadá", cond(s_6_5_c ==  3, "españa", cond(s_6_5_c ==  4, "otro país europeo", cond(s_6_5_c ==  5, "otro", ""))))))
 
 drop s_6_5_c
 
@@ -289,7 +294,7 @@ generate S_7_6A = cond(s_7_6a ==  0, "casi cada dia", cond(s_7_6a ==  1, "al men
 
 drop s_7_6a
 
-generate S_7_6B = cond(s_7_6b ==  0, "siempre o casi siempre", cond(s_7_6b ==  1, "la mayor parte del tiempo", cond(s_7_6b ==  2, "a veces", cond(s_7_6b ==  3, "casi nunca", cond(s_7_6b ==  4, "nunca", cond(s_7_6b ==  5, "no responde", cond(s_7_6b ==  6, "no sabe", "")))))))
+generate S_7_6B = cond(s_7_6b ==  0, "siempre o casi siempre", cond(s_7_6b ==  1, "la major parte del tiempo", cond(s_7_6b ==  2, "a veces", cond(s_7_6b ==  3, "casi nunca", cond(s_7_6b ==  4, "nunca", cond(s_7_6b ==  5, "no responde", cond(s_7_6b ==  6, "no sabe", "")))))))
 
 drop s_7_6b
 
@@ -373,7 +378,7 @@ generate S_9_11 = cond(s_9_11 ==  0, "no", cond(s_9_11 ==  1, "si", cond(s_9_11 
 
 drop s_9_11
 
-generate S_9_13 = cond(s_9_13 ==  0, "menos de 6 meses", cond(s_9_13 ==  1, "de 6 a 11 meses", cond(s_9_13 ==  2, "de 1 a 2 años", cond(s_9_13 ==  3, "mas que 2 años", cond(s_9_13 ==  4, "nunca", cond(s_9_13 ==  5, "no responde", cond(s_9_13 ==  6, "no sabe", "")))))))
+generate S_9_13 = cond(s_9_13 ==  0, "menos que 6 meses", cond(s_9_13 ==  1, "de 6 a 11 meses", cond(s_9_13 ==  2, "de 1 a 2 años", cond(s_9_13 ==  3, "mas que 2 años", cond(s_9_13 ==  4, "nunca", cond(s_9_13 ==  5, "no responde", cond(s_9_13 ==  6, "no sabe", "")))))))
 
 drop s_9_13
 
@@ -437,7 +442,7 @@ generate S_9_33 = cond(s_9_33 ==  0, "no", cond(s_9_33 ==  1, "si", cond(s_9_33 
 
 drop s_9_33
 
-generate S_9_35 = cond(s_9_35 ==  0, "menos de 6 meses", cond(s_9_35 ==  1, "de 6 a 11 meses", cond(s_9_35 ==  2, "de 1 a 2 años", cond(s_9_35 ==  3, "mas de 2 años", cond(s_9_35 ==  4, "nunca", cond(s_9_35 ==  5, "no responde", cond(s_9_35 ==  6, "no sabe", "")))))))
+generate S_9_35 = cond(s_9_35 ==  0, "menos que 6 meses", cond(s_9_35 ==  1, "de 6 a 11 meses", cond(s_9_35 ==  2, "de 1 a 2 años", cond(s_9_35 ==  3, "mas que 2 años", cond(s_9_35 ==  4, "nunca", cond(s_9_35 ==  5, "no responde", cond(s_9_35 ==  6, "no sabe", "")))))))
 
 drop s_9_35
 
@@ -581,7 +586,7 @@ generate S_10_3 = cond(s_10_3 ==  0, "la mayoría de las noches", cond(s_10_3 ==
 
 drop s_10_3
 
-generate S_10_4 = cond(s_10_4 ==  0, "la mayoría de las noches", cond(s_10_4 ==  1, "algunas noches", cond(s_10_4 ==  2, "casi nunca o nunca", cond(s_10_4 ==  3, "no responde", cond(s_10_4 ==  4, "no sabe", "")))))
+generate S_10_4 = cond(s_10_4 ==  0, "la mayoría de las veces", cond(s_10_4 ==  1, "algunas veces", cond(s_10_4 ==  2, "casi nunca o nunca", cond(s_10_4 ==  3, "no responde", cond(s_10_4 ==  4, "no sabe", "")))))
 
 drop s_10_4
 
@@ -907,27 +912,25 @@ drop s_15_3
 
 *now we encode all strings to numeric
 
-export delimited using "Sociodemographic_Child.csv", replace
-
 
 if `country' == 0 {
-    export delimited using "../PR_in/Sociodemographic_Child.csv", replace
+    export delimited using "../PR_in/Sociodemographic_Child_String.csv", replace
 }
 else if `country' == 1 {
-    export delimited using "../DR_in/Sociodemographic_Child.csv", replace
+    export delimited using "../DR_in/Sociodemographic_Child_String.csv", replace
 }
 else if `country' == 2 {
-    export delimited using "../CUBA_in/Sociodemographic_Child.csv", replace
+    export delimited using "../CUBA_in/Sociodemographic_Child_String.csv", replace
 }
 
 if `country' == 0 {
-    insheet using "../PR_in/Sociodemographic_Child.csv", comma names clear
+    insheet using "../PR_in/Sociodemographic_Child_String.csv", comma names clear
 }
 else if `country' == 1 {
-    insheet using "../DR_in/Sociodemographic_Child.csv", comma names clear
+    insheet using "../DR_in/Sociodemographic_Child_String.csv", comma names clear
 }
 else if `country' == 2 {
-    insheet using "../CUBA_in/Sociodemographic_Child.csv", comma names clear
+    insheet using "../CUBA_in/Sociodemographic_Child_String.csv", comma names clear
 }
    
    ds, has(type string)
@@ -1201,7 +1204,7 @@ if !_rc{
      tostring S_3_2, replace
 }
 
-label define S_3_2 .a"." 0 "cuidad" 1 "pueblo" 2 "campo" 
+label define S_3_2 .a"." 0 "ciudad" 1 "pueblo" 2 "campo" 
 
 encode S_3_2, gen(s_3_2) label (S_3_2)
 
@@ -3871,7 +3874,7 @@ label values s_6_7 S_6_7_
 
 *reorder
 
-order s_interid s_houseid s_particid s_clustid s_country s_houseid2 s_conglid2 s_particid2 s_0 s_deviceid1 s_1_1_p s_1_1_d s_1_1_c s_1_2 s_2_3 s_2_8c s_2_9 s_2_9a s_2_10 s_2_11 s_2_12 s_2_13 s_2_14_p s_2_14_d s_2_14_c s_2_15_p s_2_15_d s_2_15_c s_2_16 s_3_0 s_3_1_p s_3_1_d s_3_1_c s_3_2 s_3_3_p s_3_3_d s_3_3_c s_3_4 s_3_5 s_3_6 s_3_7 s_3_8 s_3_9 s_3_11 s_3_12_1 s_3_12_2 s_3_12_3 s_3_12_6 s_3_12_8 s_3_13 s_3_17 s_3_18 s_3_19_1 s_3_19_2 s_4_1 s_4_2 s_4_3 s_4_6 s_4_7 s_4_8 s_4_11 s_4_12 s_4_13 s_4_16 s_4_17 s_4_18 s_4_20 s_4_21 s_4_22 s_4_23_1 s_4_23_2 s_4_26 s_4_27_1 s_4_27_2 s_4_27a s_4_28 s_4_29_1 s_4_29_2 s_4_29a s_5_1 s_5_2 s_5_3 s_5_4 s_5_5 s_6_1 s_6_2 s_6_3 s_6_4 s_6_5_p s_6_5_d s_6_5_c s_6_6 s_6_7 s_7_0 s_7_1 s_7_2a s_7_2b s_7_2c s_7_3 s_7_4a s_7_4b s_7_4c s_7_5a s_7_5b s_7_5c s_7_6a s_7_6b s_7_7a s_7_7b s_7_7c s_7_7d s_7_7e s_7_7f s_7_7g s_7_7h s_7_7i s_7_7j s_7_7k s_8_1 s_8_2 s_8_3 s_8_3a s_8_4 s_8_5a s_8_5b2 s_8_5b1 s_8_5b4 s_8_5b3 s_8_5b5 s_8_5b6 s_8_5b7 s_8_5b8 s_8_5b9 s_8_5c s_8_5d s_8_7 s_8_8 s_8_9 s_8_10 s_8_11 s_8_12 s_8_13 s_8_14 s_8_15 s_8_16 s_9_1 s_9_3 s_9_4 s_9_5 s_9_6 s_9_7 s_9_8 s_9_9 s_9_11 s_9_13 s_9_14 s_9_15 s_9_16 s_9_17 s_9_18 s_9_19 s_9_20 s_9_21a s_9_21b s_9_22 s_9_23 s_9_24 s_9_25 s_9_26 s_9_28 s_9_29 s_9_30 s_9_31 s_9_32 s_9_33 s_9_35 s_9_36 s_9_37 s_9_38a s_9_38g s_9_38b s_9_38f s_9_38c s_9_38d s_9_38j s_9_38e s_9_38k s_9_38h s_9_38l s_9_38i s_9_39 s_9_40 s_9_41 s_9_42 s_9_43a s_9_44 s_9_45a s_9_46 s_9_47 s_9_48 s_9_49 s_9_50 s_9_51 s_9_52 s_9_53 s_9_54 s_9_55 s_9_56 s_9_57 s_9_58 s_9_59 s_9_60 s_9_61 s_9_61a s_9_62 s_9_63 s_9_64_1 s_9_64_2 s_9_64_3 s_9_64_4 s_9_65 s_9_66 s_10_1a s_10_1b s_10_1c s_10_1d s_10_1e s_10_1f s_10_1g s_10_1h s_10_2 s_10_3 s_10_4 s_10_5 s_10_6_1 s_10_6_1a s_10_6_2 s_10_6_2a s_10_6_3 s_10_6_3a s_10_6_4 s_10_6_4a s_10_7_1 s_10_7_2 s_11_1 s_11_2 s_11_3 s_12_1a s_12_1b s_12_1c s_12_2a s_12_2c s_12_3a s_12_3c s_12_4a s_12_4b s_12_4c s_12_5a s_12_5c s_12_6a s_12_6c s_12_7 s_12_8 s_12_9 s_12_10 s_12_11 s_12_13 s_12_14 s_12_15 s_12_16 s_13_1_p_c s_13_1_d s_13_2 s_13_3_p_c s_13_3_d s_13_4 s_13_5 s_13_6_p_c s_13_6_d s_13_7_p_c s_13_7_d s_13_8 s_13_9 s_13_10 s_13_11 s_13_12 s_13_13 s_13_14 s_13_15 s_13_16 s_13_17 s_13_18 s_13_19 s_13_20 s_13_22 s_13_23_p s_13_23_d_c s_13_24 s_13_25_d_c s_13_25_p s_13_26 s_13_27_d_c s_13_27_p s_13_28 s_13_29 s_13_30_d_c s_13_30_p s_14_1_p_d s_14_2a_p s_14_2b_p s_14_2c_p s_14_2d_p s_14_2e_p s_14_2f_p s_14_2g_p s_14_2h_p s_14_2i_p s_14_2j_p s_14_2a_d s_14_2b_d s_14_2c_d s_14_2d_d s_14_2e_d s_14_2f_d s_14_2g_d s_14_3 s_14_4 s_14_5 s_14_6 s_14_8 s_14_9 s_14_11 s_14_12 s_14_13 s_14_14 s_14_15 s_14_16 s_14_17 s_14_18_1 s_14_18_2 s_14_18_3 s_14_18_4 s_14_18_5 s_14_18_6 s_14_20 s_14_22 s_14_23 s_14_24 s_14_25 s_14_30a s_14_30b1_p s_14_30b1_d s_14_30b2_p s_14_30b2_d s_14_30b3_p s_14_30b3_d s_14_31 s_14_32 s_14_33 s_15_1 s_15_2 s_15_3 s_deviceid2
+order s_interid s_houseid s_particid s_clustid s_country s_houseid2 s_conglid2 s_particid2 s_0 s_deviceid1 s_1_1_p s_1_1_d s_1_1_c s_1_2 s_2_3 s_2_8c s_2_9 s_2_9a s_2_10 s_2_11 s_2_12 s_2_13 s_2_14_p s_2_14_d s_2_14_c s_2_15_p s_2_15_d s_2_15_c s_2_16 s_3_0 s_3_1_p s_3_1_d s_3_1_c s_3_2 s_3_3_p s_3_3_d s_3_3_c s_3_4 s_3_5 s_3_6 s_3_7 s_3_8 s_3_9 s_3_11 s_3_12_1 s_3_12_2 s_3_12_3 s_3_12_6 s_3_12_8 s_3_13 s_3_17 s_3_18 s_3_19_1 s_3_19_2 s_4_1 s_4_2 s_4_3 s_4_6 s_4_7 s_4_8 s_4_11 s_4_12 s_4_13 s_4_16 s_4_17 s_4_18 s_4_20 s_4_21 s_4_22 s_4_23_1 s_4_23_2 s_4_26 s_4_27_1 s_4_27_2 s_4_27a s_4_28 s_4_29_1 s_4_29_2 s_4_29a s_5_1 s_5_2 s_5_3 s_5_4 s_5_5 s_6_1 s_6_2 s_6_3 s_6_4 s_6_5_p s_6_5_d s_6_5_c s_6_6 s_6_7 s_7_0 s_7_1 s_7_2a s_7_2b s_7_2c s_7_3 s_7_4a s_7_4b s_7_4c s_7_5a s_7_5b s_7_5c s_7_6a s_7_6b s_7_7a s_7_7b s_7_7c s_7_7d s_7_7e s_7_7f s_7_7g s_7_7h s_7_7i s_7_7j s_7_7k s_8_1 s_8_2 s_8_3 s_8_3a s_8_4 s_8_5a s_8_5b2 s_8_5b1 s_8_5b4 s_8_5b3 s_8_5b5 s_8_5b6 s_8_5b7 s_8_5b8 s_8_5b9 s_8_5c s_8_5d s_8_7 s_8_8 s_8_9 s_8_10 s_8_11 s_8_12 s_8_13 s_8_14 s_8_15 s_8_16 s_9_1 s_9_3 s_9_4 s_9_5 s_9_6 s_9_7 s_9_8 s_9_9 s_9_11 s_9_13 s_9_14 s_9_15 s_9_16 s_9_17 s_9_18 s_9_19 s_9_20 s_9_21a s_9_21b s_9_22 s_9_23 s_9_24 s_9_25 s_9_26 s_9_28 s_9_29 s_9_30 s_9_31 s_9_32 s_9_33 s_9_35 s_9_36 s_9_37 s_9_38a s_9_38g s_9_38b s_9_38f s_9_38c s_9_38d s_9_38j s_9_38e s_9_38k s_9_38h s_9_38l s_9_38i s_9_39 s_9_40 s_9_41 s_9_42 s_9_43a s_9_44 s_9_45a s_9_46 s_9_47 s_9_48 s_9_49 s_9_50 s_9_51 s_9_52 s_9_53 s_9_54 s_9_55 s_9_56 s_9_57 s_9_58 s_9_59 s_9_60 s_9_61 s_9_61a s_9_62 s_9_63 s_9_64_1 s_9_64_2 s_9_64_3 s_9_64_4 s_9_65 s_9_66 s_10_1a s_10_1b s_10_1c s_10_1d s_10_1e s_10_1f s_10_1g s_10_1h s_10_2 s_10_3 s_10_4 s_10_5 s_10_6_1 s_10_6_1a s_10_6_2 s_10_6_2a s_10_6_3 s_10_6_3a s_10_6_4 s_10_6_4a s_10_7_1 s_10_7_2 s_11_1 s_11_2 s_11_3 s_12_1a s_12_1b s_12_1c s_12_2a s_12_2c s_12_3a s_12_3c s_12_4a s_12_4b s_12_4c s_12_5a s_12_5c s_12_6a s_12_6c s_12_7 s_12_8 s_12_9 s_12_10 s_12_11 s_12_13 s_12_14 s_12_15 s_12_16 s_13_1_p_c s_13_1_d s_13_2 s_13_3_p_c s_13_3_d s_13_4 s_13_5 s_13_6_p_c s_13_6_d s_13_7_p_c s_13_7_d s_13_8 s_13_9 s_13_10 s_13_11 s_13_12 s_13_13 s_13_14 s_13_15 s_13_16 s_13_17 s_13_18 s_13_19 s_13_20 s_13_22 s_13_23_p s_13_23_d_c s_13_24 s_13_25_d_c s_13_25_p s_13_26 s_13_27_d_c s_13_27_p s_13_28 s_13_29 s_13_30_d_c s_13_30_p s_14_1_p_d s_14_2a_p s_14_2b_p s_14_2c_p s_14_2d_p s_14_2e_p s_14_2f_p s_14_2g_p s_14_2h_p s_14_2i_p s_14_2j_p s_14_2a_d s_14_2b_d s_14_2c_d s_14_2d_d s_14_2e_d s_14_2f_d s_14_2g_d s_14_3 s_14_4 s_14_5 s_14_6 s_14_8 s_14_9 s_14_11 s_14_12 s_14_13 s_14_14 s_14_15 s_14_16 s_14_17 s_14_18_1 s_14_18_2 s_14_18_3 s_14_18_4 s_14_18_5 s_14_18_6 s_14_20 s_14_22 s_14_23 s_14_24 s_14_25 s_14_30a s_14_30b1_p s_14_30b1_d s_14_30b1_c s_14_30b2_p s_14_30b2_d s_14_30b2_c s_14_30b3_p s_14_30b3_d s_14_30b3_c s_14_31 s_14_32 s_14_33 s_15_1 s_15_2 s_15_3 s_deviceid2
 
 *convert missing comment legal and text values to string
 
@@ -4633,13 +4636,19 @@ label variable s_14_30b1_p "14.30b.1 ¿Diría usted que estos gastos fueron en t
 
 label variable s_14_30b1_d "14.30b.1 ¿Diría usted que estos gastos fueron en total mas de 5000 pesos?"
 
+label variable s_14_30b1_c "14.30b.1 ¿Diría usted que estos gastos fueron en total Más de 1250 CUP?"
+
 label variable s_14_30b2_p "14.30b2 ¿Diría usted que estos gastos fueron en total Más de $50?"
 
 label variable s_14_30b2_d "14.30b2 ¿Diría usted que estos gastos fueron en total mas de 2500 pesos?"
 
+label variable s_14_30b2_c "14.30b2 ¿Diría usted que estos gastos fueron en total Más de 125 CUP?"
+
 label variable s_14_30b3_p "14.30b3 ¿Diría usted que estos gastos fueron en total Más de $200?"
 
 label variable s_14_30b3_d "14.30b3 ¿Diría usted que estos gastos fueron en total mas de 10,000 pesos?"
+
+label variable s_14_30b3_c "14.30b3 ¿Diría usted que estos gastos fueron en total Más de 4500 CUP?"
 
 label variable s_14_31 "14.31 ¿Se ha vacunado contra el COVID?"
 
@@ -5171,19 +5180,19 @@ replace s_14_30b1_p = .i if (s_14_30b1_p == . | s_14_30b1_p == .a) & ((s_14_30a 
 
 replace s_14_30b1_d = .i if (s_14_30b1_d == . | s_14_30b1_d == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & s_country  == 1)
 
-*replace s_14_30b1_c = .i if (s_14_30b1_c == . | s_14_30b1_c == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & s_country  == 2)
+replace s_14_30b1_c = .i if (s_14_30b1_c == . | s_14_30b1_c == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & s_country  == 2)
 
 replace s_14_30b2_p = .i if (s_14_30b2_p == . | s_14_30b2_p == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 0) & (s_14_30b1_p == 2 | s_14_30b1_p == .i))
 
 replace s_14_30b2_d = .i if (s_14_30b2_d == . | s_14_30b2_d == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 1) & (s_14_30b1_d == 2 | s_14_30b1_d == .i))
 
-*replace s_14_30b2_c = .i if (s_14_30b2_c == . | s_14_30b2_c == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 2) & (s_14_30b1_c == 2 | s_14_30b1_c == .i))
+replace s_14_30b2_c = .i if (s_14_30b2_c == . | s_14_30b2_c == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 2) & (s_14_30b1_c == 2 | s_14_30b1_c == .i))
 
 replace s_14_30b3_p = .i if (s_14_30b3_p == . | s_14_30b3_p == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 0) & (s_14_30b1_p == 1 | s_14_30b1_p == .i))
 
 replace s_14_30b3_d = .i if (s_14_30b3_d == . | s_14_30b3_d == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 1) & (s_14_30b1_d == 1 | s_14_30b1_d == .i))
 
-*replace s_14_30b3_c = .i if (s_14_30b3_c == . | s_14_30b3_c == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 2) & (s_14_30b1_c == 1 | s_14_30b1_c == .i))
+replace s_14_30b3_c = .i if (s_14_30b3_c == . | s_14_30b3_c == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 2) & (s_14_30b1_c == 1 | s_14_30b1_c == .i))
 
 replace s_14_32 = .i if (s_14_32 == . | s_14_32 == .a) & (s_14_31 ~= 2 & s_14_31 ~= 8 & s_14_31 ~= 9)
 
@@ -5248,13 +5257,13 @@ replace s_14_2f_d = .v if (s_14_2f_d == 0 | s_14_2f_d == .a) & (s_country ~= 1 |
 replace s_14_2g_d = .v if (s_14_2g_d == 0 | s_14_2g_d == .a) & (s_country ~= 1 | s_14_1_p_d == 2 | s_14_1_p_d == 8 | s_14_1_p_d == 9)
 replace s_14_30b1_p = .v if (s_14_30b1_p == . | s_14_30b1_p == .a) & s_country ~= 0
 replace s_14_30b1_d = .v if (s_14_30b1_d == . | s_14_30b1_d == .a) & s_country ~= 1
-*replace s_14_30b1_c = .v if (s_14_30b1_c == . | s_14_30b1_c == .a) & s_country ~= 2
+replace s_14_30b1_c = .v if (s_14_30b1_c == . | s_14_30b1_c == .a) & s_country ~= 2
 replace s_14_30b2_p = .v if (s_14_30b2_p == . | s_14_30b2_p == .a) & s_country ~= 0
 replace s_14_30b2_d = .v if (s_14_30b2_d == . | s_14_30b2_d == .a) & s_country ~= 1
-*replace s_14_30b2_c = .v if (s_14_30b2_c == . | s_14_30b2_c == .a) & s_country ~= 2
+replace s_14_30b2_c = .v if (s_14_30b2_c == . | s_14_30b2_c == .a) & s_country ~= 2
 replace s_14_30b3_p = .v if (s_14_30b3_p == . | s_14_30b3_p == .a) & s_country ~= 0
 replace s_14_30b3_d = .v if (s_14_30b3_d == . | s_14_30b3_d == .a) & s_country ~= 1
-*replace s_14_30b3_c = .v if (s_14_30b3_c == . | s_14_30b3_c == .a) & s_country ~= 2
+replace s_14_30b3_c = .v if (s_14_30b3_c == . | s_14_30b3_c == .a) & s_country ~= 2
 
 
 
@@ -5456,13 +5465,13 @@ replace s_14_24 = .v if (s_14_24 == . | s_14_24 == .a)
 replace s_14_25 = .v if (s_14_25 == . | s_14_25 == .a)
 replace s_14_30b1_p = .v if (s_14_30b1_p == . | s_14_30b1_p == .a)
 replace s_14_30b1_d = .v if (s_14_30b1_d == . | s_14_30b1_d == .a)
-*replace s_14_30b1_c = .v if (s_14_30b1_c == . | s_14_30b1_c == .a)
+replace s_14_30b1_c = .v if (s_14_30b1_c == . | s_14_30b1_c == .a)
 replace s_14_30b2_p = .v if (s_14_30b2_p == . | s_14_30b2_p == .a)
 replace s_14_30b2_d = .v if (s_14_30b2_d == . | s_14_30b2_d == .a)
-*replace s_14_30b2_c = .v if (s_14_30b2_c == . | s_14_30b2_c == .a)
+replace s_14_30b2_c = .v if (s_14_30b2_c == . | s_14_30b2_c == .a)
 replace s_14_30b3_p = .v if (s_14_30b3_p == . | s_14_30b3_p == .a)
 replace s_14_30b3_d = .v if (s_14_30b3_d == . | s_14_30b3_d == .a)
-*replace s_14_30b3_c = .v if (s_14_30b3_c == . | s_14_30b3_c == .a)
+replace s_14_30b3_c = .v if (s_14_30b3_c == . | s_14_30b3_c == .a)
 replace s_14_32 = .v if (s_14_32 == . | s_14_32 == .a)
 replace s_15_2 = .v if (s_15_2 == . | s_15_2 == .a)
 
@@ -5831,10 +5840,13 @@ replace s_14_25 = .i if (s_14_25 == . | s_14_25 == .a)
 replace s_14_30a = .i if (s_14_30a == . | s_14_30a == .a)
 replace s_14_30b1_p = .i if (s_14_30b1_p == . | s_14_30b1_p == .a)
 replace s_14_30b1_d = .i if (s_14_30b1_d == . | s_14_30b1_d == .a)
+replace s_14_30b1_c = .i if (s_14_30b1_c == . | s_14_30b1_c == .a)
 replace s_14_30b2_p = .i if (s_14_30b2_p == . | s_14_30b2_p == .a)
 replace s_14_30b2_d = .i if (s_14_30b2_d == . | s_14_30b2_d == .a)
+replace s_14_30b2_c = .i if (s_14_30b2_c == . | s_14_30b2_c == .a)
 replace s_14_30b3_p = .i if (s_14_30b3_p == . | s_14_30b3_p == .a)
 replace s_14_30b3_d = .i if (s_14_30b3_d == . | s_14_30b3_d == .a)
+replace s_14_30b3_c = .i if (s_14_30b3_c == . | s_14_30b3_c == .a)
 replace s_14_31 = .i if (s_14_31 == . | s_14_31 == .a)
 replace s_14_32 = .i if (s_14_32 == . | s_14_32 == .a)
 replace s_14_33 = .i if (s_14_33 == . | s_14_33 == .a)
@@ -5857,7 +5869,7 @@ drop S_*
 local i 1
 gen s_countmissing = 0
 
-quietly ds hhid pid s_8_5b2_delete s_time2 s_time1 s_date fkey globalrecordid s_deviceid2, not
+quietly ds s_8_5b2_delete hhid pid s_date_end s_time_end_1 s_time_end s_77l s_time1 s_date fkey globalrecordid v1 s_deviceid2, not
 local allvar `r(varlist)'
 
 
@@ -5895,7 +5907,7 @@ quietly forvalues i = 1(1) `=_N' {
 local i 1
 gen s_last = "AllAnswered"
 
-quietly ds s_countmissing s_8_5b2_delete hhid pid s_last s_time2 s_time1 s_date fkey globalrecordid s_deviceid2, not
+quietly ds s_last s_countmissing s_8_5b2_delete hhid pid s_date_end s_time_end_1 s_time_end s_77l s_time1 s_date fkey globalrecordid v1 s_deviceid2, not
 local allvar `r(varlist)'
 
 
@@ -5932,7 +5944,7 @@ quietly forvalues i = 1(1) `=_N' {
 
 
 
-gen s_TotalTime = (Clock(s_time2, "MDYhms") - Clock(s_time1, "MDYhms"))/1000/60
+gen s_TotalTime = (Clock(s_time_end, "MDYhms") - Clock(s_time1, "MDYhms"))/1000/60
 
 capture log close
 log using SocioMissingCodebook, text replace
