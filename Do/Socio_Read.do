@@ -8,8 +8,8 @@ capture log close
 local country = 1
 
 *Change the filepath name here to the folder containing the data and output folders
-*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+*local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
 
 if `country' == 0 {
     cd "`path'/PR_out"
@@ -5947,12 +5947,9 @@ quietly forvalues i = 1(1) `=_N' {
 gen s_TotalTime = (Clock(s_time_end, "MDYhms") - Clock(s_time1, "MDYhms"))/1000/60
 
 capture log close
-log using SocioMissingCodebook, text replace
+log using logs/SocioMissingCodebook, text replace
 
 codebook
-
-   save SocioMissing, replace
-
 
 log close
 

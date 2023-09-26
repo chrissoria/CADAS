@@ -94,6 +94,14 @@ label variable cs_79_3 "79.3. Rectángulos cruzados (0-2)"
 
 label variable cs_79_4 "79.4. El cubo (0-4)"
 
+capture log close
+log using logs/CogScoringMissingCodebook, text replace
+
+codebook
+
+log close
+
+
  save Cog_Scoring.dta, replace
 
 clear all

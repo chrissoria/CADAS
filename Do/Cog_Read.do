@@ -8,8 +8,8 @@ capture log close
 local country = 1
 
 *Change the filepath name here to the folder containing the data and output folders
-*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+*local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
 
 if `country' == 0 {
     cd "`path'/PR_out"
@@ -5360,6 +5360,14 @@ replace longstory_delayed_approximate = (longstory_delayed_approximate + 1) if c
 
 replace longstory_delayed_approximate = (longstory_delayed_approximate + 1) if c_78_25 == 1
 ************************
+
+capture log close
+log using logs/CogMissingCodebook, text replace
+
+codebook
+
+log close
+
 
 save cog_merged.dta, replace
 

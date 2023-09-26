@@ -597,6 +597,14 @@ drop r_country_str r_clustid_str r_houseid_str pr_particid_str
 
 drop _merge
 
+capture log close
+log using logs/RostersMissingCodebook, text replace
+
+codebook
+
+log close
+
+
  save rosters_merged.dta,replace
  export excel using "Rosters_Merged.xlsx", firstrow(variables) nolabel replace
  
