@@ -7,8 +7,8 @@ capture log close
 local country = 1
 
 *Change the filepath name here to the folder containing the data and output folders
-*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+*local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
 
 if `country' == 0 {
     cd "`path'/PR_out"
@@ -29,8 +29,13 @@ else if `country' == 1 {
 else if `country' == 2 {
     insheet using "../CUBA_in/Cog_Scoring.csv", comma names clear
 }
+gen cs_country_num = .
+replace cs_country_num = 0 if cs_country == "0 - Cuba(a)"
+replace cs_country_num = 1 if cs_country == "1 - República Dominicana"
+replace cs_country_num = 2 if cs_country == "2 - Puerto Rico"
+
  
-gen cs_country_str = string(cs_country, "%12.0f")
+gen cs_country_str = string(cs_country_num, "%12.0f")
 
 gen cs_clustid_str = string(cs_clustid, "%12.0f")
 replace cs_clustid_str = cond(strlen(cs_clustid_str) == 1, "0" + cs_clustid_str, cs_clustid_str)
@@ -44,8 +49,6 @@ replace cs_particid_str = cond(strlen(cs_particid_str) == 1, "0" + cs_particid_s
 
 gen pid = cs_country_str + cs_clustid_str + cs_houseid_str + cs_particid_str
 gen hhid = cs_country_str + cs_clustid_str + cs_houseid_str
-
-drop firstsavelogonname firstsavetime lastsavelogonname lastsavetime fkey
 
 order cs_interid cs_houseid cs_clustid cs_particid cs_country cs_houseid2 cs_conglid2 cs_particid2 cs_32 cs_40 cs_41 cs_43 cs_44 cs_72_1 cs_72_2 cs_72_3 cs_72_4 cs_79_1 cs_79_2 cs_79_3 cs_79_4
 

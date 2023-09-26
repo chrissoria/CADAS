@@ -6,8 +6,8 @@ log using Rosters, text replace
 local country = 1
 
 *Change the filepath name here to the folder containing the data and output folders
-*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+*local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
 
 if `country' == 0 {
     cd "`path'/PR_out"
@@ -169,7 +169,7 @@ drop PR_2_3
 
    label variable pr_3 "¿Es hombre o mujer?"
  
-generate PR_3 = cond(pr_3 == 1, "hombre", cond(pr_3 == 2, "mujer", ".a"))
+generate PR_3 = cond(pr_3 == 0, "hombre", cond(pr_3 == 1, "mujer", ".a"))
 
 drop pr_3
 

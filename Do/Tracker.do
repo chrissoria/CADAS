@@ -43,7 +43,7 @@ C. Check to see gender in Socio matches gender in Roster
 ********** 
 * ROSTER_PARTICIPANTS
 **********
-use rosters_participants, clear
+use rosters_merged, clear
 keep pid pr_3 pr_4
 gen pidr=real(pid)
 drop if pidr==. /* check if any obs are missing pid */
@@ -65,21 +65,21 @@ save tracker, replace
 **********
 use Socio, clear
 *s_2_3 will be slightly different if age on official documents differs from roster age
-keep pid s_sex s_2_3
+keep pid s_0 s_2_3
 gen pidr=real(pid)
 drop if pidr==.
 egen duplic=count(pid), by(pid)
 tab duplic
 sort pid
-list pid s_sex s_2_3 duplic if duplic>1 
+list pid s_0 s_2_3 duplic if duplic>1 
 gen in_socio=1 
 drop pidr duplic
 sum
 *save socio_check.dta, replace
 merge m:m pid using tracker
 
-tab pr_3 s_sex, miss
-list pid pr_3 s_sex if (pr_3 ~= s_sex +1) & _merge==3 /* list if sex differs between Roster and Socio */
+tab pr_3 s_0, miss
+list pid pr_3 s_0 if (pr_3 ~= s_0 +1) & _merge==3 /* list if sex differs between Roster and Socio */
 corr pr_4 s_2_3
 list pid pr_4 s_2_3 if abs(pr_4 - s_2_3) >2 & _merge==3 /* list if sex differs more than 2 years between Roster and Socio */
 

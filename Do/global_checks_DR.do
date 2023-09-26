@@ -140,7 +140,7 @@ foreach var of varlist `varlist' {
 }
 
 * Export data to Excel
-export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(variables)
+capture export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(variables)
  
  clear all
  
@@ -491,7 +491,7 @@ foreach var of varlist `varlist' {
 }
 
 * Export data to Excel
-export excel using "duplicates/cog_scoring_duplicates.xlsx", replace firstrow(variables)
+capture export excel using "duplicates/cog_scoring_duplicates.xlsx", replace firstrow(variables)
  
  clear all
 
