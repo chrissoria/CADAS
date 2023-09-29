@@ -8,14 +8,18 @@ capture log close
 
 local country = 1
 
+*Change the filepath name here to the folder containing the data and output folders
+*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+
 if `country' == 0 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
+    cd "`path'/PR_out"
 }
 else if `country' == 1 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+    cd "`path'/DR_out"
 }
 else if `country' == 2 {
-    cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
+    cd "`path'/CUBA_out"
 }
 
 *below we read in a country-specific file
@@ -275,28 +279,55 @@ save tracker, replace
 d,s
 sum
 
+********** 
+* BLOOD
+**********
+
+use sangre_full, clear
+
+keep pid XF7
+gen pidr=real(pid)
+drop if pidr==.
+egen duplic=count(pid), by(pid)
+tab duplic
+sort pid
+list pid duplic if duplic>1 
+gen in_blood=1 
+drop pidr duplic
+sum
+*save sangre_check.dta, replace
+merge m:m pid using tracker
+drop _merge
+save tracker, replace
+d,s
+sum
+
 * SUMMARY VARIABLE FOR WHICH SURVEYS EACH LINE HAS
 gen RES_in ="Res" if in_resumen_par==1
 gen R_in="R" if in_rosters_par==1
 gen S_in="S" if in_socio==1
 gen P_in="P" if in_phys==1
 gen C_in="C" if in_cog==1
-gen CS_in="Cs" if in_cog_scor==1
+gen CS_in="Z" if in_cog_scor==1
 gen I_in="I" if in_infor==1
-gen H_in="H" if in_hh==1 
+gen H_in="H" if in_hh==1
+gen B_in="XF7" if in_blood==1
+replace RES_in="   " if in_resumen_par~=1
+replace R_in=" " if in_rosters_par~=1
 replace S_in=" " if in_socio~=1
 replace P_in=" " if in_phys~=1
 replace C_in=" " if in_cog~=1
 replace CS_in=" " if in_cog_scor~=1
 replace I_in=" " if in_infor~=1
-replace H_in=" " if in_hh~=1 
+replace H_in=" " if in_hh~=1
+replace B_in="   " if in_blood~=1
 
-gen RSPCZIH = RES_in+R_in + S_in + P_in + C_in + CS_in + I_in + H_in
-tab RSPCZIH
+gen RSPCZIHXF7 = RES_in+R_in + S_in + P_in + C_in + CS_in + I_in + H_in + B_in
+tab RSPCZIHXF7
 
 sum in*
 
-drop R_in S_in P_in C_in CS_in I_in H_in
+drop R_in S_in P_in C_in CS_in I_in H_in B_in
 save tracker_full, replace
 
 * Get the list of variable names
