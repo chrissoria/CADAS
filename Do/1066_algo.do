@@ -7,6 +7,8 @@ cd "`path'"
 
 use "data/1066_Baseline_data.dta"
 
+log using 1066_algo.log, text replace
+
 *First we create the cogscore
 rename cogscore cogscore_first
 
@@ -222,7 +224,7 @@ gen relscore3 = (30 / (30 - misstot)) * (activ + mental + memory + put + kept + 
  dress + toilet) - ((miss1 + miss3) * 9)
 
 *relscore with all missing values converted AND adding in the 3 missing vars
-gen RELSCORE = (30 / (30 - misstot)) * (activ + mental + memory + put + kept + ///
+gen relscore4 = (30 / (30 - misstot)) * (activ + mental + memory + put + kept + ///
  frdname + famname + convers + wordfind + wordwrg + past + lastsee + lastday + ///
  orient + lostout + lostin + chores + hobby + money + change + reason + feed + ///
  dress + toilet + mistake + decide + muddled) - ((miss1 + miss3) * 9)
@@ -234,7 +236,7 @@ recode activ mental memory put kept frdname famname convers wordfind wordwrg pas
 replace relscore = . if misstot >= 29
 replace relscore2 = . if misstot >= 29
 replace relscore3 = . if misstot >= 29
-replace RELSCORE = . if misstot >= 29
+replace relscore4 = . if misstot >= 29
 
 * Run a correlation between relscore and relscore_first (if relscore_first exists)
 corr relscore relscore_original
@@ -243,7 +245,7 @@ corr relscore2 relscore_original
 
 corr relscore3 relscore_original
 
-corr RELSCORE relscore_original
+corr relscore4 relscore_original
 
 *Next, let's create the whodas12
 
@@ -300,12 +302,12 @@ replace pred_relscore = 10 if pred_relscore >= 10
 replace relscore = pred_relscore if missing(relscore)
 replace relscore2 = pred_relscore if missing(relscore2)
 replace relscore3 = pred_relscore if missing(relscore3)
-replace RELSCORE = pred_relscore if missing(RELSCORE)
+replace relscore4 = pred_relscore if missing(relscore4)
 
 corr relscore relscore_first
 corr relscore2 relscore_first
 corr relscore3 relscore_first
-corr RELSCORE relscore_first
+corr relscore4 relscore_first
 
 *next I'll produce the cogscore
 rename dfscore dfscore_first
@@ -313,10 +315,12 @@ rename dfscore dfscore_first
 gen dfscore = 0.452322 - (0.01669918 * cogscore) + (0.03033851 * relscore)
 gen dfscore2 = 0.452322 - (0.01669918 * cogscore) + (0.03033851 * relscore2)
 gen dfscore3 = 0.452322 - (0.01669918 * cogscore) + (0.03033851 * relscore3)
-gen dfscore4 = 0.452322 - (0.01669918 * cogscore) + (0.03033851 * RELSCORE)
+gen dfscore4 = 0.452322 - (0.01669918 * cogscore) + (0.03033851 * relscore4)
 
 summarize dfscore, detail
 summarize dfscore2, detail
+summarize dfscore3, detail
+summarize dfscore4, detail
 
 corr dfscore dfscore_first
 corr dfscore2 dfscore_first
@@ -450,3 +454,6 @@ replace dem1066 = 1 if prob > 0.25591
 
 *not sure if this is the same thing
 corr dem1066 cdem1066
+
+log close
+exit, clear

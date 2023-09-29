@@ -570,7 +570,7 @@ if !_rc{
      tostring P12_1, replace
 }
 
-label define P12_1 .a"." 0 "dominante" 1 "no dominante" 6 "no intentó la prueba" 
+label define P12_1 .a"." 0 "dominante" 1 "no-dominante" 6 "no intentó la prueba" 
 
 encode P12_1, gen(p12_1) label (P12_1)
 

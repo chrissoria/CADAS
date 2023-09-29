@@ -1001,7 +1001,7 @@ if !_rc{
      tostring S_3_11, replace
 }
 
-label define S_3_11 .a"." 1 "1 - profesional ejecutivo" 2 "2 - oficinista" 3 "3 - vendedor, minorista" 4 "4 - agricultor independiente" 5 "5 - trabajador agrícola" 6 "6 - trabajador domestico" 7 "7 - otros servicios" 8 "8 - trabajador especializado" 9 "9 - trabajador no especializado" 10 "10 - trabajos informales" 11 "11 - otros" 12 "12 - no trabajó" 13 "13 - no tenía padre o tutor" 88 "88 - no responde" 99 "99 - no sabe"
+label define S_3_11 .a"." 1 "1 - profesional, ejecutivo" 2 "2 - oficinista" 3 "3 - vendedor, minorista" 4 "4 - agricultor independiente" 5 "5 - trabajador agrícola" 6 "6 - trabajador domestico" 7 "7 - otros servicios" 8 "8 - trabajador especializado" 9 "9 - trabajador no especializado" 10 "10 - trabajos informales" 11 "11 - otros" 12 "12 - no trabajó" 13 "13 - no tenía padre o tutor" 88 "88 - no responde" 99 "99 - no sabe"
 
 encode S_3_11, gen (s_3_11) label(S_3_11)
 
