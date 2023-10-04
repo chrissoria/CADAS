@@ -286,7 +286,22 @@ replace p_particid_str = cond(strlen(p_particid_str) == 1, "0" + p_particid_str,
 
 gen pid = p_country_str + p_clustid_str + p_houseid_str + p_particid_str
 gen hhid = p_country_str + p_clustid_str + p_houseid_str
-drop p_country_str p_clustid_str p_houseid_str p_particid_str
+drop p_clustid_str p_houseid_str p_particid_str
+
+*second entry
+
+gen p_clustid2_str = string(p_conglid2, "%12.0f")
+replace p_clustid2_str = cond(strlen(p_clustid2_str) == 1, "0" + p_clustid2_str, p_clustid2_str)
+
+gen p_houseid2_str = string(p_houseid2, "%03.0f")
+replace p_houseid2_str = cond(strlen(p_houseid2_str) == 1, "00" + p_houseid2_str, p_houseid2_str)
+replace p_houseid2_str = cond(strlen(p_houseid2_str) == 2, "0" + p_houseid2_str, p_houseid2_str)
+
+gen p_particid2_str = string(p_particid2, "%12.0f")
+replace p_particid2_str = cond(strlen(p_particid2_str) == 1, "0" + p_particid2_str, p_particid2_str)
+
+gen pid2 = p_country_str + p_clustid2_str + p_houseid2_str + p_particid2_str
+drop p_country_str p_clustid2_str p_houseid2_str p_particid2_str
 
 rename p2_1 (P2_1)
 
@@ -840,7 +855,7 @@ encode P22_2, gen(p22_2) label (P22_2)
 
 *reorder
 
-order p_deviceid1 p_interid p_clustid p_houseid p_particid p_country p_houseid2 p_conglid2 p_particid2 p2_1 p2_2_1 p2_2_2 p3_d_c p3_p p4_d_c p4_p p5_1_d_c p5_1_p p5_2_d_c p5_2_p p6 p7_1 p7_2 p7_3 p8_1 p8_2 p8_3 p9_1 p9_2 p10_1_1_1 p10_1_1_2 p10_1_2_1 p10_1_2_2 p10_2_1_1 p10_2_1_2 p10_2_2_1 p10_2_2_2 p11_1 p11_2_1 p11_2_2 p11_3_1_1 p11_3_1_2 p11_3_2_1 p11_3_2_2 p12_1 p12_2_1 p12_2_2 p12_3_1 p12_3_2 p13_1 p13_2 p13_3 p13_4 p13_5 p2_3 p2_3_1 p2_3_2 p14_1 p14_2 p14_3_1 p14_3_2 p14_4 p14_5 p15_a p15_1_1 p15_1_2 p15_1_3 p15_2_1 p15_2_2 p15_2_3 p16_1 p16_2 p17_1 p17_2 p17_3 p18_d_c p18_p p19_1 p19_2 p20 p21_1 p21_2 p22_1 p22_2 p_deviceid2 p_deviceid2
+order pid pid2 p_deviceid1 p_interid p_clustid p_houseid p_particid p_country p_houseid2 p_conglid2 p_particid2 p2_1 p2_2_1 p2_2_2 p3_d_c p3_p p4_d_c p4_p p5_1_d_c p5_1_p p5_2_d_c p5_2_p p6 p7_1 p7_2 p7_3 p8_1 p8_2 p8_3 p9_1 p9_2 p10_1_1_1 p10_1_1_2 p10_1_2_1 p10_1_2_2 p10_2_1_1 p10_2_1_2 p10_2_2_1 p10_2_2_2 p11_1 p11_2_1 p11_2_2 p11_3_1_1 p11_3_1_2 p11_3_2_1 p11_3_2_2 p12_1 p12_2_1 p12_2_2 p12_3_1 p12_3_2 p13_1 p13_2 p13_3 p13_4 p13_5 p2_3 p2_3_1 p2_3_2 p14_1 p14_2 p14_3_1 p14_3_2 p14_4 p14_5 p15_a p15_1_1 p15_1_2 p15_1_3 p15_2_1 p15_2_2 p15_2_3 p16_1 p16_2 p17_1 p17_2 p17_3 p18_d_c p18_p p19_1 p19_2 p20 p21_1 p21_2 p22_1 p22_2 p_deviceid2 p_deviceid2
 
 *convert missing comment legal and text values to string
 
