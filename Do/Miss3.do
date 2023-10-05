@@ -39,15 +39,14 @@ egen miss1_duplicate = rowtotal(missing_mental missing_activ missing_memory /* \
 *almost the same\
 summarize miss1 miss1_duplicate\
 \
-replace miss1_duplicate = 0 if miss1_duplicate == 21\
+*replace miss1_duplicate = 0 if miss1_duplicate == 21\
 replace miss1_duplicate = 0 if miss1_duplicate == .\
 \
 summarize miss1 miss1_duplicate\
 \
-replace miss1 = 0 if miss1 == 21\
-replace miss1 = 0 if miss1 == .\
-\
-replace miss1_duplicate = miss1_duplicate - 1 if inlist(pid, 2108501, 20122802, 20164200)\
+/*these are the three variables that\
+*/\
+replace miss1_duplicate = miss1_duplicate + 1 if inlist(pid, 2108501, 20122802, 20164200)\
 \
 *almost the same\
 summarize miss1 miss1_duplicate\
@@ -66,23 +65,13 @@ foreach var of local miss3_variables \{\
 corr miss3 miss3_duplicate\
 summarize miss3_duplicate miss3\
 \
-replace miss3_duplicate = 0 if miss3_duplicate == 3\
-replace miss3_duplicate = 0 if miss3_duplicate == .\
-\
-summarize miss3 miss3_duplicate\
-\
-*if I do this they both are the same\
-\
-replace miss3 = 0 if miss3 == 3\
-replace miss3 = 0 if miss3 == .\
-\
-*same\
-summarize miss3 miss3_duplicate\
-\
-gen misstot_duplicate = (miss3_duplicate * 3) + miss1\
+gen misstot_duplicate = (miss3_duplicate * 3) + miss1_duplicate\
 \
 replace misstot = 0 if misstot == 30\
 replace misstot = 0 if misstot == .\
+\
+replace misstot_duplicate = 0 if misstot_duplicate == 30\
+replace misstot_duplicate = 0 if misstot_duplicate == .\
 \
 summarize misstot misstot_duplicate\
 \
@@ -91,10 +80,10 @@ replace is_diff = 1 if misstot != misstot_duplicate\
 \
 keep if is_diff == 1\
 \
-keep pid misstot misstot_duplicate\
+keep pid misstot misstot_duplicate miss1 miss1_duplicate miss3 miss3_duplicate\
 \
 summarize misstot misstot_duplicate\
 \
 * Export the modified data to an Excel file\
-export excel using "/hdir/0/chrissoria/1066/miss3_differences.xlsx", firstrow(variables) replace\
+export excel using "/hdir/0/chrissoria/1066/misstot_differences.xlsx", firstrow(variables) replace\
 }
