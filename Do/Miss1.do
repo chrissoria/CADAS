@@ -46,8 +46,6 @@ replace miss1_duplicate = 0 if miss1_duplicate == .\
 \
 summarize miss1 miss1_duplicate\
 \
-replace miss1 = 0 if miss1 == .\
-\
 replace miss1_duplicate = miss1_duplicate + 1 if inlist(pid, 2108501, 20122802, 20164200)\
 \
 *almost the same\
@@ -68,7 +66,7 @@ egen all_miss = rowtotal(missing_mental missing_activ missing_memory /* \
     */ missing_lostin missing_chores missing_hobby missing_money /* \
     */ missing_change missing_reason missing_feed missing_dress missing_toilet)\
     \
-replace miss1_duplicate = 0 if (all_miss ==24 & miss3 == .)\
+replace miss1_duplicate = . if (all_miss ==24 & miss3 == .)\
 \
 *after doing the above, this is the most specific logic for gettting these two to be the same\
 *However, it's the best way to do this\

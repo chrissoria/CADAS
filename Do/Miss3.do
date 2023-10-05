@@ -65,20 +65,28 @@ foreach var of local miss3_variables \{\
 corr miss3 miss3_duplicate\
 summarize miss3_duplicate miss3\
 \
+*the logic below makes these match, which also implies an inconcisistent conversion of miss3 to missing versus 0\
+replace miss3_duplicate = . if miss3_duplicate + miss1_duplicate == 24 & miss3 == .\
+\
+summarize miss3_duplicate miss3\
+\
 gen misstot_duplicate = (miss3_duplicate * 3) + miss1_duplicate\
 \
-replace misstot = 0 if misstot == 30\
+replace misstot = . if misstot == 30\
 replace misstot = 0 if misstot == .\
 \
-replace misstot_duplicate = 0 if misstot_duplicate == 30\
+replace misstot_duplicate = . if misstot_duplicate == 30\
 replace misstot_duplicate = 0 if misstot_duplicate == .\
 \
 summarize misstot misstot_duplicate\
 \
-gen is_diff = 0\
-replace is_diff = 1 if misstot != misstot_duplicate\
+gen is_diff_misstot = 0\
+replace is_diff_misstot = 1 if misstot != misstot_duplicate\
 \
-keep if is_diff == 1\
+gen is_diff_miss3 = 0\
+replace is_diff_miss3 = 1 if miss3 != miss3_duplicate\
+\
+keep if is_diff_misstot == 1 | is_diff_miss3\
 \
 keep pid misstot misstot_duplicate miss1 miss1_duplicate miss3 miss3_duplicate\
 \
@@ -86,4 +94,6 @@ summarize misstot misstot_duplicate\
 \
 * Export the modified data to an Excel file\
 export excel using "/hdir/0/chrissoria/1066/misstot_differences.xlsx", firstrow(variables) replace\
+\
+\
 }
