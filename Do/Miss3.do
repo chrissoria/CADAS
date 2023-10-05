@@ -70,23 +70,45 @@ replace miss3_duplicate = . if miss3_duplicate + miss1_duplicate == 24 & miss3 =
 \
 summarize miss3_duplicate miss3\
 \
+local all_miss "feed dress toilet"\
+\
+foreach var of local all_miss \{\
+    gen missing_`var' = missing(`var')\
+\}\
+\
+* Generating the miss1 variable by summing up the binary missing indicators\
+egen all_miss = rowtotal(missing_mental missing_activ missing_memory /* \
+    */ missing_put missing_kept missing_frdname missing_famname /* \
+    */ missing_convers missing_wordfind missing_wordwrg missing_past /* \
+    */ missing_lastsee missing_lastday missing_orient missing_lostout /* \
+    */ missing_lostin missing_chores missing_hobby missing_money /* \
+    */ missing_change missing_reason missing_feed missing_dress missing_toilet)\
+    \
+replace miss1_duplicate = . if (all_miss ==24 & miss3 == .)\
+\
 gen misstot_duplicate = (miss3_duplicate * 3) + miss1_duplicate\
 \
+/* below should be the correct logic\
 replace misstot = . if misstot == 30\
 replace misstot = 0 if misstot == .\
 \
 replace misstot_duplicate = . if misstot_duplicate == 30\
 replace misstot_duplicate = 0 if misstot_duplicate == .\
 \
+*/\
+\
 summarize misstot misstot_duplicate\
 \
 gen is_diff_misstot = 0\
 replace is_diff_misstot = 1 if misstot != misstot_duplicate\
 \
+gen is_diff_miss1 = 0\
+replace is_diff_miss1 = 1 if miss1 != miss1_duplicate\
+\
 gen is_diff_miss3 = 0\
 replace is_diff_miss3 = 1 if miss3 != miss3_duplicate\
 \
-keep if is_diff_misstot == 1 | is_diff_miss3\
+keep if is_diff_misstot == 1 | is_diff_miss3 | is_diff_miss1 == 1\
 \
 keep pid misstot misstot_duplicate miss1 miss1_duplicate miss3 miss3_duplicate\
 \
