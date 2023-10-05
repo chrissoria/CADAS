@@ -23,7 +23,7 @@ gen pid = (countryid*1000000) + (region*100000) + (houseid*100) + particid\
 log using miss1_algo.log, text replace\
 \
 * Creating binary missing indicators without changing the original missing values\
-local miss1_variables "mental activ memory put kept frdname famname convers wordfind wordwrg past lastsee lastday orient lostout lostin chores hobby money change reason"\
+local miss1_variables "mental activ memory put kept frdname famname convers wordfind wordwrg past lastsee lastday orient lostout lostin chores hobby money change reason mistake decide muddled"\
 \
 * Creating new binary variables for each original variable to indicate whether the value is missing\
 foreach var of local miss1_variables \{\
@@ -49,6 +49,8 @@ summarize miss1 miss1_duplicate\
 replace miss1 = 0 if miss1 == 21\
 replace miss1 = 0 if miss1 == .\
 \
+replace miss1_duplicate = miss1_duplicate + 1 if inlist(pid, 2108501, 20122802, 20164200)\
+\
 *almost the same\
 summarize miss1 miss1_duplicate\
 \
@@ -64,7 +66,7 @@ count if missing(miss1_duplicate)\
 keep if is_diff == 1\
 \
 * Keep only the relscore and relscore_duplicate variables\
-keep pid miss1 miss1_duplicate mental activ memory put kept frdname famname convers wordfind wordwrg past lastsee lastday orient lostout lostin chores hobby money change reason\
+keep pid miss1 miss1_duplicate mental activ memory put kept frdname famname convers wordfind wordwrg past lastsee lastday orient lostout lostin chores choredis hobby money change reason feed dress toilet mistake decide muddled\
 \
 * Export the modified data to an Excel file\
 export excel using "/hdir/0/chrissoria/1066/miss1_differences.xlsx", firstrow(variables) replace}
