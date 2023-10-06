@@ -9,18 +9,58 @@
 set more off\
 capture log close\
 \
-local path "/hdir/0/chrissoria/1066/"\
+*******ADJUST LOCALS HERE**********\
+\
+***********************************\
+local user "Chris"  // Change this to "Will" to switch paths\
+\
+local Chris "/hdir/0/chrissoria/1066/"\
+local Will "PATH"\
+\
+local path = cond("`user'" == "Chris", "`Chris'", "`Will'")\
+\
 cd "`path'"\
 \
-use "data/1066_Baseline_data.dta"\
+local wave 2\
 \
-log using 1066_algo.log, text replace\
+local drop_missing_from_relscore "yes" // change to yes or no\
 \
-foreach var of varlist _all \{\
-    rename `var' `=lower("`var'")'\
+\
+***** SCRIPT STARTS HERE *********\
+\
+**********************************\
+\
+if `wave' == 1 \{\
+    use "`path'/data/1066_Baseline_data.dta"\
+\}\
+else if `wave' == 2 \{\
+    use "`path'/data/1066_full_follow_up_Caribbean.dta"\
 \}\
 \
+if `wave' == 1 \{\
+    log using 1066_algo_w1.log, text replace\
+\}\
+else if `wave' == 2 \{\
+    log using 1066_algo_w2.log, text replace\
+\}\
+\
+if `wave' == 2 \{f\
+    foreach var of varlist _all \{\
+    local lowvar = lower("`var'")\
+    rename `var' `lowvar'\
+    local newname = substr("`lowvar'", 3, .)\
+    rename `lowvar' `newname'\
+\}\
+gen pid = (untryid*1000000) + (useid*100) + rticid\
+\
+\}\
+else if `wave' == 1 \{\
+    foreach var of varlist _all \{\
+    rename `var' `=lower("`var'")'\
+\}\
 gen pid = (countryid*1000000) + (region*100000) + (houseid*100) + particid\
+\}\
+\
 \
 recode pdas2 (1 2 =1) (3 4 =2), gen(pdas2a)\
 recode pdas4 (1 2 =1) (3 4 =2), gen(pdas4a)\
@@ -218,34 +258,57 @@ foreach var in put kept frdname famname convers wordfind wordwrg past lastsee la
 \
 *this whole chunk of code produces no changes\
 * Backup original 'dress' variable and recode if 'dressdis' is 1\
-gen dress_original = dress\
 replace dress = 0 if dressdis == 1\
 \
 * Backup original 'chores' variable and recode if 'choredis' is 1\
-gen chores_original = chores\
 replace chores = 0 if choredis == 1\
 \
 * Backup original 'feed' variable and recode if 'feeddis' is 1\
-gen feed_original = feed\
 replace feed = 0 if feeddis == 1\
 \
 * Backup original 'toilet' variable and recode if 'toildis' is 1\
-gen toilet_original = toilet\
 replace toilet = 0 if toildis == 1\
 \
 *replace misstot_duplicate = 0 if misstot_duplicate == .\
 \
-drop if misstot_duplicate > 0\
+if "`drop_missing_from_relscore'" == "yes" \{\
+    drop if misstot_duplicate > 0\
+\}\
 \
-gen relscore_duplicate = activ + mental + memory + put + kept + ///\
- frdname + famname + convers + wordfind + wordwrg + past + lastsee + lastday + ///\
- orient + lostout + lostin + chores + hobby + money + change + reason + feed + ///\
- dress + toilet\
+gen S = cond(missing(activ), 0, activ) +  ///\
+            cond(missing(mental), 0, mental) + ///\
+            cond(missing(memory), 0, memory) + ///\
+            cond(missing(put), 0, put) + ///\
+            cond(missing(kept), 0, kept) + ///\
+            cond(missing(frdname), 0, frdname) + ///\
+            cond(missing(famname), 0, famname) + ///\
+            cond(missing(convers), 0, convers) + ///\
+            cond(missing(wordfind), 0, wordfind) + ///\
+            cond(missing(wordwrg), 0, wordwrg) + ///\
+            cond(missing(past), 0, past) + ///\
+            cond(missing(lastsee), 0, lastsee) + ///\
+            cond(missing(lastday), 0, lastday) + ///\
+            cond(missing(orient), 0, orient) + ///\
+            cond(missing(lostout), 0, lostout) + ///\
+            cond(missing(lostin), 0, lostin) + ///\
+            cond(missing(chores), 0, chores) + ///\
+            cond(missing(hobby), 0, hobby) + ///\
+            cond(missing(money), 0, money) + ///\
+            cond(missing(change), 0, change) + ///\
+            cond(missing(reason), 0, reason) + ///\
+            cond(missing(feed), 0, feed) + ///\
+            cond(missing(dress), 0, dress) + ///\
+            cond(missing(toilet), 0, toilet)\
+ \
+gen T = cond(missing(miss1_duplicate), 0, miss1_duplicate) + ///\
+        cond(missing(miss3_duplicate), 0, miss3_duplicate)\
+\
+gen U = 30 / (30 - misstot)\
+replace U = cond(missing(misstot), 0, U)\
+\
+gen relscore_duplicate = (U) * S - ((T) * 9)\
 \
 summarize relscore_duplicate relscore_original\
-\
-replace relscore = relscore_duplicate\
-drop relscore_duplicate\
 \
 gen pred_relscore = 0.004 + (0.072 * whodas12) + (0.338 * npisev)\
 \
@@ -268,10 +331,9 @@ EXECUTE .\
 IF (relscore=999) relscore = pred_relscore .\
 EXECUTE .*/\
 \
-gen relscore_duplicate = relscore_original \
 \
 * Replace missing values in relscore_duplicate with non-missing values from pred_relscore\
-replace relscore_duplicate = pred_relscore if relscore_original == . & pred_relscore != .\
+replace relscore_duplicate = pred_relscore if relscore_duplicate == . & pred_relscore != .\
 \
 *exactly the same\
 summarize relscore_duplicate relscore\
@@ -376,6 +438,4 @@ keep dem1066_duplicate cdem1066 misstot_duplicate cogscore relscore is_diff\
 * Export the modified data to an Excel file\
 export excel using "/hdir/0/chrissoria/1066/differences.xlsx", firstrow(variables) replace\
 \
-log close\
-\
-}
+log close}
