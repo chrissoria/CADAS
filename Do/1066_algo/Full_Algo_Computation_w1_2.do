@@ -205,7 +205,10 @@ replace miss1_duplicate = 0 if miss1_duplicate == .\
 \
 /*these are the three variables that\
 */\
+\
+if `wave' == 1 & "`drop_missing_from_relscore'" != "yes" \{\
 replace miss1_duplicate = miss1_duplicate + 1 if inlist(pid, 2108501, 20122802, 20164200)\
+\}\
 \
 * counting up the remaining missing values to generate miss 3 variable\
 local miss3_variables "feed dress toilet"\
@@ -438,4 +441,6 @@ keep dem1066_duplicate cdem1066 misstot_duplicate cogscore relscore is_diff\
 * Export the modified data to an Excel file\
 export excel using "/hdir/0/chrissoria/1066/differences.xlsx", firstrow(variables) replace\
 \
-log close}
+log close\
+\
+}
