@@ -87,4 +87,5 @@ keep if is_diff == 1\
 keep pid miss1 miss3 miss1_duplicate mental activ memory put kept frdname famname convers wordfind wordwrg past lastsee lastday orient lostout lostin chores choredis hobby money change reason feed dress toilet\
 \
 * Export the modified data to an Excel file\
-export excel using "/hdir/0/chrissoria/1066/miss1_differences.xlsx", firstrow(variables) replace}
+export excel using "/hdir/0/chrissoria/1066/miss1_differences.xlsx", firstrow(variables) replace\
+}

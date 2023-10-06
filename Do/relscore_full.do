@@ -7,175 +7,145 @@ cd "`path'"
 
 use "data/1066_Baseline_data.dta"
 
-foreach var of varlist _all {
-    rename `var' `=lower("`var'")'
-}
+log using 1066_algo.log, text replace
 
-gen pid = (countryid*1000000) + (region*100000) + (houseid*100) + particid
+drop if misstot > 0
 
-* Creating binary missing indicators without changing the original missing values
-local miss1_variables "mental activ memory put kept frdname famname convers wordfind wordwrg past lastsee lastday orient lostout lostin chores hobby money change reason"
+/*IMPUTING RELSCORE - THE FIRST COMMAND SAVES THE ORIGINAL RELSCORE VARIABLE BEFORE IMPUTATION OF THE MV
 
-* Creating new binary variables for each original variable to indicate whether the value is missing
-foreach var of local miss1_variables {
-    gen missing_`var' = missing(`var')
-}
+compute relscore_original= relscore.
+execute.
 
-* Generating the miss1 variable by summing up the binary missing indicators
-egen miss1_duplicate = rowtotal(missing_mental missing_activ missing_memory /* 
-    */ missing_put missing_kept missing_frdname missing_famname /* 
-    */ missing_convers missing_wordfind missing_wordwrg missing_past /* 
-    */ missing_lastsee missing_lastday missing_orient missing_lostout /* 
-    */ missing_lostin missing_chores missing_hobby missing_money /* 
-    */ missing_change missing_reason)
+COMPUTE pred_relscore= 0.004 + (0.072*whodas12) + (0.338*npisev).
+execute.*/
 
-*replace miss1_duplicate = 0 if miss1_duplicate == 21
-replace miss1_duplicate = 0 if miss1_duplicate == .
+gen pred_relscore = 0.004 + (0.072 * whodas12) + (0.338 * npisev)
 
-/*these are the three variables that
-*/
-replace miss1_duplicate = miss1_duplicate + 1 if inlist(pid, 2108501, 20122802, 20164200)
+summarize pred_relscore pred_relscore
 
-* counting up the remaining missing values to generate miss 3 variable
-local miss3_variables "feed dress toilet"
-
-* Generate the new variable miss3 if it doesn't exist
-gen miss3_duplicate = 0
-
-foreach var of local miss3_variables {
-    * Sum up the variables that are missing
-    replace miss3_duplicate = miss3_duplicate + missing(`var')
-}
-
-*the logic below makes these match, which also implies an inconcisistent conversion of miss3 to missing versus 0
-replace miss3_duplicate = . if miss3_duplicate + miss1_duplicate == 24 & miss3 == .
-
-local all_miss "feed dress toilet"
-
-foreach var of local all_miss {
-    gen missing_`var' = missing(`var')
-}
-
-* Generating the miss1 variable by summing up the binary missing indicators
-egen all_miss = rowtotal(missing_mental missing_activ missing_memory /* 
-    */ missing_put missing_kept missing_frdname missing_famname /* 
-    */ missing_convers missing_wordfind missing_wordwrg missing_past /* 
-    */ missing_lastsee missing_lastday missing_orient missing_lostout /* 
-    */ missing_lostin missing_chores missing_hobby missing_money /* 
-    */ missing_change missing_reason missing_feed missing_dress missing_toilet)
-    
-replace miss1_duplicate = . if (all_miss ==24 & miss3 == .)
-
-gen misstot_duplicate = (miss3_duplicate * 3) + miss1_duplicate
-
-/* below should be the correct logic
-replace misstot = . if misstot == 30
-replace misstot = 0 if misstot == .
-
-replace misstot_duplicate = . if misstot_duplicate == 30
-replace misstot_duplicate = 0 if misstot_duplicate == .
-
+/*RECODE
+  pred_relscore  (Lowest thru 0=0)  (30 thru Highest=10)  .
+EXECUTE .
 */
 
-summarize misstot misstot_duplicate
-summarize miss1 miss1_duplicate
-summarize miss3 miss3_duplicate
+*I believe the above code is supposed to say 10 thru highest=10
 
-foreach var in put kept frdname famname convers wordfind wordwrg past lastsee lastday orient lostout lostin chores change money {
-    replace `var'= `var'/2
-}
+replace pred_relscore = 0 if pred_relscore <= 0
 
-*this whole chunk of code produces no changes
-* Backup original 'dress' variable and recode if 'dressdis' is 1
-gen dress_original = dress
-replace dress = 0 if dressdis == 1
+*had to exclude the missing here because missing is greater than 30
+replace pred_relscore = 30 if pred_relscore >= 30 & !missing(pred_relscore)
 
-* Backup original 'chores' variable and recode if 'choredis' is 1
-gen chores_original = chores
-replace chores = 0 if choredis == 1
 
-* Backup original 'feed' variable and recode if 'feeddis' is 1
-gen feed_original = feed
-replace feed = 0 if feeddis == 1
+/*RECODE
+  relscore  (MISSING=999).
+EXECUTE .
 
-* Backup original 'toilet' variable and recode if 'toildis' is 1
-gen toilet_original = toilet
-replace toilet = 0 if toildis == 1
+IF (relscore=999) relscore = pred_relscore .
+EXECUTE .*/
 
-*replace misstot_duplicate = 0 if misstot_duplicate == .
+gen relscore_duplicate = relscore_original 
 
-gen S = activ + mental + memory + put + kept + ///
- frdname + famname + convers + wordfind + wordwrg + past + lastsee + lastday + ///
- orient + lostout + lostin + chores + hobby + money + change + reason + feed + ///
- dress + toilet
- 
-replace miss1_duplicate = 0 if miss1_duplicate == .
-replace miss3_duplicate = 0 if miss3_duplicate == .
+* Replace missing values in relscore_duplicate with non-missing values from pred_relscore
+replace relscore_duplicate = pred_relscore if relscore_original == . & pred_relscore != .
 
-gen T = miss1_duplicate + miss3_duplicate
+*exactly the same
+summarize relscore_duplicate relscore
 
-*if misstot = 0 then U = 1
-gen U = 30 / (30 - misstot_duplicate)
+generate dfscore_duplicate = 0.452322 - (0.01669918 * cogscore) + (0.03033851 * relscore)
+*exact
+summarize dfscore dfscore_duplicate
 
-*Whenever a statistical procedure starts, SPSS will first eliminate all observations that have one or more missing value across all variables that are specified for the current procedure. 
-*This is called LISTWISE deletion and is the default mechanism.
-gen relscore_duplicate = (U) * S - ((T) * 9)
- 
- 
-summarize relscore_duplicate relscore_original
+*again, have to be careful to exclude missing here
+gen dfcase_duplicate = .
+replace dfcase_duplicate = 1 if dfscore_duplicate <= 0.119999999
+replace dfcase_duplicate = 2 if dfscore_duplicate >= 0.12 & dfscore_duplicate < 0.184
+replace dfcase_duplicate = 3 if dfscore_duplicate >= 0.184 & dfscore_duplicate < .
 
-/*activ + MENTAL + MEMORY + PUT + KEPT + FRDNAME + FAMNAME 
-+ CONVERS + WORDFIND + WORDWRG + PAST + LASTSEE + LASTDAY + ORIENT + LOSTOUT 
-+ LOSTIN + CHORES + HOBBY + MONEY + CHANGE + REASON + FEED + DRESS + toilet
-*/
- 
-gen S_2 = cond(missing(activ), 0, activ) +  ///
-            cond(missing(mental), 0, mental) + ///
-            cond(missing(memory), 0, memory) + ///
-            cond(missing(put), 0, put) + ///
-            cond(missing(kept), 0, kept) + ///
-            cond(missing(frdname), 0, frdname) + ///
-            cond(missing(famname), 0, famname) + ///
-            cond(missing(convers), 0, convers) + ///
-            cond(missing(wordfind), 0, wordfind) + ///
-            cond(missing(wordwrg), 0, wordwrg) + ///
-            cond(missing(past), 0, past) + ///
-            cond(missing(lastsee), 0, lastsee) + ///
-            cond(missing(lastday), 0, lastday) + ///
-            cond(missing(orient), 0, orient) + ///
-            cond(missing(lostout), 0, lostout) + ///
-            cond(missing(lostin), 0, lostin) + ///
-            cond(missing(chores), 0, chores) + ///
-            cond(missing(hobby), 0, hobby) + ///
-            cond(missing(money), 0, money) + ///
-            cond(missing(change), 0, change) + ///
-            cond(missing(reason), 0, reason) + ///
-            cond(missing(feed), 0, feed) + ///
-            cond(missing(dress), 0, dress) + ///
-            cond(missing(toilet), 0, toilet)
-	    
-gen T_2 = cond(missing(miss1_duplicate), 0, miss1_duplicate) + ///
-        cond(missing(miss3_duplicate), 0, miss3_duplicate)
-	
-gen U_2 = 30 / (30 - misstot)
-replace U_2 = cond(missing(misstot), 0, U_2)
+*exact
+summarize dfcase_duplicate dfcase
 
-gen relscore_duplicate2 = (U_2) * S_2 - ((T_2) * 9)
-gen relscore_duplicate3 = (U_2) * S_2
+gen cogcase_duplicate = .
+replace cogcase_duplicate = 3 if cogscore <= 28.5
+replace cogcase_duplicate = 2 if cogscore > 28.5 & cogscore <= 29.5
+replace cogcase_duplicate = 1 if cogscore > 29.5 & cogscore != .
 
-summarize relscore_duplicate relscore_original
-summarize relscore_duplicate2 relscore_original
-summarize relscore_duplicate3 relscore_original
- 
-gen is_diff1 = 0
-replace is_diff1 = 1 if relscore_original != relscore_duplicate
+*exact
+summarize cogcase_duplicate cogcase
 
-gen is_diff2 = 0
-replace is_diff2 = 1 if relscore_original != relscore_duplicate2
+gen ncogscor_duplicate = .
+replace ncogscor_duplicate = 1 if cogscore <= 23.699
+replace ncogscor_duplicate = 2 if cogscore > 23.699 & cogscore <= 28.619
+replace ncogscor_duplicate = 3 if cogscore > 28.619 & cogscore <= 30.619
+replace ncogscor_duplicate = 4 if cogscore > 30.619 & cogscore <= 31.839
+replace ncogscor_duplicate = 5 if cogscore > 31.839 & cogscore != .
 
-gen is_diff3 = 0
-replace is_diff3 = 1 if relscore_original != relscore_duplicate3
+gen nrelscor_duplicate = .
+replace nrelscor_duplicate = 1 if relscore_duplicate == 0
+replace nrelscor_duplicate = 2 if relscore_duplicate > 0 & relscore_duplicate <= 1.99
+replace nrelscor_duplicate = 3 if relscore_duplicate > 1.99 & relscore_duplicate <= 5.0
+replace nrelscor_duplicate = 4 if relscore_duplicate > 5.0 & relscore_duplicate <= 12.0
+replace nrelscor_duplicate = 5 if relscore_duplicate > 12.0 & relscore_duplicate != .
 
-keep if is_diff1 == 1 | is_diff2 == 1 | is_diff3 == 1
+gen ndelay_duplicate = .
+replace ndelay_duplicate = 1 if recall == 0
+replace ndelay_duplicate = 2 if recall >= 1 & recall <= 3
+replace ndelay_duplicate = 3 if recall == 4
+replace ndelay_duplicate = 4 if recall >= 5 & recall <= 6
+replace ndelay_duplicate = 5 if recall >= 7 & recall != .
 
-keep pid relscore_duplicate relscore_duplicate2 relscore_duplicate3 relscore_original misstot misstot_duplicate miss1 miss1_duplicate miss3 miss3_duplicate S T U S_2 T_2 U_2
+gen brelscor_duplicate = .
+replace brelscor_duplicate = 0     if nrelscor_duplicate == 1
+replace brelscor_duplicate = 1.908 if nrelscor_duplicate == 2
+replace brelscor_duplicate = 2.311 if nrelscor_duplicate == 3
+replace brelscor_duplicate = 4.171 if nrelscor_duplicate == 4
+replace brelscor_duplicate = 5.680 if nrelscor_duplicate == 5 & nrelscor_duplicate != .
+
+gen bcogscor_duplicate = .
+replace bcogscor_duplicate = 2.801  if ncogscor_duplicate == 1
+replace bcogscor_duplicate = 1.377  if ncogscor_duplicate == 2
+replace bcogscor_duplicate = 0.866  if ncogscor_duplicate == 3
+replace bcogscor_duplicate = -0.231 if ncogscor_duplicate == 4
+replace bcogscor_duplicate = 0      if ncogscor_duplicate == 5 & ncogscor_duplicate != .
+
+gen bdelay_duplicate = .
+replace bdelay_duplicate = 3.822 if ndelay_duplicate == 1
+replace bdelay_duplicate = 3.349 if ndelay_duplicate == 2
+replace bdelay_duplicate = 2.575 if ndelay_duplicate == 3
+replace bdelay_duplicate = 2.176 if ndelay_duplicate == 4
+replace bdelay_duplicate = 0     if ndelay_duplicate == 5 & ndelay_duplicate != .
+
+gen bgmsdiag_duplicate = .
+replace bgmsdiag_duplicate = 0      if gmsdiag == 6
+replace bgmsdiag_duplicate = 1.566  if gmsdiag == 1
+replace bgmsdiag_duplicate = 1.545  if gmsdiag == 2
+replace bgmsdiag_duplicate = -0.635 if gmsdiag == 3
+replace bgmsdiag_duplicate = -0.674 if gmsdiag == 4
+replace bgmsdiag_duplicate = 0.34   if gmsdiag == 5 & gmsdiag != .
+
+
+gen logodds_duplicate = -9.53 + brelscor_duplicate + bcogscor_duplicate + bdelay_duplicate + bgmsdiag_duplicate
+
+gen odds_duplicate = exp(logodds_duplicate)
+
+gen prob_duplicate = odds_duplicate / (1 + odds_duplicate)
+
+gen dem1066_duplicate = .
+replace dem1066_duplicate = 0 if prob_duplicate <= 0.25591 & prob_duplicate != .
+replace dem1066_duplicate = 1 if prob_duplicate > 0.25591 & prob_duplicate != .
+
+summarize dem1066_duplicate cdem1066
+
+tab dem1066_duplicate cdem1066
+
+gen is_diff = 0
+replace is_diff = 1 if dem1066 != cdem1066 & dem1066 != . & cdem1066 != .
+
+* Keep only the observations where there is a difference
+keep if is_diff == 1
+
+* Keep only the relscore and relscore_duplicate variables
+keep dem1066_duplicate cdem1066
+
+* Export the modified data to an Excel file
+export excel using "/hdir/0/chrissoria/1066/differences.xlsx", firstrow(variables) replace
+
