@@ -6,11 +6,11 @@ capture log close
 *Here we will identify the country we want before we run the file
 *0 = PR, 1 = DR, 2 = CU
 
-local country = 1
+local country = 2
 
 *Change the filepath name here to the folder containing the data and output folders
-*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+*local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
 
 if `country' == 0 {
     cd "`path'/PR_out"
@@ -39,9 +39,10 @@ else if `country' == 1 {
     import excel using "../DR_in/Resumen de entrevistas.xlsx", firstrow
 }
 else if `country' == 2 {
-    import excel using "../CU_in/Resumen de entrevistas.xlsx", firstrow
+    import excel using "../CUBA_in/Resumen de entrevistas.xlsx", firstrow
 }
 
+if `country' == 1 {
 drop in 1/3
 
 rename ResumendeEntrevistasCADASD Cluster
@@ -52,8 +53,18 @@ rename F age
 rename G Fecha
 rename H Notas
 rename I Notas_2
+}
 
-gen pais = .
+else if `country' == 2 {
+rename Sexo1Hombre2Mujer sex
+rename Edad age
+rename Fechacompleto Fecha
+rename Casa House_ID1
+rename Porque1nohubo2rehuso Notas
+rename Participante Participante1
+}
+
+gen pais = 0
 
 if `country' == 0 {
     replace pais = 0 if Participante != ""
@@ -62,23 +73,43 @@ else if `country' == 1 {
     replace pais = 1 if Participante != ""
 }
 else if `country' == 2 {
-    replace pais = 2 if Participante != ""
+    replace pais = 2 if Participante != .
 }
 
+if `country' == 1 {
 drop if pais == .
 replace Notas = lower(trim(Notas))
 drop if Notas == "rechazo"
 replace Notas_2 = lower(trim(Notas_2))
 drop if Notas_2 == "rechazo"
+}
+
+if `country' == 2 {
+drop if pais == 0
+replace Notas = lower(trim(Notas))
+drop if Completo1si2no == 2
+rename Cluster cluster1
+}
 
 gen country_str = string(pais, "%12.0f")
 
+if `country' == 1 {
 replace Cluster = cond(strlen(Cluster) == 1, "0" + Cluster, Cluster)
-
 replace House_ID = cond(strlen(House_ID) == 1, "00" + House_ID, House_ID)
 replace House_ID = cond(strlen(House_ID) == 2, "0" + House_ID, House_ID)
-
 replace Participante = cond(strlen(Participante) == 1, "0" + Participante, Participante)
+}
+
+else if `country' == 2 {
+gen Cluster = string(cluster1)
+replace Cluster = cond(strlen(Cluster) == 1, "0" + Cluster, Cluster)
+gen House_ID = string(House_ID)
+replace House_ID = cond(strlen(House_ID) == 1, "00" + House_ID, House_ID)
+replace House_ID = cond(strlen(House_ID) == 2, "0" + House_ID, House_ID)
+gen Participante = string(Participante1)
+replace Participante = cond(strlen(Participante) == 1, "0" + Participante, Participante)
+}
+
 
 gen pid = country_str + Cluster + House_ID + Participante
 drop country_str
@@ -92,9 +123,17 @@ log using logs/tracker, text replace
 keep pid age sex
 gen pidr=real(pid)
 rename sex SEX
-replace SEX = lower(trim(SEX))
 
+if `country' == 1 {
+replace SEX = lower(trim(SEX))
 generate sex = cond(SEX == "m", 0, cond(SEX == "f", 1, .))
+}
+
+else if `country' == 2 {
+generate sex = cond(SEX == 1,0, cond(SEX == 2, 1,.))
+}
+
+
 drop SEX
 destring age, replace
 
@@ -145,6 +184,12 @@ sum
 **********
 use Socio, clear
 *s_2_3 will be slightly different if age on official documents differs from roster age
+
+capture confirm variable s_sex
+if _rc == 0 {
+    rename s_sex s_0
+}
+
 keep pid s_0 s_2_3 s_interid s_deviceid1
 gen pidr=real(pid)
 drop if pidr==.
@@ -283,8 +328,13 @@ sum
 * BLOOD
 **********
 
-use sangre_full, clear
 
+if `country' == 0 {
+    use "..\SANGRE\PR_blood\Sangre_tracker_full.dta", clear
+}    
+else if `country' == 1 {
+    use "..\SANGRE\DR_blood\Sangre_tracker_full.dta", clear
+    
 keep pid XF7
 gen pidr=real(pid)
 drop if pidr==.
@@ -301,6 +351,7 @@ drop _merge
 save tracker, replace
 d,s
 sum
+}
 
 * SUMMARY VARIABLE FOR WHICH SURVEYS EACH LINE HAS
 gen RES_in ="Res" if in_resumen_par==1
@@ -308,26 +359,33 @@ gen R_in="R" if in_rosters_par==1
 gen S_in="S" if in_socio==1
 gen P_in="P" if in_phys==1
 gen C_in="C" if in_cog==1
-gen CS_in="Z" if in_cog_scor==1
+gen CS_in="Cs" if in_cog_scor==1
 gen I_in="I" if in_infor==1
 gen H_in="H" if in_hh==1
-gen B_in="XF7" if in_blood==1
-replace RES_in="   " if in_resumen_par~=1
-replace R_in=" " if in_rosters_par~=1
 replace S_in=" " if in_socio~=1
 replace P_in=" " if in_phys~=1
 replace C_in=" " if in_cog~=1
 replace CS_in=" " if in_cog_scor~=1
 replace I_in=" " if in_infor~=1
 replace H_in=" " if in_hh~=1
-replace B_in="   " if in_blood~=1
+
+if `country' == 1 {
+gen B_in=XF7 if in_blood==1
+replace B_in=" " if in_blood~=1
 
 gen RSPCZIHXF7 = RES_in+R_in + S_in + P_in + C_in + CS_in + I_in + H_in + B_in
 tab RSPCZIHXF7
+}
+else if `country' == 2 {
+gen RSPCZIHXF7 = RES_in+R_in + S_in + P_in + C_in + CS_in + I_in + H_in
+tab RSPCZIHXF7
+}
 
 sum in*
 
-drop R_in S_in P_in C_in CS_in I_in H_in B_in
+drop R_in S_in P_in C_in CS_in I_in H_in 
+capture drop B_in
+
 save tracker_full, replace
 
 * Get the list of variable names

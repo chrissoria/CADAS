@@ -24,6 +24,9 @@ capture log close
   
   replace pr_person_number = 2 if globalrecordid == "1303aefe-487f-4e40-a58b-c4e1ffc323c2"
   
+*deduced this based on the registro and age
+replace pr_person_number = 1 if globalrecordid == "a78b55a0-0890-49e0-8723-a3794b07f456"
+  
   /*weird thing about the cases below: they don't have a uniqueid but have data for everything else, which doesn't make sense. Look more closely, but for now, delete. 
   globalrecordid
 23e02912-ef40-487e-ad88-f69ce3416247
@@ -99,7 +102,12 @@ export excel using "duplicates/roster_duplicates.xlsx", replace firstrow(variabl
  
  clear all
  
- use Socio
+use Socio
+
+*interviewer says they mixed these two up
+replace s_particid = 2 if globalrecordid == "d8ec834a-acd7-4463-919e-83c386418658"
+replace s_particid = 1 if globalrecordid == "8eab231b-cbce-4620-ba1a-1de3955de995"
+
 drop pid
 drop hhid
  duplicates report globalrecordid
@@ -123,6 +131,12 @@ drop if inlist(globalrecordid, "9d73f0c1-9b16-4731-afc1-8f059b174d6f")
  *need to reach out to Tania to see which is the correct case
  *for now, I will just drop the first case
  drop if inlist(globalrecordid, "ad5fe156-95ff-4e45-8265-ea1b17e44683")
+ 
+*interviewer says she entered in the wrong cluster
+replace s_clustid = 6 if globalrecordid == "bcaefbc5-5e39-48a4-8676-184a32a33f34"
+
+*interviewer says she entered in the wrong particid
+replace s_particid = 2 if globalrecordid == "83b47556-1fac-4dc9-a91c-e3c3c8a6d2ea"
  
 gen s_country_str = string(s_country, "%12.0f")
 
@@ -513,29 +527,34 @@ drop c_country_str c_clustid_str c_houseid_str c_particid_str
  *question b3 provides age, which I used to match to person number
  *age 72 is person 1, age 66 is person 2
 
- replace i_particid = 2 if globalrecordid == "306dd8e0-eed1-426d-9196-f180c7a8fd4a"
+ replace i_particid = 1 if globalrecordid == "306dd8e0-eed1-426d-9196-f180c7a8fd4a"
  
  *person 1 is age 79, person 2 is age 77
  *personid duplicate 20105002, e69aad3b-5367-4f9c-90cb-8f1c9543eaee, is being recoded to person number 1
  
- replace i_particid = 1 if globalrecordid == "e69aad3b-5367-4f9c-90cb-8f1c9543eaee"
+ replace i_particid = 2 if globalrecordid == "e69aad3b-5367-4f9c-90cb-8f1c9543eaee"
  
 *person 1 is age 78, person 2 is 76, 73516e7d-4288-499a-a89c-9ffde5d2df0a person id = 20105202
 
- replace i_particid = 1 if globalrecordid == "73516e7d-4288-499a-a89c-9ffde5d2df0a"
+ replace i_particid = 2 if globalrecordid == "73516e7d-4288-499a-a89c-9ffde5d2df0a"
 
 *personid 20106402 is duplicated and not easy to decipher which is which (105e8dcc-7c09-464c-a092-42032ace1494)
 *one of two persons appear to be a proxy age 74, as their ages do not match what was put in completo rechazado sheet
 *I suspect that the age put down in informante is incorrect, as both the roster and cr sheet say person 2 is 81
 *person 1 is female is cr and person 2 is male (according to roster and cr sheet), and so I will recode accordingly
 
- replace i_particid = 1 if globalrecordid == "105e8dcc-7c09-464c-a092-42032ace1494"
+ replace i_particid = 2 if globalrecordid == "105e8dcc-7c09-464c-a092-42032ace1494"
  
  *the case below looks like a "junk" file pid 20100201
  *nearly every column is empty but the first part of the file has some information
  *the other two people from this household are already in the data
  
  drop if inlist(globalrecordid, "a3b83872-c6bb-482e-a5f5-b0788f4438e0")
+ 
+*interviewer says this is the correct id 
+replace i_particid = 2 if globalrecordid == "f3fef9bd-fcc9-458e-ae76-bf40abc44850"
+replace i_particid = 1 if globalrecordid == "7d2d1034-dc25-43ab-ae5d-eb35acca0fd9"
+replace i_particid = 2 if globalrecordid == "94d971a8-8ee0-435c-861b-aa7067b64457"
  
  drop pid hhid
  
@@ -616,7 +635,7 @@ export excel using "duplicates/informant_duplicates.xlsx", replace firstrow(vari
  
  clear all
  
- use Household
+use Household
  
 *It looks like epi info is spitting out duplicate household cases
 *I will drop the duplicate junk file for now, but will have to get to the bottom of what's going here later
@@ -624,6 +643,11 @@ export excel using "duplicates/informant_duplicates.xlsx", replace firstrow(vari
  
  drop if inlist(hhid, "20000.")
  drop if inlist(globalrecordid, "877e1f39-a477-4c9d-b11e-af9444311089", "154d9869-68a5-4450-9da6-9d2083777a20")
+ 
+*interviewer says these are a duplicate
+drop if inlist(globalrecordid, "e1446acf-d758-437a-8f33-ec2c69dcda99")
+drop if inlist(globalrecordid, "4caebb32-0d40-4ed9-b08f-66eb4bdcebf6")
+drop if inlist(globalrecordid, "1c52bce1-5967-4a86-a6a7-b1a1fa6c5a94", "de718065-00cf-461f-a918-80bd780309f4")
  
  *this looks like junk (mostly empty)
  
@@ -701,6 +725,9 @@ export excel using "duplicates/Household_duplicates.xlsx", replace firstrow(vari
 clear all
 
 use Cog_Scoring
+
+*interviewer says these are junk
+drop if inlist(globalrecordid, "88e80078-4ca7-44ee-855e-387ca80b8299", "35220af8-d6a0-43b6-b0bc-4f2032d7ef89")
 
  duplicates report pid
  sort pid
