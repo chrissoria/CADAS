@@ -8,8 +8,8 @@ capture log close
 local country = 1
 
 *Change the filepath name here to the folder containing the data and output folders
-*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+*local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
 
 if `country' == 0 {
     cd "`path'/PR_out"
@@ -22,13 +22,13 @@ else if `country' == 2 {
 }
 
 if `country' == 0 {
-    insheet using "../PR_in/SANGRE/Sangre EPI7 to CSV all.csv", clear
+    insheet using "../PR_in/Sangre.csv", clear
 }
 else if `country' == 1 {
-    insheet using "../DR_in/SANGRE/Sangre EPI7 to CSV all.csv", clear
+    insheet using "../DR_in/Sangre.csv", clear
 }
 else if `country' == 2 {
-    insheet using "../CUBA_in/SANGRE/Sangre EPI7 to CSV all.csv", clear
+    insheet using "../CUBA_in/Sangre.csv", clear
 }
 
 *for DR
@@ -62,26 +62,27 @@ drop if globalrecordid == "12c89460-75eb-4aee-8a36-31a88c395b70"
 gen in_epi7 = 1
 
 if `country' == 0 {
-    save "../PR_in/SANGRE/Sangre_EPI7.dta", replace
+    save "../PR_out/Sangre.dta", replace
 }
 else if `country' == 1 {
-    save "../DR_in/SANGRE/Sangre_EPI7.dta", replace
-}
-else if `country' == 2 {
-    save "../CUBA_in/SANGRE/Sangre_EPI7.dta", replace
+    save "../DR_out/Sangre.dta", replace
 }
 ******************************************************************************************************************
 
 save sangre_full, replace
 ******************************************************************************************************************
 if `country' == 0 {
-    insheet using "../PR_in/SANGRE/SANGRE PDF TO CSV.csv", clear
+    cd "`path'/PR_out"
 }
 else if `country' == 1 {
-    insheet using "../DR_in/SANGRE/SANGRE PDF TO CSV.csv", clear
+    cd "`path'/DR_out"
 }
-else if `country' == 2 {
-    insheet using "../CUBA_in/SANGRE/SANGRE PDF TO CSV.csv", clear
+
+if `country' == 0 {
+    insheet using "../PR_in/All_PDF_Blood_Results.csv", clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/All_PDF_Blood_Results.csv", clear
 }
 
 *for DR
@@ -103,6 +104,8 @@ gen pid = sa_country_str + sa_clustid_str + sa_houseid_str + sa_particid_str
 gen hhid = sa_country_str + sa_clustid_str + sa_houseid_str
 drop sa_country_str sa_clustid_str sa_houseid_str sa_particid_str
 
+save sangre_pdf, replace
+
 unab vlist : _all
 sort `vlist'
 quietly by `vlist':  gen dup = cond(_N==1,0,_n)
@@ -113,15 +116,8 @@ rename dup pdfdup
 
 gen in_pdf = 1
 
-if `country' == 0 {
-    save "../PR_in/SANGRE/Sangre_PDF.dta", replace
-}
-else if `country' == 1 {
-    save "../DR_in/SANGRE/Sangre_PDF.dta", replace
-}
-else if `country' == 2 {
-    save "../CUBA_in/SANGRE/Sangre_PDF.dta", replace
-}
+save sangre_pdf, replace
+
 ******************************************************************************************************************
 
 merge m:m pid using sangre_full
@@ -131,13 +127,13 @@ save sangre_full,replace
 clear all
 
 if `country' == 0 {
-    import delimited "../PR_in/SANGRE/Sangre Excel 2,6,8,7,9,79.csv", varnames(7)
+    import delimited "../PR_in/All_Excel_Blood_Results.csv", varnames(7)
 }
 else if `country' == 1 {
-    import delimited "../DR_in/SANGRE/Sangre Excel 2,6,8,7,9,79.csv", varnames(7)
+    import delimited "../DR_in/All_Excel_Blood_Results.csv", varnames(7)
 }
 else if `country' == 2 {
-    import delimited "../CUBA_in/SANGRE/Sangre Excel 2,6,8,7,9,79.csv", varnames(7)
+    import delimited "../CUBA_in/All_Excel_Blood_Results.csv", varnames(7)
 }
 
 *replace b_particid = "9" if b_particid == "R"
@@ -172,14 +168,12 @@ rename dup exceldup
 gen in_excel = 1
 
 if `country' == 0 {
-    save "../PR_in/SANGRE/Sangre_Excel.dta", replace
+    save "../PR_out/Sangre_Excel.dta", replace
 }
 else if `country' == 1 {
-    save "../DR_in/SANGRE/Sangre_Excel.dta", replace
+    save "../DR_out/Sangre_Excel.dta", replace
 }
-else if `country' == 2 {
-    save "../CUBA_in/SANGRE/Sangre_Excel.dta", replace
-}
+
 ******************************************************************************************************************
 
 merge m:m pid using sangre_full
