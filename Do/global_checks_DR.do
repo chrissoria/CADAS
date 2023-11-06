@@ -117,6 +117,11 @@ log close
  list if is_duplicate
  drop is_duplicate
  
+gen pid_match = 0 
+replace pid_match = 1 if pid != pid2
+list if pid_match
+drop pid_match
+ 
  save Socio.dta, replace
   
 gen is_duplicate = pid[_n] == pid[_n-1]
@@ -321,6 +326,14 @@ drop c_country_str c_clustid_str c_houseid_str c_particid_str
  
   cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
  use Infor
+ 
+*based on the age of the informant (66), I have deduced that this is survey belongs to participant 1 (who is 92)
+replace i_particid = 1 if globalrecordid == "c7ddca33-5131-453b-b3a7-46bb89b22e4f"
+*and visa-verse
+replace i_particid = 2 if globalrecordid == "ab8cb82c-dfbf-4249-9225-5af21101db78"
+
+*both of these apppear to be a junk case from sept 1 and 8/25, most values are missing
+drop if inlist(globalrecordid, "9350d6a0-a2b7-4c7b-a433-db9b38a4439a","9063c91e-8f34-4497-909d-2814de817c4a")
  
  drop pid hhid
  
