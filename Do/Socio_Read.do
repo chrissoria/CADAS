@@ -5,7 +5,7 @@ capture log close
 *Here we will identify the country we want before we run the file
 *0 = PR, 1 = DR, 2 = CU
 
-local country = 1
+local country = 2
 
 *Change the filepath name here to the folder containing the data and output folders
 local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
@@ -5885,7 +5885,9 @@ drop S_*
 local i 1
 gen s_countmissing = 0
 
-quietly ds s_8_5b2_delete hhid pid s_date_end s_time_end_1 s_time_end s_77l s_time1 s_date fkey globalrecordid v1 s_deviceid2, not
+quietly ds s_8_5b2_delete hhid pid s_time1 s_date fkey globalrecordid v1 s_deviceid2, not
+*deleting s_77l for now until Ty can confirm why
+capture quietly ds s_date_end s_time_end_1 s_time_end, not
 local allvar `r(varlist)'
 
 
@@ -5923,7 +5925,9 @@ quietly forvalues i = 1(1) `=_N' {
 local i 1
 gen s_last = "AllAnswered"
 
-quietly ds s_last s_countmissing s_8_5b2_delete hhid pid s_date_end s_time_end_1 s_time_end s_77l s_time1 s_date fkey globalrecordid v1 s_deviceid2, not
+quietly ds s_last s_countmissing s_8_5b2_delete hhid pid s_time1 s_date fkey globalrecordid v1 s_deviceid2, not
+*s_77l deleted for now
+capture quietly ds s_date_end s_time_end_1 s_time_end, not
 local allvar `r(varlist)'
 
 
@@ -5960,7 +5964,7 @@ quietly forvalues i = 1(1) `=_N' {
 
 
 
-gen s_TotalTime = (Clock(s_time_end, "MDYhms") - Clock(s_time1, "MDYhms"))/1000/60
+capture gen s_TotalTime = (Clock(s_time_end, "MDYhms") - Clock(s_time1, "MDYhms"))/1000/60
 
 capture log close
 log using logs/SocioMissingCodebook, text replace
@@ -5980,8 +5984,5 @@ foreach var of varlist `varlist' {
         tostring `var', replace
     }
 }
-
-* Export data to Excel
-export excel using "sociodemographic_child.xlsx", replace firstrow(variables)
 
 clear all

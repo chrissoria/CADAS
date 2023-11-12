@@ -2,7 +2,7 @@ clear all
 set more off
 capture log close
 
-local country = 1
+local country = 2
 
 *Change the filepath name here to the folder containing the data and output folders
 local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
@@ -182,7 +182,7 @@ else if `country' == 2 {
  
    drop _merge globalrecordid
    
-log using InformationDoorMissing, text replace
+log using logs/InformationDoorMissing, text replace
    
    
 replace d_0 = .i if (d_0 == . | d_0 == .a)
@@ -227,7 +227,7 @@ replace d_7_5 = .v if (d_7_5 == . | d_7_5 == .a) & (d_0 == 1 | ((d_5 == 0 | d_5 
 
 
 capture log close
-log using InformationDoorMissingCodebook, text replace
+log using logs/InformationDoorMissingCodebook, text replace
 
 codebook
 
@@ -235,7 +235,7 @@ codebook
 
 
 log close
-log using InformationDoorOnlyMissing, text replace
+log using logs/InformationDoorOnlyMissing, text replace
 
 local missvarlist
 foreach v of var * {
@@ -254,7 +254,7 @@ foreach v of var * {
 	}
 }
 
-macro list _missvarlist
+*macro list missvarlist
 
 foreach v of local missvarlist {
 	codebook `v'

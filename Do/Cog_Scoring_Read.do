@@ -4,7 +4,7 @@ capture log close
 
 *next, I want to find out if we have the right amount of cog scoring and cog surveys
 
-local country = 1
+local country = 2
 
 *Change the filepath name here to the folder containing the data and output folders
 local path = "/hdir/0/chrissoria/Stata_CADAS/Data"

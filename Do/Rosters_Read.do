@@ -3,7 +3,7 @@ set more off
 capture log close
 log using Rosters, text replace
 
-local country = 1
+local country = 2
 
 *Change the filepath name here to the folder containing the data and output folders
 local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
@@ -565,15 +565,13 @@ replace pr_particid_str = cond(strlen(pr_particid_str) == 1, "0" + pr_particid_s
 
 gen pid = r_country_str + r_clustid_str + r_houseid_str + pr_particid_str
 gen hhid = r_country_str + r_clustid_str + r_houseid_str
-drop r_country_str r_clustid_str r_houseid_str pr_particid_str
+drop r_clustid_str r_houseid_str pr_particid_str r_country_str
 
  save rosters_participants.dta,replace
- export excel using "Rosters_Participants.xlsx", firstrow(variables) nolabel replace
-
  
-  clear all
+clear all
   
-  use "MainHousehold.dta"
+use "MainHousehold.dta"
  
  merge 1:m globalrecordid using "NonParticipants.dta"
  
@@ -604,16 +602,8 @@ codebook
 
 log close
 
+save rosters_merged.dta,replace
 
- save rosters_merged.dta,replace
- export excel using "Rosters_Merged.xlsx", firstrow(variables) nolabel replace
- 
-   d
- sum
- list
- 
-  
- log close
- *exit, clear
+exit, clear
  
  

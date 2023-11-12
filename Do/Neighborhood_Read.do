@@ -3,7 +3,7 @@ clear all
 set more off
 capture log close
 
-local country = 1
+local country = 2
 
 *Change the filepath name here to the folder containing the data and output folders
 local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
@@ -305,8 +305,6 @@ log close
 
 
 save Neighborhood.dta, replace
-export excel using "Neighborhood.xlsx", firstrow(variables) nolabel replace
-
  
 clear all 
 set more off

@@ -2,7 +2,7 @@ clear all
 set more off
 capture log close
 
-local country = 1
+local country = 2
 
 *Change the filepath name here to the folder containing the data and output folders
 local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
@@ -6833,7 +6833,8 @@ if h_country == 2 {
 local i 1
 gen h_countmissing = 0
 
-quietly ds h_countmissing hhid h_date_end h_time_end_1 h_time_end h_time1 h_date fkey globalrecordid v1 h_deviceid2, not
+quietly ds h_countmissing hhid h_date fkey globalrecordid v1 h_deviceid2, not
+capture quietly ds h_date_end h_time_end_1 h_time_end h_time1, not
 local allvar `r(varlist)'
 
 
@@ -6873,7 +6874,8 @@ quietly forvalues i = 1(1) `=_N' {
 local i 1
 gen h_last = "AllAnswered"
 
-quietly ds h_last h_countmissing hhid h_date_end h_time_end_1 h_time_end h_time1 h_date fkey globalrecordid v1 h_deviceid2, not
+quietly ds h_last h_countmissing hhid h_date fkey globalrecordid v1 h_deviceid2, not
+capture quietly ds h_date_end h_time_end_1 h_time_end h_time1, not
 local allvar `r(varlist)'
 
 
