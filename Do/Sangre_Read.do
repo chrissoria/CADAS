@@ -127,13 +127,10 @@ save sangre_full,replace
 clear all
 
 if `country' == 0 {
-    import delimited "../PR_in/All_Excel_Blood_Results.csv", varnames(7)
+    import delimited "../PR_in/All_Excel_Blood_Results.csv"
 }
 else if `country' == 1 {
-    import delimited "../DR_in/All_Excel_Blood_Results.csv", varnames(7)
-}
-else if `country' == 2 {
-    import delimited "../CUBA_in/All_Excel_Blood_Results.csv", varnames(7)
+    import delimited "../DR_in/All_Excel_Blood_Results.csv"
 }
 
 *replace b_particid = "9" if b_particid == "R"
@@ -143,14 +140,14 @@ gen b_country = `country'
 
 gen b_country_str = string(b_country, "%12.0f")
 
-gen b_clustid_str = string(b_clustid, "%12.0f")
+gen b_clustid_str = string(cluster, "%12.0f")
 replace b_clustid_str = cond(strlen(b_clustid_str) == 1, "0" + b_clustid_str, b_clustid_str)
 
-gen b_houseid_str = string(b_houseid, "%03.0f")
+gen b_houseid_str = string(houseid, "%03.0f")
 replace b_houseid_str = cond(strlen(b_houseid_str) == 1, "00" + b_houseid_str, b_houseid_str)
 replace b_houseid_str = cond(strlen(b_houseid_str) == 2, "0" + b_houseid_str, b_houseid_str)
 
-gen b_particid_str = b_particid
+gen b_particid_str = participante
 replace b_particid_str = cond(strlen(b_particid_str) == 1, "0" + b_particid_str, b_particid_str)
 
 gen pid = b_country_str + b_clustid_str + b_houseid_str + b_particid_str

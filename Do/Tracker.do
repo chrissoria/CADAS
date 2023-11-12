@@ -6,7 +6,7 @@ capture log close
 *Here we will identify the country we want before we run the file
 *0 = PR, 1 = DR, 2 = CU
 
-local country = 2
+local country = 1
 
 *Change the filepath name here to the folder containing the data and output folders
 local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
@@ -62,6 +62,14 @@ rename Fechacompleto Fecha
 rename Casa House_ID1
 rename Porque1nohubo2rehuso Notas
 rename Participante Participante1
+rename Cluster cluster1
+
+destring Participante, replace
+rename Completo1si2no Completo
+
+destring Completo, replace
+destring cluster1, replace
+destring House_ID1, replace
 }
 
 gen pais = 0
@@ -87,8 +95,7 @@ drop if Notas_2 == "rechazo"
 if `country' == 2 {
 drop if pais == 0
 replace Notas = lower(trim(Notas))
-drop if Completo1si2no == 2
-rename Cluster cluster1
+drop if Completo == 2
 }
 
 gen country_str = string(pais, "%12.0f")
@@ -113,6 +120,8 @@ replace Participante = cond(strlen(Participante) == 1, "0" + Participante, Parti
 
 gen pid = country_str + Cluster + House_ID + Participante
 drop country_str
+
+duplicates drop pid, force
 
 *********
 * RESUMEN ENTREVISTAS
@@ -144,7 +153,7 @@ tab duplic /* if any duplicates, should re-do cleaning .do file then re-run this
 sum sd_sex sd_age /* these should be all zero if duplicates have identical age and sex */
 sort pid
 list pid sex age duplic if duplic>1 /* print duplicate obs */
-gen in_resumen_par=1 /* create indicator to use after merge with other questionnaire files */
+gen pid_en_resumen=1 /* create indicator to use after merge with other questionnaire files */
 drop pidr duplic sd_sex sd_age
 sum
 save tracker, replace
@@ -163,7 +172,7 @@ egen sd_age=sd(pr_4), by(pid)
 sum sd_sex sd_age /* these should be all zero if duplicates have identical age and sex */
 sort pid
 list pid pr_3 pr_4 duplic if duplic>1 /* print duplicate obs */
-gen in_rosters_par=1 /* create indicator to use after merge with other questionnaire files */
+gen pid_en_listas=1 /* create indicator to use after merge with other questionnaire files */
 drop pidr duplic sd_sex sd_age
 sum
 *save rosters_check.dta, replace /* I think you could drop these lines, and save just tracker per next line */
@@ -197,7 +206,7 @@ egen duplic=count(pid), by(pid)
 tab duplic
 sort pid
 list pid s_0 s_2_3 duplic if duplic>1 
-gen in_socio=1 
+gen pid_en_socio=1 
 drop pidr duplic
 sum
 *save socio_check.dta, replace
@@ -224,7 +233,7 @@ egen duplic=count(pid), by(pid)
 tab duplic
 sort pid
 list pid duplic if duplic>1 
-gen in_phys=1 
+gen pid_en_phys=1 
 drop pidr duplic
 sum
 *save phys_check.dta, replace
@@ -245,7 +254,7 @@ egen duplic=count(pid), by(pid)
 tab duplic
 sort pid
 list pid duplic if duplic>1 
-gen in_cog=1 
+gen pid_en_cog=1 
 drop pidr duplic
 sum
 *save cog_check.dta, replace
@@ -266,7 +275,7 @@ egen duplic=count(pid), by(pid)
 tab duplic
 sort pid
 list pid duplic if duplic>1 
-gen in_cog_scor=1 
+gen pid_en_cog_scor=1 
 drop pidr duplic
 sum
 *save cog_scoring_check.dta, replace
@@ -287,7 +296,7 @@ egen duplic=count(pid), by(pid)
 tab duplic
 sort pid
 list pid duplic if duplic>1 
-gen in_infor=1 
+gen pid_en_infor=1 
 drop pidr duplic
 sum
 *save infor_check.dta, replace
@@ -314,7 +323,7 @@ egen duplic=count(hhid), by(hhid)
 tab duplic
 sort hhid
 list hhid duplic if duplic>1 
-gen in_hh=1 
+gen existe_familiar=1 
 drop hhidr duplic
 sum
 *save hh_check.dta, replace
@@ -333,7 +342,7 @@ if `country' == 0 {
     use "..\SANGRE\PR_blood\Sangre_tracker_full.dta", clear
 }    
 else if `country' == 1 {
-    use "..\SANGRE\DR_blood\Sangre_tracker_full.dta", clear
+    use "sangre_full.dta", clear
     
 keep pid XF7
 gen pidr=real(pid)
@@ -342,7 +351,7 @@ egen duplic=count(pid), by(pid)
 tab duplic
 sort pid
 list pid duplic if duplic>1 
-gen in_blood=1 
+gen pid_en_sangre=1 
 drop pidr duplic
 sum
 *save sangre_check.dta, replace
@@ -354,37 +363,45 @@ sum
 }
 
 * SUMMARY VARIABLE FOR WHICH SURVEYS EACH LINE HAS
-gen RES_in ="Res" if in_resumen_par==1
-gen R_in="R" if in_rosters_par==1
-gen S_in="S" if in_socio==1
-gen P_in="P" if in_phys==1
-gen C_in="C" if in_cog==1
-gen CS_in="Cs" if in_cog_scor==1
-gen I_in="I" if in_infor==1
-gen H_in="H" if in_hh==1
-replace S_in=" " if in_socio~=1
-replace P_in=" " if in_phys~=1
-replace C_in=" " if in_cog~=1
-replace CS_in=" " if in_cog_scor~=1
-replace I_in=" " if in_infor~=1
-replace H_in=" " if in_hh~=1
+gen G_in ="G" if pid_en_resumen==1
+gen R_in="R" if pid_en_listas==1
+gen S_in="S" if pid_en_socio==1
+gen P_in="P" if pid_en_phys==1
+gen C_in="C" if pid_en_cog==1
+gen Z_in="Z" if pid_en_cog_scor==1
+gen I_in="I" if pid_en_infor==1
+gen H_in="H" if existe_familiar==1
+replace G_in=" " if pid_en_resumen~=1
+replace R_in=" " if pid_en_listas~=1
+replace S_in=" " if pid_en_socio~=1
+replace P_in=" " if pid_en_phys~=1
+replace C_in=" " if pid_en_cog~=1
+replace Z_in=" " if pid_en_cog_scor~=1
+replace I_in=" " if pid_en_infor~=1
+replace H_in=" " if existe_familiar~=1
 
 if `country' == 1 {
-gen B_in=XF7 if in_blood==1
-replace B_in=" " if in_blood~=1
+gen B_in=XF7 if pid_en_sangre==1
+replace B_in=" " if pid_en_sangre~=1
 
-gen RSPCZIHXF7 = RES_in+R_in + S_in + P_in + C_in + CS_in + I_in + H_in + B_in
+gen RSPCZIHXF7 = G_in+R_in + S_in + P_in + C_in + Z_in + I_in + H_in + B_in
 tab RSPCZIHXF7
 }
 else if `country' == 2 {
-gen RSPCZIHXF7 = RES_in+R_in + S_in + P_in + C_in + CS_in + I_in + H_in
+gen RSPCZIHXF7 = G_in+R_in + S_in + P_in + C_in + Z_in + I_in + H_in
 tab RSPCZIHXF7
 }
 
-sum in*
+sum pid*
 
-drop R_in S_in P_in C_in CS_in I_in H_in 
+drop R_in S_in P_in C_in Z_in I_in H_in G_in
 capture drop B_in
+
+rename s_0 sexo_en_socio
+rename pr_3 sexo_listas
+rename s_2_3 edad_en_socio
+rename pr_4 edad_en_listas
+rename age edad_en_resumen
 
 save tracker_full, replace
 
