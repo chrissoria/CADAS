@@ -424,5 +424,19 @@ save tracker_slim, replace
 
 export excel using "duplicates/tracker_slim.xlsx", replace firstrow(variables)
 
+use door_merged_all
+
+keep hhid pid d_0 d_1 d_particid
+
+merge m:m hhid using tracker_slim 
+
+drop XF7 RSPCZIHXF7
+
+generate hhid_en_puerta = cond(_merge == 1, "Sola en Puerta", cond(_merge == 2, "Solo en Tracker", cond(_merge == 3, "Match", "")))
+replace hhid_en_puerta = "Sin hhid" if missing(hhid)
+drop _merge
+
+save tracker_door, replace
+
 log close
 exit, clear

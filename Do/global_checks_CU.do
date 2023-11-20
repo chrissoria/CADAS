@@ -98,7 +98,7 @@ foreach var of varlist `varlist' {
 }
 
 * Export data to Excel
-export excel using "duplicates/roster_duplicates.xlsx", replace firstrow(variables)
+capture export excel using "duplicates/roster_duplicates.xlsx", replace firstrow(variables)
  
  clear all
  
@@ -555,6 +555,13 @@ drop c_country_str c_clustid_str c_houseid_str c_particid_str
 replace i_particid = 2 if globalrecordid == "f3fef9bd-fcc9-458e-ae76-bf40abc44850"
 replace i_particid = 1 if globalrecordid == "7d2d1034-dc25-43ab-ae5d-eb35acca0fd9"
 replace i_particid = 2 if globalrecordid == "94d971a8-8ee0-435c-861b-aa7067b64457"
+
+*Tania says this should be participant 1
+
+replace i_particid = 1 if globalrecordid == "87a78ce1-5c4c-46b6-ad31-4af765074cb6"
+
+*Tania says this participant should be from houseid 52
+replace i_particid = 1 if globalrecordid == "73516e7d-4288-499a-a89c-9ffde5d2df0a"
  
  drop pid hhid
  
@@ -643,6 +650,9 @@ use Household
  
  drop if inlist(hhid, "20000.")
  drop if inlist(globalrecordid, "877e1f39-a477-4c9d-b11e-af9444311089", "154d9869-68a5-4450-9da6-9d2083777a20")
+ 
+*Tania says this is junk
+drop if inlist(globalrecordid, "2fc4ddfa-a29a-4ae8-8960-df1050a71729")
  
 *interviewer says these are a duplicate
 drop if inlist(globalrecordid, "e1446acf-d758-437a-8f33-ec2c69dcda99")
@@ -771,7 +781,6 @@ export excel using "duplicates/cog_scoring_duplicates.xlsx", replace firstrow(va
 cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
 insheet using "../CUBA_in/Socio_Parent.csv"
 
-drop fkey lastsavelogonname lastsavetime
 rename globalrecordid fkey
 
 merge 1:1 fkey using Socio, force
@@ -799,7 +808,6 @@ clear all
 cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
 insheet using "../CUBA_in/Cog_Parent.csv"
 
-drop fkey lastsavelogonname lastsavetime
 rename globalrecordid fkey
 
 *3a6d1efa-a1ad-4318-aece-39c8144e894a appears to be a junk file in the child form.
@@ -825,7 +833,6 @@ clear all
 cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
 insheet using "../CUBA_in/Phys_Parent.csv"
 
-drop fkey lastsavelogonname lastsavetime
 rename globalrecordid fkey
 
 duplicates report
@@ -843,7 +850,6 @@ clear all
 cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
 insheet using "../CUBA_in/Infor_Parent.csv"
 
-drop fkey lastsavelogonname lastsavetime firstsavelogonname firstsavetime
 rename globalrecordid fkey
 
 merge 1:1 fkey using Infor
@@ -859,7 +865,6 @@ clear all
 cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
 insheet using "../CUBA_in/Household_Parent.csv"
 
-drop fkey lastsavelogonname lastsavetime firstsavelogonname firstsavetime
 rename globalrecordid fkey
 
 clear all

@@ -2,7 +2,7 @@ clear all
 set more off
 capture log close
 
-local country = 2
+local country = 1
 
 *Change the filepath name here to the folder containing the data and output folders
 local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
@@ -89,7 +89,10 @@ else if `country' == 2 {
     insheet using "../CUBA_in/InformationDoorParticipants.csv", comma names clear
 }
 
-   
+sort fkey
+ 
+by fkey: gen d_particid = _n
+
    drop globalrecordid
    rename fkey globalrecordid1
     
@@ -165,7 +168,6 @@ else if `country' == 2 {
    
    drop p_date
    
-   
    save Door.dta, replace
    
    merge 1:m globalrecordid using "InformationDoor.dta"
@@ -173,17 +175,11 @@ else if `country' == 2 {
    drop _merge
 
    save door_merged1.dta,replace
-   
-   clear all
-   
-   use "InformationDoor.dta" //just replace this with informationdoor instead and skip whole step above
- 
-   merge 1:m globalrecordid1 using "InformationDoorParticipants.dta"
+    
+*something is going on here where InformationDoor isn't unique
+merge m:m globalrecordid1 using "InformationDoorParticipants.dta"
  
    drop _merge globalrecordid
-   
-log using logs/InformationDoorMissing, text replace
-   
    
 replace d_0 = .i if (d_0 == . | d_0 == .a)
 *check if si and no are 0/1 or 1/2 for this question (affects logic on following questions)
@@ -225,6 +221,43 @@ replace d_7_5 = .i if (d_7_5 == . | d_7_5 == .a) & (d_0 == 2 & ((d_5 == 0 & d_5 
 replace d_7_5 = .v if (d_7_5 == . | d_7_5 == .a) & (d_0 == 1 | ((d_5 == 0 | d_5 == 88 | d_5 == 99 | d_5 == .i) & (d_6 == 0 | d_6 == 88 | d_6 == 99 | d_6 == .i)))
 
 
+*filling this in because interviewers aren't
+if `country' == 0 {
+    replace d_country = 0
+}
+
+else if `country' == 1 {
+    replace d_country = 1
+}
+
+else if `country' == 2 {
+    replace d_country = 2
+}
+
+label define country_label 0 "Puerto Rico" 1 "República Dominicana" 2 "Cuba"
+label values d_country country_label
+
+gen d_country_str = string(d_country, "%12.0f")
+
+gen d_clustid_str = string(d_clustid, "%12.0f")
+replace d_clustid_str = cond(strlen(d_clustid_str) == 1, "0" + d_clustid_str, d_clustid_str)
+
+gen d_houseid_str = string(d_houseid, "%03.0f")
+replace d_houseid_str = cond(strlen(d_houseid_str) == 1, "00" + d_houseid_str, d_houseid_str)
+replace d_houseid_str = cond(strlen(d_houseid_str) == 2, "0" + d_houseid_str, d_houseid_str)
+
+gen d_particid_str = string(d_particid, "%12.0f")
+replace d_particid_str = cond(strlen(d_particid_str) == 1, "0" + d_particid_str, d_particid_str)
+
+
+gen pid = d_particid_str + d_country_str + d_clustid_str + d_houseid_str
+replace pid = "" if strpos(pid, ".") > 0
+
+gen hhid = d_country_str + d_clustid_str + d_houseid_str
+replace hhid = "" if strpos(hhid, ".") > 0
+
+drop d_particid_str d_clustid_str d_houseid_str d_country_str dp_deviceid dp_time di_deviceid2 di_time2 di_time1 di_deviceid1 v1 d_survey_date d_time1 informationdoor informationdoorparticipants d_date d_interid pais
+save door_merged_all.dta,replace
 
 capture log close
 log using logs/InformationDoorMissingCodebook, text replace
@@ -266,7 +299,4 @@ log using logs/DoorsMissingCodebook, text replace
 codebook
 
 log close
-
-
-   save door_merged_all.dta,replace
-   clear all
+exit, clear

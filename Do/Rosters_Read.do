@@ -3,7 +3,7 @@ set more off
 capture log close
 log using Rosters, text replace
 
-local country = 2
+local country = 1
 
 *Change the filepath name here to the folder containing the data and output folders
 local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
