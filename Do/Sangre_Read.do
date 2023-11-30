@@ -8,8 +8,8 @@ capture log close
 local country = 1
 
 *Change the filepath name here to the folder containing the data and output folders
-local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-*local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
 
 if `country' == 0 {
     cd "`path'/PR_out"

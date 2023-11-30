@@ -4,11 +4,11 @@ capture log close
 
 *next, I want to find out if we have the right amount of cog scoring and cog surveys
 
-local country = 2
+include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
 
 *Change the filepath name here to the folder containing the data and output folders
-local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-*local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
 
 if `country' == 0 {
     cd "`path'/PR_out"
@@ -29,12 +29,9 @@ else if `country' == 1 {
 else if `country' == 2 {
     insheet using "../CUBA_in/Cog_Scoring.csv", comma names clear
 }
-gen cs_country_num = .
-replace cs_country_num = 0 if cs_country == "0 - Cuba(a)"
-replace cs_country_num = 1 if cs_country == "1 - República Dominicana"
-replace cs_country_num = 2 if cs_country == "2 - Puerto Rico"
 
- 
+gen cs_country_num = 0
+replace cs_country_num = 1 if cs_country == "1 - República Dominicana"
 gen cs_country_str = string(cs_country_num, "%12.0f")
 
 gen cs_clustid_str = string(cs_clustid, "%12.0f")
@@ -93,14 +90,6 @@ label variable cs_79_2 "79.2. El diamante (0-3)"
 label variable cs_79_3 "79.3. Rectángulos cruzados (0-2)"
 
 label variable cs_79_4 "79.4. El cubo (0-4)"
-
-capture log close
-log using logs/CogScoringMissingCodebook, text replace
-
-codebook
-
-log close
-
 
  save Cog_Scoring.dta, replace
 

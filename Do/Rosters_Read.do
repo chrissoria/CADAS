@@ -3,11 +3,11 @@ set more off
 capture log close
 log using Rosters, text replace
 
-local country = 1
+include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
 
 *Change the filepath name here to the folder containing the data and output folders
-local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-*local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
 
 if `country' == 0 {
     cd "`path'/PR_out"
@@ -449,7 +449,7 @@ else if `country' == 2 {
    
    label variable cr_4 "¿Es hombre o mujer?"
   
-generate CR_4 = cond(cr_4 == 1, "hombre", cond(cr_4 == 2, "mujer", ".a"))
+generate CR_4 = cond(cr_4 == 0, "hombre", cond(cr_4 == 1, "mujer", ".a"))
 
 drop cr_4
 

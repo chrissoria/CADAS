@@ -5,11 +5,11 @@ capture log close
 *Here we will identify the country we want before we run the file
 *0 = PR, 1 = DR, 2 = CU
 
-local country = 1
+include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
 
 *Change the filepath name here to the folder containing the data and output folders
-local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-*local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
 
 if `country' == 0 {
     cd "`path'/PR_out"
@@ -5885,9 +5885,8 @@ drop S_*
 local i 1
 gen s_countmissing = 0
 
-quietly ds s_8_5b2_delete hhid pid s_time1 s_date fkey globalrecordid v1 s_deviceid2, not
+quietly ds s_8_5b2_delete hhid pid s_date_end s_time_end_1 s_time_end s_77l s_time1 s_date fkey globalrecordid v1 s_deviceid2, not
 *deleting s_77l for now until Ty can confirm why
-capture quietly ds s_date_end s_time_end_1 s_time_end, not
 local allvar `r(varlist)'
 
 
@@ -5925,9 +5924,8 @@ quietly forvalues i = 1(1) `=_N' {
 local i 1
 gen s_last = "AllAnswered"
 
-quietly ds s_last s_countmissing s_8_5b2_delete hhid pid s_time1 s_date fkey globalrecordid v1 s_deviceid2, not
+quietly ds s_last s_countmissing s_8_5b2_delete hhid pid s_date_end s_time_end_1 s_time_end s_77l s_time1 s_date fkey globalrecordid v1 s_deviceid2, not
 *s_77l deleted for now
-capture quietly ds s_date_end s_time_end_1 s_time_end, not
 local allvar `r(varlist)'
 
 

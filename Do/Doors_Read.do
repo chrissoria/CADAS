@@ -30,7 +30,7 @@ else if `country' == 2 {
     insheet using "../CUBA_in/InformationDoor.csv", comma names clear
 }
    
-
+drop d_clustid d_houseid d_interid
    
    rename globalrecordid globalrecordid1
    rename fkey globalrecordid
@@ -89,7 +89,7 @@ else if `country' == 2 {
     insheet using "../CUBA_in/InformationDoorParticipants.csv", comma names clear
 }
 
-sort fkey
+gsort fkey -d_7_1
  
 by fkey: gen d_particid = _n
 
@@ -160,14 +160,14 @@ else if `country' == 2 {
     insheet using "../CUBA_in/Door.csv", comma names clear
 }
 
+
    replace p_date = subinstr(p_date,substr(p_date, strlen(p_date)-11, strlen(p_date)), "",.) if strlen(p_date)>=12
    replace p_date = subinstr(p_date, " ", "",.)
    replace p_date = subinstr(p_date, "/", "-",.)
    gen d_survey_date = date(p_date, "MDY")
    format d_survey_date %td
    
-   drop p_date
-   
+   drop p_date   
    save Door.dta, replace
    
    merge 1:m globalrecordid using "InformationDoor.dta"
@@ -220,7 +220,6 @@ replace d_7_4 = .v if (d_7_4 == . | d_7_4 == .a) & (d_0 == 1 | ((d_5 == 0 | d_5 
 replace d_7_5 = .i if (d_7_5 == . | d_7_5 == .a) & (d_0 == 2 & ((d_5 == 0 & d_5 == 88 & d_5 == 99 & d_5 == .i) | (d_6 == 0 & d_6 == 88 & d_6 == 99 & d_6 == .i)))
 replace d_7_5 = .v if (d_7_5 == . | d_7_5 == .a) & (d_0 == 1 | ((d_5 == 0 | d_5 == 88 | d_5 == 99 | d_5 == .i) & (d_6 == 0 | d_6 == 88 | d_6 == 99 | d_6 == .i)))
 
-
 *filling this in because interviewers aren't
 if `country' == 0 {
     replace d_country = 0
@@ -247,8 +246,6 @@ replace d_houseid_str = cond(strlen(d_houseid_str) == 1, "00" + d_houseid_str, d
 replace d_houseid_str = cond(strlen(d_houseid_str) == 2, "0" + d_houseid_str, d_houseid_str)
 
 gen d_particid_str = string(d_particid, "%12.0f")
-replace d_particid_str = cond(strlen(d_particid_str) == 1, "0" + d_particid_str, d_particid_str)
-
 
 gen pid = d_particid_str + d_country_str + d_clustid_str + d_houseid_str
 replace pid = "" if strpos(pid, ".") > 0
@@ -256,7 +253,8 @@ replace pid = "" if strpos(pid, ".") > 0
 gen hhid = d_country_str + d_clustid_str + d_houseid_str
 replace hhid = "" if strpos(hhid, ".") > 0
 
-drop d_particid_str d_clustid_str d_houseid_str d_country_str dp_deviceid dp_time di_deviceid2 di_time2 di_time1 di_deviceid1 v1 d_survey_date d_time1 informationdoor informationdoorparticipants d_date d_interid pais
+drop d_particid_str d_clustid_str d_houseid_str d_country_str dp_deviceid dp_time di_deviceid2 di_time2 di_time1 di_deviceid1 v1 d_survey_date d_time1 informationdoor informationdoorparticipants d_date p_interid pais
+order pid hhid d_particid
 save door_merged_all.dta,replace
 
 capture log close
@@ -299,4 +297,11 @@ log using logs/DoorsMissingCodebook, text replace
 codebook
 
 log close
+
+drop if missing(d_particid)
+
+save door_participants.dta, replace
+
+export excel using "duplicates/participantes_puerta.xlsx", replace firstrow(variables)
+
 exit, clear

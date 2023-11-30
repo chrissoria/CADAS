@@ -2,7 +2,8 @@ clear all
 set more off
 capture log close
 
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+*cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+cd "C:\Users\Ty\Desktop\Stata_CADAS\DATA\DR_out"
  
  use rosters_participants
  
@@ -83,7 +84,7 @@ gen pid = s_country_str + s_clustid_str + s_houseid_str + s_particid_str
 gen hhid = s_country_str + s_clustid_str + s_houseid_str
 drop s_country_str s_clustid_str s_houseid_str s_particid_str
 
-log using "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out/logs/SocioOnlyMissing", text replace
+log using "C:\Users\Ty\Desktop\Stata_CADAS\DATA/DR_out/logs/SocioOnlyMissing", text replace
 
 
 local missvarlist
@@ -172,7 +173,7 @@ gen pid = p_country_str + p_clustid_str + p_houseid_str + p_particid_str
 gen hhid = p_country_str + p_clustid_str + p_houseid_str
 drop p_country_str p_clustid_str p_houseid_str p_particid_str
 
-log using "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out/logs/PhysOnlyMissing", text replace
+log using "C:\Users\Ty\Desktop\Stata_CADAS\DATA/DR_out/logs/PhysOnlyMissing", text replace
 
 
 local missvarlist
@@ -232,7 +233,7 @@ gen pid = c_country_str + c_clustid_str + c_houseid_str + c_particid_str
 gen hhid = c_country_str + c_clustid_str + c_houseid_str
 drop c_country_str c_clustid_str c_houseid_str c_particid_str
 
-log using "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out/logs/CogOnlyMissing", text replace
+log using "C:\Users\Ty\Desktop\Stata_CADAS\DATA/DR_out/logs/CogOnlyMissing", text replace
 
 
 local missvarlist
@@ -324,7 +325,7 @@ drop c_country_str c_clustid_str c_houseid_str c_particid_str
  
   clear all
  
-  cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+  cd "C:\Users\Ty\Desktop\Stata_CADAS\DATA/DR_out"
  use Infor
  
 *based on the age of the informant (66), I have deduced that this is survey belongs to participant 1 (who is 92)
@@ -354,7 +355,7 @@ gen hhid = i_country_str + i_clustid_str + i_houseid_str
 
 drop i_country_str i_clustid_str i_houseid_str i_particid_str
 
-log using "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out/logs/InforOnlyMissing", text replace
+log using "C:\Users\Ty\Desktop\Stata_CADAS\DATA/DR_out/logs/InforOnlyMissing", text replace
 
 
 local missvarlist
@@ -416,7 +417,7 @@ export excel using "duplicates/informant_duplicates.xlsx", replace firstrow(vari
  
  use Household
  
- log using "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out/logs/HouseholdOnlyMissing", text replace
+ log using "C:\Users\Ty\Desktop\Stata_CADAS\DATA/DR_out/logs/HouseholdOnlyMissing", text replace
 
 
 local missvarlist
@@ -511,10 +512,10 @@ capture export excel using "duplicates/cog_scoring_duplicates.xlsx", replace fir
  *Next, I will merge each child with the parent and see if things are matching
  *Parents match to child with the fkey to globalrecordid, so I will need to rename the fkey to globalrecordid in the child
 
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+cd "C:\Users\Ty\Desktop\Stata_CADAS\DATA/DR_out"
 insheet using "../CUBA_in/Socio_Parent.csv"
 
-drop fkey lastsavelogonname lastsavetime
+*drop fkey lastsavelogonname lastsavetime
 rename globalrecordid fkey
 
 merge 1:1 fkey using Socio, force
@@ -527,10 +528,10 @@ list
 clear all
 
 
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+cd "C:\Users\Ty\Desktop\Stata_CADAS\DATA/DR_out"
 insheet using "../CUBA_in/Cog_Parent.csv"
 
-drop fkey lastsavelogonname lastsavetime
+*drop fkey lastsavelogonname lastsavetime
 rename globalrecordid fkey
 
 merge 1:1 fkey using Cog
@@ -542,10 +543,10 @@ list
 
 clear all
 
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+cd "C:\Users\Ty\Desktop\Stata_CADAS\DATA/DR_out"
 insheet using "../CUBA_in/Phys_Parent.csv"
 
-drop fkey lastsavelogonname lastsavetime
+*drop fkey lastsavelogonname lastsavetime
 rename globalrecordid fkey
 
 duplicates report
@@ -558,10 +559,10 @@ list
 
 clear all
 
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+cd "C:\Users\Ty\Desktop\Stata_CADAS\DATA/DR_out"
 insheet using "../CUBA_in/Infor_Parent.csv"
 
-drop fkey lastsavelogonname lastsavetime firstsavelogonname firstsavetime
+*drop fkey lastsavelogonname lastsavetime firstsavelogonname firstsavetime
 rename globalrecordid fkey
 
 merge 1:1 fkey using Infor
@@ -571,10 +572,10 @@ list
 
 clear all
 
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+cd "C:\Users\Ty\Desktop\Stata_CADAS\DATA/DR_out"
 insheet using "../CUBA_in/Household_Parent.csv"
 
-drop fkey lastsavelogonname lastsavetime firstsavelogonname firstsavetime
+*drop fkey lastsavelogonname lastsavetime firstsavelogonname firstsavetime
 rename globalrecordid fkey
 
 clear all
@@ -591,7 +592,7 @@ clear all
 
 *next, I want to find out if we have the right amount of cog scoring and cog surveys
 
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+cd "C:\Users\Ty\Desktop\Stata_CADAS\DATA/DR_out"
 use Cog_Scoring
 
 *for no, I will do m:m because I have't been able to pin down which unique cases are the true/correct ones

@@ -2,11 +2,11 @@ clear all
 set more off
 capture log close
 
-local country = 1
+include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
 
 *Change the filepath name here to the folder containing the data and output folders
-local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-*local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
 
 if `country' == 0 {
     cd "`path'/PR_out"
@@ -3436,8 +3436,7 @@ drop I_*
 local i 1
 gen i_countmissing = 0
 
-quietly ds i_countmissing hhid i_time1 i_date fkey globalrecordid i_deviceid2, not
-capture quietly ds i_date_end i_time_end_1 i_time_end, not
+quietly ds i_countmissing hhid pid i_date_end i_time_end_1 i_time_end i_time1 i_date fkey globalrecordid i_deviceid2, not
 local allvar `r(varlist)'
 
 
@@ -3475,8 +3474,7 @@ quietly forvalues i = 1(1) `=_N' {
 local i 1
 gen i_last = "AllAnswered"
 
-quietly ds i_last i_countmissing hhid pid i_time1 i_date fkey globalrecordid i_deviceid2, not
-capture quietly ds i_date_end, i_time_end_1, i_time_end, not
+quietly ds i_last i_countmissing hhid pid i_date_end i_time_end_1 i_time_end i_time1 i_date fkey globalrecordid i_deviceid2, not
 local allvar `r(varlist)'
 
 
