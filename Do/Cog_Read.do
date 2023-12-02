@@ -4143,7 +4143,7 @@ drop G_*
 local i 1
 gen c_countmissing = 0
 
-quietly ds hhid pid c_time2 c_time1 c_date fkey globalrecordid c_deviceid2, not
+quietly ds hhid pid c_time2 c_time1 c_date fkey globalrecordid c_deviceid2 g_3, not
 local allvar `r(varlist)'
 
 
@@ -4179,7 +4179,7 @@ gen c_last = "AllAnswered"
 
 drop v1
 
-capture quietly ds c_countmissing hhid pid c_last fkey globalrecordid c_deviceid2 c_date c_time_end c_time11 c_time10 c_time9 c_time8 c_time7 c_time6 c_time5 c_time4 c_time3 c_time2 c_date_end c_time_end_1 c_time_end c_date_end c_time_end_1 c_time11_1 c_time10_1 c_time9_1 c_time8_1 c_time7_1 c_time6_1 c_time5_1 c_time4_1 c_time3_1 c_time2_1 c_time1 c_last c_countmissing hhid fkey globalrecordid c_deviceid2, not
+capture quietly ds g_3 c_countmissing hhid pid c_last fkey globalrecordid c_deviceid2 c_date c_time_end c_time11 c_time10 c_time9 c_time8 c_time7 c_time6 c_time5 c_time4 c_time3 c_time2 c_date_end c_time_end_1 c_time_end c_date_end c_time_end_1 c_time11_1 c_time10_1 c_time9_1 c_time8_1 c_time7_1 c_time6_1 c_time5_1 c_time4_1 c_time3_1 c_time2_1 c_time1 c_last c_countmissing hhid fkey globalrecordid c_deviceid2, not
 local allvar `r(varlist)'
 
 
@@ -4366,25 +4366,25 @@ replace serial7_score = 1 if c_15 == 93
 
 *+1 point if second number is seven less than the first number
 
-replace serial7_score = (serial7_score + 1) if (c_15 - 7 == c_16)
+replace serial7_score = (serial7_score + 1) if ((c_15 - 7 == c_16) & (c_15 ~= .i) & (c_15 ~= .v) & (c_16 ~= .i) & (c_16 ~= .v))
 
 
 
 *+1 point if third number is seven less than the second number
 
-replace serial7_score = (serial7_score + 1) if (c_16 - 7 == c_17)
+replace serial7_score = (serial7_score + 1) if ((c_16 - 7 == c_17) & (c_17 ~= .i) & (c_17 ~= .v) & (c_16 ~= .i) & (c_16 ~= .v))
 
 
 
 *+1 point if fourth number is seven less than the third number
 
-replace serial7_score = (serial7_score + 1) if (c_17 - 7 == c_18)
+replace serial7_score = (serial7_score + 1) if ((c_17 - 7 == c_18) & (c_17 ~= .i) & (c_17 ~= .v) & (c_18 ~= .i) & (c_18 ~= .v))
 
 
 
 *+1 point if fifth number is seven less than the fourth number
 
-replace serial7_score = (serial7_score + 1) if (c_18 - 7 == c_19)
+replace serial7_score = (serial7_score + 1) if ((c_18 - 7 == c_19) & (c_19 ~= .i) & (c_19 ~= .v) & (c_18 ~= .i) & (c_18 ~= .v))
 
 
 
@@ -4770,8 +4770,11 @@ replace c_MMSEscore = (c_MMSEscore + 1) if c_13 == 1
 
 *5 points - spelling MUNDO backward (question 20)
 
-replace c_MMSEscore = (c_MMSEscore + serial7_score)
+replace c_MMSEscore = (c_MMSEscore + worldspelling_score) if ((worldspelling_score ~= .v) & (worldspelling_score ~= .i) & (worldspelling_score > serial7_score))
 
+replace c_MMSEscore = (c_MMSEscore + serial7_score) if ((worldspelling_score ~= .v) & (worldspelling_score ~= .i) & (worldspelling_score <= serial7_score))
+
+replace c_MMSEscore = (c_MMSEscore + serial7_score) if ((worldspelling_score == .v) | (worldspelling_score == .i))
 
 
 *4 ponts total, 1 point each (questions 21-23, 26)			how should 11-13 and 21-23 get scored if they couldnt repeat the words?			for c_26_1 why are there people with incorrect scores but only 2 or 3 tries?
@@ -4806,7 +4809,7 @@ replace c_MMSEscore = (c_MMSEscore + 1) if c_31 == 1
 
 *1 point (question cs_32 in cognitive scoring)
 
-*replace c_MMSEscore = (c_MMSEscore + 1) if cs_32 == 1
+replace c_MMSEscore = (c_MMSEscore + 1) if cs_32 == 1
 
 
 

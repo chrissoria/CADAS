@@ -2,7 +2,7 @@ clear all
 set more off
 capture log close
 
-local country = 1
+include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
 
 *Change the filepath name here to the folder containing the data and output folders
 local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
@@ -30,7 +30,9 @@ else if `country' == 2 {
     insheet using "../CUBA_in/InformationDoor.csv", comma names clear
 }
    
-drop d_clustid d_houseid d_interid
+rename d_clustid d_clustid2
+rename d_houseid d_houseid2
+rename d_interid d_interid2
    
    rename globalrecordid globalrecordid1
    rename fkey globalrecordid
@@ -184,41 +186,38 @@ merge m:m globalrecordid1 using "InformationDoorParticipants.dta"
 replace d_0 = .i if (d_0 == . | d_0 == .a)
 *check if si and no are 0/1 or 1/2 for this question (affects logic on following questions)
 
-replace d_15 = .i if (d_15 == . | d_15 == .a) & (d_0 == 2 | d_0 == .i)
+replace d_15 = .i if (d_15 == . | d_15 == .a) & (d_0 == 0 | d_0 == .i)
 replace d_15 = .v if (d_15 == . | d_15 == .a) & d_0 == 1
 
 replace d_1 = .i if (d_1 == . | d_1 == .a) & d_0 == 1
-replace d_1 = .v if (d_1 == . | d_1 == .a) & d_0 == 2
+replace d_1 = .v if (d_1 == . | d_1 == .a) & d_0 == 0
 
 replace d_2 = .i if (d_2 == . | d_2 == .a) & d_0 == 1
-replace d_2 = .v if (d_2 == . | d_2 == .a) & d_0 == 1
+replace d_2 = .v if (d_2 == . | d_2 == .a) & d_0 == 0
 
 replace d_3 = .i if (d_3 == . | d_3 == .a) & d_0 == 1
-replace d_3 = .v if (d_3 == . | d_3 == .a) & d_0 == 1
+replace d_3 = .v if (d_3 == . | d_3 == .a) & d_0 == 0
 
 replace d_4 = .i if (d_4 == . | d_4 == .a) & d_0 == 1
-replace d_4 = .v if (d_4 == . | d_4 == .a) & d_0 == 1
+replace d_4 = .v if (d_4 == . | d_4 == .a) & d_0 == 0
 
 replace d_5 = .i if (d_5 == . | d_5 == .a) & d_0 == 1
-replace d_5 = .v if (d_5 == . | d_5 == .a) & d_0 == 1
+replace d_5 = .v if (d_5 == . | d_5 == .a) & d_0 == 0
 
 replace d_6 = .i if (d_6 == . | d_6 == .a) & d_0 == 1
-replace d_6 = .v if (d_6 == . | d_6 == .a) & d_0 == 1
+replace d_6 = .v if (d_6 == . | d_6 == .a) & d_0 == 0
 
-replace d_7_1 = .i if (d_7_1 == . | d_7_1 == .a) & (d_0 == 2 & ((d_5 == 0 & d_5 == 88 & d_5 == 99 & d_5 == .i) | (d_6 == 0 & d_6 == 88 & d_6 == 99 & d_6 == .i)))
-replace d_7_1 = .v if (d_7_1 == . | d_7_1 == .a) & (d_0 == 1 | ((d_5 == 0 | d_5 == 88 | d_5 == 99 | d_5 == .i) & (d_6 == 0 | d_6 == 88 | d_6 == 99 | d_6 == .i)))
+replace d_7_1 = .v if (d_7_1 == . | d_7_1 == .a) & (d_0 == 0 | ((d_5 == 0 | d_5 == 88 | d_5 == 99 | d_5 == .v) & (d_6 == 0 | d_6 == 88 | d_6 == 99 | d_6 == .v)))
+replace d_7_2 = .v if (d_7_2 == . | d_7_2 == .a) & (d_0 == 0 | ((d_5 == 0 | d_5 == 88 | d_5 == 99 | d_5 == .v) & (d_6 == 0 | d_6 == 88 | d_6 == 99 | d_6 == .v)))
+replace d_7_3 = .v if (d_7_3 == . | d_7_3 == .a) & (d_0 == 0 | ((d_5 == 0 | d_5 == 88 | d_5 == 99 | d_5 == .v) & (d_6 == 0 | d_6 == 88 | d_6 == 99 | d_6 == .v)))
+replace d_7_4 = .v if (d_7_4 == . | d_7_4 == .a) & (d_0 == 0 | ((d_5 == 0 | d_5 == 88 | d_5 == 99 | d_5 == .v) & (d_6 == 0 | d_6 == 88 | d_6 == 99 | d_6 == .v)))
+replace d_7_5 = .v if (d_7_5 == . | d_7_5 == .a) & (d_0 == 0 | ((d_5 == 0 | d_5 == 88 | d_5 == 99 | d_5 == .v) & (d_6 == 0 | d_6 == 88 | d_6 == 99 | d_6 == .v)))
 
-replace d_7_2 = .i if (d_7_2 == . | d_7_2 == .a) & (d_0 == 2 & ((d_5 == 0 & d_5 == 88 & d_5 == 99 & d_5 == .i) | (d_6 == 0 & d_6 == 88 & d_6 == 99 & d_6 == .i)))
-replace d_7_2 = .v if (d_7_2 == . | d_7_2 == .a) & (d_0 == 1 | ((d_5 == 0 | d_5 == 88 | d_5 == 99 | d_5 == .i) & (d_6 == 0 | d_6 == 88 | d_6 == 99 | d_6 == .i)))
-
-replace d_7_3 = .i if (d_7_3 == . | d_7_3 == .a) & (d_0 == 2 & ((d_5 == 0 & d_5 == 88 & d_5 == 99 & d_5 == .i) | (d_6 == 0 & d_6 == 88 & d_6 == 99 & d_6 == .i)))
-replace d_7_3 = .v if (d_7_3 == . | d_7_3 == .a) & (d_0 == 1 | ((d_5 == 0 | d_5 == 88 | d_5 == 99 | d_5 == .i) & (d_6 == 0 | d_6 == 88 | d_6 == 99 | d_6 == .i)))
-
-replace d_7_4 = .i if (d_7_4 == . | d_7_4 == .a) & (d_0 == 2 & ((d_5 == 0 & d_5 == 88 & d_5 == 99 & d_5 == .i) | (d_6 == 0 & d_6 == 88 & d_6 == 99 & d_6 == .i)))
-replace d_7_4 = .v if (d_7_4 == . | d_7_4 == .a) & (d_0 == 1 | ((d_5 == 0 | d_5 == 88 | d_5 == 99 | d_5 == .i) & (d_6 == 0 | d_6 == 88 | d_6 == 99 | d_6 == .i)))
-
-replace d_7_5 = .i if (d_7_5 == . | d_7_5 == .a) & (d_0 == 2 & ((d_5 == 0 & d_5 == 88 & d_5 == 99 & d_5 == .i) | (d_6 == 0 & d_6 == 88 & d_6 == 99 & d_6 == .i)))
-replace d_7_5 = .v if (d_7_5 == . | d_7_5 == .a) & (d_0 == 1 | ((d_5 == 0 | d_5 == 88 | d_5 == 99 | d_5 == .i) & (d_6 == 0 | d_6 == 88 | d_6 == 99 | d_6 == .i)))
+replace d_7_1 = .i if (d_7_1 == . | d_7_1 == .a)
+replace d_7_2 = .i if (d_7_2 == . | d_7_2 == .a)
+replace d_7_3 = .i if (d_7_3 == . | d_7_3 == .a)
+replace d_7_4 = .i if (d_7_4 == . | d_7_4 == .a)
+replace d_7_5 = .i if (d_7_5 == . | d_7_5 == .a)
 
 *filling this in because interviewers aren't
 if `country' == 0 {
@@ -235,6 +234,10 @@ else if `country' == 2 {
 
 label define country_label 0 "Puerto Rico" 1 "República Dominicana" 2 "Cuba"
 label values d_country country_label
+
+replace d_clustid = d_clustid2 if d_clustid == 0 | missing(d_clustid)
+replace d_houseid = d_houseid2 if d_houseid == 0 | missing(d_houseid)
+replace d_interid = d_interid2 if d_interid == 0 | missing(d_interid)
 
 gen d_country_str = string(d_country, "%12.0f")
 
@@ -254,6 +257,7 @@ gen hhid = d_country_str + d_clustid_str + d_houseid_str
 replace hhid = "" if strpos(hhid, ".") > 0
 
 drop d_particid_str d_clustid_str d_houseid_str d_country_str dp_deviceid dp_time di_deviceid2 di_time2 di_time1 di_deviceid1 v1 d_survey_date d_time1 informationdoor informationdoorparticipants d_date p_interid pais
+drop d_clustid2 d_houseid2 d_interid2
 order pid hhid d_particid
 save door_merged_all.dta,replace
 
