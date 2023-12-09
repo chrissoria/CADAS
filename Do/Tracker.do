@@ -6,11 +6,11 @@ capture log close
 *Here we will identify the country we want before we run the file
 *0 = PR, 1 = DR, 2 = CU
 
-include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
+local country = 1
 
 *Change the filepath name here to the folder containing the data and output folders
-*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+*local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
 
 if `country' == 0 {
     cd "`path'/PR_out"
@@ -435,6 +435,8 @@ drop XF7 RSPCZIHXF7
 generate hhid_en_puerta = cond(_merge == 1, "Sola en Puerta", cond(_merge == 2, "Solo en Tracker", cond(_merge == 3, "Match", "")))
 replace hhid_en_puerta = "Sin hhid" if missing(hhid)
 drop _merge
+
+keep d_1 d_particid pid hhid hhid_en_puerta
 
 save tracker_door, replace
 

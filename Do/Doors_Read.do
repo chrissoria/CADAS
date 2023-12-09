@@ -2,11 +2,11 @@ clear all
 set more off
 capture log close
 
-include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
+include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
 
-*Change the filepath name here to the folder containing the data and output folders
+if `"`user'"' == "Chris" {
 local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-*local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_country_define.do"
 
 if `country' == 0 {
     cd "`path'/PR_out"
@@ -18,7 +18,31 @@ else if `country' == 2 {
     cd "`path'/CUBA_out"
 }
 
-*below we read in a country-specific file
+if `country' == 0 {
+    insheet using "../PR_in/InformationDoor.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/InformationDoor.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/InformationDoor.csv", comma names clear
+}
+
+}
+
+else if `"`user'"' == "Ty" {
+local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
+
+if `country' == 0 {
+    cd "`path'/PR_out"
+}
+else if `country' == 1 {
+    cd "`path'/DR_out"
+}
+else if `country' == 2 {
+    cd "`path'/CUBA_out"
+}
 
 if `country' == 0 {
     insheet using "../PR_in/InformationDoor.csv", comma names clear
@@ -28,6 +52,7 @@ else if `country' == 1 {
 }
 else if `country' == 2 {
     insheet using "../CUBA_in/InformationDoor.csv", comma names clear
+}
 }
    
 rename d_clustid d_clustid2
