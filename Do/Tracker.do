@@ -247,7 +247,7 @@ sum
 * COG
 **********
 use Cog, clear
-keep pid c_interid c_deviceid1
+keep pid c_interid c_deviceid1 all_image_files_found all_audio_files_found
 gen pidr=real(pid)
 drop if pidr==.
 egen duplic=count(pid), by(pid)
@@ -418,7 +418,7 @@ foreach var of varlist `varlist' {
 export excel using "duplicates/tracker_full.xlsx", replace firstrow(variables)
 
 drop r_interid s_interid p_interid i_interid h_interid cs_interid c_interid
-drop r_deviceid s_deviceid1 p_deviceid1 i_deviceid1 c_deviceid1
+drop r_deviceid s_deviceid1 p_deviceid1 i_deviceid1 c_deviceid1 all_image_files_found all_audio_files_found
 
 save tracker_slim, replace
 
