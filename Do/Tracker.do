@@ -129,7 +129,7 @@ duplicates drop pid, force
 
 log using logs/tracker, text replace
 
-keep pid age sex
+keep pid age sex House_ID Cluster
 gen pidr=real(pid)
 rename sex SEX
 
@@ -402,6 +402,8 @@ rename pr_3 sexo_listas
 rename s_2_3 edad_en_socio
 rename pr_4 edad_en_listas
 rename age edad_en_resumen
+
+order pid House_ID Cluster
 
 save tracker_full, replace
 

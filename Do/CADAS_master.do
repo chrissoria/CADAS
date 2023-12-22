@@ -1,6 +1,6 @@
 *Change the filepath name here to the folder containing the do files
-*local path = "C:\Users\Ty\Desktop\CADAS Data do files"
-local user = "Chris"
+capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
 if `"`user'"' == "Chris" {
     local path = "/hdir/0/chrissoria/Stata_CADAS/Do/Read"
@@ -55,7 +55,8 @@ else if `country' == 2 {
     do "`path'/global_checks_CUBA"
 }
 do "`path'\Tracker.do"
-
+do "`path'/InterviewerConcordance1.do"
+do "`path'/mp4_TyManualScoring.do"
 }
 
 

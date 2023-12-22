@@ -2,7 +2,10 @@ clear all
 set more off
 capture log close
 
-include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+*note Oct 19th an update was sent out to break out pictures for 72 and 79
+
+capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
 if `"`user'"' == "Chris" {
 local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
@@ -710,6 +713,10 @@ foreach var of local string_vars {
     drop `var'_trimmed
 
 }
+
+gen c_date_stata = date(c_date, "YMD")
+
+gen date_greater_102423 = c_date_stata > 23307
 
 label define country_label 0 "Puerto Rico" 1 "República Dominicana" 2 "Cuba"
 label values c_country country_label
@@ -2908,9 +2915,23 @@ order pid pid2 c_interid c_houseid c_clustid c_particid c_country c_houseid2 c_c
 
 *creating a variable that identifies whether picture files are complete and audio files are complete
 
-gen all_image_files_found = 1 if anim_pic_found == "found" & symb_pic_found == "found" & pent_pic_found == "found" ///
-& c_72_1_pic_found == "found" & c_72_2_pic_found == "found" & c_72_3_pic_found == "found" & c_72_4_pic_found == "found" ///
-& c_79_1_pic_found == "found" & c_79_2_pic_found == "found" & c_79_3_pic_found == "found" & c_79_4_pic_found == "found" 
+if `country' == 1 {
+    gen all_image_files_found = 1 if date_greater_102423 == 1 & anim_pic_found == "found" & symb_pic_found == "found" & pent_pic_found == "found" ///
+    & c_72_1_pic_found == "found" & c_72_2_pic_found == "found" & c_72_3_pic_found == "found" & c_72_4_pic_found == "found" ///
+    & c_79_1_pic_found == "found" & c_79_2_pic_found == "found" & c_79_3_pic_found == "found" & c_79_4_pic_found == "found"
+    
+    replace all_image_files_found = 1 if date_greater_102423 == 0 & anim_pic_found == "found" & symb_pic_found == "found" & pent_pic_found == "found" ///
+    & c_72_4_pic_found == "found" ///
+    & c_79_4_pic_found == "found"
+}
+
+else if `country' == 2 {
+    gen all_image_files_found = 1 if date_greater_102423 == 0 & anim_pic_found == "found" & symb_pic_found == "found" & pent_pic_found == "found" ///
+    & c_72_4_pic_found == "found" ///
+    & c_79_4_pic_found == "found"
+}
+
+capture replace all_image_files_found = 0 if missing(all_image_files_found)
 
 replace all_image_files_found = 0 if missing(all_image_files_found)
 
@@ -4216,7 +4237,7 @@ gen c_last = "AllAnswered"
 
 drop v1
 
-capture quietly ds g_3 c_countmissing hhid pid c_last fkey globalrecordid c_deviceid2 c_date c_time_end c_time11 c_time10 c_time9 c_time8 c_time7 c_time6 c_time5 c_time4 c_time3 c_time2 c_date_end c_time_end_1 c_time_end c_date_end c_time_end_1 c_time11_1 c_time10_1 c_time9_1 c_time8_1 c_time7_1 c_time6_1 c_time5_1 c_time4_1 c_time3_1 c_time2_1 c_time1 c_last c_countmissing hhid fkey globalrecordid c_deviceid2, not
+capture quietly ds g_3 c_countmissing hhid pid c_last fkey globalrecordid c_deviceid2 c_date c_time_end c_time11 c_time10 c_time9 c_time8 c_time7 c_time6 c_time5 c_time4 c_time3 c_time2 c_date_end c_time_end_1 c_time_end c_date_end c_time_end_1 c_time11_1 c_time10_1 c_time9_1 c_time8_1 c_time7_1 c_time6_1 c_time5_1 c_time4_1 c_time3_1 c_time2_1 c_time1 c_last c_countmissing hhid fkey globalrecordid c_deviceid2 all_audio_files_found all_image_files_found pent_pic_found g_1_file_found anim_pic_found symb_pic_found g_2_file_found g_2_file2_found c_72_1_pic_found c_72_2_pic_found c_72_3_pic_found c_72_4_pic_found c_79_1_pic_found c_79_2_pic_found c_79_3_pic_found c_79_4_pic_found g_3_file_found g_3_file2_found, not
 local allvar `r(varlist)'
 
 
@@ -4403,25 +4424,25 @@ replace serial7_score = 1 if c_15 == 93
 
 *+1 point if second number is seven less than the first number
 
-replace serial7_score = (serial7_score + 1) if ((c_15 - 7 == c_16) & (c_15 ~= .i) & (c_15 ~= .v) & (c_16 ~= .i) & (c_16 ~= .v))
+replace serial7_score = (serial7_score + 1) if ((c_15 - 7 == c_16) & (c_15 ~= .i) & (c_15 ~= .v) & (c_15 ~= .) & (c_16 ~= .i) & (c_16 ~= .v) & (c_16 ~= .))
 
 
 
 *+1 point if third number is seven less than the second number
 
-replace serial7_score = (serial7_score + 1) if ((c_16 - 7 == c_17) & (c_17 ~= .i) & (c_17 ~= .v) & (c_16 ~= .i) & (c_16 ~= .v))
+replace serial7_score = (serial7_score + 1) if ((c_16 - 7 == c_17) & (c_17 ~= .i) & (c_17 ~= .) & (c_17 ~= .v) & (c_16 ~= .i) & (c_16 ~= .v) & (c_16 ~= .))
 
 
 
 *+1 point if fourth number is seven less than the third number
 
-replace serial7_score = (serial7_score + 1) if ((c_17 - 7 == c_18) & (c_17 ~= .i) & (c_17 ~= .v) & (c_18 ~= .i) & (c_18 ~= .v))
+replace serial7_score = (serial7_score + 1) if ((c_17 - 7 == c_18) & (c_17 ~= .i) & (c_17 ~= .) & (c_17 ~= .v) & (c_18 ~= .i) & (c_18 ~= .v) & (c_18 ~= .))
 
 
 
 *+1 point if fifth number is seven less than the fourth number
 
-replace serial7_score = (serial7_score + 1) if ((c_18 - 7 == c_19) & (c_19 ~= .i) & (c_19 ~= .v) & (c_18 ~= .i) & (c_18 ~= .v))
+replace serial7_score = (serial7_score + 1) if ((c_18 - 7 == c_19) & (c_19 ~= .i) & (c_19 ~= .) & (c_19 ~= .v) & (c_18 ~= .i) & (c_18 ~= .v) & (c_18 ~= .))
 
 
 
@@ -4851,6 +4872,8 @@ replace c_MMSEscore = (c_MMSEscore + 1) if cs_32 == 1
 
 
 *correct for questions unable to be answered due to physical limitation or illiteracy
+
+gen c_MMSEscore_raw = c_MMSEscore
 
 gen MMSEcorrection = 0
 

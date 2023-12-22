@@ -2,37 +2,14 @@ clear all
 set more off
 capture log close
 
-include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
-if `"`user'"' == "Chris" {
-local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_country_define.do"
+capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
 
-if `country' == 0 {
-    cd "`path'/PR_out"
-}
-else if `country' == 1 {
-    cd "`path'/DR_out"
-}
-else if `country' == 2 {
-    cd "`path'/CUBA_out"
-}
-
-if `country' == 0 {
-    insheet using "../PR_in/InformationDoor.csv", comma names clear
-}
-else if `country' == 1 {
-    insheet using "../DR_in/InformationDoor.csv", comma names clear
-}
-else if `country' == 2 {
-    insheet using "../CUBA_in/InformationDoor.csv", comma names clear
-}
-
-}
-
-else if `"`user'"' == "Ty" {
+*Change the filepath name here to the folder containing the data and output folders
+*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
 local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
-include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
 
 if `country' == 0 {
     cd "`path'/PR_out"
@@ -44,6 +21,8 @@ else if `country' == 2 {
     cd "`path'/CUBA_out"
 }
 
+*below we read in a country-specific file
+
 if `country' == 0 {
     insheet using "../PR_in/InformationDoor.csv", comma names clear
 }
@@ -52,7 +31,6 @@ else if `country' == 1 {
 }
 else if `country' == 2 {
     insheet using "../CUBA_in/InformationDoor.csv", comma names clear
-}
 }
    
 rename d_clustid d_clustid2
@@ -214,22 +192,22 @@ replace d_0 = .i if (d_0 == . | d_0 == .a)
 replace d_15 = .i if (d_15 == . | d_15 == .a) & (d_0 == 0 | d_0 == .i)
 replace d_15 = .v if (d_15 == . | d_15 == .a) & d_0 == 1
 
-replace d_1 = .i if (d_1 == . | d_1 == .a) & d_0 == 1
+replace d_1 = .i if (d_1 == . | d_1 == .a) & (d_0 == 1 | d_0 == .i)
 replace d_1 = .v if (d_1 == . | d_1 == .a) & d_0 == 0
 
-replace d_2 = .i if (d_2 == . | d_2 == .a) & d_0 == 1
+replace d_2 = .i if (d_2 == . | d_2 == .a) & (d_0 == 1 | d_0 == .i)
 replace d_2 = .v if (d_2 == . | d_2 == .a) & d_0 == 0
 
-replace d_3 = .i if (d_3 == . | d_3 == .a) & d_0 == 1
+replace d_3 = .i if (d_3 == . | d_3 == .a) & (d_0 == 1 | d_0 == .i)
 replace d_3 = .v if (d_3 == . | d_3 == .a) & d_0 == 0
 
-replace d_4 = .i if (d_4 == . | d_4 == .a) & d_0 == 1
+replace d_4 = .i if (d_4 == . | d_4 == .a) & (d_0 == 1 | d_0 == .i)
 replace d_4 = .v if (d_4 == . | d_4 == .a) & d_0 == 0
 
-replace d_5 = .i if (d_5 == . | d_5 == .a) & d_0 == 1
+replace d_5 = .i if (d_5 == . | d_5 == .a) & (d_0 == 1 | d_0 == .i)
 replace d_5 = .v if (d_5 == . | d_5 == .a) & d_0 == 0
 
-replace d_6 = .i if (d_6 == . | d_6 == .a) & d_0 == 1
+replace d_6 = .i if (d_6 == . | d_6 == .a) & (d_0 == 1 | d_0 == .i)
 replace d_6 = .v if (d_6 == . | d_6 == .a) & d_0 == 0
 
 replace d_7_1 = .v if (d_7_1 == . | d_7_1 == .a) & (d_0 == 0 | ((d_5 == 0 | d_5 == 88 | d_5 == 99 | d_5 == .v) & (d_6 == 0 | d_6 == 88 | d_6 == 99 | d_6 == .v)))

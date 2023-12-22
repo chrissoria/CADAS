@@ -2,7 +2,8 @@ clear all
 set more off
 capture log close
 
-include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
 if `"`user'"' == "Chris" {
 local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
@@ -5986,6 +5987,20 @@ quietly forvalues i = 1(1) `=_N' {
 
 
 capture gen s_TotalTime = (Clock(s_time_end, "MDYhms") - Clock(s_time1, "MDYhms"))/1000/60
+
+
+*depression score from s.10.1
+gen s_depression_score = 0
+replace s_depression_score = (s_depression_score + 1) if s_10_1a == 1
+replace s_depression_score = (s_depression_score + 1) if s_10_1b == 1
+replace s_depression_score = (s_depression_score + 1) if s_10_1c == 1
+replace s_depression_score = (s_depression_score + 1) if s_10_1d == 5
+replace s_depression_score = (s_depression_score + 1) if s_10_1e == 1
+replace s_depression_score = (s_depression_score + 1) if s_10_1f == 5
+replace s_depression_score = (s_depression_score + 1) if s_10_1g == 1
+replace s_depression_score = (s_depression_score + 1) if s_10_1h == 1
+
+
 
 capture log close
 log using logs/SocioMissingCodebook, text replace

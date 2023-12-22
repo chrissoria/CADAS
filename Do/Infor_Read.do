@@ -2,7 +2,8 @@ clear all
 set more off
 capture log close
 
-include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
 if `"`user'"' == "Chris" {
 local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
@@ -3128,9 +3129,9 @@ replace i_h_npi_7_1 = .i if (i_h_npi_7_1 == . | i_h_npi_7_1 == .a) & (i_h_npi_7 
 
 replace i_h_npi_7_2 = .i if (i_h_npi_7_2 == . | i_h_npi_7_2 == .a) & (i_h_npi_7 ~= 0 & i_h_npi_7 ~= 8 & i_h_npi_7 ~= 9)
 
-replace i_h_npi_2_1 = .i if (i_h_npi_8_1 == . | i_h_npi_8_1 == .a) & (i_h_npi_8 ~= 0 & i_h_npi_8 ~= 8 & i_h_npi_8 ~= 9)
+replace i_h_npi_8_1 = .i if (i_h_npi_8_1 == . | i_h_npi_8_1 == .a) & (i_h_npi_8 ~= 0 & i_h_npi_8 ~= 8 & i_h_npi_8 ~= 9)
 
-replace i_h_npi_2_2 = .i if (i_h_npi_8_2 == . | i_h_npi_8_2 == .a) & (i_h_npi_8 ~= 0 & i_h_npi_8 ~= 8 & i_h_npi_8 ~= 9)
+replace i_h_npi_8_2 = .i if (i_h_npi_8_2 == . | i_h_npi_8_2 == .a) & (i_h_npi_8 ~= 0 & i_h_npi_8 ~= 8 & i_h_npi_8 ~= 9)
 
 replace i_h_npi_9_1 = .i if (i_h_npi_9_1 == . | i_h_npi_9_1 == .a) & (i_h_npi_9 ~= 0 & i_h_npi_9 ~= 8 & i_h_npi_9 ~= 9)
 
@@ -3240,8 +3241,8 @@ replace i_h_npi_6_1 = .v if (i_h_npi_6_1 == . | i_h_npi_6_1 == .a)
 replace i_h_npi_6_2 = .v if (i_h_npi_6_2 == . | i_h_npi_6_2 == .a)
 replace i_h_npi_7_1 = .v if (i_h_npi_7_1 == . | i_h_npi_7_1 == .a)
 replace i_h_npi_7_2 = .v if (i_h_npi_7_2 == . | i_h_npi_7_2 == .a)
-replace i_h_npi_2_1 = .v if (i_h_npi_2_1 == . | i_h_npi_2_1 == .a)
-replace i_h_npi_2_2 = .v if (i_h_npi_2_2 == . | i_h_npi_2_2 == .a)
+replace i_h_npi_8_1 = .v if (i_h_npi_8_1 == . | i_h_npi_8_1 == .a)
+replace i_h_npi_8_2 = .v if (i_h_npi_8_2 == . | i_h_npi_8_2 == .a)
 replace i_h_npi_9_1 = .v if (i_h_npi_9_1 == . | i_h_npi_9_1 == .a)
 replace i_h_npi_9_2 = .v if (i_h_npi_9_2 == . | i_h_npi_9_2 == .a)
 replace i_h_npi_10_1 = .v if (i_h_npi_10_1 == . | i_h_npi_10_1 == .a)
@@ -3541,6 +3542,84 @@ quietly forvalues i = 1(1) `=_N' {
 
 capture gen i_TotalTime = (Clock(i_time_end, "MDYhms") - Clock(i_time1, "MDYhms"))/1000/60
 
+
+*summary of 3 ADL limitations (# with difficulty, i.e. >0), from F.CSID 22.1, 23.1, 24.1
+gen i_ADL_summ = 0
+replace i_ADL_summ = (i_ADL_summ + 1) if ((i_f_csid_22_1 == 1 | i_f_csid_22_1 == 2 | i_f_csid_22_1 == 3) & i_f_csid_22_2 ~= 1)
+replace i_ADL_summ = (i_ADL_summ + 1) if ((i_f_csid_23_1 == 1 | i_f_csid_23_1 == 2 | i_f_csid_23_1 == 3) & i_f_csid_23_2 ~= 1)
+replace i_ADL_summ = (i_ADL_summ + 1) if ((i_f_csid_24_1 == 1 | i_f_csid_24_1 == 2 | i_f_csid_24_1 == 3) & i_f_csid_24_2 ~= 1)
+
+*summary of 4 IADL limitations from F.CSID (# with problem, i.e. >0), from F.CSID.16, 17, 18, 19
+gen i_IADL_summ = 0
+replace i_IADL_summ = (i_IADL_summ + 1) if (i_f_csid_16 == 1 | i_f_csid_16 == 2)
+replace i_IADL_summ = (i_IADL_summ + 1) if ((i_f_csid_17 == 1 | i_f_csid_17 == 2) & i_f_csid_17a ~= 1)
+replace i_IADL_summ = (i_IADL_summ + 1) if (i_f_csid_18 == 1)
+replace i_IADL_summ = (i_IADL_summ + 1) if (i_f_csid_19 == 1 | i_f_csid_19 == 2)
+
+*summary of 6 memory variables (# with problem, i.e. >0) from section F such as F.BSE.3
+gen i_memory_summ = 0
+replace i_memory_summ = (i_memory_summ + 1) if (i_f_bse_3 == 1 | i_f_bse_3 == 2)
+replace i_memory_summ = (i_memory_summ + 1) if (i_f_bse_7 == 1 | i_f_bse_7 == 2)
+replace i_memory_summ = (i_memory_summ + 1) if (i_f_csid_11 == 1 | i_f_csid_11 == 2)
+replace i_memory_summ = (i_memory_summ + 1) if (i_f_csid_13 == 1 | i_f_csid_13 == 2)
+replace i_memory_summ = (i_memory_summ + 1) if (i_f_csid_15 == 1 | i_f_csid_15 == 2)
+replace i_memory_summ = (i_memory_summ + 1) if (i_f_csid_16 == 1 | i_f_csid_16 == 2)
+
+*summary of 12 NPI questions from section H
+gen i_NPI_summ = 0
+replace i_NPI_summ = (i_NPI_summ + 1) if i_h_npi_1 == 1
+replace i_NPI_summ = (i_NPI_summ + 1) if i_h_npi_2 == 1
+replace i_NPI_summ = (i_NPI_summ + 1) if i_h_npi_3 == 1
+replace i_NPI_summ = (i_NPI_summ + 1) if i_h_npi_4 == 1
+replace i_NPI_summ = (i_NPI_summ + 1) if i_h_npi_5 == 1
+replace i_NPI_summ = (i_NPI_summ + 1) if i_h_npi_6 == 1
+replace i_NPI_summ = (i_NPI_summ + 1) if i_h_npi_7 == 1
+replace i_NPI_summ = (i_NPI_summ + 1) if i_h_npi_8 == 1
+replace i_NPI_summ = (i_NPI_summ + 1) if i_h_npi_9 == 1
+replace i_NPI_summ = (i_NPI_summ + 1) if i_h_npi_10 == 1
+replace i_NPI_summ = (i_NPI_summ + 1) if i_h_npi_11 == 1
+replace i_NPI_summ = (i_NPI_summ + 1) if i_h_npi_12 == 1
+
+*summary scale for the JORM IQCODE in section E (mean across 16 questions)
+gen i_JORM_IQCODE_summ_raw = 0
+replace i_JORM_IQCODE_summ_raw = (i_JORM_IQCODE_summ_raw + i_e1) if (i_e1 ~= 8 & i_e1 ~= 9 & i_e1 ~= .i)
+replace i_JORM_IQCODE_summ_raw = (i_JORM_IQCODE_summ_raw + i_e2) if (i_e2 ~= 8 & i_e2 ~= 9 & i_e2 ~= .i)
+replace i_JORM_IQCODE_summ_raw = (i_JORM_IQCODE_summ_raw + i_e3) if (i_e3 ~= 8 & i_e3 ~= 9 & i_e3 ~= .i)
+replace i_JORM_IQCODE_summ_raw = (i_JORM_IQCODE_summ_raw + i_e4) if (i_e4 ~= 8 & i_e4 ~= 9 & i_e4 ~= .i)
+replace i_JORM_IQCODE_summ_raw = (i_JORM_IQCODE_summ_raw + i_e5) if (i_e5 ~= 8 & i_e5 ~= 9 & i_e5 ~= .i)
+replace i_JORM_IQCODE_summ_raw = (i_JORM_IQCODE_summ_raw + i_e6) if (i_e6 ~= 8 & i_e6 ~= 9 & i_e6 ~= .i)
+replace i_JORM_IQCODE_summ_raw = (i_JORM_IQCODE_summ_raw + i_e7) if (i_e7 ~= 8 & i_e7 ~= 9 & i_e7 ~= .i)
+replace i_JORM_IQCODE_summ_raw = (i_JORM_IQCODE_summ_raw + i_e8) if (i_e8 ~= 8 & i_e8 ~= 9 & i_e8 ~= .i)
+replace i_JORM_IQCODE_summ_raw = (i_JORM_IQCODE_summ_raw + i_e9) if (i_e9 ~= 8 & i_e9 ~= 9 & i_e9 ~= .i)
+replace i_JORM_IQCODE_summ_raw = (i_JORM_IQCODE_summ_raw + i_e10) if (i_e10 ~= 8 & i_e10 ~= 9 & i_e10 ~= .i)
+replace i_JORM_IQCODE_summ_raw = (i_JORM_IQCODE_summ_raw + i_e11) if (i_e11 ~= 8 & i_e11 ~= 9 & i_e11 ~= .i)
+replace i_JORM_IQCODE_summ_raw = (i_JORM_IQCODE_summ_raw + i_e12) if (i_e12 ~= 8 & i_e12 ~= 9 & i_e12 ~= .i)
+replace i_JORM_IQCODE_summ_raw = (i_JORM_IQCODE_summ_raw + i_e13) if (i_e13 ~= 8 & i_e13 ~= 9 & i_e13 ~= .i)
+replace i_JORM_IQCODE_summ_raw = (i_JORM_IQCODE_summ_raw + i_e14) if (i_e14 ~= 8 & i_e14 ~= 9 & i_e14 ~= .i)
+replace i_JORM_IQCODE_summ_raw = (i_JORM_IQCODE_summ_raw + i_e15) if (i_e15 ~= 8 & i_e15 ~= 9 & i_e15 ~= .i)
+replace i_JORM_IQCODE_summ_raw = (i_JORM_IQCODE_summ_raw + i_e16) if (i_e16 ~= 8 & i_e16 ~= 9 & i_e16 ~= .i)
+
+gen i_JORM_IQCODE_impute = 0
+replace i_JORM_IQCODE_impute = (i_JORM_IQCODE_impute + 1) if (i_e1 == 8 | i_e1 == 9 | i_e1 == .i)
+replace i_JORM_IQCODE_impute = (i_JORM_IQCODE_impute + 1) if (i_e2 == 8 | i_e2 == 9 | i_e2 == .i)
+replace i_JORM_IQCODE_impute = (i_JORM_IQCODE_impute + 1) if (i_e3 == 8 | i_e3 == 9 | i_e3 == .i)
+replace i_JORM_IQCODE_impute = (i_JORM_IQCODE_impute + 1) if (i_e4 == 8 | i_e4 == 9 | i_e4 == .i)
+replace i_JORM_IQCODE_impute = (i_JORM_IQCODE_impute + 1) if (i_e5 == 8 | i_e5 == 9 | i_e5 == .i)
+replace i_JORM_IQCODE_impute = (i_JORM_IQCODE_impute + 1) if (i_e6 == 8 | i_e6 == 9 | i_e6 == .i)
+replace i_JORM_IQCODE_impute = (i_JORM_IQCODE_impute + 1) if (i_e7 == 8 | i_e7 == 9 | i_e7 == .i)
+replace i_JORM_IQCODE_impute = (i_JORM_IQCODE_impute + 1) if (i_e8 == 8 | i_e8 == 9 | i_e8 == .i)
+replace i_JORM_IQCODE_impute = (i_JORM_IQCODE_impute + 1) if (i_e9 == 8 | i_e9 == 9 | i_e9 == .i)
+replace i_JORM_IQCODE_impute = (i_JORM_IQCODE_impute + 1) if (i_e10 == 8 | i_e10 == 9 | i_e10 == .i)
+replace i_JORM_IQCODE_impute = (i_JORM_IQCODE_impute + 1) if (i_e11 == 8 | i_e11 == 9 | i_e11 == .i)
+replace i_JORM_IQCODE_impute = (i_JORM_IQCODE_impute + 1) if (i_e12 == 8 | i_e12 == 9 | i_e12 == .i)
+replace i_JORM_IQCODE_impute = (i_JORM_IQCODE_impute + 1) if (i_e13 == 8 | i_e13 == 9 | i_e13 == .i)
+replace i_JORM_IQCODE_impute = (i_JORM_IQCODE_impute + 1) if (i_e14 == 8 | i_e14 == 9 | i_e14 == .i)
+replace i_JORM_IQCODE_impute = (i_JORM_IQCODE_impute + 1) if (i_e15 == 8 | i_e15 == 9 | i_e15 == .i)
+replace i_JORM_IQCODE_impute = (i_JORM_IQCODE_impute + 1) if (i_e16 == 8 | i_e16 == 9 | i_e16 == .i)
+
+gen i_JORM_IQCODE_summ = ((i_JORM_IQCODE_summ_raw)/(16 - i_JORM_IQCODE_impute)) if i_JORM_IQCODE_impute ~= 16
+
+drop i_JORM_IQCODE_summ_raw i_JORM_IQCODE_impute
 
 
 capture log close

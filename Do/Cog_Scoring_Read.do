@@ -4,7 +4,8 @@ capture log close
 
 *next, I want to find out if we have the right amount of cog scoring and cog surveys
 
-include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
 if `"`user'"' == "Chris" {
 local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
