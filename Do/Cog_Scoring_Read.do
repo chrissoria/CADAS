@@ -4,8 +4,7 @@ capture log close
 
 *next, I want to find out if we have the right amount of cog scoring and cog surveys
 
-capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
-capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
+include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
 
 if `"`user'"' == "Chris" {
 local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
@@ -74,6 +73,8 @@ replace cs_particid_str = cond(strlen(cs_particid_str) == 1, "0" + cs_particid_s
 
 gen pid = cs_country_str + cs_clustid_str + cs_houseid_str + cs_particid_str
 gen hhid = cs_country_str + cs_clustid_str + cs_houseid_str
+
+drop cs_particid_str cs_country_str cs_clustid_str cs_houseid_str
 
 order cs_interid cs_houseid cs_clustid cs_particid cs_country cs_houseid2 cs_conglid2 cs_particid2 cs_32 cs_40 cs_41 cs_43 cs_44 cs_72_1 cs_72_2 cs_72_3 cs_72_4 cs_79_1 cs_79_2 cs_79_3 cs_79_4
 

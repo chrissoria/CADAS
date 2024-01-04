@@ -63,6 +63,13 @@ gen sa_country_str = string(sa_country, "%12.0f")
 gen sa_clustid_str = string(sa_clustid, "%12.0f")
 replace sa_clustid_str = cond(strlen(sa_clustid_str) == 1, "0" + sa_clustid_str, sa_clustid_str)
 
+*writing this in case someone puts in a letter for houseid
+capture confirm string variable sa_houseid
+if _rc == 0 {
+replace sa_houseid = regexr(sa_houseid, "[^0-9]", "")
+destring sa_houseid, replace
+}
+
 gen sa_houseid_str = string(sa_houseid, "%03.0f")
 replace sa_houseid_str = cond(strlen(sa_houseid_str) == 1, "00" + sa_houseid_str, sa_houseid_str)
 replace sa_houseid_str = cond(strlen(sa_houseid_str) == 2, "0" + sa_houseid_str, sa_houseid_str)

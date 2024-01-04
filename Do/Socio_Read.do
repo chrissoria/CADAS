@@ -57,6 +57,14 @@ else if `country' == 2 {
 }
 *converting from numeric to string
 
+capture drop s_2_8a
+capture drop s_2_8b
+capture drop s_9_21
+capture drop s_9_43
+capture drop s_9_45
+capture drop s_14_2_d
+capture drop s_14_2_p
+
 
 generate S_1_1_P = cond(s_1_1_p ==  0, "negro(a)", cond(s_1_1_p ==  1, "mulato(a) mezclado(a) o trigueño (blanco o negro)", cond(s_1_1_p ==  2, "blanco(a)", cond(s_1_1_p ==  3, "mestizo(a) (indio con blanco)", cond(s_1_1_p ==  4, "otra", cond(s_1_1_p ==  5, "no responde", cond(s_1_1_p ==  6, "no sabe", "")))))))
 
@@ -4819,12 +4827,10 @@ replace s_3_3_p = ".i" if (s_3_3_p == "" | s_3_3_p == "." )& ((s_3_1_p ~= 2 & s_
 replace s_3_3_d = ".i" if (s_3_3_d == "" | s_3_3_d == "." )& ((s_3_1_d ~= 2 & s_3_1_d ~= 3 & s_3_1_d ~= 4) & s_country == 1)
 
 replace s_3_18 = .i if (s_3_18 == . | s_3_18 == .a) & (s_3_17 ~= 1 & s_3_17 ~= 8 & s_3_17 ~= 9)
-*line 14 should not have answered this
 
 replace s_3_19_1 = .i if (s_3_19_1 == . | s_3_19_1 == .a) & (s_3_17 ~= 1 & s_3_17 ~= 8 & s_3_17 ~= 9)
 
 replace s_3_19_2 = .i if (s_3_19_2 == . | s_3_19_2 == .a) & (s_3_17 ~= 1 & s_3_17 ~= 8 & s_3_17 ~= 9)
-*line 1 should have answered this
 
 replace s_4_3 = .i if (s_4_3 == . | s_4_3 == .a) & (s_4_2 ~= 1 & s_4_2 ~= 8 & s_4_2 ~= 9)
 
@@ -4878,7 +4884,6 @@ replace s_7_2b = .i if (s_7_2b == . | s_7_2b == .a) & (s_7_1 ~= 1 & s_7_1 ~= 8 &
 
 replace s_7_2c = .i if (s_7_2c == . | s_7_2c == .a) & (s_7_1 ~= 1 & s_7_1 ~= 8 & s_7_1 ~= 9)
 
-/*
 replace s_7_7a = .i if (s_7_7a == . | s_7_7a == .a) & (s_7_6a < 6 | s_7_6b < 5)
 
 replace s_7_7b = .i if (s_7_7b == . | s_7_7b == .a) & (s_7_6a < 6 | s_7_6b < 5)
@@ -4900,7 +4905,6 @@ replace s_7_7i = .i if (s_7_7i == . | s_7_7i == .a) & (s_7_6a < 6 | s_7_6b < 5)
 replace s_7_7j = .i if (s_7_7j == . | s_7_7j == .a) & (s_7_6a < 6 | s_7_6b < 5)
 
 replace s_7_7k = .i if (s_7_7k == . | s_7_7k == .a) & (s_7_6a < 6 | s_7_6b < 5)
-*/
 
 replace s_8_2 = .i if (s_8_2 == . | s_8_2 == .a) & (s_8_1 ~= 2 & s_8_1 ~= 8 & s_8_1 ~= 9)
 
@@ -4912,7 +4916,6 @@ replace s_8_4 = .i if (s_8_4 == . | s_8_4 == .a) & (s_8_1 ~= 2 & s_8_1 ~= 8 & s_
 
 replace s_8_5a = .i if (s_8_5a == . | s_8_5a == .a) & (s_8_1 ~= 2 & s_8_1 ~= 8 & s_8_1 ~= 9)
 
-/*
 replace s_8_5b1 = .i if (s_8_5b1 == . | s_8_5b1 == .a) & ((s_8_1 ~= 2 & s_8_1 ~= 8 & s_8_1 ~= 9) & (s_8_5a ~= 1 & s_8_5a ~= 2 & s_8_5a ~= 8))
 
 replace s_8_5b2 = .i if (s_8_5b2 == . | s_8_5b2 == .a) & ((s_8_1 ~= 2 & s_8_1 ~= 8 & s_8_1 ~= 9) & (s_8_5a ~= 1 & s_8_5a ~= 2 & s_8_5a ~= 8))
@@ -4931,8 +4934,7 @@ replace s_8_5b8 = .i if (s_8_5b8 == . | s_8_5b8 == .a) & ((s_8_1 ~= 2 & s_8_1 ~=
 
 replace s_8_5b9 = .i if (s_8_5b9 == . | s_8_5b9 == .a) & ((s_8_1 ~= 2 & s_8_1 ~= 8 & s_8_1 ~= 9) & (s_8_5a ~= 1 & s_8_5a ~= 2 & s_8_5a ~= 8))
 
-replace s_8_5b10 = .i if (s_8_5b10 == . | s_8_5b10 == .a) & ((s_8_1 ~= 2 & s_8_1 ~= 8 & s_8_1 ~= 9) & (s_8_5a ~= 1 & s_8_5a ~= 2 & s_8_5a ~= 8))
-*/
+capture replace s_8_5b10 = .i if (s_8_5b10 == . | s_8_5b10 == .a) & ((s_8_1 ~= 2 & s_8_1 ~= 8 & s_8_1 ~= 9) & (s_8_5a ~= 1 & s_8_5a ~= 2 & s_8_5a ~= 8))
 
 replace s_8_5c = .i if (s_8_5c == . | s_8_5c == .a) & ((s_8_1 ~= 2 & s_8_1 ~= 8 & s_8_1 ~= 9) & (s_8_5a ~= 1 & s_8_5a ~= 8))
 
@@ -4994,7 +4996,6 @@ replace s_9_32 = .i if (s_9_32 == . | s_9_32 == .a) & (s_9_30 ~= 2 & s_9_30 ~= 8
 
 replace s_9_33 = .i if (s_9_33 == . | s_9_33 == .a) & (s_9_30 ~= 2 & s_9_30 ~= 8 & s_9_30 ~= 9)
 
-/*
 replace s_9_38a = .i if (s_9_38a == . | s_9_38a == .a) & (s_9_37 ~= 2 & s_9_37 ~= 8 & s_9_37 ~= 9)
 
 replace s_9_38b = .i if (s_9_38b == . | s_9_38b == .a) & (s_9_37 ~= 2 & s_9_37 ~= 8 & s_9_37 ~= 9)
@@ -5018,7 +5019,6 @@ replace s_9_38j = .i if (s_9_38j == . | s_9_38j == .a) & (s_9_37 ~= 2 & s_9_37 ~
 replace s_9_38k = .i if (s_9_38k == . | s_9_38k == .a) & (s_9_37 ~= 2 & s_9_37 ~= 8 & s_9_37 ~= 9)
 
 replace s_9_38l = .i if (s_9_38l == . | s_9_38l == .a) & (s_9_37 ~= 2 & s_9_37 ~= 8 & s_9_37 ~= 9)
-*/
 
 replace s_9_39 = .i if (s_9_39 == . | s_9_39 == .a ) & (s_9_37 ~= 2 & s_9_37 ~= 8 & s_9_37 ~= 9)
 
@@ -5148,7 +5148,6 @@ replace s_13_20 = .i if (s_13_20 == . | s_13_20 == .a) & (s_13_19 ~= 2 & s_13_19
 
 replace s_14_1_p_d = .i if (s_14_1_p_d == . | s_14_1_p_d == .a) & (s_country ~= 2)
 
-/*
 replace s_14_2a_p = .i if (s_14_2a_p == . | s_14_2a_p == .a) & (s_country == 0 & s_14_1_p_d ~= 2 & s_14_1_p_d ~= 8 & s_14_1_p_d ~= 9)
 
 replace s_14_2b_p = .i if (s_14_2b_p == . | s_14_2b_p == .a) & (s_country == 0 & s_14_1_p_d ~= 2 & s_14_1_p_d ~= 8 & s_14_1_p_d ~= 9)
@@ -5182,7 +5181,7 @@ replace s_14_2e_d = .i if (s_14_2e_d == . | s_14_2e_d == .a) & (s_country == 1 &
 replace s_14_2f_d = .i if (s_14_2f_d == . | s_14_2f_d == .a) & (s_country == 1 & s_14_1_p_d ~= 2 & s_14_1_p_d ~= 8 & s_14_1_p_d ~= 9)
 
 replace s_14_2g_d = .i if (s_14_2g_d == . | s_14_2g_d == .a) & (s_country == 1 & s_14_1_p_d ~= 2 & s_14_1_p_d ~= 8 & s_14_1_p_d ~= 9)
-*/
+
 *i think s_14_1b_p is mislabeled in do file and data dictionary, should be s_14_2b_p
 
 
@@ -5369,7 +5368,7 @@ replace s_8_5b6 = .v if (s_8_5b6 == 0 | s_8_5b6 == .a) & ((s_8_1 == 2 | s_8_1 ==
 replace s_8_5b7 = .v if (s_8_5b7 == 0 | s_8_5b7 == .a) & ((s_8_1 == 2 | s_8_1 == 8 | s_8_1 == 9) & (s_8_5a == 1 | s_8_5a == 2 | s_8_5a == 8))
 replace s_8_5b8 = .v if (s_8_5b8 == 0 | s_8_5b8 == .a) & ((s_8_1 == 2 | s_8_1 == 8 | s_8_1 == 9) & (s_8_5a == 1 | s_8_5a == 2 | s_8_5a == 8))
 replace s_8_5b9 = .v if (s_8_5b9 == 0 | s_8_5b9 == .a) & ((s_8_1 == 2 | s_8_1 == 8 | s_8_1 == 9) & (s_8_5a == 1 | s_8_5a == 2 | s_8_5a == 8))
-*replace s_8_5b10 = .v if (s_8_5b10 == 0 | s_8_5b10 == .a) & ((s_8_1 == 2 | s_8_1 == 8 | s_8_1 == 9) & (s_8_5a == 1 | s_8_5a == 2 | s_8_5a == 8))
+capture replace s_8_5b10 = .v if (s_8_5b10 == 0 | s_8_5b10 == .a) & ((s_8_1 == 2 | s_8_1 == 8 | s_8_1 == 9) & (s_8_5a == 1 | s_8_5a == 2 | s_8_5a == 8))
 replace s_8_5c = .v if (s_8_5c == . | s_8_5c == .a)
 replace s_8_5d = .v if (s_8_5d == . | s_8_5d == .a)
 replace s_8_7 = .v if (s_8_7 == . | s_8_7 == .a)
@@ -5471,7 +5470,6 @@ replace s_13_11 = .v if (s_13_11 == . | s_13_11 == .a)
 replace s_13_12 = .v if (s_13_12 == . | s_13_12 == .a)
 replace s_13_20 = .v if (s_13_20 == . | s_13_20 == .a)
 replace s_14_1_p_d = .v if (s_14_1_p_d == . | s_14_1_p_d == .a)
-/*
 replace s_14_2a_p = .v if (s_14_2a_p == . | s_14_2a_p == .a)
 replace s_14_2b_p = .v if (s_14_2b_p == . | s_14_2b_p == .a)
 replace s_14_2c_p = .v if (s_14_2c_p == . | s_14_2c_p == .a)
@@ -5489,7 +5487,6 @@ replace s_14_2d_d = .v if (s_14_2d_d == . | s_14_2d_d == .a)
 replace s_14_2e_d = .v if (s_14_2e_d == . | s_14_2e_d == .a)
 replace s_14_2f_d = .v if (s_14_2f_d == . | s_14_2f_d == .a)
 replace s_14_2g_d = .v if (s_14_2g_d == . | s_14_2g_d == .a)
-*/
 replace s_14_4 = .v if (s_14_4 == . | s_14_4 == .a)
 replace s_14_12 = .v if (s_14_12 == . | s_14_12 == .a)
 replace s_14_14 = .v if (s_14_14 == . | s_14_14 == .a)
@@ -5626,7 +5623,6 @@ replace s_7_5b = .i if (s_7_5b == . | s_7_5b == .a)
 replace s_7_5c = .i if (s_7_5c == . | s_7_5c == .a)
 replace s_7_6a = .i if (s_7_6a == . | s_7_6a == .a)
 replace s_7_6b = .i if (s_7_6b == . | s_7_6b == .a)
-/*
 replace s_7_7a = .i if (s_7_7a == . | s_7_7a == .a)
 replace s_7_7b = .i if (s_7_7b == . | s_7_7b == .a)
 replace s_7_7c = .i if (s_7_7c == . | s_7_7c == .a)
@@ -5638,14 +5634,12 @@ replace s_7_7h = .i if (s_7_7h == . | s_7_7h == .a)
 replace s_7_7i = .i if (s_7_7i == . | s_7_7i == .a)
 replace s_7_7j = .i if (s_7_7j == . | s_7_7j == .a)
 replace s_7_7k = .i if (s_7_7k == . | s_7_7k == .a)
-*/
 replace s_8_1 = .i if (s_8_1 == . | s_8_1 == .a)
 replace s_8_2 = .i if (s_8_2 == . | s_8_2 == .a)
 replace s_8_3 = .i if (s_8_3 == . | s_8_3 == .a)
 replace s_8_3a = ".i" if (s_8_3a == "" | s_8_3a == ".")
 replace s_8_4 = .i if (s_8_4 == . | s_8_4 == .a)
 replace s_8_5a = .i if (s_8_5a == . | s_8_5a == .a)
-/*
 replace s_8_5b2 = .i if (s_8_5b2 == . | s_8_5b2 == .a)
 replace s_8_5b1 = .i if (s_8_5b1 == . | s_8_5b1 == .a)
 replace s_8_5b4 = .i if (s_8_5b4 == . | s_8_5b4 == .a)
@@ -5655,8 +5649,7 @@ replace s_8_5b6 = .i if (s_8_5b6 == . | s_8_5b6 == .a)
 replace s_8_5b7 = .i if (s_8_5b7 == . | s_8_5b7 == .a)
 replace s_8_5b8 = .i if (s_8_5b8 == . | s_8_5b8 == .a)
 replace s_8_5b9 = .i if (s_8_5b9 == . | s_8_5b9 == .a)
-replace s_8_5b10 = .i if (s_8_5b10 == . | s_8_5b10 == .a)
-*/
+capture replace s_8_5b10 = .i if (s_8_5b10 == . | s_8_5b10 == .a)
 replace s_8_5c = .i if (s_8_5c == . | s_8_5c == .a)
 replace s_8_5d = .i if (s_8_5d == . | s_8_5d == .a)
 replace s_8_7 = .i if (s_8_7 == . | s_8_7 == .a)
@@ -5702,7 +5695,6 @@ replace s_9_33 = .i if (s_9_33 == . | s_9_33 == .a)
 replace s_9_35 = .i if (s_9_35 == . | s_9_35 == .a)
 replace s_9_36 = .i if (s_9_36 == . | s_9_36 == .a)
 replace s_9_37 = .i if (s_9_37 == . | s_9_37 == .a)
-/*
 replace s_9_38a = .i if (s_9_38a == . | s_9_38a == .a)
 replace s_9_38g = .i if (s_9_38g == . | s_9_38g == .a)
 replace s_9_38b = .i if (s_9_38b == . | s_9_38b == .a)
@@ -5715,7 +5707,6 @@ replace s_9_38k = .i if (s_9_38k == . | s_9_38k == .a)
 replace s_9_38h = .i if (s_9_38h == . | s_9_38h == .a)
 replace s_9_38l = .i if (s_9_38l == . | s_9_38l == .a)
 replace s_9_38i = .i if (s_9_38i == . | s_9_38i == .a)
-*/
 replace s_9_39 = .i if (s_9_39 == . | s_9_39 == .a)
 replace s_9_40 = .i if (s_9_40 == . | s_9_40 == .a)
 replace s_9_41 = .i if (s_9_41 == . | s_9_41 == .a)
@@ -5834,7 +5825,6 @@ replace s_13_29 = .i if (s_13_29 == . | s_13_29 == .a)
 replace s_13_30_d_c = .i if (s_13_30_d_c == . | s_13_30_d_c == .a)
 replace s_13_30_p = .i if (s_13_30_p == . | s_13_30_p == .a)
 replace s_14_1_p_d = .i if (s_14_1_p_d == . | s_14_1_p_d == .a)
-/*
 replace s_14_2a_p = .i if (s_14_2a_p == . | s_14_2a_p == .a)
 replace s_14_2b_p = .i if (s_14_2b_p == . | s_14_2b_p == .a)
 replace s_14_2c_p = .i if (s_14_2c_p == . | s_14_2c_p == .a)
@@ -5852,7 +5842,6 @@ replace s_14_2d_d = .i if (s_14_2d_d == . | s_14_2d_d == .a)
 replace s_14_2e_d = .i if (s_14_2e_d == . | s_14_2e_d == .a)
 replace s_14_2f_d = .i if (s_14_2f_d == . | s_14_2f_d == .a)
 replace s_14_2g_d = .i if (s_14_2g_d == . | s_14_2g_d == .a)
-*/
 replace s_14_3 = .i if (s_14_3 == . | s_14_3 == .a)
 replace s_14_4 = .i if (s_14_4 == . | s_14_4 == .a)
 replace s_14_5 = .i if (s_14_5 == . | s_14_5 == .a)
@@ -5948,7 +5937,7 @@ quietly forvalues i = 1(1) `=_N' {
 local i 1
 gen s_last = "AllAnswered"
 
-quietly ds s_last s_countmissing s_8_5b2_delete hhid pid s_date_end s_time_end_1 s_time_end s_77l s_time1 s_date fkey globalrecordid v1 s_deviceid2, not
+quietly ds s_last s_countmissing s_8_5b2_delete hhid pid s_time2 s_date_end s_time_end_1 s_time_end s_77l s_time1 s_date fkey globalrecordid v1 s_deviceid2, not
 *s_77l deleted for now
 local allvar `r(varlist)'
 
