@@ -1,9 +1,9 @@
 clear all 
 set more off
 capture log close
-log using Rosters, text replace
 
-include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
 if `"`user'"' == "Chris" {
 local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
@@ -619,7 +619,6 @@ use "MainHousehold.dta"
 
 drop _merge
 
-capture log close
 log using logs/RostersMissingCodebook, text replace
 
 codebook

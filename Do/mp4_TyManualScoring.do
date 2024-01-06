@@ -5,30 +5,52 @@ capture log close
 *Here we will identify the country we want before we run the file
 *0 = PR, 1 = DR, 2 = CU
 
-include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
+capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_country_define.do"
+capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
+capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
 *Change the filepath name here to the folder containing the data and output folders
-*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+*local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
 
-if `country' == 0 {
-    cd "`path'/PR_in"
-}
-else if `country' == 1 {
-    cd "`path'/DR_in"
-}
-else if `country' == 2 {
-    cd "`path'/CUBA_in"
+if `"`user'"' == "Chris" {
+
+	if `country' == 0 {
+	cd "`path'/PR_out"
+	}
+	else if `country' == 1 {
+	cd "`path'/DR_out"
+	}
+	else if `country' == 2 {
+	cd "`path'/CUBA_out"
+	}
+
+	use Cog.dta
+
 }
 
-if `country' == 0 {
+else if `"`user'"' == "Ty" {
+
+	if `country' == 0 {
+	cd "`path'/PR_in"
+	}
+	else if `country' == 1 {
+	cd "`path'/DR_in"
+	}
+	else if `country' == 2 {
+	cd "`path'/CUBA_in"
+	}
+
+	if `country' == 0 {
     use using "../PR_out/cog.dta"
-}
-else if `country' == 1 {
-    use using "../DR_out/cog.dta"
-}
-else if `country' == 2 {
-    use using "../CUBA_out/cog.dta"
+	}
+	else if `country' == 1 {
+	use using "../DR_out/cog.dta"
+	}
+	else if `country' == 2 {
+	use using "../CUBA_out/cog.dta"
+	}
 }
 
 *CREATE ty_manual_scoring
@@ -70,15 +92,32 @@ drop anim_pic symb_pic
 save ty_manual_scoring_temp1.dta, replace
 
 clear all
-if `country' == 0 {
-    import excel using "ty_manual_scoring_in.xlsx", firstrow clear
+
+if `"`user'"' == "Chris" {
+	if `country' == 0 {
+	import excel using "../PR_in/ty_manual_scoring_in.xlsx", firstrow clear
+	}	
+	else if `country' == 1 {
+	import excel using "../DR_in/ty_manual_scoring_in.xlsx", firstrow clear
+	}
+	else if `country' == 2 {
+	import excel using "../CU_in/ty_manual_scoring_in.xlsx", firstrow clear
+	}
+
 }
-else if `country' == 1 {
-    import excel using "ty_manual_scoring_in.xlsx", firstrow clear
+
+else if `"`user'"' == "Ty" {
+	if `country' == 0 {
+	import excel using "ty_manual_scoring_in.xlsx", firstrow clear
+	}
+	else if `country' == 1 {
+	import excel using "ty_manual_scoring_in.xlsx", firstrow clear
+	}
+	else if `country' == 2 {
+	import excel using "ty_manual_scoring_in.xlsx", firstrow clear
+	}
 }
-else if `country' == 2 {
-    import excel using "ty_manual_scoring_in.xlsx", firstrow clear
-}
+
 tostring *pic* , replace
 
 merge m:m pid using ty_manual_scoring_temp1.dta

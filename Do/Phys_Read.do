@@ -56,6 +56,8 @@ else if `country' == 2 {
 }
 }
 
+capture drop p_10
+
 *converting numeric to string
 
 generate P2_1 = cond(p2_1 ==  0, "no", cond(p2_1 ==  1, "si", ""))
@@ -1276,7 +1278,7 @@ quietly forvalues i = 1(1) `=_N' {
 local i 1
 gen p_last = "AllAnswered"
 
-quietly ds p_last p_countmissing hhid pid p_date_end p_time_end_1 p_time_end p_time1 p_date fkey globalrecordid v1 p_deviceid2, not
+quietly ds p_last p_countmissing hhid pid p_date_end p_time_end_1 p_time2 p_time_end p_time1 p_date fkey globalrecordid v1 p_deviceid2, not
 local allvar `r(varlist)'
 
 

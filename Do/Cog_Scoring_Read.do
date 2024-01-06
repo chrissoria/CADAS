@@ -4,7 +4,8 @@ capture log close
 
 *next, I want to find out if we have the right amount of cog scoring and cog surveys
 
-include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
 if `"`user'"' == "Chris" {
 local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
@@ -59,6 +60,7 @@ else if `country' == 2 {
 
 gen cs_country_num = 0
 replace cs_country_num = 1 if cs_country == "1 - República Dominicana"
+replace cs_country_num = 2 if cs_country == "2 - Cuba"
 gen cs_country_str = string(cs_country_num, "%12.0f")
 
 gen cs_clustid_str = string(cs_clustid, "%12.0f")

@@ -3502,7 +3502,7 @@ quietly forvalues i = 1(1) `=_N' {
 local i 1
 gen i_last = "AllAnswered"
 
-quietly ds i_last i_countmissing hhid pid i_date_end i_time_end_1 i_time_end i_time1 i_date fkey globalrecordid i_deviceid2, not
+quietly ds i_last i_countmissing hhid pid i_date_end i_time_end_1 i_time_end i_time2 i_time1 i_date fkey globalrecordid i_deviceid2, not
 local allvar `r(varlist)'
 
 

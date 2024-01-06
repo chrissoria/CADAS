@@ -10,7 +10,7 @@ capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do
 
 *Change the filepath name here to the folder containing the data and output folders
 capture local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-capture local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+*capture local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
 
 if `country' == 0 {
     cd "`path'/PR_out"
