@@ -4238,7 +4238,7 @@ gen c_last = "AllAnswered"
 
 drop v1
 
-capture quietly ds g_3 c_countmissing hhid pid c_last fkey globalrecordid c_deviceid2 c_date c_time_end c_time11 c_time10 c_time9 c_time8 c_time7 c_time6 c_time5 c_time4 c_time3 c_time2 c_date_end c_time_end_1 c_time_end c_date_end c_time_end_1 c_time11_1 c_time10_1 c_time9_1 c_time8_1 c_time7_1 c_time6_1 c_time5_1 c_time4_1 c_time3_1 c_time2_1 c_time1 c_last c_countmissing hhid fkey globalrecordid c_deviceid2 all_audio_files_found all_image_files_found pent_pic_found g_1_file_found anim_pic_found symb_pic_found g_2_file_found g_2_file2_found c_72_1_pic_found c_72_2_pic_found c_72_3_pic_found c_72_4_pic_found c_79_1_pic_found c_79_2_pic_found c_79_3_pic_found c_79_4_pic_found g_3_file_found g_3_file2_found, not
+capture quietly ds c_date_stata date_greater_102423 g_3 c_countmissing hhid pid c_last fkey globalrecordid c_deviceid2 c_date c_time_end c_time11 c_time10 c_time9 c_time8 c_time7 c_time6 c_time5 c_time4 c_time3 c_time2 c_date_end c_time_end_1 c_time_end c_date_end c_time_end_1 c_time11_1 c_time10_1 c_time9_1 c_time8_1 c_time7_1 c_time6_1 c_time5_1 c_time4_1 c_time3_1 c_time2_1 c_time1 c_last c_countmissing hhid fkey globalrecordid c_deviceid2 all_audio_files_found all_image_files_found pent_pic_found g_1_file_found anim_pic_found symb_pic_found g_2_file_found g_2_file2_found c_72_1_pic_found c_72_2_pic_found c_72_3_pic_found c_72_4_pic_found c_79_1_pic_found c_79_2_pic_found c_79_3_pic_found c_79_4_pic_found g_3_file_found g_3_file2_found, not
 local allvar `r(varlist)'
 
 

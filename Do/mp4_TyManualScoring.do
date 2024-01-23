@@ -68,6 +68,8 @@ gen cs_79_4_ty = .
 replace pent_pic = substr(pent_pic, 18, .)
 replace pent_pic = substr(pent_pic,1,length(pent_pic)-18)
 
+*Ty says we can delete the commented out because we converted this to numeric
+/*
 replace c_72_1_pic = substr(c_72_1_pic, 18, .)
 replace c_72_1_pic = substr(c_72_1_pic,1,length(c_72_1_pic)-18)
 replace c_72_2_pic = substr(c_72_2_pic, 18, .)
@@ -84,6 +86,7 @@ replace c_79_3_pic = substr(c_79_3_pic, 18, .)
 replace c_79_3_pic = substr(c_79_3_pic,1,length(c_79_3_pic)-18)
 replace c_79_4_pic = substr(c_79_4_pic, 18, .)
 replace c_79_4_pic = substr(c_79_4_pic,1,length(c_79_4_pic)-18)
+*/
 
 
 keep pid hhid *pic* *_ty
@@ -101,7 +104,7 @@ if `"`user'"' == "Chris" {
 	import excel using "../DR_in/ty_manual_scoring_in.xlsx", firstrow clear
 	}
 	else if `country' == 2 {
-	import excel using "../CU_in/ty_manual_scoring_in.xlsx", firstrow clear
+	import excel using "../CUBA_in/ty_manual_scoring_in.xlsx", firstrow clear
 	}
 
 }

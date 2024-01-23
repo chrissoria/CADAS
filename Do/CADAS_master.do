@@ -26,7 +26,7 @@ if `"`user'"' == "Chris" {
         do "/hdir/0/chrissoria/Stata_CADAS/Do/DR/cog_checks.do"
     }
     else if `country' == 2 {
-        do "/hdir/0/chrissoria/Stata_CADAS/Do/CU/cog_checks.do"
+        do "/hdir/0/chrissoria/Stata_CADAS/Do/CUBA/cog_checks.do"
     }
     
     do "`path'/Cog_Scoring_Read.do"
@@ -54,7 +54,7 @@ if `"`user'"' == "Chris" {
 
     else if `country' == 2 {
 
-        do "/hdir/0/chrissoria/Stata_CADAS/Do/CU/global_checks.do"
+        do "/hdir/0/chrissoria/Stata_CADAS/Do/CUBA/global_checks.do"
 
     }
 

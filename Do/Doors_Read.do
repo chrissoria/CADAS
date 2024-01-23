@@ -5,11 +5,9 @@ capture log close
 capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
-capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
-
-*Change the filepath name here to the folder containing the data and output folders
-*local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+if `"`user'"' == "Chris" {
+local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_country_define.do"
 
 if `country' == 0 {
     cd "`path'/PR_out"
@@ -21,7 +19,31 @@ else if `country' == 2 {
     cd "`path'/CUBA_out"
 }
 
-*below we read in a country-specific file
+if `country' == 0 {
+    insheet using "../PR_in/InformationDoor.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/InformationDoor.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/InformationDoor.csv", comma names clear
+}
+
+}
+
+else if `"`user'"' == "Ty" {
+local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
+
+if `country' == 0 {
+    cd "`path'/PR_out"
+}
+else if `country' == 1 {
+    cd "`path'/DR_out"
+}
+else if `country' == 2 {
+    cd "`path'/CUBA_out"
+}
 
 if `country' == 0 {
     insheet using "../PR_in/InformationDoor.csv", comma names clear
@@ -31,6 +53,7 @@ else if `country' == 1 {
 }
 else if `country' == 2 {
     insheet using "../CUBA_in/InformationDoor.csv", comma names clear
+}
 }
    
 rename d_clustid d_clustid2
@@ -141,7 +164,7 @@ drop D_7_4
    
    label variable d_7_5 "7.5 Resultados del intento de las entrevistas"
    
-generate D_7_5 = cond(d_7_5 == 1, "completa", cond(d_7_5 == 2, "parcial", cond(d_7_5 == 3, "incapacitado", cond(d_7_5 == 4, "indisponible", cond(d_7_5 == 5,"rechazada", "")))))
+generate D_7_5 = cond(d_7_5 == 0, "completa", cond(d_7_5 == 1, "parcial", cond(d_7_5 == 2, "incapacitado", cond(d_7_5 == 3, "indisponible", cond(d_7_5 == 4,"rechazada", "")))))
 
 drop d_7_5
 
@@ -165,7 +188,6 @@ else if `country' == 2 {
     insheet using "../CUBA_in/Door.csv", comma names clear
 }
 
-
    replace p_date = subinstr(p_date,substr(p_date, strlen(p_date)-11, strlen(p_date)), "",.) if strlen(p_date)>=12
    replace p_date = subinstr(p_date, " ", "",.)
    replace p_date = subinstr(p_date, "/", "-",.)
@@ -184,7 +206,7 @@ else if `country' == 2 {
 *something is going on here where InformationDoor isn't unique
 merge m:m globalrecordid1 using "InformationDoorParticipants.dta"
  
-   drop _merge globalrecordid
+   drop _merge
    
 replace d_0 = .i if (d_0 == . | d_0 == .a)
 *check if si and no are 0/1 or 1/2 for this question (affects logic on following questions)
@@ -254,14 +276,15 @@ replace d_houseid_str = cond(strlen(d_houseid_str) == 2, "0" + d_houseid_str, d_
 gen d_particid_str = string(d_particid, "%12.0f")
 
 gen pid = d_particid_str + d_country_str + d_clustid_str + d_houseid_str
-replace pid = "" if strpos(pid, ".") > 0
+replace pid = "." if strpos(pid, ".") > 0
 
 gen hhid = d_country_str + d_clustid_str + d_houseid_str
-replace hhid = "" if strpos(hhid, ".") > 0
+replace hhid = "." if strpos(hhid, ".") > 0
 
 drop d_particid_str d_clustid_str d_houseid_str d_country_str dp_deviceid dp_time di_deviceid2 di_time2 di_time1 di_deviceid1 v1 d_survey_date d_time1 informationdoor informationdoorparticipants d_date p_interid pais
-drop d_clustid2 d_houseid2 d_interid2
+*drop d_clustid2 d_houseid2 d_interid2
 order pid hhid d_particid
+
 save door_merged_all.dta,replace
 
 capture log close
@@ -308,7 +331,5 @@ log close
 drop if missing(d_particid)
 
 save door_participants.dta, replace
-
-export excel using "duplicates/participantes_puerta.xlsx", replace firstrow(variables)
 
 exit, clear

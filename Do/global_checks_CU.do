@@ -355,167 +355,15 @@ log close
  
  clear all
  
- use Cog
- drop pid hhid
- 
-  duplicates report globalrecordid
- duplicates drop globalrecordid, force
- 
- *this is all junk that was entered before the study began
- drop if inlist(globalrecordid, "91c4212a-a2bc-4e2c-8f43-70d1a2002986")
- drop if inlist(globalrecordid, "eb91435b-3146-43fd-94d6-261a7e7526d2", "8bc87a48-a4a4-4972-b1c8-e2f990c602d9", "a3aaf799-a716-4f62-87fc-0e60b8ee398b", "7fe87507-a24f-4f5e-979b-51ad294b7122", "HERE", "1040e8ce-1260-43fa-9010-e2e553b549a9")
-
-*the case below says houseid is 456, fkey = feeb956a-217b-4bcc-b27d-e20c4dd0ed48, I will assume junk
-
-drop if inlist(fkey, "feeb956a-217b-4bcc-b27d-e20c4dd0ed48")
-
-*the two cases below have no parent files, are duplicates, and we already have two pid 20100101 in Cog
-
-drop if inlist(fkey, "0fcf7696-252b-4e0d-82ff-cb628198ac15","69583114-a60a-4575-943a-2215144dd18f")
-
-*the case below is junk I entered
-
-drop if inlist(fkey, "4938554b-7b33-4784-b0ef-efd01ede07a3")
-
-
-gen c_country_str = string(c_country, "%12.0f")
-
-gen c_clustid_str = string(c_clustid, "%12.0f")
-replace c_clustid_str = cond(strlen(c_clustid_str) == 1, "0" + c_clustid_str, c_clustid_str)
-
-gen c_houseid_str = string(c_houseid, "%03.0f")
-replace c_houseid_str = cond(strlen(c_houseid_str) == 1, "00" + c_houseid_str, c_houseid_str)
-replace c_houseid_str = cond(strlen(c_houseid_str) == 2, "0" + c_houseid_str, c_houseid_str)
-
-gen c_particid_str = string(c_particid, "%12.0f")
-replace c_particid_str = cond(strlen(c_particid_str) == 1, "0" + c_particid_str, c_particid_str)
-
-gen pid = c_country_str + c_clustid_str + c_houseid_str + c_particid_str
-gen hhid = c_country_str + c_clustid_str + c_houseid_str
-drop c_country_str c_clustid_str c_houseid_str c_particid_str
-
-log using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out/logs/CogOnlyMissing", text replace
-
-
-local missvarlist
-foreach v of var * {
-	capture confirm str var `v'
-	if _rc == 0 {
-		quietly count if `v' == ".i"
-		if r(N) > 5 {
-			local missvarlist `missvarlist' `v'
-		}
-	}
-	else {
-		quietly count if `v' == .i
-		if r(N) > 5 {
-			local missvarlist `missvarlist' `v'
-		}
-	}
-}
-
-macro list _missvarlist
-
-foreach v of local missvarlist {
-	codebook `v'
-}
-
-log close
- 
- duplicates report pid
- gen is_duplicate = pid[_n] == pid[_n-1]
- sort pid
- list if is_duplicate
- drop is_duplicate
- 
- *The parent is exporting person id, etc, but not the child. It makes no sense that this would be the case.
- *Confirm that this is the case in epi info sync file. 
- *There's 101 cases so it's possible these are just junk. I'll need to confirm. 
- *I'll need to merge the child to the parent to extract pid and try to process all the data again
- *skip for now
- 
-save Cog.dta, replace
-
-gen is_duplicate = pid[_n] == pid[_n-1]
-
-* Mark all duplicate observations with 1 and non-duplicates with 0
-duplicates tag pid, gen(duplicate_tag)
-
-* Keep all observations with duplicate pid
-keep if duplicate_tag == 1
-
-drop duplicate_tag
-
-* Get the list of variable names
-unab varlist : _all
-
-* Convert variables with value labels into string variables
-foreach var of varlist `varlist' {
-    if "`: value label `var''" != "" {
-        tostring `var', replace
-    }
-}
-
-* Export data to Excel
-export excel using "duplicates/cognitive_duplicates.xlsx", replace firstrow(variables)
-
- clear all
-
- use cog_merged
- 
-  drop pid hhid
- 
- *this is all junk that was entered before the study began
- drop if inlist(globalrecordid, "91c4212a-a2bc-4e2c-8f43-70d1a2002986")
- drop if inlist(globalrecordid, "eb91435b-3146-43fd-94d6-261a7e7526d2", "8bc87a48-a4a4-4972-b1c8-e2f990c602d9", "a3aaf799-a716-4f62-87fc-0e60b8ee398b", "7fe87507-a24f-4f5e-979b-51ad294b7122", "HERE", "1040e8ce-1260-43fa-9010-e2e553b549a9")
-
-*the case below says houseid is 456, fkey = feeb956a-217b-4bcc-b27d-e20c4dd0ed48, I will assume junk
-
-drop if inlist(fkey, "feeb956a-217b-4bcc-b27d-e20c4dd0ed48")
-
-*the two cases below have no parent files, are duplicates, and we already have two pid 20100101 in Cog
-
-drop if inlist(fkey, "0fcf7696-252b-4e0d-82ff-cb628198ac15","69583114-a60a-4575-943a-2215144dd18f")
-
-*the case below is junk I entered
-
-drop if inlist(fkey, "4938554b-7b33-4784-b0ef-efd01ede07a3")
-
-
-gen c_country_str = string(c_country, "%12.0f")
-
-gen c_clustid_str = string(c_clustid, "%12.0f")
-replace c_clustid_str = cond(strlen(c_clustid_str) == 1, "0" + c_clustid_str, c_clustid_str)
-
-gen c_houseid_str = string(c_houseid, "%03.0f")
-replace c_houseid_str = cond(strlen(c_houseid_str) == 1, "00" + c_houseid_str, c_houseid_str)
-replace c_houseid_str = cond(strlen(c_houseid_str) == 2, "0" + c_houseid_str, c_houseid_str)
-
-gen c_particid_str = string(c_particid, "%12.0f")
-replace c_particid_str = cond(strlen(c_particid_str) == 1, "0" + c_particid_str, c_particid_str)
-
-gen pid = c_country_str + c_clustid_str + c_houseid_str + c_particid_str
-gen hhid = c_country_str + c_clustid_str + c_houseid_str
-drop c_country_str c_clustid_str c_houseid_str c_particid_str
- 
- duplicates report pid
- sort pid
- gen is_duplicate = pid[_n] == pid[_n-1]
- list if is_duplicate
- drop is_duplicate
- 
- *The parent is exporting person id, etc, but not the child. It makes no sense that this would be the case.
- *Confirm that this is the case in epi info sync file. 
- *There's 101 cases so it's possible these are just junk. I'll need to confirm. 
- *I'll need to merge the child to the parent to extract pid and try to process all the data again
- *skip for now
- 
- save cog_merged.dta, replace
- 
-  clear all
- 
-  cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
  use Infor
+ 
+*tania says the correct person id for the below case is 2
+replace i_particid = 2 if globalrecordid == "306dd8e0-eed1-426d-9196-f180c7a8fd4a"
+
+*tania says the correct person id for the below case is 1
+
+replace i_particid = 1 if globalrecordid == "e69aad3b-5367-4f9c-90cb-8f1c9543eaee"
+
  
  *personid 201038 is duplicated and it's not clear which is which. 
  *According to the Tania excel sheet, there's too people in house 38, one male one female
@@ -733,47 +581,6 @@ foreach var of varlist `varlist' {
 export excel using "duplicates/Household_duplicates.xlsx", replace firstrow(variables)
 
 clear all
-
-use Cog_Scoring
-
-*interviewer says these are junk
-drop if inlist(globalrecordid, "88e80078-4ca7-44ee-855e-387ca80b8299", "35220af8-d6a0-43b6-b0bc-4f2032d7ef89")
-
- duplicates report pid
- sort pid
- gen is_duplicate = pid[_n] == pid[_n-1]
- list if is_duplicate
- 
- *globalrecordid 88e80078-4ca7-44ee-855e-387ca80b8299 and 0d543ac7-900d-4057-a324-72467116cfca have same pid 20100901
- *both could be valid, there must be two people in same household, but not sure which goes where 
- 
- *ideally we would have these linked, maybe not too late?
-
- *globalrecordid acda0aac-79fa-48dd-8932-f434536d9a8c and 35220af8-d6a0-43b6-b0bc-4f2032d7ef89 have same pid 20101401
- *acda0aac-79fa-48dd-8932-f434536d9a8c is less complete but both have some answers 
- 
- * Mark all duplicate observations with 1 and non-duplicates with 0
-duplicates tag pid, gen(duplicate_tag)
-
-* Keep all observations with duplicate pid
-keep if duplicate_tag == 1
-
-drop duplicate_tag
-
-* Get the list of variable names
-unab varlist : _all
-
-* Convert variables with value labels into string variables
-foreach var of varlist `varlist' {
-    if "`: value label `var''" != "" {
-        tostring `var', replace
-    }
-}
-
-* Export data to Excel
-export excel using "duplicates/cog_scoring_duplicates.xlsx", replace firstrow(variables)
- 
- clear all
 
  *Next, I will merge each child with the parent and see if things are matching
  *Parents match to child with the fkey to globalrecordid, so I will need to rename the fkey to globalrecordid in the child
