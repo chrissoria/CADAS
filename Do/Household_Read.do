@@ -6938,7 +6938,7 @@ quietly forvalues i = 1(1) `=_N' {
 
 
 *For now, I'm removing this
-*gen h_TotalTime = (Clock(h_time2, "MDYhms") - Clock(h_time1, "MDYhms"))/1000/60
+gen h_TotalTime = (Clock(h_time_end, "hm") - Clock(h_time1, "hm"))/1000/60
 
 
 capture log close

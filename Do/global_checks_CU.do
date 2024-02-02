@@ -26,6 +26,8 @@ capture log close
   
 *deduced this based on the registro and age
 replace pr_person_number = 1 if globalrecordid == "a78b55a0-0890-49e0-8723-a3794b07f456"
+
+drop if inlist(globalrecordid, "fda49a83-fa8c-4160-bd85-2240c3388bd3", "8a2f117f-5e28-4fd9-86e3-caa506d31eb9")
   
   /*weird thing about the cases below: they don't have a uniqueid but have data for everything else, which doesn't make sense. Look more closely, but for now, delete. 
   globalrecordid
@@ -117,6 +119,7 @@ drop hhid
 drop if inlist(globalrecordid, "f2bfcfe6-4438-4158-b4b8-29ddca8ad2fb", "a48e9e97-6bee-48d7-a040-c106fb781225", "b1337629-fae7-4957-b30c-f45d4d72b267", "c7f1bca0-9624-418d-a35a-20c50602fbb6", "4cc82be3-48e9-4c22-87ac-382ddb7c4f24", "bd2ddd15-66ad-49ff-b1fa-c585c9927176", "9e39dc33-c4bc-4b8a-a1bb-11e5b54668d9")
 drop if inlist(globalrecordid, "e6a08058-b663-467b-a8fe-808fa9092300", "b8a6b8c6-255d-4ae9-a0f7-08d60f68a9b6", "78ef6060-de63-4c55-b46a-58bdbdbd96a5", "95233fc6-a441-4368-ad47-c8e70c7dadaf", "51897609-91c6-43eb-8fe6-76919121b287", "6cb0313e-103d-460d-8cca-5f7796845b85", "c5caa2b1-c7e6-40d9-bb55-7a6b18164f76")
 drop if inlist(globalrecordid, "0de6bf32-7dbd-4a95-9ab0-989213e5a210")
+drop if inlist(globalrecordid, "db69639c-0932-4dfd-b3ce-2a58a32b1483", "6b3b5ba7-558d-4d89-b135-ab0189f8f8d5")
 
 *these also look like junk based on how empty they are
 
@@ -209,7 +212,6 @@ foreach var of varlist `varlist' {
         tostring `var', replace
     }
 }
-
 * Export data to Excel
 export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(variables)
  
@@ -344,6 +346,8 @@ foreach v of local missvarlist {
 }
 
 log close
+ save Phys.dta, replace
+
  
  duplicates report pid
  sort pid
@@ -351,40 +355,46 @@ log close
  list if is_duplicate
  drop is_duplicate
  
- save Phys.dta, replace
+ gen is_duplicate = pid[_n] == pid[_n-1]
+
+* Mark all duplicate observations with 1 and non-duplicates with 0
+duplicates tag pid, gen(duplicate_tag)
+
+* Keep all observations with duplicate pid
+keep if duplicate_tag == 1
+
+drop duplicate_tag
+
+* Get the list of variable names
+unab varlist : _all
+ 
+ * Convert variables with value labels into string variables
+foreach var of varlist `varlist' {
+    if "`: value label `var''" != "" {
+        tostring `var', replace
+    }
+}
+
+* Export data to Excel
+export excel using "duplicates/phys_duplicates.xlsx", replace firstrow(variables)
  
  clear all
  
  use Infor
  
+ drop pid hhid
+ 
 *tania says the correct person id for the below case is 2
-replace i_particid = 2 if globalrecordid == "306dd8e0-eed1-426d-9196-f180c7a8fd4a"
-
-*tania says the correct person id for the below case is 1
-
-replace i_particid = 1 if globalrecordid == "e69aad3b-5367-4f9c-90cb-8f1c9543eaee"
-
- 
- *personid 201038 is duplicated and it's not clear which is which. 
- *According to the Tania excel sheet, there's too people in house 38, one male one female
- *For now, I will recode the case that comes in first as person 1 (f3fef9bd-fcc9-458e-ae76-bf40abc44850)
- 
- replace i_particid = 1 if globalrecordid == "f3fef9bd-fcc9-458e-ae76-bf40abc44850"
- 
  *The personid duplicate below is 20104501, 306dd8e0-eed1-426d-9196-f180c7a8fd4a is person 2
  *question b3 provides age, which I used to match to person number
  *age 72 is person 1, age 66 is person 2
+replace i_particid = 2 if globalrecordid == "306dd8e0-eed1-426d-9196-f180c7a8fd4a"
 
- replace i_particid = 1 if globalrecordid == "306dd8e0-eed1-426d-9196-f180c7a8fd4a"
- 
+*tania says the correct person id for the below case is 1
  *person 1 is age 79, person 2 is age 77
  *personid duplicate 20105002, e69aad3b-5367-4f9c-90cb-8f1c9543eaee, is being recoded to person number 1
  
- replace i_particid = 2 if globalrecordid == "e69aad3b-5367-4f9c-90cb-8f1c9543eaee"
- 
-*person 1 is age 78, person 2 is 76, 73516e7d-4288-499a-a89c-9ffde5d2df0a person id = 20105202
-
- replace i_particid = 2 if globalrecordid == "73516e7d-4288-499a-a89c-9ffde5d2df0a"
+replace i_particid = 1 if globalrecordid == "e69aad3b-5367-4f9c-90cb-8f1c9543eaee"
 
 *personid 20106402 is duplicated and not easy to decipher which is which (105e8dcc-7c09-464c-a092-42032ace1494)
 *one of two persons appear to be a proxy age 74, as their ages do not match what was put in completo rechazado sheet
@@ -410,8 +420,11 @@ replace i_particid = 1 if globalrecordid == "87a78ce1-5c4c-46b6-ad31-4af765074cb
 
 *Tania says this participant should be from houseid 52
 replace i_particid = 1 if globalrecordid == "73516e7d-4288-499a-a89c-9ffde5d2df0a"
- 
- drop pid hhid
+
+*instructions from Tania
+replace i_particid = 2 if globalrecordid == "1df5da6e-02c9-424a-8e67-03573a33ff8d"
+
+drop if inlist(globalrecordid, "f4ddf443-fc07-46e9-a42a-244c86e3c75f", "4a071c21-104b-482b-a2c0-7d329e926960")
  
  gen i_country_str = string(i_country, "%12.0f")
 
@@ -585,109 +598,6 @@ clear all
  *Next, I will merge each child with the parent and see if things are matching
  *Parents match to child with the fkey to globalrecordid, so I will need to rename the fkey to globalrecordid in the child
 
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
-insheet using "../CUBA_in/Socio_Parent.csv"
-
-rename globalrecordid fkey
-
-merge 1:1 fkey using Socio, force
-
-save Socio_Child_Parent_Merged.dta, replace
-
-keep if _merge != 3
-list
-
-*6e69f965-5df9-4705-bd20-bdc9de2883a4 and a48e9e97-6bee-48d7-a040-c106fb781225 are in the parent and look like junk
-
-*However, f72ef590-00b4-4ba3-9318-514d98a4e1dc is in the child and not in the parent. It might be junk.
-*It doesn't match what's on the completo/rechaza form so I'll have to ask Tania about it.
-*Concerning that it didn't produce a duplicate pid 20100101
-*looks like I might've deleted the wrong duplicate!
-*global record id c5caa2b1-c7e6-40d9-bb55-7a6b18164f76 is not in the parent data but I see it in the child data.
-*the parent says a48e9e97-6bee-48d7-a040-c106fb781225 should be linked to this child which is linked to 1c5a2a7c-e19c-4ea9-8d18-6b2707e9c93c in the child
-*1c5a2a7c-e19c-4ea9-8d18-6b2707e9c93c was previously being deleted because it looked like junk, but looks to be the correct case instead of c5caa2b1-c7e6-40d9-bb55-7a6b18164f76
-*for now, I'll delete c5caa2b1-c7e6-40d9-bb55-7a6b18164f76 as it doesn't match completo rechazo and reach out to Tania for confirmation and ask about incompleteness
-*after I do this, all parent/child match except global = 6e69f965-5df9-4705-bd20-bdc9de2883a4, which is not in the child
-
-clear all
-
-
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
-insheet using "../CUBA_in/Cog_Parent.csv"
-
-rename globalrecordid fkey
-
-*3a6d1efa-a1ad-4318-aece-39c8144e894a appears to be a junk file in the child form.
-*It's almost entirely empty and also interesting that there is no duplicate for that file
-*In the the child form and see where else 20100101 is 357016cd-a3d1-4774-8876-a3767affe462 and another for fcfc1f54-e392-4c0c-a523-6c744a33fcc7
-
-merge 1:1 fkey using Cog
-
-save Cog_Child_Parent_Merged.dta, replace
-
-keep if _merge != 3
-list
-
-*after merge, three fkeys remain
-
-/* fkey
-0ad59e9a-06ab-40c4-a6a2-7bf248bcab80 has no child and we already have a pid that matches this, fkey = da856b52-2014-424f-83ef-2644f8b47cbb, so I will assume junk
-253db5a8-ac79-4fc9-9ef5-5f6994d17af1 has no child and we already have a pid that matchis this, fkey = f8946b79-c516-46c9-9746-223733de8097, so I will assume junk
-4938554b-7b33-4784-b0ef-efd01ede07a3 is junk I entered*/
-
-clear all
-
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
-insheet using "../CUBA_in/Phys_Parent.csv"
-
-rename globalrecordid fkey
-
-duplicates report
-duplicates drop fkey, force
-
-merge m:m fkey using Phys, force
-
-keep if _merge != 3
-list
-
-*all children are matched with parents (an ideal world) so I will assume that these are all valid cases
-
-clear all
-
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
-insheet using "../CUBA_in/Infor_Parent.csv"
-
-rename globalrecordid fkey
-
-merge 1:1 fkey using Infor
-
-keep if _merge != 3
-list
-
-*non-matched are mostly junk from the parent file except for fkey cd171634-306a-447c-9a31-167f2042fe68 which is childfree
-*I'll have to check sync files and export from epi info again to make sure these are 
-
-clear all
-
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
-insheet using "../CUBA_in/Household_Parent.csv"
-
-rename globalrecordid fkey
-
-clear all
-use Household
-gen is_duplicate = fkey[_n] == fkey[_n-1]
-list if is_duplicate
-
-merge 1:1 fkey using Household
-
-keep if _merge != 3
-list
-
-*after i remove the above, I get all matches but there are 80 matches instead of the 76 that Tania reports
-*two households have duplicate hhid's but not clear which of the two are valid
-
-clear all
 
 *next, I want to find out if we have the right amount of cog scoring and cog surveys
 

@@ -1315,7 +1315,7 @@ quietly forvalues i = 1(1) `=_N' {
 
 
 
-capture gen p_TotalTime = (Clock(p_time_end, "MDYhms") - Clock(p_time1, "MDYhms"))/1000/60
+capture gen p_TotalTime = (Clock(p_time_end, "hm") - Clock(p_time1, "hm"))/1000/60
 
 
 

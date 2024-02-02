@@ -3540,7 +3540,7 @@ quietly forvalues i = 1(1) `=_N' {
 
 
 
-capture gen i_TotalTime = (Clock(i_time_end, "MDYhms") - Clock(i_time1, "MDYhms"))/1000/60
+capture gen i_TotalTime = (Clock(i_time_end, "hm") - Clock(i_time1, "hm"))/1000/60
 
 
 *summary of 3 ADL limitations (# with difficulty, i.e. >0), from F.CSID 22.1, 23.1, 24.1

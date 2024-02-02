@@ -55,18 +55,8 @@ else if `country' == 2 {
     insheet using "../CUBA_in/Socio_Child.csv", comma names clear
 }
 }
-
-/*
-capture drop s_2_8a
-capture drop s_2_8b
-capture drop s_9_21
-capture drop s_9_43
-capture drop s_9_45
-capture drop s_14_2_d
-capture drop s_14_2_p
-*/
-
 *converting from numeric to string
+
 
 
 generate S_1_1_P = cond(s_1_1_p ==  0, "negro(a)", cond(s_1_1_p ==  1, "mulato(a) mezclado(a) o trigueño (blanco o negro)", cond(s_1_1_p ==  2, "blanco(a)", cond(s_1_1_p ==  3, "mestizo(a) (indio con blanco)", cond(s_1_1_p ==  4, "otra", cond(s_1_1_p ==  5, "no responde", cond(s_1_1_p ==  6, "no sabe", "")))))))
@@ -5978,7 +5968,7 @@ quietly forvalues i = 1(1) `=_N' {
 
 
 
-capture gen s_TotalTime = (Clock(s_time_end, "MDYhms") - Clock(s_time1, "MDYhms"))/1000/60
+capture gen s_TotalTime = (Clock(s_time_end, "hm") - Clock(s_time1, "hm"))/1000/60
 
 
 *depression score from s.10.1

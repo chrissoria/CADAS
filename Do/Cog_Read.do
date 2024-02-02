@@ -4285,7 +4285,9 @@ gen c_Story1Delay = (Clock(C_Time10, "MDYhms") - Clock(C_Time6, "MDYhms"))/1000/
 gen c_Story2Delay = (Clock(C_Time11, "MDYhms") - Clock(C_Time7, "MDYhms"))/1000/60
 gen c_FigureDelay = (Clock(C_Time_END, "MDYhms") - Clock(C_Time9, "MDYhms"))/1000/60
 */
-gen c_TotalTime = (Clock(c_time2, "MDYhms") - Clock(c_time1, "MDYhms"))/1000/60
+replace c_time_end = subinstr(c_time_end, "a. m.", "am", 1)
+replace c_time_end = subinstr(c_time_end, "p. m.", "pm", 1)
+gen c_TotalTime = (Clock(c_time_end, "hms") - Clock(c_time1, "hm"))/1000/60
 
 /*
 drop g_3
