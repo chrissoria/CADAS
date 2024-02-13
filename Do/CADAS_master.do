@@ -6,13 +6,6 @@ capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
 clear all
 
-/* The flow is as follow
-
-1. Clean both the cog and cog scoring csv files and output a new CSV
-2. Read in these new CSV files 
-
-*/
-
 if `"`user'"' == "Chris" {
 
     local path = "/hdir/0/chrissoria/Stata_CADAS/Do/Read"

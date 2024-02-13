@@ -3,6 +3,11 @@ clear all
 set more off
 capture log close
 
+*Here we will identify the country we want before we run the file
+*0 = PR, 1 = DR, 2 = CU
+
+capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_country_define.do"
+capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
 capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
@@ -436,11 +441,7 @@ keep hhid pid d_0 d_1 d_particid
 
 merge m:m hhid using tracker_slim 
 
-drop RSPCZIHXF7
-
-if `country' ~= 2 {
-	drop XF7
-}
+capture drop XF7 RSPCZIHXF7
 
 generate hhid_en_puerta = cond(_merge == 1, "Sola en Puerta", cond(_merge == 2, "Solo en Tracker", cond(_merge == 3, "Match", "")))
 replace hhid_en_puerta = "Sin hhid" if missing(hhid)

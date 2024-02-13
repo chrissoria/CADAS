@@ -4,7 +4,7 @@ capture log close
 
  cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
  
- use rosters_participants
+ use rosters_merged
  
   duplicates report globalrecordid
  duplicates drop globalrecordid, force

@@ -58,7 +58,7 @@ else if `country' == 2 {
 }
 }
 
-gen cs_country_num = 0
+capture gen cs_country_num = 0
 replace cs_country_num = 1 if cs_country == "1 - República Dominicana"
 replace cs_country_num = 2 if cs_country == "2 - Cuba"
 gen cs_country_str = string(cs_country_num, "%12.0f")

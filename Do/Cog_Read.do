@@ -4238,7 +4238,7 @@ gen c_last = "AllAnswered"
 
 drop v1
 
-capture quietly ds c_date_stata date_greater_102423 g_3 c_countmissing hhid pid c_last fkey globalrecordid c_deviceid2 c_date c_time_end c_time11 c_time10 c_time9 c_time8 c_time7 c_time6 c_time5 c_time4 c_time3 c_time2 c_date_end c_time_end_1 c_time_end c_date_end c_time_end_1 c_time11_1 c_time10_1 c_time9_1 c_time8_1 c_time7_1 c_time6_1 c_time5_1 c_time4_1 c_time3_1 c_time2_1 c_time1 c_last c_countmissing hhid fkey globalrecordid c_deviceid2 all_audio_files_found all_image_files_found pent_pic_found g_1_file_found anim_pic_found symb_pic_found g_2_file_found g_2_file2_found c_72_1_pic_found c_72_2_pic_found c_72_3_pic_found c_72_4_pic_found c_79_1_pic_found c_79_2_pic_found c_79_3_pic_found c_79_4_pic_found g_3_file_found g_3_file2_found, not
+capture quietly ds g_3 c_countmissing hhid pid c_last fkey globalrecordid c_deviceid2 c_date c_time_end c_time11 c_time10 c_time9 c_time8 c_time7 c_time6 c_time5 c_time4 c_time3 c_time2 c_date_end c_time_end_1 c_time_end c_date_end c_time_end_1 c_time11_1 c_time10_1 c_time9_1 c_time8_1 c_time7_1 c_time6_1 c_time5_1 c_time4_1 c_time3_1 c_time2_1 c_time1 c_last c_countmissing hhid fkey globalrecordid c_deviceid2 all_audio_files_found all_image_files_found pent_pic_found g_1_file_found anim_pic_found symb_pic_found g_2_file_found g_2_file2_found c_72_1_pic_found c_72_2_pic_found c_72_3_pic_found c_72_4_pic_found c_79_1_pic_found c_79_2_pic_found c_79_3_pic_found c_79_4_pic_found g_3_file_found g_3_file2_found, not
 local allvar `r(varlist)'
 
 
@@ -4275,18 +4275,10 @@ quietly forvalues i = 1(1) `=_N' {
 
 
 
-/*
+
 *time taken in minutes
-gen c_TotalTime = (Clock(C_Time_END, "MDYhms") - Clock(C_Time1, "MDYhms"))/1000/60
-gen c_ThreeWordDelay = (Clock(C_Time3, "MDYhms") - Clock(C_Time2, "MDYhms"))/1000/60
-gen c_TenWordDelay = (Clock(C_Time5, "MDYhms") - Clock(C_Time4, "MDYhms"))/1000/60
-gen c_TenWordRecognition = (Clock(C_Time8, "MDYhms") - Clock(C_Time4, "MDYhms"))/1000/60
-gen c_Story1Delay = (Clock(C_Time10, "MDYhms") - Clock(C_Time6, "MDYhms"))/1000/60
-gen c_Story2Delay = (Clock(C_Time11, "MDYhms") - Clock(C_Time7, "MDYhms"))/1000/60
-gen c_FigureDelay = (Clock(C_Time_END, "MDYhms") - Clock(C_Time9, "MDYhms"))/1000/60
-*/
-replace c_time_end = subinstr(c_time_end, "a. m.", "am", 1)
-replace c_time_end = subinstr(c_time_end, "p. m.", "pm", 1)
+replace c_time_end = subinstr(c_time_end, "a. m.", "am", 1)
+replace c_time_end = subinstr(c_time_end, "p. m.", "pm", 1)
 gen c_TotalTime = (Clock(c_time_end, "hms") - Clock(c_time1, "hm"))/1000/60
 
 /*

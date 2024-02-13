@@ -7,6 +7,9 @@
 
 \f0\fs24 \cf0 include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"\
 \
+capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_country_define.do"\
+capture include "C:\\Users\\Ty\\Desktop\\CADAS Data do files\\CADAS_country_define.do"\
+\
 clear all\
 capture log close\
 \
@@ -42,8 +45,12 @@ else if `country' == 2 \{\
     cd "`path'/CUBA_out"\
 \}\
 \}\
- \
+\
+*instructions from Guillermina\
 drop if inlist(globalrecordid, "25cdfeb4-89a5-4440-9e85-17033755a325")\
+\
+*this case appears to be a less complete duplicate\
+drop if inlist(globalrecordid, "64e14797-d05d-489f-a564-966f84963e43")\
 \
 if `country' == 0 \{\
     export delimited using "../PR_in/Cog_Child.csv", replace\
@@ -141,7 +148,7 @@ else if `country' == 2 \{\
 *instructions from Guillermina's team\
 drop if inlist(globalrecordid, "11a51b81-754d-4874-b6e4-bf86e7c9bb96","11fb6ef8-6b77-4ce4-96f0-cb04e835be17","16aed8dc-50c5-4116-a24c-b5a7ac5949d5","0e2a0ff5-87bd-49da-a5f0-73dab4fe04f6","9908f401-afc7-4854-914e-c3f30119feb8","afa8c2bc-e17f-4504-b7e0-d7bb284d117f")\
 *guillermina indicated we drop these\
-drop if inlist(globalrecordid, "afa8c2bc-e17f-4504-b7e0-d7bb284d117f")\
+drop if inlist(globalrecordid, "afa8c2bc-e17f-4504-b7e0-d7bb284d117f","5a093074-f404-477c-9e58-4b234e314130")\
 \
 replace cs_particid = 2 if globalrecordid == "5a093074-f404-477c-9e58-4b234e314130"\
 replace cs_particid = 2 if globalrecordid == "da0f48bc-c91d-4f5f-8b24-9eaf61967157"\
