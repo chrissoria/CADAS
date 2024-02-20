@@ -57,6 +57,8 @@ else if `country' == 2 {
 }
 }
 
+capture drop v1
+
 capture drop c_71_d_c
 
 *converting from numeric to string
@@ -4236,9 +4238,7 @@ quietly forvalues i = 1(1) `=_N' {
 local i 1
 gen c_last = "AllAnswered"
 
-drop v1
-
-capture quietly ds g_3 c_countmissing hhid pid c_last fkey globalrecordid c_deviceid2 c_date c_time_end c_time11 c_time10 c_time9 c_time8 c_time7 c_time6 c_time5 c_time4 c_time3 c_time2 c_date_end c_time_end_1 c_time_end c_date_end c_time_end_1 c_time11_1 c_time10_1 c_time9_1 c_time8_1 c_time7_1 c_time6_1 c_time5_1 c_time4_1 c_time3_1 c_time2_1 c_time1 c_last c_countmissing hhid fkey globalrecordid c_deviceid2 all_audio_files_found all_image_files_found pent_pic_found g_1_file_found anim_pic_found symb_pic_found g_2_file_found g_2_file2_found c_72_1_pic_found c_72_2_pic_found c_72_3_pic_found c_72_4_pic_found c_79_1_pic_found c_79_2_pic_found c_79_3_pic_found c_79_4_pic_found g_3_file_found g_3_file2_found, not
+capture quietly ds c_date_stata date_greater_102423 g_3 c_countmissing hhid pid c_last fkey globalrecordid c_deviceid2 c_date c_time_end c_time11 c_time10 c_time9 c_time8 c_time7 c_time6 c_time5 c_time4 c_time3 c_time2 c_date_end c_time_end_1 c_time_end c_date_end c_time_end_1 c_time11_1 c_time10_1 c_time9_1 c_time8_1 c_time7_1 c_time6_1 c_time5_1 c_time4_1 c_time3_1 c_time2_1 c_time1 c_last c_countmissing hhid fkey globalrecordid c_deviceid2 all_audio_files_found all_image_files_found pent_pic_found g_1_file_found anim_pic_found symb_pic_found g_2_file_found g_2_file2_found c_72_1_pic_found c_72_2_pic_found c_72_3_pic_found c_72_4_pic_found c_79_1_pic_found c_79_2_pic_found c_79_3_pic_found c_79_4_pic_found g_3_file_found g_3_file2_found, not
 local allvar `r(varlist)'
 
 
@@ -4277,9 +4277,17 @@ quietly forvalues i = 1(1) `=_N' {
 
 
 *time taken in minutes
-replace c_time_end = subinstr(c_time_end, "a. m.", "am", 1)
-replace c_time_end = subinstr(c_time_end, "p. m.", "pm", 1)
-gen c_TotalTime = (Clock(c_time_end, "hms") - Clock(c_time1, "hm"))/1000/60
+*gen c_TotalTime = (Clock(c_time_end, "hm") - Clock(c_time1, "hm"))/1000/60
+gen c_ThreeWordDelay = (Clock(c_time3, "hm") - Clock(c_time2, "hm"))/1000/60
+gen c_TenWordDelay = (Clock(c_time5, "hm") - Clock(c_time4, "hm"))/1000/60
+gen c_TenWordRecognition = (Clock(c_time8, "hm") - Clock(c_time4, "hm"))/1000/60
+gen c_Story1Delay = (Clock(c_time10, "hm") - Clock(c_time6, "hm"))/1000/60
+gen c_Story2Delay = (Clock(c_time11, "hm") - Clock(c_time7, "hm"))/1000/60
+gen c_FigureDelay = (Clock(c_time_end, "hm") - Clock(c_time9, "hm"))/1000/60
+
+replace c_time_end = subinstr(c_time_end, "a. m.", "am", 1)
+replace c_time_end = subinstr(c_time_end, "p. m.", "pm", 1)
+gen c_TotalTime = (Clock(c_time_end, "hm") - Clock(c_time1, "hm"))/1000/60
 
 /*
 drop g_3
@@ -4301,7 +4309,7 @@ keep pid cs_32 cs_40 cs_41 cs_43 cs_44 cs_72_1 cs_72_2 cs_72_3 cs_72_4 cs_79_1 c
 
 merge m:m pid using Cog
 
-order c_interid c_houseid c_clustid c_particid c_country c_houseid2 c_conglid2 c_particid2 c_deviceid1 c_0 c_1 c_2_p_c c_2_d c_3 c_4 c_5 c_6 c_7_d_c c_7_p c_8 c_9 c_10 c_11 c_12 c_13 c_14 c_15 c_16 c_17 c_18 c_19 c_20 c_21 c_22 c_23 c_24 c_25 c_26 c_26_1 c_27 c_28 c_29 c_30 c_31 c_32 cs_32  c_33_a c_33_1 c_33_2 c_33_3 c_33_4 c_33_5 c_33_6 c_33_7 c_33_8 c_33_9 c_33_10 c_34_a c_34_1 c_34_2 c_34_3 c_34_4 c_34_5 c_34_6 c_34_7 c_34_8 c_34_9 c_34_10 c_35_a c_35_1 c_35_2 c_35_3 c_35_4 c_35_5 c_35_6 c_35_7 c_35_8 c_35_9 c_35_10 g_1 g_1_file c_40 cs_40 cs_41 anim_pic c_43 cs_43 cs_44 symb_pic c_45 c_45_a c_46 c_46_a c_48 c_49 c_50 c_51 c_52 c_53 c_54 c_55 c_56 c_58 c_59 c_60 c_61 c_62 c_63_a c_63_1 c_63_2 c_63_3 c_63_4 c_63_5 c_63_6 c_63_7 c_63_8 c_63_9 c_63_10 c_65 g_2 c_66_a g_2_file c_66a c_66b c_66c c_66d c_66e c_66f c_67_a g_2_file2 c_67_01 c_67_02 c_67_03 c_67_04 c_67_05 c_67_06 c_67_07 c_67_08 c_67_09 c_67_10 c_67_11 c_67_12 c_67_13_c c_67_13_d c_67_13_p c_67_14 c_67_15 c_67_16 c_67_17 c_67_18 c_67_19 c_67_20 c_67_21 c_67_22 c_67_23 c_67_24 c_67_25 c_68_a c_68_01 c_68_02 c_68_03 c_68_04 c_68_05 c_68_06 c_68_07 c_68_08 c_68_09 c_68_10 c_68_11 c_68_12 c_68_13 c_68_14 c_68_15 c_68_16 c_68_17 c_68_18 c_68_19 c_68_20 c_69_c c_69_d c_69_p c_70_d_c c_70_p c_71_c c_71_p c_71_d c_72_1 cs_72_1 c_72_2 cs_72_2 c_72_3 cs_72_3 c_72_4 cs_72_4 c_72_1_pic c_72_2_pic c_72_3_pic c_72_4_pic c_77_a g_3_file c_77a c_77b c_77c c_77d c_77e c_77f c_78_a g_3_file2 c_78_01 c_78_02 c_78_03 c_78_04 c_78_05 c_78_06 c_78_07 c_78_08 c_78_09 c_78_10 c_78_11 c_78_12 c_78_13 c_78_14 c_78_15 c_78_16 c_78_17 c_78_18 c_78_19 c_78_20 c_78_21 c_78_22 c_78_23 c_78_24 c_78_25 c_79_1 cs_79_1 c_79_2 cs_79_2 c_79_3 cs_79_3 c_79_4 cs_79_4 c_79_1_pic c_79_2_pic c_79_3_pic c_79_4_pic c_80a c_80b c_80c c_81 c_82 c_deviceid2
+order pid pid2 c_interid c_houseid c_clustid c_particid c_country c_houseid2 c_conglid2 c_particid2 c_deviceid1 c_0 c_1 c_2_p_c c_2_d c_3 c_4 c_5 c_6 c_7_d_c c_7_p c_8 c_9 c_10 c_11 c_12 c_13 c_14 c_15 c_16 c_17 c_18 c_19 c_20 c_21 c_22 c_23 c_24 c_25 c_26 c_26_1 c_27 c_28 c_29 c_30 c_31 c_32 cs_32  c_33_a c_33_1 c_33_2 c_33_3 c_33_4 c_33_5 c_33_6 c_33_7 c_33_8 c_33_9 c_33_10 c_34_a c_34_1 c_34_2 c_34_3 c_34_4 c_34_5 c_34_6 c_34_7 c_34_8 c_34_9 c_34_10 c_35_a c_35_1 c_35_2 c_35_3 c_35_4 c_35_5 c_35_6 c_35_7 c_35_8 c_35_9 c_35_10 g_1 g_1_file c_40 cs_40 cs_41 anim_pic c_43 cs_43 cs_44 symb_pic c_45 c_45_a c_46 c_46_a c_48 c_49 c_50 c_51 c_52 c_53 c_54 c_55 c_56 c_58 c_59 c_60 c_61 c_62 c_63_a c_63_1 c_63_2 c_63_3 c_63_4 c_63_5 c_63_6 c_63_7 c_63_8 c_63_9 c_63_10 c_65 g_2 c_66_a g_2_file c_66a c_66b c_66c c_66d c_66e c_66f c_67_a g_2_file2 c_67_01 c_67_02 c_67_03 c_67_04 c_67_05 c_67_06 c_67_07 c_67_08 c_67_09 c_67_10 c_67_11 c_67_12 c_67_13_c c_67_13_d c_67_13_p c_67_14 c_67_15 c_67_16 c_67_17 c_67_18 c_67_19 c_67_20 c_67_21 c_67_22 c_67_23 c_67_24 c_67_25 c_68_a c_68_01 c_68_02 c_68_03 c_68_04 c_68_05 c_68_06 c_68_07 c_68_08 c_68_09 c_68_10 c_68_11 c_68_12 c_68_13 c_68_14 c_68_15 c_68_16 c_68_17 c_68_18 c_68_19 c_68_20 c_69_c c_69_d c_69_p c_70_d_c c_70_p c_71_c c_71_p c_71_d c_72_1 cs_72_1 c_72_2 cs_72_2 c_72_3 cs_72_3 c_72_4 cs_72_4 c_72_1_pic c_72_2_pic c_72_3_pic c_72_4_pic c_77_a g_3_file c_77a c_77b c_77c c_77d c_77e c_77f c_78_a g_3_file2 c_78_01 c_78_02 c_78_03 c_78_04 c_78_05 c_78_06 c_78_07 c_78_08 c_78_09 c_78_10 c_78_11 c_78_12 c_78_13 c_78_14 c_78_15 c_78_16 c_78_17 c_78_18 c_78_19 c_78_20 c_78_21 c_78_22 c_78_23 c_78_24 c_78_25 c_79_1 cs_79_1 c_79_2 cs_79_2 c_79_3 cs_79_3 c_79_4 cs_79_4 c_79_1_pic c_79_2_pic c_79_3_pic c_79_4_pic c_80a c_80b c_80c c_81 c_82 c_deviceid2
 
 log using "logs/CogScoringMissing", text replace
 

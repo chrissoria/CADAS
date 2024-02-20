@@ -77,7 +77,10 @@ insheet using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_in/Cog_Scoring.csv", com
 
 *interviewer says these are junk
 
-drop if inlist(globalrecordid, "88e80078-4ca7-44ee-855e-387ca80b8299", "35220af8-d6a0-43b6-b0bc-4f2032d7ef89")
+drop if inlist(globalrecordid, "88e80078-4ca7-44ee-855e-387ca80b8299", "35220af8-d6a0-43b6-b0bc-4f2032d7ef89","e22ed371-c9cb-4dba-ae3c-45ec10091292")
+
+replace cs_particid = 2 if globalrecordid == "3aecfb24-3b7e-4489-8559-5b2a517353df"
+replace cs_particid = 2 if globalrecordid == "134f5748-c117-4406-992a-bfadc311b323"
 
 export delimited using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_in/Cog_Scoring.csv", replace nolabel
 
@@ -200,9 +203,12 @@ insheet using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_in/Cog_Child.csv", comma
 
  drop if inlist(globalrecordid, "91c4212a-a2bc-4e2c-8f43-70d1a2002986")
 
- drop if inlist(globalrecordid, "eb91435b-3146-43fd-94d6-261a7e7526d2", "8bc87a48-a4a4-4972-b1c8-e2f990c602d9", "a3aaf799-a716-4f62-87fc-0e60b8ee398b", "7fe87507-a24f-4f5e-979b-51ad294b7122", "HERE", "1040e8ce-1260-43fa-9010-e2e553b549a9")
+ drop if inlist(globalrecordid, "eb91435b-3146-43fd-94d6-261a7e7526d2", "8bc87a48-a4a4-4972-b1c8-e2f990c602d9", "a3aaf799-a716-4f62-87fc-0e60b8ee398b", "7fe87507-a24f-4f5e-979b-51ad294b7122", "1040e8ce-1260-43fa-9010-e2e553b549a9")
 
-
+*Tania's interviewer told use to delete the other duplicate, but this one is much less complete so I will assume this is the correct one to delete. Tania will have this interviewer double check these.
+drop if inlist(globalrecordid, "f7735bee-5206-4789-9771-0a68b9e1f7b5")
+*instruction from interviewer 6
+drop if inlist(globalrecordid, "36955fd0-cc0e-4b3c-9299-ff484808f728")
 
 *the case below says houseid is 456, fkey = feeb956a-217b-4bcc-b27d-e20c4dd0ed48, I will assume junk
 
@@ -225,6 +231,9 @@ drop if inlist(fkey, "0fcf7696-252b-4e0d-82ff-cb628198ac15","69583114-a60a-4575-
 
 
 drop if inlist(fkey, "4938554b-7b33-4784-b0ef-efd01ede07a3")
+
+*instructions from clust 5
+drop if inlist(globalrecordid, "df7ef8be-b7a6-4533-928f-2dabfc1d0ca0")
 
 
 drop if inlist(globalrecordid, "70422852-4a32-4664-96fd-42433ee1b545")

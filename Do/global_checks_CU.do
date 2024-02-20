@@ -4,7 +4,7 @@ capture log close
 
  cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
  
- use rosters_merged
+ use rosters_participants
  
   duplicates report globalrecordid
  duplicates drop globalrecordid, force
@@ -21,6 +21,9 @@ capture log close
   *First, both cases have the same male gender
   *Second, both have the same person number, but one is "esposo/a" and the other is si mismo
   *for now, I will recode the case the came after as person 2, ask TANIA
+  
+*instructions from Tania team clust 5
+drop if inlist(globalrecordid, "f12600fb-7c44-4462-878d-dae43926c422")
   
   replace pr_person_number = 2 if globalrecordid == "1303aefe-487f-4e40-a58b-c4e1ffc323c2"
   
@@ -109,6 +112,7 @@ use Socio
 *interviewer says they mixed these two up
 replace s_particid = 2 if globalrecordid == "d8ec834a-acd7-4463-919e-83c386418658"
 replace s_particid = 1 if globalrecordid == "8eab231b-cbce-4620-ba1a-1de3955de995"
+replace s_particid = 1 if globalrecordid == "9b98ed6b-0f95-4b04-be9a-b3f4d5f9410a"
 
 drop pid
 drop hhid
@@ -118,8 +122,11 @@ drop hhid
  *deleting these "junk" files from cuba
 drop if inlist(globalrecordid, "f2bfcfe6-4438-4158-b4b8-29ddca8ad2fb", "a48e9e97-6bee-48d7-a040-c106fb781225", "b1337629-fae7-4957-b30c-f45d4d72b267", "c7f1bca0-9624-418d-a35a-20c50602fbb6", "4cc82be3-48e9-4c22-87ac-382ddb7c4f24", "bd2ddd15-66ad-49ff-b1fa-c585c9927176", "9e39dc33-c4bc-4b8a-a1bb-11e5b54668d9")
 drop if inlist(globalrecordid, "e6a08058-b663-467b-a8fe-808fa9092300", "b8a6b8c6-255d-4ae9-a0f7-08d60f68a9b6", "78ef6060-de63-4c55-b46a-58bdbdbd96a5", "95233fc6-a441-4368-ad47-c8e70c7dadaf", "51897609-91c6-43eb-8fe6-76919121b287", "6cb0313e-103d-460d-8cca-5f7796845b85", "c5caa2b1-c7e6-40d9-bb55-7a6b18164f76")
-drop if inlist(globalrecordid, "0de6bf32-7dbd-4a95-9ab0-989213e5a210")
+drop if inlist(globalrecordid, "0de6bf32-7dbd-4a95-9ab0-989213e5a210","bcaefbc5-5e39-48a4-8676-184a32a33f34")
 drop if inlist(globalrecordid, "db69639c-0932-4dfd-b3ce-2a58a32b1483", "6b3b5ba7-558d-4d89-b135-ab0189f8f8d5")
+
+*instructions from clust 5
+drop if inlist(globalrecordid, "a79705db-06e9-49fc-9ab6-6003215a5e7f", "eb52b3dd-68b7-4cf2-97c7-d1868e8c94b2", "e786279a-c7fd-491d-9e26-227535dcde8f")
 
 *these also look like junk based on how empty they are
 
@@ -389,6 +396,7 @@ export excel using "duplicates/phys_duplicates.xlsx", replace firstrow(variables
  *question b3 provides age, which I used to match to person number
  *age 72 is person 1, age 66 is person 2
 replace i_particid = 2 if globalrecordid == "306dd8e0-eed1-426d-9196-f180c7a8fd4a"
+replace i_particid = 2 if globalrecordid == "c21d973c-0f97-4534-9c59-6ce408ecbcf9"
 
 *tania says the correct person id for the below case is 1
  *person 1 is age 79, person 2 is age 77
@@ -407,7 +415,8 @@ replace i_particid = 1 if globalrecordid == "e69aad3b-5367-4f9c-90cb-8f1c9543eae
  *nearly every column is empty but the first part of the file has some information
  *the other two people from this household are already in the data
  
- drop if inlist(globalrecordid, "a3b83872-c6bb-482e-a5f5-b0788f4438e0")
+drop if inlist(globalrecordid, "a3b83872-c6bb-482e-a5f5-b0788f4438e0")
+drop if inlist(globalrecordid, "42c33ba5-1c94-4c89-96f0-d03e2489d1a0")
  
 *interviewer says this is the correct id 
 replace i_particid = 2 if globalrecordid == "f3fef9bd-fcc9-458e-ae76-bf40abc44850"
@@ -513,7 +522,11 @@ use Household
  drop if inlist(globalrecordid, "877e1f39-a477-4c9d-b11e-af9444311089", "154d9869-68a5-4450-9da6-9d2083777a20")
  
 *Tania says this is junk
-drop if inlist(globalrecordid, "2fc4ddfa-a29a-4ae8-8960-df1050a71729")
+drop if inlist(globalrecordid, "2fc4ddfa-a29a-4ae8-8960-df1050a71729", "b8ef7847-f4ba-4f20-a947-97c99c63aab3", "085667a5-54c5-401b-928c-a6aea5cac5f5", "48d82a88-752c-4d9b-8201-c5405bc73972", "c1aad4ee-93b9-482e-ae69-2885f2ce19a7", "f312e74e-7001-4cb1-8175-fe0379c2b8cb")
+drop if inlist(globalrecordid, "e155dcdf-60db-46fd-86ca-bb5e5db92868", "21be650d-2de3-451d-9276-4044ab3b6782", "19dc54d4-fc71-45eb-961b-d222423164d1", "e97b2aa0-6f20-4324-bfaa-856dca4af8f2", "66d21787-3523-4e76-9430-6ce4e79a17e5")
+
+*instructions from cluster 5
+drop if inlist(globalrecordid,"732b5dc6-43ef-4086-adeb-555648caeefa","0cd1d1e3-00db-4f8f-bd39-871e79595aa1")
  
 *interviewer says these are a duplicate
 drop if inlist(globalrecordid, "e1446acf-d758-437a-8f33-ec2c69dcda99")
