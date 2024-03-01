@@ -6937,7 +6937,42 @@ quietly forvalues i = 1(1) `=_N' {
 }
 
 
-gen h_TotalTime = (Clock(h_time_end, "hm") - Clock(h_time1, "hm"))/1000/60
+* Create Total Time Taken variable
+gen h_temptime1 = substr(h_time1, 1, strpos(h_time1, ":") + 2)
+gen h_temptime2 = substr(h_time_end, 1, strpos(h_time_end, ":") + 2)
+gen h_TotalTimeTemp = (Clock(h_temptime2, "hm") - Clock(h_temptime1, "hm"))/1000/60
+
+gen h_tempdate = h_date_end
+replace h_tempdate = subinstr(h_tempdate, "ene", "January",.)
+replace h_tempdate = subinstr(h_tempdate, "feb", "February",.)
+
+replace h_tempdate = subinstr(h_tempdate, "abr", "April",.)
+
+replace h_tempdate = subinstr(h_tempdate, "ago", "August",.)
+replace h_tempdate = subinstr(h_tempdate, "sept", "September",.)
+replace h_tempdate = subinstr(h_tempdate, "oct", "October",.)
+replace h_tempdate = subinstr(h_tempdate, "nov", "November",.)
+replace h_tempdate = subinstr(h_tempdate, "dic", "December",.)
+
+gen h_total_days = (date(h_date_end, "MDY") - date(h_date, "YMD"))
+gen h_total_days2 = (date(h_tempdate, "DMY") - date(h_date, "YMD"))
+
+gen h_TotalTime = 0
+
+quietly forvalues obs = 1(1) `=_N' {
+if h_total_days[`obs'] ~= . {
+	replace h_TotalTime = h_TotalTimeTemp + h_total_days * (24*60) in `obs'
+	}
+
+else if h_total_days2[`obs'] ~= . {
+	replace h_TotalTime = h_TotalTimeTemp + h_total_days2 * (24*60) in `obs'
+	}
+else {
+	replace h_TotalTime = h_TotalTimeTemp in `obs'
+	}
+}
+
+drop h_temptime1 h_temptime2 h_TotalTimeTemp h_tempdate h_total_days h_total_days2
 
 
 capture log close

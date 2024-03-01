@@ -52,16 +52,17 @@ else if `country' == 2 {
 }
 
 if `country' == 1 {
-drop in 1/3
 
-rename ResumendeEntrevistasCADASD Cluster
-rename C House_ID
-rename D Participante
-rename E sex
-rename F age
-rename G Fecha
-rename H Notas
-rename I Notas_2
+rename HouseID House_ID
+rename GénerodeParticpante sex
+rename EdaddeParticpante age
+rename Fechaenquecompletoelchequeo Fecha
+rename NotasCuestionariosnohechos Notas
+
+destring age, replace
+rename age age_string
+gen age = real(age_string)
+drop age_string
 }
 
 else if `country' == 2 {
@@ -97,8 +98,9 @@ if `country' == 1 {
 drop if pais == .
 replace Notas = lower(trim(Notas))
 drop if Notas == "rechazo"
-replace Notas_2 = lower(trim(Notas_2))
-drop if Notas_2 == "rechazo"
+
+capture replace Notas_2 = lower(trim(Notas_2))
+capture drop if Notas_2 == "rechazo"
 }
 
 if `country' == 2 {
@@ -106,6 +108,7 @@ drop if pais == 0
 replace Notas = lower(trim(Notas))
 drop if Completo == 2
 }
+drop if missing(Cluster)
 
 gen country_str = string(pais, "%12.0f")
 
@@ -170,7 +173,7 @@ save tracker, replace
 ********** 
 * ROSTER_PARTICIPANTS
 **********
-use rosters_merged, clear
+use rosters_participants, clear
 keep pid pr_3 pr_4 r_interid r_deviceid
 gen pidr=real(pid)
 drop if pidr==. /* check if any obs are missing pid */

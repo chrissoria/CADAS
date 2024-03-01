@@ -4277,21 +4277,55 @@ quietly forvalues i = 1(1) `=_N' {
 
 
 *time taken in minutes
-*gen c_TotalTime = (Clock(c_time_end, "hm") - Clock(c_time1, "hm"))/1000/60
 gen c_ThreeWordDelay = (Clock(c_time3, "hm") - Clock(c_time2, "hm"))/1000/60
 gen c_TenWordDelay = (Clock(c_time5, "hm") - Clock(c_time4, "hm"))/1000/60
 gen c_TenWordRecognition = (Clock(c_time8, "hm") - Clock(c_time4, "hm"))/1000/60
 gen c_Story1Delay = (Clock(c_time10, "hm") - Clock(c_time6, "hm"))/1000/60
 gen c_Story2Delay = (Clock(c_time11, "hm") - Clock(c_time7, "hm"))/1000/60
-gen c_FigureDelay = (Clock(c_time_end, "hm") - Clock(c_time9, "hm"))/1000/60
+gen c_time9temp = c_time9 + ":00"
+gen c_temptime2 = c_time_end
+replace c_temptime2 = subinstr(c_temptime2, "a. m.", "am", .)
+replace c_temptime2 = subinstr(c_temptime2, "p. m.", "pm", .)
+gen c_FigureDelay = round((Clock(c_temptime2, "hms") - Clock(c_time9temp, "hms"))/1000/60)
+*drop c_time9temp
 
-replace c_time_end = subinstr(c_time_end, "a. m.", "am", 1)
-replace c_time_end = subinstr(c_time_end, "p. m.", "pm", 1)
-gen c_TotalTime = (Clock(c_time_end, "hm") - Clock(c_time1, "hm"))/1000/60
+* Create Total Time Taken variable
+gen c_temptime1 = c_time1 + ":00"
+gen c_TotalTimeTemp = round((Clock(c_temptime2, "hms") - Clock(c_temptime1, "hms"))/1000/60)
 
-/*
+gen c_tempdate = c_date_end
+replace c_tempdate = subinstr(c_tempdate, "ene", "January",.)
+replace c_tempdate = subinstr(c_tempdate, "feb", "February",.)
+
+replace c_tempdate = subinstr(c_tempdate, "abr", "April",.)
+
+replace c_tempdate = subinstr(c_tempdate, "ago", "August",.)
+replace c_tempdate = subinstr(c_tempdate, "sept", "September",.)
+replace c_tempdate = subinstr(c_tempdate, "oct", "October",.)
+replace c_tempdate = subinstr(c_tempdate, "nov", "November",.)
+replace c_tempdate = subinstr(c_tempdate, "dic", "December",.)
+
+gen c_total_days = (date(c_date_end, "MDY") - date(c_date, "YMD"))
+gen c_total_days2 = (date(c_tempdate, "DMY") - date(c_date, "YMD"))
+
+gen c_TotalTime = 0
+
+quietly forvalues obs = 1(1) `=_N' {
+if c_total_days[`obs'] ~= . {
+	replace c_TotalTime = c_TotalTimeTemp + c_total_days * (24*60) in `obs'
+	}
+
+else if c_total_days2[`obs'] ~= . {
+	replace c_TotalTime = c_TotalTimeTemp + c_total_days2 * (24*60) in `obs'
+	}
+else {
+	replace c_TotalTime = c_TotalTimeTemp in `obs'
+	}
+}
+
+drop c_temptime1 c_temptime2 c_TotalTimeTemp c_tempdate c_total_days c_total_days2 c_time9temp
+
 drop g_3
-*/
 
 save Cog.dta, replace
  
@@ -4415,6 +4449,7 @@ gen worldspelling_score = 0
 *create temporary variable with c_20 string that we can edit
 
 gen c_20_temp = c_20
+replace c_20_temp = subinstr(c_20_temp,"0","o",.)
 
 
 
@@ -4425,8 +4460,6 @@ quietly forvalues obs = 1(1) `=_N' {
 	forvalues character = `=strlen(c_20_temp[`obs'])'(-1) 1 {
 
 		if substr(c_20_temp[`obs'],-`character',1) ~= "o" {
-
-			display substr(c_20_temp[`obs'],-`character',1)
 
 			if substr(c_20_temp[`obs'],-`character',1) ~= "d" {
 

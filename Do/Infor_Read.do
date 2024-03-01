@@ -3539,8 +3539,42 @@ quietly forvalues i = 1(1) `=_N' {
 
 
 
+* Create Total Time Taken variable
+gen i_temptime1 = substr(i_time1, 1, strpos(i_time1, ":") + 2)
+gen i_temptime2 = substr(i_time_end, 1, strpos(i_time_end, ":") + 2)
+gen i_TotalTimeTemp = (Clock(i_temptime2, "hm") - Clock(i_temptime1, "hm"))/1000/60
 
-gen i_TotalTime = (Clock(i_time_end, "hm") - Clock(i_time1, "hm"))/1000/60
+gen i_tempdate = i_date_end
+replace i_tempdate = subinstr(i_tempdate, "ene", "January",.)
+replace i_tempdate = subinstr(i_tempdate, "feb", "February",.)
+
+replace i_tempdate = subinstr(i_tempdate, "abr", "April",.)
+
+replace i_tempdate = subinstr(i_tempdate, "ago", "August",.)
+replace i_tempdate = subinstr(i_tempdate, "sept", "September",.)
+replace i_tempdate = subinstr(i_tempdate, "oct", "October",.)
+replace i_tempdate = subinstr(i_tempdate, "nov", "November",.)
+replace i_tempdate = subinstr(i_tempdate, "dic", "December",.)
+
+gen i_total_days = (date(i_date_end, "MDY") - date(i_date, "YMD"))
+gen i_total_days2 = (date(i_tempdate, "DMY") - date(i_date, "YMD"))
+
+gen i_TotalTime = 0
+
+quietly forvalues obs = 1(1) `=_N' {
+if i_total_days[`obs'] ~= . {
+	replace i_TotalTime = i_TotalTimeTemp + i_total_days * (24*60) in `obs'
+	}
+
+else if i_total_days2[`obs'] ~= . {
+	replace i_TotalTime = i_TotalTimeTemp + i_total_days2 * (24*60) in `obs'
+	}
+else {
+	replace i_TotalTime = i_TotalTimeTemp in `obs'
+	}
+}
+
+drop i_temptime1 i_temptime2 i_TotalTimeTemp i_tempdate i_total_days i_total_days2
 
 
 *summary of 3 ADL limitations (# with difficulty, i.e. >0), from F.CSID 22.1, 23.1, 24.1

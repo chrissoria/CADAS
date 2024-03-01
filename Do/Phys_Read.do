@@ -1314,10 +1314,41 @@ quietly forvalues i = 1(1) `=_N' {
 }
 
 
+gen p_temptime1 = substr(p_time1, 1, strpos(p_time1, ":") + 2)
+gen p_temptime2 = substr(p_time_end, 1, strpos(p_time_end, ":") + 2)
+gen p_TotalTimeTemp = (Clock(p_temptime2, "hm") - Clock(p_temptime1, "hm"))/1000/60
 
-capture gen p_TotalTime = (Clock(p_time_end, "hm") - Clock(p_time1, "hm"))/1000/60
+gen p_tempdate = p_date_end
+replace p_tempdate = subinstr(p_tempdate, "ene", "January",.)
+replace p_tempdate = subinstr(p_tempdate, "feb", "February",.)
 
+replace p_tempdate = subinstr(p_tempdate, "abr", "April",.)
 
+replace p_tempdate = subinstr(p_tempdate, "ago", "August",.)
+replace p_tempdate = subinstr(p_tempdate, "sept", "September",.)
+replace p_tempdate = subinstr(p_tempdate, "oct", "October",.)
+replace p_tempdate = subinstr(p_tempdate, "nov", "November",.)
+replace p_tempdate = subinstr(p_tempdate, "dic", "December",.)
+
+gen p_total_days = (date(p_date_end, "MDY") - date(p_date, "YMD"))
+gen p_total_days2 = (date(p_tempdate, "DMY") - date(p_date, "YMD"))
+
+gen p_TotalTime = 0
+
+quietly forvalues obs = 1(1) `=_N' {
+if p_total_days[`obs'] ~= . {
+	replace p_TotalTime = p_TotalTimeTemp + p_total_days * (24*60) in `obs'
+	}
+
+else if p_total_days2[`obs'] ~= . {
+	replace p_TotalTime = p_TotalTimeTemp + p_total_days2 * (24*60) in `obs'
+	}
+else {
+	replace p_TotalTime = p_TotalTimeTemp in `obs'
+	}
+}
+
+drop p_temptime1 p_temptime2 p_TotalTimeTemp p_tempdate p_total_days p_total_days2
 
 capture log close
 log using logs/PhysMissingCodebook, text replace

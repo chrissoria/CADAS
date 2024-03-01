@@ -275,7 +275,7 @@ replace d_houseid_str = cond(strlen(d_houseid_str) == 2, "0" + d_houseid_str, d_
 
 gen d_particid_str = string(d_particid, "%12.0f")
 
-gen pid = d_particid_str + d_country_str + d_clustid_str + d_houseid_str
+gen pid = d_country_str + d_clustid_str + d_houseid_str + d_particid_str
 replace pid = "." if strpos(pid, ".") > 0
 
 gen hhid = d_country_str + d_clustid_str + d_houseid_str

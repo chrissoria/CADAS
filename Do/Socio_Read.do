@@ -5970,7 +5970,41 @@ quietly forvalues i = 1(1) `=_N' {
 
 
 
-capture gen s_TotalTime = (Clock(s_time_end, "hm") - Clock(s_time1, "hm"))/1000/60
+gen s_temptime1 = substr(s_time1, 1, strpos(s_time1, ":") + 2)
+gen s_temptime2 = substr(s_time_end, 1, strpos(s_time_end, ":") + 2)
+gen s_TotalTimeTemp = (Clock(s_temptime2, "hm") - Clock(s_temptime1, "hm"))/1000/60
+
+gen s_tempdate = s_date_end
+replace s_tempdate = subinstr(s_tempdate, "ene", "January",.)
+replace s_tempdate = subinstr(s_tempdate, "feb", "February",.)
+
+replace s_tempdate = subinstr(s_tempdate, "abr", "April",.)
+
+replace s_tempdate = subinstr(s_tempdate, "ago", "August",.)
+replace s_tempdate = subinstr(s_tempdate, "sept", "September",.)
+replace s_tempdate = subinstr(s_tempdate, "oct", "October",.)
+replace s_tempdate = subinstr(s_tempdate, "nov", "November",.)
+replace s_tempdate = subinstr(s_tempdate, "dic", "December",.)
+
+gen s_total_days = (date(s_date_end, "MDY") - date(s_date, "YMD"))
+gen s_total_days2 = (date(s_tempdate, "DMY") - date(s_date, "YMD"))
+
+gen s_TotalTime = 0
+
+quietly forvalues obs = 1(1) `=_N' {
+if s_total_days[`obs'] ~= . {
+	replace s_TotalTime = s_TotalTimeTemp + s_total_days * (24*60) in `obs'
+	}
+
+else if s_total_days2[`obs'] ~= . {
+	replace s_TotalTime = s_TotalTimeTemp + s_total_days2 * (24*60) in `obs'
+	}
+else {
+	replace s_TotalTime = s_TotalTimeTemp in `obs'
+	}
+}
+
+drop s_temptime1 s_temptime2 s_TotalTimeTemp s_tempdate s_total_days s_total_days2
 
 
 *depression score from s.10.1
