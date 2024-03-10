@@ -945,7 +945,7 @@ label variable p5_2_d_c "Estatura (Centímetros) (rango habitual es >131 o <189)
 
 label variable p5_2_p "Estatura (Pulgadas) (rango habitual es >51 o <74)"
 
-label variable p6 "“Por favor, no mueva su cabeza, solo siga mi dedo con sus ojos”"
+label variable p6 "Por favor, no mueva su cabeza, solo siga mi dedo con sus ojos"
 
 label variable p7_1 "7.1 REFLEJO GLABELAR Golpee ligeramente la frente de los participantes por encima del caballete de la nariz. Repita el golpe hasta que el paciente deje de parpadear. Cuente el número de golpes necesarios."
 

@@ -2984,9 +2984,9 @@ label variable c_7_p "7. En qué municipio estamos?"
 
 label variable c_8 "8. En qué ciudad/pueblo/barrio/Urbanización estamos?"
 
-label variable c_9 "9. “En qué lugar estamos?”"
+label variable c_9 "9. En qué lugar estamos?"
 
-label variable c_10 "10. “En qué habitación de esta lugar estamos?”"
+label variable c_10 "10. En qué habitación de esta lugar estamos?"
 
 label variable c_11 "11.Barco"
 
@@ -3114,9 +3114,9 @@ label variable c_43 "43. ¿Intentó esta prueba de reconocimiento visual?"
 
 label variable symb_pic "TOMA UNA FOTO AHORA DE LA HOJA DE RESPUESTAS"
 
-label variable c_45 "45. SI el entrevistado no tiene ningún error al contar desde 20 hasta 11 o desde 19 hasta 10, marca “correcto” y registra el tiempo. SI el entrevistado se detiene o comete un error y quiere volver a empezar, dile que puede realizar un segundo intento. Marca “quiere empezar de nuevo”. SI el entrevistado usó el minuto completo sin llegar a 11 o 10, o si comete algún error y no quiere hacer un segundo intento, marca “incorrecto” y anota “60” en el tiempo."
+label variable c_45 "45. SI el entrevistado no tiene ningún error al contar desde 20 hasta 11 o desde 19 hasta 10, marca 'correcto' y registra el tiempo. SI el entrevistado se detiene o comete un error y quiere volver a empezar, dile que puede realizar un segundo intento. Marca 'quiere empezar de nuevo'. SI el entrevistado usó el minuto completo sin llegar a 11 o 10, o si comete algún error y no quiere hacer un segundo intento, marca 'incorrecto' y anota '60' en el tiempo."
 
-label variable c_45_a "45A. Tiempo (Si el entrevistado usó el minuto completo sin llegar a 11 o 10, o si comete algún error y no quiere hacer un segundo intento, marca 0= “incorrecto” y anota “60” en el tiempo.)"
+label variable c_45_a "45A. Tiempo (Si el entrevistado usó el minuto completo sin llegar a 11 o 10, o si comete algún error y no quiere hacer un segundo intento, marca 0= 'incorrecto' y anota '60' en el tiempo.)"
 
 label variable c_46 "46. SEGUNDO INTENTO (solo si quiere empezar de nuevo)"
 
@@ -3132,21 +3132,21 @@ label variable c_51 "51.¿Cómo se llama esto? (El entrevistador señala a sus c
 
 label variable c_52 "52.¿Cómo se llama esto? (El entrevistador señala a sus hombros)."
 
-label variable c_53 "53.¿Qué es un puente?” Respuestas correctas: Construcción o elevado que sirve para caminar o cruzar sobre el agua,"
+label variable c_53 "53.¿Qué es un puente?' Respuestas correctas: Construcción o elevado que sirve para caminar o cruzar sobre el agua,"
 
-label variable c_54 "54.¿Que uso se le da a un martillo?” Respuestas correctas: llevar un clavo a través de algo, o resouestas similares que indiquen la function del martillo ."
+label variable c_54 "54.¿Que uso se le da a un martillo? Respuestas correctas: llevar un clavo a través de algo, o resouestas similares que indiquen la function del martillo ."
 
-label variable c_55 "55.¿Qué hace la gente en una iglesia o templo?” Respuestas correctas: rezar, o ir misa, casarse."
+label variable c_55 "55.¿Qué hace la gente en una iglesia o templo? Respuestas correctas: rezar, o ir misa, casarse."
 
-label variable c_56 "56.¿A dónde vamos a comprar medicinas/medicamentos?” Respuestas correctas: farmacia, quimico, etc"
+label variable c_56 "56.¿A dónde vamos a comprar medicinas/medicamentos? Respuestas correctas: farmacia, quimico, etc"
 
-label variable c_58 "58. ”Cuáles son los nombres de las dos calles más importantes cerca de su casa?”"
+label variable c_58 "58. 'Cuáles son los nombres de las dos calles más importantes cerca de su casa?'"
 
-label variable c_59 "59. ”Donde está la tienda/bodega/colmado más cercano?”"
+label variable c_59 "59. Donde está la tienda/bodega/colmado más cercano?"
 
-label variable c_60 "60. “Cuál es su dirección?”"
+label variable c_60 "60. Cuál es su dirección?"
 
-label variable c_61 "61. “Por favor mueva su cabeza, como si dijera sí”"
+label variable c_61 "61. Por favor mueva su cabeza, como si dijera sí"
 
 label variable c_62 "62. Por favor, apunte primero a la ventana y luego a la puerta"
 
@@ -3296,7 +3296,7 @@ label variable c_69_c "69. Puede decirme el nombre del Apóstol de Cuba que muri
 
 label variable c_69_d "69. Puede decirme el nombre de los padres de la patria que proclamaron la independencia en el 1844?"
 
-label variable c_69_p "69. “Puede decirme quién descubrio Puerto Rico para los europeos?”"
+label variable c_69_p "69. Puede decirme quién descubrio Puerto Rico para los europeos?"
 
 label variable c_70_d_c "70. Cual es el nombre del presidente?"
 
@@ -3325,7 +3325,7 @@ capture label variable c_72_3_pic "TOMA UNA FOTO DE EL DIBUJO DE RECTANGULOS CRU
 label variable c_72_4_pic "TOMA UNA FOTO DE EL DIBUJO DE CUBO"
 
 /*
-label variable g_3 "G.3. “Está bien si grabamos esta actividad?”"
+label variable g_3 "G.3. "Está bien si grabamos esta actividad?""
 */
 
 label variable c_77_a "Se rehúsa a contestar?"

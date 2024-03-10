@@ -95,7 +95,7 @@ generate I_C3 = cond(i_c3 ==  0, "uno ó más miembros de la familia", cond(i_c3
 
 drop i_c3
 
-generate I_C4 = cond(i_c4 ==  0, "uno de los principales cuidadores directos.", cond(i_c4 ==  1, "uno de los principales cuidadores de “organización”", cond(i_c4 ==  2, "solo ligeramente envuelto en proveer u organizar cuidado (otras personas lo hacen más)", cond(i_c4 ==  3, "no está envuelto en proveer u organizar cuidado", ""))))
+generate I_C4 = cond(i_c4 ==  0, "uno de los principales cuidadores directos.", cond(i_c4 ==  1, "uno de los principales cuidadores de "organización"", cond(i_c4 ==  2, "solo ligeramente envuelto en proveer u organizar cuidado (otras personas lo hacen más)", cond(i_c4 ==  3, "no está envuelto en proveer u organizar cuidado", ""))))
 
 drop i_c4
 
@@ -875,7 +875,7 @@ if !_rc{
      tostring I_C4, replace
 }
 
-label define I_C4 .a"." 1 "uno de los principales cuidadores directos." 2 "uno de los principales cuidadores de “organización”" 3 "solo ligeramente envuelto en proveer u organizar cuidado (otras personas lo hacen más)" 4 "no está envuelto en proveer u organizar cuidado" 
+label define I_C4 .a"." 1 "uno de los principales cuidadores directos." 2 "uno de los principales cuidadores de 'organización'" 3 "solo ligeramente envuelto en proveer u organizar cuidado (otras personas lo hacen más)" 4 "no está envuelto en proveer u organizar cuidado" 
 
 encode I_C4, gen(i_c4) label (I_C4)
 
@@ -2600,11 +2600,11 @@ label variable i_particid2 "NUMERO DEL PARTICIPANTE"
 
 label variable i_deviceid1 "Device ID:"
 
-label variable i_a2 "A2. A la pregunta “Cuáles son los nombres de las dos calles más importantes cerca de su casa?” xxx respondió _________ [lea la respuesta que usted anoto en papel en el cognitivo]. Es correcto?"
+label variable i_a2 "A2. A la pregunta 'Cuáles son los nombres de las dos calles más importantes cerca de su casa?' xxx respondió _________ [lea la respuesta que usted anoto en papel en el cognitivo]. Es correcto?"
 
-label variable i_a3 "A3. A la pregunta “Donde está la tienda,,bodega, o colmado más cercana?” xxx respondió _________ [lea la respuesta que usted anoto en el cognitivo]. Es correcto?"
+label variable i_a3 "A3. A la pregunta 'Donde está la tienda,,bodega, o colmado más cercana?' xxx respondió _________ [lea la respuesta que usted anoto en el cognitivo]. Es correcto?"
 
-label variable i_a4 "A4. A la pregunta “Cuál es su dirección?” xxx respondió _________ [lea la respuesta que usted anoto en el cognitivo]. Es correcto?"
+label variable i_a4 "A4. A la pregunta 'Cuál es su dirección?' xxx respondió _________ [lea la respuesta que usted anoto en el cognitivo]. Es correcto?"
 
 label variable i_b1 "B1. ¿Es usted:"
 
@@ -2852,7 +2852,7 @@ label variable i_g_has_49 "G.HAS.49 ¿Hubo un periodo de inconsciencia después 
 
 label variable i_g_has_50 "G.HAS.50 ¿Su comportamiento cambio de alguna forma? (Sí - Describa cómo cambió, qué fue permanente)"
 
-label variable i_g_has_52 "G.HAS.52 OBSERVACION DEL ENTREVISTADOR El estado intelectual actual del participante está presente desde el nacimiento (es debido a una causa patológica ocurrida en la infancia)? [“No” es debido a una enfermedad mental ocurrida en los últimos anos.]"
+label variable i_g_has_52 "G.HAS.52 OBSERVACION DEL ENTREVISTADOR El estado intelectual actual del participante está presente desde el nacimiento (es debido a una causa patológica ocurrida en la infancia)? ['No' es debido a una enfermedad mental ocurrida en los últimos anos.]"
 
 label variable i_h_npi_1 "H.NPI.1 ¿Cree (xxx) que otras personas le roban cosas, o que otros planean hacerle daño de alguna manera?"
 

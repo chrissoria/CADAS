@@ -4581,7 +4581,7 @@ label variable s_13_27_d_c "13.27 ¿Cuándo fue o ha sido su peso máximo durant
 
 label variable s_13_27_p "13.27 ¿Cuándo fue o ha sido su peso máximo durante su vida (si es mujer, no incluya embarazos)? REGISTRA PESO en libras NO RESPONDE...................................... 888 NO SABE................................................. 999"
 
-label variable s_13_28 "13.28 ¿De acuerdo a estas imágenes, como cree que lucía usted en esa época? MUESTRA TARJETA “B” NO RESPONDE...................................... 88 NO SABE................................................. 99"
+label variable s_13_28 "13.28 ¿De acuerdo a estas imágenes, como cree que lucía usted en esa época? MUESTRA TARJETA 'B' NO RESPONDE...................................... 88 NO SABE................................................. 99"
 
 label variable s_13_29 "13.29 ¿Qué edad tenía cuando alcanzo ese peso maximo? NO RESPONDE...................................... 88 NO SABE................................................. 99"
 
