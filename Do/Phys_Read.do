@@ -56,7 +56,7 @@ else if `country' == 2 {
 }
 }
 
-capture drop p_10 v1
+capture drop v1
 
 *converting numeric to string
 
@@ -1358,4 +1358,17 @@ codebook
 log close
 
  save Phys.dta, replace
+
+ * Get the list of variable names
+unab varlist : _all
+
+* Convert variables with value labels into string variables
+foreach var of varlist `varlist' {
+    if "`: value label `var''" != "" {
+        tostring `var', replace
+    }
+}
+
+export excel using "excel/physical_exam.xlsx", replace firstrow(variables)
+
 clear all

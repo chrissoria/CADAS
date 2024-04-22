@@ -235,8 +235,9 @@ drop if inlist(fkey, "4938554b-7b33-4784-b0ef-efd01ede07a3")
 *instructions from clust 5
 drop if inlist(globalrecordid, "df7ef8be-b7a6-4533-928f-2dabfc1d0ca0")
 
+replace c_particid = 2 if globalrecordid == "70422852-4a32-4664-96fd-42433ee1b545"
 
-drop if inlist(globalrecordid, "70422852-4a32-4664-96fd-42433ee1b545")
+drop if inlist(globalrecordid, "884ecfa6-42dd-4ac6-8c07-22ea2579a892","fb325eeb-ecc9-400f-89d6-133760a6765d","36955fd0-cc0e-4b3c-9299-ff484808f728","df7ef8be-b7a6-4533-928f-2dabfc1d0ca0","33c3962b-3635-41af-a2c3-754909b06ebb","36955fd0-cc0e-4b3c-9299-ff484808f728")
 
 export delimited using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_in/Cog_Child.csv", replace nolabel
 

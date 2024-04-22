@@ -533,9 +533,9 @@ label define CR_7_ 1 "dentro de 15 minutos de aquí" ///
     
 drop CR_7
 
-save NonResidentChildren.dta, replace
+    save NonResidentChildren.dta, replace
     
-clear all
+    clear all
 
 if `country' == 0 {
     insheet using "../PR_in/MainHousehold.csv", comma names clear

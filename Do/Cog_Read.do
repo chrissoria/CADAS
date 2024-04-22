@@ -2914,6 +2914,12 @@ if !_rc{
 
 *creating a variable that identifies whether picture files are complete and audio files are complete
 
+if `country' == 0 {
+	gen all_image_files_found = 1 if date_greater_102423 == 1 & anim_pic_found == "found" & symb_pic_found == "found" & pent_pic_found == "found" ///
+    & c_72_1_pic_found == "found" & c_72_2_pic_found == "found" & c_72_3_pic_found == "found" & c_72_4_pic_found == "found" ///
+    & c_79_1_pic_found == "found" & c_79_2_pic_found == "found" & c_79_3_pic_found == "found" & c_79_4_pic_found == "found"
+}
+
 if `country' == 1 {
     gen all_image_files_found = 1 if date_greater_102423 == 1 & anim_pic_found == "found" & symb_pic_found == "found" & pent_pic_found == "found" ///
     & c_72_1_pic_found == "found" & c_72_2_pic_found == "found" & c_72_3_pic_found == "found" & c_72_4_pic_found == "found" ///
@@ -4282,16 +4288,13 @@ gen c_TenWordDelay = (Clock(c_time5, "hm") - Clock(c_time4, "hm"))/1000/60
 gen c_TenWordRecognition = (Clock(c_time8, "hm") - Clock(c_time4, "hm"))/1000/60
 gen c_Story1Delay = (Clock(c_time10, "hm") - Clock(c_time6, "hm"))/1000/60
 gen c_Story2Delay = (Clock(c_time11, "hm") - Clock(c_time7, "hm"))/1000/60
-gen c_time9temp = c_time9 + ":00"
 gen c_temptime2 = c_time_end
 replace c_temptime2 = subinstr(c_temptime2, "a. m.", "am", .)
 replace c_temptime2 = subinstr(c_temptime2, "p. m.", "pm", .)
-gen c_FigureDelay = round((Clock(c_temptime2, "hms") - Clock(c_time9temp, "hms"))/1000/60)
-*drop c_time9temp
+gen c_FigureDelay = round((Clock(c_temptime2, "hm") - Clock(c_time9, "hm"))/1000/60)
 
 * Create Total Time Taken variable
-gen c_temptime1 = c_time1 + ":00"
-gen c_TotalTimeTemp = round((Clock(c_temptime2, "hms") - Clock(c_temptime1, "hms"))/1000/60)
+gen c_TotalTimeTemp = round((Clock(c_temptime2, "hm") - Clock(c_time1, "hm"))/1000/60)
 
 gen c_tempdate = c_date_end
 replace c_tempdate = subinstr(c_tempdate, "ene", "January",.)
@@ -4323,7 +4326,7 @@ else {
 	}
 }
 
-drop c_temptime1 c_temptime2 c_TotalTimeTemp c_tempdate c_total_days c_total_days2 c_time9temp
+drop c_TotalTimeTemp c_tempdate c_total_days c_total_days2 c_temptime2
 
 drop g_3
 
@@ -4717,7 +4720,10 @@ program score
 
 end
 
-
+* IN PR THERE WERE 2 OBSERVATIONS WITH "mundo odnum" AS RESPONSES - IT WAS TAKING FOREVER TO CALCULATE ALL THE PERMUTATIONS OF 10 LETTERS SO IM MANUALLY CHANGING THOSE FOR NOW
+if `country' == 0 {
+	replace c_20_temp = "12345" if c_20_temp == "5432112345"
+}
 
 *run the program we created to score the response from each participant
 
@@ -5447,6 +5453,35 @@ codebook
 log close
 
 
+
+log using logs/CogOnlyMissing, text replace
+
+local missvarlist
+foreach v of var * {
+	capture confirm str var `v'
+	if _rc == 0 {
+		quietly count if `v' == ".i"
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+	else {
+		quietly count if `v' == .i
+		if r(N) > 5 {
+			local missvarlist `missvarlist' `v'
+		}
+	}
+}
+
+macro list _missvarlist
+
+foreach v of local missvarlist {
+	codebook `v'
+}
+
+log close
+
+
 save cog_merged.dta, replace
 
 keep pid hhid c_32 cs_32 pent_pic g_1 g_1_file c_40 cs_40 cs_41 anim_pic c_43 symb_pic cs_43 cs_44 g_2 g_2_file g_2_file2 c_66a c_66b c_66c c_66d c_66e c_66f c_67_01 c_67_02 c_67_03 c_67_04 c_67_05 c_67_06 c_67_07 c_67_08 c_67_09 c_67_10 c_67_11 c_67_12 c_67_13_c c_67_13_d c_67_13_p c_67_14 c_67_15 c_67_16 c_67_17 c_67_18 c_67_19 c_67_20 c_67_21 c_67_22 c_67_23 c_67_24 c_67_25 c_72_1 c_72_2 c_72_3 c_72_4 cs_72_1 c_72_1_pic cs_72_2 c_72_2_pic cs_72_3 c_72_3_pic cs_72_4 c_72_4_pic g_3_file g_3_file2 c_77a c_77b c_77c c_77d c_77d c_77e c_77f c_78_01 c_78_02 c_78_03 c_78_04 c_78_05 c_78_06 c_78_07 c_78_08 c_78_09 c_78_10 c_78_11 c_78_12 c_78_13 c_78_14 c_78_15 c_78_16 c_78_17 c_78_18 c_78_19 c_78_20 c_78_21 c_78_22 c_78_23 c_78_24 c_78_25 c_79_1 c_79_1_pic c_79_2 c_79_2_pic c_79_3 c_79_3_pic c_79_4 c_79_4_pic cs_79_1 cs_79_2 cs_79_3 cs_79_4
@@ -5454,5 +5489,16 @@ order pid hhid c_32 cs_32 pent_pic g_1 g_1_file c_40 cs_40 cs_41 anim_pic c_43 s
 
 save cog_slim.dta, replace
 
-clear all
+ * Get the list of variable names
+unab varlist : _all
+
+* Convert variables with value labels into string variables
+foreach var of varlist `varlist' {
+    if "`: value label `var''" != "" {
+        tostring `var', replace
+    }
+}
+
+export excel using "excel/cognitive.xlsx", replace firstrow(variables)
+
 exit, clear

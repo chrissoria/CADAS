@@ -114,6 +114,78 @@ replace s_particid = 2 if globalrecordid == "d8ec834a-acd7-4463-919e-83c38641865
 replace s_particid = 1 if globalrecordid == "8eab231b-cbce-4620-ba1a-1de3955de995"
 replace s_particid = 1 if globalrecordid == "9b98ed6b-0f95-4b04-be9a-b3f4d5f9410a"
 
+*instructions from Enitza
+replace s_2_8c = 12 if globalrecordid == "1f9e84a2-479c-4024-a065-ea35ce29d539"
+replace s_2_8c = 12 if globalrecordid == "1d081d07-1327-4f72-924f-e10551fd41ed"
+replace s_2_8c = 12 if globalrecordid == "b9db9e5b-d8b4-4b31-89e5-87ee07b4cf1e"
+replace s_2_8c = 16 if globalrecordid == "8e0bcd5e-a0d7-4aed-96e5-340d9c5f8e12"
+
+*instructions from cluster 6
+
+replace s_2_8c = 20 if globalrecordid == "ece54e22-56c2-401d-9e1f-3ef413815480"
+replace s_2_8c = 15 if globalrecordid == "fbed50d3-d423-426f-b533-2675e10fa837"
+replace s_2_8c = 12 if globalrecordid == "09a5b989-3f06-40a4-b85b-f4f29a8d19fb"
+drop if globalrecordid == "9b98ed6b-0f95-4b04-be9a-b3f4d5f9410a"
+
+replace s_2_8c = 20 if globalrecordid == "2f358477-2ce1-4633-8f5f-e6da2b29daae"
+replace s_2_8c = 15 if globalrecordid == "865153e2-7687-4ad3-9096-cba050c8d1c0"
+replace s_2_8c = 20 if globalrecordid == "6cf64e76-4e27-4a99-b6e8-08520350d5f4"
+replace s_2_8c = 15 if globalrecordid == "19a72e7f-4fba-485c-8368-7e36820f7f5b"
+
+replace s_2_8c = 9 if globalrecordid == "698854fb-7033-46c1-bfe6-8c86070c25fa"
+replace s_2_8c = 9 if globalrecordid == "24ff3194-5cc7-448f-832f-15435111e5ab"
+
+replace s_2_8c = 15 if globalrecordid == "f6e9e208-5020-470a-9d45-804b5e23cf94"
+replace s_2_8c = 6 if globalrecordid == "48ccdede-e624-45b3-845d-d168db130d76"
+
+*instructions from liliana
+
+replace s_2_8c = 6 if globalrecordid == "70610854-f664-488d-8b1d-4ea2020e0f25"
+replace s_2_8c = 16 if globalrecordid == "780cbb9f-37f2-44a7-8e00-df015018764a"
+replace s_2_8c = 16 if globalrecordid == "9d9a6c42-877f-4bbe-bc78-1cdc29277ed9"
+replace s_2_8c = 12 if globalrecordid == "2a4766c4-4814-4e57-9d13-a23dd888c060"
+
+replace s_2_8c = 12 if globalrecordid == "7b9ae0a9-13ad-4a29-b702-e0f2e557c803"
+replace s_2_8c = 9 if globalrecordid == "6ed6ca80-48c3-4c01-9cf4-91d26b8dcd1b"
+replace s_2_8c = 12 if globalrecordid == "bf621ddd-e4a8-4443-8651-21516e1fef00"
+replace s_2_8c = 6 if globalrecordid == "dae09089-af57-4a4e-b650-f8dae09ce222"
+
+replace s_2_8c = 12 if globalrecordid == "2e502f16-7606-454e-bdc9-c9aee1b10098"
+replace s_2_8c = 6 if globalrecordid == "c1ace793-0a14-4add-a993-dcffb79b8170"
+replace s_2_8c = 12 if globalrecordid == "8d4b614a-5942-414a-9732-c14db68e39d5"
+replace s_2_8c = 9 if globalrecordid == "a07b261a-56e7-4c81-bb47-b6673fef029e"
+
+replace s_2_8c = 9 if globalrecordid == "d36909cc-cb03-4b47-a538-4b552647b829"
+replace s_2_8c = 16 if globalrecordid == "001fdd76-6498-444b-9cb3-123bab36da21"
+replace s_2_8c = 12 if globalrecordid == "311f79b8-74f3-4cb8-84d0-55492c34a503"
+replace s_2_8c = 16 if globalrecordid == "c3573e0c-e4e9-451b-8d62-e3feb40689c8"
+
+replace s_2_8c = 12 if globalrecordid == "d247987c-a500-42f2-b5ca-ed1e64a56c83"
+replace s_2_8c = 12 if globalrecordid == "0f78ecd7-6a0d-4a1f-9346-73dc5cd44c92"
+replace s_2_8c = 9 if globalrecordid == "ce632840-fbe3-45b7-8990-3c3c5c379627"
+replace s_2_8c = 6 if globalrecordid == "c9b677b2-34fc-4b99-808d-553c9567b0be"
+
+replace s_2_8c = 2 if globalrecordid == "53137b6e-3be6-4ce9-a2ab-a69fc94ddfbf"
+replace s_2_8c = 9 if globalrecordid == "1d1fb293-4178-446a-b85a-4d3a01732ee4"
+replace s_2_8c = 6 if globalrecordid == "5147ea86-c67e-4a63-ac34-b83befb51058"
+replace s_2_8c = 9 if globalrecordid == "a3e23503-7d68-4142-af31-d6aa994a9a58"
+
+replace s_2_8c = 10 if globalrecordid == "82d0bfe3-2afd-401f-b6ed-4d7bf648add6"
+replace s_2_8c = 12 if globalrecordid == "7d382251-181f-4062-a6b3-840cdc705f22"
+replace s_2_8c = 0 if globalrecordid == "e31fc479-92f3-452e-8a26-145d146b2777"
+replace s_2_8c = 12 if globalrecordid == "1b8ec53f-a4e4-45ac-837c-211f43e9e302"
+
+replace s_2_8c = 12 if globalrecordid == "b5944683-63ad-4070-9e78-7674f3905408"
+replace s_2_8c = 9 if globalrecordid == "48bdd26c-530f-425e-b98a-3cae57233482"
+replace s_2_8c = 9 if globalrecordid == "08e3db5b-6612-4c2a-b7cb-39bf57e4628d"
+replace s_2_8c = 16 if globalrecordid == "47fa0e48-8bf6-44d0-a16a-fcadbc329926"
+
+replace s_2_8c = 12 if globalrecordid == "f86d6ad1-b7d4-4fa8-87fe-36e1610e17ab"
+replace s_2_8c = 16 if globalrecordid == "6e20b836-819b-4db4-b474-0b1dc87000e6"
+replace s_2_8c = 16 if globalrecordid == "0d997ae6-a954-446a-a101-9d1f24bc0afc"
+replace s_2_8c = 8 if globalrecordid == "ef48a4f5-56bb-413c-a3f8-fdb233f8c460"
+replace s_2_8c = 9 if globalrecordid == "1fc66231-ce37-4277-a660-f2c4d5088eea"
+
 drop pid
 drop hhid
  duplicates report globalrecordid

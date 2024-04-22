@@ -56,6 +56,8 @@ else if `country' == 2 {
 }
 }
 
+drop v1
+
 *converting numeric to strings
 
 generate H_3_1 = cond(h_3_1 ==  0, "propietario", cond(h_3_1 ==  1, "alquilada", cond(h_3_1 ==  2, "otro", "")))
@@ -6861,7 +6863,7 @@ if h_country == 2 {
 local i 1
 gen h_countmissing = 0
 
-quietly ds h_countmissing hhid h_date_end h_time_end_1 h_time_end h_time1 h_date fkey globalrecordid v1 h_deviceid2, not
+quietly ds h_countmissing hhid h_date_end h_time_end_1 h_time_end h_time1 h_date fkey globalrecordid h_deviceid2, not
 local allvar `r(varlist)'
 
 
@@ -6901,7 +6903,7 @@ quietly forvalues i = 1(1) `=_N' {
 local i 1
 gen h_last = "AllAnswered"
 
-quietly ds h_last h_countmissing hhid h_time2 h_date_end h_time_end_1 h_time_end h_time1 h_date fkey globalrecordid v1 h_deviceid2, not
+quietly ds h_last h_countmissing hhid h_time2 h_date_end h_time_end_1 h_time_end h_time1 h_date fkey globalrecordid h_deviceid2, not
 local allvar `r(varlist)'
 
 
@@ -6983,4 +6985,17 @@ codebook
 log close
 
  save Household.dta, replace
+ 
+  * Get the list of variable names
+unab varlist : _all
+
+* Convert variables with value labels into string variables
+foreach var of varlist `varlist' {
+    if "`: value label `var''" != "" {
+        tostring `var', replace
+    }
+}
+
+export excel using "excel/household.xlsx", replace firstrow(variables)
+
 clear all

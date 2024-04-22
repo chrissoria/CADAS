@@ -124,4 +124,16 @@ label variable cs_79_4 "79.4. El cubo (0-4)"
 
  save Cog_Scoring.dta, replace
 
+ * Get the list of variable names
+unab varlist : _all
+
+* Convert variables with value labels into string variables
+foreach var of varlist `varlist' {
+    if "`: value label `var''" != "" {
+        tostring `var', replace
+    }
+}
+
+export excel using "excel/cognitive_scoring.xlsx", replace firstrow(variables)
+
 clear all

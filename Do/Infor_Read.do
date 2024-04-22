@@ -95,7 +95,7 @@ generate I_C3 = cond(i_c3 ==  0, "uno ó más miembros de la familia", cond(i_c3
 
 drop i_c3
 
-generate I_C4 = cond(i_c4 ==  0, "uno de los principales cuidadores directos.", cond(i_c4 ==  1, "uno de los principales cuidadores de "organización"", cond(i_c4 ==  2, "solo ligeramente envuelto en proveer u organizar cuidado (otras personas lo hacen más)", cond(i_c4 ==  3, "no está envuelto en proveer u organizar cuidado", ""))))
+generate I_C4 = cond(i_c4 ==  0, "uno de los principales cuidadores directos.", cond(i_c4 ==  1, "uno de los principales cuidadores de 'organización'", cond(i_c4 ==  2, "solo ligeramente envuelto en proveer u organizar cuidado (otras personas lo hacen más)", cond(i_c4 ==  3, "no está envuelto en proveer u organizar cuidado", ""))))
 
 drop i_c4
 
@@ -3664,4 +3664,17 @@ codebook
 log close
 
  save Infor.dta, replace
+ 
+ * Get the list of variable names
+unab varlist : _all
+
+* Convert variables with value labels into string variables
+foreach var of varlist `varlist' {
+    if "`: value label `var''" != "" {
+        tostring `var', replace
+    }
+}
+
+export excel using "excel/informant.xlsx", replace firstrow(variables)
+
 clear all

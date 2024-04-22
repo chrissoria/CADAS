@@ -57,6 +57,12 @@ else if `country' == 2 {
 }
 capture drop v1
 
+if `country' == 2 {
+	set varabbrev off
+	drop s_2_8a s_2_8b s_9_21 s_9_43 s_9_45 s_14_2_p s_14_2_d
+	set varabbrev on
+}
+
 *converting from numeric to string
 
 
@@ -6038,5 +6044,7 @@ foreach var of varlist `varlist' {
         tostring `var', replace
     }
 }
+
+export excel using "excel/socio.xlsx", replace firstrow(variables)
 
 clear all

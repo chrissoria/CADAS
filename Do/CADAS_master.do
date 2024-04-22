@@ -13,9 +13,7 @@ capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 clear all
 
 
-
 if `"`user'"' == "Chris" {
-
 
 
     local path = "/hdir/0/chrissoria/Stata_CADAS/Do/Read"
@@ -223,6 +221,4 @@ do "`path'/mp4_TyManualScoring.do"
 
 
 }
-
-
 
