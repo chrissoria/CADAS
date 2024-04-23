@@ -52,7 +52,6 @@ cd "/hdir/0/chrissoria/1066/"\
 set maxvar 100000\
 set more off\
 \
-log using "/hdir/0/chrissoria/1066/ADAMS_1066_aggressive.log", text replace\
 use "/hdir/0/chrissoria/ADAMS/DTA/ADAMS_WAVE_A_aggressive.dta", clear\
 \
  \
@@ -402,6 +401,7 @@ gen cogscore_adams_scaled_full = cogscore_1066_mean_full + (COGSCORE - COGSCORE_
 \
 gen relscore_adams_scaled_full = relscore_1066_mean_full + (RELSCORE - RELSCORE_mean) * relscore_1066_sd_full/RELSCORE_sd\
 \
+log using "/hdir/0/chrissoria/1066/ADAMS_1066_aggressive.log", text replace\
 \
 ** set sample inclusion\
 egen in_samp = rowmiss(AAGE RELSCORE COGSCORE dementia cogtot27_imp2002 ragender raeduc)\
@@ -420,142 +420,112 @@ tab educat\
 * http://www.haghish.com/statistics/stata-blog/stata-programming/download/cutpt.html\
 keep if in_samp2 == 0\
 *  1066\
-regress dementia cogscore_adams_scaled_full relscore_adams_scaled_full aRECALLcs\
+logit dementia cogscore_adams_scaled_full relscore_adams_scaled_full aRECALLcs\
+gen inreg1066=e(sample)\
 predict dem_pred_1066\
+estat classification, cutoff(.25)\
+estat classification, cutoff(.50)\
+estat classification, cutoff(.12903367)\
+cutpt dementia dem_pred_1066\
+\
 \
 *below is where Jordan identified the ideal cutoff point that maximizes the product of sensitivity and specificity\
 *however, we'll also want to try .5 (the traditional indicator) and .25 (Prince 2003) stated on page 915 that, \
 *"A predicted probability of more than 0\'b725 produced the best sensitivity and specificity\
-\
-cutpt dementia dem_pred_1066\
 \
 *Chris is updating this slightly to reflect slightly revised computation of relscore\
 rocreg dementia dem_pred_1066\
 	gen dem_pred_bin_1066 = (dem_pred_1066 >= .12903367) if !missing(dem_pred_1066)\
 tab dementia dem_pred_bin_1066\
 \
-scalar FN = 3\
-scalar TP = 54\
-scalar FP = 39\
-scalar TN = 373\
-\
-* Calculate sensitivity (True Positive Rate)\
-scalar Sensitivity = TP / (TP + FN)\
-\
-* Calculate specificity (True Negative Rate)\
-scalar Specificity = TN / (TN + FP)\
-\
-* Calculate accuracy\
-scalar Accuracy = (TP + TN) / (TP + TN + FP + FN)\
-\
-* Display the results\
-display "Sensitivity for 1066: " Sensitivity\
-display "Specificity for 1066: " Specificity\
-display "Accuracy for 1066: " Accuracy\
-\
-display "demencia prevalence for 1066 is: " ((TP + FP) / (TP + FP + TN + FN))*100\
-\
 \
 *  hrs, tics\
 logit dementia cogtot27_imp2002\
+gen inregtics=e(sample)\
 predict dem_pred_lw\
-\
+estat classification, cutoff(.13094532)\
 cutpt dementia dem_pred_lw\
+\
 \
 rocreg dementia dem_pred_lw\
 	gen dem_pred_bin_lw = (dem_pred_lw >=  .13094532) if !missing(dem_pred_lw)\
 tab dementia dem_pred_bin_lw\
 \
-scalar FN = 12\
-scalar TP = 45\
-scalar FP = 121\
-scalar TN = 291\
+gen dem_pred_lwa = 0\
+	replace dem_pred_lwa = 1 if cogtot27_imp2002 >= 0 & cogtot27_imp2002 <= 6\
 \
-* Calculate sensitivity (True Positive Rate)\
+\
+tab dem_pred_lwa\
+tab dementia dem_pred_lwa\
+scalar TP = 22\
+scalar TN = 365\
+scalar FP = 47\
+scalar FN = 35\
+\
 scalar Sensitivity = TP / (TP + FN)\
-\
-* Calculate specificity (True Negative Rate)\
 scalar Specificity = TN / (TN + FP)\
+scalar Predicted_Prevalence = (TP + FP) / 469\
 \
-* Calculate accuracy\
-scalar Accuracy = (TP + TN) / (TP + TN + FP + FN)\
+display "Sensitivity: " Sensitivity\
+display "Specificity: " Specificity\
+display "Predicted Prevalence: " Predicted_Prevalence * 100\
 \
-* Display the results\
-display "Sensitivity for tics: " Sensitivity\
-display "Specificity for tics: " Specificity\
-display "Accuracy for tics: " Accuracy\
-\
-display "demencia prevalence for tics is: " ((TP + FP) / (TP + FP + TN + FN))*100\
 \
 *  expert\
-regress dementia expert_p\
+logit dementia expert_p\
+gen inregexpert=e(sample)\
 predict dem_pred_expert\
-\
+estat classification, cutoff(.5)\
+estat classification, cutoff(.08421316)\
 cutpt dementia dem_pred_expert\
 \
 rocreg dementia dem_pred_expert\
-	gen dem_pred_bin_expert = (dem_pred_expert >= .13569181) if !missing(dem_pred_expert)\
+	gen dem_pred_bin_expert = (dem_pred_expert >= .08421316) if !missing(dem_pred_expert)\
 tab dementia dem_pred_bin_expert\
 \
-scalar FN = 19\
-scalar TP = 38\
-scalar FP = 60\
-scalar TN = 352\
-\
-* Calculate sensitivity (True Positive Rate)\
-scalar Sensitivity = TP / (TP + FN)\
-\
-* Calculate specificity (True Negative Rate)\
-scalar Specificity = TN / (TN + FP)\
-\
-* Calculate accuracy\
-scalar Accuracy = (TP + TN) / (TP + TN + FP + FN)\
-\
-* Display the results\
-display "Sensitivity for expert: " Sensitivity\
-display "Specificity for expert: " Specificity\
-display "Accuracy for expert: " Accuracy\
-\
-display "demencia prevalence for expert is: " ((TP + FP) / (TP + FP + TN + FN))*100\
-\
 *  hurd\
-regress dementia hurd_p\
+logit dementia hurd_p\
+gen inreghurd=e(sample)\
 predict dem_pred_hurd\
-\
+estat classification, cutoff(.5)\
+estat classification, cutoff(.07262582)\
 cutpt dementia dem_pred_hurd\
-rocreg dementia dem_pred_hurd\
-	gen dem_pred_bin_hurd = (dem_pred_hurd >= .10522348) if !missing(dem_pred_hurd)\
-tab dementia dem_pred_bin_hurd\
 \
+rocreg dementia dem_pred_hurd\
+	gen dem_pred_bin_hurd = (dem_pred_hurd >= .07262582) if !missing(dem_pred_hurd)\
+	\
 \
 *  lasso\
 logit dementia lasso_p\
+gen inreglasso=e(sample)\
 predict dem_pred_lasso\
-\
+estat classification, cutoff(.5)\
+estat classification, cutoff(.14725079)\
 cutpt dementia dem_pred_lasso\
+\
 rocreg dementia dem_pred_lasso\
-	gen dem_pred_bin_lasso = (dem_pred_lasso >= .24691924) if !missing(dem_pred_lasso)\
+	gen dem_pred_bin_lasso = (dem_pred_lasso >= .14725079) if !missing(dem_pred_lasso)\
 tab dementia dem_pred_bin_lasso\
 \
 \
-** table 4 **\
 ** [ascribed cutpoints]\
 *  1066\
 gen dem_pred_bin_1066a25 = (dem_pred_1066 >= .25) if !missing(dem_pred_1066)\
+\
 tab dem_pred_bin_1066a25\
 tab dementia dem_pred_bin_1066a25 \
 roctab dementia dem_pred_bin_1066a25\
 tab dem_pred_bin_1066a25\
 \
 gen dem_pred_bin_1066a50= (dem_pred_1066 >= .5) if !missing(dem_pred_1066)\
+\
 tab dem_pred_bin_1066a50\
 tab dementia dem_pred_bin_1066a50 \
 roctab dementia dem_pred_bin_1066a50\
 tab dem_pred_bin_1066a50\
 \
 *  hrs, tics\
-gen dem_pred_lwa = 0\
-	replace dem_pred_lwa = 1 if cogtot27_imp2002 >= 0 & cogtot27_imp2002 <= 6\
+\
 tab dem_pred_lwa\
 tab dementia dem_pred_lwa\
 roctab dementia dem_pred_lwa\
@@ -563,13 +533,16 @@ tab dem_pred_lwa\
 \
 *  expert\
 gen dem_pred_experta = (dem_pred_expert >= .5) if !missing(dem_pred_expert)\
+\
 tab dem_pred_experta\
 tab dementia dem_pred_experta \
 roctab dementia dem_pred_experta\
 tab dem_pred_experta\
 \
 *  hurd\
+\
 gen dem_pred_hurda = (dem_pred_hurd >= .5) if !missing(dem_pred_hurd)\
+\
 tab dem_pred_hurda\
 tab dementia dem_pred_hurda \
 roctab dementia dem_pred_hurda\
@@ -582,12 +555,11 @@ tab dementia dem_pred_lassoa \
 roctab dementia dem_pred_lassoa\
 tab dem_pred_lassoa\
 \
-** table 5a **\
 ** education gradients [optimal cutpoints]\
 foreach dem_var in dementia dem_pred_bin_1066 dem_pred_bin_lw dem_pred_bin_expert dem_pred_bin_hurd dem_pred_bin_lasso \{\
 forvalues r=1/2 \{\
 display "****start: `dem_var' `r'****"\
-qui: regress `dem_var' ib2.educat AAGE AAGE2 if AAGE_cat == `r'\
+qui: logit `dem_var' ib2.educat AAGE AAGE2 if AAGE_cat == `r'\
 	margins educat, post\
 	eststo `dem_var'_`r'\
 	\}\
@@ -600,12 +572,11 @@ tab AAGE_cat dem_pred_experta\
 tab AAGE_cat dem_pred_hurda\
 tab AAGE_cat dem_pred_lassoa\
 \
-** table 5b **\
-** education gradients [optimal ascribed]\
+** education gradients [ascribed]\
 foreach dem_var in dementia dem_pred_bin_1066a25 dem_pred_bin_1066a50 dem_pred_lwa dem_pred_experta dem_pred_hurda dem_pred_lassoa\{\
 forvalues r=1/2 \{\
 display "****start: `dem_var' `r'****"\
-qui: regress `dem_var' ib2.educat AAGE AAGE2 if AAGE_cat == `r'\
+qui: logit `dem_var' ib2.educat AAGE AAGE2 if AAGE_cat == `r'\
 	margins educat, post\
 	eststo `dem_var'_`r'\
 	\}\
