@@ -390,11 +390,12 @@ gen relscore_1066_sd_full = 4.487136\
 \
 \
 *  adams\
-gen COGSCORE_mean = 13.52969\
-gen COGSCORE_sd = 3.346019\
+gen COGSCORE_mean = 13.65744\
+gen COGSCORE_sd = 2.540494\
 \
-gen RELSCORE_mean = 4.666667    \
-gen RELSCORE_sd = 5.748317\
+* the previous relscore mean was much higher gen RELSCORE_mean = 4.666667   \
+gen RELSCORE_mean = 1.814666\
+gen RELSCORE_sd = 3.923903\
 \
 \
 gen cogscore_adams_scaled_full = cogscore_1066_mean_full + (COGSCORE - COGSCORE_mean) * cogscore_1066_sd_full/COGSCORE_sd\
@@ -419,7 +420,7 @@ tab educat\
 * http://www.haghish.com/statistics/stata-blog/stata-programming/download/cutpt.html\
 keep if in_samp2 == 0\
 *  1066\
-logit dementia cogscore_adams_scaled_full relscore_adams_scaled_full aRECALLcs\
+regress dementia cogscore_adams_scaled_full relscore_adams_scaled_full aRECALLcs\
 predict dem_pred_1066\
 \
 *below is where Jordan identified the ideal cutoff point that maximizes the product of sensitivity and specificity\
@@ -433,6 +434,28 @@ rocreg dementia dem_pred_1066\
 	gen dem_pred_bin_1066 = (dem_pred_1066 >= .12903367) if !missing(dem_pred_1066)\
 tab dementia dem_pred_bin_1066\
 \
+scalar FN = 3\
+scalar TP = 54\
+scalar FP = 39\
+scalar TN = 373\
+\
+* Calculate sensitivity (True Positive Rate)\
+scalar Sensitivity = TP / (TP + FN)\
+\
+* Calculate specificity (True Negative Rate)\
+scalar Specificity = TN / (TN + FP)\
+\
+* Calculate accuracy\
+scalar Accuracy = (TP + TN) / (TP + TN + FP + FN)\
+\
+* Display the results\
+display "Sensitivity for 1066: " Sensitivity\
+display "Specificity for 1066: " Specificity\
+display "Accuracy for 1066: " Accuracy\
+\
+display "demencia prevalence for 1066 is: " ((TP + FP) / (TP + FP + TN + FN))*100\
+\
+\
 *  hrs, tics\
 logit dementia cogtot27_imp2002\
 predict dem_pred_lw\
@@ -440,12 +463,32 @@ predict dem_pred_lw\
 cutpt dementia dem_pred_lw\
 \
 rocreg dementia dem_pred_lw\
-	gen dem_pred_bin_lw = (dem_pred_lw >=  .17525444) if !missing(dem_pred_lw)\
+	gen dem_pred_bin_lw = (dem_pred_lw >=  .13094532) if !missing(dem_pred_lw)\
 tab dementia dem_pred_bin_lw\
 \
+scalar FN = 12\
+scalar TP = 45\
+scalar FP = 121\
+scalar TN = 291\
+\
+* Calculate sensitivity (True Positive Rate)\
+scalar Sensitivity = TP / (TP + FN)\
+\
+* Calculate specificity (True Negative Rate)\
+scalar Specificity = TN / (TN + FP)\
+\
+* Calculate accuracy\
+scalar Accuracy = (TP + TN) / (TP + TN + FP + FN)\
+\
+* Display the results\
+display "Sensitivity for tics: " Sensitivity\
+display "Specificity for tics: " Specificity\
+display "Accuracy for tics: " Accuracy\
+\
+display "demencia prevalence for tics is: " ((TP + FP) / (TP + FP + TN + FN))*100\
 \
 *  expert\
-logit dementia expert_p\
+regress dementia expert_p\
 predict dem_pred_expert\
 \
 cutpt dementia dem_pred_expert\
@@ -454,9 +497,29 @@ rocreg dementia dem_pred_expert\
 	gen dem_pred_bin_expert = (dem_pred_expert >= .13569181) if !missing(dem_pred_expert)\
 tab dementia dem_pred_bin_expert\
 \
+scalar FN = 19\
+scalar TP = 38\
+scalar FP = 60\
+scalar TN = 352\
+\
+* Calculate sensitivity (True Positive Rate)\
+scalar Sensitivity = TP / (TP + FN)\
+\
+* Calculate specificity (True Negative Rate)\
+scalar Specificity = TN / (TN + FP)\
+\
+* Calculate accuracy\
+scalar Accuracy = (TP + TN) / (TP + TN + FP + FN)\
+\
+* Display the results\
+display "Sensitivity for expert: " Sensitivity\
+display "Specificity for expert: " Specificity\
+display "Accuracy for expert: " Accuracy\
+\
+display "demencia prevalence for expert is: " ((TP + FP) / (TP + FP + TN + FN))*100\
 \
 *  hurd\
-logit dementia hurd_p\
+regress dementia hurd_p\
 predict dem_pred_hurd\
 \
 cutpt dementia dem_pred_hurd\
@@ -524,7 +587,7 @@ tab dem_pred_lassoa\
 foreach dem_var in dementia dem_pred_bin_1066 dem_pred_bin_lw dem_pred_bin_expert dem_pred_bin_hurd dem_pred_bin_lasso \{\
 forvalues r=1/2 \{\
 display "****start: `dem_var' `r'****"\
-qui: logit `dem_var' ib2.educat AAGE AAGE2 if AAGE_cat == `r'\
+qui: regress `dem_var' ib2.educat AAGE AAGE2 if AAGE_cat == `r'\
 	margins educat, post\
 	eststo `dem_var'_`r'\
 	\}\
