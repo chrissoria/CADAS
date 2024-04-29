@@ -3,8 +3,7 @@ clear all
 set more off
 capture log close
 
-capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
-capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
+include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
 
 if `"`user'"' == "Chris" {
 local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
@@ -327,7 +326,7 @@ foreach var of local varlist {
 
 
 save Neighborhood.dta, replace
-export excel using "Neighborhood.xlsx", firstrow(variables) nolabel replace
+export excel using "excel/Neighborhood.xlsx", firstrow(variables) nolabel replace
 
  d
  sum

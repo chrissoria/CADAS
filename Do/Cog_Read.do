@@ -4331,6 +4331,7 @@ drop c_TotalTimeTemp c_tempdate c_total_days c_total_days2 c_temptime2
 drop g_3
 
 save Cog.dta, replace
+export excel using "excel/cognitive.xlsx", replace firstrow(variables)
  
  if `country' == 0 {
     use "../PR_out/Cog_Scoring.dta"
@@ -5498,7 +5499,5 @@ foreach var of varlist `varlist' {
         tostring `var', replace
     }
 }
-
-export excel using "excel/cognitive.xlsx", replace firstrow(variables)
 
 exit, clear

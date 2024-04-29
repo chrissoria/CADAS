@@ -66,10 +66,47 @@ recode ANAFTOT ANWM1TOT (97 = .)\
 rename ANAFTOT aANIMALS\
 rename ANWM1TOT aSTORY\
 \
-**https://hrsdata.isr.umich.edu/data-products/cross-wave-imputation-cognitive-functioning-measures-1992-2020\
-* The Cross-Wave Imputation of Cognitive Functioning Measures: 1992-2020 (Final, Version 3.0) data release contains imputations for cognitive functioning data for HRS 1992 through 2020.\
+/*First I'm going to create the langa-weir 27-point score using the existing the ADAMS data.\
+The 27-point scale includes: 1) immediate and delayed 10-noun free recall test to measure\
+memory (0 to 20 points); 2) a serial sevens subtraction test to measure working memory (0 to 5\
+points); and 3) a counting backwards test to measure speed of mental processing (0 to 2 points).\
+\
+Backwards Count starting from 20 and 86\
+\
+ANIMMCR1 = 10 point immediate recall sum (first attempt)\
+ANDELCOR = 10 point delayed recall sum\
+ANSER7T = 0-5 point serial sevens score\
+ANBWC201 = 0-1 score for counting backwards from 20\
+ANBWC861 = 0-1 score for counting backwards from 86\
+\
+The rules I will follow are\
+1. recode all of these so that if they are missing and/or refused they are coded to missing\
+2. sum up the values from the total score \
+3. if anyone is missing a total score, use the imputations\
+\
+*the following are all refusuals or disability recoded to missing\
+foreach var in ANIMMCR1 ANDELCOR ANSER7T ANBWC201 ANBWC861 \{\
+	recode `var' (97 = .)\
+	recode `var' (98 = .)\
+	recode `var' (99 = .)\
+\}\
+*ANBWC201 and ANBWC861 allow people to try again, we'll classify those as missing\
+foreach var in ANBWC201 ANBWC861 \{\
+	recode `var' (6 = .)\
+\}\
+\
+*/\
 \
 *we're comparing these algorithms\
+\
+** https://hrsdata.isr.umich.edu/data-products/rand-hrs-archived-data-products\
+* Every individual who has ever completed an HRS Core Interview has a record in this file.\
+merge 1:1 hhidpn using "/hdir/0/chrissoria/ADAMS/DTA/randhrs1992_2016v2.dta", keepusing (raeduc raracem rahispan ragender) gen(_merge5)\
+keep if _merge5 == 3\
+**\
+\
+**https://hrsdata.isr.umich.edu/data-products/cross-wave-imputation-cognitive-functioning-measures-1992-2020\
+* The Cross-Wave Imputation of Cognitive Functioning Measures: 1992-2020 (Final, Version 3.0) data release contains imputations for cognitive functioning data for HRS 1992 through 2020.\
 \
 merge 1:1 hhidpn using "/hdir/0/chrissoria/ADAMS/DTA/cogfinalimp_9520wide.dta", keepusing (cogtot27_imp2000 cogtot27_imp2002 cogfunction2000 cogfunction2002) gen(_merge3)\
 keep if _merge3 == 3\
@@ -80,15 +117,8 @@ Gianattasio-Power Predicted Dementia Probability Scores and Dementia Classificat
 \
 */\
 \
-merge 1:1 hhidpn using "/hdir/0/chrissoria/ADAMS/DTA/hrsdementia_2021_1109_reproduced.dta", keepusing (expert_dem hurd_dem lasso_dem hurd_p expert_p lasso_p) gen(_merge4)\
+merge 1:1 hhidpn using "/hdir/0/chrissoria/ADAMS/DTA/hrsdementia_2021_1109_2002.dta", keepusing (expert_dem hurd_dem lasso_dem hurd_p expert_p lasso_p) gen(_merge4)\
 keep if _merge4 == 3\
-**\
-\
-\
-** https://hrsdata.isr.umich.edu/data-products/rand-hrs-archived-data-products\
-* Every individual who has ever completed an HRS Core Interview has a record in this file.\
-merge 1:1 hhidpn using "/hdir/0/chrissoria/ADAMS/DTA/randhrs1992_2016v2.dta", keepusing (raeduc raracem rahispan ragender) gen(_merge5)\
-keep if _merge5 == 3\
 **\
 \
 destring hurd_p expert_p lasso_p, force replace\
@@ -195,6 +225,7 @@ foreach var in ANMSE20F ANMSE20L ANMSE20R \{\
 \}\
 gen aPAPER = ANMSE20F + ANMSE20L + ANMSE20R\
 \
+*check to see if there's one or two variables driving the missing\
 sum aWORDIMM aWORDDEL aPAPER aSTORY\
 gen wordtot1=aWORDIMM/3\
 gen wordtot2=aWORDDEL/3\
@@ -377,37 +408,37 @@ gen RELSCORE = (U)*S\
 \
 summ RELSCORE\
 \
-\
-\
-** rescaling\
-*  10/66\
-gen cogscore_1066_mean_full = 28.34736\
-gen cogscore_1066_sd_full = 5.843216\
-\
-gen relscore_1066_mean_full = 2.570601\
-gen relscore_1066_sd_full = 4.487136\
-\
-\
-*  adams\
-gen COGSCORE_mean = 13.65744\
-gen COGSCORE_sd = 2.540494\
-\
-* the previous relscore mean was much higher gen RELSCORE_mean = 4.666667   \
-gen RELSCORE_mean = 1.814666\
-gen RELSCORE_sd = 3.923903\
-\
-\
-gen cogscore_adams_scaled_full = cogscore_1066_mean_full + (COGSCORE - COGSCORE_mean) * cogscore_1066_sd_full/COGSCORE_sd\
-\
-gen relscore_adams_scaled_full = relscore_1066_mean_full + (RELSCORE - RELSCORE_mean) * relscore_1066_sd_full/RELSCORE_sd\
-\
 log using "/hdir/0/chrissoria/1066/ADAMS_1066_aggressive.log", text replace\
 \
 ** set sample inclusion\
 egen in_samp = rowmiss(AAGE RELSCORE COGSCORE dementia cogtot27_imp2002 ragender raeduc)\
+*525 people have no missingness across the board, mostly due to the cogscore variable\
+tab in_samp\
+*nobody is missing age\
+egen in_AAGE = rowmiss(AAGE)\
+tab in_AAGE\
+*nobody is missing relscore\
+egen in_RELSCORE = rowmiss(RELSCORE)\
+tab in_RELSCORE\
+*927 people missing a cogscore, only 589 people have a full cogscore\
+egen in_COGSCORE = rowmiss(COGSCORE)\
+tab in_COGSCORE\
+*nobody is missing the dementia score\
+egen in_dementia = rowmiss(dementia)\
+tab in_dementia\
+*416 people are missing this score, 1,100 people have a score\
+egen in_cogtot27_imp2002 = rowmiss(cogtot27_imp2002)\
+tab in_cogtot27_imp2002\
+*nobody is missing gender or education\
+egen in_ragender = rowmiss(ragender)\
+tab in_ragender\
 keep if in_samp == 0\
+count\
 egen in_samp2 = rowmiss(hurd_p expert_p lasso_p)\
 \
+tab in_samp2, miss\
+keep if in_samp2 == 0\
+count\
 \
 ** table 2 **\
 tab female\
@@ -418,7 +449,6 @@ tab educat\
 ** table 3 **\
 ** identify cutpoints to maximize sensitivity and specificity [optimal]\
 * http://www.haghish.com/statistics/stata-blog/stata-programming/download/cutpt.html\
-keep if in_samp2 == 0\
 *  1066\
 logit dementia cogscore_adams_scaled_full relscore_adams_scaled_full aRECALLcs\
 gen inreg1066=e(sample)\
@@ -438,6 +468,11 @@ rocreg dementia dem_pred_1066\
 	gen dem_pred_bin_1066 = (dem_pred_1066 >= .12903367) if !missing(dem_pred_1066)\
 tab dementia dem_pred_bin_1066\
 \
+display "Predicted Prevalence from 1066 .25 cutoff: " (70/469) * 100\
+display "Predicted Prevalence from 1066 .5 cutoff: " (48/469) * 100\
+display "Predicted Prevalence from 1066 optimal cutoff: " (93/469) * 100\
+\
+\
 \
 *  hrs, tics\
 logit dementia cogtot27_imp2002\
@@ -445,6 +480,8 @@ gen inregtics=e(sample)\
 predict dem_pred_lw\
 estat classification, cutoff(.13094532)\
 cutpt dementia dem_pred_lw\
+display "Predicted Prevalence from HRS TICS optimal cutoff: " (166/469) * 100\
+\
 \
 \
 rocreg dementia dem_pred_lw\
@@ -468,7 +505,7 @@ scalar Predicted_Prevalence = (TP + FP) / 469\
 \
 display "Sensitivity: " Sensitivity\
 display "Specificity: " Specificity\
-display "Predicted Prevalence: " Predicted_Prevalence * 100\
+display "Predicted Prevalence from HRS TICS ascribed: " Predicted_Prevalence * 100\
 \
 \
 *  expert\
@@ -479,9 +516,14 @@ estat classification, cutoff(.5)\
 estat classification, cutoff(.08421316)\
 cutpt dementia dem_pred_expert\
 \
+display "Predicted Prevalence from expert .5 cutoff: " (29/469) * 100\
+display "Predicted Prevalence from expert optimal cutoff: " (132/469) * 100\
+\
 rocreg dementia dem_pred_expert\
 	gen dem_pred_bin_expert = (dem_pred_expert >= .08421316) if !missing(dem_pred_expert)\
 tab dementia dem_pred_bin_expert\
+\
+display "Predicted Prevalence: " Predicted_Prevalence * 100\
 \
 *  hurd\
 logit dementia hurd_p\
@@ -490,6 +532,8 @@ predict dem_pred_hurd\
 estat classification, cutoff(.5)\
 estat classification, cutoff(.07262582)\
 cutpt dementia dem_pred_hurd\
+display "Predicted Prevalence from hurd .5 cutoff: " (27/469) * 100\
+display "Predicted Prevalence from hurd optimal cutoff: " (154/469) * 100\
 \
 rocreg dementia dem_pred_hurd\
 	gen dem_pred_bin_hurd = (dem_pred_hurd >= .07262582) if !missing(dem_pred_hurd)\
@@ -502,13 +546,15 @@ predict dem_pred_lasso\
 estat classification, cutoff(.5)\
 estat classification, cutoff(.14725079)\
 cutpt dementia dem_pred_lasso\
+display "Predicted Prevalence from lasso .5 cutoff: " (36/469) * 100\
+display "Predicted Prevalence from lasso optimal cutoff: " (96/469) * 100\
 \
 rocreg dementia dem_pred_lasso\
 	gen dem_pred_bin_lasso = (dem_pred_lasso >= .14725079) if !missing(dem_pred_lasso)\
 tab dementia dem_pred_bin_lasso\
 \
 \
-** [ascribed cutpoints]\
+** [ascribed cutpoints tabs]\
 *  1066\
 gen dem_pred_bin_1066a25 = (dem_pred_1066 >= .25) if !missing(dem_pred_1066)\
 \
