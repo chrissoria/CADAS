@@ -151,7 +151,7 @@ rename ANMSE22 aPENTAG\
 *recoding everything that's reported as missing for whatever reason as missing  \
 foreach var in aPENCIL aWATCH aREPEAT aTOWN aCHIEF aSTREET aADDRESS aMONTH aDAY aYEAR aSEASON aPENTAG \{\
 	recode `var' (97 = .)\
-	recode `var' (98 = .)\
+	recode `var' (98 = 0)\
 	recode `var' (99 = .)\
 	tab `var', miss\
 \}\
@@ -370,7 +370,7 @@ gen RELSCORE = (U)*S\
 \
 summ RELSCORE\
 \
-log using "/hdir/0/chrissoria/1066/ADAMS_1066_aggressive.log", text replace\
+log using "/hdir/0/chrissoria/1066/ADAMS_1066_aggressive_98_to_0.log", text replace\
 \
 ** set sample inclusion\
 egen in_samp = rowmiss(AAGE RELSCORE COGSCORE dementia cogtot27_imp2002 ragender raeduc)\
@@ -401,22 +401,25 @@ tab educat\
 \
 \
 ** table 3 **\
-\
-******  1066    ******\
-\
-**********************\
-\
+** identify cutpoints to maximize sensitivity and specificity [optimal]\
+* http://www.haghish.com/statistics/stata-blog/stata-programming/download/cutpt.html\
+*  1066\
 logit dementia COGSCORE RELSCORE aRECALLcs\
 gen inreg1066=e(sample)\
 predict dem_pred_1066\
 estat classification, cutoff(.25)\
 estat classification, cutoff(.50)\
-estat classification, cutoff(.12903368)\
+estat classification, cutoff(.11898708)\
 cutpt dementia dem_pred_1066\
 \
-*optimal\
+\
+*below is where Jordan identified the ideal cutoff point that maximizes the product of sensitivity and specificity\
+*however, we'll also want to try .5 (the traditional indicator) and .25 (Prince 2003) stated on page 915 that, \
+*"A predicted probability of more than 0\'b725 produced the best sensitivity and specificity\
+\
+*Chris is updating this slightly to reflect slightly revised computation of relscore\
 rocreg dementia dem_pred_1066\
-	gen dem_pred_bin_1066 = (dem_pred_1066 >= .12903368) if !missing(dem_pred_1066)\
+	gen dem_pred_bin_1066 = (dem_pred_1066 >= .11898708) if !missing(dem_pred_1066)\
 tab dementia dem_pred_bin_1066, matcell(conf_matrix)\
 \
 *ascribed\
@@ -432,13 +435,13 @@ roctab dementia dem_pred_bin_1066a25\
 \
 matrix list conf_matrix\
 \
-display "Predicted Prevalence from 1066 .25 cutoff: " (100/469) * 100\
-display "Predicted Prevalence from 1066 .5 cutoff: " (75/469) * 100\
-display "Predicted Prevalence from 1066 optimal cutoff: " (93/469) * 100\
+display "Predicted Prevalence from 1066 .25 cutoff: " (100/508) * 100\
+display "Predicted Prevalence from 1066 .5 cutoff: " (75/508) * 100\
+display "Predicted Prevalence from 1066 optimal cutoff: " (128/508) * 100\
 \
-*****  hrs, tics   *******\
+*****  hrs, tics   ******\
 \
-**************************\
+*************************\
 \
 gen cogtot27_imp2002_binary = 2 if cogtot27_imp2002 <7\
 replace cogtot27_imp2002_binary = 0 if cogtot27_imp2002 >6\
@@ -447,17 +450,19 @@ gen cogtot27_imp2002_categorical = 2 if cogtot27_imp2002 < 7\
 replace cogtot27_imp2002_categorical = 1 if cogtot27_imp2002 >= 7 & cogtot27_imp2002 < 12\
 replace cogtot27_imp2002_categorical = 0 if cogtot27_imp2002 >= 12\
 \
+*binary tics\
+\
 logit dementia cogtot27_imp2002\
 gen inregtics=e(sample)\
 predict dem_pred_lw\
-estat classification, cutoff(.13094532)\
+estat classification, cutoff(.15900329)\
 cutpt dementia dem_pred_lw\
+display "Predicted Prevalence from HRS TICS optimal cutoff: " (199/508) * 100\
+\
 \
 rocreg dementia dem_pred_lw\
-	gen dem_pred_bin_lw = (dem_pred_lw >= .13094532) if !missing(dem_pred_lw)\
+	gen dem_pred_bin_lw = (dem_pred_lw >= .15900329) if !missing(dem_pred_lw)\
 tab dementia dem_pred_bin_lw\
-\
-display "Predicted Prevalence from HRS TICS optimal cutoff: " (166/469) * 100\
 \
 gen dem_pred_lwa = 0\
 	replace dem_pred_lwa = 1 if cogtot27_imp2002 >= 0 & cogtot27_imp2002 <= 6\
@@ -465,19 +470,20 @@ gen dem_pred_lwa = 0\
 \
 tab dem_pred_lwa\
 tab dementia dem_pred_lwa\
-scalar TP = 22\
-scalar TN = 365\
-scalar FP = 47\
-scalar FN = 35\
+scalar TP = 39\
+scalar TN = 373\
+scalar FP = 52\
+scalar FN = 44\
 \
 scalar Sensitivity = TP / (TP + FN)\
 scalar Specificity = TN / (TN + FP)\
-scalar Predicted_Prevalence = (TP + FP) / 469\
+scalar Predicted_Prevalence = (TP + FP) / 508\
 scalar Accuracy = (TP + TN) / (TP + TN + FP + FN)\
 \
 display "Sensitivity: " Sensitivity\
 display "Specificity: " Specificity\
 display "Predicted Prevalence from HRS TICS ascribed: " Predicted_Prevalence * 100\
+display "HRS TICS ascribed accuracy is: " Accuracy\
 roctab dementia dem_pred_lwa\
 \
 *****  expert *****\
@@ -490,10 +496,9 @@ estat classification, cutoff(.5)\
 estat classification, cutoff(.09578772)\
 cutpt dementia dem_pred_expert\
 \
-display "Predicted Prevalence from expert .5 cutoff: " (59/469) * 100\
-display "Predicted Prevalence from expert optimal cutoff: " (167/469) * 100\
+display "Predicted Prevalence from expert .5 cutoff: " (59/508) * 100\
+display "Predicted Prevalence from expert optimal cutoff: " (167/508) * 100\
 \
-*optimal\
 rocreg dementia dem_pred_expert\
 	gen dem_pred_bin_expert = (dem_pred_expert >= .09578772) if !missing(dem_pred_expert)\
 tab dementia dem_pred_bin_expert\
@@ -504,10 +509,9 @@ tab dem_pred_experta\
 tab dementia dem_pred_experta \
 roctab dementia dem_pred_experta\
 \
+*****  hurd  *****\
 \
-******  hurd  ********\
-\
-**********************\
+******************\
 \
 logit dementia hurd_p\
 gen inreghurd=e(sample)\
@@ -515,8 +519,8 @@ predict dem_pred_hurd\
 estat classification, cutoff(.5)\
 estat classification, cutoff(.07790542)\
 cutpt dementia dem_pred_hurd\
-display "Predicted Prevalence from hurd .5 cutoff: " (56/469) * 100\
-display "Predicted Prevalence from hurd optimal cutoff: " (189/469) * 100\
+display "Predicted Prevalence from hurd .5 cutoff: " (56/508) * 100\
+display "Predicted Prevalence from hurd optimal cutoff: " (189/508) * 100\
 \
 *optimal\
 rocreg dementia dem_pred_hurd\
@@ -539,8 +543,8 @@ predict dem_pred_lasso\
 estat classification, cutoff(.5)\
 estat classification, cutoff(.16165452)\
 cutpt dementia dem_pred_lasso\
-display "Predicted Prevalence from lasso .5 cutoff: " (64/469) * 100\
-display "Predicted Prevalence from lasso optimal cutoff: " (124/469) * 100\
+display "Predicted Prevalence from lasso .5 cutoff: " (64/508) * 100\
+display "Predicted Prevalence from lasso optimal cutoff: " (124/508) * 100\
 \
 *optimal\
 rocreg dementia dem_pred_lasso\
