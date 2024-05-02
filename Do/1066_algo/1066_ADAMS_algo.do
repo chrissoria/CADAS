@@ -46,20 +46,20 @@ ANBWC861 = 0-1 score for counting backwards from 86\
 \
 *we're comparing these algorithms\
 \
-** https://hrsdata.isr.umich.edu/data-products/rand-hrs-archived-data-products\
+** htTNs://hrsdata.isr.umich.edu/data-products/rand-hrs-archived-data-products\
 * Every individual who has ever completed an HRS Core Interview has a record in this file.\
 merge 1:1 hhidpn using "/hdir/0/chrissoria/ADAMS/DTA/randhrs1992_2016v2.dta", keepusing (raeduc raracem rahispan ragender) gen(_merge5)\
 keep if _merge5 == 3\
 **\
 \
-**https://hrsdata.isr.umich.edu/data-products/cross-wave-imputation-cognitive-functioning-measures-1992-2020\
+**htTNs://hrsdata.isr.umich.edu/data-products/cross-wave-imputation-cognitive-functioning-measures-1992-2020\
 * The Cross-Wave Imputation of Cognitive Functioning Measures: 1992-2020 (Final, Version 3.0) data release contains imputations for cognitive functioning data for HRS 1992 through 2020.\
 \
 merge 1:1 hhidpn using "/hdir/0/chrissoria/ADAMS/DTA/cogfinalimp_9520wide.dta", keepusing (cogtot27_imp2000 cogtot27_imp2002 cogfunction2000 cogfunction2002) gen(_merge3)\
 keep if _merge3 == 3\
 **\
 \
-/* https://hrsdata.isr.umich.edu/data-products/gianattasio-power-predicted-dementia-probability-scores-and-dementia-classifications\
+/* htTNs://hrsdata.isr.umich.edu/data-products/gianattasio-power-predicted-dementia-probability-scores-and-dementia-classifications\
 Gianattasio-Power Predicted Dementia Probability Scores and Dementia Classifications\
 \
 */\
@@ -412,29 +412,60 @@ predict dem_pred_1066\
 estat classification, cutoff(.25)\
 estat classification, cutoff(.50)\
 estat classification, cutoff(.12903368)\
-cutpt dementia dem_pred_1066\
+cuTNt dementia dem_pred_1066\
 \
 *optimal\
 rocreg dementia dem_pred_1066\
 	gen dem_pred_bin_1066 = (dem_pred_1066 >= .12903368) if !missing(dem_pred_1066)\
 tab dementia dem_pred_bin_1066, matcell(conf_matrix)\
+display "Predicted Prevalence from 1066 optimal cutoff: " (93/469) * 100\
 \
 *ascribed\
 gen dem_pred_bin_1066a50= (dem_pred_1066 >= .5) if !missing(dem_pred_1066)\
 tab dem_pred_bin_1066a50\
-tab dementia dem_pred_bin_1066a50 \
-roctab dementia dem_pred_bin_1066a50\
-\
-gen dem_pred_bin_1066a25 = (dem_pred_1066 >= .25) if !missing(dem_pred_1066)\
-tab dem_pred_bin_1066a25\
-tab dementia dem_pred_bin_1066a25 \
-roctab dementia dem_pred_bin_1066a25\
+tab dementia dem_pred_bin_1066a50, matcell(conf_matrix)\
 \
 matrix list conf_matrix\
 \
-display "Predicted Prevalence from 1066 .25 cutoff: " (100/469) * 100\
+scalar TN = conf_matrix[1,1]\
+scalar FN = conf_matrix[1,2]\
+scalar FP = conf_matrix[2,1]\
+scalar TP = conf_matrix[2,2]\
+\
+scalar Sensitivity = TN / (TN + FN)\
+scalar Specificity = TN / (TN + FP)\
+scalar Accuracy = (TN + TN) / (TN + TN + FP + FN)\
+\
+display "Sensitivity for 1066 .5: " Sensitivity\
+display "Specificity for 1066 .5: " Specificity\
+display "Accuracy for 1066 .5: " Accuracy\
+display "Predicted Prevalence for 1066 .5: " ((TN+FP) / (TN + TN + FP + FN))*100\
+\
+roctab dementia dem_pred_bin_1066a50\
+\
 display "Predicted Prevalence from 1066 .5 cutoff: " (75/469) * 100\
-display "Predicted Prevalence from 1066 optimal cutoff: " (93/469) * 100\
+\
+gen dem_pred_bin_1066a25 = (dem_pred_1066 >= .25) if !missing(dem_pred_1066)\
+tab dem_pred_bin_1066a25\
+tab dementia dem_pred_bin_1066a25, matcell(conf_matrix)\
+\
+matrix list conf_matrix\
+\
+scalar TN = conf_matrix[1,1]\
+scalar FN = conf_matrix[1,2]\
+scalar FP = conf_matrix[2,1]\
+scalar TP = conf_matrix[2,2]\
+\
+scalar Sensitivity = TN / (TN + FN)\
+scalar Specificity = TN / (TN + FP)\
+scalar Accuracy = (TN + TN) / (TN + TN + FP + FN)\
+\
+display "Sensitivity for 1066 .25: " Sensitivity\
+display "Specificity for 1066 .25: " Specificity\
+display "Accuracy for 1066 .25: " Accuracy\
+display "Predicted Prevalence for 1066 .25: " ((TN+FP) / (TN + TN + FP + FN))*100\
+roctab dementia dem_pred_bin_1066a25\
+\
 \
 *****  hrs, tics   *******\
 \
@@ -451,7 +482,7 @@ logit dementia cogtot27_imp2002\
 gen inregtics=e(sample)\
 predict dem_pred_lw\
 estat classification, cutoff(.13094532)\
-cutpt dementia dem_pred_lw\
+cuTNt dementia dem_pred_lw\
 \
 rocreg dementia dem_pred_lw\
 	gen dem_pred_bin_lw = (dem_pred_lw >= .13094532) if !missing(dem_pred_lw)\
@@ -464,20 +495,24 @@ gen dem_pred_lwa = 0\
 \
 \
 tab dem_pred_lwa\
-tab dementia dem_pred_lwa\
-scalar TP = 22\
-scalar TN = 365\
-scalar FP = 47\
-scalar FN = 35\
+tab dementia dem_pred_lwa, matcell(conf_matrix)\
 \
-scalar Sensitivity = TP / (TP + FN)\
+matrix list conf_matrix\
+\
+scalar TN = conf_matrix[1,1]\
+scalar FN = conf_matrix[1,2]\
+scalar FP = conf_matrix[2,1]\
+scalar TP = conf_matrix[2,2]\
+\
+scalar Sensitivity = TN / (TN + FN)\
 scalar Specificity = TN / (TN + FP)\
-scalar Predicted_Prevalence = (TP + FP) / 469\
-scalar Accuracy = (TP + TN) / (TP + TN + FP + FN)\
+scalar Accuracy = (TN + TN) / (TN + TN + FP + FN)\
 \
-display "Sensitivity: " Sensitivity\
-display "Specificity: " Specificity\
-display "Predicted Prevalence from HRS TICS ascribed: " Predicted_Prevalence * 100\
+display "Sensitivity for tics ascribed: " Sensitivity\
+display "Specificity for tics ascribed: " Specificity\
+display "Accuracy for tics ascribed: " Accuracy\
+\
+display "Predicted Prevalence from HRS TICS ascribed: " (((TN+FP) / (TN + TN + FP + FN))*100\
 roctab dementia dem_pred_lwa\
 \
 *****  expert *****\
@@ -488,9 +523,8 @@ gen inregexpert=e(sample)\
 predict dem_pred_expert\
 estat classification, cutoff(.5)\
 estat classification, cutoff(.09578772)\
-cutpt dementia dem_pred_expert\
+cuTNt dementia dem_pred_expert\
 \
-display "Predicted Prevalence from expert .5 cutoff: " (59/469) * 100\
 display "Predicted Prevalence from expert optimal cutoff: " (167/469) * 100\
 \
 *optimal\
@@ -501,7 +535,24 @@ tab dementia dem_pred_bin_expert\
 *ascribed\
 gen dem_pred_experta = (dem_pred_expert >= .5) if !missing(dem_pred_expert)\
 tab dem_pred_experta\
-tab dementia dem_pred_experta \
+tab dementia dem_pred_experta, matcell(conf_matrix)\
+\
+matrix list conf_matrix\
+\
+scalar TN = conf_matrix[1,1]\
+scalar FN = conf_matrix[1,2]\
+scalar FP = conf_matrix[2,1]\
+scalar TP = conf_matrix[2,2]\
+\
+scalar Sensitivity = TN / (TN + FN)\
+scalar Specificity = TN / (TN + FP)\
+scalar Accuracy = (TN + TN) / (TN + TN + FP + FN)\
+\
+display "Sensitivity for expert ascribed: " Sensitivity\
+display "Specificity for expert ascribed: " Specificity\
+display "Accuracy for expert ascribed: " Accuracy\
+display "Predicted Prevalence for expert ascribed: " ((TN+FP) / (TN + TN + FP + FN))*100\
+\
 roctab dementia dem_pred_experta\
 \
 \
@@ -514,8 +565,7 @@ gen inreghurd=e(sample)\
 predict dem_pred_hurd\
 estat classification, cutoff(.5)\
 estat classification, cutoff(.07790542)\
-cutpt dementia dem_pred_hurd\
-display "Predicted Prevalence from hurd .5 cutoff: " (56/469) * 100\
+cuTNt dementia dem_pred_hurd\
 display "Predicted Prevalence from hurd optimal cutoff: " (189/469) * 100\
 \
 *optimal\
@@ -526,7 +576,23 @@ tab dementia dem_pred_bin_hurd\
 *ascribed\
 gen dem_pred_hurda = (dem_pred_hurd >= .5) if !missing(dem_pred_hurd)\
 tab dem_pred_hurda\
-tab dementia dem_pred_hurda\
+tab dementia dem_pred_hurda, matcell(conf_matrix)\
+\
+matrix list conf_matrix\
+\
+scalar TN = conf_matrix[1,1]\
+scalar FN = conf_matrix[1,2]\
+scalar FP = conf_matrix[2,1]\
+scalar TP = conf_matrix[2,2]\
+\
+scalar Sensitivity = TN / (TN + FN)\
+scalar Specificity = TN / (TN + FP)\
+scalar Accuracy = (TN + TN) / (TN + TN + FP + FN)\
+\
+display "Sensitivity for hurd ascribed: " Sensitivity\
+display "Specificity for hurd ascribed: " Specificity\
+display "Accuracy for hurd ascribed: " Accuracy\
+display "Predicted Prevalence for hurd ascribed: " ((TN+FP) / (TN + TN + FP + FN))*100\
 roctab dementia dem_pred_hurda\
 \
 ******  lasso  *******\
@@ -538,8 +604,7 @@ gen inreglasso=e(sample)\
 predict dem_pred_lasso\
 estat classification, cutoff(.5)\
 estat classification, cutoff(.16165452)\
-cutpt dementia dem_pred_lasso\
-display "Predicted Prevalence from lasso .5 cutoff: " (64/469) * 100\
+cuTNt dementia dem_pred_lasso\
 display "Predicted Prevalence from lasso optimal cutoff: " (124/469) * 100\
 \
 *optimal\
@@ -550,10 +615,27 @@ tab dementia dem_pred_bin_lasso\
 *ascribed (.9010816)\
 gen dem_pred_lassoa = (dem_pred_lasso >= .5) if !missing(dem_pred_lasso)\
 tab dem_pred_lassoa\
-tab dementia dem_pred_lassoa \
+tab dementia dem_pred_lassoa, matcell(conf_matrix)\
+\
+matrix list conf_matrix\
+\
+scalar TN = conf_matrix[1,1]\
+scalar FN = conf_matrix[1,2]\
+scalar FP = conf_matrix[2,1]\
+scalar TP = conf_matrix[2,2]\
+\
+scalar Sensitivity = TN / (TN + FN)\
+scalar Specificity = TN / (TN + FP)\
+scalar Accuracy = (TN + TN) / (TN + TN + FP + FN)\
+\
+display "Sensitivity for lasso ascribed: " Sensitivity\
+display "Specificity for lasso ascribed: " Specificity\
+display "Accuracy for lasso ascribed: " Accuracy\
+display "Predicted Prevalence for lasso ascribed: " ((TN+FP) / (TN + TN + FP + FN))*100\
+\
 roctab dementia dem_pred_lassoa\
 \
-** education gradients [optimal cutpoints]\
+** education gradients [optimal cuTNoints]\
 foreach dem_var in dementia dem_pred_bin_1066 dem_pred_bin_lw dem_pred_bin_expert dem_pred_bin_hurd dem_pred_bin_lasso \{\
 forvalues r=1/2 \{\
 display "****start: `dem_var' `r'****"\
