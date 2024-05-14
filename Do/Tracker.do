@@ -42,27 +42,13 @@ C. Check to see gender in Socio matches gender in Roster
 //below we'll pull out the pid row and any columns that might be relevant
 
 if `country' == 0 {
-    import excel using "../PR_in/Resumen de entrevistas.xlsx", firstrow cellrange(A1:G9)
+    import excel using "../PR_in/Resumen de entrevistas.xlsx", firstrow
 }    
 else if `country' == 1 {
     import excel using "../DR_in/Resumen de entrevistas.xlsx", firstrow
 }
 else if `country' == 2 {
     import excel using "../CUBA_in/Resumen de entrevistas.xlsx", firstrow
-}
-
-if `country' == 0 {
-	rename Casa House_ID1
-	rename EdaddeParticpante age
-	rename GénerodeParticpante sex
-rename Fechaenquecompletoelchequeo Fecha
-rename NotasCuestionariosnohechos Notas
-rename Participante Participante1
-rename Cluster cluster1, replace
-
-destring Participante, replace
-destring cluster1, replace
-destring House_ID1, replace
 }
 
 if `country' == 1 {
@@ -97,7 +83,7 @@ destring House_ID1, replace
 gen pais = 0
 
 if `country' == 0 {
-    replace pais = 0 if Participante != .
+    replace pais = 0 if Participante != ""
 }    
 else if `country' == 1 {
     replace pais = 1 if Participante != ""
@@ -127,16 +113,6 @@ drop if missing(Cluster)
 
 gen country_str = string(pais, "%12.0f")
 
-if `country' == 0 {
-gen Cluster = string(cluster1)
-replace Cluster = cond(strlen(Cluster) == 1, "0" + Cluster, Cluster)
-gen House_ID = string(House_ID1)
-replace House_ID = cond(strlen(House_ID) == 1, "00" + House_ID, House_ID)
-replace House_ID = cond(strlen(House_ID) == 2, "0" + House_ID, House_ID)
-gen Participante = string(Participante1)
-replace Participante = cond(strlen(Participante) == 1, "0" + Participante, Participante)
-}
-
 if `country' == 1 {
 replace Cluster = cond(strlen(Cluster) == 1, "0" + Cluster, Cluster)
 replace House_ID = cond(strlen(House_ID) == 1, "00" + House_ID, House_ID)
@@ -145,13 +121,13 @@ replace Participante = cond(strlen(Participante) == 1, "0" + Participante, Parti
 }
 
 else if `country' == 2 {
-rename Cluster cluster_real
-tostring cluster_real, generate(Cluster) format(%12.0g)
+	rename Cluster cluster_real
+	tostring cluster_real, generate(Cluster) format(%12.0g)
 replace Cluster = cond(strlen(Cluster) == 1, "0" + Cluster, Cluster)
 gen House_ID = string(House_ID)
 replace House_ID = cond(strlen(House_ID) == 1, "00" + House_ID, House_ID)
 replace House_ID = cond(strlen(House_ID) == 2, "0" + House_ID, House_ID)
-rename Participante Participante1
+	rename Participante Participante1
 gen Participante = string(Participante1)
 replace Participante = cond(strlen(Participante) == 1, "0" + Participante, Participante)
 }
@@ -172,21 +148,16 @@ keep pid age sex House_ID Cluster
 gen pidr=real(pid)
 rename sex SEX
 
-if `country' == 0 {
-replace SEX = lower(trim(SEX))
-generate sex = cond(SEX == "M", 0, cond(SEX == "F", 1, .))
-}
-
 if `country' == 1 {
 replace SEX = lower(trim(SEX))
 generate sex = cond(SEX == "m", 0, cond(SEX == "f", 1, .))
 }
 
 else if `country' == 2 {
-replace SEX = lower(trim(SEX))
-replace SEX = "1" if SEX == "masculino"
-replace SEX = "2" if SEX == "femenino"
-destring SEX, replace
+	replace SEX = lower(trim(SEX))
+	replace SEX = "1" if SEX == "masculino"
+	replace SEX = "1" if SEX == "femenino"
+	destring SEX, replace
 generate sex = cond(SEX == 1,0, cond(SEX == 2, 1,.))
 }
 
@@ -385,10 +356,10 @@ sum
 * BLOOD
 **********
 
+
 if `country' == 0 {
     use "..\SANGRE\PR_blood\Sangre_tracker_full.dta", clear
-}
-
+}    
 else if `country' == 1 {
     use "sangre_full.dta", clear
     
@@ -436,11 +407,6 @@ gen RSPCZIHXF7 = G_in+R_in + S_in + P_in + C_in + Z_in + I_in + H_in + B_in
 tab RSPCZIHXF7
 }
 else if `country' == 2 {
-gen RSPCZIHXF7 = G_in+R_in + S_in + P_in + C_in + Z_in + I_in + H_in
-tab RSPCZIHXF7
-}
-
-else if `country' == 0 {
 gen RSPCZIHXF7 = G_in+R_in + S_in + P_in + C_in + Z_in + I_in + H_in
 tab RSPCZIHXF7
 }
@@ -494,6 +460,32 @@ drop _merge
 keep d_1 d_particid pid hhid hhid_en_puerta
 
 save tracker_door, replace
+
+use tracker_slim
+
+drop if RSPCZIHXF7 == "GRSPCZIH"
+drop if RSPCZIHXF7 == " RSPCZIH"
+drop RSPCZIHXF7
+drop edad_en_socio
+drop sexo_en_socio
+drop edad_en_resumen
+drop edad_en_listas
+drop sexo_listas
+drop sex_resumen
+
+foreach var in pid_en_infor pid_en_cog pid_en_cog_scor pid_en_listas pid_en_phys pid_en_socio pid_en_resumen existe_familiar {
+    tostring `var', replace
+}
+capture tostring pid_en_sangre, replace
+
+foreach var in pid_en_infor pid_en_cog pid_en_cog_scor pid_en_listas pid_en_phys pid_en_socio pid_en_resumen existe_familiar {
+    replace `var' = " " if `var' == "1"
+    replace `var' = "no presente" if `var' == "."
+}
+
+capture replace pid_en_sangre = " " if pid_en_sangre == "1"
+
+export excel using "duplicates/casos_incompletos.xlsx", replace firstrow(variables)
 
 log close
 exit, clear
