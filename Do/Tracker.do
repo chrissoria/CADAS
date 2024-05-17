@@ -174,6 +174,8 @@ sort pid
 list pid sex age duplic if duplic>1 /* print duplicate obs */
 gen pid_en_resumen=1 /* create indicator to use after merge with other questionnaire files */
 drop pidr duplic sd_sex sd_age
+replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
+gen hhid=substr(pid,1,6)
 sum
 save tracker, replace
 
@@ -181,27 +183,20 @@ save tracker, replace
 * ROSTER_PARTICIPANTS
 **********
 use rosters_participants, clear
-keep pid pr_3 pr_4 r_interid r_deviceid
+keep pid hhid r_deviceid
+rename r_deviceid numero_tableta
 gen pidr=real(pid)
 drop if pidr==. /* check if any obs are missing pid */
 egen duplic=count(pid), by(pid) /* check for duplicate PID: should all be =1 if no duplicates */
 tab duplic /* if any duplicates, should re-do cleaning .do file then re-run this file */
-egen sd_sex=sd(pr_3), by(pid)
-egen sd_age=sd(pr_4), by(pid)
-sum sd_sex sd_age /* these should be all zero if duplicates have identical age and sex */
 sort pid
-list pid pr_3 pr_4 duplic if duplic>1 /* print duplicate obs */
 gen pid_en_listas=1 /* create indicator to use after merge with other questionnaire files */
-drop pidr duplic sd_sex sd_age
+drop pidr duplic
 sum
 *save rosters_check.dta, replace /* I think you could drop these lines, and save just tracker per next line */
-merge m:m pid using tracker
-rename sex sex_resumen
-tab pr_3 sex_resumen, miss
-list pid pr_3 sex_resumen if (pr_3 ~= sex_resumen +1) & _merge==3 /* list if sex differs between Roster and Resumen */
-corr pr_4 age
-list pid pr_4 age if abs(pr_4 - age) >2 & _merge==3 /* list if sex differs more than 2 years between Roster and Resumen */
-
+replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
+replace hhid = "2" + substr(hhid, 2, .) if substr(hhid, 1, 1) == "."
+merge m:m hhid using tracker
 drop _merge
 save tracker, replace
 d,s
@@ -229,12 +224,8 @@ gen pid_en_socio=1
 drop pidr duplic
 sum
 *save socio_check.dta, replace
+replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
 merge m:m pid using tracker
-
-tab pr_3 s_0, miss
-list pid pr_3 s_0 if (pr_3 ~= s_0 +1) & _merge==3 /* list if sex differs between Roster and Socio */
-corr pr_4 s_2_3
-list pid pr_4 s_2_3 if abs(pr_4 - s_2_3) >2 & _merge==3 /* list if sex differs more than 2 years between Roster and Socio */
 
 drop _merge
 save tracker, replace
@@ -256,6 +247,7 @@ gen pid_en_phys=1
 drop pidr duplic
 sum
 *save phys_check.dta, replace
+replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
 merge m:m pid using tracker
 drop _merge
 save tracker, replace
@@ -277,6 +269,7 @@ gen pid_en_cog=1
 drop pidr duplic
 sum
 *save cog_check.dta, replace
+replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
 merge m:m pid using tracker
 drop _merge
 save tracker, replace
@@ -298,6 +291,7 @@ gen pid_en_cog_scor=1
 drop pidr duplic
 sum
 *save cog_scoring_check.dta, replace
+replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
 merge m:m pid using tracker
 drop _merge
 save tracker, replace
@@ -319,6 +313,7 @@ gen pid_en_infor=1
 drop pidr duplic
 sum
 *save infor_check.dta, replace
+replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
 merge m:m pid using tracker
 drop _merge
 save tracker, replace
@@ -328,11 +323,6 @@ sum
 ********** 
 * HOUSEHOLD
 **********
-use tracker, clear
-gen hhid=substr(pid,1,6)
-save tracker, replace
-d,s
-sum
 
 use Household, clear
 keep hhid h_interid h_deviceid1
@@ -346,6 +336,7 @@ gen existe_familiar=1
 drop hhidr duplic
 sum
 *save hh_check.dta, replace
+replace hhid = "2" + substr(hhid, 2, .) if substr(hhid, 1, 1) == "."
 merge m:m hhid using tracker
 drop _merge
 save tracker, replace
@@ -417,9 +408,7 @@ drop R_in S_in P_in C_in Z_in I_in H_in G_in
 capture drop B_in
 
 rename s_0 sexo_en_socio
-rename pr_3 sexo_listas
 rename s_2_3 edad_en_socio
-rename pr_4 edad_en_listas
 rename age edad_en_resumen
 
 order pid House_ID Cluster
@@ -438,8 +427,8 @@ foreach var of varlist `varlist' {
 
 export excel using "duplicates/tracker_full.xlsx", replace firstrow(variables)
 
-drop r_interid s_interid p_interid i_interid h_interid cs_interid c_interid
-drop r_deviceid s_deviceid1 p_deviceid1 i_deviceid1 c_deviceid1 all_image_files_found all_audio_files_found
+drop s_interid p_interid i_interid h_interid cs_interid c_interid
+drop s_deviceid1 p_deviceid1 i_deviceid1 c_deviceid1 all_image_files_found all_audio_files_found
 
 save tracker_slim, replace
 
@@ -461,7 +450,13 @@ keep d_1 d_particid pid hhid hhid_en_puerta
 
 save tracker_door, replace
 
+clear
+
 use tracker_slim
+
+gen real_pid = real(pid)
+sort real_pid
+drop real_pid
 
 drop if RSPCZIHXF7 == "GRSPCZIH"
 drop if RSPCZIHXF7 == " RSPCZIH"
@@ -469,9 +464,6 @@ drop RSPCZIHXF7
 drop edad_en_socio
 drop sexo_en_socio
 drop edad_en_resumen
-drop edad_en_listas
-drop sexo_listas
-drop sex_resumen
 
 foreach var in pid_en_infor pid_en_cog pid_en_cog_scor pid_en_listas pid_en_phys pid_en_socio pid_en_resumen existe_familiar {
     tostring `var', replace
@@ -482,6 +474,34 @@ foreach var in pid_en_infor pid_en_cog pid_en_cog_scor pid_en_listas pid_en_phys
     replace `var' = " " if `var' == "1"
     replace `var' = "no presente" if `var' == "."
 }
+
+drop Cluster
+
+rename h_deviceid1 tableta
+rename existe_familiar familiar
+rename pid_en_infor informante
+rename pid_en_cog_scor scoring
+rename pid_en_cog cognitiva
+rename pid_en_phys examen_fisico
+rename pid_en_socio sociodemografica
+rename pid_en_listas listas
+rename pid_en_resumen resumen
+
+gen cluster = substr(pid, 2, 2)
+gen casa = substr(pid, 4, 3)
+gen participante = substr(pid, 8, 1)
+
+drop pid
+drop sex
+drop tableta
+drop House_ID
+drop numero_tableta
+order cluster casa participante 
+
+replace cluster = substr(hhid, 1, 2) if cluster == ""
+replace casa = substr(hhid, 4, 3) if casa == ""
+
+drop hhid
 
 capture replace pid_en_sangre = " " if pid_en_sangre == "1"
 
