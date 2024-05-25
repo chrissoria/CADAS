@@ -454,23 +454,36 @@ clear
 
 use tracker_slim
 
+*in this first version, we will focus only on the individual surveys (cog, cog_score, socio, infor, phys)
+
 gen real_pid = real(pid)
 sort real_pid
 drop real_pid
 
 drop if RSPCZIHXF7 == "GRSPCZIH"
 drop if RSPCZIHXF7 == " RSPCZIH"
-drop RSPCZIHXF7
+drop if RSPCZIHXF7 == "       H"
+drop if RSPCZIHXF7 == " R      "
+drop if RSPCZIHXF7 == " R     H"
+drop if RSPCZIHXF7 == "  SPCZI "
+drop if RSPCZIHXF7 == "G SPCZIH"
+drop if RSPCZIHXF7 == "GRSPCZI "
+
+*creating this to identify which cases are only in the resumen
+gen solo_en_resumen = ""
+replace solo_en_resumen = "solo en el resumen" if RSPCZIHXF7 == "G       "
+
 drop edad_en_socio
 drop sexo_en_socio
 drop edad_en_resumen
+drop existe_familiar pid_en_resumen pid_en_listas
 
-foreach var in pid_en_infor pid_en_cog pid_en_cog_scor pid_en_listas pid_en_phys pid_en_socio pid_en_resumen existe_familiar {
+foreach var in pid_en_infor pid_en_cog pid_en_cog_scor pid_en_phys pid_en_socio {
     tostring `var', replace
 }
 capture tostring pid_en_sangre, replace
 
-foreach var in pid_en_infor pid_en_cog pid_en_cog_scor pid_en_listas pid_en_phys pid_en_socio pid_en_resumen existe_familiar {
+foreach var in pid_en_infor pid_en_cog pid_en_cog_scor pid_en_phys pid_en_socio {
     replace `var' = " " if `var' == "1"
     replace `var' = "no presente" if `var' == "."
 }
@@ -478,29 +491,32 @@ foreach var in pid_en_infor pid_en_cog pid_en_cog_scor pid_en_listas pid_en_phys
 drop Cluster
 
 rename h_deviceid1 tableta
-rename existe_familiar familiar
 rename pid_en_infor informante
 rename pid_en_cog_scor scoring
 rename pid_en_cog cognitiva
 rename pid_en_phys examen_fisico
 rename pid_en_socio sociodemografica
-rename pid_en_listas listas
-rename pid_en_resumen resumen
 
 gen cluster = substr(pid, 2, 2)
 gen casa = substr(pid, 4, 3)
 gen participante = substr(pid, 8, 1)
 
-drop pid
 drop sex
 drop tableta
 drop House_ID
 drop numero_tableta
 order cluster casa participante 
 
-replace cluster = substr(hhid, 1, 2) if cluster == ""
+replace cluster = substr(hhid, 2, 2) if cluster == ""
 replace casa = substr(hhid, 4, 3) if casa == ""
 
+drop RSPCZIHXF7
+
+gen is_duplicate = pid[_n] == pid[_n-1]
+drop if is_duplicate == 1
+drop is_duplicate
+
+drop pid
 drop hhid
 
 capture replace pid_en_sangre = " " if pid_en_sangre == "1"
