@@ -202,7 +202,7 @@ drop if inlist(globalrecordid, "a79705db-06e9-49fc-9ab6-6003215a5e7f", "eb52b3dd
 
 *these also look like junk based on how empty they are
 
-drop if inlist(globalrecordid, "5ccf6d7c-2308-49a2-9a81-f9523a64df34", "1c5a2a7c-e19c-4ea9-8d18-6b2707e9c93c", "ea2318d6-5cab-4942-8cbb-7eea4aba8180")
+drop if inlist(globalrecordid, "5ccf6d7c-2308-49a2-9a81-f9523a64df34","1c5a2a7c-e19c-4ea9-8d18-6b2707e9c93c")
 
 
 *is dropped because duplicate personid and less complete
@@ -219,6 +219,9 @@ replace s_clustid = 6 if globalrecordid == "bcaefbc5-5e39-48a4-8676-184a32a33f34
 
 *interviewer says she entered in the wrong particid
 replace s_particid = 2 if globalrecordid == "83b47556-1fac-4dc9-a91c-e3c3c8a6d2ea"
+
+*tania says there's only one person here
+replace s_particid = 1 if inlist(globalrecordid, "71301c56-d615-427e-b1a3-c5e2485858b2", "7768ad52-868b-4472-bb93-3f02fd823f7f")
  
 gen s_country_str = string(s_country, "%12.0f")
 
@@ -305,72 +308,50 @@ export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(variable
  
  *all of these are mostly empty
 drop if globalrecordid == "17d3fd4c-5731-4bcb-94ca-d8bba03a56ff"
-drop if globalrecordid == "002919dc-b2d7-497c-993c-a73c0a0705f9"
-drop if globalrecordid == "1d905c21-3154-4812-99ee-9921abe3bd77"
-drop if globalrecordid == "9fad7efc-1cf4-4e33-89c4-63625d2da4d9"
-drop if globalrecordid == "c3854704-44fc-49e6-8e3a-e73c23900529"
 drop if globalrecordid == "8005c92d-acbd-47b5-947d-fce02c48f1de"
 drop if globalrecordid == "96a27236-0d00-40e1-ac08-9bee063c30bb"
 drop if globalrecordid == "1bc35769-79a8-40b4-8389-51f78fab9423"
-drop if globalrecordid == "e0fb036e-4cee-4630-94e5-fcb20b6aee10"
-drop if globalrecordid == "518121c6-c61b-4d8f-8ddd-97b85cb65744"
 drop if globalrecordid == "5cad5da0-8296-4d06-9f1e-9f1befc559dc"
-drop if globalrecordid == "fe45b7fb-e06d-4d61-aa90-efeb61ea7432"
-drop if globalrecordid == "6ab79689-a63b-440b-b035-0712917b3145"
 drop if globalrecordid == "3cadce4d-e9e8-45f3-8619-f717281fb306"
-drop if globalrecordid == "fadb34b6-cbcc-455a-b4b2-7b522d846185"
 drop if globalrecordid == "6bae9bdb-3384-484b-879f-7606a6dc6557"
 drop if globalrecordid == "8351cdbf-d829-435f-b627-6e75727f3291"
 drop if globalrecordid == "6268d744-7bc8-44bb-903a-cbba33f2da27"
 drop if globalrecordid == "76e508dc-e2f0-4f0a-b2bb-2278759e0f6c"
 drop if globalrecordid == "79598f0d-10c7-4e4f-be32-5c0129ddfc00"
 drop if globalrecordid == "69956660-15ed-4314-b11b-19929a74b254"
-drop if globalrecordid == "7f310053-0677-450f-9212-188f8aaf5ca8"
-drop if globalrecordid == "e7944b00-759b-4000-bbd2-a90bc8ecf568"
 drop if globalrecordid == "8ef61994-fb5d-4bf9-be9d-17c947f7a0b2"
 drop if globalrecordid == "d56e1305-5326-4314-9bcd-ae9608695deb"
 drop if globalrecordid == "3424a133-e296-42af-8191-1743534d2413"
 drop if globalrecordid == "9ef23cbb-9b81-44d0-8ecc-63ec5de8ba96"
 drop if globalrecordid == "fd25d99a-9ca1-48a8-80b4-c9e392a48ddc"
-drop if globalrecordid == "40775f7c-74a3-4308-8687-49ceab454daa"
 drop if globalrecordid == "794793d4-b793-4882-9325-9ec559abc656"
-drop if globalrecordid == "3e1e003b-4fb3-4bfd-a4fa-d5463f5bcad5"
-drop if globalrecordid == "2140bae1-2655-4c9c-8589-3036dc5e1fe7"
 drop if globalrecordid == "8ef44fed-e5fa-4baf-93d5-f4a470d9b1ea"
 drop if globalrecordid == "6c3d323a-d3b5-4e4a-8d93-d95964d90575"
 drop if globalrecordid == "ecff1cb4-97a7-4a10-891d-681a26331b55"
 drop if globalrecordid == "6a75934a-8a16-4f13-b8cb-bff97eec511f"
-drop if globalrecordid == "e5cc3be0-d7cb-4e02-a98d-d834c113c8b3"
 drop if globalrecordid == "6c5e33dc-dcba-44f7-bff4-47d0121dd827"
 drop if globalrecordid == "ba057a45-72de-4c65-a218-255ee068a4fc"
-drop if globalrecordid == "c85fcec0-afa1-456f-b3b7-df4662699167"
-drop if globalrecordid == "952afdc4-cdb1-466f-9555-df1fa7a9cc42"
-drop if globalrecordid == "0c6e6803-26a8-4535-beef-e6b98a97bc41"
-drop if globalrecordid == "d40dc937-98d1-4a6b-a58d-c8a75a9ef871"
 drop if globalrecordid == "8fca4756-0d5d-45f2-aa05-bdd3a3b0ce6f"
 drop if globalrecordid == "cbd6b5ac-562f-4be3-9819-7ea6bb79eb97"
-drop if globalrecordid == "9cbdc8b8-26b7-46bd-99d1-105e31c2dac9"
-drop if globalrecordid == "9551d337-6cee-400a-98cf-81a23eb6763c"
-drop if globalrecordid == "b176ea67-46d9-4b02-b1f3-7b2de70d5321"
 drop if globalrecordid == "0b8bbc44-6486-41cb-9f57-4fba5a765373"
 drop if globalrecordid == "fe92f591-b3c9-4e4f-a446-f36e3534720e"
 drop if globalrecordid == "30a5cabe-6d44-4827-bed7-5850ea509e67"
 drop if globalrecordid == "874efd76-7175-436a-87b6-7e49f6a90d21"
-drop if globalrecordid == "aebbf27b-bb03-4d92-806b-d580d86b279c"
+drop if globalrecordid == "b176ea67-46d9-4b02-b1f3-7b2de70d5321"
 drop if globalrecordid == "12a21320-2c03-467c-9f36-68286f9b2a6c"
 drop if globalrecordid == "17ff5b28-7686-4dd4-92a8-65e7fb65ddfd"
 drop if globalrecordid == "30a87fd3-56c0-43fb-b0e4-0a87de3ad989"
-drop if globalrecordid == "fe9b94f7-f840-47a1-9a07-3d4d6afa0f44"
 drop if globalrecordid == "e45d76f5-fff5-491a-b110-731c62fba380"
 drop if globalrecordid == "bccf8a8b-cec9-4939-9c90-0ba62c233564"
 drop if globalrecordid == "d981d354-d14b-4b69-8e0a-731a0bc5eb93"
-drop if globalrecordid == "8369dc50-686c-48bb-85a8-c15060e9dfd3"
 drop if globalrecordid == "f44a420f-acdf-4a4f-9662-51c378da630b"
 drop if globalrecordid == "06e4de7c-b45d-4131-87eb-a150674e2311"
-drop if globalrecordid == "e812bc8b-7aa4-4b10-a19f-3e1470bf06b4"
 drop if globalrecordid == "b1813576-a39a-48b0-bdcd-8bed013dae9e"
-drop if globalrecordid == "d6b61e57-ab3f-4282-a893-fc7d0eeddd2d"
 
+*missing country for some reason
+replace p_country == 2 if globalrecordid "596f5b90-eab5-4823-bfb3-c7454de069bb"
+replace p_country == 2 if globalrecordid "29206a88-8585-4683-ae17-1cbe27103ce5"
+replace p_country == 2 if globalrecordid "190f53b6-e532-4fed-97c2-ebf02048efdf"
  
  *dropping these junk files that were entered before the study started
 drop if inlist(globalrecordid, "38ddf6b0-7465-425a-9534-1f042dbbe352", "985efbd2-5bd0-42c9-b9db-ca9205a8369d","70fa9041-5a26-4751-bf75-f9326e11a783", "99db8029-9609-4fb6-baac-852b38db7e36")
@@ -483,6 +464,9 @@ replace i_particid = 1 if globalrecordid == "e69aad3b-5367-4f9c-90cb-8f1c9543eae
 
  replace i_particid = 2 if globalrecordid == "105e8dcc-7c09-464c-a092-42032ace1494"
  
+ *accidentally coded as participant 2 (there is only one participant)
+ raplace i_particid = 1 if globalrecordid == "4b58008b-ba96-483a-8b96-2be8e52f3ac4"
+ 
  *the case below looks like a "junk" file pid 20100201
  *nearly every column is empty but the first part of the file has some information
  *the other two people from this household are already in the data
@@ -505,7 +489,17 @@ replace i_particid = 1 if globalrecordid == "73516e7d-4288-499a-a89c-9ffde5d2df0
 *instructions from Tania
 replace i_particid = 2 if globalrecordid == "1df5da6e-02c9-424a-8e67-03573a33ff8d"
 
+*only one participant here
+replace i_particid = 1 if globalrecordid == "555df103-6eeb-4530-88ab-d4e27d51570c"
+replace i_particid = 1 if globalrecordid == "2022f149-dd6e-478d-be74-c48ea264ec86"
+
+*for some reason dropping the country
+replace i_country = 2 if globalrecordid == "c2997a2a-e954-4acf-b536-0a3d79e7a0e5"
+
 drop if inlist(globalrecordid, "f4ddf443-fc07-46e9-a42a-244c86e3c75f", "4a071c21-104b-482b-a2c0-7d329e926960")
+
+*dropping this based on incompleteness
+drop if inlist(globalrecordid, "c21d973c-0f97-4534-9c59-6ce408ecbcf9","38fb71ea-bf5d-4955-8738-e5667a4e056d","f29438fe-c8c6-447f-9b97-277556bcdb0b")
  
  gen i_country_str = string(i_country, "%12.0f")
 
@@ -520,6 +514,7 @@ gen i_particid_str = string(i_particid, "%12.0f")
 replace i_particid_str = cond(strlen(i_particid_str) == 1, "0" + i_particid_str, i_particid_str)
 
 gen pid = i_country_str + i_clustid_str + i_houseid_str + i_particid_str
+replace pid = "20813102" if globalrecordid == "e663aec8-5f3c-4284-9542-9a0ac82913ed"
 gen hhid = i_country_str + i_clustid_str + i_houseid_str
 
 drop i_country_str i_clustid_str i_houseid_str i_particid_str

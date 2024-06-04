@@ -205,8 +205,8 @@ insheet using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_in/Cog_Child.csv", comma
 
  drop if inlist(globalrecordid, "eb91435b-3146-43fd-94d6-261a7e7526d2", "8bc87a48-a4a4-4972-b1c8-e2f990c602d9", "a3aaf799-a716-4f62-87fc-0e60b8ee398b", "7fe87507-a24f-4f5e-979b-51ad294b7122", "1040e8ce-1260-43fa-9010-e2e553b549a9")
 
-*Tania's interviewer told use to delete the other duplicate, but this one is much less complete so I will assume this is the correct one to delete. Tania will have this interviewer double check these.
-drop if inlist(globalrecordid, "f7735bee-5206-4789-9771-0a68b9e1f7b5")
+* removing this delete, completes a case
+* drop if inlist(globalrecordid, "f7735bee-5206-4789-9771-0a68b9e1f7b5")
 *instruction from interviewer 6
 drop if inlist(globalrecordid, "36955fd0-cc0e-4b3c-9299-ff484808f728")
 
@@ -233,11 +233,27 @@ drop if inlist(fkey, "0fcf7696-252b-4e0d-82ff-cb628198ac15","69583114-a60a-4575-
 drop if inlist(fkey, "4938554b-7b33-4784-b0ef-efd01ede07a3")
 
 *instructions from clust 5
-drop if inlist(globalrecordid, "df7ef8be-b7a6-4533-928f-2dabfc1d0ca0")
+*un-deleting due to missing for a respondent. Possible we deleted the wrong row in a previous instruction.
+* drop if inlist(globalrecordid, "df7ef8be-b7a6-4533-928f-2dabfc1d0ca0")
 
 replace c_particid = 2 if globalrecordid == "70422852-4a32-4664-96fd-42433ee1b545"
+replace c_particid = 1 if globalrecordid == "f8ad75de-aa8f-4978-9be4-c03aa3886d08"
+replace c_particid = 1 if globalrecordid == "f8ad75de-aa8f-4978-9be4-c03aa3886d08"
 
-drop if inlist(globalrecordid, "884ecfa6-42dd-4ac6-8c07-22ea2579a892","fb325eeb-ecc9-400f-89d6-133760a6765d","36955fd0-cc0e-4b3c-9299-ff484808f728","df7ef8be-b7a6-4533-928f-2dabfc1d0ca0","33c3962b-3635-41af-a2c3-754909b06ebb","36955fd0-cc0e-4b3c-9299-ff484808f728")
+*only one participant in this household
+replace c_particid = 1 if globalrecordid == "b5003563-a03c-4807-95be-ae81e6d83a47"
+replace c_particid = 1 if globalrecordid == "38b754d6-2c05-4835-ad44-1e0dc9c0d672"
+replace c_particid = 1 if globalrecordid == "fe315c82-9040-4119-a97d-7718b29c359d"
+
+*for some reason the clustid is missing
+replace c_clustid = 8 if inlist(globalrecordid, "c51d46c7-7540-4cbd-a0ef-95f152837acc", "8aace6a2-e557-4fce-a163-f4295623c179")
+
+drop if inlist(globalrecordid, "884ecfa6-42dd-4ac6-8c07-22ea2579a892")
+
+drop if inlist(globalrecordid, "fb325eeb-ecc9-400f-89d6-133760a6765d","36955fd0-cc0e-4b3c-9299-ff484808f728","df7ef8be-b7a6-4533-928f-2dabfc1d0ca0","33c3962b-3635-41af-a2c3-754909b06ebb","36955fd0-cc0e-4b3c-9299-ff484808f728")
+
+*deleting this duplicate based on emptiness
+drop if inlist(globalrecordid, "70422852-4a32-4664-96fd-42433ee1b545")
 
 export delimited using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_in/Cog_Child.csv", replace nolabel
 
