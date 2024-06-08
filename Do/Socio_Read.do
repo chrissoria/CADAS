@@ -329,6 +329,22 @@ generate S_8_1 = cond(s_8_1 ==  0, "no", cond(s_8_1 ==  1, "si", cond(s_8_1 ==  
 
 drop s_8_1
 
+if `country' == 0 {
+*data from PR is coming in different for this variable
+replace s_8_3 = "7" if s_8_3 == "7 - Otros servicios"
+replace s_8_3 = "1" if s_8_3 == "1 - Profesional, ejecutivo "
+replace s_8_3 = "9" if s_8_3 == "9 - Trabajador no especializado"
+
+destring s_8_3, replace
+
+replace s_8_5d = "10" if s_8_5d == "10 - Trabajos informales"
+destring s_8_5d, replace
+
+replace s_8_16 = "1" if s_8_16 == "1 - Profesional, ejecutivo "
+replace s_8_16 = "9" if s_8_16 == "9 - Trabajador no especializado"
+destring s_8_16, replace
+}
+
 generate S_8_3 = cond(s_8_3 ==  0, "profesional ejecutivo", cond(s_8_3 ==  1, "oficinista", cond(s_8_3 ==  2, "vendedor minorista", cond(s_8_3 ==  3, "agricultor independiente", cond(s_8_3 ==  4, "trabajador agrícola", cond(s_8_3 ==  5, "trabajador domestico", cond(s_8_3 ==  6, "otros servicios", cond(s_8_3 ==  7, "trabajador especializado", cond(s_8_3 ==  8, "trabajador no especializado", cond(s_8_3 ==  9, "trabajos informales", cond(s_8_3 ==  10, "otros", cond(s_8_3 ==  11, "no responde", cond(s_8_3 ==  12, "no sabe", "")))))))))))))
 
 drop s_8_3

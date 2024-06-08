@@ -4729,6 +4729,8 @@ if `country' == 0 {
 
 *run the program we created to score the response from each participant
 
+
+if `country' == !0 {
 quietly forvalues obs = 1(1) `=_N' {
 
 	if c_20_temp[`obs'] ~= "" {
@@ -4738,6 +4740,8 @@ quietly forvalues obs = 1(1) `=_N' {
 			score `name' `obs'
 
 	}
+
+}
 
 }
 

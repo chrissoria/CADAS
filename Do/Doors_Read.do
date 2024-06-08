@@ -281,7 +281,8 @@ replace pid = "." if strpos(pid, ".") > 0
 gen hhid = d_country_str + d_clustid_str + d_houseid_str
 replace hhid = "." if strpos(hhid, ".") > 0
 
-drop d_particid_str d_clustid_str d_houseid_str d_country_str dp_deviceid dp_time di_deviceid2 di_time2 di_time1 di_deviceid1 v1 d_survey_date d_time1 informationdoor informationdoorparticipants d_date p_interid pais
+drop d_particid_str d_clustid_str d_houseid_str d_country_str informationdoor informationdoorparticipants d_date p_interid pais
+capture drop dp_deviceid dp_time di_deviceid2 di_time2 di_time1 di_deviceid1 v1 d_survey_date d_time1
 *drop d_clustid2 d_houseid2 d_interid2
 order pid hhid d_particid
 
