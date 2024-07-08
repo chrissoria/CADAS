@@ -1229,8 +1229,6 @@ replace p22_2 = .i if (p22_2 == . | p22_2 == .a)
 replace p_deviceid2 = ".i" if p_deviceid2 == ""
 
 
-
-
 *drop all uppercase variables
 
 drop P*
@@ -1359,7 +1357,7 @@ codebook
 
 log close
 
- save Phys.dta, replace
+save Phys.dta, replace
 
  * Get the list of variable names
 unab varlist : _all
@@ -1371,6 +1369,48 @@ foreach var of varlist `varlist' {
     }
 }
 
-export excel using "excel/physical_exam.xlsx", replace firstrow(variables)
-
 clear all
+
+if `country' == 0 {
+    insheet using "../PR_in/Phys_Parent.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/Phys_Parent.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/Phys_Parent.csv", comma names clear
+}
+
+keep globalrecordid p_clustid1 p_houseid1 p_particid1
+rename globalrecordid fkey
+rename p_clustid1 p_parent_clustid
+rename p_houseid1 p_parent_houseid
+rename p_particid1 p_parent_particid
+
+merge 1:1 fkey using Phys 
+
+drop if _merge == 1
+drop _merge
+
+drop pid2
+
+gen p_country_str = string(p_country, "%12.0f")
+
+gen p_clustid_str = string(p_parent_clustid, "%12.0f")
+replace p_clustid_str = cond(strlen(p_clustid_str) == 1, "0" + p_clustid_str, p_clustid_str)
+
+gen p_houseid_str = string(p_parent_houseid, "%03.0f")
+replace p_houseid_str = cond(strlen(p_houseid_str) == 1, "00" + p_houseid_str, p_houseid_str)
+replace p_houseid_str = cond(strlen(p_houseid_str) == 2, "0" + p_houseid_str, p_houseid_str)
+
+gen p_particid_str = string(p_parent_particid, "%12.0f")
+replace p_particid_str = cond(strlen(p_particid_str) == 1, "0" + p_particid_str, p_particid_str)
+
+gen pid_parent = p_country_str + p_clustid_str + p_houseid_str + p_particid_str
+
+*giving primacy to the ID's entered on the parent form
+gen pid_nonmatch = 1 if (pid != pid_parent & p_parent_clustid != .)
+
+drop p_clustid_str p_houseid_str p_particid_str p_country_str
+
+save Phys.dta, replace

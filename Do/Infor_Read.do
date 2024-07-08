@@ -748,6 +748,17 @@ replace i_houseid_str = cond(strlen(i_houseid_str) == 2, "0" + i_houseid_str, i_
 gen i_particid_str = string(i_particid, "%12.0f")
 replace i_particid_str = cond(strlen(i_particid_str) == 1, "0" + i_particid_str, i_particid_str)
 
+if `country' == 2 {
+    replace i_country = 2
+}
+else if `country' == 1 {
+    replace i_country = 1
+}
+else if `country' == 0 {
+    replace i_country = 0
+}
+
+
 gen pid = i_country_str + i_clustid_str + i_houseid_str + i_particid_str
 gen hhid = i_country_str + i_clustid_str + i_houseid_str
 
@@ -3677,6 +3688,48 @@ foreach var of varlist `varlist' {
     }
 }
 
-export excel using "excel/informant.xlsx", replace firstrow(variables)
-
 clear all
+
+if `country' == 0 {
+    insheet using "../PR_in/Infor_Parent.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/Infor_Parent.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/Infor_Parent.csv", comma names clear
+}
+
+keep globalrecordid i_clustid1 i_houseid1 i_particid1
+rename globalrecordid fkey
+rename i_clustid1 i_parent_clustid
+rename i_houseid1 i_parent_houseid
+rename i_particid1 i_parent_particid
+
+merge 1:1 fkey using Infor 
+
+drop if _merge == 1
+drop _merge
+
+drop pid2
+
+gen i_country_str = string(i_country, "%12.0f")
+
+gen i_clustid_str = string(i_parent_clustid, "%12.0f")
+replace i_clustid_str = cond(strlen(i_clustid_str) == 1, "0" + i_clustid_str, i_clustid_str)
+
+gen i_houseid_str = string(i_parent_houseid, "%03.0f")
+replace i_houseid_str = cond(strlen(i_houseid_str) == 1, "00" + i_houseid_str, i_houseid_str)
+replace i_houseid_str = cond(strlen(i_houseid_str) == 2, "0" + i_houseid_str, i_houseid_str)
+
+gen i_particid_str = string(i_parent_particid, "%12.0f")
+replace i_particid_str = cond(strlen(i_particid_str) == 1, "0" + i_particid_str, i_particid_str)
+
+gen pid_parent = i_country_str + i_clustid_str + i_houseid_str + i_particid_str
+
+*giving primacy to the ID's entered on the parent form
+gen pid_nonmatch = 1 if (pid != pid_parent & i_parent_clustid != .)
+
+drop i_clustid_str i_houseid_str i_particid_str i_country_str
+
+save Infor.dta, replace

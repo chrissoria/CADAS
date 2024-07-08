@@ -6045,7 +6045,7 @@ codebook
 
 log close
 
- save Socio.dta, replace
+save Socio.dta, replace
  
  * Get the list of variable names
 unab varlist : _all
@@ -6057,6 +6057,52 @@ foreach var of varlist `varlist' {
     }
 }
 
-export excel using "excel/socio.xlsx", replace firstrow(variables)
-
 clear all
+
+if `country' == 0 {
+    insheet using "../PR_in/Socio_Parent.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/Socio_Parent.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/Socio_Parent.csv", comma names clear
+}
+
+
+keep globalrecordid s_clustid1 s_houseid1 s_particid1
+rename globalrecordid fkey
+rename s_clustid1 s_parent_clustid
+rename s_houseid1 s_parent_houseid
+rename s_particid1 s_parent_particid
+
+merge 1:1 fkey using Socio 
+
+drop if _merge == 1
+drop _merge
+
+drop pid2
+
+gen s_country_str = string(s_country, "%12.0f")
+
+gen s_clustid_str = string(s_parent_clustid, "%12.0f")
+replace s_clustid_str = cond(strlen(s_clustid_str) == 1, "0" + s_clustid_str, s_clustid_str)
+
+gen s_houseid_str = string(s_parent_houseid, "%03.0f")
+replace s_houseid_str = cond(strlen(s_houseid_str) == 1, "00" + s_houseid_str, s_houseid_str)
+replace s_houseid_str = cond(strlen(s_houseid_str) == 2, "0" + s_houseid_str, s_houseid_str)
+
+gen s_particid_str = string(s_parent_particid, "%12.0f")
+replace s_particid_str = cond(strlen(s_particid_str) == 1, "0" + s_particid_str, s_particid_str)
+
+gen pid_parent = s_country_str + s_clustid_str + s_houseid_str + s_particid_str
+
+sort s_parent_clustid s_parent_houseid
+order pid_parent pid globalrecordid
+
+* checking to see if ID's on first page match the second
+gen pid_nonmatch = 1 if (pid != pid_parent & s_parent_clustid != .)
+
+drop s_clustid_str s_houseid_str s_particid_str s_country_str s_houseid2 s_conglid2 s_particid2
+
+save Socio.dta, replace

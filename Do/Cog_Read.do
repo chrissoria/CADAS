@@ -736,6 +736,17 @@ replace c_houseid_str = cond(strlen(c_houseid_str) == 2, "0" + c_houseid_str, c_
 gen c_particid_str = string(c_particid, "%12.0f")
 replace c_particid_str = cond(strlen(c_particid_str) == 1, "0" + c_particid_str, c_particid_str)
 
+if `country' == 2 {
+    replace c_country = 2
+}
+else if `country' == 1 {
+    replace c_country = 1
+}
+else if `country' == 0 {
+    replace c_country = 0
+}
+
+
 gen pid = c_country_str + c_clustid_str + c_houseid_str + c_particid_str
 gen hhid = c_country_str + c_clustid_str + c_houseid_str
 drop c_clustid_str c_houseid_str c_particid_str
@@ -4332,7 +4343,6 @@ drop c_TotalTimeTemp c_tempdate c_total_days c_total_days2 c_temptime2
 drop g_3
 
 save Cog.dta, replace
-export excel using "excel/cognitive.xlsx", replace firstrow(variables)
  
  if `country' == 0 {
     use "../PR_out/Cog_Scoring.dta"
@@ -5505,4 +5515,54 @@ foreach var of varlist `varlist' {
     }
 }
 
-exit, clear
+clear all
+
+if `country' == 0 {
+    insheet using "../PR_in/Cog_Parent.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/Cog_Parent.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/Cog_Parent.csv", comma names clear
+}
+
+bysort globalrecordid: keep if _n == 1
+
+keep globalrecordid c_clustid1 c_houseid1 c_particid1
+rename globalrecordid fkey
+rename c_clustid1 c_parent_clustid
+rename c_houseid1 c_parent_houseid
+rename c_particid1 c_parent_particid
+
+merge 1:m fkey using Cog 
+
+drop if _merge == 1
+drop _merge
+
+gen c_country_str = string(c_country, "%12.0f")
+
+gen c_clustid_str = string(c_parent_clustid, "%12.0f")
+replace c_clustid_str = cond(strlen(c_clustid_str) == 1, "0" + c_clustid_str, c_clustid_str)
+
+gen c_houseid_str = string(c_parent_houseid, "%03.0f")
+replace c_houseid_str = cond(strlen(c_houseid_str) == 1, "00" + c_houseid_str, c_houseid_str)
+replace c_houseid_str = cond(strlen(c_houseid_str) == 2, "0" + c_houseid_str, c_houseid_str)
+
+gen c_particid_str = string(c_parent_particid, "%12.0f")
+replace c_particid_str = cond(strlen(c_particid_str) == 1, "0" + c_particid_str, c_particid_str)
+
+gen pid_parent = c_country_str + c_clustid_str + c_houseid_str + c_particid_str
+
+sort c_parent_clustid c_parent_houseid
+
+*checking to see if parent form ID's and child match
+gen pid_nonmatch = pid_parent if (pid2 != pid_parent & c_parent_clustid != .)
+drop pid2
+
+order pid_parent pid pid_nonmatch globalrecordid
+
+drop c_clustid_str c_houseid_str c_particid_str c_country_str
+
+export excel using "excel/cognitive.xlsx", replace firstrow(variables)
+save Cog.dta, replace

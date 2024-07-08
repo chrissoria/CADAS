@@ -58,11 +58,6 @@ rename GénerodeParticpante sex
 rename EdaddeParticpante age
 rename Fechaenquecompletoelchequeo Fecha
 rename NotasCuestionariosnohechos Notas
-
-destring age, replace
-rename age age_string
-gen age = real(age_string)
-drop age_string
 }
 
 else if `country' == 2 {
@@ -86,7 +81,7 @@ if `country' == 0 {
     replace pais = 0 if Participante != ""
 }    
 else if `country' == 1 {
-    replace pais = 1 if Participante != ""
+    replace pais = 1 if Participante != .
 }
 else if `country' == 2 {
     replace pais = 2 if Participante != .
@@ -114,10 +109,21 @@ drop if missing(Cluster)
 gen country_str = string(pais, "%12.0f")
 
 if `country' == 1 {
-replace Cluster = cond(strlen(Cluster) == 1, "0" + Cluster, Cluster)
-replace House_ID = cond(strlen(House_ID) == 1, "00" + House_ID, House_ID)
-replace House_ID = cond(strlen(House_ID) == 2, "0" + House_ID, House_ID)
-replace Participante = cond(strlen(Participante) == 1, "0" + Participante, Participante)
+destring Cluster, replace
+destring House_ID, replace
+destring Participante, replace
+
+gen Cluster_str = string(Cluster, "%12.0f")
+gen House_ID_str = string(House_ID, "%12.0f")
+gen Participante_str = string(Participante, "%12.0f")
+
+replace Cluster_str = cond(strlen(Cluster_str) == 1, "0" + Cluster_str, Cluster_str)
+replace House_ID_str = cond(strlen(House_ID_str) == 1, "00" + House_ID_str, House_ID_str)
+replace House_ID_str = cond(strlen(House_ID_str) == 2, "0" + House_ID_str, House_ID_str)
+replace Participante_str = cond(strlen(Participante_str) == 1, "0" + Participante_str, Participante_str)
+
+gen pid = country_str + Cluster_str + House_ID_str + Participante_str
+drop country_str Cluster_str House_ID_str Participante_str
 }
 
 else if `country' == 2 {
@@ -130,11 +136,11 @@ replace House_ID = cond(strlen(House_ID) == 2, "0" + House_ID, House_ID)
 	rename Participante Participante1
 gen Participante = string(Participante1)
 replace Participante = cond(strlen(Participante) == 1, "0" + Participante, Participante)
-}
-
 
 gen pid = country_str + Cluster + House_ID + Participante
 drop country_str
+}
+
 
 duplicates drop pid, force
 
@@ -452,7 +458,7 @@ save tracker_door, replace
 
 clear
 
-use tracker_slim
+use tracker_full
 
 *in this first version, we will focus only on the individual surveys (cog, cog_score, socio, infor, phys)
 
@@ -490,7 +496,6 @@ foreach var in pid_en_infor pid_en_cog pid_en_cog_scor pid_en_phys pid_en_socio 
 
 drop Cluster
 
-rename h_deviceid1 tableta
 rename pid_en_infor informante
 rename pid_en_cog_scor scoring
 rename pid_en_cog cognitiva
@@ -502,7 +507,6 @@ gen casa = substr(pid, 4, 3)
 gen participante = substr(pid, 8, 1)
 
 drop sex
-drop tableta
 drop House_ID
 drop numero_tableta
 order cluster casa participante 
@@ -519,9 +523,27 @@ drop is_duplicate
 drop pid
 drop hhid
 
+gen all_missing = 1 if (informante == "no presente") & (scoring == "no presente") & (cognitiva == "no presente") & (examen_fisico == "no presente") & (sociodemografica == "no presente")
+gen none_missing = 1 if (informante == " ") & (scoring == " ") & (cognitiva == " ") & (examen_fisico == " ") & (sociodemografica == " ")
+
+drop if all_missing == 1
+drop if none_missing == 1
+
+drop none_missing all_missing
+drop h_interid i_interid cs_interid h_deviceid1 s_interid all_audio all_image_files_found p_interid XF7 c_interid
+
+rename c_deviceid1 tableta_cognitiva
+rename i_deviceid1 tableta_informante
+rename s_deviceid1 tableta_sociodemografico
+rename p_deviceid1 tableta_examen_fisico
+
+order tableta_informante tableta_cognitiva tableta_examen_fisico tableta_sociodemografico
+
 capture replace pid_en_sangre = " " if pid_en_sangre == "1"
+
+drop pid_en_sangre
 
 export excel using "duplicates/casos_incompletos.xlsx", replace firstrow(variables)
 
 log close
-exit, clear
+*exit, clear

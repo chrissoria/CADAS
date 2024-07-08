@@ -287,6 +287,8 @@ capture drop dp_deviceid dp_time di_deviceid2 di_time2 di_time1 di_deviceid1 v1 
 order pid hhid d_particid
 
 save door_merged_all.dta,replace
+export excel using "excel/puerta.xlsx", replace firstrow(variables)
+
 
 capture log close
 log using logs/InformationDoorMissingCodebook, text replace

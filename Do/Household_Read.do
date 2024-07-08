@@ -6984,8 +6984,7 @@ codebook
 
 log close
 
- save Household.dta, replace
- 
+ save Household.dta, replace 
   * Get the list of variable names
 unab varlist : _all
 
@@ -6996,6 +6995,27 @@ foreach var of varlist `varlist' {
     }
 }
 
-export excel using "excel/household.xlsx", replace firstrow(variables)
-
 clear all
+/*
+
+if `country' == 0 {
+    insheet using "../PR_in/Household_Parent.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/Household_Parent.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/Household_Parent.csv", comma names clear
+}
+
+
+keep globalrecordid h_clustid1 h_houseid1
+rename globalrecordid fkey
+rename h_clustid1 h_parent_clustid
+rename h_houseid1 h_parent_houseid
+
+merge 1:1 fkey using Household 
+
+export excel using "excel/household.xlsx", replace firstrow(variables)
+save Household.dta, replace
+*/
