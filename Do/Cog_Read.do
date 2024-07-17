@@ -4342,6 +4342,28 @@ drop c_TotalTimeTemp c_tempdate c_total_days c_total_days2 c_temptime2
 
 drop g_3
 
+replace pent_pic_found = "." if pent_pic == ".i"
+replace anim_pic_found = "." if anim_pic == ".i"
+replace symb_pic_found = "." if symb_pic == ".i"
+
+tostring c_72_1_pic, replace
+tostring c_72_2_pic, replace
+tostring c_72_3_pic, replace
+
+replace c_72_1_pic_found = "." if c_72_1_pic == ".i"
+replace c_72_2_pic_found = "." if c_72_2_pic == ".i"
+replace c_72_3_pic_found = "." if c_72_3_pic == ".i"
+replace c_72_4_pic_found = "." if c_72_4_pic == ".i"
+
+tostring c_79_1_pic, replace
+tostring c_79_2_pic, replace
+tostring c_79_3_pic, replace
+
+replace c_79_1_pic_found = "." if c_79_1_pic == ".i"
+replace c_79_2_pic_found = "." if c_79_2_pic == ".i"
+replace c_79_3_pic_found = "." if c_79_3_pic == ".i"
+replace c_79_4_pic_found = "." if c_79_4_pic == ".i"
+
 save Cog.dta, replace
  
  if `country' == 0 {
@@ -5505,6 +5527,7 @@ order pid hhid c_32 cs_32 pent_pic g_1 g_1_file c_40 cs_40 cs_41 anim_pic c_43 s
 
 save cog_slim.dta, replace
 
+
  * Get the list of variable names
 unab varlist : _all
 
@@ -5516,6 +5539,49 @@ foreach var of varlist `varlist' {
 }
 
 clear all
+
+use Cog.dta
+
+if `country' == 1 | `country' == 0 {
+    keep pid globalrecordid c_interid c_clustid c_houseid c_particid pent_pic pent_pic_found anim_pic anim_pic_found symb_pic symb_pic_found c_72_4_pic ///
+         c_72_4_pic_found c_79_4_pic c_79_4_pic_found c_date
+}
+else if `country' == 2 {
+    keep pid globalrecordid c_interid c_clustid c_houseid c_particid pent_pic pent_pic_found anim_pic anim_pic_found symb_pic symb_pic_found c_72_4_pic ///
+         c_72_4_pic_found c_79_4_pic c_79_4_pic_found c_date
+}
+
+save cog_pics.dta, replace
+
+rename c_interid id_entrevistador
+rename c_clustid id_conglomerado
+rename c_houseid id_hogar
+rename c_particid id_participante
+rename pent_pic foto_pentagonos
+rename pent_pic_found foto_pentagonos_encontrada
+rename anim_pic foto_animales
+rename anim_pic_found foto_animales_encontrada
+rename symb_pic foto_simbolos
+rename symb_pic_found foto_simbolos_encontrada
+rename c_72_4_pic foto_72_4
+rename c_72_4_pic_found foto_72_4_encontrada
+rename c_79_4_pic foto_79_4
+rename c_79_4_pic_found foto_79_4_encontrada
+rename c_date fecha
+
+foreach var of varlist _all {
+    capture confirm string variable `var'
+    if !_rc {
+        replace `var' = "recibida" if `var' == "found"
+	replace `var' = "no recibida" if `var' == "missing"
+	replace `var' = "no fue tomada" if `var' == ".i"
+    }
+}
+
+export excel using "duplicates/fotos_recibidas.xlsx", replace firstrow(variables)
+
+clear all
+
 
 if `country' == 0 {
     insheet using "../PR_in/Cog_Parent.csv", comma names clear

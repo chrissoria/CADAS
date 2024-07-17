@@ -2,7 +2,20 @@ clear all
 set more off
 capture log close
 
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
+
+local country = 1
+
+if `"`user'"' == "Chris" {
+local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+}
+
+else if `"`user'"' == "Ty" {
+local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+}
+
+cd "`path'/DR_out"
 
 use door_merged_all
 
@@ -211,11 +224,15 @@ export excel using "duplicates/roster_duplicates.xlsx", replace firstrow(variabl
  
  clear all
  
- use Socio
+use Socio
 drop pid
 drop hhid
 
 replace s_houseid = 83 if globalrecordid == "846f1818-2920-421c-bdde-0a3ac6cb72f2"
+
+replace s_houseid = 176 if globalrecordid == "3a7c732c-4edb-4e8d-aa62-e12d03c86b2a"
+
+drop if inlist(globalrecordid, "56fbe48f-d423-417a-87ba-98ba80db0c34")
  
 gen s_country_str = string(s_country, "%12.0f")
 
@@ -231,9 +248,14 @@ replace s_particid_str = cond(strlen(s_particid_str) == 1, "0" + s_particid_str,
 
 gen pid = s_country_str + s_clustid_str + s_houseid_str + s_particid_str
 gen hhid = s_country_str + s_clustid_str + s_houseid_str
-drop s_country_str s_clustid_str s_houseid_str s_particid_str
 
-log using "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out/logs/SocioOnlyMissing", text replace
+sort s_parent_clustid s_parent_houseid
+order pid_parent pid pid_nonmatch globalrecordid
+
+drop s_clustid_str s_houseid_str s_particid_str s_country_str
+export excel using "excel/socio.xlsx", replace firstrow(variables)
+
+log using logs/SocioOnlyMissing, text replace
 
 
 local missvarlist
@@ -267,10 +289,13 @@ log close
  list if is_duplicate
  drop is_duplicate
  
+ /*
 gen pid_match = 0 
-replace pid_match = 1 if pid != pid2
+replace pid_match = 1 if pid != pid_parent
 list if pid_match
 drop pid_match
+*/
+ 
  
  save Socio.dta, replace
   
@@ -320,9 +345,15 @@ replace p_particid_str = cond(strlen(p_particid_str) == 1, "0" + p_particid_str,
 
 gen pid = p_country_str + p_clustid_str + p_houseid_str + p_particid_str
 gen hhid = p_country_str + p_clustid_str + p_houseid_str
+
+sort p_parent_clustid p_parent_houseid
+order pid_parent pid pid_nonmatch globalrecordid
+
 drop p_country_str p_clustid_str p_houseid_str p_particid_str
 
-log using "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out/logs/PhysOnlyMissing", text replace
+export excel using "excel/examen_fisico.xlsx", replace firstrow(variables)
+
+log using logs/PhysOnlyMissing, text replace
 
 
 local missvarlist
@@ -370,8 +401,17 @@ replace i_particid = 2 if globalrecordid == "ab8cb82c-dfbf-4249-9225-5af21101db7
 *instructions from guillermina
 replace i_particid = 1 if globalrecordid == "515d1632-ce79-493d-9fbf-9897ffbffc5c"
 
+replace i_clustid = 176 if globalrecordid == "a4184246-538b-41fc-a23b-80a6992f616b"
+
+replace i_houseid2 = 66 if globalrecordid == "746a368c-a2cd-491f-9040-6654b2c87640"
+replace i_houseid = 66 if globalrecordid == "746a368c-a2cd-491f-9040-6654b2c87640"
+
+
+replace i_houseid2 = 77 if globalrecordid == "449e7a26-a22d-4feb-b7ed-35b1f36ce77a"
+replace i_houseid = 77 if globalrecordid == "449e7a26-a22d-4feb-b7ed-35b1f36ce77a"
+
 *both of these apppear to be a junk case from sept 1 and 8/25, most values are missing
-drop if inlist(globalrecordid, "9350d6a0-a2b7-4c7b-a433-db9b38a4439a","9063c91e-8f34-4497-909d-2814de817c4a")
+drop if inlist(globalrecordid, "9350d6a0-a2b7-4c7b-a433-db9b38a4439a","9063c91e-8f34-4497-909d-2814de817c4a", "2bbb0db0-005d-49f9-8465-c97b2bd22d88")
 
 *instructions from Guille and her team
 drop if inlist(globalrecordid, "515d1632-ce79-493d-9fbf-9897ffbffc5c")
@@ -397,7 +437,12 @@ gen hhid = i_country_str + i_clustid_str + i_houseid_str
 
 drop i_country_str i_clustid_str i_houseid_str i_particid_str
 
-log using "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out/logs/InforOnlyMissing", text replace
+sort i_parent_clustid i_parent_houseid
+order pid_parent pid pid_nonmatch globalrecordid
+
+export excel using "excel/informante.xlsx", replace firstrow(variables)
+
+log using logs/InforOnlyMissing, text replace
 
 
 local missvarlist
@@ -465,7 +510,10 @@ drop hhid hhid2
 *instructions from guillermina
 drop if inlist(globalrecordid, "d3d9c1f9-3ff2-434f-b223-6e4131ddc739","10c63e51-b6b6-444a-9def-621e9920021f","ead54b80-b458-4c82-9b7c-06a64719c74c","e65dc446-42bc-4cd0-b7f8-469569ef66f7")
 drop if inlist(globalrecordid, "74574e98-9e46-43cc-991e-716167bd205a","2b1a138b-160d-4ee9-b32b-e849bbd08a22","f2f52561-05a4-4423-9224-e656d7641cea","73290b90-92c0-45a6-8fe5-7337835d7d5b","cf48f800-6bb3-4114-af5f-72f7b7626e4d")
- 
+
+replace h_clustid = 176 if globalrecordid == "26a57540-2990-4236-bc26-5896acc7ead8"
+drop if inlist(globalrecordid, "31614f8a-69c9-4012-96ee-bc4154ca6491", "19b6756d-1236-4abc-b36c-142b71548a50", "3fd9b0fb-8fd1-4c8a-90e1-30b6511b51e5", "3cfbdb1c-1f42-414b-9227-83a1345ac34f")
+
 gen h_country_str = string(h_country, "%12.0f")
 
 gen h_clustid_str = string(h_clustid, "%12.0f")
@@ -499,6 +547,7 @@ drop h_country_str h_clustid2_str h_houseid2_str
 drop is_duplicate
 
 save Household.dta, replace
+export excel using "excel/familiar.xlsx", replace firstrow(variables)
 
 gen is_duplicate = hhid[_n] == hhid[_n-1]
 
@@ -523,7 +572,7 @@ foreach var of varlist `varlist' {
 * Export data to Excel
 capture export excel using "duplicates/Household_duplicates.xlsx", replace firstrow(variables)
 
- log using "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out/logs/HouseholdOnlyMissing", text replace
+ log using logs/HouseholdOnlyMissing, text replace
 
 
 local missvarlist
@@ -554,8 +603,8 @@ clear all
  *Next, I will merge each child with the parent and see if things are matching
  *Parents match to child with the fkey to globalrecordid, so I will need to rename the fkey to globalrecordid in the child
 
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
-insheet using "../CUBA_in/Socio_Parent.csv"
+cd "`path'/DR_out"
+insheet using "../DR_in/Socio_Parent.csv"
 
 rename globalrecordid fkey
 
@@ -569,8 +618,8 @@ list
 clear all
 
 
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
-insheet using "../CUBA_in/Cog_Parent.csv"
+cd "`path'/DR_out"
+insheet using "../DR_in/Cog_Parent.csv"
 
 rename globalrecordid fkey
 
@@ -583,8 +632,8 @@ list
 
 clear all
 
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
-insheet using "../CUBA_in/Phys_Parent.csv"
+cd "`path'/DR_out"
+insheet using "../DR_in/Phys_Parent.csv"
 
 rename globalrecordid fkey
 
@@ -598,8 +647,8 @@ list
 
 clear all
 
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
-insheet using "../CUBA_in/Infor_Parent.csv"
+cd "`path'/DR_out"
+insheet using "../DR_in/Infor_Parent.csv"
 
 rename globalrecordid fkey
 
@@ -610,8 +659,8 @@ list
 
 clear all
 
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
-insheet using "../CUBA_in/Household_Parent.csv"
+cd "`path'/DR_out"
+insheet using "../DR_in/Household_Parent.csv"
 
 rename globalrecordid fkey
 
@@ -629,10 +678,10 @@ clear all
 
 *next, I want to find out if we have the right amount of cog scoring and cog surveys
 
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
+cd "`path'/DR_out"
 use Cog_Scoring
 
-*for no, I will do m:m because I have't been able to pin down which unique cases are the true/correct ones
+*for now, I will do m:m because I have't been able to pin down which unique cases are the true/correct ones
 merge m:m pid using Cog, force
 
 keep if _merge != 3

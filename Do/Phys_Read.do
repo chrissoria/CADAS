@@ -58,6 +58,12 @@ else if `country' == 2 {
 
 capture drop v1
 
+if `country' == 2 {
+	set varabbrev off
+	drop p_10
+	set varabbrev on
+}
+
 *converting numeric to string
 
 generate P2_1 = cond(p2_1 ==  0, "no", cond(p2_1 ==  1, "si", ""))
@@ -296,6 +302,16 @@ foreach var of local string_vars {
 
     drop `var'_trimmed
 
+}
+
+if `country' == 2 {
+    replace p_country = 2
+}
+else if `country' == 1 {
+    replace p_country = 1
+}
+else if `country' == 0 {
+    replace p_country = 0
 }
 
 label define country_label 0 "Puerto Rico" 1 "República Dominicana" 2 "Cuba"
@@ -1410,6 +1426,8 @@ gen pid_parent = p_country_str + p_clustid_str + p_houseid_str + p_particid_str
 
 *giving primacy to the ID's entered on the parent form
 gen pid_nonmatch = 1 if (pid != pid_parent & p_parent_clustid != .)
+
+order pid_parent pid pid_nonmatch globalrecordid
 
 drop p_clustid_str p_houseid_str p_particid_str p_country_str
 

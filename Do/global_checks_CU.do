@@ -2,7 +2,20 @@ clear all
 set more off
 capture log close
 
- cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
+capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
+
+local country = 2
+
+if `"`user'"' == "Chris" {
+local path = "`path'"
+}
+
+else if `"`user'"' == "Ty" {
+local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+}
+
+cd "`path'/CUBA_out"
  
  use rosters_participants
  
@@ -108,6 +121,8 @@ capture export excel using "duplicates/roster_duplicates.xlsx", replace firstrow
  clear all
  
 use Socio
+*TY and I deduced
+replace s_clustid = 8 if globalrecordid == "23e81a7f-8ed7-4e5e-846e-e130c6a9b02f"
 
 *interviewer says they mixed these two up
 replace s_particid = 2 if globalrecordid == "d8ec834a-acd7-4463-919e-83c386418658"
@@ -222,6 +237,12 @@ replace s_particid = 2 if globalrecordid == "83b47556-1fac-4dc9-a91c-e3c3c8a6d2e
 
 *tania says there's only one person here
 replace s_particid = 1 if inlist(globalrecordid, "71301c56-d615-427e-b1a3-c5e2485858b2", "7768ad52-868b-4472-bb93-3f02fd823f7f")
+
+replace s_particid = 2 if fkey == "93c3d5bf-70fb-45f5-a930-18198354f339"
+drop if inlist(globalrecordid, "2a4766c4-4814-4e57-9d13-a23dd888c060", "8ff62a85-40ab-4712-be41-246a2fb355ba","70d39a8c-f8cf-4ca4-bc7c-a58f2de6a2c4")
+
+*my observations
+drop if inlist(globalrecordid, "abdbcbd8-aa75-49c4-a5c7-7f059eba761b", "f594c56e-01fc-4105-a7a7-402f7ad0c288","6b898ab7-6d6a-45f4-b94a-5f6b17f70ed8","1c1f11b1-1c58-404b-a26d-2ca31f00738d")
  
 gen s_country_str = string(s_country, "%12.0f")
 
@@ -239,7 +260,7 @@ gen pid = s_country_str + s_clustid_str + s_houseid_str + s_particid_str
 gen hhid = s_country_str + s_clustid_str + s_houseid_str
 drop s_country_str s_clustid_str s_houseid_str s_particid_str
 
-log using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out/logs/SocioOnlyMissing", text replace
+log using "`path'/CUBA_out/logs/SocioOnlyMissing", text replace
 
 
 local missvarlist
@@ -274,7 +295,8 @@ log close
  drop is_duplicate
  
  save Socio.dta, replace
-  
+export excel using "excel/socio.xlsx", replace firstrow(variables)
+
 gen is_duplicate = pid[_n] == pid[_n-1]
 
 * Mark all duplicate observations with 1 and non-duplicates with 0
@@ -295,7 +317,7 @@ foreach var of varlist `varlist' {
     }
 }
 * Export data to Excel
-export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(variables)
+capture export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(variables)
  
  clear all
  
@@ -305,6 +327,10 @@ export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(variable
  
  duplicates report globalrecordid
  duplicates drop globalrecordid, force
+ 
+* deduction from Tania conversations
+replace p_houseid = 135 if globalrecordid == "1b990de8-0fe7-4780-808e-9cf13d8b4651"
+replace p_clustid = 1 if globalrecordid == "1b990de8-0fe7-4780-808e-9cf13d8b4651"
  
  *all of these are mostly empty
 drop if globalrecordid == "17d3fd4c-5731-4bcb-94ca-d8bba03a56ff"
@@ -347,11 +373,6 @@ drop if globalrecordid == "d981d354-d14b-4b69-8e0a-731a0bc5eb93"
 drop if globalrecordid == "f44a420f-acdf-4a4f-9662-51c378da630b"
 drop if globalrecordid == "06e4de7c-b45d-4131-87eb-a150674e2311"
 drop if globalrecordid == "b1813576-a39a-48b0-bdcd-8bed013dae9e"
-
-*missing country for some reason
-replace p_country == 2 if globalrecordid "596f5b90-eab5-4823-bfb3-c7454de069bb"
-replace p_country == 2 if globalrecordid "29206a88-8585-4683-ae17-1cbe27103ce5"
-replace p_country == 2 if globalrecordid "190f53b6-e532-4fed-97c2-ebf02048efdf"
  
  *dropping these junk files that were entered before the study started
 drop if inlist(globalrecordid, "38ddf6b0-7465-425a-9534-1f042dbbe352", "985efbd2-5bd0-42c9-b9db-ca9205a8369d","70fa9041-5a26-4751-bf75-f9326e11a783", "99db8029-9609-4fb6-baac-852b38db7e36")
@@ -379,7 +400,7 @@ gen pid = p_country_str + p_clustid_str + p_houseid_str + p_particid_str
 gen hhid = p_country_str + p_clustid_str + p_houseid_str
 drop p_country_str p_clustid_str p_houseid_str p_particid_str
 
-log using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out/logs/PhysOnlyMissing", text replace
+log using "`path'/CUBA_out/logs/PhysOnlyMissing", text replace
 
 
 local missvarlist
@@ -406,8 +427,9 @@ foreach v of local missvarlist {
 }
 
 log close
- save Phys.dta, replace
+save Phys.dta, replace
 
+export excel using "excel/examen_fisico.xlsx", replace firstrow(variables)
  
  duplicates report pid
  sort pid
@@ -465,7 +487,7 @@ replace i_particid = 1 if globalrecordid == "e69aad3b-5367-4f9c-90cb-8f1c9543eae
  replace i_particid = 2 if globalrecordid == "105e8dcc-7c09-464c-a092-42032ace1494"
  
  *accidentally coded as participant 2 (there is only one participant)
- raplace i_particid = 1 if globalrecordid == "4b58008b-ba96-483a-8b96-2be8e52f3ac4"
+ replace i_particid = 1 if globalrecordid == "4b58008b-ba96-483a-8b96-2be8e52f3ac4"
  
  *the case below looks like a "junk" file pid 20100201
  *nearly every column is empty but the first part of the file has some information
@@ -519,7 +541,7 @@ gen hhid = i_country_str + i_clustid_str + i_houseid_str
 
 drop i_country_str i_clustid_str i_houseid_str i_particid_str
 
-log using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out/logs/InforOnlyMissing", text replace
+log using "`path'/CUBA_out/logs/InforOnlyMissing", text replace
 
 
 local missvarlist
@@ -554,6 +576,7 @@ log close
  drop is_duplicate
  
  save Infor.dta, replace
+export excel using "excel/informante.xlsx", replace firstrow(variables)
  
  gen is_duplicate = pid[_n] == pid[_n-1]
 
@@ -604,7 +627,7 @@ drop if inlist(globalrecordid, "1c52bce1-5967-4a86-a6a7-b1a1fa6c5a94", "de718065
  
  drop if inlist(globalrecordid, "cb2296d9-7344-40ff-a971-d3d5fe0b089d")
  
- log using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out/logs/HouseholdOnlyMissing", text replace
+ log using "`path'/CUBA_out/logs/HouseholdOnlyMissing", text replace
 
 
 local missvarlist
@@ -649,6 +672,7 @@ log close
 drop is_duplicate
 
 save Household.dta, replace
+export excel using "excel/familiar.xlsx", replace firstrow(variables)
 
 gen is_duplicate = hhid[_n] == hhid[_n-1]
 
@@ -681,7 +705,7 @@ clear all
 
 *next, I want to find out if we have the right amount of cog scoring and cog surveys
 
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
+cd "`path'/CUBA_out"
 use Cog_Scoring
 
 *for no, I will do m:m because I have't been able to pin down which unique cases are the true/correct ones

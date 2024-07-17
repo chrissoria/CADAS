@@ -57,6 +57,12 @@ else if `country' == 2 {
 }
 capture drop v1
 
+if `country' == 2 {
+	set varabbrev off
+	drop s_2_8a s_2_8b s_9_21 s_9_43 s_9_45 s_14_2_p s_14_2_d
+	set varabbrev on
+}
+
 *converting from numeric to string
 
 
@@ -2497,7 +2503,7 @@ if !_rc{
      tostring S_10_1A, replace
 }
 
-label define S_10_1A .a"." 0 "no cierto" 1 "si cierto" 8 "no responde"9 "no sabe"
+label define S_10_1A .a"." 5 "no cierto" 1 "si cierto" 8 "no responde"9 "no sabe"
 
 encode S_10_1A, gen(s_10_1a) label (S_10_1A)
 
@@ -6098,11 +6104,14 @@ replace s_particid_str = cond(strlen(s_particid_str) == 1, "0" + s_particid_str,
 gen pid_parent = s_country_str + s_clustid_str + s_houseid_str + s_particid_str
 
 sort s_parent_clustid s_parent_houseid
-order pid_parent pid globalrecordid
 
 * checking to see if ID's on first page match the second
 gen pid_nonmatch = 1 if (pid != pid_parent & s_parent_clustid != .)
 
+order pid_parent pid pid_nonmatch globalrecordid
+
 drop s_clustid_str s_houseid_str s_particid_str s_country_str s_houseid2 s_conglid2 s_particid2
+
+replace s_clustid = s_parent_clustid if s_clustid == .i
 
 save Socio.dta, replace

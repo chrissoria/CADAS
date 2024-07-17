@@ -162,7 +162,7 @@ generate sex = cond(SEX == "m", 0, cond(SEX == "f", 1, .))
 else if `country' == 2 {
 	replace SEX = lower(trim(SEX))
 	replace SEX = "1" if SEX == "masculino"
-	replace SEX = "1" if SEX == "femenino"
+	replace SEX = "2" if SEX == "femenino"
 	destring SEX, replace
 generate sex = cond(SEX == 1,0, cond(SEX == 2, 1,.))
 }

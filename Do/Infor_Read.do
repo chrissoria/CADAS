@@ -3730,6 +3730,8 @@ gen pid_parent = i_country_str + i_clustid_str + i_houseid_str + i_particid_str
 *giving primacy to the ID's entered on the parent form
 gen pid_nonmatch = 1 if (pid != pid_parent & i_parent_clustid != .)
 
+order pid_parent pid pid_nonmatch globalrecordid
+
 drop i_clustid_str i_houseid_str i_particid_str i_country_str
 
 save Infor.dta, replace
