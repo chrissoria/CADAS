@@ -2,20 +2,7 @@ clear all
 set more off
 capture log close
 
-capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
-capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
-
-local country = 2
-
-if `"`user'"' == "Chris" {
-local path = "`path'"
-}
-
-else if `"`user'"' == "Ty" {
-local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
-}
-
-cd "`path'/CUBA_out"
+ cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
  
  use rosters_participants
  
@@ -260,7 +247,7 @@ gen pid = s_country_str + s_clustid_str + s_houseid_str + s_particid_str
 gen hhid = s_country_str + s_clustid_str + s_houseid_str
 drop s_country_str s_clustid_str s_houseid_str s_particid_str
 
-log using "`path'/CUBA_out/logs/SocioOnlyMissing", text replace
+log using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out/logs/SocioOnlyMissing", text replace
 
 
 local missvarlist
@@ -328,9 +315,16 @@ capture export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(
  duplicates report globalrecordid
  duplicates drop globalrecordid, force
  
-* deduction from Tania conversations
+*deduction from Tania conversations
 replace p_houseid = 135 if globalrecordid == "1b990de8-0fe7-4780-808e-9cf13d8b4651"
 replace p_clustid = 1 if globalrecordid == "1b990de8-0fe7-4780-808e-9cf13d8b4651"
+
+*these are showing up with decimals for some reason
+replace p_houseid = 63 if globalrecordid == "610ec725-b834-453f-abc3-a061b476110e"
+replace p_houseid = 63 if globalrecordid == "daad1f3d-78c0-4e39-89f3-84314aeacd6c"
+
+*tania says these are early case junk cases
+drop if inlist(globalrecordid, "c035c59f-8744-48a7-b6c9-12923ad4335c","be18d0a3-76a4-471e-a72d-c782f5d1af90")
  
  *all of these are mostly empty
 drop if globalrecordid == "17d3fd4c-5731-4bcb-94ca-d8bba03a56ff"
@@ -384,6 +378,10 @@ drop if inlist(globalrecordid, "48135c80-626c-4114-b103-a8a32e5a86a2")
 
  replace p_particid = 2 if globalrecordid == "899f1599-5cfb-4b1d-b61f-c9467ba12e1b"
  
+*Ty's deduced from casos incompletos
+replace p_clustid = 1 if globalrecordid == "577ba37e-f73b-46be-831a-5c10f1655afb" 
+replace p_clustid = 1 if globalrecordid == "840d3ff1-520a-4a0f-95b1-78a15c81d5f6" 
+ 
  gen p_country_str = string(p_country, "%12.0f")
 
 gen p_clustid_str = string(p_clustid, "%12.0f")
@@ -400,7 +398,7 @@ gen pid = p_country_str + p_clustid_str + p_houseid_str + p_particid_str
 gen hhid = p_country_str + p_clustid_str + p_houseid_str
 drop p_country_str p_clustid_str p_houseid_str p_particid_str
 
-log using "`path'/CUBA_out/logs/PhysOnlyMissing", text replace
+log using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out/logs/PhysOnlyMissing", text replace
 
 
 local missvarlist
@@ -427,6 +425,8 @@ foreach v of local missvarlist {
 }
 
 log close
+sort p_clustid p_houseid
+
 save Phys.dta, replace
 
 export excel using "excel/examen_fisico.xlsx", replace firstrow(variables)
@@ -462,7 +462,7 @@ export excel using "duplicates/phys_duplicates.xlsx", replace firstrow(variables
  
  clear all
  
- use Infor
+use Infor
  
  drop pid hhid
  
@@ -515,6 +515,12 @@ replace i_particid = 2 if globalrecordid == "1df5da6e-02c9-424a-8e67-03573a33ff8
 replace i_particid = 1 if globalrecordid == "555df103-6eeb-4530-88ab-d4e27d51570c"
 replace i_particid = 1 if globalrecordid == "2022f149-dd6e-478d-be74-c48ea264ec86"
 
+*my own deductions from casos incompletos
+replace i_particid = 1 if globalrecordid == "7dc4f675-e437-4c47-bdc9-9ce0d4f47379"
+
+replace i_clustid = 5 if globalrecordid == "f064f44c-a8fa-43be-9aaf-499c34b75fee"
+replace i_particid = 1 if globalrecordid == "f064f44c-a8fa-43be-9aaf-499c34b75fee"
+
 *for some reason dropping the country
 replace i_country = 2 if globalrecordid == "c2997a2a-e954-4acf-b536-0a3d79e7a0e5"
 
@@ -522,6 +528,20 @@ drop if inlist(globalrecordid, "f4ddf443-fc07-46e9-a42a-244c86e3c75f", "4a071c21
 
 *dropping this based on incompleteness
 drop if inlist(globalrecordid, "c21d973c-0f97-4534-9c59-6ce408ecbcf9","38fb71ea-bf5d-4955-8738-e5667a4e056d","f29438fe-c8c6-447f-9b97-277556bcdb0b")
+
+*cluster showing up as 0, should be 1
+replace i_clustid = 1 if globalrecordid == "ec26a01b-bec9-447e-96ab-a32d27317877"
+
+replace i_houseid = 5 if globalrecordid == "fb49a461-94f1-4c67-af93-174289f63dd3"
+
+*Tania says this should be recoded to house id 90
+replace i_houseid = 90 if globalrecordid == "6fc449f1-c887-42f4-a7ad-e2c2409ae869"
+
+*parent says house id 117 but child says 116. I'll recode to parent
+replace i_houseid = 117 if globalrecordid == "555df103-6eeb-4530-88ab-d4e27d51570c"
+
+*my own deductions based on casos incompletos missing and match. there is only one particiant in household 9 cluster 9.
+replace i_particid = 1 if globalrecordid == "35076268-4a63-436f-a768-cfca44bca795"
  
  gen i_country_str = string(i_country, "%12.0f")
 
@@ -541,7 +561,7 @@ gen hhid = i_country_str + i_clustid_str + i_houseid_str
 
 drop i_country_str i_clustid_str i_houseid_str i_particid_str
 
-log using "`path'/CUBA_out/logs/InforOnlyMissing", text replace
+log using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out/logs/InforOnlyMissing", text replace
 
 
 local missvarlist
@@ -575,6 +595,8 @@ log close
  list if is_duplicate
  drop is_duplicate
  
+sort i_clustid i_houseid
+
  save Infor.dta, replace
 export excel using "excel/informante.xlsx", replace firstrow(variables)
  
@@ -627,7 +649,7 @@ drop if inlist(globalrecordid, "1c52bce1-5967-4a86-a6a7-b1a1fa6c5a94", "de718065
  
  drop if inlist(globalrecordid, "cb2296d9-7344-40ff-a971-d3d5fe0b089d")
  
- log using "`path'/CUBA_out/logs/HouseholdOnlyMissing", text replace
+ log using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out/logs/HouseholdOnlyMissing", text replace
 
 
 local missvarlist
@@ -705,7 +727,7 @@ clear all
 
 *next, I want to find out if we have the right amount of cog scoring and cog surveys
 
-cd "`path'/CUBA_out"
+cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
 use Cog_Scoring
 
 *for no, I will do m:m because I have't been able to pin down which unique cases are the true/correct ones

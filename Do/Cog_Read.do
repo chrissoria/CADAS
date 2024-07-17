@@ -22,13 +22,13 @@ else if `country' == 2 {
 }
 
 if `country' == 0 {
-    insheet using "../PR_in/Cog_Child.csv", comma names clear
+    insheet using "../PR_in/Cog_Child_cleaned.csv", comma names clear
 }
 else if `country' == 1 {
-    insheet using "../DR_in/Cog_Child.csv", comma names clear
+    insheet using "../DR_in/Cog_Child_cleaned.csv", comma names clear
 }
 else if `country' == 2 {
-    insheet using "../CUBA_in/Cog_Child.csv", comma names clear
+    insheet using "../CUBA_in/Cog_Child_cleaned.csv", comma names clear
 }
 }
 
@@ -47,13 +47,13 @@ else if `country' == 2 {
 }
 
 if `country' == 0 {
-    insheet using "../PR_in/Cog_Child.csv", comma names clear
+    insheet using "../PR_in/Cog_Child_cleaned.csv", comma names clear
 }
 else if `country' == 1 {
-    insheet using "../DR_in/Cog_Child.csv", comma names clear
+    insheet using "../DR_in/Cog_Child_cleaned.csv", comma names clear
 }
 else if `country' == 2 {
-    insheet using "../CUBA_in/Cog_Child.csv", comma names clear
+    insheet using "../CUBA_in/Cog_Child_cleaned.csv", comma names clear
 }
 }
 

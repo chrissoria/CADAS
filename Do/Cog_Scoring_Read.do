@@ -22,13 +22,13 @@ else if `country' == 2 {
 }
 
 if `country' == 0 {
-    insheet using "../PR_in/Cog_Scoring.csv", comma names clear
+    insheet using "../PR_in/Cog_Scoring_cleaned.csv", comma names clear
 }
 else if `country' == 1 {
-    insheet using "../DR_in/Cog_Scoring.csv", comma names clear
+    insheet using "../DR_in/Cog_Scoring_cleaned.csv", comma names clear
 }
 else if `country' == 2 {
-    insheet using "../CUBA_in/Cog_Scoring.csv", comma names clear
+    insheet using "../CUBA_in/Cog_Scoring_cleaned.csv", comma names clear
 }
 
 }
@@ -48,13 +48,13 @@ else if `country' == 2 {
 }
 
 if `country' == 0 {
-    insheet using "../PR_in/Cog_Scoring.csv", comma names clear
+    insheet using "../PR_in/Cog_Scoring_cleaned.csv", comma names clear
 }
 else if `country' == 1 {
-    insheet using "../DR_in/Cog_Scoring.csv", comma names clear
+    insheet using "../DR_in/Cog_Scoring_cleaned.csv", comma names clear
 }
 else if `country' == 2 {
-    insheet using "../CUBA_in/Cog_Scoring.csv", comma names clear
+    insheet using "../CUBA_in/Cog_Scoring_cleaned.csv", comma names clear
 }
 }
 
@@ -133,7 +133,5 @@ foreach var of varlist `varlist' {
         tostring `var', replace
     }
 }
-
-export excel using "excel/cognitive_scoring.xlsx", replace firstrow(variables)
 
 clear all

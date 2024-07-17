@@ -43,7 +43,10 @@ drop if inlist(globalrecordid, "88e80078-4ca7-44ee-855e-387ca80b8299", "35220af8
 replace cs_particid = 2 if globalrecordid == "3aecfb24-3b7e-4489-8559-5b2a517353df"
 replace cs_particid = 2 if globalrecordid == "134f5748-c117-4406-992a-bfadc311b323"
 
-export delimited using "`path'/CUBA_in/Cog_Scoring.csv", replace nolabel
+*my own deduction based on casos incompletos
+replace cs_particid = 1 if globalrecordid == "054eb406-1320-4a42-a651-35660e25e889"
+
+export delimited using "`path'/CUBA_in/Cog_Scoring_cleaned.csv", replace nolabel
 
 gen cs_country_num = 2
 gen cs_country_str = string(cs_country_num, "%12.0f")
@@ -136,6 +139,9 @@ replace c_particid = 1 if globalrecordid == "b5003563-a03c-4807-95be-ae81e6d83a4
 replace c_particid = 1 if globalrecordid == "38b754d6-2c05-4835-ad44-1e0dc9c0d672"
 replace c_particid = 1 if globalrecordid == "fe315c82-9040-4119-a97d-7718b29c359d"
 
+*instructions from Tania
+replace c_particid = 2 if globalrecordid == "ce0daed9-57ff-41e7-ab00-6b1da78b46f9"
+
 *for some reason the clustid is missing
 replace c_clustid = 8 if inlist(globalrecordid, "c51d46c7-7540-4cbd-a0ef-95f152837acc", "8aace6a2-e557-4fce-a163-f4295623c179")
 
@@ -146,7 +152,18 @@ drop if inlist(globalrecordid, "fb325eeb-ecc9-400f-89d6-133760a6765d","36955fd0-
 *deleting this duplicate based on emptiness
 drop if inlist(globalrecordid, "70422852-4a32-4664-96fd-42433ee1b545")
 
-export delimited using "`path'/CUBA_in/Cog_Child.csv", replace nolabel
+*instructions from Tania in incomplete cases discussion
+replace c_houseid = 134 if globalrecordid == "c8b61ac9-3d15-4f29-82ad-24513f09f4fe"
+replace c_particid = 2 if globalrecordid == "c8b61ac9-3d15-4f29-82ad-24513f09f4fe"
+
+*my own deductions based on casos incompletos
+replace c_particid = 1 if globalrecordid == "3a34a230-24d7-457f-be83-14eac034b4e5"
+
+*tania says these are junk/test cases
+drop if inlist(globalrecordid, "266de225-2bd2-4cca-8dfd-64be1ed2dc64","b40c810b-f459-4dba-bdc0-90798ac15510","862eb7f7-5b52-4aa9-a08a-33eb1d2af34f")
+
+
+export delimited using "`path'/CUBA_in/Cog_Child_cleaned.csv", replace nolabel
 
 gen c_country_str = string(c_country, "%12.0f")
 
