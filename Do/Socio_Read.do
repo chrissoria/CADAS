@@ -996,21 +996,33 @@ foreach var of local string_vars {
 
 }
 
+if `country' == 2 {
+    replace s_country = 2
+}
+else if `country' == 1 {
+    replace s_country = 1
+}
+else if `country' == 0 {
+    replace s_country = 0
+}
+
 label define country_label 0 "Puerto Rico" 1 "República Dominicana" 2 "Cuba"
 label values s_country country_label
 
 gen s_country_str = string(s_country, "%12.0f")
 
+replace s_clustid = s_clustid*10 if s_clustid < 1
 gen s_clustid_str = string(s_clustid, "%12.0f")
 replace s_clustid_str = cond(strlen(s_clustid_str) == 1, "0" + s_clustid_str, s_clustid_str)
 
+replace s_houseid = s_houseid*10 if s_houseid < 1
 gen s_houseid_str = string(s_houseid, "%03.0f")
 replace s_houseid_str = cond(strlen(s_houseid_str) == 1, "00" + s_houseid_str, s_houseid_str)
 replace s_houseid_str = cond(strlen(s_houseid_str) == 2, "0" + s_houseid_str, s_houseid_str)
 
+replace s_particid = s_particid*10 if s_particid < 1
 gen s_particid_str = string(s_particid, "%12.0f")
 replace s_particid_str = cond(strlen(s_particid_str) == 1, "0" + s_particid_str, s_particid_str)
-
 
 gen pid = s_country_str + s_clustid_str + s_houseid_str + s_particid_str
 gen hhid = s_country_str + s_clustid_str + s_houseid_str

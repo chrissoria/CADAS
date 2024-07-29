@@ -108,6 +108,8 @@ if `country' != 0{
     do "/hdir/0/chrissoria/Stata_CADAS/Do/InterviewerConcordance1.do"
 
     do "/hdir/0/chrissoria/Stata_CADAS/Do/mp4_TyManualScoring.do"
+    
+    do "/hdir/0/chrissoria/1066/cadas_1066_reproduced.do"
 
 }
 
@@ -168,6 +170,8 @@ do "`path'/InterviewerConcordance1.do"
 
 
 do "`path'/mp4_TyManualScoring.do"
+
+do "path'/cadas_1066_reproduced.do"
 
 }
 

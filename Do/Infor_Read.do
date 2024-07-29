@@ -21,12 +21,15 @@ else if `country' == 2 {
 
 if `country' == 0 {
     insheet using "../PR_in/Infor_Child.csv", comma names clear
+    replace i_country = 0
 }
 else if `country' == 1 {
     insheet using "../DR_in/Infor_Child.csv", comma names clear
+    replace i_country = 1
 }
 else if `country' == 2 {
     insheet using "../CUBA_in/Infor_Child.csv", comma names clear
+    replace i_country = 2
 }
 
 }
@@ -747,17 +750,6 @@ replace i_houseid_str = cond(strlen(i_houseid_str) == 2, "0" + i_houseid_str, i_
 
 gen i_particid_str = string(i_particid, "%12.0f")
 replace i_particid_str = cond(strlen(i_particid_str) == 1, "0" + i_particid_str, i_particid_str)
-
-if `country' == 2 {
-    replace i_country = 2
-}
-else if `country' == 1 {
-    replace i_country = 1
-}
-else if `country' == 0 {
-    replace i_country = 0
-}
-
 
 gen pid = i_country_str + i_clustid_str + i_houseid_str + i_particid_str
 gen hhid = i_country_str + i_clustid_str + i_houseid_str
@@ -3730,7 +3722,7 @@ gen pid_parent = i_country_str + i_clustid_str + i_houseid_str + i_particid_str
 *giving primacy to the ID's entered on the parent form
 gen pid_nonmatch = 1 if (pid != pid_parent & i_parent_clustid != .)
 
-order pid_parent pid pid_nonmatch globalrecordid
+order pid_parent pid pid_nonmatch globalrecordid hhid
 
 drop i_clustid_str i_houseid_str i_particid_str i_country_str
 

@@ -721,21 +721,6 @@ gen c_date_stata = date(c_date, "YMD")
 
 gen date_greater_102423 = c_date_stata > 23307
 
-label define country_label 0 "Puerto Rico" 1 "República Dominicana" 2 "Cuba"
-label values c_country country_label
-
-gen c_country_str = string(c_country, "%12.0f")
-
-gen c_clustid_str = string(c_clustid, "%12.0f")
-replace c_clustid_str = cond(strlen(c_clustid_str) == 1, "0" + c_clustid_str, c_clustid_str)
-
-gen c_houseid_str = string(c_houseid, "%03.0f")
-replace c_houseid_str = cond(strlen(c_houseid_str) == 1, "00" + c_houseid_str, c_houseid_str)
-replace c_houseid_str = cond(strlen(c_houseid_str) == 2, "0" + c_houseid_str, c_houseid_str)
-
-gen c_particid_str = string(c_particid, "%12.0f")
-replace c_particid_str = cond(strlen(c_particid_str) == 1, "0" + c_particid_str, c_particid_str)
-
 if `country' == 2 {
     replace c_country = 2
 }
@@ -745,6 +730,25 @@ else if `country' == 1 {
 else if `country' == 0 {
     replace c_country = 0
 }
+
+label define country_label 0 "Puerto Rico" 1 "República Dominicana" 2 "Cuba"
+label values c_country country_label
+
+
+gen c_country_str = string(c_country, "%12.0f")
+
+replace c_clustid = c_clustid*10 if c_clustid < 1
+gen c_clustid_str = string(c_clustid, "%12.0f")
+replace c_clustid_str = cond(strlen(c_clustid_str) == 1, "0" + c_clustid_str, c_clustid_str)
+
+replace c_houseid = c_houseid*10 if c_houseid < 1
+gen c_houseid_str = string(c_houseid, "%03.0f")
+replace c_houseid_str = cond(strlen(c_houseid_str) == 1, "00" + c_houseid_str, c_houseid_str)
+replace c_houseid_str = cond(strlen(c_houseid_str) == 2, "0" + c_houseid_str, c_houseid_str)
+
+replace c_particid = c_particid*10 if c_particid < 1
+gen c_particid_str = string(c_particid, "%12.0f")
+replace c_particid_str = cond(strlen(c_particid_str) == 1, "0" + c_particid_str, c_particid_str)
 
 
 gen pid = c_country_str + c_clustid_str + c_houseid_str + c_particid_str
@@ -5626,7 +5630,7 @@ sort c_parent_clustid c_parent_houseid
 gen pid_nonmatch = pid_parent if (pid2 != pid_parent & c_parent_clustid != .)
 drop pid2
 
-order pid_parent pid pid_nonmatch globalrecordid
+order pid_parent pid pid_nonmatch globalrecordid hhid
 
 drop c_clustid_str c_houseid_str c_particid_str c_country_str
 
