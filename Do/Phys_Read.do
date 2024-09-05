@@ -58,6 +58,12 @@ else if `country' == 2 {
 
 capture drop v1
 
+if `country' == 0 {
+	set varabbrev off
+	drop p_10
+	set varabbrev on
+}
+
 if `country' == 2 {
 	set varabbrev off
 	drop p_10

@@ -42,26 +42,28 @@ C. Check to see gender in Socio matches gender in Roster
 //below we'll pull out the pid row and any columns that might be relevant
 
 if `country' == 0 {
-    import excel using "../PR_in/Resumen de entrevistas.xlsx", firstrow
+    import excel using "../PR_in/Resumen de entrevistas.xlsx", firstrow clear
+    keep IngreseunalíneaparacadaPart B C D E F G
+    rename IngreseunalíneaparacadaPart Cluster
+    rename B House_ID
+    rename C Participante
+    rename D sex
+    rename E age
+    rename F Fecha
+    rename G Notas
+    drop in 1
 }    
 else if `country' == 1 {
     import excel using "../DR_in/Resumen de entrevistas.xlsx", firstrow
+    rename HouseID House_ID
+    rename GénerodeParticpante sex
+    rename EdaddeParticpante age
+    rename Fechaenquecompletoelchequeo Fecha
+    rename NotasCuestionariosnohechos Notas
 }
 else if `country' == 2 {
     import excel using "../CUBA_in/Resumen de entrevistas.xlsx", firstrow
-}
-
-if `country' == 1 {
-
-rename HouseID House_ID
-rename GénerodeParticpante sex
-rename EdaddeParticpante age
-rename Fechaenquecompletoelchequeo Fecha
-rename NotasCuestionariosnohechos Notas
-}
-
-else if `country' == 2 {
-rename Sexo1Hombre2Mujer sex
+    rename Sexo1Hombre2Mujer sex
 rename Edad age
 rename Fechacompleto Fecha
 rename Casa House_ID1
@@ -76,11 +78,8 @@ destring House_ID1, replace
 }
 
 gen pais = 0
-
-if `country' == 0 {
-    replace pais = 0 if Participante != ""
-}    
-else if `country' == 1 {
+  
+if `country' == 1 {
     replace pais = 1 if Participante != .
 }
 else if `country' == 2 {
@@ -108,7 +107,7 @@ drop if missing(Cluster)
 
 gen country_str = string(pais, "%12.0f")
 
-if `country' == 1 {
+if `country' != 2 {
 destring Cluster, replace
 destring House_ID, replace
 destring Participante, replace
@@ -154,7 +153,7 @@ keep pid age sex House_ID Cluster
 gen pidr=real(pid)
 rename sex SEX
 
-if `country' == 1 {
+if `country' != 2 {
 replace SEX = lower(trim(SEX))
 generate sex = cond(SEX == "m", 0, cond(SEX == "f", 1, .))
 }
@@ -189,20 +188,28 @@ save tracker, replace
 * ROSTER_PARTICIPANTS
 **********
 use rosters_participants, clear
-keep pid hhid r_deviceid
+keep pid pr_3 pr_4 hhid r_deviceid r_date
 rename r_deviceid numero_tableta
 gen pidr=real(pid)
 drop if pidr==. /* check if any obs are missing pid */
 egen duplic=count(pid), by(pid) /* check for duplicate PID: should all be =1 if no duplicates */
 tab duplic /* if any duplicates, should re-do cleaning .do file then re-run this file */
+egen sd_sex=sd(pr_3), by(pid)
+egen sd_age=sd(pr_4), by(pid)
+sum sd_sex sd_age /* these should be all zero if duplicates have identical age and sex */
 sort pid
+list pid pr_3 pr_4 duplic if duplic>1 /* print duplicate obs */
 gen pid_en_listas=1 /* create indicator to use after merge with other questionnaire files */
-drop pidr duplic
+drop pidr duplic sd_sex sd_age
 sum
 *save rosters_check.dta, replace /* I think you could drop these lines, and save just tracker per next line */
 replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
 replace hhid = "2" + substr(hhid, 2, .) if substr(hhid, 1, 1) == "."
 merge m:m hhid using tracker
+tab pr_3 sex, miss
+list pid pr_3 sex if (pr_3 ~= sex +1) & _merge==3 /* list if sex differs between Roster and Resumen */
+corr pr_4 age
+list pid pr_4 age if abs(pr_4 - age) >2 & _merge==3 /* list if sex differs more than 2 years between Roster and Resumen */
 drop _merge
 save tracker, replace
 d,s
@@ -219,7 +226,7 @@ if _rc == 0 {
     rename s_sex s_0
 }
 
-keep pid s_0 s_2_3 s_interid s_deviceid1
+keep pid s_0 s_2_3 s_interid s_deviceid1 s_date
 gen pidr=real(pid)
 drop if pidr==.
 egen duplic=count(pid), by(pid)
@@ -233,6 +240,11 @@ sum
 replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
 merge m:m pid using tracker
 
+tab pr_3 s_0, miss
+list pid pr_3 s_0 if (pr_3 ~= s_0 +1) & _merge==3 /* list if sex differs between Roster and Socio */
+corr pr_4 s_2_3
+list pid pr_4 s_2_3 if abs(pr_4 - s_2_3) >2 & _merge==3 /* list if sex differs more than 2 years between Roster and Socio */
+
 drop _merge
 save tracker, replace
 d,s
@@ -242,7 +254,7 @@ sum
 * PHYS
 **********
 use Phys, clear
-keep pid p_interid p_deviceid1
+keep pid p_interid p_deviceid1 p_date
 gen pidr=real(pid)
 drop if pidr==.
 egen duplic=count(pid), by(pid)
@@ -264,7 +276,7 @@ sum
 * COG
 **********
 use Cog, clear
-keep pid c_interid c_deviceid1 all_image_files_found all_audio_files_found
+keep pid c_interid c_deviceid1 all_image_files_found all_audio_files_found c_date
 gen pidr=real(pid)
 drop if pidr==.
 egen duplic=count(pid), by(pid)
@@ -286,7 +298,7 @@ sum
 * COG SCORING
 **********
 use Cog_Scoring, clear
-keep pid cs_interid
+keep pid cs_interid cs_date
 gen pidr=real(pid)
 drop if pidr==.
 egen duplic=count(pid), by(pid)
@@ -308,7 +320,7 @@ sum
 * INFORMANT
 **********
 use Infor, clear
-keep pid i_interid i_deviceid1
+keep pid i_interid i_deviceid1 i_date
 gen pidr=real(pid)
 drop if pidr==.
 egen duplic=count(pid), by(pid)
@@ -331,7 +343,7 @@ sum
 **********
 
 use Household, clear
-keep hhid h_interid h_deviceid1
+keep hhid h_interid h_deviceid1 h_date
 gen hhidr=real(hhid)
 drop if hhidr==.
 egen duplic=count(hhid), by(hhid)
@@ -353,11 +365,7 @@ sum
 * BLOOD
 **********
 
-
-if `country' == 0 {
-    use "..\SANGRE\PR_blood\Sangre_tracker_full.dta", clear
-}    
-else if `country' == 1 {
+if `country' == 1 {
     use "sangre_full.dta", clear
     
 keep pid XF7
@@ -396,7 +404,12 @@ replace Z_in=" " if pid_en_cog_scor~=1
 replace I_in=" " if pid_en_infor~=1
 replace H_in=" " if existe_familiar~=1
 
-if `country' == 1 {
+if `country' == 0 {
+gen RSPCZIHXF7 = G_in+R_in + S_in + P_in + C_in + Z_in + I_in + H_in
+tab RSPCZIHXF7
+}
+
+else if `country' == 1 {
 gen B_in=XF7 if pid_en_sangre==1
 replace B_in=" " if pid_en_sangre~=1
 
@@ -514,7 +527,7 @@ order cluster casa participante
 replace cluster = substr(hhid, 2, 2) if cluster == ""
 replace casa = substr(hhid, 4, 3) if casa == ""
 
-drop RSPCZIHXF7
+capture drop RSPCZIHXF7
 
 gen is_duplicate = pid[_n] == pid[_n-1]
 drop if is_duplicate == 1
@@ -530,18 +543,19 @@ drop if all_missing == 1
 drop if none_missing == 1
 
 drop none_missing all_missing
-drop h_interid i_interid cs_interid h_deviceid1 s_interid all_audio all_image_files_found p_interid XF7 c_interid
+drop h_interid i_interid cs_interid h_deviceid1 s_interid all_audio all_image_files_found p_interid c_interid h_date r_date
+capture drop XF7
 
 rename c_deviceid1 tableta_cognitiva
 rename i_deviceid1 tableta_informante
 rename s_deviceid1 tableta_sociodemografico
 rename p_deviceid1 tableta_examen_fisico
 
-order tableta_informante tableta_cognitiva tableta_examen_fisico tableta_sociodemografico
+order tableta_informante tableta_cognitiva tableta_examen_fisico tableta_sociodemografico cluster casa participante i_date cs_date c_date p_date s_date	informante scoring cognitiva examen_fisico sociodemografica solo_en_resumen
 
 capture replace pid_en_sangre = " " if pid_en_sangre == "1"
 
-drop pid_en_sangre
+capture drop pid_en_sangre
 
 export excel using "duplicates/casos_incompletos.xlsx", replace firstrow(variables)
 

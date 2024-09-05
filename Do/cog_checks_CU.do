@@ -134,10 +134,19 @@ replace c_particid = 2 if globalrecordid == "70422852-4a32-4664-96fd-42433ee1b54
 replace c_particid = 1 if globalrecordid == "f8ad75de-aa8f-4978-9be4-c03aa3886d08"
 replace c_particid = 1 if globalrecordid == "f8ad75de-aa8f-4978-9be4-c03aa3886d08"
 
+*there is a floating cog, most likely belongs to participant 1
+replace c_particid = 1 if globalrecordid == "b2fb4bb1-e985-4316-a9c3-63756fdfc6b0"
+
 *only one participant in this household
 replace c_particid = 1 if globalrecordid == "b5003563-a03c-4807-95be-ae81e6d83a47"
 replace c_particid = 1 if globalrecordid == "38b754d6-2c05-4835-ad44-1e0dc9c0d672"
 replace c_particid = 1 if globalrecordid == "fe315c82-9040-4119-a97d-7718b29c359d"
+
+*tania says this is junk/test
+drop if globalrecordid == "4a7ac819-550a-4a0b-9d50-87e4eb6690d3"
+
+*per tania's instructions
+replace c_particid = 3 if globalrecordid == "224e0387-db42-4f0e-aaae-afab1a805223"
 
 *instructions from Tania
 replace c_particid = 2 if globalrecordid == "ce0daed9-57ff-41e7-ab00-6b1da78b46f9"
@@ -147,7 +156,7 @@ replace c_clustid = 8 if inlist(globalrecordid, "c51d46c7-7540-4cbd-a0ef-95f1528
 
 drop if inlist(globalrecordid, "884ecfa6-42dd-4ac6-8c07-22ea2579a892")
 
-drop if inlist(globalrecordid, "fb325eeb-ecc9-400f-89d6-133760a6765d","36955fd0-cc0e-4b3c-9299-ff484808f728","df7ef8be-b7a6-4533-928f-2dabfc1d0ca0","33c3962b-3635-41af-a2c3-754909b06ebb","36955fd0-cc0e-4b3c-9299-ff484808f728")
+drop if inlist(globalrecordid, "fb325eeb-ecc9-400f-89d6-133760a6765d","36955fd0-cc0e-4b3c-9299-ff484808f728","33c3962b-3635-41af-a2c3-754909b06ebb","36955fd0-cc0e-4b3c-9299-ff484808f728")
 
 *deleting this duplicate based on emptiness
 drop if inlist(globalrecordid, "70422852-4a32-4664-96fd-42433ee1b545")
@@ -162,6 +171,7 @@ replace c_particid = 1 if globalrecordid == "3a34a230-24d7-457f-be83-14eac034b4e
 *tania says these are junk/test cases
 drop if inlist(globalrecordid, "266de225-2bd2-4cca-8dfd-64be1ed2dc64","b40c810b-f459-4dba-bdc0-90798ac15510","862eb7f7-5b52-4aa9-a08a-33eb1d2af34f")
 
+replace c_country = 2
 
 export delimited using "`path'/CUBA_in/Cog_Child_cleaned.csv", replace nolabel
 

@@ -4823,9 +4823,9 @@ gen c_MMSEscore = 0
 
 replace c_MMSEscore = (c_MMSEscore + 1) if c_1 == 1
 
-replace c_MMSEscore = (c_MMSEscore + 1) if c_2_p_c == 1
+replace c_MMSEscore = (c_MMSEscore + 1) if c_2_p_c == 1 & (c_country == 0 | c_country == 2)
 
-replace c_MMSEscore = (c_MMSEscore + 1) if c_2_d == 1
+replace c_MMSEscore = (c_MMSEscore + 1) if c_2_d == 1 & c_country == 1
 
 replace c_MMSEscore = (c_MMSEscore + 1) if c_3 == 1
 
@@ -4835,9 +4835,9 @@ replace c_MMSEscore = (c_MMSEscore + 1) if c_5 == 1
 
 replace c_MMSEscore = (c_MMSEscore + 1) if c_6 == 1
 
-replace c_MMSEscore = (c_MMSEscore + 1) if c_7_d_c == 1
+replace c_MMSEscore = (c_MMSEscore + 1) if c_7_d_c == 1 & (c_country == 1 | c_country == 2)
 
-replace c_MMSEscore = (c_MMSEscore + 1) if c_7_p == 1
+replace c_MMSEscore = (c_MMSEscore + 1) if c_7_p == 1 & c_country == 0
 
 replace c_MMSEscore = (c_MMSEscore + 1) if c_8 == 1
 

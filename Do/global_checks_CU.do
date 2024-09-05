@@ -2,7 +2,44 @@ clear all
 set more off
 capture log close
 
- cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
+capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
+
+if `"`user'"' == "Chris" {
+local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+}
+
+else if `"`user'"' == "Ty" {
+local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+}
+
+cd "`path'/CUBA_out"
+ 
+import excel using "../CUBA_in/Resumen de entrevistas.xlsx", firstrow
+
+gen clustid_str = string(Cluster, "%12.0f")
+gen houseid_str = string(Casa, "%03.0f")
+gen particid_str = string(Participante, "%12.0f")
+
+gen country_str = "2"
+
+replace clustid_str = cond(strlen(clustid_str) == 1, "0" + clustid_str, clustid_str)
+
+replace houseid_str = cond(strlen(houseid_str) == 1, "00" + houseid_str, houseid_str)
+replace houseid_str = cond(strlen(houseid_str) == 2, "0" + houseid_str, houseid_str)
+
+replace particid_str = cond(strlen(particid_str) == 1, "0" + particid_str, particid_str)
+
+gen pid = country_str + clustid_str + houseid_str + particid_str
+drop country_str clustid_str houseid_str particid_str
+
+order pid
+
+save resumen.dta,replace 
+
+keep pid 
+
+save resumen_pid.dta,replace 
  
  use rosters_participants
  
@@ -204,7 +241,7 @@ drop if inlist(globalrecordid, "a79705db-06e9-49fc-9ab6-6003215a5e7f", "eb52b3dd
 
 *these also look like junk based on how empty they are
 
-drop if inlist(globalrecordid, "5ccf6d7c-2308-49a2-9a81-f9523a64df34","1c5a2a7c-e19c-4ea9-8d18-6b2707e9c93c")
+drop if inlist(globalrecordid, "5ccf6d7c-2308-49a2-9a81-f9523a64df34")
 
 
 *is dropped because duplicate personid and less complete
@@ -247,7 +284,7 @@ gen pid = s_country_str + s_clustid_str + s_houseid_str + s_particid_str
 gen hhid = s_country_str + s_clustid_str + s_houseid_str
 drop s_country_str s_clustid_str s_houseid_str s_particid_str
 
-log using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out/logs/SocioOnlyMissing", text replace
+log using "`path'/CUBA_out/logs/SocioOnlyMissing", text replace
 
 
 local missvarlist
@@ -280,7 +317,18 @@ log close
  gen is_duplicate = pid[_n] == pid[_n-1]
  list if is_duplicate
  drop is_duplicate
- 
+
+merge m:m pid using resumen_pid
+
+capture gen resumen = string(_merge)
+replace resumen = string(_merge)
+replace resumen = "Not in Resumen" if _merge == 1
+replace resumen = "Found in Resumen" if _merge == 3
+drop if _merge == 2
+drop _merge
+
+order pid_parent pid resumen
+
  save Socio.dta, replace
 export excel using "excel/socio.xlsx", replace firstrow(variables)
 
@@ -314,6 +362,14 @@ capture export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(
  
  duplicates report globalrecordid
  duplicates drop globalrecordid, force
+*recoding the smaller individiual to female (participante 2)
+replace p_particid = 2 if globalrecordid == "b135c9a8-cb1f-4334-a2f9-c82710bf5881"
+
+*the correction was made in the parent but not the child
+replace p_houseid = 82 if globalrecordid == "e8b51f33-cef3-4cb3-9761-2a1e8b74d406"
+
+*deductions based on duplicate, assuming stronger bigger person is male
+replace p_particid = 1 if globalrecordid == "85713c66-53b1-4c53-95d8-313b4ae74ccc"
  
 *deduction from Tania conversations
 replace p_houseid = 135 if globalrecordid == "1b990de8-0fe7-4780-808e-9cf13d8b4651"
@@ -325,6 +381,12 @@ replace p_houseid = 63 if globalrecordid == "daad1f3d-78c0-4e39-89f3-84314aeacd6
 
 *tania says these are early case junk cases
 drop if inlist(globalrecordid, "c035c59f-8744-48a7-b6c9-12923ad4335c","be18d0a3-76a4-471e-a72d-c782f5d1af90")
+
+*instructions from Tania
+replace p_clustid = 1 if globalrecordid == "5d24ae56-c431-4eb2-ab89-12e58729d396"
+
+*deductions based off of 1. in socio partic 1 is male and 2. in phys exam, person is taller is more likely man
+replace p_particid = 2 if globalrecordid == "55719a6c-a272-4a43-b08f-e29cb87c3ba8"
  
  *all of these are mostly empty
 drop if globalrecordid == "17d3fd4c-5731-4bcb-94ca-d8bba03a56ff"
@@ -345,7 +407,6 @@ drop if globalrecordid == "3424a133-e296-42af-8191-1743534d2413"
 drop if globalrecordid == "9ef23cbb-9b81-44d0-8ecc-63ec5de8ba96"
 drop if globalrecordid == "fd25d99a-9ca1-48a8-80b4-c9e392a48ddc"
 drop if globalrecordid == "794793d4-b793-4882-9325-9ec559abc656"
-drop if globalrecordid == "8ef44fed-e5fa-4baf-93d5-f4a470d9b1ea"
 drop if globalrecordid == "6c3d323a-d3b5-4e4a-8d93-d95964d90575"
 drop if globalrecordid == "ecff1cb4-97a7-4a10-891d-681a26331b55"
 drop if globalrecordid == "6a75934a-8a16-4f13-b8cb-bff97eec511f"
@@ -398,7 +459,7 @@ gen pid = p_country_str + p_clustid_str + p_houseid_str + p_particid_str
 gen hhid = p_country_str + p_clustid_str + p_houseid_str
 drop p_country_str p_clustid_str p_houseid_str p_particid_str
 
-log using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out/logs/PhysOnlyMissing", text replace
+log using "`path'/CUBA_out/logs/PhysOnlyMissing", text replace
 
 
 local missvarlist
@@ -426,6 +487,17 @@ foreach v of local missvarlist {
 
 log close
 sort p_clustid p_houseid
+
+merge m:m pid using resumen_pid
+
+capture gen resumen = string(_merge)
+replace resumen = string(_merge)
+replace resumen = "Not in Resumen" if _merge == 1
+replace resumen = "Found in Resumen" if _merge == 3
+drop if _merge == 2
+drop _merge
+
+order pid_parent pid resumen
 
 save Phys.dta, replace
 
@@ -466,6 +538,9 @@ use Infor
  
  drop pid hhid
  
+*correction was made in parent but not in child
+replace i_clustid = 7 if globalrecordid == "45415314-e4ed-4563-adfe-716808c498f0"
+ 
 *tania says the correct person id for the below case is 2
  *The personid duplicate below is 20104501, 306dd8e0-eed1-426d-9196-f180c7a8fd4a is person 2
  *question b3 provides age, which I used to match to person number
@@ -478,6 +553,9 @@ replace i_particid = 2 if globalrecordid == "c21d973c-0f97-4534-9c59-6ce408ecbcf
  *personid duplicate 20105002, e69aad3b-5367-4f9c-90cb-8f1c9543eaee, is being recoded to person number 1
  
 replace i_particid = 1 if globalrecordid == "e69aad3b-5367-4f9c-90cb-8f1c9543eaee"
+
+*deduction based on 1. participant 1 is male and p 2 is female 2. they informed on each other 3. informant that is female should belong to male participante and visa versa
+replace i_particid = 2 if globalrecordid == "e9c4257d-20ef-4836-8896-40dbbaf28273"
 
 *personid 20106402 is duplicated and not easy to decipher which is which (105e8dcc-7c09-464c-a092-42032ace1494)
 *one of two persons appear to be a proxy age 74, as their ages do not match what was put in completo rechazado sheet
@@ -505,6 +583,14 @@ replace i_particid = 2 if globalrecordid == "94d971a8-8ee0-435c-861b-aa7067b6445
 
 replace i_particid = 1 if globalrecordid == "87a78ce1-5c4c-46b6-ad31-4af765074cb6"
 
+*per instructions from tania, id's different in parent than child
+replace i_particid = 2 if globalrecordid == "f02f1321-c595-47b6-b1b1-e7c43603f8d7"
+
+*this case looks like junk
+drop if globalrecordid == "ef96df2c-fdf8-4ff7-ae0a-88be9142e7ab"
+drop if globalrecordid == "cf5533cf-bdda-4208-99e3-c2026f360312"
+drop if globalrecordid == "e51bb04e-5235-49e7-aec9-a71e28d9daec"
+
 *Tania says this participant should be from houseid 52
 replace i_particid = 1 if globalrecordid == "73516e7d-4288-499a-a89c-9ffde5d2df0a"
 
@@ -518,7 +604,11 @@ replace i_particid = 1 if globalrecordid == "2022f149-dd6e-478d-be74-c48ea264ec8
 *my own deductions from casos incompletos
 replace i_particid = 1 if globalrecordid == "7dc4f675-e437-4c47-bdc9-9ce0d4f47379"
 
+/* tania says these are incorrect fixes
 replace i_clustid = 5 if globalrecordid == "f064f44c-a8fa-43be-9aaf-499c34b75fee"
+replace i_particid = 1 if globalrecordid == "f064f44c-a8fa-43be-9aaf-499c34b75fee"
+*/
+
 replace i_particid = 1 if globalrecordid == "f064f44c-a8fa-43be-9aaf-499c34b75fee"
 
 *for some reason dropping the country
@@ -561,7 +651,7 @@ gen hhid = i_country_str + i_clustid_str + i_houseid_str
 
 drop i_country_str i_clustid_str i_houseid_str i_particid_str
 
-log using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out/logs/InforOnlyMissing", text replace
+log using "`path'/CUBA_out/logs/InforOnlyMissing", text replace
 
 
 local missvarlist
@@ -596,9 +686,20 @@ log close
  drop is_duplicate
  
 sort i_clustid i_houseid
+ 
+merge m:m pid using resumen_pid
 
- save Infor.dta, replace
+capture gen resumen = string(_merge)
+replace resumen = string(_merge)
+replace resumen = "Not in Resumen" if _merge == 1
+replace resumen = "Found in Resumen" if _merge == 3
+drop if _merge == 2
+drop _merge
+
+order pid_parent pid resumen
+
 export excel using "excel/informante.xlsx", replace firstrow(variables)
+save Infor.dta, replace
  
  gen is_duplicate = pid[_n] == pid[_n-1]
 
@@ -649,7 +750,7 @@ drop if inlist(globalrecordid, "1c52bce1-5967-4a86-a6a7-b1a1fa6c5a94", "de718065
  
  drop if inlist(globalrecordid, "cb2296d9-7344-40ff-a971-d3d5fe0b089d")
  
- log using "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out/logs/HouseholdOnlyMissing", text replace
+ log using "`path'/CUBA_out/logs/HouseholdOnlyMissing", text replace
 
 
 local missvarlist
@@ -727,7 +828,7 @@ clear all
 
 *next, I want to find out if we have the right amount of cog scoring and cog surveys
 
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
+cd "`path'/CUBA_out"
 use Cog_Scoring
 
 *for no, I will do m:m because I have't been able to pin down which unique cases are the true/correct ones

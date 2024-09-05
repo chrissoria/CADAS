@@ -150,13 +150,45 @@ replace pid = "." if strpos(pid, ".") > 0
 gen hhid = d_country_str + d_clustid_str + d_houseid_str
 replace hhid = "." if strpos(hhid, ".") > 0
 
-drop d_particid_str d_country_str d_clustid_str d_houseid_str globalrecordid1
+drop d_particid_str d_country_str d_clustid_str d_houseid_str
+capture drop globalrecordid1
 
 save door_merged_all.dta, replace
 
 keep if hhid == "."
 
 export excel using "duplicates/door_no_houseid.xlsx", replace firstrow(variables)
+
+clear all
+
+import excel using "../DR_in/Resumen de entrevistas.xlsx", firstrow
+
+capture destring(Cluster) , replace
+capture destring(HouseID) , replace
+capture destring(Participante) , replace
+gen clustid_str = string(Cluster, "%12.0f")
+gen houseid_str = string(HouseID, "%03.0f")
+gen particid_str = string(Participante, "%12.0f")
+
+gen country_str = "1"
+
+replace clustid_str = cond(strlen(clustid_str) == 1, "0" + clustid_str, clustid_str)
+
+replace houseid_str = cond(strlen(houseid_str) == 1, "00" + houseid_str, houseid_str)
+replace houseid_str = cond(strlen(houseid_str) == 2, "0" + houseid_str, houseid_str)
+
+replace particid_str = cond(strlen(particid_str) == 1, "0" + particid_str, particid_str)
+
+gen pid = country_str + clustid_str + houseid_str + particid_str
+drop country_str clustid_str houseid_str particid_str
+
+order pid
+
+save resumen.dta,replace
+
+keep pid 
+
+save resumen_pid.dta,replace 
 
 clear all
  
@@ -253,6 +285,18 @@ sort s_parent_clustid s_parent_houseid
 order pid_parent pid pid_nonmatch globalrecordid
 
 drop s_clustid_str s_houseid_str s_particid_str s_country_str
+
+merge m:m pid using resumen_pid
+
+capture gen resumen = string(_merge)
+capture replace resumen = string(_merge)
+replace resumen = "Not in Resumen" if _merge == 1
+replace resumen = "Found in Resumen" if _merge == 3
+drop if _merge == 2
+drop _merge
+
+order pid_parent pid resumen
+
 export excel using "excel/socio.xlsx", replace firstrow(variables)
 
 log using logs/SocioOnlyMissing, text replace
@@ -351,6 +395,17 @@ order pid_parent pid pid_nonmatch globalrecordid
 
 drop p_country_str p_clustid_str p_houseid_str p_particid_str
 
+merge m:m pid using resumen_pid
+
+capture gen resumen = string(_merge)
+capture replace resumen = string(_merge)
+replace resumen = "Not in Resumen" if _merge == 1
+replace resumen = "Found in Resumen" if _merge == 3
+drop if _merge == 2
+drop _merge
+
+order pid_parent pid resumen
+
 export excel using "excel/examen_fisico.xlsx", replace firstrow(variables)
 
 log using logs/PhysOnlyMissing, text replace
@@ -440,6 +495,18 @@ drop i_country_str i_clustid_str i_houseid_str i_particid_str
 sort i_parent_clustid i_parent_houseid
 order pid_parent pid pid_nonmatch globalrecordid
 
+merge m:m pid using resumen_pid
+
+capture gen resumen = string(_merge)
+capture replace resumen = string(_merge)
+
+replace resumen = "Not in Resumen" if _merge == 1
+replace resumen = "Found in Resumen" if _merge == 3
+drop if _merge == 2
+drop _merge
+
+order pid_parent pid resumen
+
 export excel using "excel/informante.xlsx", replace firstrow(variables)
 
 log using logs/InforOnlyMissing, text replace
@@ -502,10 +569,26 @@ export excel using "duplicates/informant_duplicates.xlsx", replace firstrow(vari
  
  clear all
  
+use Cog
+
+merge m:m pid using resumen_pid
+
+capture gen resumen = string(_merge)
+capture replace resumen = string(_merge)
+replace resumen = "Not in Resumen" if _merge == 1
+replace resumen = "Found in Resumen" if _merge == 3
+drop if _merge == 2
+drop _merge
+
+order pid_parent pid resumen
+
+save Cog.dta, replace
+
+clear all
+
+ 
  use Household
  
-
-
 drop hhid hhid2
 *instructions from guillermina
 drop if inlist(globalrecordid, "d3d9c1f9-3ff2-434f-b223-6e4131ddc739","10c63e51-b6b6-444a-9def-621e9920021f","ead54b80-b458-4c82-9b7c-06a64719c74c","e65dc446-42bc-4cd0-b7f8-469569ef66f7")
