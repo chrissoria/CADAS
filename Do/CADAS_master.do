@@ -110,7 +110,8 @@ if `country' != 0{
 }
 	do "/hdir/0/chrissoria/1066/cadas_1066_reproduced.do"
 	do "/hdir/0/chrissoria/Stata_CADAS/Do/Tracker.do"
-
+	do "/hdir/0/chrissoria/Stata_CADAS/Do/Ty_Pent_Scoring.do"
+	do "/hdir/0/chrissoria/Stata_CADAS/Do/consensus_site.do"
 }
 
 
@@ -161,13 +162,12 @@ else if `country' == 2 {
 
 do "`path'\Tracker.do"
 
-
 do "`path'/InterviewerConcordance1.do"
-
 
 do "`path'/mp4_TyManualScoring.do"
 
 do "path'/cadas_1066_reproduced.do"
+
 
 }
 

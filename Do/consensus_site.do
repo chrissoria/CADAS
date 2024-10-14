@@ -1216,13 +1216,13 @@ label values serial7_score2 SERIAL7_SCORE2
 
 *merge in 1066 variables
 if `country' == 0 {
-    merge m:m pid using "`path'/PR_in/cadas_1066_reproduced.dta", keepusing(demp1066_score relscore_cadas cogscore recall dem1066)
+    merge m:m pid using "`path'/PR_out/1066.dta", keepusing(dem1066_score relscore_cadas cogscore recall dem1066)
 }
 else if `country' == 1 {
-    merge m:m pid using "`path'/DR_in/cadas_1066_reproduced.dta", keepusing(demp1066_score relscore_cadas cogscore recall dem1066)
+    merge m:m pid using "`path'/DR_out/1066.dta", keepusing(dem1066_score relscore_cadas cogscore recall dem1066)
 }
 else if `country' == 2 {
-    merge m:m pid using "`path'/CUBA_in/cadas_1066_reproduced.dta", keepusing(demp1066_score relscore_cadas cogscore recall dem1066)
+    merge m:m pid using "`path'/CUBA_out/1066.dta", keepusing(dem1066_score relscore_cadas cogscore recall dem1066)
 }
 drop _merge
 
