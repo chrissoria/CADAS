@@ -431,6 +431,12 @@ replace serial7_score2 = (serial7_score2 + 1) if ((c_18 - 7 == c_19) & (c_19 ~= 
 gen MUNDO_score = 0
 *create temporary variable with c_20 string that we can edit
 gen c_20_temp2 = c_20
+
+*Fix since PR is taking too long with this long response (assuming interviewer wrote 54321 for themselves, and 12345 was the response given)
+if `country' == 0 {
+	replace c_20_temp2 = "12345" if c_20_temp2 == "5432112345"
+}
+
 *clean variable c_20_temp2 to delete any characters other than m, u, n, d, and o
 quietly forvalues obs = 1(1) `=_N' {
 	forvalues character = `=strlen(c_20_temp2[`obs'])'(-1) 1 {
