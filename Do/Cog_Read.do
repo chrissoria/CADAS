@@ -4762,11 +4762,13 @@ end
 if `country' == 0 {
 	replace c_20_temp = "12345" if c_20_temp == "5432112345"
 }
+if `country' == 0 {
+	replace c_20_temp = substr(c_20_temp, -6, .) if strlen(c_20_temp) >= 5
+}
 
 *run the program we created to score the response from each participant
 
 
-if `country' == !0 {
 quietly forvalues obs = 1(1) `=_N' {
 
 	if c_20_temp[`obs'] ~= "" {
@@ -4779,7 +4781,6 @@ quietly forvalues obs = 1(1) `=_N' {
 
 }
 
-}
 
 
 
@@ -5627,7 +5628,7 @@ gen pid_parent = c_country_str + c_clustid_str + c_houseid_str + c_particid_str
 sort c_parent_clustid c_parent_houseid
 
 *checking to see if parent form ID's and child match
-gen pid_nonmatch = pid_parent if (pid2 != pid_parent & c_parent_clustid != .)
+gen pid_nonmatch = 1 if (pid != pid_parent & c_parent_clustid != .)
 drop pid2
 
 order pid_parent pid pid_nonmatch globalrecordid hhid

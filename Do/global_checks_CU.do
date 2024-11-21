@@ -362,6 +362,8 @@ capture export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(
  
  duplicates report globalrecordid
  duplicates drop globalrecordid, force
+*instructions from tania based on responses to survey
+replace p_particid = 2 if globalrecordid == "f7744c29-6c8e-462a-a8c3-1df21eb4211e"
 *recoding the smaller individiual to female (participante 2)
 replace p_particid = 2 if globalrecordid == "b135c9a8-cb1f-4334-a2f9-c82710bf5881"
 
@@ -537,6 +539,11 @@ export excel using "duplicates/phys_duplicates.xlsx", replace firstrow(variables
 use Infor
  
  drop pid hhid
+ 
+*instructions from Tania, based on her recollection
+replace i_particid = 2 if globalrecordid == "cfa02457-5799-49bd-b752-01b4d416981f"
+replace i_b3 = 80 if globalrecordid == "6d91800e-7d1c-4352-abc2-0891fa740860"
+replace i_b4 = 1 if globalrecordid == "6d91800e-7d1c-4352-abc2-0891fa740860"
  
 *correction was made in parent but not in child
 replace i_clustid = 7 if globalrecordid == "45415314-e4ed-4563-adfe-716808c498f0"
@@ -859,3 +866,20 @@ b81579ca-4945-46da-8d06-45273fcfbeb5 pid 20100201, probably junk
 5133ce8a-22c6-4432-b2d0-3b9885b5a885 pid 20103901, probably junk
 the above are all cognitve surveys with no cognitve scoring files.*/
 
+*here, we want to merge all the individual-level files together to get a big file
+
+clear all
+use Cog.dta
+merge m:m pid using Infor.dta
+
+drop _merge
+
+merge m:m pid using Phys.dta
+
+drop _merge
+
+merge m:m pid using Socio.dta
+
+drop _merge fkey globalrecordid pid_parent  pid_nonmatch
+
+save Respondent_Merged.dta, replace

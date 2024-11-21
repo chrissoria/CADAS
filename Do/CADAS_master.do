@@ -18,15 +18,12 @@ if `"`user'"' == "Chris" {
 
     local path = "/hdir/0/chrissoria/Stata_CADAS/Do/Read"
 
-
-
     include "`path'/CADAS_country_define.do"
-
-    
 
     if `country' == 0 {
     	do "`path'/../PR/cog_checks.do"
 	*do "`path'/../PR/door_checks.do"
+	do "/hdir/0/chrissoria/Stata_CADAS/Do/Read/Sangre_Read.do"
     }
 
     else if `country' == 1 {
