@@ -1,25 +1,33 @@
-capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"\
+capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
 capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_country_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
 
+display "User: `user'"
+
 clear all
 capture log close
 
-if `"`user'"' == "Chris" {
-local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_country_define.do"
+if "`user'" == "Chris" {
+    local path "/hdir/0/chrissoria/Stata_CADAS/Data"
+    include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_country_define.do"
 }
-
-else if `"`user'"' == "Ty" {
-local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
-include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
+else if "`user'" == "Ty" {
+    local path "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+    include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
+}
+else {
+    display as error "User not recognized. Please set the 'user' macro to either 'Chris' or 'Ty'."
+    exit 198
 }
 
 insheet using "../PR_in/Cog_Child.csv", comma names clear
 
 drop if c_deviceid1 == ""
+
+drop if inlist(globalrecordid, "f7a8bf72-6c00-4da9-817e-1b718f38d0ef", "b86d5d07-5256-4692-bc5d-b584014079e0", "b77d619b-236e-4fb5-8bf5-ffcdcf5a0d7c","bb26033f-fca4-4dd1-9ef9-d71654b46024", "05957905-2edf-48d8-b976-9399e760c24a", "d33d2407-4433-4fb9-8039-4fd922e82185", "229742b0-f963-400b-96ab-c69aa9eedaa6")
+
 
 if `country' == 0 {
     export delimited using "../PR_in/Cog_Child_cleaned.csv", replace
@@ -30,7 +38,6 @@ else if `country' == 1 {
 else if `country' == 2 {
     export delimited using "../CU_in/Cog_Child_cleaned.csv", replace
 }
-drop if inlist(globalrecordid, "f7a8bf72-6c00-4da9-817e-1b718f38d0ef", "b86d5d07-5256-4692-bc5d-b584014079e0", "b77d619b-236e-4fb5-8bf5-ffcdcf5a0d7c","bb26033f-fca4-4dd1-9ef9-d71654b46024", "05957905-2edf-48d8-b976-9399e760c24a", "d33d2407-4433-4fb9-8039-4fd922e82185", "229742b0-f963-400b-96ab-c69aa9eedaa6")
 
 drop if c_interid == 99
 
@@ -50,7 +57,7 @@ gen pid = c_country_str + c_clustid_str + c_houseid_str + c_particid_str
 gen hhid = c_country_str + c_clustid_str + c_houseid_str
 drop c_country_str c_clustid_str c_houseid_str c_particid_str
 
-log using "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out/logs/CogOnlyMissing", text replace
+log using "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out/logs/CogOnlyMissing", text replace
 
 
 local missvarlist

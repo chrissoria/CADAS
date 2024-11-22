@@ -37,7 +37,10 @@ else if `country' == 2 {
     cd "`path'/CUBA_out"
 }
 }
-import excel using "../PR_in/Resumen de entrevistas.xlsx", firstrow clear
+ 
+local drop_not_resumen "yes"
+
+import excel using "../PR_in/Resumen de entrevistas.xlsx", cellrange(A2) firstrow clear
 
 gen clustid_str = string(Cluster, "%12.0f")
 gen houseid_str = string(Casa, "%03.0f")
@@ -157,27 +160,34 @@ drop _merge
 
 order pid_parent pid resumen
 
-log using "`path'/PR_out/logs/SocioOnlyMissing", text replace
+if "`drop_not_resumen'" == "yes" {
+    drop if resumen == "Not in Resumen"
+}
+
+log using "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out/logs/SocioOnlyMissing", text replace
 
 
 local missvarlist
-foreach v of var * {
-	capture confirm str var `v'
-	if _rc == 0 {
-		quietly count if `v' == ".i"
-		if r(N) > 5 {
-			local missvarlist `missvarlist' `v'
-		}
-	}
-	else {
-		quietly count if `v' == .i
-		if r(N) > 5 {
-			local missvarlist `missvarlist' `v'
-		}
-	}
+
+foreach v of varlist * {
+    display "Processing variable: `v'"
+    capture confirm string variable `v'
+    if _rc == 0 {
+        quietly count if `v' == ""
+        if r(N) > 5 {
+            local missvarlist `missvarlist' `v'
+        }
+    }
+    else {
+        quietly count if missing(`v')
+        if r(N) > 5 {
+            local missvarlist `missvarlist' `v'
+        }
+    }
 }
 
-macro list _missvarlist
+display "Variables with more than 5 missing values:"
+display "`missvarlist'"
 
 foreach v of local missvarlist {
 	codebook `v'
@@ -252,27 +262,35 @@ drop _merge
 
 order pid_parent pid resumen
 
-log using "`path'/PR_out/logs/PhysOnlyMissing", text replace
+if "`drop_not_resumen'" == "yes" {
+    drop if resumen == "Not in Resumen"
+}
+
+
+log using "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out/logs/PhysOnlyMissing", text replace
 
 
 local missvarlist
-foreach v of var * {
-	capture confirm str var `v'
-	if _rc == 0 {
-		quietly count if `v' == ".i"
-		if r(N) > 5 {
-			local missvarlist `missvarlist' `v'
-		}
-	}
-	else {
-		quietly count if `v' == .i
-		if r(N) > 5 {
-			local missvarlist `missvarlist' `v'
-		}
-	}
+
+foreach v of varlist * {
+    display "Processing variable: `v'"
+    capture confirm string variable `v'
+    if _rc == 0 {
+        quietly count if `v' == ""
+        if r(N) > 5 {
+            local missvarlist `missvarlist' `v'
+        }
+    }
+    else {
+        quietly count if missing(`v')
+        if r(N) > 5 {
+            local missvarlist `missvarlist' `v'
+        }
+    }
 }
 
-macro list _missvarlist
+display "Variables with more than 5 missing values:"
+display "`missvarlist'"
 
 foreach v of local missvarlist {
 	codebook `v'
@@ -346,26 +364,33 @@ drop _merge
 
 order pid_parent pid resumen
 
-log using "`path'/PR_out/logs/InforOnlyMissing", text replace
-
-local missvarlist
-foreach v of var * {
-	capture confirm str var `v'
-	if _rc == 0 {
-		quietly count if `v' == ".i"
-		if r(N) > 5 {
-			local missvarlist `missvarlist' `v'
-		}
-	}
-	else {
-		quietly count if `v' == .i
-		if r(N) > 5 {
-			local missvarlist `missvarlist' `v'
-		}
-	}
+if "`drop_not_resumen'" == "yes" {
+    drop if resumen == "Not in Resumen"
 }
 
-macro list _missvarlist
+log using "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out/logs/InforOnlyMissing", text replace
+
+local missvarlist
+
+foreach v of varlist * {
+    display "Processing variable: `v'"
+    capture confirm string variable `v'
+    if _rc == 0 {
+        quietly count if `v' == ""
+        if r(N) > 5 {
+            local missvarlist `missvarlist' `v'
+        }
+    }
+    else {
+        quietly count if missing(`v')
+        if r(N) > 5 {
+            local missvarlist `missvarlist' `v'
+        }
+    }
+}
+
+display "Variables with more than 5 missing values:"
+display "`missvarlist'"
 
 foreach v of local missvarlist {
 	codebook `v'
@@ -417,6 +442,10 @@ drop _merge
 
 order pid_parent pid resumen
 
+if "`drop_not_resumen'" == "yes" {
+    drop if resumen == "Not in Resumen"
+}
+
 save Cog.dta, replace
 
 clear all
@@ -425,19 +454,19 @@ use Household
 
 drop if inlist(globalrecordid, "517e61c3-f612-41b8-8038-656a367b177d", "fea7bf68-4b53-41dc-8a3a-170dc287be69", "f810981c-8684-4325-9678-c0e6bf660389")
  
- log using "`path'/PR_out/logs/HouseholdOnlyMissing", text replace
+ log using "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out/logs/HouseholdOnlyMissing", text replace
 
  
+
 local missvarlist
 
-foreach v of var * {
+foreach v of varlist * {
     display "Processing variable: `v'"
-    capture confirm str variable `v'
+    capture confirm string variable `v'
     if _rc == 0 {
         quietly count if `v' == ""
         if r(N) > 5 {
             local missvarlist `missvarlist' `v'
-	    macro list missvarlist
         }
     }
     else {
@@ -448,7 +477,9 @@ foreach v of var * {
     }
 }
 
-macro list _missvarlist
+display "Variables with more than 5 missing values:"
+display "`missvarlist'"
+
 
 foreach v of local missvarlist {
     codebook `v'
@@ -496,7 +527,7 @@ clear all
 
 *next, I want to find out if we have the right amount of cog scoring and cog surveys
 
-cd "`path'/PR_out"
+cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
 use Cog_Scoring
 
 *for no, I will do m:m because I have't been able to pin down which unique cases are the true/correct ones
