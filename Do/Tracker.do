@@ -42,15 +42,15 @@ C. Check to see gender in Socio matches gender in Roster
 //below we'll pull out the pid row and any columns that might be relevant
 
 if `country' == 0 {
-    import excel using "../PR_in/Resumen de entrevistas.xlsx", firstrow clear
-    keep IngreseunalíneaparacadaPart B C D E F G
-    rename IngreseunalíneaparacadaPart Cluster
-    rename B House_ID
-    rename C Participante
-    rename D sex
-    rename E age
-    rename F Fecha
-    rename G Notas
+    import excel using "../PR_in/Resumen de Entrevistas.xlsx", cellrange(A2) firstrow clear
+    drop L M N O P Q R S T U V W X Y Z
+    keep if strpos(lower(NotasCuestionariosnohechos), "complete") > 0
+    keep Cluster Casa Participante GénerodeParticpante EdaddeParticpante Fechadeentrevista NotasCuestionariosnohechos
+    rename Casa House_ID
+    rename GénerodeParticpante sex
+    rename EdaddeParticpante age
+    rename Fechadeentrevista Fecha
+    rename NotasCuestionariosnohechos Notas
     drop in 1
 }    
 else if `country' == 1 {
@@ -468,6 +468,8 @@ drop _merge
 keep d_1 d_particid pid hhid hhid_en_puerta
 
 save tracker_door, replace
+export excel using "duplicates/tracker_door.xlsx", replace firstrow(variables)
+
 
 clear
 
@@ -558,6 +560,15 @@ capture replace pid_en_sangre = " " if pid_en_sangre == "1"
 capture drop pid_en_sangre
 
 export excel using "duplicates/casos_incompletos.xlsx", replace firstrow(variables)
+
+clear
+use tracker_slim
+keep if RSPCZIHXF7 == "G       "
+
+keep pid Cluster House_ID
+
+export excel using "duplicates/in_resumen_not_in_data.xlsx", replace firstrow(variables)
+
 
 log close
 *exit, clear

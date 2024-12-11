@@ -15,14 +15,14 @@ clear all
 
 if `"`user'"' == "Chris" {
 
-
     local path = "/hdir/0/chrissoria/Stata_CADAS/Do/Read"
 
     include "`path'/CADAS_country_define.do"
 
     if `country' == 0 {
+    	do "`path'/../PR/Resumen.do"
     	do "`path'/../PR/cog_checks.do"
-	*do "`path'/../PR/door_checks.do"
+	do "`path'/../PR/door_checks.do"
 	do "/hdir/0/chrissoria/Stata_CADAS/Do/Read/Sangre_Read.do"
     }
 
@@ -95,16 +95,13 @@ if `"`user'"' == "Chris" {
 
 if `country' != 0{
 
-    
-
-
-    do "/hdir/0/chrissoria/Stata_CADAS/Do/InterviewerConcordance1.do"
 
     do "/hdir/0/chrissoria/Stata_CADAS/Do/mp4_TyManualScoring.do"
     
     
 
 }
+	do "/hdir/0/chrissoria/Stata_CADAS/Do/InterviewerConcordance1.do"
 	do "/hdir/0/chrissoria/1066/cadas_1066_reproduced.do"
 	do "/hdir/0/chrissoria/Stata_CADAS/Do/Tracker.do"
 	do "/hdir/0/chrissoria/Stata_CADAS/Do/Ty_Pent_Scoring.do"
@@ -139,6 +136,7 @@ else if `"`user'"' == "Ty" {
 
 
 if `country' == 0 {
+	do "`path'/../PR/Resumen.do"
 
     do "`path'/global_checks_PR"
 

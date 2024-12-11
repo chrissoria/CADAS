@@ -40,11 +40,13 @@ else if `country' == 2 {
  
 local drop_not_resumen "yes"
 
-import excel using "../PR_in/Resumen de entrevistas.xlsx", cellrange(A2) firstrow clear
+import excel using "../PR_in/Resumen de Entrevistas.xlsx", cellrange(A2) firstrow clear
 
 gen clustid_str = string(Cluster, "%12.0f")
 gen houseid_str = string(Casa, "%03.0f")
 gen particid_str = string(Participante, "%12.0f")
+
+keep if strpos(lower(NotasCuestionariosnohechos), "complete") > 0
 
 gen country_str = "0"
 
@@ -57,7 +59,15 @@ replace particid_str = cond(strlen(particid_str) == 1, "0" + particid_str, parti
 
 gen pid = country_str + clustid_str + houseid_str + particid_str
 drop country_str clustid_str houseid_str particid_str
-drop H I J K L
+
+if `country' == 0 {
+	drop L M N O P Q R S T U V W X Y Z
+}
+
+else if `country' != 0 {
+	drop H I J K L
+}
+
 
 order pid
 
@@ -69,6 +79,34 @@ save resumen_pid.dta,replace
 
 clear all
 
+use door_merged_all
+drop pid hhid
+*make fixes here
+gen d_country_str = string(d_country, "%12.0f")
+
+gen d_clustid_str = string(d_clustid, "%12.0f")
+replace d_clustid_str = cond(strlen(d_clustid_str) == 1, "0" + d_clustid_str, d_clustid_str)
+
+gen d_houseid_str = string(d_houseid, "%03.0f")
+replace d_houseid_str = cond(strlen(d_houseid_str) == 1, "00" + d_houseid_str, d_houseid_str)
+replace d_houseid_str = cond(strlen(d_houseid_str) == 2, "0" + d_houseid_str, d_houseid_str)
+
+gen d_particid_str = string(d_particid, "%12.0f")
+
+gen pid = d_particid_str + d_country_str + d_clustid_str + d_houseid_str
+replace pid = "." if strpos(pid, ".") > 0
+
+gen hhid = d_country_str + d_clustid_str + d_houseid_str
+replace hhid = "." if strpos(hhid, ".") > 0
+
+drop d_particid_str d_country_str d_clustid_str d_houseid_str
+capture drop globalrecordid1
+
+sort d_clustid d_7_1
+
+export excel using "excel/puerta.xlsx", replace firstrow(variables)
+
+save door_merged_all.dta, replace
 use rosters_participants
  
   duplicates report globalrecordid
