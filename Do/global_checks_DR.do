@@ -155,6 +155,10 @@ capture drop globalrecordid1
 
 save door_merged_all.dta, replace
 
+sort d_clustid d_7_1
+
+export excel using "excel/puerta.xlsx", replace firstrow(variables)
+
 keep if hhid == "."
 
 export excel using "duplicates/door_no_houseid.xlsx", replace firstrow(variables)
@@ -162,6 +166,18 @@ export excel using "duplicates/door_no_houseid.xlsx", replace firstrow(variables
 clear all
 
 import excel using "../DR_in/Resumen de entrevistas.xlsx", firstrow
+missings dropobs, force
+replace GénerodeParticpante = "F" if GénerodeParticpante == "f"
+replace GénerodeParticpante = "M" if GénerodeParticpante == "m"
+replace NotasCuestionariosnohechos = "Completa" if NotasCuestionariosnohechos == "completa"
+replace NotasCuestionariosnohechos = "Completa" if NotasCuestionariosnohechos == "Completo"
+replace NotasCuestionariosnohechos = "Completa" if NotasCuestionariosnohechos == "completo"
+replace NotasCuestionariosnohechos = "Incompleta" if NotasCuestionariosnohechos == "Incompleto"
+unab vlist : _all
+sort `vlist'
+quietly by `vlist':  gen dup = cond(_N==1,0,_n)
+drop if dup > 1
+drop dup
 
 capture destring(Cluster) , replace
 capture destring(HouseID) , replace
@@ -680,82 +696,6 @@ foreach v of local missvarlist {
 
 
 log close
-
-clear all
-
- *Next, I will merge each child with the parent and see if things are matching
- *Parents match to child with the fkey to globalrecordid, so I will need to rename the fkey to globalrecordid in the child
-
-cd "`path'/DR_out"
-insheet using "../DR_in/Socio_Parent.csv"
-
-rename globalrecordid fkey
-
-merge 1:1 fkey using Socio, force
-
-save Socio_Child_Parent_Merged.dta, replace
-
-keep if _merge != 3
-list
-
-clear all
-
-
-cd "`path'/DR_out"
-insheet using "../DR_in/Cog_Parent.csv"
-
-rename globalrecordid fkey
-
-merge 1:1 fkey using Cog
-
-save Cog_Child_Parent_Merged.dta, replace
-
-keep if _merge != 3
-list
-
-clear all
-
-cd "`path'/DR_out"
-insheet using "../DR_in/Phys_Parent.csv"
-
-rename globalrecordid fkey
-
-duplicates report
-duplicates drop fkey, force
-
-merge m:m fkey using Phys, force
-
-keep if _merge != 3
-list
-
-clear all
-
-cd "`path'/DR_out"
-insheet using "../DR_in/Infor_Parent.csv"
-
-rename globalrecordid fkey
-
-merge 1:1 fkey using Infor
-
-keep if _merge != 3
-list
-
-clear all
-
-cd "`path'/DR_out"
-insheet using "../DR_in/Household_Parent.csv"
-
-rename globalrecordid fkey
-
-clear all
-use Household
-gen is_duplicate = fkey[_n] == fkey[_n-1]
-list if is_duplicate
-
-merge 1:1 fkey using Household
-
-keep if _merge != 3
-list
 
 clear all
 

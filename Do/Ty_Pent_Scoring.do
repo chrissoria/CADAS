@@ -64,7 +64,15 @@ replace pent_pic = subinstr(pent_pic, ".jpg", "", .)
 order pid hhid globalrecordid pent_pic cs_40_ty
 
 * Export data to Excel
-export excel using "ty_pent_scoring_out.xlsx", replace firstrow(variables)
+if `country' == 0 {
+    export excel using "`path'/consensus/ty_pent_scoring_out_PR.xlsx", replace firstrow(variables)
+}
+else if `country' == 1 {
+    export excel using "`path'/consensus/ty_pent_scoring_out_DR.xlsx", replace firstrow(variables)
+}
+else if `country' == 2 {
+    export excel using "`path'/consensus/ty_pent_scoring_out_CU.xlsx", replace firstrow(variables)
+}
 
 * Indicate if observation has a CROPPED pentagon picture uploaded
 rename cs_40_ty cropped_pent_uploaded

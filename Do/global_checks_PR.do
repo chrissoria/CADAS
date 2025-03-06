@@ -40,11 +40,15 @@ else if `country' == 2 {
  
 local drop_not_resumen "yes"
 
-import excel using "../PR_in/Resumen de Entrevistas.xlsx", cellrange(A2) firstrow clear
+import excel using "../PR_in/Resumen de Entrevistas.xlsx", firstrow clear
 
 gen clustid_str = string(Cluster, "%12.0f")
 gen houseid_str = string(Casa, "%03.0f")
 gen particid_str = string(Participante, "%12.0f")
+
+* we believe these are mismatches in the Resumen
+replace particid_str = "1" if (clustid_str == "11" & houseid_str == "094" & particid_str == "2")
+replace GénerodeParticpante = "F" if (clustid_str == "4" & houseid_str == "002" & particid_str == "1")
 
 keep if strpos(lower(NotasCuestionariosnohechos), "complete") > 0
 
@@ -61,7 +65,7 @@ gen pid = country_str + clustid_str + houseid_str + particid_str
 drop country_str clustid_str houseid_str particid_str
 
 if `country' == 0 {
-	drop L M N O P Q R S T U V W X Y Z
+	drop N O P Q R S T U V W X Y Z AA AB DiegoNotes blooddrawn Geneticconsent bloodconsent
 }
 
 else if `country' != 0 {
@@ -165,6 +169,10 @@ capture export excel using "duplicates/roster_duplicates.xlsx", replace firstrow
  clear all
  
 use Socio
+* because the id's were entered in incorrectly in the resumen, we'll have to match that incorrect ID in the data
+replace s_particid = 2 if globalrecordid == "f1f59f5f-83b5-49a0-bca7-e7eccd818b25"
+replace s_particid = 1 if globalrecordid == "f084cb1f-b4eb-4115-8a79-e11ee6038429"
+
 
 drop pid
 drop hhid
@@ -239,6 +247,7 @@ log close
  list if is_duplicate
  drop is_duplicate
  
+export excel using "excel/socio.xlsx", replace firstrow(variables)
  save Socio.dta, replace
   
 gen is_duplicate = pid[_n] == pid[_n-1]
@@ -271,6 +280,10 @@ export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(variable
  
  duplicates report globalrecordid
  duplicates drop globalrecordid, force
+ 
+* because the id's were entered in incorrectly in the resumen, we'll have to match that incorrect ID in the data
+replace p_particid = 2 if globalrecordid == "5cec9bb3-f0af-44b2-8a0a-a2415bace46d"
+replace p_particid = 1 if globalrecordid == "b2dfeca1-c7d0-4c38-a45c-747a4cbc807b"
  
  gen p_country_str = string(p_country, "%12.0f")
 
@@ -335,6 +348,7 @@ foreach v of local missvarlist {
 }
 
 log close
+export excel using "excel/examen_fisico.xlsx", replace firstrow(variables)
 save Phys.dta, replace
 
  
@@ -370,6 +384,10 @@ export excel using "duplicates/phys_duplicates.xlsx", replace firstrow(variables
  clear all
  
 use Infor
+
+* because the id's were entered in incorrectly in the resumen, we'll have to match that incorrect ID in the data
+replace i_particid = 2 if globalrecordid == "a027b10b-5295-4c1e-b4e0-1148c2715c04"
+replace i_particid = 1 if globalrecordid == "88d87a97-cc13-4ab4-a236-21d5280a7dc2"
  
  drop pid hhid
  
@@ -441,8 +459,9 @@ log close
  gen is_duplicate = pid[_n] == pid[_n-1]
  list if is_duplicate
  drop is_duplicate
- 
- save Infor.dta, replace
+
+export excel using "excel/informante.xlsx", replace firstrow(variables)
+save Infor.dta, replace
  
  gen is_duplicate = pid[_n] == pid[_n-1]
 
@@ -532,6 +551,7 @@ log close
 
 drop is_duplicate
 
+export excel using "excel/familiar.xlsx", replace firstrow(variables)
 save Household.dta, replace
 
 gen is_duplicate = hhid[_n] == hhid[_n-1]

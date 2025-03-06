@@ -42,17 +42,16 @@ C. Check to see gender in Socio matches gender in Roster
 //below we'll pull out the pid row and any columns that might be relevant
 
 if `country' == 0 {
-    import excel using "../PR_in/Resumen de Entrevistas.xlsx", cellrange(A2) firstrow clear
-    drop L M N O P Q R S T U V W X Y Z
+    import excel using "../PR_in/Resumen de Entrevistas.xlsx", firstrow clear
+    *drop N-Z
     keep if strpos(lower(NotasCuestionariosnohechos), "complete") > 0
     keep Cluster Casa Participante GénerodeParticpante EdaddeParticpante Fechadeentrevista NotasCuestionariosnohechos
-    rename Casa House_ID
-    rename GénerodeParticpante sex
-    rename EdaddeParticpante age
-    rename Fechadeentrevista Fecha
-    rename NotasCuestionariosnohechos Notas
-    drop in 1
-}    
+    rename (Casa GénerodeParticpante EdaddeParticpante Fechadeentrevista NotasCuestionariosnohechos) ///
+           (House_ID sex age Fecha Notas)
+    drop if missing(Cluster, House_ID, Participante, sex, age, Fecha, Notas)
+}
+
+
 else if `country' == 1 {
     import excel using "../DR_in/Resumen de entrevistas.xlsx", firstrow
     rename HouseID House_ID
@@ -172,6 +171,7 @@ destring age, replace
 
 egen duplic=count(pid), by(pid)
 egen sd_sex=sd(sex), by(pid)
+destring age, replace force
 egen sd_age=sd(age), by(pid)
 tab duplic /* if any duplicates, should re-do cleaning .do file then re-run this file */
 sum sd_sex sd_age /* these should be all zero if duplicates have identical age and sex */
@@ -365,7 +365,7 @@ sum
 * BLOOD
 **********
 
-if `country' == 1 {
+if `country' ~= 2 {
     use "sangre_full.dta", clear
     
 keep pid XF7
@@ -405,7 +405,10 @@ replace I_in=" " if pid_en_infor~=1
 replace H_in=" " if existe_familiar~=1
 
 if `country' == 0 {
-gen RSPCZIHXF7 = G_in+R_in + S_in + P_in + C_in + Z_in + I_in + H_in
+gen B_in=XF7 if pid_en_sangre==1
+replace B_in=" " if pid_en_sangre~=1
+
+gen RSPCZIHXF7 = G_in+R_in + S_in + P_in + C_in + Z_in + I_in + H_in + B_in
 tab RSPCZIHXF7
 }
 
@@ -567,7 +570,7 @@ keep if RSPCZIHXF7 == "G       "
 
 keep pid Cluster House_ID
 
-export excel using "duplicates/in_resumen_not_in_data.xlsx", replace firstrow(variables)
+capture export excel using "duplicates/in_resumen_not_in_data.xlsx", replace firstrow(variables)
 
 
 log close

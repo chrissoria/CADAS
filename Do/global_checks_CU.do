@@ -639,6 +639,470 @@ replace i_houseid = 117 if globalrecordid == "555df103-6eeb-4530-88ab-d4e27d5157
 
 *my own deductions based on casos incompletos missing and match. there is only one particiant in household 9 cluster 9.
 replace i_particid = 1 if globalrecordid == "35076268-4a63-436f-a768-cfca44bca795"
+
+*Informant mis-entries (fixed by Ty on 2/8)
+replace i_b3 = 67  if globalrecordid == "5431a045-1224-4e35-b623-ac0e4ab263e7"
+replace i_b4 = 1 if globalrecordid == "5431a045-1224-4e35-b623-ac0e4ab263e7"
+replace i_b5 = 1 if globalrecordid == "5431a045-1224-4e35-b623-ac0e4ab263e7"
+replace i_b7 = 3 if globalrecordid == "5431a045-1224-4e35-b623-ac0e4ab263e7"
+
+replace i_b3 = 77  if globalrecordid == "e69aad3b-5367-4f9c-90cb-8f1c9543eaee"
+replace i_b4 = 1 if globalrecordid == "e69aad3b-5367-4f9c-90cb-8f1c9543eaee"
+replace i_b5 = 1 if globalrecordid == "e69aad3b-5367-4f9c-90cb-8f1c9543eaee"
+replace i_b7 = 3 if globalrecordid == "e69aad3b-5367-4f9c-90cb-8f1c9543eaee"
+
+replace i_b3 = 79  if globalrecordid == "95f0e525-3418-49eb-8558-7ce85f56ec9e"
+replace i_b4 = 1 if globalrecordid == "95f0e525-3418-49eb-8558-7ce85f56ec9e"
+replace i_b5 = 1 if globalrecordid == "95f0e525-3418-49eb-8558-7ce85f56ec9e"
+replace i_b7 = 3 if globalrecordid == "95f0e525-3418-49eb-8558-7ce85f56ec9e"
+
+replace i_b3 = 76  if globalrecordid == "73516e7d-4288-499a-a89c-9ffde5d2df0a"
+replace i_b4 = 1 if globalrecordid == "73516e7d-4288-499a-a89c-9ffde5d2df0a"
+replace i_b5 = 1 if globalrecordid == "73516e7d-4288-499a-a89c-9ffde5d2df0a"
+replace i_b7 = 4 if globalrecordid == "73516e7d-4288-499a-a89c-9ffde5d2df0a"
+
+replace i_b3 = 78  if globalrecordid == "4412466b-094b-427c-94d7-2c931e2d775f"
+replace i_b4 = 2 if globalrecordid == "4412466b-094b-427c-94d7-2c931e2d775f"
+replace i_b5 = 1 if globalrecordid == "4412466b-094b-427c-94d7-2c931e2d775f"
+replace i_b7 = 4 if globalrecordid == "4412466b-094b-427c-94d7-2c931e2d775f"
+
+replace i_b3 = 69  if globalrecordid == "7d2d1034-dc25-43ab-ae5d-eb35acca0fd9"
+replace i_b4 = 1 if globalrecordid == "7d2d1034-dc25-43ab-ae5d-eb35acca0fd9"
+replace i_b5 = 1 if globalrecordid == "7d2d1034-dc25-43ab-ae5d-eb35acca0fd9"
+replace i_b7 = 4 if globalrecordid == "7d2d1034-dc25-43ab-ae5d-eb35acca0fd9"
+
+replace i_b3 = 73  if globalrecordid == "c896b814-2b91-44fd-bc2b-90b50e4e0d54"
+replace i_b4 = 2 if globalrecordid == "c896b814-2b91-44fd-bc2b-90b50e4e0d54"
+replace i_b5 = 1 if globalrecordid == "c896b814-2b91-44fd-bc2b-90b50e4e0d54"
+replace i_b7 = 4 if globalrecordid == "c896b814-2b91-44fd-bc2b-90b50e4e0d54"
+
+replace i_b3 = 46 if globalrecordid == "94d971a8-8ee0-435c-861b-aa7067b64457"
+replace i_b4 = 1 if globalrecordid == "94d971a8-8ee0-435c-861b-aa7067b64457"
+replace i_b5 = 2 if globalrecordid == "94d971a8-8ee0-435c-861b-aa7067b64457"
+replace i_b7 = 4 if globalrecordid == "94d971a8-8ee0-435c-861b-aa7067b64457"
+
+replace i_b3 = 66  if globalrecordid == "d2ea45a5-60ac-4084-9888-96e4b754026c"
+replace i_b4 = 2 if globalrecordid == "d2ea45a5-60ac-4084-9888-96e4b754026c"
+replace i_b5 = 1 if globalrecordid == "d2ea45a5-60ac-4084-9888-96e4b754026c"
+replace i_b7 = 3 if globalrecordid == "d2ea45a5-60ac-4084-9888-96e4b754026c"
+
+replace i_b3 = 68  if globalrecordid == "b4cd8bb5-d8db-4274-b080-549c81c0692a"
+replace i_b4 = 1 if globalrecordid == "b4cd8bb5-d8db-4274-b080-549c81c0692a"
+replace i_b5 = 1 if globalrecordid == "b4cd8bb5-d8db-4274-b080-549c81c0692a"
+replace i_b7 = 3 if globalrecordid == "b4cd8bb5-d8db-4274-b080-549c81c0692a"
+
+replace i_b3 = 73  if globalrecordid == "5a774034-a587-4a70-b317-3bbc700fc6d6"
+replace i_b4 = 1 if globalrecordid == "5a774034-a587-4a70-b317-3bbc700fc6d6"
+replace i_b5 = 1 if globalrecordid == "5a774034-a587-4a70-b317-3bbc700fc6d6"
+replace i_b7 = 4 if globalrecordid == "5a774034-a587-4a70-b317-3bbc700fc6d6"
+
+replace i_b3 = 76  if globalrecordid == "3c93f20d-1d6f-4fee-b395-2487a69986a9"
+replace i_b4 = 2 if globalrecordid == "3c93f20d-1d6f-4fee-b395-2487a69986a9"
+replace i_b5 = 1 if globalrecordid == "3c93f20d-1d6f-4fee-b395-2487a69986a9"
+replace i_b7 = 4 if globalrecordid == "3c93f20d-1d6f-4fee-b395-2487a69986a9"
+
+replace i_b3 = 67  if globalrecordid == "95131cf4-37ec-4361-bd8b-404082c87794"
+replace i_b4 = 1 if globalrecordid == "95131cf4-37ec-4361-bd8b-404082c87794"
+replace i_b5 = 1 if globalrecordid == "95131cf4-37ec-4361-bd8b-404082c87794"
+replace i_b7 = 4 if globalrecordid == "95131cf4-37ec-4361-bd8b-404082c87794"
+
+replace i_b3 = 68  if globalrecordid == "5b9f00e8-49bd-48fa-bbe7-23283b3b3e69"
+replace i_b4 = 2 if globalrecordid == "5b9f00e8-49bd-48fa-bbe7-23283b3b3e69"
+replace i_b5 = 1 if globalrecordid == "5b9f00e8-49bd-48fa-bbe7-23283b3b3e69"
+replace i_b7 = 4 if globalrecordid == "5b9f00e8-49bd-48fa-bbe7-23283b3b3e69"
+
+replace i_b3 = 66  if globalrecordid == "4066d1d0-8e50-47ca-9371-2cb254a5e972"
+replace i_b4 = 2 if globalrecordid == "4066d1d0-8e50-47ca-9371-2cb254a5e972"
+replace i_b5 = 1 if globalrecordid == "4066d1d0-8e50-47ca-9371-2cb254a5e972"
+replace i_b7 = 3 if globalrecordid == "4066d1d0-8e50-47ca-9371-2cb254a5e972"
+
+replace i_b3 = 72  if globalrecordid == "fd09d8b9-fb4a-4784-a5dc-1fe46db7f3f4"
+replace i_b4 = 1 if globalrecordid == "fd09d8b9-fb4a-4784-a5dc-1fe46db7f3f4"
+replace i_b5 = 1 if globalrecordid == "fd09d8b9-fb4a-4784-a5dc-1fe46db7f3f4"
+replace i_b7 = 3 if globalrecordid == "fd09d8b9-fb4a-4784-a5dc-1fe46db7f3f4"
+
+replace i_b3 = 63  if globalrecordid == "76ba15b9-0fab-4752-9723-da3ebc49b549"
+replace i_b4 = 1 if globalrecordid == "76ba15b9-0fab-4752-9723-da3ebc49b549"
+replace i_b5 = 1 if globalrecordid == "76ba15b9-0fab-4752-9723-da3ebc49b549"
+replace i_b7 = 4 if globalrecordid == "76ba15b9-0fab-4752-9723-da3ebc49b549"
+
+replace i_b3 = 81  if globalrecordid == "ffa00b2b-569c-4ccb-b588-91f6a6ee55c9"
+replace i_b4 = 2 if globalrecordid == "ffa00b2b-569c-4ccb-b588-91f6a6ee55c9"
+replace i_b5 = 1 if globalrecordid == "ffa00b2b-569c-4ccb-b588-91f6a6ee55c9"
+replace i_b7 = 3 if globalrecordid == "ffa00b2b-569c-4ccb-b588-91f6a6ee55c9"
+
+replace i_b3 = 81  if globalrecordid == "edd3373e-67f6-499f-a590-5c511657a3db"
+replace i_b4 = 2 if globalrecordid == "edd3373e-67f6-499f-a590-5c511657a3db"
+replace i_b5 = 1 if globalrecordid == "edd3373e-67f6-499f-a590-5c511657a3db"
+replace i_b7 = 2 if globalrecordid == "edd3373e-67f6-499f-a590-5c511657a3db"
+
+replace i_b3 = 75  if globalrecordid == "1e71ed2e-192e-413f-a5c5-9ef7e10df4db"
+replace i_b4 = 2 if globalrecordid == "1e71ed2e-192e-413f-a5c5-9ef7e10df4db"
+replace i_b5 = 1 if globalrecordid == "1e71ed2e-192e-413f-a5c5-9ef7e10df4db"
+replace i_b7 = 3 if globalrecordid == "1e71ed2e-192e-413f-a5c5-9ef7e10df4db"
+
+replace i_b3 = 77  if globalrecordid == "87ceb565-f53c-4951-a0b1-a34829388856"
+replace i_b4 = 1 if globalrecordid == "87ceb565-f53c-4951-a0b1-a34829388856"
+replace i_b5 = 1 if globalrecordid == "87ceb565-f53c-4951-a0b1-a34829388856"
+replace i_b7 = 3 if globalrecordid == "87ceb565-f53c-4951-a0b1-a34829388856"
+
+replace i_b3 = 79  if globalrecordid == "ad243164-32c9-478e-addf-9050d097796e"
+replace i_b4 = 1 if globalrecordid == "ad243164-32c9-478e-addf-9050d097796e"
+replace i_b5 = 1 if globalrecordid == "ad243164-32c9-478e-addf-9050d097796e"
+replace i_b7 = 4 if globalrecordid == "ad243164-32c9-478e-addf-9050d097796e"
+
+replace i_b3 = 85  if globalrecordid == "bcb62743-e467-45c4-a0c5-306428d1a5df"
+replace i_b4 = 2 if globalrecordid == "bcb62743-e467-45c4-a0c5-306428d1a5df"
+replace i_b5 = 1 if globalrecordid == "bcb62743-e467-45c4-a0c5-306428d1a5df"
+replace i_b7 = 4 if globalrecordid == "bcb62743-e467-45c4-a0c5-306428d1a5df"
+
+replace i_b3 = 66  if globalrecordid == "0fb11260-8af2-4eb6-8578-8f5e1ac270ef"
+replace i_b4 = 1 if globalrecordid == "0fb11260-8af2-4eb6-8578-8f5e1ac270ef"
+replace i_b5 = 1 if globalrecordid == "0fb11260-8af2-4eb6-8578-8f5e1ac270ef"
+replace i_b7 = 3 if globalrecordid == "0fb11260-8af2-4eb6-8578-8f5e1ac270ef"
+
+replace i_b3 = 74  if globalrecordid == "0f4b90b4-bde4-4424-b23a-725e53a0bde6"
+replace i_b4 = 2 if globalrecordid == "0f4b90b4-bde4-4424-b23a-725e53a0bde6"
+replace i_b5 = 1 if globalrecordid == "0f4b90b4-bde4-4424-b23a-725e53a0bde6"
+replace i_b7 = 4 if globalrecordid == "0f4b90b4-bde4-4424-b23a-725e53a0bde6"
+
+replace i_b3 = 81  if globalrecordid == "3525fbc4-3046-4fda-bade-9f6c1787d8d8"
+replace i_b4 = 1 if globalrecordid == "3525fbc4-3046-4fda-bade-9f6c1787d8d8"
+replace i_b5 = 1 if globalrecordid == "3525fbc4-3046-4fda-bade-9f6c1787d8d8"
+replace i_b7 = 3 if globalrecordid == "3525fbc4-3046-4fda-bade-9f6c1787d8d8"
+
+replace i_b3 = 72  if globalrecordid == "d3a9c855-5613-4f47-8337-3811ce99195e"
+replace i_b4 = 1 if globalrecordid == "d3a9c855-5613-4f47-8337-3811ce99195e"
+replace i_b5 = 1 if globalrecordid == "d3a9c855-5613-4f47-8337-3811ce99195e"
+replace i_b7 = 4 if globalrecordid == "d3a9c855-5613-4f47-8337-3811ce99195e"
+
+replace i_b3 = 76  if globalrecordid == "0faeff89-5e9d-4e47-8110-155fdcc4d677"
+replace i_b4 = 2 if globalrecordid == "0faeff89-5e9d-4e47-8110-155fdcc4d677"
+replace i_b5 = 1 if globalrecordid == "0faeff89-5e9d-4e47-8110-155fdcc4d677"
+replace i_b7 = 4 if globalrecordid == "0faeff89-5e9d-4e47-8110-155fdcc4d677"
+
+replace i_b3 = 68  if globalrecordid == "5efdfb23-db80-4123-b25c-251f9290901f"
+replace i_b4 = 1 if globalrecordid == "5efdfb23-db80-4123-b25c-251f9290901f"
+replace i_b5 = 1 if globalrecordid == "5efdfb23-db80-4123-b25c-251f9290901f"
+replace i_b7 = 4 if globalrecordid == "5efdfb23-db80-4123-b25c-251f9290901f"
+
+replace i_b3 = 72  if globalrecordid == "63303a7a-51f2-4996-bb7e-e5bdf5c910e3"
+replace i_b4 = 2 if globalrecordid == "63303a7a-51f2-4996-bb7e-e5bdf5c910e3"
+replace i_b5 = 1 if globalrecordid == "63303a7a-51f2-4996-bb7e-e5bdf5c910e3"
+replace i_b7 = 3 if globalrecordid == "63303a7a-51f2-4996-bb7e-e5bdf5c910e3"
+
+replace i_b3 = 76  if globalrecordid == "5b996a11-296e-49b3-9cf9-5d130ea2f547"
+replace i_b4 = 1 if globalrecordid == "5b996a11-296e-49b3-9cf9-5d130ea2f547"
+replace i_b5 = 1 if globalrecordid == "5b996a11-296e-49b3-9cf9-5d130ea2f547"
+replace i_b7 = 3 if globalrecordid == "5b996a11-296e-49b3-9cf9-5d130ea2f547"
+
+replace i_b3 = 77  if globalrecordid == "0a416622-2d93-4a63-816a-2254a0ad22ef"
+replace i_b4 = 2 if globalrecordid == "0a416622-2d93-4a63-816a-2254a0ad22ef"
+replace i_b5 = 1 if globalrecordid == "0a416622-2d93-4a63-816a-2254a0ad22ef"
+replace i_b7 = 4 if globalrecordid == "0a416622-2d93-4a63-816a-2254a0ad22ef"
+
+replace i_b3 = 81  if globalrecordid == "26e5e1b7-9e3d-4718-8b72-654103f0d6be"
+replace i_b4 = 2 if globalrecordid == "26e5e1b7-9e3d-4718-8b72-654103f0d6be"
+replace i_b5 = 1 if globalrecordid == "26e5e1b7-9e3d-4718-8b72-654103f0d6be"
+replace i_b7 = 3 if globalrecordid == "26e5e1b7-9e3d-4718-8b72-654103f0d6be"
+
+replace i_b3 = 82  if globalrecordid == "f8de59f5-265c-47bc-b675-aeca567c82fe"
+replace i_b4 = 1 if globalrecordid == "f8de59f5-265c-47bc-b675-aeca567c82fe"
+replace i_b5 = 1 if globalrecordid == "f8de59f5-265c-47bc-b675-aeca567c82fe"
+replace i_b7 = 4 if globalrecordid == "f8de59f5-265c-47bc-b675-aeca567c82fe"
+
+replace i_b3 = 72  if globalrecordid == "cb2267ed-bd20-4233-ab83-d82289d58d30"
+replace i_b4 = 1 if globalrecordid == "cb2267ed-bd20-4233-ab83-d82289d58d30"
+replace i_b5 = 1 if globalrecordid == "cb2267ed-bd20-4233-ab83-d82289d58d30"
+replace i_b7 = 4 if globalrecordid == "cb2267ed-bd20-4233-ab83-d82289d58d30"
+
+replace i_b3 = 73  if globalrecordid == "333b65c6-b258-4ba2-9d7e-4ffee3d73882"
+replace i_b4 = 2 if globalrecordid == "333b65c6-b258-4ba2-9d7e-4ffee3d73882"
+replace i_b5 = 1 if globalrecordid == "333b65c6-b258-4ba2-9d7e-4ffee3d73882"
+replace i_b7 = 4 if globalrecordid == "333b65c6-b258-4ba2-9d7e-4ffee3d73882"
+
+replace i_b3 = 85  if globalrecordid == "b8795541-d04c-4945-860e-bb4a6c57c891"
+replace i_b4 = 1 if globalrecordid == "b8795541-d04c-4945-860e-bb4a6c57c891"
+replace i_b5 = 1 if globalrecordid == "b8795541-d04c-4945-860e-bb4a6c57c891"
+replace i_b7 = 3 if globalrecordid == "b8795541-d04c-4945-860e-bb4a6c57c891"
+
+replace i_b3 = 86  if globalrecordid == "bad89fa6-ca9a-4281-9696-641c5e7e3ddf"
+replace i_b4 = 2 if globalrecordid == "bad89fa6-ca9a-4281-9696-641c5e7e3ddf"
+replace i_b5 = 1 if globalrecordid == "bad89fa6-ca9a-4281-9696-641c5e7e3ddf"
+replace i_b7 = 4 if globalrecordid == "bad89fa6-ca9a-4281-9696-641c5e7e3ddf"
+
+replace i_b3 = 86  if globalrecordid == "188a2a49-600d-406d-8f3d-8df4209fa11d"
+replace i_b4 = 1 if globalrecordid == "188a2a49-600d-406d-8f3d-8df4209fa11d"
+replace i_b5 = 1 if globalrecordid == "188a2a49-600d-406d-8f3d-8df4209fa11d"
+replace i_b7 = 3 if globalrecordid == "188a2a49-600d-406d-8f3d-8df4209fa11d"
+
+replace i_b3 = 86  if globalrecordid == "32058802-1742-49d7-a5e2-a0df300a0c61"
+replace i_b4 = 2 if globalrecordid == "32058802-1742-49d7-a5e2-a0df300a0c61"
+replace i_b5 = 1 if globalrecordid == "32058802-1742-49d7-a5e2-a0df300a0c61"
+replace i_b7 = 2 if globalrecordid == "32058802-1742-49d7-a5e2-a0df300a0c61"
+
+replace i_b3 = 78  if globalrecordid == "261927f7-629e-4319-a5fd-dd054d05e0a1"
+replace i_b4 = 1 if globalrecordid == "261927f7-629e-4319-a5fd-dd054d05e0a1"
+replace i_b5 = 1 if globalrecordid == "261927f7-629e-4319-a5fd-dd054d05e0a1"
+replace i_b7 = 4 if globalrecordid == "261927f7-629e-4319-a5fd-dd054d05e0a1"
+
+replace i_b3 = 78  if globalrecordid == "61b390c3-27ae-41c5-bc8e-ab628ecfee60"
+replace i_b4 = 2 if globalrecordid == "61b390c3-27ae-41c5-bc8e-ab628ecfee60"
+replace i_b5 = 1 if globalrecordid == "61b390c3-27ae-41c5-bc8e-ab628ecfee60"
+replace i_b7 = 4 if globalrecordid == "61b390c3-27ae-41c5-bc8e-ab628ecfee60"
+
+replace i_b3 = 80  if globalrecordid == "e3ce3c2e-ca73-499d-9fa7-076c8e778d7a"
+replace i_b4 = 1 if globalrecordid == "e3ce3c2e-ca73-499d-9fa7-076c8e778d7a"
+replace i_b5 = 1 if globalrecordid == "e3ce3c2e-ca73-499d-9fa7-076c8e778d7a"
+replace i_b7 = 4 if globalrecordid == "e3ce3c2e-ca73-499d-9fa7-076c8e778d7a"
+
+/*
+replace i_b3 = xxx if globalrecordid == "c8f5d5ff-c79e-407b-9ccb-caae5f37338c"
+replace i_b4 = xxx if globalrecordid == "c8f5d5ff-c79e-407b-9ccb-caae5f37338c"
+replace i_b5 = xxx if globalrecordid == "c8f5d5ff-c79e-407b-9ccb-caae5f37338c"
+replace i_b7 = xxx if globalrecordid == "c8f5d5ff-c79e-407b-9ccb-caae5f37338c"
+*/
+
+replace i_b3 = 78  if globalrecordid == "378fd7fb-7ede-4118-866e-7b3ea3a91f55"
+replace i_b4 = 1 if globalrecordid == "378fd7fb-7ede-4118-866e-7b3ea3a91f55"
+replace i_b5 = 1 if globalrecordid == "378fd7fb-7ede-4118-866e-7b3ea3a91f55"
+replace i_b7 = 4 if globalrecordid == "378fd7fb-7ede-4118-866e-7b3ea3a91f55"
+
+replace i_b3 = 80  if globalrecordid == "d4a21fa9-2544-4687-8f74-001888f37c7f"
+replace i_b4 = 2 if globalrecordid == "d4a21fa9-2544-4687-8f74-001888f37c7f"
+replace i_b5 = 1 if globalrecordid == "d4a21fa9-2544-4687-8f74-001888f37c7f"
+replace i_b7 = 4 if globalrecordid == "d4a21fa9-2544-4687-8f74-001888f37c7f"
+
+/*
+replace i_b3 = xxx if globalrecordid == "c58b9f9a-7dc7-4d6e-96bb-4b7cd5e59718"
+replace i_b4 = xxx if globalrecordid == "c58b9f9a-7dc7-4d6e-96bb-4b7cd5e59718"
+replace i_b5 = xxx if globalrecordid == "c58b9f9a-7dc7-4d6e-96bb-4b7cd5e59718"
+replace i_b7 = xxx if globalrecordid == "c58b9f9a-7dc7-4d6e-96bb-4b7cd5e59718"
+*/
+
+replace i_b3 = 80  if globalrecordid == "fd408ead-6fa7-4a6e-a75a-a97744dde02a"
+replace i_b4 = 2 if globalrecordid == "fd408ead-6fa7-4a6e-a75a-a97744dde02a"
+replace i_b5 = 1 if globalrecordid == "fd408ead-6fa7-4a6e-a75a-a97744dde02a"
+replace i_b7 = 3 if globalrecordid == "fd408ead-6fa7-4a6e-a75a-a97744dde02a"
+
+replace i_b3 = 60  if globalrecordid == "c84ff379-65d4-4ffe-bf87-abefb6f15064"
+replace i_b4 = 1 if globalrecordid == "c84ff379-65d4-4ffe-bf87-abefb6f15064"
+replace i_b5 = 1 if globalrecordid == "c84ff379-65d4-4ffe-bf87-abefb6f15064"
+replace i_b7 = 3 if globalrecordid == "c84ff379-65d4-4ffe-bf87-abefb6f15064"
+
+replace i_b3 = 58 if globalrecordid == "cb00d8dd-c20d-41f2-982e-7eac3e39f126"
+replace i_b4 = 1 if globalrecordid == "cb00d8dd-c20d-41f2-982e-7eac3e39f126"
+replace i_b5 = 1 if globalrecordid == "cb00d8dd-c20d-41f2-982e-7eac3e39f126"
+replace i_b7 = 4 if globalrecordid == "cb00d8dd-c20d-41f2-982e-7eac3e39f126"
+
+replace i_b3 = 65  if globalrecordid == "c2b1edbd-1754-45c9-a30c-fc5084aa9cf4"
+replace i_b4 = 1 if globalrecordid == "c2b1edbd-1754-45c9-a30c-fc5084aa9cf4"
+replace i_b5 = 1 if globalrecordid == "c2b1edbd-1754-45c9-a30c-fc5084aa9cf4"
+replace i_b7 = 3 if globalrecordid == "c2b1edbd-1754-45c9-a30c-fc5084aa9cf4"
+
+replace i_b3 = 70  if globalrecordid == "f38ca5ff-7270-47df-bd50-5f6c67bac02f"
+replace i_b4 = 2 if globalrecordid == "f38ca5ff-7270-47df-bd50-5f6c67bac02f"
+replace i_b5 = 1 if globalrecordid == "f38ca5ff-7270-47df-bd50-5f6c67bac02f"
+replace i_b7 = 3 if globalrecordid == "f38ca5ff-7270-47df-bd50-5f6c67bac02f"
+
+replace i_b3 = 80  if globalrecordid == "6d91800e-7d1c-4352-abc2-0891fa740860"
+replace i_b4 = 1 if globalrecordid == "6d91800e-7d1c-4352-abc2-0891fa740860"
+replace i_b5 = 1 if globalrecordid == "6d91800e-7d1c-4352-abc2-0891fa740860"
+replace i_b7 = 3 if globalrecordid == "6d91800e-7d1c-4352-abc2-0891fa740860"
+
+replace i_b3 = 81 if globalrecordid == "cfa02457-5799-49bd-b752-01b4d416981f"
+replace i_b4 = 2 if globalrecordid == "cfa02457-5799-49bd-b752-01b4d416981f"
+replace i_b5 = 1 if globalrecordid == "cfa02457-5799-49bd-b752-01b4d416981f"
+replace i_b7 = 3 if globalrecordid == "cfa02457-5799-49bd-b752-01b4d416981f"
+
+replace i_particid = 2 if globalrecordid == "cfa02457-5799-49bd-b752-01b4d416981f"
+
+replace i_b3 = 67  if globalrecordid == "9afd5b0d-8303-41e2-a216-4978ff762458"
+replace i_b4 = 2 if globalrecordid == "9afd5b0d-8303-41e2-a216-4978ff762458"
+replace i_b5 = 1 if globalrecordid == "9afd5b0d-8303-41e2-a216-4978ff762458"
+replace i_b7 = 3 if globalrecordid == "9afd5b0d-8303-41e2-a216-4978ff762458"
+
+replace i_b3 = 68  if globalrecordid == "99dc7097-22b8-4a3f-b816-472d72627324"
+replace i_b4 = 1 if globalrecordid == "99dc7097-22b8-4a3f-b816-472d72627324"
+replace i_b5 = 1 if globalrecordid == "99dc7097-22b8-4a3f-b816-472d72627324"
+replace i_b7 = 4 if globalrecordid == "99dc7097-22b8-4a3f-b816-472d72627324"
+
+replace i_b3 = 66  if globalrecordid == "142d06bb-d438-448d-9032-ad6b78d892d1"
+replace i_b4 = 1 if globalrecordid == "142d06bb-d438-448d-9032-ad6b78d892d1"
+replace i_b5 = 1 if globalrecordid == "142d06bb-d438-448d-9032-ad6b78d892d1"
+replace i_b7 = 3 if globalrecordid == "142d06bb-d438-448d-9032-ad6b78d892d1"
+
+replace i_b3 = 49  if globalrecordid == "691bd555-4c89-4414-975b-bc2d0303ca75"
+replace i_b4 = 1 if globalrecordid == "691bd555-4c89-4414-975b-bc2d0303ca75"
+replace i_b5 = 1 if globalrecordid == "691bd555-4c89-4414-975b-bc2d0303ca75"
+replace i_b7 = 3 if globalrecordid == "691bd555-4c89-4414-975b-bc2d0303ca75"
+
+replace i_b3 = 74  if globalrecordid == "ef5e7b52-f1ed-4fa1-864a-c4d85a452de5"
+replace i_b4 = 1 if globalrecordid == "ef5e7b52-f1ed-4fa1-864a-c4d85a452de5"
+replace i_b5 = 1 if globalrecordid == "ef5e7b52-f1ed-4fa1-864a-c4d85a452de5"
+replace i_b7 = 3 if globalrecordid == "ef5e7b52-f1ed-4fa1-864a-c4d85a452de5"
+
+replace i_b3 = 78  if globalrecordid == "3682a79f-0978-4e43-bd64-d370019df1ae"
+replace i_b4 = 2 if globalrecordid == "3682a79f-0978-4e43-bd64-d370019df1ae"
+replace i_b5 = 1 if globalrecordid == "3682a79f-0978-4e43-bd64-d370019df1ae"
+replace i_b7 = 4 if globalrecordid == "3682a79f-0978-4e43-bd64-d370019df1ae"
+
+replace i_b3 = 69  if globalrecordid == "a4b3df22-1e0f-4bf5-b843-b71b0dc0837e"
+replace i_b4 = 1 if globalrecordid == "a4b3df22-1e0f-4bf5-b843-b71b0dc0837e"
+replace i_b5 = 1 if globalrecordid == "a4b3df22-1e0f-4bf5-b843-b71b0dc0837e"
+replace i_b7 = 4 if globalrecordid == "a4b3df22-1e0f-4bf5-b843-b71b0dc0837e"
+
+replace i_b3 = 70  if globalrecordid == "280d668b-4305-4095-a308-6dff3e90f64f"
+replace i_b4 = 2 if globalrecordid == "280d668b-4305-4095-a308-6dff3e90f64f"
+replace i_b5 = 1 if globalrecordid == "280d668b-4305-4095-a308-6dff3e90f64f"
+replace i_b7 = 4 if globalrecordid == "280d668b-4305-4095-a308-6dff3e90f64f"
+
+replace i_b3 = 68  if globalrecordid == "1ed5f7b1-5750-4118-8938-ec0468dec644"
+replace i_b4 = 1 if globalrecordid == "1ed5f7b1-5750-4118-8938-ec0468dec644"
+replace i_b5 = 1 if globalrecordid == "1ed5f7b1-5750-4118-8938-ec0468dec644"
+replace i_b7 = 3 if globalrecordid == "1ed5f7b1-5750-4118-8938-ec0468dec644"
+
+replace i_b3 = 71  if globalrecordid == "c90caaac-d250-4fad-afaf-d1de41f51e20"
+replace i_b4 = 2 if globalrecordid == "c90caaac-d250-4fad-afaf-d1de41f51e20"
+replace i_b5 = 1 if globalrecordid == "c90caaac-d250-4fad-afaf-d1de41f51e20"
+replace i_b7 = 4 if globalrecordid == "c90caaac-d250-4fad-afaf-d1de41f51e20"
+
+replace i_b3 = 73  if globalrecordid == "5f9bc2f4-4a62-4518-af4e-f4d46adcd040"
+replace i_b4 = 1 if globalrecordid == "5f9bc2f4-4a62-4518-af4e-f4d46adcd040"
+replace i_b5 = 1 if globalrecordid == "5f9bc2f4-4a62-4518-af4e-f4d46adcd040"
+replace i_b7 = 3 if globalrecordid == "5f9bc2f4-4a62-4518-af4e-f4d46adcd040"
+
+replace i_b3 = 74  if globalrecordid == "a278c269-a5fa-4aa0-9786-a2331c6a47c6"
+replace i_b4 = 2 if globalrecordid == "a278c269-a5fa-4aa0-9786-a2331c6a47c6"
+replace i_b5 = 1 if globalrecordid == "a278c269-a5fa-4aa0-9786-a2331c6a47c6"
+replace i_b7 = 3 if globalrecordid == "a278c269-a5fa-4aa0-9786-a2331c6a47c6"
+
+replace i_b3 = 78  if globalrecordid == "314e5662-9648-4eac-ad47-4ed53d59f977"
+replace i_b4 = 1 if globalrecordid == "314e5662-9648-4eac-ad47-4ed53d59f977"
+replace i_b5 = 1 if globalrecordid == "314e5662-9648-4eac-ad47-4ed53d59f977"
+replace i_b7 = 2 if globalrecordid == "314e5662-9648-4eac-ad47-4ed53d59f977"
+
+replace i_b3 = 78  if globalrecordid == "6be489e0-8f94-4cea-8413-a18164fc2bb9"
+replace i_b4 = 1 if globalrecordid == "6be489e0-8f94-4cea-8413-a18164fc2bb9"
+replace i_b5 = 1 if globalrecordid == "6be489e0-8f94-4cea-8413-a18164fc2bb9"
+replace i_b7 = 3 if globalrecordid == "6be489e0-8f94-4cea-8413-a18164fc2bb9"
+
+replace i_b3 = 79  if globalrecordid == "2e739e14-a6a0-4e47-9bf3-ed42a551b9a2"
+replace i_b4 = 2 if globalrecordid == "2e739e14-a6a0-4e47-9bf3-ed42a551b9a2"
+replace i_b5 = 1 if globalrecordid == "2e739e14-a6a0-4e47-9bf3-ed42a551b9a2"
+replace i_b7 = 2 if globalrecordid == "2e739e14-a6a0-4e47-9bf3-ed42a551b9a2"
+
+replace i_b3 = 73  if globalrecordid == "43f088a7-cd71-4ea1-a19a-4adeb564507d"
+replace i_b4 = 1 if globalrecordid == "43f088a7-cd71-4ea1-a19a-4adeb564507d"
+replace i_b5 = 1 if globalrecordid == "43f088a7-cd71-4ea1-a19a-4adeb564507d"
+replace i_b7 = 4 if globalrecordid == "43f088a7-cd71-4ea1-a19a-4adeb564507d"
+
+replace i_b3 = 76  if globalrecordid == "f70051c5-46de-4e18-a11c-e574b124abd8"
+replace i_b4 = 2 if globalrecordid == "f70051c5-46de-4e18-a11c-e574b124abd8"
+replace i_b5 = 1 if globalrecordid == "f70051c5-46de-4e18-a11c-e574b124abd8"
+replace i_b7 = 3 if globalrecordid == "f70051c5-46de-4e18-a11c-e574b124abd8"
+
+replace i_b3 = 79  if globalrecordid == "6dc13183-ac98-4674-a215-f53ef9ce5a8a"
+replace i_b4 = 1 if globalrecordid == "6dc13183-ac98-4674-a215-f53ef9ce5a8a"
+replace i_b5 = 1 if globalrecordid == "6dc13183-ac98-4674-a215-f53ef9ce5a8a"
+replace i_b7 = 3 if globalrecordid == "6dc13183-ac98-4674-a215-f53ef9ce5a8a"
+
+replace i_b3 = 68 if globalrecordid == "296e37de-22ed-4be5-beec-b7f7df13e9e1"
+replace i_b4 = 1 if globalrecordid == "296e37de-22ed-4be5-beec-b7f7df13e9e1"
+replace i_b5 = 1 if globalrecordid == "296e37de-22ed-4be5-beec-b7f7df13e9e1"
+replace i_b7 = 3 if globalrecordid == "296e37de-22ed-4be5-beec-b7f7df13e9e1"
+
+replace i_b3 = 79  if globalrecordid == "1cc866e9-4c67-42fe-9daf-0f6264530cd0"
+replace i_b4 = 2 if globalrecordid == "1cc866e9-4c67-42fe-9daf-0f6264530cd0"
+replace i_b5 = 1 if globalrecordid == "1cc866e9-4c67-42fe-9daf-0f6264530cd0"
+replace i_b7 = 2 if globalrecordid == "1cc866e9-4c67-42fe-9daf-0f6264530cd0"
+
+replace i_b3 = 68  if globalrecordid == "a2f052ae-3a89-4257-8969-d3e3f00e2915"
+replace i_b4 = 2 if globalrecordid == "a2f052ae-3a89-4257-8969-d3e3f00e2915"
+replace i_b5 = 1 if globalrecordid == "a2f052ae-3a89-4257-8969-d3e3f00e2915"
+replace i_b7 = 3 if globalrecordid == "a2f052ae-3a89-4257-8969-d3e3f00e2915"
+
+replace i_b3 = 70  if globalrecordid == "1267a34c-6645-462b-bbb7-7c98f8857116"
+replace i_b4 = 1 if globalrecordid == "1267a34c-6645-462b-bbb7-7c98f8857116"
+replace i_b5 = 1 if globalrecordid == "1267a34c-6645-462b-bbb7-7c98f8857116"
+replace i_b7 = 3 if globalrecordid == "1267a34c-6645-462b-bbb7-7c98f8857116"
+
+replace i_b3 = 72  if globalrecordid == "7681216f-cc11-4c28-bcbe-2fcf5e264efa"
+replace i_b4 = 1 if globalrecordid == "7681216f-cc11-4c28-bcbe-2fcf5e264efa"
+replace i_b5 = 1 if globalrecordid == "7681216f-cc11-4c28-bcbe-2fcf5e264efa"
+replace i_b7 = 4 if globalrecordid == "7681216f-cc11-4c28-bcbe-2fcf5e264efa"
+
+replace i_b3 = 78  if globalrecordid == "1c879d70-3fa0-41ce-94f1-4d7561cf800d"
+replace i_b4 = 2 if globalrecordid == "1c879d70-3fa0-41ce-94f1-4d7561cf800d"
+replace i_b5 = 1 if globalrecordid == "1c879d70-3fa0-41ce-94f1-4d7561cf800d"
+replace i_b7 = 4 if globalrecordid == "1c879d70-3fa0-41ce-94f1-4d7561cf800d"
+
+replace i_b3 = 83  if globalrecordid == "6373d38c-a412-4e29-b28c-c3e6ebc9a125"
+replace i_b4 = 2 if globalrecordid == "6373d38c-a412-4e29-b28c-c3e6ebc9a125"
+replace i_b5 = 1 if globalrecordid == "6373d38c-a412-4e29-b28c-c3e6ebc9a125"
+replace i_b7 = 4 if globalrecordid == "6373d38c-a412-4e29-b28c-c3e6ebc9a125"
+
+replace i_b3 = 71  if globalrecordid == "17ef9a89-717e-4a04-bc0c-012fee4a0206"
+replace i_b4 = 1 if globalrecordid == "17ef9a89-717e-4a04-bc0c-012fee4a0206"
+replace i_b5 = 1 if globalrecordid == "17ef9a89-717e-4a04-bc0c-012fee4a0206"
+replace i_b7 = 3 if globalrecordid == "17ef9a89-717e-4a04-bc0c-012fee4a0206"
+
+replace i_b3 = 81  if globalrecordid == "46181ada-e62a-4e37-9469-85e89f08e4e6"
+replace i_b4 = 2 if globalrecordid == "46181ada-e62a-4e37-9469-85e89f08e4e6"
+replace i_b5 = 1 if globalrecordid == "46181ada-e62a-4e37-9469-85e89f08e4e6"
+replace i_b7 = 3 if globalrecordid == "46181ada-e62a-4e37-9469-85e89f08e4e6"
+
+replace i_b3 = 82  if globalrecordid == "4ddae929-86c7-4548-bf66-314ec08a8f63"
+replace i_b4 = 1 if globalrecordid == "4ddae929-86c7-4548-bf66-314ec08a8f63"
+replace i_b5 = 1 if globalrecordid == "4ddae929-86c7-4548-bf66-314ec08a8f63"
+replace i_b7 = 2 if globalrecordid == "4ddae929-86c7-4548-bf66-314ec08a8f63"
+
+replace i_b3 = 82  if globalrecordid == "933edc54-426e-4446-8efa-f0fb9e05af87"
+replace i_b4 = 1 if globalrecordid == "933edc54-426e-4446-8efa-f0fb9e05af87"
+replace i_b5 = 1 if globalrecordid == "933edc54-426e-4446-8efa-f0fb9e05af87"
+replace i_b7 = 2 if globalrecordid == "933edc54-426e-4446-8efa-f0fb9e05af87"
+
+replace i_b3 = 75  if globalrecordid == "68bc3afe-1cab-4160-ac24-302e9070882d"
+replace i_b4 = 1 if globalrecordid == "68bc3afe-1cab-4160-ac24-302e9070882d"
+replace i_b5 = 1 if globalrecordid == "68bc3afe-1cab-4160-ac24-302e9070882d"
+replace i_b7 = 1 if globalrecordid == "68bc3afe-1cab-4160-ac24-302e9070882d"
+
+replace i_b3 = 78  if globalrecordid == "d2256d61-35e6-4e46-aa4f-5f5371399fbb"
+replace i_b4 = 2 if globalrecordid == "d2256d61-35e6-4e46-aa4f-5f5371399fbb"
+replace i_b5 = 1 if globalrecordid == "d2256d61-35e6-4e46-aa4f-5f5371399fbb"
+replace i_b7 = 3 if globalrecordid == "d2256d61-35e6-4e46-aa4f-5f5371399fbb"
+
+replace i_b3 = 88  if globalrecordid == "b30fd9c0-a3f7-4144-bca8-8ae8d6ea149c"
+replace i_b4 = 1 if globalrecordid == "b30fd9c0-a3f7-4144-bca8-8ae8d6ea149c"
+replace i_b5 = 1 if globalrecordid == "b30fd9c0-a3f7-4144-bca8-8ae8d6ea149c"
+replace i_b7 = 3 if globalrecordid == "b30fd9c0-a3f7-4144-bca8-8ae8d6ea149c"
+
+replace i_b3 = 89  if globalrecordid == "78b67841-3a5c-4724-82c0-6fcfc31701b0"
+replace i_b4 = 2 if globalrecordid == "78b67841-3a5c-4724-82c0-6fcfc31701b0"
+replace i_b5 = 1 if globalrecordid == "78b67841-3a5c-4724-82c0-6fcfc31701b0"
+replace i_b7 = 1 if globalrecordid == "78b67841-3a5c-4724-82c0-6fcfc31701b0"
+
+replace i_b3 = 74  if globalrecordid == "73e30ea6-07b5-4c85-93b9-93dc6677a2af"
+replace i_b4 = 1 if globalrecordid == "73e30ea6-07b5-4c85-93b9-93dc6677a2af"
+replace i_b5 = 1 if globalrecordid == "73e30ea6-07b5-4c85-93b9-93dc6677a2af"
+replace i_b7 = 1 if globalrecordid == "73e30ea6-07b5-4c85-93b9-93dc6677a2af"
+
+replace i_b3 = 85  if globalrecordid == "9ba5742b-6151-47fc-80fb-bf63f98edf4b"
+replace i_b4 = 2 if globalrecordid == "9ba5742b-6151-47fc-80fb-bf63f98edf4b"
+replace i_b5 = 1 if globalrecordid == "9ba5742b-6151-47fc-80fb-bf63f98edf4b"
+replace i_b7 = 4 if globalrecordid == "9ba5742b-6151-47fc-80fb-bf63f98edf4b"
+
+replace i_b3 = 80  if globalrecordid == "ccd7d1f4-8338-40ba-be5c-47f3615d4bfe"
+replace i_b4 = 1 if globalrecordid == "ccd7d1f4-8338-40ba-be5c-47f3615d4bfe"
+replace i_b5 = 1 if globalrecordid == "ccd7d1f4-8338-40ba-be5c-47f3615d4bfe"
+replace i_b7 = 2 if globalrecordid == "ccd7d1f4-8338-40ba-be5c-47f3615d4bfe"
+
+replace i_b3 = 40 if globalrecordid == "4b58008b-ba96-483a-8b96-2be8e52f3ac4"
+replace i_b4 = 1 if globalrecordid == "4b58008b-ba96-483a-8b96-2be8e52f3ac4"
+replace i_b5 = 2 if globalrecordid == "4b58008b-ba96-483a-8b96-2be8e52f3ac4"
+replace i_b7 = 3 if globalrecordid == "4b58008b-ba96-483a-8b96-2be8e52f3ac4"
+
+
  
  gen i_country_str = string(i_country, "%12.0f")
 

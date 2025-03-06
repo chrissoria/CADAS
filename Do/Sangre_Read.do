@@ -65,18 +65,19 @@ gen sa_clustid_str = string(sa_clustid, "%12.0f")
 replace sa_clustid_str = cond(strlen(sa_clustid_str) == 1, "0" + sa_clustid_str, sa_clustid_str)
 
 *writing this in case someone puts in a letter for houseid
-confirm string variable sa_houseid
-
-if regexm("`:type sa_houseid'", "str") {
-    display "sa_houseid is a string variable."
-    replace sa_houseid = regexr(sa_houseid, "[^0-9]", "")
-    destring sa_houseid, replace
-else {
-    display "sa_houseid is not a string variable."
+if `country' == 1 {
+	confirm string variable sa_houseid
 }
 
-}
+	if regexm("`:type sa_houseid'", "str") {
+		display "sa_houseid is a string variable."
+		replace sa_houseid = regexr(sa_houseid, "[^0-9]", "")
+		destring sa_houseid, replace
+	else {
+		display "sa_houseid is not a string variable."
+	}
 
+	}
 gen sa_houseid_str = string(sa_houseid, "%03.0f")
 replace sa_houseid_str = cond(strlen(sa_houseid_str) == 1, "00" + sa_houseid_str, sa_houseid_str)
 replace sa_houseid_str = cond(strlen(sa_houseid_str) == 2, "0" + sa_houseid_str, sa_houseid_str)
@@ -203,11 +204,21 @@ gen b_country_str = string(b_country, "%12.0f")
 gen b_clustid_str = string(cluster, "%12.0f")
 replace b_clustid_str = cond(strlen(b_clustid_str) == 1, "0" + b_clustid_str, b_clustid_str)
 
-gen b_houseid_str = string(houseid, "%03.0f")
+if `country' == 1 {
+	gen b_houseid_str = string(houseid, "%03.0f")
+}
+if `country' == 0 {
+	gen b_houseid_str = string(casa, "%03.0f")
+}
 replace b_houseid_str = cond(strlen(b_houseid_str) == 1, "00" + b_houseid_str, b_houseid_str)
 replace b_houseid_str = cond(strlen(b_houseid_str) == 2, "0" + b_houseid_str, b_houseid_str)
 
-gen b_particid_str = participante
+if `country' == 1 {
+	gen b_particid_str = participante
+}
+if `country' == 0 {
+	gen b_particid_str = string(participante)
+}
 replace b_particid_str = cond(strlen(b_particid_str) == 1, "0" + b_particid_str, b_particid_str)
 
 gen pid = b_country_str + b_clustid_str + b_houseid_str + b_particid_str

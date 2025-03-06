@@ -28,6 +28,9 @@ drop if c_deviceid1 == ""
 
 drop if inlist(globalrecordid, "f7a8bf72-6c00-4da9-817e-1b718f38d0ef", "b86d5d07-5256-4692-bc5d-b584014079e0", "b77d619b-236e-4fb5-8bf5-ffcdcf5a0d7c","bb26033f-fca4-4dd1-9ef9-d71654b46024", "05957905-2edf-48d8-b976-9399e760c24a", "d33d2407-4433-4fb9-8039-4fd922e82185", "229742b0-f963-400b-96ab-c69aa9eedaa6")
 
+* because the id's were entered in incorrectly in the resumen, we'll have to match that incorrect ID in the data
+replace c_particid = 2 if globalrecordid == "35b3e974-fbf4-430d-a9ee-867ede9c93c9"
+replace c_particid = 1 if globalrecordid == "b7dfe53f-bb6c-422e-a55a-732388e40c69"
 
 if `country' == 0 {
     export delimited using "../PR_in/Cog_Child_cleaned.csv", replace
