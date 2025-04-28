@@ -38,7 +38,8 @@ else if `country' == 2 {
 }
 }
  
-local drop_not_resumen "yes"
+local drop_not_resumen = "no"
+display "`drop_not_resumen'"
 
 import excel using "../PR_in/Resumen de Entrevistas.xlsx", firstrow clear
 
@@ -197,9 +198,7 @@ drop s_country_str s_clustid_str s_houseid_str s_particid_str
 
 merge m:m pid using resumen_pid
 
-capture gen resumen = string(_merge)
-replace resumen = string(_merge)
-replace resumen = "Not in Resumen" if _merge == 1
+gen resumen = "Not in Resumen" if _merge == 1
 replace resumen = "Found in Resumen" if _merge == 3
 drop if _merge == 2
 drop _merge
@@ -305,8 +304,7 @@ drop if pid == "00000000"
 
 merge m:m pid using resumen_pid
 
-gen resumen = string(_merge)
-replace resumen = "Not in Resumen" if _merge == 1
+gen resumen = "Not in Resumen" if _merge == 1
 replace resumen = "Found in Resumen" if _merge == 3
 drop if _merge == 2
 drop _merge
@@ -412,8 +410,7 @@ drop if pid == "00000001"
 
 merge m:m pid using resumen_pid
 
-gen resumen = string(_merge)
-replace resumen = "Not in Resumen" if _merge == 1
+gen resumen = "Not in Resumen" if _merge == 1
 replace resumen = "Found in Resumen" if _merge == 3
 drop if _merge == 2
 drop _merge

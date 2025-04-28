@@ -55,12 +55,14 @@ else if `country' == 2 {
     insheet using "../CUBA_in/InformationDoor.csv", comma names clear
 }
 }
-   
+
+drop v1   
 rename d_clustid d_clustid2
 rename d_houseid d_houseid2
 rename d_interid d_interid2
    
    rename globalrecordid globalrecordid1
+   duplicates drop globalrecordid1, force
    rename fkey globalrecordid
    
    label variable d_1 "Relation to the household"
@@ -121,6 +123,8 @@ gsort fkey -d_7_1
  
 by fkey: gen d_particid = _n
 
+duplicates drop globalrecordid, force
+
    drop globalrecordid
    rename fkey globalrecordid1
     
@@ -140,7 +144,7 @@ drop D_7_2
    
    label variable d_7_3 "7.3 Salud física"
    
-generate D_7_3 = cond(d_7_3 == 1, "buena/regular", cond(d_7_3 == 2, "mala", cond(d_7_3 == 8, "no responde", cond(d_7_3 == 9, "no sabe", ""))))
+generate D_7_3 = cond(d_7_3 == 0, "buena/regular", cond(d_7_3 == 1, "mala", cond(d_7_3 == 2, "no responde", cond(d_7_3 == 3, "no sabe", ""))))
 
 drop d_7_3
 
@@ -152,7 +156,7 @@ drop D_7_3
    
    label variable d_7_4 "7.4 Salud Cognitiva"
    
-generate D_7_4 = cond(d_7_4 == 1, "buena/regular", cond(d_7_4 == 2, "mala", cond(d_7_4 == 8, "no responde", cond(d_7_4 == 9, "no sabe", ""))))
+generate D_7_4 = cond(d_7_4 == 0, "buena/regular", cond(d_7_4 == 1, "mala", cond(d_7_4 == 2, "no responde", cond(d_7_4 == 3, "no sabe", ""))))
 
 drop d_7_4
 
@@ -187,6 +191,9 @@ else if `country' == 1 {
 else if `country' == 2 {
     insheet using "../CUBA_in/Door.csv", comma names clear
 }
+drop v1
+duplicates drop globalrecordid, force
+
 
    replace p_date = subinstr(p_date,substr(p_date, strlen(p_date)-11, strlen(p_date)), "",.) if strlen(p_date)>=12
    replace p_date = subinstr(p_date, " ", "",.)
@@ -197,6 +204,8 @@ else if `country' == 2 {
    drop p_date   
    save Door.dta, replace
    
+   
+   *merging information door to door should be a 1:1 match, seeing 1 to many, implies maybe we are using one parent for many door knocking
    merge 1:m globalrecordid using "InformationDoor.dta"
   
    drop _merge

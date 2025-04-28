@@ -10,10 +10,30 @@ capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 *Change the filepath name here to the folder containing the data and output folders
 if `"`user'"' == "Chris" {
 	local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+	
+	if `country' == 0 {
+		import excel using "`path'/PR_in/ty_pent_scoring_in_PR.xlsx", firstrow allstring clear
+		}
+	else if `country' == 1 {
+		import excel using "`path'/DR_in/ty_pent_scoring_in_DR.xlsx", firstrow allstring clear
+}
+	else if `country' == 2 {
+		import excel using "`path'/CUBA_in/ty_pent_scoring_in_CU.xlsx", firstrow allstring clear
+}
 }
 
 else if `"`user'"' == "Ty" {
 	local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+	
+	if `country' == 0 {
+		import excel using "`path'/consensus/ty_pent_scoring_in_PR.xlsx", firstrow allstring clear
+}
+	else if `country' == 1 {
+		import excel using "`path'/consensus/ty_pent_scoring_in_DR.xlsx", firstrow allstring clear
+}
+	else if `country' == 2 {
+		import excel using "`path'/consensus/ty_pent_scoring_in_CU.xlsx", firstrow allstring clear
+}
 }
 
 
@@ -25,16 +45,6 @@ else if `country' == 1 {
 }
 else if `country' == 2 {
     cd "`path'/CUBA_in"
-}
-
-if `country' == 0 {
-    import excel using "`path'/consensus/ty_pent_scoring_in_PR.xlsx", firstrow allstring clear
-}
-else if `country' == 1 {
-    import excel using "`path'/consensus/ty_pent_scoring_in_DR.xlsx", firstrow allstring clear
-}
-else if `country' == 2 {
-    import excel using "`path'/consensus/ty_pent_scoring_in_CU.xlsx", firstrow allstring clear
 }
 
 *sometimes reading in 1,048,575 lines so we will drop empty lines
@@ -64,15 +74,7 @@ replace pent_pic = subinstr(pent_pic, ".jpg", "", .)
 order pid hhid globalrecordid pent_pic cs_40_ty
 
 * Export data to Excel
-if `country' == 0 {
-    export excel using "`path'/consensus/ty_pent_scoring_out_PR.xlsx", replace firstrow(variables)
-}
-else if `country' == 1 {
-    export excel using "`path'/consensus/ty_pent_scoring_out_DR.xlsx", replace firstrow(variables)
-}
-else if `country' == 2 {
-    export excel using "`path'/consensus/ty_pent_scoring_out_CU.xlsx", replace firstrow(variables)
-}
+export excel using "ty_pent_scoring_out.xlsx", replace firstrow(variables)
 
 * Indicate if observation has a CROPPED pentagon picture uploaded
 rename cs_40_ty cropped_pent_uploaded

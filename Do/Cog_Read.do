@@ -4368,6 +4368,15 @@ replace c_79_2_pic_found = "." if c_79_2_pic == ".i"
 replace c_79_3_pic_found = "." if c_79_3_pic == ".i"
 replace c_79_4_pic_found = "." if c_79_4_pic == ".i"
 
+/*
+*only keep observations marked as "complete" in resumen
+if `country' == 0 {
+	merge m:1 pid using "../PR_in/Resumen_PIDs.dta", nogen
+	keep if strpos(NotasCuestionariosnohechos, "complete")
+	*drop NotasCuestionariosnohechos
+}
+*/
+
 save Cog.dta, replace
  
  if `country' == 0 {
@@ -4763,7 +4772,7 @@ if `country' == 0 {
 	replace c_20_temp = "12345" if c_20_temp == "5432112345"
 }
 if `country' == 0 {
-	replace c_20_temp = substr(c_20_temp, -6, .) if strlen(c_20_temp) >= 5
+	replace c_20_temp = substr(c_20_temp, -6, .) if strlen(c_20_temp) > 5
 }
 
 *run the program we created to score the response from each participant
@@ -4794,6 +4803,11 @@ replace worldspelling_score = .i if c_20 == ".i"
 
 replace worldspelling_score = .v if c_20 == "7"
 
+
+
+*replace "no dijo nada" with a score of 0
+
+replace worldspelling_score = 0 if c_20 == "no dijo nada"
 
 
 *drop the temporary variables we created

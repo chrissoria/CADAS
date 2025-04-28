@@ -145,6 +145,7 @@ capture export excel using "duplicates/roster_duplicates.xlsx", replace firstrow
  clear all
  
 use Socio
+replace s_clustid = 
 *TY and I deduced
 replace s_clustid = 8 if globalrecordid == "23e81a7f-8ed7-4e5e-846e-e130c6a9b02f"
 
@@ -444,6 +445,9 @@ drop if inlist(globalrecordid, "48135c80-626c-4114-b103-a8a32e5a86a2")
 *Ty's deduced from casos incompletos
 replace p_clustid = 1 if globalrecordid == "577ba37e-f73b-46be-831a-5c10f1655afb" 
 replace p_clustid = 1 if globalrecordid == "840d3ff1-520a-4a0f-95b1-78a15c81d5f6" 
+
+replace p_clustid = p_conglid2 if p_clustid == .i & p_conglid2 != .
+replace p_clustid = p_conglid2 if p_clustid == . & p_conglid2 != .
  
  gen p_country_str = string(p_country, "%12.0f")
 
@@ -539,6 +543,17 @@ export excel using "duplicates/phys_duplicates.xlsx", replace firstrow(variables
 use Infor
  
  drop pid hhid
+ 
+*based on the sociodem, partic 1 is 87 year old man and 2 is an 80 year old woman. they are informing on each other. 
+* howevr, this interviewer was incorrectly assigning demographic information, so therefore we match based on age/gender being the same
+replace i_particid = 2 if globalrecordid == "e3ce3c2e-ca73-499d-9fa7-076c8e778d7a"
+
+* per instructions from tania
+replace i_particid = 1 if globalrecordid == "c58b9f9a-7dc7-4d6e-96bb-4b7cd5e59718"
+ 
+* some clustid's are missing but not congl_id
+replace i_clustid = i_conglid2 if i_clustid == .i & i_conglid2 != .
+replace i_clustid = i_conglid2 if i_clustid == . & i_conglid2 != .
  
 *instructions from Tania, based on her recollection
 replace i_particid = 2 if globalrecordid == "cfa02457-5799-49bd-b752-01b4d416981f"

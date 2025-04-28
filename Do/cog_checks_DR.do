@@ -1,5 +1,4 @@
-capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
-capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
+include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
 
 capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_country_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
@@ -12,16 +11,16 @@ local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
 include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_country_define.do"
 
 if `country' == 0 {
-	cd "`path'/PR_out"
-	insheet using "../PR_in/Cog_Child.csv", comma names clear
+    cd "`path'/PR_out"
+    insheet using "../PR_in/Cog_Child.csv", comma names clear
 }
 else if `country' == 1 {
-	cd "`path'/DR_out"
-	insheet using "../DR_in/Cog_Child.csv", comma names clear
+    cd "`path'/DR_out"
+    insheet using "../DR_in/Cog_Child.csv", comma names clear
 }
 else if `country' == 2 {
-	cd "`path'/CUBA_out"
-	insheet using "../CUBA_in/Cog_Child.csv", comma names clear
+    cd "`path'/CUBA_out"
+    insheet using "../CUBA_in/Cog_Child.csv", comma names clear
 }
 }
 
@@ -30,16 +29,13 @@ local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
 include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
 
 if `country' == 0 {
-	cd "`path'/PR_out"
-	insheet using "../PR_in/Cog_Child.csv", comma names clear
+    cd "`path'/PR_out"
 }
 else if `country' == 1 {
-	cd "`path'/DR_out"
-	insheet using "../DR_in/Cog_Child.csv", comma names clear
+    cd "`path'/DR_out"
 }
 else if `country' == 2 {
-	cd "`path'/CUBA_out"
-	insheet using "../CUBA_in/Cog_Child.csv", comma names clear
+    cd "`path'/CUBA_out"
 }
 }
 
@@ -51,7 +47,9 @@ drop if inlist(globalrecordid, "64e14797-d05d-489f-a564-966f84963e43")
 
 replace c_clustid = 176 if globalrecordid == "25290482-82e8-4ca9-83ef-f451d9d1c4b0"
 
-replace c_clustid = 176 if globalrecordid == "25290482-82e8-4ca9-83ef-f451d9d1c4b0"
+*instructions from Guillermina
+*this got deleted, need to recover
+*replace c_particid
 
 *these look like junk
 drop if inlist(globalrecordid, "37134dc6-03b8-4b78-afad-234dc6bc522a", "3fe9ab18-9ced-4313-a365-ca12ab9d08a4", "a211402c-0be5-4e33-8944-d1b1b2fd56ae","0f793ca8-fc3d-4f19-be72-bd460bbd850a")
@@ -61,13 +59,13 @@ foreach var in c_clustid c_particid c_houseid {
 }
 
 if `country' == 0 {
-	export delimited using "../PR_in/Cog_Child_cleaned.csv", replace
+    export delimited using "../PR_in/Cog_Child_cleaned.csv", replace
 }
 else if `country' == 1 {
-	export delimited using "../DR_in/Cog_Child_cleaned.csv", replace
+    export delimited using "../DR_in/Cog_Child_cleaned.csv", replace
 }
 else if `country' == 2 {
-	export delimited using "../CU_in/Cog_Child_cleaned.csv", replace
+    export delimited using "../CU_in/Cog_Child_cleaned.csv", replace
 }
 
 gen c_country_str = string(c_country, "%12.0f")
@@ -86,27 +84,27 @@ gen pid = c_country_str + c_clustid_str + c_houseid_str + c_particid_str
 gen hhid = c_country_str + c_clustid_str + c_houseid_str
 drop c_country_str c_clustid_str c_houseid_str c_particid_str
 
-log using "logs/CogOnlyMissing", text replace
+log using "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out/logs/CogOnlyMissing", text replace
 
 
 local missvarlist
 foreach v of varlist _all {
-	capture confirm string variable `v'
-	if _rc == 0 {
-		quietly count if `v' == ""
-	}
-	else {
-		quietly count if missing(`v')
-	}
-	if r(N) > 5 {
-		local missvarlist `missvarlist' `v'
-	}
+    capture confirm string variable `v'
+    if _rc == 0 {
+        quietly count if `v' == ""
+    }
+    else {
+        quietly count if missing(`v')
+    }
+    if r(N) > 5 {
+        local missvarlist `missvarlist' `v'
+    }
 }
 
 di "Variables with more than 5 missing values: `missvarlist'"
 
 foreach v of local missvarlist {
-	codebook `v'
+    codebook `v'
 }
 
 log close
@@ -132,9 +130,9 @@ unab varlist : _all
 
 * Convert variables with value labels into string variables
 foreach var of varlist `varlist' {
-	if "`: value label `var''" != "" {
-		tostring `var', replace
-	}
+    if "`: value label `var''" != "" {
+        tostring `var', replace
+    }
 }
 
 * Export data to Excel
@@ -144,13 +142,13 @@ clear all
 
 
 if `country' == 0 {
-	insheet using "../PR_in/Cog_Scoring.csv", comma names clear
+    insheet using "../PR_in/Cog_Scoring.csv", comma names clear
 }
 else if `country' == 1 {
-	insheet using "../DR_in/Cog_Scoring.csv", comma names clear
+    insheet using "../DR_in/Cog_Scoring.csv", comma names clear
 }
 else if `country' == 2 {
-	insheet using "../CUBA_in/Cog_Scoring.csv", comma names clear
+    insheet using "../CUBA_in/Cog_Scoring.csv", comma names clear
 }
 
 *instructions from Guillermina's team
@@ -164,14 +162,18 @@ replace cs_clustid = 276 if globalrecordid == "c8446ae0-a3dd-475d-b708-d1d382453
 
 drop if inlist(globalrecordid, "5a093074-f404-477c-9e58-4b234e314130", "470b5479-7bce-4269-bb29-c42abb68d142", "b6805d75-d916-46f6-aa31-0ef5560c6c32", "e2df7272-2a0d-4918-8cb9-4e2a598f53e2")
 
+foreach var in cs_clustid cs_particid cs_houseid {
+	replace `var' = int(`var')
+}
+
 if `country' == 0 {
-	export delimited using "../PR_in/Cog_Scoring_cleaned.csv", replace
+    export delimited using "../PR_in/Cog_Scoring_cleaned.csv", replace
 }
 else if `country' == 1 {
-	export delimited using "../DR_in/Cog_Scoring_cleaned.csv", replace
+    export delimited using "../DR_in/Cog_Scoring_cleaned.csv", replace
 }
 else if `country' == 2 {
-	export delimited using "../CU_in/Cog_Scoring_cleaned.csv", replace
+    export delimited using "../CU_in/Cog_Scoring_cleaned.csv", replace
 }
 
 gen cs_country_num = 0
@@ -210,9 +212,9 @@ unab varlist : _all
 
 * Convert variables with value labels into string variables
 foreach var of varlist `varlist' {
-	if "`: value label `var''" != "" {
-		tostring `var', replace
-	}
+    if "`: value label `var''" != "" {
+        tostring `var', replace
+    }
 }
 
 * Export data to Excel
