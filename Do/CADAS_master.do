@@ -2,7 +2,7 @@
 
 
 
-capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_user_define.do"
 
 
 
@@ -15,7 +15,7 @@ clear all
 
 if `"`user'"' == "Chris" {
 
-    local path = "/hdir/0/chrissoria/Stata_CADAS/Do/Read"
+    local path = "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read"
 
     include "`path'/CADAS_country_define.do"
 
@@ -23,7 +23,7 @@ if `"`user'"' == "Chris" {
     	do "`path'/../PR/Resumen.do"
     	do "`path'/../PR/cog_checks.do"
 	*do "`path'/../PR/door_checks.do"
-	do "/hdir/0/chrissoria/Stata_CADAS/Do/Read/Sangre_Read.do"
+	do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/Sangre_Read.do"
     }
 
     else if `country' == 1 {
@@ -40,6 +40,8 @@ if `"`user'"' == "Chris" {
     do "`path'/Cog_Scoring_Read.do"
 
     do "`path'/Cog_Read.do"
+    
+    do "`path'/cog_scores.do"
 
     do "`path'/Doors_Read.do"
 
@@ -61,9 +63,9 @@ if `"`user'"' == "Chris" {
 
 
 
-        do "/hdir/0/chrissoria/Stata_CADAS/Do/PR/global_checks.do"
+        do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/PR/global_checks.do"
 
-
+	do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/Sangre_Read.do"
 
     }
 
@@ -73,9 +75,9 @@ if `"`user'"' == "Chris" {
 
 
 
-	do "/hdir/0/chrissoria/Stata_CADAS/Do/Read/Sangre_Read.do"
+	do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/Sangre_Read.do"
 
-        do "/hdir/0/chrissoria/Stata_CADAS/Do/DR/global_checks.do"
+        do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/DR/global_checks.do"
 
 
 
@@ -87,23 +89,23 @@ if `"`user'"' == "Chris" {
 
 
 
-        do "/hdir/0/chrissoria/Stata_CADAS/Do/CU/global_checks.do" 
+        do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/CU/global_checks.do" 
 
     }
 
 if `country' != 0{
 
 
-    do "/hdir/0/chrissoria/Stata_CADAS/Do/mp4_TyManualScoring.do"
+    do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/mp4_TyManualScoring.do"
     
 
 }
-	do "/hdir/0/chrissoria/Stata_CADAS/Do/Tracker.do"
-	do "/hdir/0/chrissoria/Stata_CADAS/Do/InterviewerConcordance1.do"
-	do "/hdir/0/chrissoria/1066/cadas_1066_reproduced.do"
-	do "/hdir/0/chrissoria/Stata_CADAS/Do/Ty_Pent_Scoring.do"
-	do "/hdir/0/chrissoria/Stata_CADAS/Do/consensus_site.do"
-	do "/hdir/0/chrissoria/Stata_CADAS/Do/EVERYTHING_WIDE.do"
+	do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Tracker.do"
+	do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/InterviewerConcordance1.do"
+	do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/cadas_1066_reproduced.do"
+	do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Ty_Pent_Scoring.do"
+	do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/consensus_site.do"
+	do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/EVERYTHING_WIDE.do"
 }
 
 
