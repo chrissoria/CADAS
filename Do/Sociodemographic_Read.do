@@ -2,21 +2,19 @@ clear all
 set more off
 capture log close
 
-capture include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_user_define.do"
-capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
+*Here we will identify the country we want before we run the file
+*0 = PR, 1 = DR, 2 = CU
 
-if `"`user'"' == "Chris" {
-local path = "/global/home/users/chrissoria/Desktop/Stata_CADAS/Data"
-include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_country_define.do"
+local country = 1
 
 if `country' == 0 {
-    cd "`path'/PR_out"
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
 }
 else if `country' == 1 {
-    cd "`path'/DR_out"
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out"
 }
 else if `country' == 2 {
-    cd "`path'/CUBA_out"
+    cd "/hdir/0/chrissoria/Stata_CADAS/Data/CUBA_out"
 }
 
 if `country' == 0 {
@@ -27,44 +25,9 @@ else if `country' == 1 {
 }
 else if `country' == 2 {
     insheet using "../CUBA_in/Socio_Child.csv", comma names clear
-}
-
-}
-
-else if `"`user'"' == "Ty" {
-local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
-include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
-
-if `country' == 0 {
-    cd "`path'/PR_out"
-}
-else if `country' == 1 {
-    cd "`path'/DR_out"
-}
-else if `country' == 2 {
-    cd "`path'/CUBA_out"
-}
-
-if `country' == 0 {
-    insheet using "../PR_in/Socio_Child.csv", comma names clear
-}
-else if `country' == 1 {
-    insheet using "../DR_in/Socio_Child.csv", comma names clear
-}
-else if `country' == 2 {
-    insheet using "../CUBA_in/Socio_Child.csv", comma names clear
-}
-}
-capture drop v1
-
-if `country' == 2 {
-	set varabbrev off
-	drop s_2_8a s_2_8b s_9_21 s_9_43 s_9_45 s_14_2_p s_14_2_d
-	set varabbrev on
 }
 
 *converting from numeric to string
-
 
 
 generate S_1_1_P = cond(s_1_1_p ==  0, "negro(a)", cond(s_1_1_p ==  1, "mulato(a) mezclado(a) o trigueño (blanco o negro)", cond(s_1_1_p ==  2, "blanco(a)", cond(s_1_1_p ==  3, "mestizo(a) (indio con blanco)", cond(s_1_1_p ==  4, "otra", cond(s_1_1_p ==  5, "no responde", cond(s_1_1_p ==  6, "no sabe", "")))))))
@@ -131,7 +94,7 @@ generate S_3_1_C = cond(s_3_1_c ==  0, "cuba", cond(s_3_1_c ==  1, "otro pais", 
 
 drop s_3_1_c
 
-generate S_3_2 = cond(s_3_2 ==  0, "ciudad", cond(s_3_2 ==  1, "pueblo", cond(s_3_2 ==  2, "campo", "")))
+generate S_3_2 = cond(s_3_2 ==  0, "cuidad", cond(s_3_2 ==  1, "pueblo", cond(s_3_2 ==  2, "campo", "")))
 
 drop s_3_2
 
@@ -334,22 +297,6 @@ drop s_7_6b
 generate S_8_1 = cond(s_8_1 ==  0, "no", cond(s_8_1 ==  1, "si", cond(s_8_1 ==  2, "no responde", cond(s_8_1 ==  3, "no sabe", ""))))
 
 drop s_8_1
-
-if `country' == 0 {
-*data from PR is coming in different for this variable
-*replace s_8_3 = "7" if s_8_3 == "7 - Otros servicios"
-*replace s_8_3 = "1" if s_8_3 == "1 - Profesional, ejecutivo "
-*replace s_8_3 = "9" if s_8_3 == "9 - Trabajador no especializado"
-
-*destring s_8_3, replace
-
-*replace s_8_5d = "10" if s_8_5d == "10 - Trabajos informales"
-*destring s_8_5d, replace
-
-*replace s_8_16 = "1" if s_8_16 == "1 - Profesional, ejecutivo "
-*replace s_8_16 = "9" if s_8_16 == "9 - Trabajador no especializado"
-*destring s_8_16, replace
-}
 
 generate S_8_3 = cond(s_8_3 ==  0, "profesional ejecutivo", cond(s_8_3 ==  1, "oficinista", cond(s_8_3 ==  2, "vendedor minorista", cond(s_8_3 ==  3, "agricultor independiente", cond(s_8_3 ==  4, "trabajador agrícola", cond(s_8_3 ==  5, "trabajador domestico", cond(s_8_3 ==  6, "otros servicios", cond(s_8_3 ==  7, "trabajador especializado", cond(s_8_3 ==  8, "trabajador no especializado", cond(s_8_3 ==  9, "trabajos informales", cond(s_8_3 ==  10, "otros", cond(s_8_3 ==  11, "no responde", cond(s_8_3 ==  12, "no sabe", "")))))))))))))
 
@@ -923,18 +870,6 @@ generate S_14_30B3_D = cond(s_14_30b3_d ==  0, "no", cond(s_14_30b3_d ==  1, "si
 
 drop s_14_30b3_d
 
-generate S_14_30B1_C = cond(s_14_30b1_c ==  0, "no", cond(s_14_30b1_c ==  1, "si", cond(s_14_30b1_c ==  2, "no responde", cond(s_14_30b1_c ==  3, "no sabe", ""))))
-
-drop s_14_30b1_c
-
-generate S_14_30B2_C = cond(s_14_30b2_c ==  0, "no", cond(s_14_30b2_c ==  1, "si", cond(s_14_30b2_c ==  2, "no responde", cond(s_14_30b2_c ==  3, "no sabe", ""))))
-
-drop s_14_30b2_c
-
-generate S_14_30B3_C = cond(s_14_30b3_c ==  0, "no", cond(s_14_30b3_c ==  1, "si", cond(s_14_30b3_c ==  2, "no responde", cond(s_14_30b3_c ==  3, "no sabe", ""))))
-
-drop s_14_30b3_c
-
 generate S_14_31 = cond(s_14_31 ==  0, "no", cond(s_14_31 ==  1, "si", cond(s_14_31 ==  2, "no responde", cond(s_14_31 ==  3, "no sabe", ""))))
 
 drop s_14_31
@@ -996,53 +931,24 @@ foreach var of local string_vars {
 
 }
 
-if `country' == 2 {
-    replace s_country = 2
-}
-else if `country' == 1 {
-    replace s_country = 1
-}
-else if `country' == 0 {
-    replace s_country = 0
-}
-
 label define country_label 0 "Puerto Rico" 1 "República Dominicana" 2 "Cuba"
 label values s_country country_label
 
 gen s_country_str = string(s_country, "%12.0f")
 
-replace s_clustid = s_clustid*10 if s_clustid < 1
-replace s_clustid = s_conglid2 if s_clustid == .
 gen s_clustid_str = string(s_clustid, "%12.0f")
 replace s_clustid_str = cond(strlen(s_clustid_str) == 1, "0" + s_clustid_str, s_clustid_str)
 
-replace s_houseid = s_houseid*10 if s_houseid < 1
 gen s_houseid_str = string(s_houseid, "%03.0f")
 replace s_houseid_str = cond(strlen(s_houseid_str) == 1, "00" + s_houseid_str, s_houseid_str)
 replace s_houseid_str = cond(strlen(s_houseid_str) == 2, "0" + s_houseid_str, s_houseid_str)
 
-replace s_particid = s_particid*10 if s_particid < 1
 gen s_particid_str = string(s_particid, "%12.0f")
 replace s_particid_str = cond(strlen(s_particid_str) == 1, "0" + s_particid_str, s_particid_str)
 
 gen pid = s_country_str + s_clustid_str + s_houseid_str + s_particid_str
 gen hhid = s_country_str + s_clustid_str + s_houseid_str
-drop s_clustid_str s_houseid_str s_particid_str
-
-*from second entry
-
-gen s_clustid2_str = string(s_conglid2, "%12.0f")
-replace s_clustid2_str = cond(strlen(s_clustid2_str) == 1, "0" + s_clustid2_str, s_clustid2_str)
-
-gen s_houseid2_str = string(s_houseid2, "%03.0f")
-replace s_houseid2_str = cond(strlen(s_houseid2_str) == 1, "00" + s_houseid2_str, s_houseid2_str)
-replace s_houseid2_str = cond(strlen(s_houseid2_str) == 2, "0" + s_houseid2_str, s_houseid2_str)
-
-gen s_particid2_str = string(s_particid2, "%12.0f")
-replace s_particid2_str = cond(strlen(s_particid2_str) == 1, "0" + s_particid2_str, s_particid2_str)
-
-gen pid2 = s_country_str + s_clustid2_str + s_houseid2_str + s_particid2_str
-drop s_country_str s_clustid2_str s_houseid2_str s_particid2_str
+drop s_country_str s_clustid_str s_houseid_str s_particid_str
 
 *these were originally completely numeric
 
@@ -1079,7 +985,7 @@ if !_rc{
      tostring S_3_11, replace
 }
 
-label define S_3_11 .a"." 1 "1 - profesional, ejecutivo" 2 "2 - oficinista" 3 "3 - vendedor, minorista" 4 "4 - agricultor independiente" 5 "5 - trabajador agrícola" 6 "6 - trabajador domestico" 7 "7 - otros servicios" 8 "8 - trabajador especializado" 9 "9 - trabajador no especializado" 10 "10 - trabajos informales" 11 "11 - otros" 12 "12 - no trabajó" 13 "13 - no tenía padre o tutor" 88 "88 - no responde" 99 "99 - no sabe"
+label define S_3_11 .a"." 1 "1 - profesional ejecutivo" 2 "2 - oficinista" 3 "3 - vendedor, minorista" 4 "4 - agricultor independiente" 5 "5 - trabajador agrícola" 6 "6 - trabajador domestico" 7 "7 - otros servicios" 8 "8 - trabajador especializado" 9 "9 - trabajador no especializado" 10 "10 - trabajos informales" 11 "11 - otros" 12 "12 - no trabajó" 13 "13 - no tenía padre o tutor" 88 "88 - no responde" 99 "99 - no sabe"
 
 encode S_3_11, gen (s_3_11) label(S_3_11)
 
@@ -1282,7 +1188,7 @@ if !_rc{
      tostring S_3_2, replace
 }
 
-label define S_3_2 .a"." 0 "ciudad" 1 "pueblo" 2 "campo" 
+label define S_3_2 .a"." 0 "cuidad" 1 "pueblo" 2 "campo" 
 
 encode S_3_2, gen(s_3_2) label (S_3_2)
 
@@ -2516,7 +2422,7 @@ if !_rc{
      tostring S_10_1A, replace
 }
 
-label define S_10_1A .a"." 5 "no cierto" 1 "si cierto" 8 "no responde"9 "no sabe"
+label define S_10_1A .a"." 0 "no cierto" 1 "si cierto" 8 "no responde"9 "no sabe"
 
 encode S_10_1A, gen(s_10_1a) label (S_10_1A)
 
@@ -3952,9 +3858,7 @@ label values s_6_7 S_6_7_
 
 *reorder
 
-order pid globalrecordid pid2 s_interid s_houseid s_particid s_clustid s_country s_houseid2 s_conglid2 s_particid2 s_0 s_deviceid1 s_1_1_p s_1_1_d s_1_1_c s_1_2 s_2_3 s_2_8c s_2_9 s_2_9a s_2_10 s_2_11 s_2_12 s_2_13 s_2_14_p s_2_14_d s_2_14_c s_2_15_p s_2_15_d s_2_15_c s_2_16 s_3_0 s_3_1_p s_3_1_d s_3_1_c s_3_2 s_3_3_p s_3_3_d s_3_3_c s_3_4 s_3_5 s_3_6 s_3_7 s_3_8 s_3_9 s_3_11 s_3_12_1 s_3_12_2 s_3_12_3 s_3_12_6 s_3_12_8 s_3_13 s_3_17 s_3_18 s_3_19_1 s_3_19_2 s_4_1 s_4_2 s_4_3 s_4_6 s_4_7 s_4_8 s_4_11 s_4_12 s_4_13 s_4_16 s_4_17 s_4_18 s_4_20 s_4_21 s_4_22 s_4_23_1 s_4_23_2 s_4_26 s_4_27_1 s_4_27_2 s_4_27a s_4_28 s_4_29_1 s_4_29_2 s_4_29a s_5_1 s_5_2 s_5_3 s_5_4 s_5_5 s_6_1 s_6_2 s_6_3 s_6_4 s_6_5_p s_6_5_d s_6_5_c s_6_6 s_6_7 s_7_0 s_7_1 s_7_2a s_7_2b s_7_2c s_7_3 s_7_4a s_7_4b s_7_4c s_7_5a s_7_5b s_7_5c s_7_6a s_7_6b s_7_7a s_7_7b s_7_7c s_7_7d s_7_7e s_7_7f s_7_7g s_7_7h s_7_7i s_7_7j s_7_7k s_8_1 s_8_2 s_8_3 s_8_3a s_8_4 s_8_5a s_8_5b2 s_8_5b1 s_8_5b4 s_8_5b3 s_8_5b5 s_8_5b6 s_8_5b7 s_8_5b8 s_8_5b9 s_8_5c s_8_5d s_8_7 s_8_8 s_8_9 s_8_10 s_8_11 s_8_12 s_8_13 s_8_14 s_8_15 s_8_16 s_9_1 s_9_3 s_9_4 s_9_5 s_9_6 s_9_7 s_9_8 s_9_9 s_9_11 s_9_13 s_9_14 s_9_15 s_9_16 s_9_17 s_9_18 s_9_19 s_9_20 s_9_21a s_9_21b s_9_22 s_9_23 s_9_24 s_9_25 s_9_26 s_9_28 s_9_29 s_9_30 s_9_31 s_9_32 s_9_33 s_9_35 s_9_36 s_9_37 s_9_38a s_9_38g s_9_38b s_9_38f s_9_38c s_9_38d s_9_38j s_9_38e s_9_38k s_9_38h s_9_38l s_9_38i s_9_39 s_9_40 s_9_41 s_9_42 s_9_43a s_9_44 s_9_45a s_9_46 s_9_47 s_9_48 s_9_49 s_9_50 s_9_51 s_9_52 s_9_53 s_9_54 s_9_55 s_9_56 s_9_57 s_9_58 s_9_59 s_9_60 s_9_61 s_9_61a s_9_62 s_9_63 s_9_64_1 s_9_64_2 s_9_64_3 s_9_64_4 s_9_65 s_9_66 s_10_1a s_10_1b s_10_1c s_10_1d s_10_1e s_10_1f s_10_1g s_10_1h s_10_2 s_10_3 s_10_4 s_10_5 s_10_6_1 s_10_6_1a s_10_6_2 s_10_6_2a s_10_6_3 s_10_6_3a s_10_6_4 s_10_6_4a s_10_7_1 s_10_7_2 s_11_1 s_11_2 s_11_3 s_12_1a s_12_1b s_12_1c s_12_2a s_12_2c s_12_3a s_12_3c s_12_4a s_12_4b s_12_4c s_12_5a s_12_5c s_12_6a s_12_6c s_12_7 s_12_8 s_12_9 s_12_10 s_12_11 s_12_13 s_12_14 s_12_15 s_12_16 s_13_1_p_c s_13_1_d s_13_2 s_13_3_p_c s_13_3_d s_13_4 s_13_5 s_13_6_p_c s_13_6_d s_13_7_p_c s_13_7_d s_13_8 s_13_9 s_13_10 s_13_11 s_13_12 s_13_13 s_13_14 s_13_15 s_13_16 s_13_17 s_13_18 s_13_19 s_13_20 s_13_22 s_13_23_p s_13_23_d_c s_13_24 s_13_25_d_c s_13_25_p s_13_26 s_13_27_d_c s_13_27_p s_13_28 s_13_29 s_13_30_d_c s_13_30_p s_14_1_p_d s_14_2a_p s_14_2b_p s_14_2c_p s_14_2d_p s_14_2e_p s_14_2f_p s_14_2g_p s_14_2h_p s_14_2i_p s_14_2j_p s_14_2a_d s_14_2b_d s_14_2c_d s_14_2d_d s_14_2e_d s_14_2f_d s_14_2g_d s_14_3 s_14_4 s_14_5 s_14_6 s_14_8 s_14_9 s_14_11 s_14_12 s_14_13 s_14_14 s_14_15 s_14_16 s_14_17 s_14_18_1 s_14_18_2 s_14_18_3 s_14_18_4 s_14_18_5 s_14_18_6 s_14_20 s_14_22 s_14_23 s_14_24 s_14_25 s_14_30a s_14_30b1_p s_14_30b1_d s_14_30b1_c s_14_30b2_p s_14_30b2_d s_14_30b2_c s_14_30b3_p s_14_30b3_d s_14_30b3_c s_14_31 s_14_32 s_14_33 s_15_1 s_15_2 s_15_3 s_deviceid2
-
-sort s_clustid s_houseid
+order s_interid s_houseid s_particid s_clustid s_country s_houseid2 s_conglid2 s_particid2 s_0 s_deviceid1 s_1_1_p s_1_1_d s_1_1_c s_1_2 s_2_3 s_2_8c s_2_9 s_2_9a s_2_10 s_2_11 s_2_12 s_2_13 s_2_14_p s_2_14_d s_2_14_c s_2_15_p s_2_15_d s_2_15_c s_2_16 s_3_0 s_3_1_p s_3_1_d s_3_1_c s_3_2 s_3_3_p s_3_3_d s_3_3_c s_3_4 s_3_5 s_3_6 s_3_7 s_3_8 s_3_9 s_3_11 s_3_12_1 s_3_12_2 s_3_12_3 s_3_12_6 s_3_12_8 s_3_13 s_3_17 s_3_18 s_3_19_1 s_3_19_2 s_4_1 s_4_2 s_4_3 s_4_6 s_4_7 s_4_8 s_4_11 s_4_12 s_4_13 s_4_16 s_4_17 s_4_18 s_4_20 s_4_21 s_4_22 s_4_23_1 s_4_23_2 s_4_26 s_4_27_1 s_4_27_2 s_4_27a s_4_28 s_4_29_1 s_4_29_2 s_4_29a s_5_1 s_5_2 s_5_3 s_5_4 s_5_5 s_6_1 s_6_2 s_6_3 s_6_4 s_6_5_p s_6_5_d s_6_5_c s_6_6 s_6_7 s_7_0 s_7_1 s_7_2a s_7_2b s_7_2c s_7_3 s_7_4a s_7_4b s_7_4c s_7_5a s_7_5b s_7_5c s_7_6a s_7_6b s_7_7a s_7_7b s_7_7c s_7_7d s_7_7e s_7_7f s_7_7g s_7_7h s_7_7i s_7_7j s_7_7k s_8_1 s_8_2 s_8_3 s_8_3a s_8_4 s_8_5a s_8_5b2 s_8_5b1 s_8_5b4 s_8_5b3 s_8_5b5 s_8_5b6 s_8_5b7 s_8_5b8 s_8_5b9 s_8_5c s_8_5d s_8_7 s_8_8 s_8_9 s_8_10 s_8_11 s_8_12 s_8_13 s_8_14 s_8_15 s_8_16 s_9_1 s_9_3 s_9_4 s_9_5 s_9_6 s_9_7 s_9_8 s_9_9 s_9_11 s_9_13 s_9_14 s_9_15 s_9_16 s_9_17 s_9_18 s_9_19 s_9_20 s_9_21a s_9_21b s_9_22 s_9_23 s_9_24 s_9_25 s_9_26 s_9_28 s_9_29 s_9_30 s_9_31 s_9_32 s_9_33 s_9_35 s_9_36 s_9_37 s_9_38a s_9_38g s_9_38b s_9_38f s_9_38c s_9_38d s_9_38j s_9_38e s_9_38k s_9_38h s_9_38l s_9_38i s_9_39 s_9_40 s_9_41 s_9_42 s_9_43a s_9_44 s_9_45a s_9_46 s_9_47 s_9_48 s_9_49 s_9_50 s_9_51 s_9_52 s_9_53 s_9_54 s_9_55 s_9_56 s_9_57 s_9_58 s_9_59 s_9_60 s_9_61 s_9_61a s_9_62 s_9_63 s_9_64_1 s_9_64_2 s_9_64_3 s_9_64_4 s_9_65 s_9_66 s_10_1a s_10_1b s_10_1c s_10_1d s_10_1e s_10_1f s_10_1g s_10_1h s_10_2 s_10_3 s_10_4 s_10_5 s_10_6_1 s_10_6_1a s_10_6_2 s_10_6_2a s_10_6_3 s_10_6_3a s_10_6_4 s_10_6_4a s_10_7_1 s_10_7_2 s_11_1 s_11_2 s_11_3 s_12_1a s_12_1b s_12_1c s_12_2a s_12_2c s_12_3a s_12_3c s_12_4a s_12_4b s_12_4c s_12_5a s_12_5c s_12_6a s_12_6c s_12_7 s_12_8 s_12_9 s_12_10 s_12_11 s_12_13 s_12_14 s_12_15 s_12_16 s_13_1_p_c s_13_1_d s_13_2 s_13_3_p_c s_13_3_d s_13_4 s_13_5 s_13_6_p_c s_13_6_d s_13_7_p_c s_13_7_d s_13_8 s_13_9 s_13_10 s_13_11 s_13_12 s_13_13 s_13_14 s_13_15 s_13_16 s_13_17 s_13_18 s_13_19 s_13_20 s_13_22 s_13_23_p s_13_23_d_c s_13_24 s_13_25_d_c s_13_25_p s_13_26 s_13_27_d_c s_13_27_p s_13_28 s_13_29 s_13_30_d_c s_13_30_p s_14_1_p_d s_14_2a_p s_14_2b_p s_14_2c_p s_14_2d_p s_14_2e_p s_14_2f_p s_14_2g_p s_14_2h_p s_14_2i_p s_14_2j_p s_14_2a_d s_14_2b_d s_14_2c_d s_14_2d_d s_14_2e_d s_14_2f_d s_14_2g_d s_14_3 s_14_4 s_14_5 s_14_6 s_14_8 s_14_9 s_14_11 s_14_12 s_14_13 s_14_14 s_14_15 s_14_16 s_14_17 s_14_18_1 s_14_18_2 s_14_18_3 s_14_18_4 s_14_18_5 s_14_18_6 s_14_20 s_14_22 s_14_23 s_14_24 s_14_25 s_14_30a s_14_30b1_p s_14_30b1_d s_14_30b2_p s_14_30b2_d s_14_30b3_p s_14_30b3_d s_14_31 s_14_32 s_14_33 s_15_1 s_15_2 s_15_3 s_deviceid2
 
 *convert missing comment legal and text values to string
 
@@ -4618,7 +4522,7 @@ label variable s_13_27_d_c "13.27 ¿Cuándo fue o ha sido su peso máximo durant
 
 label variable s_13_27_p "13.27 ¿Cuándo fue o ha sido su peso máximo durante su vida (si es mujer, no incluya embarazos)? REGISTRA PESO en libras NO RESPONDE...................................... 888 NO SABE................................................. 999"
 
-label variable s_13_28 "13.28 ¿De acuerdo a estas imágenes, como cree que lucía usted en esa época? MUESTRA TARJETA 'B' NO RESPONDE...................................... 88 NO SABE................................................. 99"
+label variable s_13_28 "13.28 ¿De acuerdo a estas imágenes, como cree que lucía usted en esa época? MUESTRA TARJETA “B” NO RESPONDE...................................... 88 NO SABE................................................. 99"
 
 label variable s_13_29 "13.29 ¿Qué edad tenía cuando alcanzo ese peso maximo? NO RESPONDE...................................... 88 NO SABE................................................. 99"
 
@@ -4716,19 +4620,13 @@ label variable s_14_30b1_p "14.30b.1 ¿Diría usted que estos gastos fueron en t
 
 label variable s_14_30b1_d "14.30b.1 ¿Diría usted que estos gastos fueron en total mas de 5000 pesos?"
 
-label variable s_14_30b1_c "14.30b.1 ¿Diría usted que estos gastos fueron en total Más de 1250 CUP?"
-
 label variable s_14_30b2_p "14.30b2 ¿Diría usted que estos gastos fueron en total Más de $50?"
 
 label variable s_14_30b2_d "14.30b2 ¿Diría usted que estos gastos fueron en total mas de 2500 pesos?"
 
-label variable s_14_30b2_c "14.30b2 ¿Diría usted que estos gastos fueron en total Más de 125 CUP?"
-
 label variable s_14_30b3_p "14.30b3 ¿Diría usted que estos gastos fueron en total Más de $200?"
 
 label variable s_14_30b3_d "14.30b3 ¿Diría usted que estos gastos fueron en total mas de 10,000 pesos?"
-
-label variable s_14_30b3_c "14.30b3 ¿Diría usted que estos gastos fueron en total Más de 4500 CUP?"
 
 label variable s_14_31 "14.31 ¿Se ha vacunado contra el COVID?"
 
@@ -4859,10 +4757,12 @@ replace s_3_3_p = ".i" if (s_3_3_p == "" | s_3_3_p == "." )& ((s_3_1_p ~= 2 & s_
 replace s_3_3_d = ".i" if (s_3_3_d == "" | s_3_3_d == "." )& ((s_3_1_d ~= 2 & s_3_1_d ~= 3 & s_3_1_d ~= 4) & s_country == 1)
 
 replace s_3_18 = .i if (s_3_18 == . | s_3_18 == .a) & (s_3_17 ~= 1 & s_3_17 ~= 8 & s_3_17 ~= 9)
+*line 14 should not have answered this
 
 replace s_3_19_1 = .i if (s_3_19_1 == . | s_3_19_1 == .a) & (s_3_17 ~= 1 & s_3_17 ~= 8 & s_3_17 ~= 9)
 
 replace s_3_19_2 = .i if (s_3_19_2 == . | s_3_19_2 == .a) & (s_3_17 ~= 1 & s_3_17 ~= 8 & s_3_17 ~= 9)
+*line 1 should have answered this
 
 replace s_4_3 = .i if (s_4_3 == . | s_4_3 == .a) & (s_4_2 ~= 1 & s_4_2 ~= 8 & s_4_2 ~= 9)
 
@@ -4916,6 +4816,7 @@ replace s_7_2b = .i if (s_7_2b == . | s_7_2b == .a) & (s_7_1 ~= 1 & s_7_1 ~= 8 &
 
 replace s_7_2c = .i if (s_7_2c == . | s_7_2c == .a) & (s_7_1 ~= 1 & s_7_1 ~= 8 & s_7_1 ~= 9)
 
+/*
 replace s_7_7a = .i if (s_7_7a == . | s_7_7a == .a) & (s_7_6a < 6 | s_7_6b < 5)
 
 replace s_7_7b = .i if (s_7_7b == . | s_7_7b == .a) & (s_7_6a < 6 | s_7_6b < 5)
@@ -4937,6 +4838,7 @@ replace s_7_7i = .i if (s_7_7i == . | s_7_7i == .a) & (s_7_6a < 6 | s_7_6b < 5)
 replace s_7_7j = .i if (s_7_7j == . | s_7_7j == .a) & (s_7_6a < 6 | s_7_6b < 5)
 
 replace s_7_7k = .i if (s_7_7k == . | s_7_7k == .a) & (s_7_6a < 6 | s_7_6b < 5)
+*/
 
 replace s_8_2 = .i if (s_8_2 == . | s_8_2 == .a) & (s_8_1 ~= 2 & s_8_1 ~= 8 & s_8_1 ~= 9)
 
@@ -4948,6 +4850,7 @@ replace s_8_4 = .i if (s_8_4 == . | s_8_4 == .a) & (s_8_1 ~= 2 & s_8_1 ~= 8 & s_
 
 replace s_8_5a = .i if (s_8_5a == . | s_8_5a == .a) & (s_8_1 ~= 2 & s_8_1 ~= 8 & s_8_1 ~= 9)
 
+/*
 replace s_8_5b1 = .i if (s_8_5b1 == . | s_8_5b1 == .a) & ((s_8_1 ~= 2 & s_8_1 ~= 8 & s_8_1 ~= 9) & (s_8_5a ~= 1 & s_8_5a ~= 2 & s_8_5a ~= 8))
 
 replace s_8_5b2 = .i if (s_8_5b2 == . | s_8_5b2 == .a) & ((s_8_1 ~= 2 & s_8_1 ~= 8 & s_8_1 ~= 9) & (s_8_5a ~= 1 & s_8_5a ~= 2 & s_8_5a ~= 8))
@@ -4966,7 +4869,8 @@ replace s_8_5b8 = .i if (s_8_5b8 == . | s_8_5b8 == .a) & ((s_8_1 ~= 2 & s_8_1 ~=
 
 replace s_8_5b9 = .i if (s_8_5b9 == . | s_8_5b9 == .a) & ((s_8_1 ~= 2 & s_8_1 ~= 8 & s_8_1 ~= 9) & (s_8_5a ~= 1 & s_8_5a ~= 2 & s_8_5a ~= 8))
 
-capture replace s_8_5b10 = .i if (s_8_5b10 == . | s_8_5b10 == .a) & ((s_8_1 ~= 2 & s_8_1 ~= 8 & s_8_1 ~= 9) & (s_8_5a ~= 1 & s_8_5a ~= 2 & s_8_5a ~= 8))
+replace s_8_5b10 = .i if (s_8_5b10 == . | s_8_5b10 == .a) & ((s_8_1 ~= 2 & s_8_1 ~= 8 & s_8_1 ~= 9) & (s_8_5a ~= 1 & s_8_5a ~= 2 & s_8_5a ~= 8))
+*/
 
 replace s_8_5c = .i if (s_8_5c == . | s_8_5c == .a) & ((s_8_1 ~= 2 & s_8_1 ~= 8 & s_8_1 ~= 9) & (s_8_5a ~= 1 & s_8_5a ~= 8))
 
@@ -5028,6 +4932,7 @@ replace s_9_32 = .i if (s_9_32 == . | s_9_32 == .a) & (s_9_30 ~= 2 & s_9_30 ~= 8
 
 replace s_9_33 = .i if (s_9_33 == . | s_9_33 == .a) & (s_9_30 ~= 2 & s_9_30 ~= 8 & s_9_30 ~= 9)
 
+/*
 replace s_9_38a = .i if (s_9_38a == . | s_9_38a == .a) & (s_9_37 ~= 2 & s_9_37 ~= 8 & s_9_37 ~= 9)
 
 replace s_9_38b = .i if (s_9_38b == . | s_9_38b == .a) & (s_9_37 ~= 2 & s_9_37 ~= 8 & s_9_37 ~= 9)
@@ -5051,6 +4956,7 @@ replace s_9_38j = .i if (s_9_38j == . | s_9_38j == .a) & (s_9_37 ~= 2 & s_9_37 ~
 replace s_9_38k = .i if (s_9_38k == . | s_9_38k == .a) & (s_9_37 ~= 2 & s_9_37 ~= 8 & s_9_37 ~= 9)
 
 replace s_9_38l = .i if (s_9_38l == . | s_9_38l == .a) & (s_9_37 ~= 2 & s_9_37 ~= 8 & s_9_37 ~= 9)
+*/
 
 replace s_9_39 = .i if (s_9_39 == . | s_9_39 == .a ) & (s_9_37 ~= 2 & s_9_37 ~= 8 & s_9_37 ~= 9)
 
@@ -5180,6 +5086,7 @@ replace s_13_20 = .i if (s_13_20 == . | s_13_20 == .a) & (s_13_19 ~= 2 & s_13_19
 
 replace s_14_1_p_d = .i if (s_14_1_p_d == . | s_14_1_p_d == .a) & (s_country ~= 2)
 
+/*
 replace s_14_2a_p = .i if (s_14_2a_p == . | s_14_2a_p == .a) & (s_country == 0 & s_14_1_p_d ~= 2 & s_14_1_p_d ~= 8 & s_14_1_p_d ~= 9)
 
 replace s_14_2b_p = .i if (s_14_2b_p == . | s_14_2b_p == .a) & (s_country == 0 & s_14_1_p_d ~= 2 & s_14_1_p_d ~= 8 & s_14_1_p_d ~= 9)
@@ -5213,7 +5120,7 @@ replace s_14_2e_d = .i if (s_14_2e_d == . | s_14_2e_d == .a) & (s_country == 1 &
 replace s_14_2f_d = .i if (s_14_2f_d == . | s_14_2f_d == .a) & (s_country == 1 & s_14_1_p_d ~= 2 & s_14_1_p_d ~= 8 & s_14_1_p_d ~= 9)
 
 replace s_14_2g_d = .i if (s_14_2g_d == . | s_14_2g_d == .a) & (s_country == 1 & s_14_1_p_d ~= 2 & s_14_1_p_d ~= 8 & s_14_1_p_d ~= 9)
-
+*/
 *i think s_14_1b_p is mislabeled in do file and data dictionary, should be s_14_2b_p
 
 
@@ -5251,19 +5158,19 @@ replace s_14_30b1_p = .i if (s_14_30b1_p == . | s_14_30b1_p == .a) & ((s_14_30a 
 
 replace s_14_30b1_d = .i if (s_14_30b1_d == . | s_14_30b1_d == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & s_country  == 1)
 
-replace s_14_30b1_c = .i if (s_14_30b1_c == . | s_14_30b1_c == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & s_country  == 2)
+*replace s_14_30b1_c = .i if (s_14_30b1_c == . | s_14_30b1_c == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & s_country  == 2)
 
 replace s_14_30b2_p = .i if (s_14_30b2_p == . | s_14_30b2_p == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 0) & (s_14_30b1_p == 2 | s_14_30b1_p == .i))
 
 replace s_14_30b2_d = .i if (s_14_30b2_d == . | s_14_30b2_d == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 1) & (s_14_30b1_d == 2 | s_14_30b1_d == .i))
 
-replace s_14_30b2_c = .i if (s_14_30b2_c == . | s_14_30b2_c == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 2) & (s_14_30b1_c == 2 | s_14_30b1_c == .i))
+*replace s_14_30b2_c = .i if (s_14_30b2_c == . | s_14_30b2_c == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 2) & (s_14_30b1_c == 2 | s_14_30b1_c == .i))
 
 replace s_14_30b3_p = .i if (s_14_30b3_p == . | s_14_30b3_p == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 0) & (s_14_30b1_p == 1 | s_14_30b1_p == .i))
 
 replace s_14_30b3_d = .i if (s_14_30b3_d == . | s_14_30b3_d == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 1) & (s_14_30b1_d == 1 | s_14_30b1_d == .i))
 
-replace s_14_30b3_c = .i if (s_14_30b3_c == . | s_14_30b3_c == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 2) & (s_14_30b1_c == 1 | s_14_30b1_c == .i))
+*replace s_14_30b3_c = .i if (s_14_30b3_c == . | s_14_30b3_c == .a) & ((s_14_30a == 88 | s_14_30a == 99 | s_14_30a == .) & (s_country  == 2) & (s_14_30b1_c == 1 | s_14_30b1_c == .i))
 
 replace s_14_32 = .i if (s_14_32 == . | s_14_32 == .a) & (s_14_31 ~= 2 & s_14_31 ~= 8 & s_14_31 ~= 9)
 
@@ -5328,13 +5235,13 @@ replace s_14_2f_d = .v if (s_14_2f_d == 0 | s_14_2f_d == .a) & (s_country ~= 1 |
 replace s_14_2g_d = .v if (s_14_2g_d == 0 | s_14_2g_d == .a) & (s_country ~= 1 | s_14_1_p_d == 2 | s_14_1_p_d == 8 | s_14_1_p_d == 9)
 replace s_14_30b1_p = .v if (s_14_30b1_p == . | s_14_30b1_p == .a) & s_country ~= 0
 replace s_14_30b1_d = .v if (s_14_30b1_d == . | s_14_30b1_d == .a) & s_country ~= 1
-replace s_14_30b1_c = .v if (s_14_30b1_c == . | s_14_30b1_c == .a) & s_country ~= 2
+*replace s_14_30b1_c = .v if (s_14_30b1_c == . | s_14_30b1_c == .a) & s_country ~= 2
 replace s_14_30b2_p = .v if (s_14_30b2_p == . | s_14_30b2_p == .a) & s_country ~= 0
 replace s_14_30b2_d = .v if (s_14_30b2_d == . | s_14_30b2_d == .a) & s_country ~= 1
-replace s_14_30b2_c = .v if (s_14_30b2_c == . | s_14_30b2_c == .a) & s_country ~= 2
+*replace s_14_30b2_c = .v if (s_14_30b2_c == . | s_14_30b2_c == .a) & s_country ~= 2
 replace s_14_30b3_p = .v if (s_14_30b3_p == . | s_14_30b3_p == .a) & s_country ~= 0
 replace s_14_30b3_d = .v if (s_14_30b3_d == . | s_14_30b3_d == .a) & s_country ~= 1
-replace s_14_30b3_c = .v if (s_14_30b3_c == . | s_14_30b3_c == .a) & s_country ~= 2
+*replace s_14_30b3_c = .v if (s_14_30b3_c == . | s_14_30b3_c == .a) & s_country ~= 2
 
 
 
@@ -5400,7 +5307,7 @@ replace s_8_5b6 = .v if (s_8_5b6 == 0 | s_8_5b6 == .a) & ((s_8_1 == 2 | s_8_1 ==
 replace s_8_5b7 = .v if (s_8_5b7 == 0 | s_8_5b7 == .a) & ((s_8_1 == 2 | s_8_1 == 8 | s_8_1 == 9) & (s_8_5a == 1 | s_8_5a == 2 | s_8_5a == 8))
 replace s_8_5b8 = .v if (s_8_5b8 == 0 | s_8_5b8 == .a) & ((s_8_1 == 2 | s_8_1 == 8 | s_8_1 == 9) & (s_8_5a == 1 | s_8_5a == 2 | s_8_5a == 8))
 replace s_8_5b9 = .v if (s_8_5b9 == 0 | s_8_5b9 == .a) & ((s_8_1 == 2 | s_8_1 == 8 | s_8_1 == 9) & (s_8_5a == 1 | s_8_5a == 2 | s_8_5a == 8))
-capture replace s_8_5b10 = .v if (s_8_5b10 == 0 | s_8_5b10 == .a) & ((s_8_1 == 2 | s_8_1 == 8 | s_8_1 == 9) & (s_8_5a == 1 | s_8_5a == 2 | s_8_5a == 8))
+*replace s_8_5b10 = .v if (s_8_5b10 == 0 | s_8_5b10 == .a) & ((s_8_1 == 2 | s_8_1 == 8 | s_8_1 == 9) & (s_8_5a == 1 | s_8_5a == 2 | s_8_5a == 8))
 replace s_8_5c = .v if (s_8_5c == . | s_8_5c == .a)
 replace s_8_5d = .v if (s_8_5d == . | s_8_5d == .a)
 replace s_8_7 = .v if (s_8_7 == . | s_8_7 == .a)
@@ -5502,6 +5409,7 @@ replace s_13_11 = .v if (s_13_11 == . | s_13_11 == .a)
 replace s_13_12 = .v if (s_13_12 == . | s_13_12 == .a)
 replace s_13_20 = .v if (s_13_20 == . | s_13_20 == .a)
 replace s_14_1_p_d = .v if (s_14_1_p_d == . | s_14_1_p_d == .a)
+/*
 replace s_14_2a_p = .v if (s_14_2a_p == . | s_14_2a_p == .a)
 replace s_14_2b_p = .v if (s_14_2b_p == . | s_14_2b_p == .a)
 replace s_14_2c_p = .v if (s_14_2c_p == . | s_14_2c_p == .a)
@@ -5519,6 +5427,7 @@ replace s_14_2d_d = .v if (s_14_2d_d == . | s_14_2d_d == .a)
 replace s_14_2e_d = .v if (s_14_2e_d == . | s_14_2e_d == .a)
 replace s_14_2f_d = .v if (s_14_2f_d == . | s_14_2f_d == .a)
 replace s_14_2g_d = .v if (s_14_2g_d == . | s_14_2g_d == .a)
+*/
 replace s_14_4 = .v if (s_14_4 == . | s_14_4 == .a)
 replace s_14_12 = .v if (s_14_12 == . | s_14_12 == .a)
 replace s_14_14 = .v if (s_14_14 == . | s_14_14 == .a)
@@ -5534,13 +5443,13 @@ replace s_14_24 = .v if (s_14_24 == . | s_14_24 == .a)
 replace s_14_25 = .v if (s_14_25 == . | s_14_25 == .a)
 replace s_14_30b1_p = .v if (s_14_30b1_p == . | s_14_30b1_p == .a)
 replace s_14_30b1_d = .v if (s_14_30b1_d == . | s_14_30b1_d == .a)
-replace s_14_30b1_c = .v if (s_14_30b1_c == . | s_14_30b1_c == .a)
+*replace s_14_30b1_c = .v if (s_14_30b1_c == . | s_14_30b1_c == .a)
 replace s_14_30b2_p = .v if (s_14_30b2_p == . | s_14_30b2_p == .a)
 replace s_14_30b2_d = .v if (s_14_30b2_d == . | s_14_30b2_d == .a)
-replace s_14_30b2_c = .v if (s_14_30b2_c == . | s_14_30b2_c == .a)
+*replace s_14_30b2_c = .v if (s_14_30b2_c == . | s_14_30b2_c == .a)
 replace s_14_30b3_p = .v if (s_14_30b3_p == . | s_14_30b3_p == .a)
 replace s_14_30b3_d = .v if (s_14_30b3_d == . | s_14_30b3_d == .a)
-replace s_14_30b3_c = .v if (s_14_30b3_c == . | s_14_30b3_c == .a)
+*replace s_14_30b3_c = .v if (s_14_30b3_c == . | s_14_30b3_c == .a)
 replace s_14_32 = .v if (s_14_32 == . | s_14_32 == .a)
 replace s_15_2 = .v if (s_15_2 == . | s_15_2 == .a)
 
@@ -5655,6 +5564,7 @@ replace s_7_5b = .i if (s_7_5b == . | s_7_5b == .a)
 replace s_7_5c = .i if (s_7_5c == . | s_7_5c == .a)
 replace s_7_6a = .i if (s_7_6a == . | s_7_6a == .a)
 replace s_7_6b = .i if (s_7_6b == . | s_7_6b == .a)
+/*
 replace s_7_7a = .i if (s_7_7a == . | s_7_7a == .a)
 replace s_7_7b = .i if (s_7_7b == . | s_7_7b == .a)
 replace s_7_7c = .i if (s_7_7c == . | s_7_7c == .a)
@@ -5666,12 +5576,14 @@ replace s_7_7h = .i if (s_7_7h == . | s_7_7h == .a)
 replace s_7_7i = .i if (s_7_7i == . | s_7_7i == .a)
 replace s_7_7j = .i if (s_7_7j == . | s_7_7j == .a)
 replace s_7_7k = .i if (s_7_7k == . | s_7_7k == .a)
+*/
 replace s_8_1 = .i if (s_8_1 == . | s_8_1 == .a)
 replace s_8_2 = .i if (s_8_2 == . | s_8_2 == .a)
 replace s_8_3 = .i if (s_8_3 == . | s_8_3 == .a)
 replace s_8_3a = ".i" if (s_8_3a == "" | s_8_3a == ".")
 replace s_8_4 = .i if (s_8_4 == . | s_8_4 == .a)
 replace s_8_5a = .i if (s_8_5a == . | s_8_5a == .a)
+/*
 replace s_8_5b2 = .i if (s_8_5b2 == . | s_8_5b2 == .a)
 replace s_8_5b1 = .i if (s_8_5b1 == . | s_8_5b1 == .a)
 replace s_8_5b4 = .i if (s_8_5b4 == . | s_8_5b4 == .a)
@@ -5681,7 +5593,8 @@ replace s_8_5b6 = .i if (s_8_5b6 == . | s_8_5b6 == .a)
 replace s_8_5b7 = .i if (s_8_5b7 == . | s_8_5b7 == .a)
 replace s_8_5b8 = .i if (s_8_5b8 == . | s_8_5b8 == .a)
 replace s_8_5b9 = .i if (s_8_5b9 == . | s_8_5b9 == .a)
-capture replace s_8_5b10 = .i if (s_8_5b10 == . | s_8_5b10 == .a)
+replace s_8_5b10 = .i if (s_8_5b10 == . | s_8_5b10 == .a)
+*/
 replace s_8_5c = .i if (s_8_5c == . | s_8_5c == .a)
 replace s_8_5d = .i if (s_8_5d == . | s_8_5d == .a)
 replace s_8_7 = .i if (s_8_7 == . | s_8_7 == .a)
@@ -5727,6 +5640,7 @@ replace s_9_33 = .i if (s_9_33 == . | s_9_33 == .a)
 replace s_9_35 = .i if (s_9_35 == . | s_9_35 == .a)
 replace s_9_36 = .i if (s_9_36 == . | s_9_36 == .a)
 replace s_9_37 = .i if (s_9_37 == . | s_9_37 == .a)
+/*
 replace s_9_38a = .i if (s_9_38a == . | s_9_38a == .a)
 replace s_9_38g = .i if (s_9_38g == . | s_9_38g == .a)
 replace s_9_38b = .i if (s_9_38b == . | s_9_38b == .a)
@@ -5739,6 +5653,7 @@ replace s_9_38k = .i if (s_9_38k == . | s_9_38k == .a)
 replace s_9_38h = .i if (s_9_38h == . | s_9_38h == .a)
 replace s_9_38l = .i if (s_9_38l == . | s_9_38l == .a)
 replace s_9_38i = .i if (s_9_38i == . | s_9_38i == .a)
+*/
 replace s_9_39 = .i if (s_9_39 == . | s_9_39 == .a)
 replace s_9_40 = .i if (s_9_40 == . | s_9_40 == .a)
 replace s_9_41 = .i if (s_9_41 == . | s_9_41 == .a)
@@ -5857,6 +5772,7 @@ replace s_13_29 = .i if (s_13_29 == . | s_13_29 == .a)
 replace s_13_30_d_c = .i if (s_13_30_d_c == . | s_13_30_d_c == .a)
 replace s_13_30_p = .i if (s_13_30_p == . | s_13_30_p == .a)
 replace s_14_1_p_d = .i if (s_14_1_p_d == . | s_14_1_p_d == .a)
+/*
 replace s_14_2a_p = .i if (s_14_2a_p == . | s_14_2a_p == .a)
 replace s_14_2b_p = .i if (s_14_2b_p == . | s_14_2b_p == .a)
 replace s_14_2c_p = .i if (s_14_2c_p == . | s_14_2c_p == .a)
@@ -5874,6 +5790,7 @@ replace s_14_2d_d = .i if (s_14_2d_d == . | s_14_2d_d == .a)
 replace s_14_2e_d = .i if (s_14_2e_d == . | s_14_2e_d == .a)
 replace s_14_2f_d = .i if (s_14_2f_d == . | s_14_2f_d == .a)
 replace s_14_2g_d = .i if (s_14_2g_d == . | s_14_2g_d == .a)
+*/
 replace s_14_3 = .i if (s_14_3 == . | s_14_3 == .a)
 replace s_14_4 = .i if (s_14_4 == . | s_14_4 == .a)
 replace s_14_5 = .i if (s_14_5 == . | s_14_5 == .a)
@@ -5901,13 +5818,10 @@ replace s_14_25 = .i if (s_14_25 == . | s_14_25 == .a)
 replace s_14_30a = .i if (s_14_30a == . | s_14_30a == .a)
 replace s_14_30b1_p = .i if (s_14_30b1_p == . | s_14_30b1_p == .a)
 replace s_14_30b1_d = .i if (s_14_30b1_d == . | s_14_30b1_d == .a)
-replace s_14_30b1_c = .i if (s_14_30b1_c == . | s_14_30b1_c == .a)
 replace s_14_30b2_p = .i if (s_14_30b2_p == . | s_14_30b2_p == .a)
 replace s_14_30b2_d = .i if (s_14_30b2_d == . | s_14_30b2_d == .a)
-replace s_14_30b2_c = .i if (s_14_30b2_c == . | s_14_30b2_c == .a)
 replace s_14_30b3_p = .i if (s_14_30b3_p == . | s_14_30b3_p == .a)
 replace s_14_30b3_d = .i if (s_14_30b3_d == . | s_14_30b3_d == .a)
-replace s_14_30b3_c = .i if (s_14_30b3_c == . | s_14_30b3_c == .a)
 replace s_14_31 = .i if (s_14_31 == . | s_14_31 == .a)
 replace s_14_32 = .i if (s_14_32 == . | s_14_32 == .a)
 replace s_14_33 = .i if (s_14_33 == . | s_14_33 == .a)
@@ -5930,8 +5844,7 @@ drop S_*
 local i 1
 gen s_countmissing = 0
 
-quietly ds s_8_5b2_delete hhid pid s_date_end s_time_end_1 s_time_end s_77l s_time1 s_date fkey globalrecordid s_deviceid2, not
-*deleting s_77l for now until Ty can confirm why
+quietly ds hhid pid s_8_5b2_delete s_time2 s_time1 s_date fkey globalrecordid s_deviceid2, not
 local allvar `r(varlist)'
 
 
@@ -5969,8 +5882,7 @@ quietly forvalues i = 1(1) `=_N' {
 local i 1
 gen s_last = "AllAnswered"
 
-quietly ds s_last s_countmissing s_8_5b2_delete hhid pid s_time2 s_date_end s_time_end_1 s_time_end s_77l s_time1 s_date fkey globalrecordid s_deviceid2, not
-*s_77l deleted for now
+quietly ds s_countmissing s_8_5b2_delete hhid pid s_last s_time2 s_time1 s_date fkey globalrecordid s_deviceid2, not
 local allvar `r(varlist)'
 
 
@@ -6007,64 +5919,19 @@ quietly forvalues i = 1(1) `=_N' {
 
 
 
-gen s_temptime1 = substr(s_time1, 1, strpos(s_time1, ":") + 2)
-gen s_temptime2 = substr(s_time_end, 1, strpos(s_time_end, ":") + 2)
-gen s_TotalTimeTemp = (Clock(s_temptime2, "hm") - Clock(s_temptime1, "hm"))/1000/60
-
-gen s_tempdate = s_date_end
-replace s_tempdate = subinstr(s_tempdate, "ene", "January",.)
-replace s_tempdate = subinstr(s_tempdate, "feb", "February",.)
-
-replace s_tempdate = subinstr(s_tempdate, "abr", "April",.)
-
-replace s_tempdate = subinstr(s_tempdate, "ago", "August",.)
-replace s_tempdate = subinstr(s_tempdate, "sept", "September",.)
-replace s_tempdate = subinstr(s_tempdate, "oct", "October",.)
-replace s_tempdate = subinstr(s_tempdate, "nov", "November",.)
-replace s_tempdate = subinstr(s_tempdate, "dic", "December",.)
-
-gen s_total_days = (date(s_date_end, "MDY") - date(s_date, "YMD"))
-gen s_total_days2 = (date(s_tempdate, "DMY") - date(s_date, "YMD"))
-
-gen s_TotalTime = 0
-
-quietly forvalues obs = 1(1) `=_N' {
-if s_total_days[`obs'] ~= . {
-	replace s_TotalTime = s_TotalTimeTemp + s_total_days * (24*60) in `obs'
-	}
-
-else if s_total_days2[`obs'] ~= . {
-	replace s_TotalTime = s_TotalTimeTemp + s_total_days2 * (24*60) in `obs'
-	}
-else {
-	replace s_TotalTime = s_TotalTimeTemp in `obs'
-	}
-}
-
-drop s_temptime1 s_temptime2 s_TotalTimeTemp s_tempdate s_total_days s_total_days2
-
-
-*depression score from s.10.1
-gen s_depression_score = 0
-replace s_depression_score = (s_depression_score + 1) if s_10_1a == 1
-replace s_depression_score = (s_depression_score + 1) if s_10_1b == 1
-replace s_depression_score = (s_depression_score + 1) if s_10_1c == 1
-replace s_depression_score = (s_depression_score + 1) if s_10_1d == 5
-replace s_depression_score = (s_depression_score + 1) if s_10_1e == 1
-replace s_depression_score = (s_depression_score + 1) if s_10_1f == 5
-replace s_depression_score = (s_depression_score + 1) if s_10_1g == 1
-replace s_depression_score = (s_depression_score + 1) if s_10_1h == 1
-
-
+gen s_TotalTime = (Clock(s_time2, "MDYhms") - Clock(s_time1, "MDYhms"))/1000/60
 
 capture log close
-log using logs/SocioMissingCodebook, text replace
+log using SocioMissingCodebook, text replace
 
 codebook
 
+   save SocioMissing, replace
+
+
 log close
 
-save Socio.dta, replace
+ save Socio.dta, replace
  
  * Get the list of variable names
 unab varlist : _all
@@ -6076,55 +5943,7 @@ foreach var of varlist `varlist' {
     }
 }
 
+* Export data to Excel
+export excel using "sociodemographic_child.xlsx", replace firstrow(variables)
+
 clear all
-
-if `country' == 0 {
-    insheet using "../PR_in/Socio_Parent.csv", comma names clear
-}
-else if `country' == 1 {
-    insheet using "../DR_in/Socio_Parent.csv", comma names clear
-}
-else if `country' == 2 {
-    insheet using "../CUBA_in/Socio_Parent.csv", comma names clear
-}
-
-
-keep globalrecordid s_clustid1 s_houseid1 s_particid1
-rename globalrecordid fkey
-rename s_clustid1 s_parent_clustid
-rename s_houseid1 s_parent_houseid
-rename s_particid1 s_parent_particid
-
-merge 1:1 fkey using Socio 
-
-drop if _merge == 1
-drop _merge
-
-drop pid2
-
-gen s_country_str = string(s_country, "%12.0f")
-
-gen s_clustid_str = string(s_parent_clustid, "%12.0f")
-replace s_clustid_str = cond(strlen(s_clustid_str) == 1, "0" + s_clustid_str, s_clustid_str)
-
-gen s_houseid_str = string(s_parent_houseid, "%03.0f")
-replace s_houseid_str = cond(strlen(s_houseid_str) == 1, "00" + s_houseid_str, s_houseid_str)
-replace s_houseid_str = cond(strlen(s_houseid_str) == 2, "0" + s_houseid_str, s_houseid_str)
-
-gen s_particid_str = string(s_parent_particid, "%12.0f")
-replace s_particid_str = cond(strlen(s_particid_str) == 1, "0" + s_particid_str, s_particid_str)
-
-gen pid_parent = s_country_str + s_clustid_str + s_houseid_str + s_particid_str
-
-sort s_parent_clustid s_parent_houseid
-
-* checking to see if ID's on first page match the second
-gen pid_nonmatch = 1 if (pid != pid_parent & s_parent_clustid != .)
-
-order pid_parent pid pid_nonmatch globalrecordid
-
-drop s_clustid_str s_houseid_str s_particid_str s_country_str s_houseid2 s_conglid2 s_particid2
-
-replace s_clustid = s_parent_clustid if s_clustid == .i
-
-save Socio.dta, replace

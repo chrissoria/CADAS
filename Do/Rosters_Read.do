@@ -2,12 +2,12 @@ clear all
 set more off
 capture log close
 
-capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_user_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
+capture include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_country_define.do"
 
 if `"`user'"' == "Chris" {
-local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_country_define.do"
+local path = "/global/home/users/chrissoria/Desktop/Stata_CADAS/Data"
 
 if `country' == 0 {
     cd "`path'/PR_out"
@@ -56,9 +56,9 @@ else if `country' == 2 {
 }
 }
   
-    save Roster_Parent.dta, replace
+save Roster_Parent.dta, replace
     
-    clear all
+clear all
     
 if `country' == 0 {
     insheet using "../PR_in/Participants.csv", comma names clear
@@ -628,5 +628,3 @@ log close
 save rosters_merged.dta,replace
 
 exit, clear
- 
- 
