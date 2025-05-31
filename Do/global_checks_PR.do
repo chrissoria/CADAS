@@ -2,15 +2,15 @@ clear all
 set more off
 capture log close
 
-capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"\
+capture include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_user_define.do"\
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
-capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_country_define.do"
+capture include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_country_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
 
 if `"`user'"' == "Chris" {
-local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_country_define.do"
+local path = "/global/home/users/chrissoria/Desktop/Stata_CADAS/Data"
+include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_country_define.do"
 
 if `country' == 0 {
     cd "`path'/PR_out"
@@ -209,7 +209,7 @@ if "`drop_not_resumen'" == "yes" {
     drop if resumen == "Not in Resumen"
 }
 
-log using "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out/logs/SocioOnlyMissing", text replace
+log using "/global/home/users/chrissoria/Desktop/Stata_CADAS/Data/PR_out/logs/SocioOnlyMissing", text replace
 
 
 local missvarlist
@@ -316,7 +316,7 @@ if "`drop_not_resumen'" == "yes" {
 }
 
 
-log using "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out/logs/PhysOnlyMissing", text replace
+log using "/global/home/users/chrissoria/Desktop/Stata_CADAS/Data/PR_out/logs/PhysOnlyMissing", text replace
 
 
 local missvarlist
@@ -421,7 +421,7 @@ if "`drop_not_resumen'" == "yes" {
     drop if resumen == "Not in Resumen"
 }
 
-log using "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out/logs/InforOnlyMissing", text replace
+log using "/global/home/users/chrissoria/Desktop/Stata_CADAS/Data/PR_out/logs/InforOnlyMissing", text replace
 
 local missvarlist
 
@@ -508,7 +508,7 @@ use Household
 
 drop if inlist(globalrecordid, "517e61c3-f612-41b8-8038-656a367b177d", "fea7bf68-4b53-41dc-8a3a-170dc287be69", "f810981c-8684-4325-9678-c0e6bf660389")
  
- log using "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out/logs/HouseholdOnlyMissing", text replace
+ log using "/global/home/users/chrissoria/Desktop/Stata_CADAS/Data/PR_out/logs/HouseholdOnlyMissing", text replace
 
  
 
@@ -582,7 +582,7 @@ clear all
 
 *next, I want to find out if we have the right amount of cog scoring and cog surveys
 
-cd "/hdir/0/chrissoria/Stata_CADAS/Data/PR_out"
+cd "/global/home/users/chrissoria/Desktop/Stata_CADAS/Data/PR_out"
 use Cog_Scoring
 
 *for no, I will do m:m because I have't been able to pin down which unique cases are the true/correct ones

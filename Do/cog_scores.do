@@ -26,7 +26,7 @@ else if `country' == 2 {
 }
 
 if `country' == 0 {
-    insheet using "../PR_in/final_AI_scores.csv", comma names clear
+    *insheet using "../PR_in/final_AI_scores.csv", comma names clear
 }
 else if `country' == 1 {
 	

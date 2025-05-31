@@ -31,17 +31,17 @@ if `"`user'"' == "Chris" {
         do "`path'/../DR/door_checks.do"
 
     }
+    
+    do "`path'/Cog_Scoring_Read.do"
+    
+    do "`path'/Cog_Read.do"
 
     else if `country' == 2 {
 	do "`path'/../CU/cog_checks.do"
+	
+	do "`path'/cog_scores.do"
     }
 
-
-    do "`path'/Cog_Scoring_Read.do"
-
-    do "`path'/Cog_Read.do"
-    
-    do "`path'/cog_scores.do"
 
     do "`path'/Doors_Read.do"
 
@@ -64,8 +64,6 @@ if `"`user'"' == "Chris" {
 
 
         do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/PR/global_checks.do"
-
-	do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/Sangre_Read.do"
 
     }
 
