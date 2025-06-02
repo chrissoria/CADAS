@@ -272,6 +272,27 @@ foreach var of varlist `varlist' {
 export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(variables)
  
  clear all
+
+use Cog
+
+merge m:m pid using resumen_pid
+
+gen resumen = "Not in Resumen" if _merge == 1
+replace resumen = "Found in Resumen" if _merge == 3
+drop if _merge == 2
+drop _merge
+
+order pid_parent pid resumen
+
+if "`drop_not_resumen'" == "yes" {
+    drop if resumen == "Not in Resumen"
+}
+
+export excel using "excel/cognitive.xlsx", replace firstrow(variables)
+
+save cog.dta, replace
+
+clear all
  
  use Phys
  drop pid
