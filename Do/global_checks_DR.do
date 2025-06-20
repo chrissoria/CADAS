@@ -613,6 +613,9 @@ drop if inlist(globalrecordid, "74574e98-9e46-43cc-991e-716167bd205a","2b1a138b-
 replace h_clustid = 176 if globalrecordid == "26a57540-2990-4236-bc26-5896acc7ead8"
 drop if inlist(globalrecordid, "31614f8a-69c9-4012-96ee-bc4154ca6491", "19b6756d-1236-4abc-b36c-142b71548a50", "3fd9b0fb-8fd1-4c8a-90e1-30b6511b51e5", "3cfbdb1c-1f42-414b-9227-83a1345ac34f")
 
+*deduced based on the second housied and there is a participant coming from house 18 (not 7)
+replace h_houseid = 18 if globalrecordid == "85735869-bb37-4c96-8dd3-020048b8c90d"
+
 gen h_country_str = string(h_country, "%12.0f")
 
 gen h_clustid_str = string(h_clustid, "%12.0f")

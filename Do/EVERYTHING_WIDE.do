@@ -559,7 +559,7 @@ drop h_interid i_interid cs_interid h_deviceid1 s_interid all_audio all_image_fi
 capture drop XF7
 
 rename c_deviceid1 tableta_cognitiva
-rename i_deviceid1 tableta_informante
+rename i_deviceid1 tableta_informanate
 rename s_deviceid1 tableta_sociodemografico
 rename p_deviceid1 tableta_examen_fisico
 
@@ -571,6 +571,13 @@ capture drop pid_en_sangre
 
 clear
 use Everything_Wide_slim
+
+if `country' == 2 {
+	merge m:m pid using "../CUBA_in/Cuba validation 2025-03-20.dta"
+	keep if CDR != .
+	save Everything_Wide_CDR.dta, replace
+}
+
 *keep if RSPCZIHXF7 == "G       "
 
 *keep pid Cluster House_ID
