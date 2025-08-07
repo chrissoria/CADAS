@@ -5,11 +5,11 @@ capture log close
 *Here we will identify the country we want before we run the file
 *0 = PR, 1 = DR, 2 = CU
 
-capture include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_country_define.do"
+capture include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_country_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
 
 *Change the filepath name here to the folder containing the data and output folders
-capture local path = "/global/home/users/chrissoria/Desktop/Stata_CADAS/Data"
+capture local path = "/Users/chrissoria/documents/CADAS/Data"
 *capture local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
 
 if `country' == 0 {

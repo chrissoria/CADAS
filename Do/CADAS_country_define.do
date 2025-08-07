@@ -1,6 +1,6 @@
 display "CADAS_country_define.do is being executed"
 
-local country = 1
+local country = 0
 *PR = 0
 *DR = 1
 *CUBA = 2

@@ -2,11 +2,11 @@ clear all
 set more off
 capture log close
 
-capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_user_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
 if `"`user'"' == "Chris" {
-local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+local path = "/Users/chrissoria/documents/CADAS/Data"
 }
 
 else if `"`user'"' == "Ty" {
@@ -145,7 +145,7 @@ capture export excel using "duplicates/roster_duplicates.xlsx", replace firstrow
  clear all
  
 use Socio
-replace s_clustid = 
+
 *TY and I deduced
 replace s_clustid = 8 if globalrecordid == "23e81a7f-8ed7-4e5e-846e-e130c6a9b02f"
 

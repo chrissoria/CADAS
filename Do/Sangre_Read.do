@@ -6,7 +6,7 @@ capture log close
 
 
 
-capture include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_user_define.do"
 
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
@@ -14,9 +14,9 @@ capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
 if `"`user'"' == "Chris" {
 
-local path = "/global/home/users/chrissoria/Desktop/Stata_CADAS/Data"
+local path = "/Users/chrissoria/documents/CADAS/Data"
 
-include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_country_define.do"
+include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_country_define.do"
 
 
 
@@ -123,8 +123,16 @@ gen sa_country = `country'
 gen sa_country_str = string(sa_country, "%12.0f")
 
 
+capture confirm numeric variable sa_clustid
+if _rc == 0 {
+    gen sa_clustid_num = sa_clustid
+} 
+else {
+    destring sa_clustid, generate(sa_clustid_num) force
+}
 
-gen sa_clustid_str = string(sa_clustid, "%12.0f")
+
+gen sa_clustid_str = string(sa_clustid_num, "%12.0f")
 
 replace sa_clustid_str = cond(strlen(sa_clustid_str) == 1, "0" + sa_clustid_str, sa_clustid_str)
 

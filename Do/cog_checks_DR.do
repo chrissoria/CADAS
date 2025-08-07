@@ -1,14 +1,14 @@
-include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_user_define.do"
 
-capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_country_define.do"
+capture include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_country_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
 
 clear all
 capture log close
 
 if `"`user'"' == "Chris" {
-local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_country_define.do"
+local path = "/Users/chrissoria/documents/CADAS/Data"
+include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_country_define.do"
 
 if `country' == 0 {
     cd "`path'/PR_out"
@@ -84,7 +84,7 @@ gen pid = c_country_str + c_clustid_str + c_houseid_str + c_particid_str
 gen hhid = c_country_str + c_clustid_str + c_houseid_str
 drop c_country_str c_clustid_str c_houseid_str c_particid_str
 
-log using "/hdir/0/chrissoria/Stata_CADAS/Data/DR_out/logs/CogOnlyMissing", text replace
+log using "/Users/chrissoria/documents/CADAS/Data/DR_out/logs/CogOnlyMissing", text replace
 
 
 local missvarlist

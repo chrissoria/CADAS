@@ -6,14 +6,14 @@ capture log close
 *Here we will identify the country we want before we run the file
 *0 = PR, 1 = DR, 2 = CU
 
-capture include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_country_define.do"
+capture include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_country_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
-capture include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_user_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
 if `"`user'"' == "Chris" {
-local path = "/global/home/users/chrissoria/Desktop/Stata_CADAS/Data"
-include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_country_define.do"
+local path = "/Users/chrissoria/documents/CADAS/Data"
+include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_country_define.do"
 }
 
 else if `"`user'"' == "Ty" {
@@ -180,7 +180,14 @@ gen pid_en_resumen=1 /* create indicator to use after merge with other questionn
 drop pidr duplic sd_sex sd_age
 replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
 gen hhid=substr(pid,1,6)
+
 save Everything_Wide, replace
+
+use using all_unique_pids.dta, clear
+
+merge m:m pid using Everything_Wide.dta
+tab _merge
+drop _merge
 
 ********** 
 * ROSTER_PARTICIPANTS
@@ -559,7 +566,7 @@ drop h_interid i_interid cs_interid h_deviceid1 s_interid all_audio all_image_fi
 capture drop XF7
 
 rename c_deviceid1 tableta_cognitiva
-rename i_deviceid1 tableta_informanate
+rename i_deviceid1 tableta_informante
 rename s_deviceid1 tableta_sociodemografico
 rename p_deviceid1 tableta_examen_fisico
 

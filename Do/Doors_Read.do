@@ -2,12 +2,12 @@ clear all
 set more off
 capture log close
 
-capture include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_user_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
 if `"`user'"' == "Chris" {
-local path = "/global/home/users/chrissoria/Desktop/Stata_CADAS/Data"
-include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_country_define.do"
+local path = "/Users/chrissoria/documents/CADAS/Data"
+include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_country_define.do"
 
 if `country' == 0 {
     cd "`path'/PR_out"
@@ -93,18 +93,8 @@ label define D_1 .a"." 1 "miembro del hogar"2 "vecino"3 "otro"8 "no responde"9 "
 
 label values d_1 D_1
    
-   rename d_15 D_15
-   capture confirm numeric variable D_15
-   if !_rc{
-       tostring D_15, replace
-   } 
-   gen D_15_trimmed = ustrlower(ustrtrim(D_15))
-   replace D_15 = D_15_trimmed
-   drop D_15_trimmed
-
    label define D_15 .a"." 0 "casa esta deshabitada"1 "parece habitada pero nadie abrió la puerta"2 "los presentes no sabían las respuestas"3 "rechazada"
-   encode D_15, gen(d_15) label (D_15)
-   
+   label values d_15 D_15
    save InformationDoor.dta, replace
    
    clear all
@@ -295,7 +285,6 @@ capture drop dp_deviceid dp_time di_deviceid2 di_time2 di_time1 di_deviceid1 v1 
 *drop d_clustid2 d_houseid2 d_interid2
 order pid hhid d_particid
 
-
 save door_merged_all.dta,replace
 
 
@@ -344,4 +333,51 @@ drop if missing(d_particid)
 
 save door_participants.dta, replace
 
-exit, clear
+* dataset that has all levels of door
+use door_merged_all.dta, clear
+
+drop if d_15 == 0
+
+log using logs/DoorRates, text replace
+
+* Clean d_5 and d_6 variables for non response
+replace d_5 = 0 if missing(d_5) | d_5 == 88 | d_5 == 99
+replace d_6 = 0 if missing(d_6) | d_6 == 88 | d_6 == 99
+
+* Generate total eligibles
+gen eligibles = d_5 + d_6
+
+* Keep last observation per hhid (assuming you want one obs per household with max eligibles)
+bysort hhid (eligibles): keep if _n == _N
+
+* Calculate total eligibles (sum of eligibles)
+summarize eligibles, meanonly
+scalar total_eligibles = r(sum)
+
+* Display total eligibles
+display "Total eligibles: " total_eligibles
+
+* Calculate door response rate (assumption: d_0 is indicator of response)
+summarize d_0, meanonly
+scalar sum_d0 = r(sum)
+scalar n_obs = r(N)
+display "Door response rate: " (sum_d0 / n_obs)
+
+* Count observations after drop
+count
+display "Number of observations after drop: " r(N)
+
+* Generate number interviewed variable
+gen num_interviewed = cond(missing(d_7_5), 0, (d_7_5 == 1), 1)
+
+* Calculate total interviewed
+summarize num_interviewed, meanonly
+scalar total_interviewed = r(sum)
+
+* Display total interviewed and participant response rate
+display "Total interviewed (complete): " total_interviewed
+display "Participant response rate: " (total_interviewed / total_eligibles)
+
+* Close log
+log close
+

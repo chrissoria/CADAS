@@ -6,14 +6,14 @@ capture log close
 *Here we will identify the country we want before we run the file
 *0 = PR, 1 = DR, 2 = CU
 
-capture include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_country_define.do"
+capture include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_country_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
-capture include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_user_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
 if `"`user'"' == "Chris" {
-local path = "/global/home/users/chrissoria/Desktop/Stata_CADAS/Data"
-include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_country_define.do"
+local path = "/Users/chrissoria/documents/CADAS/Data"
+include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_country_define.do"
 }
 
 else if `"`user'"' == "Ty" {

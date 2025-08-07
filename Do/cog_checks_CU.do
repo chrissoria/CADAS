@@ -2,11 +2,11 @@ clear all
 set more off
 capture log close
 
-capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_user_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
 if `"`user'"' == "Chris" {
-local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
+local path = "/Users/chrissoria/documents/CADAS/Data"
 local country = 2
 
 if `country' == 0 {
@@ -36,6 +36,13 @@ else if `country' == 2 {
 }
 
 insheet using "`path'/CUBA_in/Cog_Scoring.csv", comma names clear
+
+*in cog scoring is missing but tania found the image
+replace cs_40 = 18 if globalrecordid == "705ce437-84b2-43f5-9013-636e58980eb8"
+
+*in cog scoring, missing the score for animal naming, but I found the image
+replace cs_40 = 17 if globalrecordid == "79c92574-2b2c-4654-b390-feda9f7ab5ea"
+replace cs_41 = 0 if globalrecordid == "79c92574-2b2c-4654-b390-feda9f7ab5ea"
 
 *interviewer says these are junk
 drop if inlist(globalrecordid, "88e80078-4ca7-44ee-855e-387ca80b8299", "35220af8-d6a0-43b6-b0bc-4f2032d7ef89","e22ed371-c9cb-4dba-ae3c-45ec10091292")
@@ -107,6 +114,18 @@ insheet using "`path'/CUBA_in/Cog_Child.csv", comma names clear
  
   duplicates report globalrecordid
  duplicates drop globalrecordid, force
+ 
+*this is a duplicate, but looks like the cluster was entered in incorrectly based on the pid_parent (changes were made to top level but not bottom level)
+replace c_clustid = 8 if globalrecordid == "b237127e-99ec-4524-903c-54d4486c4df4"
+
+* an error, corrected using pictures of drawings
+replace c_clustid = 4 if globalrecordid == "3aa70caa-0948-426b-8e1f-fb99d3a9a04b"
+ 
+*tania was able to determine that this question was answered
+replace c_40 = 1 if globalrecordid == "31e5e190-ab73-4c83-bc2c-7e99988ca2bc"
+
+*this case was done in february 2023 (I believe that was before official interviews started) and is a duplicate, deleting
+drop if globalrecordid == "f8ad75de-aa8f-4978-9be4-c03aa3886d08"
  
  *this is all junk that was entered before the study began
  drop if inlist(globalrecordid, "91c4212a-a2bc-4e2c-8f43-70d1a2002986")

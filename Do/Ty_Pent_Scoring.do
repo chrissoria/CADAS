@@ -2,14 +2,14 @@ clear all
 set more off
 capture log close
 
-capture include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_country_define.do"
+capture include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_country_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
-capture include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_user_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
 *Change the filepath name here to the folder containing the data and output folders
 if `"`user'"' == "Chris" {
-	local path = "/global/home/users/chrissoria/Desktop/Stata_CADAS/Data"
+	local path = "/Users/chrissoria/documents/CADAS/Data"
 	
 	if `country' == 0 {
 		import excel using "`path'/PR_in/ty_pent_scoring_in_PR.xlsx", firstrow allstring clear

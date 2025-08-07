@@ -2,7 +2,7 @@
 
 
 
-capture include "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_user_define.do"
 
 
 
@@ -15,20 +15,20 @@ clear all
 
 if `"`user'"' == "Chris" {
 
-    local path = "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read"
+    local path = "/Users/chrissoria/documents/CADAS/Do/Read"
 
     include "`path'/CADAS_country_define.do"
 
     if `country' == 0 {
-    	do "`path'/../PR/Resumen.do"
-    	do "`path'/../PR/cog_checks.do"
+    	do "`path'/../PR/Resumen_PR.do"
+    	do "`path'/../PR/cog_checks_PR.do"
 	*do "`path'/../PR/door_checks.do"
-	do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/Sangre_Read.do"
+	do "/Users/chrissoria/documents/CADAS/Do/Read/Sangre_Read.do"
     }
 
     else if `country' == 1 {
-	do "`path'/../DR/cog_checks.do"
-        do "`path'/../DR/door_checks.do"
+	do "`path'/../DR/cog_checks_DR.do"
+        do "`path'/../DR/door_checks_DR.do"
 
     }
     
@@ -37,9 +37,9 @@ if `"`user'"' == "Chris" {
     do "`path'/Cog_Read.do"
 
     else if `country' == 2 {
-	do "`path'/../CU/cog_checks.do"
+	do "`path'/../CU/cog_checks_CU.do"
 	
-	do "`path'/cog_scores.do"
+	*do "`path'/cog_scores.do"
     }
 
 
@@ -63,7 +63,7 @@ if `"`user'"' == "Chris" {
 
 
 
-        do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/PR/global_checks.do"
+        do "/Users/chrissoria/documents/CADAS/Do/PR/global_checks_PR.do"
 
     }
 
@@ -73,9 +73,9 @@ if `"`user'"' == "Chris" {
 
 
 
-	do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Read/Sangre_Read.do"
+	do "/Users/chrissoria/documents/CADAS/Do/Read/Sangre_Read.do"
 
-        do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/DR/global_checks.do"
+        do "/Users/chrissoria/documents/CADAS/Do/DR/global_checks_DR.do"
 
 
 
@@ -87,23 +87,23 @@ if `"`user'"' == "Chris" {
 
 
 
-        do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/CU/global_checks.do" 
+        do "/Users/chrissoria/documents/CADAS/Do/CU/global_checks_CU.do" 
 
     }
 
 if `country' != 0{
 
 
-    do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/mp4_TyManualScoring.do"
+    do "/Users/chrissoria/documents/CADAS/Do/mp4_TyManualScoring.do"
     
 
 }
-	do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Tracker.do"
-	do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/InterviewerConcordance1.do"
-	do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/cadas_1066_reproduced.do"
-	do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/Ty_Pent_Scoring.do"
-	do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/consensus_site.do"
-	do "/global/home/users/chrissoria/Desktop/Stata_CADAS/Do/EVERYTHING_WIDE.do"
+	do "/Users/chrissoria/documents/CADAS/Do/Tracker.do"
+	do "/Users/chrissoria/documents/CADAS/Do/InterviewerConcordance1.do"
+	do "/Users/chrissoria/documents/CADAS/Do/cadas_1066_reproduced.do"
+	do "/Users/chrissoria/documents/CADAS/Do/Ty_Pent_Scoring.do"
+	do "/Users/chrissoria/documents/CADAS/Do/consensus_site.do"
+	do "/Users/chrissoria/documents/CADAS/Do/EVERYTHING_WIDE.do"
 }
 
 
