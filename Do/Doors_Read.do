@@ -341,13 +341,13 @@ drop if d_15 == 0
 log using logs/DoorRates, text replace
 
 * Clean d_5 and d_6 variables for non response
-replace d_5 = 0 if missing(d_5) | d_5 == 88 | d_5 == 99
-replace d_6 = 0 if missing(d_6) | d_6 == 88 | d_6 == 99
+replace d_5 = 0 if missing(d_5) | d_5 > 10
+replace d_6 = 0 if missing(d_6) | d_6 > 10
 
 * Generate total eligibles
 gen eligibles = d_5 + d_6
 
-* Keep last observation per hhid (assuming you want one obs per household with max eligibles)
+* Keep last observation per hhid keeping greater value (largest obs)
 bysort hhid (eligibles): keep if _n == _N
 
 * Calculate total eligibles (sum of eligibles)
@@ -368,15 +368,27 @@ count
 display "Number of observations after drop: " r(N)
 
 * Generate number interviewed variable
-gen num_interviewed = cond(missing(d_7_5), 0, (d_7_5 == 1), 1)
+gen num_interviewed = (d_7_5 == 1 | d_7_5 == 2) 
+replace num_interviewed = 0 if missing(d_7_5)
+
+label variable num_interviewed "at least partially completed interview"
+gen num_complete_interviewed = cond(missing(d_7_5), 0, (d_7_5 == 1), 1)
+label variable num_complete_interviewed "fully completed interview"
 
 * Calculate total interviewed
 summarize num_interviewed, meanonly
 scalar total_interviewed = r(sum)
 
 * Display total interviewed and participant response rate
-display "Total interviewed (complete): " total_interviewed
-display "Participant response rate: " (total_interviewed / total_eligibles)
+display "Total at least partially interviewed: " total_interviewed
+display "At Least Partial Participant response rate: " (total_interviewed / total_eligibles)
+
+summarize num_complete_interviewed, meanonly
+scalar comp_total_interviewed = r(sum)
+
+* Display total interviewed and participant response rate
+display "Total fully interviewed: " comp_total_interviewed
+display "Complete Participant response rate: " (comp_total_interviewed / total_eligibles)
 
 * Close log
 log close
