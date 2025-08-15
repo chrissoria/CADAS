@@ -109,6 +109,8 @@ gen pid = r_country_str + r_clustid_str + r_houseid_str + r_particid_str
 gen hhid = r_country_str + r_clustid_str + r_houseid_str
 drop r_country_str r_clustid_str r_houseid_str r_particid_str
 
+*there was no participant 2 in this household
+drop if pid == "21300802"
   
  duplicates report pid
  *this older version of stata doesn't have an easy way to identify duplicate personid, so I'll do it manually
@@ -145,6 +147,9 @@ capture export excel using "duplicates/roster_duplicates.xlsx", replace firstrow
  clear all
  
 use Socio
+*instructions from Tania cluster 13
+replace s_houseid = 13 if globalrecordid == "11b733e4-e9ed-4cfa-bd06-6b60c42749cc"
+replace s_houseid = 19 if globalrecordid == "f9712a8c-6d7c-4088-a9d3-2fe14a88921c"
 
 *TY and I deduced
 replace s_clustid = 8 if globalrecordid == "23e81a7f-8ed7-4e5e-846e-e130c6a9b02f"
@@ -363,6 +368,9 @@ capture export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(
  
  duplicates report globalrecordid
  duplicates drop globalrecordid, force
+ *instructions from Tania cluster 13
+ replace p_houseid = 2 if globalrecordid == "117bbe12-1e4d-4ab6-8964-a90edd569d29"
+ 
 *instructions from tania based on responses to survey
 replace p_particid = 2 if globalrecordid == "f7744c29-6c8e-462a-a8c3-1df21eb4211e"
 *recoding the smaller individiual to female (participante 2)

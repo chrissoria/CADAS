@@ -37,6 +37,9 @@ else if `country' == 2 {
 
 insheet using "`path'/CUBA_in/Cog_Scoring.csv", comma names clear
 
+*instructions from Tania cluster 13
+drop if inlist(globalrecordid,"fec63a23-6edd-480b-97dd-00f266da0787", "6e8acd06-10e8-47bc-8873-7353012c3346")
+
 *in cog scoring is missing but tania found the image
 replace cs_40 = 18 if globalrecordid == "705ce437-84b2-43f5-9013-636e58980eb8"
 

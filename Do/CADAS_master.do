@@ -27,19 +27,21 @@ if `"`user'"' == "Chris" {
     }
 
     else if `country' == 1 {
-	do "`path'/../DR/cog_checks_DR.do"
+		do "`path'/../DR/cog_checks_DR.do"
         do "`path'/../DR/door_checks_DR.do"
+		do "`path'/cog_scores.do"
 
     }
     
     do "`path'/Cog_Scoring_Read.do"
     
     do "`path'/Cog_Read.do"
+	
 
     else if `country' == 2 {
 	do "`path'/../CU/cog_checks_CU.do"
+	do "`path'/../CU/cuban_CDR.do"
 	
-	*do "`path'/cog_scores.do"
     }
 
 

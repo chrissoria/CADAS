@@ -5931,7 +5931,12 @@ local i 1
 gen s_countmissing = 0
 
 quietly ds s_8_5b2_delete hhid pid s_date_end s_time_end_1 s_time_end s_77l s_time1 s_date fkey globalrecordid s_deviceid2, not
-*deleting s_77l for now until Ty can confirm why
+
+* deleting, duplicate s_8_5b2 was an error
+drop s_8_5b2_delete
+*deleting s_77l, originally asking if they felt discriminated against because of their age
+drop s_77l
+
 local allvar `r(varlist)'
 
 
@@ -5969,7 +5974,7 @@ quietly forvalues i = 1(1) `=_N' {
 local i 1
 gen s_last = "AllAnswered"
 
-quietly ds s_last s_countmissing s_8_5b2_delete hhid pid s_time2 s_date_end s_time_end_1 s_time_end s_77l s_time1 s_date fkey globalrecordid s_deviceid2, not
+quietly ds s_last s_countmissing hhid pid s_time2 s_date_end s_time_end_1 s_time_end s_time1 s_date fkey globalrecordid s_deviceid2, not
 *s_77l deleted for now
 local allvar `r(varlist)'
 

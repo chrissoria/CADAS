@@ -3947,6 +3947,14 @@ replace c_78_22 = .v if c_78_22== .
 replace c_78_23 = .v if c_78_23== .
 replace c_78_24 = .v if c_78_24== .
 replace c_78_25 = .v if c_78_25== .
+capture replace c_72_1_pic = ".v" if (c_72_1_pic == "" | c_72_1_pic == ".a") & (c_72_1 == 6 | c_72_1 == 7)
+capture replace c_72_2_pic = ".v" if (c_72_2_pic == "" | c_72_2_pic == ".a") & (c_72_2 == 6 | c_72_2 == 7)
+capture replace c_72_3_pic = ".v" if (c_72_3_pic == "" | c_72_3_pic == ".a") & (c_72_3 == 6 | c_72_3 == 7)
+replace c_72_4_pic = ".v" if (c_72_4_pic == "" | c_72_4_pic == ".a") & (c_72_4 == 6 | c_72_4 == 7)
+capture replace c_79_1_pic = ".v" if (c_79_1_pic == "" | c_79_1_pic == ".a") & (c_79_1 == 6 | c_79_1 == 7)
+capture replace c_79_2_pic = ".v" if (c_79_2_pic == "" | c_79_2_pic == ".a") & (c_79_2 == 6 | c_79_2 == 7)
+capture replace c_79_3_pic = ".v" if (c_79_3_pic == "" | c_79_3_pic == ".a") & (c_79_3 == 6 | c_79_3 == 7)
+replace c_79_4_pic = ".v" if (c_79_4_pic == "" | c_79_4_pic == ".a") & (c_79_4 == 6 | c_79_4 == 7)
 
 
 replace c_2_p_c = .v if (c_2_p_c == . | c_2_p_c == .a) & c_country == 1
@@ -4262,7 +4270,7 @@ quietly forvalues i = 1(1) `=_N' {
 local i 1
 gen c_last = "AllAnswered"
 
-capture quietly ds c_date_stata date_greater_102423 g_3 c_countmissing hhid pid c_last fkey globalrecordid c_deviceid2 c_date c_time_end c_time11 c_time10 c_time9 c_time8 c_time7 c_time6 c_time5 c_time4 c_time3 c_time2 c_date_end c_time_end_1 c_time_end c_date_end c_time_end_1 c_time11_1 c_time10_1 c_time9_1 c_time8_1 c_time7_1 c_time6_1 c_time5_1 c_time4_1 c_time3_1 c_time2_1 c_time1 c_last c_countmissing hhid fkey globalrecordid c_deviceid2 all_audio_files_found all_image_files_found pent_pic_found g_1_file_found anim_pic_found symb_pic_found g_2_file_found g_2_file2_found c_72_1_pic_found c_72_2_pic_found c_72_3_pic_found c_72_4_pic_found c_79_1_pic_found c_79_2_pic_found c_79_3_pic_found c_79_4_pic_found g_3_file_found g_3_file2_found, not
+capture quietly ds c_date_stata date_greater_102423 g_3 c_countmissing hhid pid c_last fkey globalrecordid c_deviceid2 c_date c_time_end c_time11 c_time10 c_time9 c_time8 c_time7 c_time6 c_time5 c_time4 c_time3 c_time2 c_date_end c_time_end_1 c_time_end c_date_end c_time_end_1 c_time11_1 c_time10_1 c_time9_1 c_time8_1 c_time7_1 c_time6_1 c_time5_1 c_time4_1 c_time3_1 c_time2_1 c_time1 c_last c_countmissing hhid fkey globalrecordid c_deviceid2 all_audio_files_found all_image_files_found pent_pic_found g_1_file_found anim_pic_found symb_pic_found g_2_file_found g_2_file2_found c_72_1_pic_found c_72_2_pic_found c_72_3_pic_found c_72_4_pic_found c_79_1_pic_found c_79_2_pic_found c_79_3_pic_found c_79_4_pic_found g_3_file_found g_3_file2_found pent_pic_cropped num_missing, not
 local allvar `r(varlist)'
 
 
@@ -5538,6 +5546,13 @@ foreach v of local missvarlist {
 	codebook `v'
 }
 
+log close
+
+log using logs/Multi_Images, text replace
+list c_72_1_pic if c_72_1_pic_found == "found" & (c_72_2_pic == ".i" & c_72_3_pic == ".i" & c_72_4_pic == ".i")
+list c_72_2_pic if c_72_2_pic_found == "found" & (c_72_1_pic == ".i" & c_72_3_pic == ".i" & c_72_4_pic == ".i")
+list c_72_3_pic if c_72_3_pic_found == "found" & (c_72_1_pic == ".i" & c_72_2_pic == ".i" & c_72_4_pic == ".i")
+list c_72_4_pic if c_72_4_pic_found == "found" & (c_72_1_pic == ".i" & c_72_2_pic == ".i" & c_72_3_pic == ".i")
 log close
 
 

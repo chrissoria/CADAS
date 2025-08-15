@@ -401,6 +401,11 @@ d,s
 sum
 }
 
+if `country' == 2 {
+	merge m:m pid using "Cuba_CDR.dta"
+	drop _merge
+}
+
 * SUMMARY VARIABLE FOR WHICH SURVEYS EACH LINE HAS
 gen G_in ="G" if pid_en_resumen==1
 gen R_in="R" if pid_en_listas==1
@@ -578,12 +583,6 @@ capture drop pid_en_sangre
 
 clear
 use Everything_Wide_slim
-
-if `country' == 2 {
-	merge m:m pid using "../CUBA_in/Cuba validation 2025-03-20.dta"
-	keep if CDR != .
-	save Everything_Wide_CDR.dta, replace
-}
 
 *keep if RSPCZIHXF7 == "G       "
 
