@@ -4,31 +4,31 @@ capture log close
 
 *note Oct 19th an update was sent out to break out pictures for 72 and 79
 
-capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_user_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
 if `"`user'"' == "Chris" {
-local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_country_define.do"
+local path = "/Users/chrissoria/documents/CADAS/Data"
+include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_country_define.do"
 
 if `country' == 0 {
-    cd "`path'/translation_PR"
+    cd "`path'/PR_out/translation_PR"
 }
 else if `country' == 1 {
-    cd "`path'/translation_DR"
+    cd "`path'/DR_out/translation_DR"
 }
 else if `country' == 2 {
-    cd "`path'/translation_CUBA"
+    cd "`path'/CUBA_out/translation_CUBA"
 }
 
 if `country' == 0 {
-    use using "../PR_out/Cog_merged.dta"
+    use "../Cog.dta"
 }
 else if `country' == 1 {
-    use using "../DR_out/Cog_merged.dta"
+    use "../Cog.dta"
 }
 else if `country' == 2 {
-    use using "../CUBA_out/Cog_merged.dta"
+    use "../Cog.dta"
 }
 }
 
@@ -47,13 +47,13 @@ else if `country' == 2 {
 }
 
 if `country' == 0 {
-    use using "../PR_out/Cog_merged.dta"
+    use using "../PR_out/Cog.dta"
 }
 else if `country' == 1 {
-    use using "../DR_out/Cog_merged.dta"
+    use using "../DR_out/Cog.dta"
 }
 else if `country' == 2 {
-    use using "../CUBA_out/Cog_merged.dta"
+    use using "../CUBA_out/Cog.dta"
 }
 }
 
@@ -2342,4 +2342,4 @@ label values c_77_a checkbox_label
 
 label values c_78_a checkbox_label
 
-save Cog_merged.dta, replace
+save Cog.dta, replace

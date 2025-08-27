@@ -69,4 +69,14 @@ drop dup_pid_flag
 
 save Cuba_CDR.dta, replace
 
+*next, I want to know which cases within which datasets aren't matching on the CDR dataset
+
+foreach data in cog socio infor {
+	preserve
+	merge m:m pid using `data'
+	keep if _merge == 1
+	capture export excel using "duplicates/`data'_CDR_non_matches.xlsx", replace firstrow(variables)
+	restore
+}
+
 clear

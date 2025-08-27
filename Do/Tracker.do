@@ -478,6 +478,16 @@ gen House_ID = substr(pid, 4, 3)
 order pid hhid House_ID Cluster
 sort pid
 
+
+*********
+**CDR***
+********
+
+if `country' == 2 {
+	merge m:m pid using Cuba_CDR.dta
+	drop _merge
+}
+
 save tracker_full, replace
 
 * Get the list of variable names

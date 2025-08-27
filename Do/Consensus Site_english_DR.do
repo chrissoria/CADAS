@@ -8,12 +8,12 @@ capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 if `"`user'"' == "Chris" {
 local path = "/Users/chrissoria/documents/CADAS/Data"
 include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_country_define.do"
+cd "`path'/DR_out/Translation_DR"
 }
 
 else if `"`user'"' == "Ty" {
 local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
 include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
-}
 
 if `country' == 0 {
     cd "`path'/PR_out"
@@ -25,18 +25,20 @@ else if `country' == 2 {
     cd "`path'/CUBA_out"
 }
 
+}
+
 *Start by merging important variables from Cognitive, Sociodemographic, Informant
-use using Infor
+use using "../translation_DR/Infor"
 
 keep pid globalrecordid i_clustid i_a2 i_a3 i_a4 i_b5 i_b3 i_b4 i_b7 i_b1 i_c4 i_lhas_54 i_c1 i_c2 i_g0 i_e1 i_e2 i_e3 i_e4 i_e5 i_e6 i_e7 i_e8 i_e9 i_e10 i_e11 i_e12 i_e13 i_e14 i_e15 i_e16 i_f_csid_1 i_f_csid_2 i_f_csid_3 i_f_csid_4 i_f_csid_5 i_f_bse_3 i_f_bse_7 i_f_csid_6 i_f_csid_7 i_f_csid_8 i_f_csid_9 i_f_csid_10 i_f_csid_11 i_f_csid_12 i_f_csid_13 i_f_csid_14 i_f_csid_15 i_f_csid_16 i_f_csid_17 i_f_csid_17a i_f_csid_18 i_f_csid_19 i_f_csid_20 i_f_csid_21 i_f_csid_22_1 i_f_csid_22_2 i_f_csid_23_1 i_f_csid_23_2 i_f_csid_24_1 i_f_csid_24_2 i_f_csid_25 i_f_csid_26 i_f_csid_27 i_k_act_15 i_k_act_16 i_k_act_17 i_k_act_10 i_k_act_13 i_k_act_14 i_k_act_1 i_k_act_2 i_k_act_5 i_k_act_7 i_k_act_8 i_g_has_2 i_g_has_3_11 i_g_has_3_13 i_g_has_3_16 i_g_has_4 i_g_has_5_1 i_g_has_7_1 i_g_has_10 i_g_has_11 i_h_npi_1 i_h_npi_1_1 i_h_npi_2 i_h_npi_2_1 i_h_npi_3 i_h_npi_3_1 i_h_npi_4 i_h_npi_4_1 i_h_npi_5 i_h_npi_5_1 i_h_npi_6 i_h_npi_6_1 i_h_npi_7 i_h_npi_7_1 i_h_npi_8 i_h_npi_8_1 i_h_npi_9 i_h_npi_9_1 i_h_npi_10 i_h_npi_10_1 i_h_npi_11 i_h_npi_11_1 i_h_npi_12 i_h_npi_12_1
 rename i_clustid n_clustid
 rename globalrecordid i_globalrecordid
 
-merge m:m pid using Socio.dta, keepusing(globalrecordid s_2_3 s_0 s_2_9 s_2_8c s_8_5a s_8_3 s_3_6 s_3_7 s_3_5 s_2_12 s_2_13 s_13_19 s_13_20 s_13_22 s_12_11 s_12_13 s_12_14 s_12_15 s_12_16 s_10_1a s_10_1b s_10_1c s_10_1d s_10_1e s_10_1f s_10_1g s_10_1h)
+merge m:m pid using "../translation_DR/Socio.dta", keepusing(globalrecordid s_2_3 s_0 s_2_9 s_2_8c s_8_5a s_8_3 s_3_6 s_3_7 s_3_5 s_2_12 s_2_13 s_13_19 s_13_20 s_13_22 s_12_11 s_12_13 s_12_14 s_12_15 s_12_16 s_10_1a s_10_1b s_10_1c s_10_1d s_10_1e s_10_1f s_10_1g s_10_1h)
 rename globalrecordid s_globalrecordid
 drop _merge
 
-merge m:m pid using cog_merged.dta, keepusing(pid globalrecordid c_80b c_80a c_15 c_16 c_17 c_18 c_19 c_45 c_45_a c_46 c_46_a c_81 c_1 c_2_d c_3 c_4 c_5 c_6 c_7_d_c c_7_p c_8 c_9 c_10 c_20 c_26 c_30 c_31 c_48 c_49 c_50 c_51 c_52 c_53 c_54 c_55 c_56 c_58 c_59 c_60 c_61 c_62 c_70_d_c c_70_p pent_pic c_33_1 c_33_2 c_33_3 c_33_4 c_33_5 c_33_6 c_33_7 c_33_8 c_33_9 c_33_10 c_34_1 c_34_2 c_34_3 c_34_4 c_34_5 c_34_6 c_34_7 c_34_8 c_34_9 c_34_10 c_35_1 c_35_2 c_35_3 c_35_4 c_35_5 c_35_6 c_35_7 c_35_8 c_35_9 c_35_10 c_63_1 c_63_2 c_63_3 c_63_4 c_63_5 c_63_6 c_63_7 c_63_8 c_63_9 c_63_10 c_68_01 c_68_02 c_68_03 c_68_04 c_68_05 c_68_06 c_68_07 c_68_08 c_68_09 c_68_10 c_68_11 c_68_12 c_68_13 c_68_14 c_68_15 c_68_16 c_68_17 c_68_18 c_68_19 c_68_20 c_11 c_12 c_13 c_21 c_22 c_23 c_24 c_25 c_27 c_28 c_29 cs_32 c_32 c_33_a c_34_a c_35_a c_63_a c_68_a c_2_p_c c_2_d)
+merge m:m pid using "../translation_DR/cog_merged.dta", keepusing(pid globalrecordid c_80b c_80a c_15 c_16 c_17 c_18 c_19 c_45 c_45_a c_46 c_46_a c_81 c_1 c_2_d c_3 c_4 c_5 c_6 c_7_d_c c_7_p c_8 c_9 c_10 c_20 c_26 c_30 c_31 c_48 c_49 c_50 c_51 c_52 c_53 c_54 c_55 c_56 c_58 c_59 c_60 c_61 c_62 c_70_d_c c_70_p pent_pic c_33_1 c_33_2 c_33_3 c_33_4 c_33_5 c_33_6 c_33_7 c_33_8 c_33_9 c_33_10 c_34_1 c_34_2 c_34_3 c_34_4 c_34_5 c_34_6 c_34_7 c_34_8 c_34_9 c_34_10 c_35_1 c_35_2 c_35_3 c_35_4 c_35_5 c_35_6 c_35_7 c_35_8 c_35_9 c_35_10 c_63_1 c_63_2 c_63_3 c_63_4 c_63_5 c_63_6 c_63_7 c_63_8 c_63_9 c_63_10 c_68_01 c_68_02 c_68_03 c_68_04 c_68_05 c_68_06 c_68_07 c_68_08 c_68_09 c_68_10 c_68_11 c_68_12 c_68_13 c_68_14 c_68_15 c_68_16 c_68_17 c_68_18 c_68_19 c_68_20 c_11 c_12 c_13 c_21 c_22 c_23 c_24 c_25 c_27 c_28 c_29 cs_32 c_32 c_33_a c_34_a c_35_a c_63_a c_68_a c_2_p_c c_2_d)
 rename globalrecordid c_globalrecordid
 drop _merge
 
@@ -58,7 +60,7 @@ save ConsensusVariables.dta, replace
 clear all
 
 *Prepare to merge Neighborhood by collapsing into 1 observation for each cluster, and rounding n_1
-use using Neighborhood
+use using "../translation_DR/Neighborhood"
 
 collapse (mean) n_1, by(n_clustid)
 
@@ -772,11 +774,11 @@ replace c_MMSEscore_raw2 = (c_MMSEscore_raw2 + 1) if cropped_pent_uploaded == "2
 
 *rename Ty's pentagon scoring (cropped_pent_uploaded) to cs_32
 drop cs_32
-rename cropped_pent_uploaded cs_32
+rename cropped_pent_uploaded cs_32_ty
 
 
 
-keep pid i_globalrecordid s_globalrecordid c_globalrecordid s_2_3 s_0 s_2_9 s_2_8c s_8_5a s_8_3 s_3_6 s_3_7 s_3_5 n_1new c_MMSEscore_raw2 i_b5 i_b3 i_b4 i_b7 i_b1 i_c4 i_lhas_54 i_c1 i_c2 i_g0 JORM_IQCODE_summ CSID_blessed_score c_80b c_80a ADL_summ IADL_summ walk_score s_depression_score1 TICS_CSID_score CSID_object_naming_score CSID_concept_nomination_score orientation_score comprehension_score immediate_word_recall_total T1_immediate_word_recall_score T2_immediate_word_recall_score T3_immediate_word_recall_score delayed_word_recall_score word_recognition_total_score serial7_score2 c_15 c_16 c_17 c_18 c_19 c_45 c_45_a MUNDO_score pent_pic s_2_12 s_2_13 i_e1 i_e2 i_e3 i_e4 i_e5 i_e6 i_e7 i_e8 i_e9 i_e10 i_e11 i_e12 i_e13 i_e14 i_e15 i_e16 i_f_csid_1 i_f_csid_2 i_f_csid_3 i_f_csid_4 i_f_csid_5 i_f_bse_3 i_f_bse_7 i_f_csid_6 i_f_csid_7 i_f_csid_8 i_f_csid_9 i_f_csid_10 i_f_csid_11 i_f_csid_12 i_f_csid_13 i_f_csid_14 i_f_csid_15 i_f_csid_16 i_f_csid_17 i_f_csid_17a i_f_csid_18 i_f_csid_19 i_f_csid_20 i_f_csid_21 i_f_csid_22_1 i_f_csid_22_2 i_f_csid_23_1 i_f_csid_23_2 i_f_csid_24_1 i_f_csid_24_2 i_f_csid_25 i_f_csid_26 i_f_csid_27 i_k_act_15 i_k_act_16 i_k_act_17 i_k_act_10 i_k_act_13 i_k_act_14 i_k_act_1 i_k_act_2 i_k_act_5 i_k_act_7 i_k_act_8 s_13_19 s_13_20 s_13_22 s_12_11 s_12_13 s_12_14 s_12_15 s_12_16 CSID_blessed_decline_score i_g_has_2 i_g_has_3_11 i_g_has_3_13 i_g_has_3_16 i_g_has_4 i_g_has_5_1 i_g_has_7_1 i_g_has_10 i_g_has_11 CSID_memory_score c_81 NPIQ_summary_score i_h_npi_1 i_h_npi_1_1 i_h_npi_2 i_h_npi_2_1 i_h_npi_3 i_h_npi_3_1 i_h_npi_4 i_h_npi_4_1 i_h_npi_5 i_h_npi_5_1 i_h_npi_6 i_h_npi_6_1 i_h_npi_7 i_h_npi_7_1 i_h_npi_8 i_h_npi_8_1 i_h_npi_9 i_h_npi_9_1 i_h_npi_10 i_h_npi_10_1 i_h_npi_11 i_h_npi_11_1 i_h_npi_12 i_h_npi_12_1 c_1 c_2_all c_3 c_4 c_5 c_6 c_7_all c_8 c_9 c_10 MMSE_immediate_recall MMSE_delayed_recall c_20 MMSE_object_naming c_26 c_30 MMSE_paper_folding_task c_31 c_48 c_49 c_50 c_51 c_52 c_53 c_54 c_55 c_56 c_58 c_59 c_60 c_61 c_62 c_70_all s_10_1a s_10_1b s_10_1c s_10_1d s_10_1e s_10_1f s_10_1g s_10_1h cs_32 MMSE_denominator
+keep pid i_globalrecordid s_globalrecordid c_globalrecordid s_2_3 s_0 s_2_9 s_2_8c s_8_5a s_8_3 s_3_6 s_3_7 s_3_5 n_1new c_MMSEscore_raw2 i_b5 i_b3 i_b4 i_b7 i_b1 i_c4 i_lhas_54 i_c1 i_c2 i_g0 JORM_IQCODE_summ CSID_blessed_score c_80b c_80a ADL_summ IADL_summ walk_score s_depression_score1 TICS_CSID_score CSID_object_naming_score CSID_concept_nomination_score orientation_score comprehension_score immediate_word_recall_total T1_immediate_word_recall_score T2_immediate_word_recall_score T3_immediate_word_recall_score delayed_word_recall_score word_recognition_total_score serial7_score2 c_15 c_16 c_17 c_18 c_19 c_45 c_45_a MUNDO_score pent_pic s_2_12 s_2_13 i_e1 i_e2 i_e3 i_e4 i_e5 i_e6 i_e7 i_e8 i_e9 i_e10 i_e11 i_e12 i_e13 i_e14 i_e15 i_e16 i_f_csid_1 i_f_csid_2 i_f_csid_3 i_f_csid_4 i_f_csid_5 i_f_bse_3 i_f_bse_7 i_f_csid_6 i_f_csid_7 i_f_csid_8 i_f_csid_9 i_f_csid_10 i_f_csid_11 i_f_csid_12 i_f_csid_13 i_f_csid_14 i_f_csid_15 i_f_csid_16 i_f_csid_17 i_f_csid_17a i_f_csid_18 i_f_csid_19 i_f_csid_20 i_f_csid_21 i_f_csid_22_1 i_f_csid_22_2 i_f_csid_23_1 i_f_csid_23_2 i_f_csid_24_1 i_f_csid_24_2 i_f_csid_25 i_f_csid_26 i_f_csid_27 i_k_act_15 i_k_act_16 i_k_act_17 i_k_act_10 i_k_act_13 i_k_act_14 i_k_act_1 i_k_act_2 i_k_act_5 i_k_act_7 i_k_act_8 s_13_19 s_13_20 s_13_22 s_12_11 s_12_13 s_12_14 s_12_15 s_12_16 CSID_blessed_decline_score i_g_has_2 i_g_has_3_11 i_g_has_3_13 i_g_has_3_16 i_g_has_4 i_g_has_5_1 i_g_has_7_1 i_g_has_10 i_g_has_11 CSID_memory_score c_81 NPIQ_summary_score i_h_npi_1 i_h_npi_1_1 i_h_npi_2 i_h_npi_2_1 i_h_npi_3 i_h_npi_3_1 i_h_npi_4 i_h_npi_4_1 i_h_npi_5 i_h_npi_5_1 i_h_npi_6 i_h_npi_6_1 i_h_npi_7 i_h_npi_7_1 i_h_npi_8 i_h_npi_8_1 i_h_npi_9 i_h_npi_9_1 i_h_npi_10 i_h_npi_10_1 i_h_npi_11 i_h_npi_11_1 i_h_npi_12 i_h_npi_12_1 c_1 c_2_all c_3 c_4 c_5 c_6 c_7_all c_8 c_9 c_10 MMSE_immediate_recall MMSE_delayed_recall c_20 MMSE_object_naming c_26 c_30 MMSE_paper_folding_task c_31 c_48 c_49 c_50 c_51 c_52 c_53 c_54 c_55 c_56 c_58 c_59 c_60 c_61 c_62 c_70_all s_10_1a s_10_1b s_10_1c s_10_1d s_10_1e s_10_1f s_10_1g s_10_1h cs_32_ty MMSE_denominator
 
 ****************************************************************************************
 *COUNTS NUMBER OF .i, .v , or . IN EACH OBERVATION UNDER NEW VARIABLE CALLED countmissing (did not code in if 7 was the code for a valid skip)
@@ -1237,6 +1239,6 @@ drop _merge
 replace cs_32 = "0" if cs_32 == "1"
 replace cs_32 = "1" if cs_32 == "2"
 
-save ConsensusVariables.dta, replace
+save "../translation_DR/ConsensusVariables.dta", replace
 
 exit

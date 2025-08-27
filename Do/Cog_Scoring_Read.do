@@ -122,6 +122,9 @@ label variable cs_79_3 "79.3. Rectángulos cruzados (0-2)"
 
 label variable cs_79_4 "79.4. El cubo (0-4)"
 
+*Fix animal scoring so cs_40 is the #UNIQUE animals listed
+replace cs_40 = cs_40 - cs_41 if (cs_40 < . & cs_41 < .)
+
  save Cog_Scoring.dta, replace
 
  * Get the list of variable names

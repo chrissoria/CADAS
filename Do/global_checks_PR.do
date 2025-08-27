@@ -209,7 +209,7 @@ if "`drop_not_resumen'" == "yes" {
     drop if resumen == "Not in Resumen"
 }
 
-log using "/Users/chrissoria/documents/CADAS/Data/PR_out/logs/SocioOnlyMissing", text replace
+log using "`path'/PR_out/logs/SocioOnlyMissing", text replace
 
 
 local missvarlist
@@ -337,7 +337,7 @@ if "`drop_not_resumen'" == "yes" {
 }
 
 
-log using "/Users/chrissoria/documents/CADAS/Data/PR_out/logs/PhysOnlyMissing", text replace
+log using "`path'/PR_out/logs/PhysOnlyMissing", text replace
 
 
 local missvarlist
@@ -442,7 +442,7 @@ if "`drop_not_resumen'" == "yes" {
     drop if resumen == "Not in Resumen"
 }
 
-log using "/Users/chrissoria/documents/CADAS/Data/PR_out/logs/InforOnlyMissing", text replace
+log using "`path'/PR_out/logs/InforOnlyMissing", text replace
 
 local missvarlist
 
@@ -509,7 +509,7 @@ use Household
 
 drop if inlist(globalrecordid, "517e61c3-f612-41b8-8038-656a367b177d", "fea7bf68-4b53-41dc-8a3a-170dc287be69", "f810981c-8684-4325-9678-c0e6bf660389")
  
- log using "/Users/chrissoria/documents/CADAS/Data/PR_out/logs/HouseholdOnlyMissing", text replace
+ log using "`path'/PR_out/logs/HouseholdOnlyMissing", text replace
 
  
 
@@ -583,7 +583,7 @@ clear all
 
 *next, I want to find out if we have the right amount of cog scoring and cog surveys
 
-cd "/Users/chrissoria/documents/CADAS/Data/PR_out"
+cd "`path'/PR_out"
 use Cog_Scoring
 
 *for no, I will do m:m because I have't been able to pin down which unique cases are the true/correct ones

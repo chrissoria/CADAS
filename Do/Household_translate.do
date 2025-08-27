@@ -2,31 +2,31 @@ clear all
 set more off
 capture log close
 
-capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_user_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
 if `"`user'"' == "Chris" {
-local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_country_define.do"
+local path = "/Users/chrissoria/documents/CADAS/Data"
+include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_country_define.do"
 
 if `country' == 0 {
-    cd "`path'/translation_PR"
+    cd "`path'/PR_out/translation_PR"
 }
 else if `country' == 1 {
-    cd "`path'/translation_DR"
+    cd "`path'/DR_out/translation_DR"
 }
 else if `country' == 2 {
-    cd "`path'/translation_CUBA"
+    cd "`path'/CUBA_out/translation_CUBA"
 }
 
 if `country' == 0 {
-    insheet using "../PR_out/Household"
+    use using "`path'/PR_out/Household"
 }
 else if `country' == 1 {
-    insheet using "../DR_out/Household"
+    use using "`path'/DR_out/Household"
 }
 else if `country' == 2 {
-    insheet using "../CUBA_out/Household"
+    use using "`path'/CUBA_out/Household"
 }
 
 }

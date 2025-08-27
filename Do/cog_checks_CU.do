@@ -118,6 +118,13 @@ insheet using "`path'/CUBA_in/Cog_Child.csv", comma names clear
   duplicates report globalrecordid
  duplicates drop globalrecordid, force
  
+*missing the cluster for some reasons
+replace c_clustid = 1 if globalrecordid == "542cfd05-4263-46fa-9f9c-4104c3cfd60e"
+replace c_clustid = 1 if globalrecordid == "62b3d9b9-51ab-4e84-aea4-b32a4f4cf78f"
+
+*tania says this should be participant 2, error in the ID
+replace c_particid = 2 if globalrecordid == "a87fc94f-b088-47e5-a350-cf8f7aac897d"
+ 
 *this is a duplicate, but looks like the cluster was entered in incorrectly based on the pid_parent (changes were made to top level but not bottom level)
 replace c_clustid = 8 if globalrecordid == "b237127e-99ec-4524-903c-54d4486c4df4"
 
@@ -213,6 +220,10 @@ gen pid = c_country_str + c_clustid_str + c_houseid_str + c_particid_str
 gen hhid = c_country_str + c_clustid_str + c_houseid_str
 drop c_country_str c_clustid_str c_houseid_str c_particid_str
 
+*merging to the CDR
+merge m:m pid using Cuba_CDR.dta
+drop _merge
+
 log using "`path'/CUBA_out/logs/CogOnlyMissing", text replace
 
 log close
@@ -254,6 +265,8 @@ foreach var of varlist `varlist' {
         tostring `var', replace
     }
 }
+
+order pid
 
 * Export data to Excel
 export excel using "duplicates/cognitive_duplicates.xlsx", replace firstrow(variables)

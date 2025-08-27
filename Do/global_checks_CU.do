@@ -33,6 +33,8 @@ replace particid_str = cond(strlen(particid_str) == 1, "0" + particid_str, parti
 gen pid = country_str + clustid_str + houseid_str + particid_str
 drop country_str clustid_str houseid_str particid_str
 
+duplicates drop pid, force
+
 order pid
 
 save resumen.dta,replace 
@@ -147,6 +149,11 @@ capture export excel using "duplicates/roster_duplicates.xlsx", replace firstrow
  clear all
  
 use Socio
+duplicates drop globalrecordid, force
+*these second cases looks mostly empty
+drop if inlist(globalrecordid,"72ee3895-7913-4bad-9336-38be41521a1a", "b64aa749-8f94-4b70-9aba-2b632ef9b6fb","12b28b86-05a7-4641-b742-5767caa759d1")
+*in parent shows 138, 138 has a missing socio, must be for 138
+replace s_houseid = 138 if globalrecordid == "c0c05369-4d9f-465c-bd64-79fad5f8391f"
 *instructions from Tania cluster 13
 replace s_houseid = 13 if globalrecordid == "11b733e4-e9ed-4cfa-bd06-6b60c42749cc"
 replace s_houseid = 19 if globalrecordid == "f9712a8c-6d7c-4088-a9d3-2fe14a88921c"
@@ -290,6 +297,10 @@ gen pid = s_country_str + s_clustid_str + s_houseid_str + s_particid_str
 gen hhid = s_country_str + s_clustid_str + s_houseid_str
 drop s_country_str s_clustid_str s_houseid_str s_particid_str
 
+*merging to the CDR
+merge m:m pid using Cuba_CDR.dta
+drop _merge
+
 log using "`path'/CUBA_out/logs/SocioOnlyMissing", text replace
 
 
@@ -325,6 +336,7 @@ log close
  drop is_duplicate
 
 merge m:m pid using resumen_pid
+sort pid
 
 capture gen resumen = string(_merge)
 replace resumen = string(_merge)
@@ -549,6 +561,7 @@ export excel using "duplicates/phys_duplicates.xlsx", replace firstrow(variables
  clear all
  
 use Infor
+duplicates drop globalrecordid, force
  
  drop pid hhid
  
@@ -1125,6 +1138,12 @@ replace i_b4 = 1 if globalrecordid == "4b58008b-ba96-483a-8b96-2be8e52f3ac4"
 replace i_b5 = 2 if globalrecordid == "4b58008b-ba96-483a-8b96-2be8e52f3ac4"
 replace i_b7 = 3 if globalrecordid == "4b58008b-ba96-483a-8b96-2be8e52f3ac4"
 
+*Ty's findings
+replace i_particid = 1 if globalrecordid == "2b7d6e25-59f2-4809-ab9d-5dccaa2403ba"
+drop if globalrecordid == "dcf6fe64-3e8f-44e2-b59b-449b08c1353f"
+replace i_particid = 1 if globalrecordid == "e3ce3c2e-ca73-499d-9fa7-076c8e778d7a"
+drop if globalrecordid == "c8f5d5ff-c79e-407b-9ccb-caae5f37338c"
+
 
  
  gen i_country_str = string(i_country, "%12.0f")
@@ -1142,6 +1161,9 @@ replace i_particid_str = cond(strlen(i_particid_str) == 1, "0" + i_particid_str,
 gen pid = i_country_str + i_clustid_str + i_houseid_str + i_particid_str
 replace pid = "20813102" if globalrecordid == "e663aec8-5f3c-4284-9542-9a0ac82913ed"
 gen hhid = i_country_str + i_clustid_str + i_houseid_str
+
+merge m:m pid using Cuba_CDR.dta
+drop _merge
 
 drop i_country_str i_clustid_str i_houseid_str i_particid_str
 
@@ -1182,6 +1204,7 @@ log close
 sort i_clustid i_houseid
  
 merge m:m pid using resumen_pid
+sort pid
 
 capture gen resumen = string(_merge)
 replace resumen = string(_merge)
@@ -1220,6 +1243,7 @@ export excel using "duplicates/informant_duplicates.xlsx", replace firstrow(vari
  clear all
  
 use Household
+duplicates drop globalrecordid, force
  
 *It looks like epi info is spitting out duplicate household cases
 *I will drop the duplicate junk file for now, but will have to get to the bottom of what's going here later

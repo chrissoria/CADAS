@@ -26,10 +26,9 @@ if `"`user'"' == "Chris" {
 	do "/Users/chrissoria/documents/CADAS/Do/Read/Sangre_Read.do"
     }
 
-    else if `country' == 1 {
+    if `country' == 1 {
 		do "`path'/../DR/cog_checks_DR.do"
         do "`path'/../DR/door_checks_DR.do"
-		do "`path'/cog_scores.do"
 
     }
     
@@ -37,10 +36,14 @@ if `"`user'"' == "Chris" {
     
     do "`path'/Cog_Read.do"
 	
+	if `country' == 1 {
+		do "`path'/cog_scores.do"
+	}
+	
 
-    else if `country' == 2 {
-	do "`path'/../CU/cog_checks_CU.do"
-	do "`path'/../CU/cuban_CDR.do"
+    if `country' == 2 {
+		do "`path'/../CU/cog_checks_CU.do"
+		do "`path'/../CU/cuban_CDR.do"
 	
     }
 
@@ -100,15 +103,26 @@ if `country' != 0{
     
 
 }
+if `country' == 1 {
 	do "/Users/chrissoria/documents/CADAS/Do/Tracker.do"
 	do "/Users/chrissoria/documents/CADAS/Do/InterviewerConcordance1.do"
 	do "/Users/chrissoria/documents/CADAS/Do/cadas_1066_reproduced.do"
 	do "/Users/chrissoria/documents/CADAS/Do/Ty_Pent_Scoring.do"
 	do "/Users/chrissoria/documents/CADAS/Do/consensus_site.do"
 	do "/Users/chrissoria/documents/CADAS/Do/EVERYTHING_WIDE.do"
+	*translating to english
+	do "/Users/chrissoria/documents/CADAS/Do/Cog_translate.do"
+	do "/Users/chrissoria/documents/CADAS/Do/Cog_Scoring_translate.do"
+	do "/Users/chrissoria/documents/CADAS/Do/Phys_translate.do"
+	do "/Users/chrissoria/documents/CADAS/Do/Infor_translate.do"
+	do "/Users/chrissoria/documents/CADAS/Do/Socio_translate.do"
+	do "/Users/chrissoria/documents/CADAS/Do/Consensus Site_english_DR.do"
+	do "/Users/chrissoria/documents/CADAS/Do/Household_translate.do"
+	do "/Users/chrissoria/documents/CADAS/Do/Neighborhood_translate.do"
+	do "/Users/chrissoria/documents/CADAS/Do/EVERYTHING_WIDE_english_DR.do"
+	}
+	
 }
-
-
 
 else if `"`user'"' == "Ty" {
 

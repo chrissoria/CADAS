@@ -56,7 +56,7 @@ else if `country' == 2 {
 }
 }
 
-drop v1
+capture drop v1
 
 *converting numeric to strings
 

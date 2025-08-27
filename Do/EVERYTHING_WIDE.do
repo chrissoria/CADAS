@@ -396,15 +396,27 @@ sum
 *save sangre_check.dta, replace
 merge m:m pid using Everything_Wide
 drop _merge
-save Everything_Wide, replace
-d,s
-sum
+
 }
 
 if `country' == 2 {
 	merge m:m pid using "Cuba_CDR.dta"
 	drop _merge
 }
+
+*generating overall
+gen Country = substr(pid, 1, 1)
+replace Cluster = substr(pid, 2, 2)
+replace House_ID = substr(pid, 4, 3)
+gen Person_ID = substr(pid, 7, 2)
+
+order pid Country Cluster House_ID Person_ID
+
+save Everything_Wide.dta, replace
+export excel using "excel/Everything_Wide.xlsx", replace firstrow(variables)
+
+d,s
+sum
 
 * SUMMARY VARIABLE FOR WHICH SURVEYS EACH LINE HAS
 gen G_in ="G" if pid_en_resumen==1

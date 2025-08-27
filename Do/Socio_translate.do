@@ -1,35 +1,25 @@
 clear all 
 set more off
 capture log close
-
-capture include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_user_define.do"
+capture include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_user_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
-if `"`user'"' == "Chris" {
-local path = "/hdir/0/chrissoria/Stata_CADAS/Data"
-include "/hdir/0/chrissoria/Stata_CADAS/Do/Read/CADAS_country_define.do"
-
-if `country' == 0 {
-    cd "`path'/translation_PR"
-}
-else if `country' == 1 {
-    cd "`path'/translation_DR"
-}
-else if `country' == 2 {
-    cd "`path'/translation_CUBA"
-}
-
-if `country' == 0 {
-    use using "../PR_out/Socio"
-}
-else if `country' == 1 {
-    use using "../DR_out/Socio"
-}
-else if `country' == 2 {
-    use using "../CUBA_out/Socio"
+if "`user'" == "Chris" {
+    local path = "/Users/chrissoria/documents/CADAS/Data"
+    include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_country_define.do"
+    
+    if `country' == 0 {
+        cd "`path'/PR_out/translation_PR"
+    }
+    else if `country' == 1 {
+        cd "`path'/DR_out/translation_DR"
+    }
+    else if `country' == 2 {
+        cd "`path'/CUBA_out/translation_CUBA"
+    }
+    use using "../Socio"
 }
 
-}
 
 else if `"`user'"' == "Ty" {
 local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
@@ -2247,8 +2237,6 @@ label variable s_8_3a "8.3a What was your primary occupation?"
 label variable s_8_4 "8.4 In this job of longest duration, most of the time, you have been (were)…"
 
 label variable s_8_5a "8.5a Currently, you:"
-
-label variable s_8_5b2_delete "Dedicated to household chores"
 
 label variable s_8_5b1 "Dedicated to household chores"
 *check this again, test on tablet, may need changes in Spanish version of do files
