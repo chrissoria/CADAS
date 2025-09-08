@@ -118,6 +118,21 @@ insheet using "`path'/CUBA_in/Cog_Child.csv", comma names clear
   duplicates report globalrecordid
  duplicates drop globalrecordid, force
  
+*parent shows cluster 4, child shows 2. Cluster 4 participant missing their cog, must be changed to cluster 4
+replace c_clustid = 4 if globalrecordid == "d2cd92e6-06df-4926-96bd-235c550ab868" 
+
+*parent id not matching, parent has 1 but child has 2, images show from participant 2
+replace c_particid = 2 if globalrecordid == "7c700970-5237-40db-8fae-4c8da58e109d"
+ 
+*parent id is 2 but child is 1, 2 missing socio so must be for 2
+replace c_particid = 2 if globalrecordid == "3f71e455-bf92-4b1c-91ec-cdd9cba1c3ce"
+ 
+* participant two is missing their cognitive, based on image and date I believe this one here should be recoded to 2
+replace c_particid = 2 if globalrecordid == "7c700970-5237-40db-8fae-4c8da58e109d"
+
+* this should be house 138 based on date
+replace c_houseid = 138 if globalrecordid == "90bf1b73-d9fd-40a2-b4da-13c02c0043a3"
+ 
 *missing the cluster for some reasons
 replace c_clustid = 1 if globalrecordid == "542cfd05-4263-46fa-9f9c-4104c3cfd60e"
 replace c_clustid = 1 if globalrecordid == "62b3d9b9-51ab-4e84-aea4-b32a4f4cf78f"
@@ -200,6 +215,11 @@ replace c_particid = 1 if globalrecordid == "3a34a230-24d7-457f-be83-14eac034b4e
 *tania says these are junk/test cases
 drop if inlist(globalrecordid, "266de225-2bd2-4cca-8dfd-64be1ed2dc64","b40c810b-f459-4dba-bdc0-90798ac15510","862eb7f7-5b52-4aa9-a08a-33eb1d2af34f")
 
+*together with Will, we found that this id was changed, for some reason, but can't confirm why
+replace c_clustid = 2 if globalrecordid == "6e69b867-7f71-4182-a9b0-9a5f3b632d06"
+replace c_houseid = 46 if globalrecordid == "6e69b867-7f71-4182-a9b0-9a5f3b632d06"
+replace c_particid = 1 if globalrecordid == "6e69b867-7f71-4182-a9b0-9a5f3b632d06"
+
 replace c_country = 2
 
 export delimited using "`path'/CUBA_in/Cog_Child_cleaned.csv", replace nolabel
@@ -223,6 +243,9 @@ drop c_country_str c_clustid_str c_houseid_str c_particid_str
 *merging to the CDR
 merge m:m pid using Cuba_CDR.dta
 drop _merge
+
+*some cases are being duplicated or kept after merges from files that aren't from the tablet
+drop if globalrecordid == ""
 
 log using "`path'/CUBA_out/logs/CogOnlyMissing", text replace
 

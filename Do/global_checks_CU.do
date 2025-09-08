@@ -121,6 +121,9 @@ drop if pid == "21300802"
  list if is_duplicate
  drop is_duplicate
  
+*some cases are being duplicated or kept after merges from files that aren't from the tablet
+drop if globalrecordid == ""
+ 
  save rosters_participants.dta,replace
  
 gen is_duplicate = pid[_n] == pid[_n-1]
@@ -149,7 +152,20 @@ capture export excel using "duplicates/roster_duplicates.xlsx", replace firstrow
  clear all
  
 use Socio
+
 duplicates drop globalrecordid, force
+
+*replace cluster so that it's the same as the parent
+replace s_clustid = 148 if globalrecordid == "89a3e8de-7a96-49e3-8630-08f9f0cc7b44"
+
+*parent id is 2 but child is 1, 2 missing socio so must be for 2
+replace s_particid = 2 if globalrecordid == "3f3d0e80-7689-4406-a348-fc06c703d3af"
+
+*this is a duplicate and looks mostly empty
+drop if globalrecordid == "f09731b0-2a46-4050-9e01-533ff94bbfae"
+
+*parent is changed to 250, but child is 150. 250 is missing socio, will change to 250.
+replace s_houseid = 250 if globalrecordid == "0464dba5-62db-4d97-ba38-cd67ae9d4b25"
 *these second cases looks mostly empty
 drop if inlist(globalrecordid,"72ee3895-7913-4bad-9336-38be41521a1a", "b64aa749-8f94-4b70-9aba-2b632ef9b6fb","12b28b86-05a7-4641-b742-5767caa759d1")
 *in parent shows 138, 138 has a missing socio, must be for 138
@@ -347,6 +363,9 @@ drop _merge
 
 order pid_parent pid resumen
 
+*some cases are being duplicated or kept after merges from files that aren't from the tablet
+drop if globalrecordid == ""
+
  save Socio.dta, replace
 export excel using "excel/socio.xlsx", replace firstrow(variables)
 
@@ -375,6 +394,7 @@ capture export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(
  clear all
  
  use Phys
+
  drop pid
  drop hhid
  
@@ -525,6 +545,9 @@ drop _merge
 
 order pid_parent pid resumen
 
+*some cases are being duplicated or kept after merges from files that aren't from the tablet
+drop if globalrecordid == ""
+
 save Phys.dta, replace
 
 export excel using "excel/examen_fisico.xlsx", replace firstrow(variables)
@@ -561,6 +584,7 @@ export excel using "duplicates/phys_duplicates.xlsx", replace firstrow(variables
  clear all
  
 use Infor
+
 duplicates drop globalrecordid, force
  
  drop pid hhid
@@ -1138,12 +1162,6 @@ replace i_b4 = 1 if globalrecordid == "4b58008b-ba96-483a-8b96-2be8e52f3ac4"
 replace i_b5 = 2 if globalrecordid == "4b58008b-ba96-483a-8b96-2be8e52f3ac4"
 replace i_b7 = 3 if globalrecordid == "4b58008b-ba96-483a-8b96-2be8e52f3ac4"
 
-*Ty's findings
-replace i_particid = 1 if globalrecordid == "2b7d6e25-59f2-4809-ab9d-5dccaa2403ba"
-drop if globalrecordid == "dcf6fe64-3e8f-44e2-b59b-449b08c1353f"
-replace i_particid = 1 if globalrecordid == "e3ce3c2e-ca73-499d-9fa7-076c8e778d7a"
-drop if globalrecordid == "c8f5d5ff-c79e-407b-9ccb-caae5f37338c"
-
 
  
  gen i_country_str = string(i_country, "%12.0f")
@@ -1215,6 +1233,9 @@ drop _merge
 
 order pid_parent pid resumen
 
+*some cases are being duplicated or kept after merges from files that aren't from the tablet
+drop if globalrecordid == ""
+
 export excel using "excel/informante.xlsx", replace firstrow(variables)
 save Infor.dta, replace
  
@@ -1243,6 +1264,7 @@ export excel using "duplicates/informant_duplicates.xlsx", replace firstrow(vari
  clear all
  
 use Household
+
 duplicates drop globalrecordid, force
  
 *It looks like epi info is spitting out duplicate household cases
@@ -1311,6 +1333,9 @@ log close
  *same thing with 201043
 
 drop is_duplicate
+
+*some cases are being duplicated or kept after merges from files that aren't from the tablet
+drop if globalrecordid == ""
 
 save Household.dta, replace
 export excel using "excel/familiar.xlsx", replace firstrow(variables)
@@ -1394,3 +1419,18 @@ merge m:m pid using Socio.dta
 drop _merge fkey globalrecordid pid_parent  pid_nonmatch
 
 save Respondent_Merged.dta, replace
+
+*next, I want to know which cases within which datasets aren't matching on the CDR dataset
+clear
+
+use Cuba_CDR.dta
+
+foreach data in cog socio infor {
+	preserve
+	merge m:m pid using `data'
+	keep if _merge == 1
+	capture export excel using "duplicates/`data'_CDR_non_matches.xlsx", replace firstrow(variables)
+	restore
+}
+
+clear
