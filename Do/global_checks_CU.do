@@ -154,6 +154,14 @@ capture export excel using "duplicates/roster_duplicates.xlsx", replace firstrow
 use Socio
 
 duplicates drop globalrecordid, force
+*this is a duplicate entry, same person, done on seperate days
+replace s_3_0 = 49 if globalrecordid == "58c7a75e-4b1d-4a1a-8f6f-8431888ffa75"
+drop if globalrecordid == "8c3073b3-b09d-4911-8732-95660e98ba07"
+*duplicate, less complete than the other, cannot find a good candidate match where it's supposed to belong
+drop if globalrecordid == "cad92da1-eaa4-4325-8487-076e49e5b292"
+
+*two duplicates look mostly empty 
+drop if inlist(globalrecordid, "42d5d053-3db5-4068-a67e-5a24b92f0c0a", "911268f2-6e17-460a-bdd6-a1705fba6b2e", "264a2354-f4b4-4691-8c83-d63bc801f8b8", "ee3664ed-85e9-4bad-b09e-1f9e0468a120")
 
 *replace cluster so that it's the same as the parent
 replace s_clustid = 148 if globalrecordid == "89a3e8de-7a96-49e3-8630-08f9f0cc7b44"
