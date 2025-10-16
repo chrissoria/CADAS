@@ -294,6 +294,16 @@ capture drop v35
 merge m:m pid using cog_merged, nogen keep(match master) keepusing(c_MMSEscore)
 replace c_MMSEscore = round(c_MMSEscore)
 
+sort pid
+gen date_to_WashU = .
+label variable date_to_WashU "date to WashU"
+order date_to_WashU pid
+drop hhid exceldup in_excel b_country
+capture drop nolab
+
 save Sangre_MMSE.dta, replace
+
+local current_date : display %tdCCYY-NN-DD daily("`c(current_date)'", "DMY")
+export excel using "excel/sangre DR `current_date'.xlsx", firstrow(varlabels) replace
 
 exit, clear

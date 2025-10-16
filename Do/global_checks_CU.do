@@ -152,8 +152,21 @@ capture export excel using "duplicates/roster_duplicates.xlsx", replace firstrow
  clear all
  
 use Socio
+*we're dropping because pid 20409801 id duplicate, but this case looks mostly empty, we think it's the same person based on gender and resposne to some questions
+drop if globalrecordid == "6146eba7-6072-47f1-ae88-2eb90422f229"
+*participant is a 75 year old female, participant 2 missing socio, must be participant 2 (age matches)
+replace s_particid = 2 if globalrecordid == "f73e5a1b-4093-4070-b86c-995fc2784dc9"
+
+replace s_houseid = 148 if globalrecordid == "89a3e8de-7a96-49e3-8630-08f9f0cc7b44"
+replace s_clustid = 4 if globalrecordid == "89a3e8de-7a96-49e3-8630-08f9f0cc7b44"
 
 duplicates drop globalrecordid, force
+*temporarily changing the country code to 5 because we don't know what to do with this case, revisti later (org pid = 20803801)
+replace s_country = 5 if globalrecordid == "4a7ad4ef-4cf2-4f22-bfc2-51eebebaf1f3"
+*there's already an interview for this participant, judgement call to delete one (both are pretty complete and similar)
+drop if globalrecordid == "3d6df6c1-deea-469e-89d7-8825937fb61d"
+*both duplicates look very similar, but one is more complete
+drop if globalrecordid == "2fdf1230-0809-4fe7-831b-7c3a14089be9"
 *this is a duplicate entry, same person, done on seperate days
 replace s_3_0 = 49 if globalrecordid == "58c7a75e-4b1d-4a1a-8f6f-8431888ffa75"
 drop if globalrecordid == "8c3073b3-b09d-4911-8732-95660e98ba07"
@@ -164,7 +177,7 @@ drop if globalrecordid == "cad92da1-eaa4-4325-8487-076e49e5b292"
 drop if inlist(globalrecordid, "42d5d053-3db5-4068-a67e-5a24b92f0c0a", "911268f2-6e17-460a-bdd6-a1705fba6b2e", "264a2354-f4b4-4691-8c83-d63bc801f8b8", "ee3664ed-85e9-4bad-b09e-1f9e0468a120")
 
 *replace cluster so that it's the same as the parent
-replace s_clustid = 148 if globalrecordid == "89a3e8de-7a96-49e3-8630-08f9f0cc7b44"
+*replace s_clustid = 148 if globalrecordid == "89a3e8de-7a96-49e3-8630-08f9f0cc7b44"
 
 *parent id is 2 but child is 1, 2 missing socio so must be for 2
 replace s_particid = 2 if globalrecordid == "3f3d0e80-7689-4406-a348-fc06c703d3af"
@@ -596,6 +609,26 @@ use Infor
 duplicates drop globalrecordid, force
  
  drop pid hhid
+* other surveys from this person were done on the same day as this, person is missing informant, household socio, pid's don't match in parent
+replace i_houseid = 148 if globalrecordid == "c31b5fe2-8353-445a-b65e-2835c87d1d4d"
+*based on the timing of the socio, person 1 was busy doing socio, so other case must be informant person 2 informing on person one, meaning this informant was person 1 informing on person 2 (which is )
+replace i_particid = 2 if globalrecordid == "655eb0a3-51b3-4e25-b7af-5bad80a33884"
+replace i_b3 = 67 if globalrecordid == "4596ec21-3cad-4e2f-8648-39d42d440890"
+replace i_b4 = 2 if globalrecordid == "4596ec21-3cad-4e2f-8648-39d42d440890"
+replace i_b7 = 3 if globalrecordid == "655eb0a3-51b3-4e25-b7af-5bad80a33884"
+
+*we do not know what to do with this case yet, moving to orphan category
+replace i_country = 5 if globalrecordid == "735ef088-ecb3-43ee-b666-539ff3c9ba23"
+*this second duplicate looks mostly empty
+drop if globalrecordid == "b2704042-7e74-4361-9f97-efd7dddcc5f4"
+*this looks like a duplicate, house 250 is missing the informant
+replace i_houseid = 250 if globalrecordid == "90e2c8a0-6375-411e-98a4-38ab5c3f1104"
+
+*this resolves a duplicate, but we don't know what to do with this for now
+replace i_country = 5 if globalrecordid == "f366fdea-7b9f-4095-b168-08d5c6ef0301"
+
+*mismatch, shows cluster 250 in parent and cluster 150 in child. 250 is missing an informant
+replace i_houseid = 250 if globalrecordid == "27840671-1990-4c51-8b54-90e2c8a0-6375-411e-98a4-38ab5c3f1104"
  
 *based on the sociodem, partic 1 is 87 year old man and 2 is an 80 year old woman. they are informing on each other. 
 * howevr, this interviewer was incorrectly assigning demographic information, so therefore we match based on age/gender being the same
@@ -1170,7 +1203,15 @@ replace i_b4 = 1 if globalrecordid == "4b58008b-ba96-483a-8b96-2be8e52f3ac4"
 replace i_b5 = 2 if globalrecordid == "4b58008b-ba96-483a-8b96-2be8e52f3ac4"
 replace i_b7 = 3 if globalrecordid == "4b58008b-ba96-483a-8b96-2be8e52f3ac4"
 
+drop if inlist(globalrecordid, "d8910297-e2d3-4887-b497-f77a8e0dbb1b", "16713074-640a-4c71-85e6-b99f39cafbe0", "f3358cb7-6892-45bd-85a1-ee2b5a800ad7", "bff0b672-db1e-41b4-9d84-aa81c9aa35ee", "ab758a52-cd66-42be-87d8-25eb55c34574", "3e0b0741-dfc9-4114-971c-346af2b977b3")
+drop if inlist(globalrecordid, "dcf6fe64-3e8f-44e2-b59b-449b08c1353f", "8408c6d0-9dd9-4ce2-ab9e-477d03ffa92f", "22ed2ee3-f643-46a1-ad13-604131d3fa55", "1400f217-d53b-44a2-a11d-ea30c2549fec")
 
+*9/19/25 sleuthing
+replace i_houseid = 28 if globalrecordid == "792c7947-067d-4c58-975e-8cb18d0a59f5"
+replace i_particid = 2 if globalrecordid == "291fed04-974d-4414-b996-49d5f7c8789b"
+
+*9/29/25 fixes
+replace i_clustid = 1 if globalrecordid == "46792019-e4dc-4d35-95d9-3d2e64d13d2e"
  
  gen i_country_str = string(i_country, "%12.0f")
 
@@ -1274,6 +1315,13 @@ export excel using "duplicates/informant_duplicates.xlsx", replace firstrow(vari
 use Household
 
 duplicates drop globalrecordid, force
+*these all look like empty duplicates
+drop if inlist(globalrecordid, "e51bb04e-5235-49e7-aec9-a71e28d9daec", "7e199c51-2b9e-49d4-a433-cde348cb06a5", "cb3a0571-3bf0-4f6e-8779-ada089382962", "689ce78f-4818-4749-9080-7a7fc6b4160c", "f6df7c1b-4ca4-4612-91fe-5595eb1703c4")
+drop if inlist(globalrecordid, "c64c51d3-5c94-4577-aa28-050befaf4513", "78a1e129-3ca1-4054-9355-be51cedd1f93", "156f5263-2ab5-4336-9290-d7a3c8f97034", "5205b2f8-14e7-4e40-9ab0-46fa71a5977d", "20f67e1c-35c1-4dbd-b206-cd4a64e180b9", "4cd20886-6f5f-4760-8585-dbdf65fff747", "e26993dd-b0fc-429c-89ac-34a6463ab100")
+*missing cluster but present in the parent
+replace h_clustid = 2 if globalrecordid == "e003fc3e-a636-4860-b953-43184fc04303"
+*they input wrong cluster first, then changed only in the parent
+replace h_houseid = 148 if globalrecordid == "9724d88c-fd2c-4ea9-b3fb-6e3fd78769b4"
  
 *It looks like epi info is spitting out duplicate household cases
 *I will drop the duplicate junk file for now, but will have to get to the bottom of what's going here later

@@ -85,19 +85,19 @@ rename pr_2_1 PR_2_1
     3 "3 - Hijastro(a)" ///
     4 "4 - Hijo(a) adoptivo(a)" ///
     5 "5 - Hijo(a) de crianza" ///
-    6 "6 - Madre/padre" ///
+    6 "6 - Madre/Padre" ///
     7 "7 - Suegro(a)" ///
     8 "8 - Abuelo(a)" ///
     9 "9 - Nieto(a)" ///
     10 "10 - Bisnieto(a)" ///
-    11 "11 - Yerno/nuera" ///
+    11 "11 - Yerno/Nuera" ///
     12 "12 - Hermano(a)/Hermanastro(a)" ///
     13 "13 - Cuñado(a)/Concuños/Primos" ///
     14 "14 - Tío(a)" ///
     15 "15 - Sobrino(a)" ///
     16 "16 - Otro pariente" ///
-    17 "17 - No pariente" ///
-    88 "88 - No responde" ///
+    17 "17 - No Pariente" ///
+    88 "88 - No Responde" ///
     99 "99 - No sabe"
     
 encode PR_2_1, gen(pr_2_1) label(PR_2_1)
@@ -137,20 +137,20 @@ label define PR_2_2 0 "0 - Si Mismo" ///
     3 "3 - Hijastro(a)" ///
     4 "4 - Hijo(a) adoptivo(a)" ///
     5 "5 - Hijo(a) de crianza" ///
-    6 "6 - Madre/padre" ///
+    6 "6 - Madre/Padre" ///
     7 "7 - Suegro(a)" ///
     8 "8 - Abuelo(a)" ///
     9 "9 - Nieto(a)" ///
     10 "10 - Bisnieto(a)" ///
-    11 "11 - Yerno/nuera" ///
+    11 "11 - Yerno/Nuera" ///
     12 "12 - Hermano(a)/Hermanastro(a)" ///
     13 "13 - Cuñado(a)/Concuños/Primos" ///
     14 "14 - Tío(a)" ///
     15 "15 - Sobrino(a)" ///
     16 "16 - Otro pariente" ///
-    17 "17 - No pariente" ///
-18 "18 - No Hay Otro Participante" ///
-    88 "88 - No responde" ///
+    17 "17 - No Pariente" ///
+	18 "18 - No Hay Otro Participante" ///
+    88 "88 - No Responde" ///
     99 "99 - No sabe"
    
 encode PR_2_2, gen(pr_2_2) label(PR_2_2)
@@ -173,7 +173,7 @@ label define PR_2_2_ 0 "si mismo" ///
     15 "sobrino(a)" ///
     16 "otro pariente" ///
     17 "no pariente" ///
-18 "no hay otro participante" ///
+	18 "no hay otro participante" ///
     88 "no responde" ///
     99 "no sabe"
    

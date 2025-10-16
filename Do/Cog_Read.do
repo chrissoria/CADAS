@@ -5027,25 +5027,25 @@ gen c_35_score = 0
 
 
 
-replace c_35_score = (c_34_score + 1) if (c_35_1 == 1 & c_33_a == 0 & c_34_a == 0 & c_35_a == 0)
+replace c_35_score = (c_35_score + 1) if (c_35_1 == 1 & c_33_a == 0 & c_34_a == 0 & c_35_a == 0)
 
-replace c_35_score = (c_34_score + 1) if (c_35_2 == 1 & c_33_a == 0 & c_34_a == 0 & c_35_a == 0)
+replace c_35_score = (c_35_score + 1) if (c_35_2 == 1 & c_33_a == 0 & c_34_a == 0 & c_35_a == 0)
 
-replace c_35_score = (c_34_score + 1) if (c_35_3 == 1 & c_33_a == 0 & c_34_a == 0 & c_35_a == 0)
+replace c_35_score = (c_35_score + 1) if (c_35_3 == 1 & c_33_a == 0 & c_34_a == 0 & c_35_a == 0)
 
-replace c_35_score = (c_34_score + 1) if (c_35_4 == 1 & c_33_a == 0 & c_34_a == 0 & c_35_a == 0)
+replace c_35_score = (c_35_score + 1) if (c_35_4 == 1 & c_33_a == 0 & c_34_a == 0 & c_35_a == 0)
 
-replace c_35_score = (c_34_score + 1) if (c_35_5 == 1 & c_33_a == 0 & c_34_a == 0 & c_35_a == 0)
+replace c_35_score = (c_35_score + 1) if (c_35_5 == 1 & c_33_a == 0 & c_34_a == 0 & c_35_a == 0)
 
-replace c_35_score = (c_34_score + 1) if (c_35_6 == 1 & c_33_a == 0 & c_34_a == 0 & c_35_a == 0)
+replace c_35_score = (c_35_score + 1) if (c_35_6 == 1 & c_33_a == 0 & c_34_a == 0 & c_35_a == 0)
 
-replace c_35_score = (c_34_score + 1) if (c_35_7 == 1 & c_33_a == 0 & c_34_a == 0 & c_35_a == 0)
+replace c_35_score = (c_35_score + 1) if (c_35_7 == 1 & c_33_a == 0 & c_34_a == 0 & c_35_a == 0)
 
-replace c_35_score = (c_34_score + 1) if (c_35_8 == 1 & c_33_a == 0 & c_34_a == 0 & c_35_a == 0)
+replace c_35_score = (c_35_score + 1) if (c_35_8 == 1 & c_33_a == 0 & c_34_a == 0 & c_35_a == 0)
 
-replace c_35_score = (c_34_score + 1) if (c_35_9 == 1 & c_33_a == 0 & c_34_a == 0 & c_35_a == 0)
+replace c_35_score = (c_35_score + 1) if (c_35_9 == 1 & c_33_a == 0 & c_34_a == 0 & c_35_a == 0)
 
-replace c_35_score = (c_34_score + 1) if (c_35_10 == 1 & c_33_a == 0 & c_34_a == 0 & c_35_a == 0)
+replace c_35_score = (c_35_score + 1) if (c_35_10 == 1 & c_33_a == 0 & c_34_a == 0 & c_35_a == 0)
 
 *for this variable, .r means refused to answer
 

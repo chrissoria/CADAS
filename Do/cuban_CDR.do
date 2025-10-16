@@ -22,7 +22,7 @@ include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
 
 cd "`path'/CUBA_out"
 
-import excel using "../CUBA_in/CogEval-sample t 2025-07-03.xls", firstrow clear
+import excel using "../CUBA_in/CogEval-sample t con pid.xls", firstrow clear
 
 gen c_country_str = "2"
 
@@ -39,17 +39,23 @@ replace Participante = Participante*10 if Participante < 1
 gen c_particid_str = string(Participante, "%12.0f")
 replace c_particid_str = cond(strlen(c_particid_str) == 1, "0" + c_particid_str, c_particid_str)
 
-
+drop pid
 gen pid = c_country_str + c_clustid_str + c_houseid_str + c_particid_str
 gen hhid = c_country_str + c_clustid_str + c_houseid_str
+
+*juan, or somebody, seems to have typed in the wrong houseid here
+replace pid = "20302901" if pid == "20302501"
+replace pid = "20302501" if pid == "20302502"
 
 rename Diagnóstico cuban_clinical_diagnosis
 rename CDR cuban_CDR
 rename F supp
+rename Sexo CDR_sex
+rename Edad_en_resumen CDR_age
 
 replace cuban_clinical_diagnosis = supp if cuban_clinical_diagnosis == ""
 
-keep pid cuban_clinical_diagnosis cuban_CDR
+keep pid cuban_clinical_diagnosis cuban_CDR CDR_sex CDR_age
 
 drop if pid == ""
 drop if cuban_clinical_diagnosis == ""
@@ -68,15 +74,3 @@ order pid cuban_clinical_diagnosis cuban_CDR cuba_CDR_binary
 drop dup_pid_flag
 
 save Cuba_CDR.dta, replace
-
-*next, I want to know which cases within which datasets aren't matching on the CDR dataset
-
-foreach data in cog socio infor {
-	preserve
-	merge m:m pid using `data'
-	keep if _merge == 1
-	capture export excel using "duplicates/`data'_CDR_non_matches.xlsx", replace firstrow(variables)
-	restore
-}
-
-clear

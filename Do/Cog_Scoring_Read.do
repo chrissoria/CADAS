@@ -57,6 +57,7 @@ else if `country' == 2 {
     insheet using "../CUBA_in/Cog_Scoring_cleaned.csv", comma names clear
 }
 }
+replace cs_country = "2 - Cuba" if cs_country == "" & `country' == 2
 
 capture gen cs_country_num = 0
 replace cs_country_num = 1 if cs_country == "1 - República Dominicana"
@@ -123,7 +124,7 @@ label variable cs_79_3 "79.3. Rectángulos cruzados (0-2)"
 label variable cs_79_4 "79.4. El cubo (0-4)"
 
 *Fix animal scoring so cs_40 is the #UNIQUE animals listed
-replace cs_40 = cs_40 - cs_41 if (cs_40 < . & cs_41 < .)
+replace cs_40 = cs_40 - cs_41 if (cs_40 < . & cs_41 < .) & `country' == 1
 
  save Cog_Scoring.dta, replace
 

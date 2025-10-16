@@ -35,7 +35,34 @@ else if `country' == 2 {
 }
 }
 
+input cs_country cs_32 cs_clustid cs_houseid cs_particid cs_40 cs_41
+	2 0 1 253 1 5 1 1
+	2 2 1 253 2 14 0
+	2 2 1 255 3 14 1
+	2 . 1 258 1 12 1
+	2 2 1 260 1 21 1
+	2 1 1 262 1 14  0
+	2 2 1 265 1 20 2
+	2 1 1 266 1 . .
+	2 2 1 267 1 19 2
+	2 2 1 267 2 24 0
+	2 2 1 272 1 11 0
+	2 2 1 275 1 19 1
+	2 0 4 149 1 10 0
+	2 0 4 151 1 7 3
+	2 . 4 152 1 3 2
+	2 2 4 152 2 24 0
+	2 0 8 2 2 3 1
+	2 2 8 163 1 . .
+	2 2 8 164 1 19 0
+	2 1 8 194 1 9 0
+end
+save "../CUBA_in/ty_cog_scores.dta", replace
+clear all
+
 insheet using "`path'/CUBA_in/Cog_Scoring.csv", comma names clear
+
+append using "../CUBA_in/ty_cog_scores.dta", force
 
 *instructions from Tania cluster 13
 drop if inlist(globalrecordid,"fec63a23-6edd-480b-97dd-00f266da0787", "6e8acd06-10e8-47bc-8873-7353012c3346")
@@ -56,6 +83,7 @@ replace cs_particid = 2 if globalrecordid == "134f5748-c117-4406-992a-bfadc311b3
 *my own deduction based on casos incompletos
 replace cs_particid = 1 if globalrecordid == "054eb406-1320-4a42-a651-35660e25e889"
 
+
 export delimited using "`path'/CUBA_in/Cog_Scoring_cleaned.csv", replace nolabel
 
 gen cs_country_num = 2
@@ -74,6 +102,7 @@ replace cs_particid_str = cond(strlen(cs_particid_str) == 1, "0" + cs_particid_s
 gen pid = cs_country_str + cs_clustid_str + cs_houseid_str + cs_particid_str
 gen hhid = cs_country_str + cs_clustid_str + cs_houseid_str
 drop cs_country_str cs_clustid_str cs_houseid_str cs_particid_str
+
 
  duplicates report pid
  sort pid
@@ -117,6 +146,8 @@ insheet using "`path'/CUBA_in/Cog_Child.csv", comma names clear
  
   duplicates report globalrecordid
  duplicates drop globalrecordid, force
+*looks like a practice "junk" case
+drop if globalrecordid == "d8482cd2-d812-4c8c-904b-bfea2f017441"
  
 *parent shows cluster 4, child shows 2. Cluster 4 participant missing their cog, must be changed to cluster 4
 replace c_clustid = 4 if globalrecordid == "d2cd92e6-06df-4926-96bd-235c550ab868" 
@@ -219,6 +250,11 @@ drop if inlist(globalrecordid, "266de225-2bd2-4cca-8dfd-64be1ed2dc64","b40c810b-
 replace c_clustid = 2 if globalrecordid == "6e69b867-7f71-4182-a9b0-9a5f3b632d06"
 replace c_houseid = 46 if globalrecordid == "6e69b867-7f71-4182-a9b0-9a5f3b632d06"
 replace c_particid = 1 if globalrecordid == "6e69b867-7f71-4182-a9b0-9a5f3b632d06"
+
+*9/19/25 sleuthing
+*entry is mostly blank
+drop if inlist(globalrecordid, "62b3d9b9-51ab-4e84-aea4-b32a4f4cf78f", "0b856593-42be-4fc1-8e98-f79684f6a0b4", "9cc0ed25-416f-4b8d-b84c-1d421b87e391")
+replace c_houseid = 29 if globalrecordid == "ee2ca443-56ad-4395-a68f-ae52d6b76859"
 
 replace c_country = 2
 
