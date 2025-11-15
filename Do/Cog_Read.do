@@ -4387,6 +4387,9 @@ if `country' == 0 {
 }
 */
 
+*looks like there's two cases here done in the same house (maybe two parts of the same unit?). For now, we're changing the woman to B
+replace pid = "11206701B" if globalrecordid == "1938d71f-226e-4591-a936-1e0717ed930d"
+
 save Cog.dta, replace
  
  if `country' == 0 {

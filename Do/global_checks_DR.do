@@ -209,7 +209,10 @@ save resumen_pid.dta,replace
 clear all
  
  use rosters_merged
-
+ 
+*10/17/25
+*looks like there's two cases here done in the same house (maybe two parts of the same unit?). For now, we're changing the woman to B
+replace pid = "11206701B" if globalrecordid == "6f93ab7a-27ef-4d43-af98-b6a6d310b2d0"
  
 drop pid hhid
 
@@ -385,6 +388,11 @@ capture export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(
  clear all
  
  use Phys
+ 
+ *10/17/25 cleaning
+ *looks like there's two cases here done in the same house (maybe two parts of the same unit?). For now, we're changing the woman to B
+ replace pid = "11206701B" if globalrecordid == "671ca23a-5557-44b8-b6c8-be0b00a061be"
+ 
  drop pid
  drop hhid
  
@@ -489,6 +497,11 @@ drop if inlist(globalrecordid, "515d1632-ce79-493d-9fbf-9897ffbffc5c")
  
  *instructions from guillermina
 drop if inlist(globalrecordid, "7bd0cbfa-4400-42a6-bc25-096aface341b","f40f5149-111e-4181-bdfc-aaa7bfd9ceb1","219fcb2c-658d-45cd-96bd-162d93b777ce")
+
+*10/17/25 cleaning
+*looks like there's two cases here done in the same house (maybe two parts of the same unit?). For now, we're changing the woman to B
+replace pid = "11206701B" if globalrecordid == "45ac63ba-c60c-448e-8e28-2250f8ad67d0"
+
  drop pid hhid
  
  gen i_country_str = string(i_country, "%12.0f")

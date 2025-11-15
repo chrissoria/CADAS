@@ -58,6 +58,27 @@ replace c_clustid = 176 if globalrecordid == "25290482-82e8-4ca9-83ef-f451d9d1c4
 *these look like junk
 drop if inlist(globalrecordid, "37134dc6-03b8-4b78-afad-234dc6bc522a", "3fe9ab18-9ced-4313-a365-ca12ab9d08a4", "a211402c-0be5-4e33-8944-d1b1b2fd56ae","0f793ca8-fc3d-4f19-be72-bd460bbd850a")
 
+*10/17/25 cleaning
+*these look empty
+drop if inlist(globalrecordid, "6c6ecc7e-6d38-4fc9-b4a6-16e69d099777", "d08f1bf6-c6de-42ed-948e-06c4aec0f841", "ae3a979b-cb38-4301-816d-f933a4a726a1", "30f2a7fe-8d64-45d5-b702-04d33bf8227c")
+drop if inlist(globalrecordid, "63cf9a3a-21e2-4865-8c6c-413d45d25827", "317d2237-9673-4e28-8cfe-5a102700b61a", "9d75b2f3-0bca-42c4-bddc-dd928f9f9d3c", "b9cc0e0c-320c-4fac-8ea5-013d5e3c8110")
+*this stops after c_35
+drop if inlist(globalrecordid, "290e3a62-503b-4903-8ccc-c17fcc6edc35")
+*this stops after c_20
+drop if inlist(globalrecordid, "101fea40-c67a-4f44-bff2-d835a8cef607")
+*dropping because duplicate and all images have the same ID written, kept the one on same day as all other surveys
+drop if inlist(globalrecordid, "f118b128-a64c-489b-92ff-f4984435fc30")
+*1-1-1 is suspicious as practice, almost all blank in both duplicates, but a complete Socio has all data on Sep 2, 2023
+drop if inlist(globalrecordid, "6c6ecc7e-6d38-4fc9-b4a6-16e69d099777", "c4d6e1ad-e144-49ef-89f1-b7d814d22134")
+*duplicate is not fully complete, different date and missing all images/audio
+drop if inlist(globalrecordid, "4304f88a-91de-47e9-9823-f4845130a017")
+*looks like there's two cases here done in the same house (maybe two parts of the same unit?). For now, we're changing the woman to B
+*replace pid = "11206701B" if globalrecordid == "1938d71f-226e-4591-a936-1e0717ed930d" //* moved this line to Cog_Read.do since there is no PID here
+*pent has dif pid
+replace c_particid = 2 if globalrecordid == "5562458f-2fde-4290-8f2d-d6d74835f2c8"
+*parent pid is diff, and 47-25-1 is missing a cog
+replace c_clustid = 47 if globalrecordid == "f14da436-08b5-42c3-b6f3-c955b97d23de"
+
 foreach var in c_clustid c_particid c_houseid {
 	replace `var' = int(`var')
 }

@@ -43,113 +43,7 @@ keep pid
 
 save resumen_pid.dta,replace 
  
- use rosters_participants
- 
-  duplicates report globalrecordid
- duplicates drop globalrecordid, force
- 
-   *dropped below because junk
-  drop if inlist(globalrecordid, "6960e6a6-29c2-4567-8826-48f40918d8e0","dd6d514a-0dc6-4ba6-ac6b-6d6ba99b9585","6960e6a6-29c2-4567-8826-48f40918d8e0","44842eb7-f3f0-4a28-bd83-e4d895bf44fe","0d9ad36e-e19e-4a95-8a75-fae393587e17")
-  *is dropped below has person id 201004, for which there appears to be two entries for (both have the same age, gender, etc) I'm dropping the one that looks more correct
-  drop if inlist(globalrecordid, "34bab32c-fbce-492b-b488-e9bbeed4f14f")
-  *is dropped because duplicate, contradicting gender, and missing info has personid 20103501
-  drop if inlist(globalrecordid, "1444788e-6d3b-439d-b241-468191f55b5a")
-  *is dropped below because suplicate and another case has all of the exact same information
-  drop if inlist(globalrecordid, "1e5c9452-4c2a-4a43-831d-dbb2616b8d1e")
-  *two weird things about the case below
-  *First, both cases have the same male gender
-  *Second, both have the same person number, but one is "esposo/a" and the other is si mismo
-  *for now, I will recode the case the came after as person 2, ask TANIA
-  
-*instructions from Tania team clust 5
-drop if inlist(globalrecordid, "f12600fb-7c44-4462-878d-dae43926c422")
-  
-  replace pr_person_number = 2 if globalrecordid == "1303aefe-487f-4e40-a58b-c4e1ffc323c2"
-  
-*deduced this based on the registro and age
-replace pr_person_number = 1 if globalrecordid == "a78b55a0-0890-49e0-8723-a3794b07f456"
-
-drop if inlist(globalrecordid, "fda49a83-fa8c-4160-bd85-2240c3388bd3", "8a2f117f-5e28-4fd9-86e3-caa506d31eb9")
-  
-  /*weird thing about the cases below: they don't have a uniqueid but have data for everything else, which doesn't make sense. Look more closely, but for now, delete. 
-  globalrecordid
-23e02912-ef40-487e-ad88-f69ce3416247
-4660c5ec-e9f8-481a-bbee-8b6fac1dd691
-*/
-
-drop if inlist(globalrecordid, "23e02912-ef40-487e-ad88-f69ce3416247", "4660c5ec-e9f8-481a-bbee-8b6fac1dd691")
-
-*The cases below are all empty
-
-drop if inlist(globalrecordid, "c60a8e21-00db-43cc-9d7d-be6402c911c2", "9a9224a0-608d-4d11-a64a-406e5346d1c4", "16f8603e-14af-46e8-9fd0-97fa9346c914", "a4429ae1-422d-42a3-81d2-698ecf133920")
-drop if inlist(globalrecordid, "5822714e-e9f4-4ed0-aea9-cf12ea2028fb", "a6e06d9d-d1a6-4fe7-97ce-2219264bdcd9", "e30e095d-5ee8-4990-9202-c2636cde7d7d", "988608d6-0e14-425d-a364-c77e97787690")
-drop if inlist(globalrecordid, "ea4d729c-822d-4d25-bbe6-7354d656f6f8", "dd489df6-26c6-4b0e-b376-105e2d64c06b", "64a2fa97-87ee-4345-8107-1e778515cef7", "7bf4a896-f7a4-4c27-8b42-317bc1fbb6a6")
-drop if inlist(globalrecordid, "6f457671-88d8-4f7f-9131-d6583219830a", "6cb79064-b40d-4b0c-b05a-275b4cbcd99a", "c025c31e-5b89-49ec-9602-b90cfb4745af", "2602e5bc-e5c6-444f-bcf8-d70cc1b56fc2")
-drop if inlist(globalrecordid, "96afbbcb-ffe0-4e84-bcf2-29563054cf0d", "4660c5ec-e9f8-481a-bbee-8b6fac1dd691", "2b7ae8d2-93ca-4d35-bac3-9f488b402fb5", "0d7887b5-10d9-48fb-9427-15224504323a")
-drop if inlist(globalrecordid, "0db2f741-8680-4774-8516-42bae7764cc1", "7b9478b6-a938-4c22-84b4-f8ef0d139108", "235cc596-a563-4012-8d73-36537722e0a6", "cc6068c7-bbb7-4127-a384-60a609b4edfa")
-drop if inlist(globalrecordid, "ace432e5-cfb7-4d94-bbf7-5cd3cd8bdef1", "7eb18a35-341a-4503-a92a-40d26c8ae542", "d224d57b-89d3-492d-aa20-7c82ea4ed9c0", "9fa9e7df-d127-4c1d-969f-6712cc607c49")
-drop if inlist(globalrecordid, "a137357c-af75-4610-9fb9-993abe0f0b12", "2cff098f-1ab8-4376-b563-1bae3471dd6d", "a545cdc6-96a4-4da3-a105-f10dd586d623", "7c40c318-d80a-40cb-bc83-5ddb9e8deacc")
-drop if inlist(globalrecordid, "9b7da80c-6f80-4f02-bbf6-1896ffe5647a", "3bc177c7-f239-4615-a7d7-540775250616", "e9d26d57-68f6-4ffa-b8c2-c58dae58a336")
-
-*the case below is a duplicate and is less complete than the other
-
-drop if inlist(globalrecordid, "586ea9af-1d39-40f6-9904-c1fce6295584")
-drop pid hhid
-gen r_country_str = string(r_country, "%12.0f")
-
-gen r_clustid_str = string(r_clustid, "%12.0f")
-replace r_clustid_str = cond(strlen(r_clustid_str) == 1, "0" + r_clustid_str, r_clustid_str)
-
-gen r_houseid_str = string(r_houseid, "%03.0f")
-replace r_houseid_str = cond(strlen(r_houseid_str) == 1, "00" + r_houseid_str, r_houseid_str)
-replace r_houseid_str = cond(strlen(r_houseid_str) == 2, "0" + r_houseid_str, r_houseid_str)
-
-gen r_particid_str = string(pr_person_number, "%12.0f")
-replace r_particid_str = cond(strlen(r_particid_str) == 1, "0" + r_particid_str, r_particid_str)
-
-gen pid = r_country_str + r_clustid_str + r_houseid_str + r_particid_str
-gen hhid = r_country_str + r_clustid_str + r_houseid_str
-drop r_country_str r_clustid_str r_houseid_str r_particid_str
-
-*there was no participant 2 in this household
-drop if pid == "21300802"
-  
- duplicates report pid
- *this older version of stata doesn't have an easy way to identify duplicate personid, so I'll do it manually
- sort pid
- gen is_duplicate = pid[_n] == pid[_n-1]
- list if is_duplicate
- drop is_duplicate
- 
-*some cases are being duplicated or kept after merges from files that aren't from the tablet
-drop if globalrecordid == ""
- 
- save rosters_participants.dta,replace
- 
-gen is_duplicate = pid[_n] == pid[_n-1]
-
-* Mark all duplicate observations with 1 and non-duplicates with 0
-duplicates tag pid, gen(duplicate_tag)
-
-* Keep all observations with duplicate pid
-keep if duplicate_tag == 1
-
-drop duplicate_tag
-
-* Get the list of variable names
-unab varlist : _all
-
-* Convert variables with value labels into string variables
-foreach var of varlist `varlist' {
-    if "`: value label `var''" != "" {
-        tostring `var', replace
-    }
-}
-
-* Export data to Excel
-capture export excel using "duplicates/roster_duplicates.xlsx", replace firstrow(variables)
- 
- clear all
+clear all
  
 use Socio
 *we're dropping because pid 20409801 id duplicate, but this case looks mostly empty, we think it's the same person based on gender and resposne to some questions
@@ -421,6 +315,11 @@ capture export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(
  
  duplicates report globalrecordid
  duplicates drop globalrecordid, force
+* all of these look mostly empty
+drop if inlist(globalrecordid, "e51bb04e-5235-49e7-aec9-a71e28d9daec", "7e199c51-2b9e-49d4-a433-cde348cb06a5","cb3a0571-3bf0-4f6e-8779-ada089382962","689ce78f-4818-4749-9080-7a7fc6b4160c")
+drop if inlist(globalrecordid, "f6df7c1b-4ca4-4612-91fe-5595eb1703c4", "c64c51d3-5c94-4577-aa28-050befaf4513","78a1e129-3ca1-4054-9355-be51cedd1f93","5205b2f8-14e7-4e40-9ab0-46fa71a5977d")
+drop if inlist(globalrecordid, "20f67e1c-35c1-4dbd-b206-cd4a64e180b9", "4cd20886-6f5f-4760-8585-dbdf65fff747","e26993dd-b0fc-429c-89ac-34a6463ab100")
+
  *instructions from Tania cluster 13
  replace p_houseid = 2 if globalrecordid == "117bbe12-1e4d-4ab6-8964-a90edd569d29"
  
@@ -506,6 +405,9 @@ drop if inlist(globalrecordid, "48135c80-626c-4114-b103-a8a32e5a86a2")
 *Ty's deduced from casos incompletos
 replace p_clustid = 1 if globalrecordid == "577ba37e-f73b-46be-831a-5c10f1655afb" 
 replace p_clustid = 1 if globalrecordid == "840d3ff1-520a-4a0f-95b1-78a15c81d5f6" 
+
+* duplicate, 7 feet tall no teeth, probably a mistake, other phys more recent but data looks more realistic (generally)
+replace p_country = 5 if globalrecordid == "a5657c1d-da83-438e-843d-dc594e66739d"
 
 replace p_clustid = p_conglid2 if p_clustid == .i & p_conglid2 != .
 replace p_clustid = p_conglid2 if p_clustid == . & p_conglid2 != .
@@ -599,16 +501,23 @@ foreach var of varlist `varlist' {
     }
 }
 
+merge m:m pid using Cuba_CDR.dta
+drop _merge
+
 * Export data to Excel
 export excel using "duplicates/phys_duplicates.xlsx", replace firstrow(variables)
  
- clear all
+clear all
  
 use Infor
 
 duplicates drop globalrecordid, force
  
  drop pid hhid
+*instructions from Tania to resolve this duplicate
+replace i_particid = 2 if globalrecordid == "a91f1042-c638-44b3-9752-e44bc2e482e1"
+*work with Ty to replace gender/age
+
 * other surveys from this person were done on the same day as this, person is missing informant, household socio, pid's don't match in parent
 replace i_houseid = 148 if globalrecordid == "c31b5fe2-8353-445a-b65e-2835c87d1d4d"
 *based on the timing of the socio, person 1 was busy doing socio, so other case must be informant person 2 informing on person one, meaning this informant was person 1 informing on person 2 (which is )
@@ -1314,10 +1223,13 @@ export excel using "duplicates/informant_duplicates.xlsx", replace firstrow(vari
  
 use Household
 
+order hhid hhid2 hhid_original globalrecordid fkey h_date
+
 duplicates drop globalrecordid, force
 *these all look like empty duplicates
 drop if inlist(globalrecordid, "e51bb04e-5235-49e7-aec9-a71e28d9daec", "7e199c51-2b9e-49d4-a433-cde348cb06a5", "cb3a0571-3bf0-4f6e-8779-ada089382962", "689ce78f-4818-4749-9080-7a7fc6b4160c", "f6df7c1b-4ca4-4612-91fe-5595eb1703c4")
 drop if inlist(globalrecordid, "c64c51d3-5c94-4577-aa28-050befaf4513", "78a1e129-3ca1-4054-9355-be51cedd1f93", "156f5263-2ab5-4336-9290-d7a3c8f97034", "5205b2f8-14e7-4e40-9ab0-46fa71a5977d", "20f67e1c-35c1-4dbd-b206-cd4a64e180b9", "4cd20886-6f5f-4760-8585-dbdf65fff747", "e26993dd-b0fc-429c-89ac-34a6463ab100")
+drop if inlist(globalrecordid, "6a3be739-89ef-48a0-b8f8-821f8747c8ff","4100df37-e7b0-4020-bdc3-40033e9bf0b2","0301d117-8897-411f-a8a9-89d9b6572d50")
 *missing cluster but present in the parent
 replace h_clustid = 2 if globalrecordid == "e003fc3e-a636-4860-b953-43184fc04303"
 *they input wrong cluster first, then changed only in the parent
@@ -1418,6 +1330,273 @@ foreach var of varlist `varlist' {
 
 * Export data to Excel
 export excel using "duplicates/Household_duplicates.xlsx", replace firstrow(variables)
+
+clear all
+
+use Roster_Parent
+
+gen r_country_num = 2
+gen r_country_str = string(r_country_num, "%12.0f")
+
+gen r_clustid_str = string(r_clustid, "%12.0f")
+replace r_clustid_str = cond(strlen(r_clustid_str) == 1, "0" + r_clustid_str, r_clustid_str)
+
+gen r_houseid_str = string(r_houseid, "%03.0f")
+replace r_houseid_str = cond(strlen(r_houseid_str) == 1, "00" + r_houseid_str, r_houseid_str)
+replace r_houseid_str = cond(strlen(r_houseid_str) == 2, "0" + r_houseid_str, r_houseid_str)
+
+
+gen hhid = r_country_str + r_clustid_str + r_houseid_str
+drop r_country_str r_clustid_str r_houseid_str
+
+ duplicates report hhid
+ sort hhid
+ gen is_duplicate = hhid[_n] == hhid[_n-1]
+ list if is_duplicate
+ 
+ * Mark all duplicate observations with 1 and non-duplicates with 0
+duplicates tag hhid, gen(duplicate_tag)
+
+* Keep all observations with duplicate pid
+keep if duplicate_tag == 1
+
+drop duplicate_tag
+
+* Get the list of variable names
+unab varlist : _all
+
+* Convert variables with value labels into string variables
+foreach var of varlist `varlist' {
+    if "`: value label `var''" != "" {
+        tostring `var', replace
+    }
+}
+
+* Export data to Excel
+export excel using "duplicates/roster_parent_duplicates.xlsx", replace firstrow(variables)
+
+clear
+
+use MainHousehold
+
+gen r_country_num = 2
+gen r_country_str = string(r_country_num, "%12.0f")
+
+gen r_clustid_str = string(r_clustid, "%12.0f")
+replace r_clustid_str = cond(strlen(r_clustid_str) == 1, "0" + r_clustid_str, r_clustid_str)
+
+gen r_houseid_str = string(r_houseid, "%03.0f")
+replace r_houseid_str = cond(strlen(r_houseid_str) == 1, "00" + r_houseid_str, r_houseid_str)
+replace r_houseid_str = cond(strlen(r_houseid_str) == 2, "0" + r_houseid_str, r_houseid_str)
+
+
+gen hhid = r_country_str + r_clustid_str + r_houseid_str
+drop r_country_str r_clustid_str r_houseid_str
+
+ duplicates report hhid
+ sort hhid
+ gen is_duplicate = hhid[_n] == hhid[_n-1]
+ list if is_duplicate
+ 
+ * Mark all duplicate observations with 1 and non-duplicates with 0
+duplicates tag hhid, gen(duplicate_tag)
+
+* Keep all observations with duplicate pid
+keep if duplicate_tag == 1
+
+drop duplicate_tag
+
+* Get the list of variable names
+unab varlist : _all
+
+* Convert variables with value labels into string variables
+foreach var of varlist `varlist' {
+    if "`: value label `var''" != "" {
+        tostring `var', replace
+    }
+}
+
+* Export data to Excel
+export excel using "duplicates/main_household_duplicates.xlsx", replace firstrow(variables)
+
+clear all
+
+use Participants
+
+*rename globalrecordid partic_globalrecordid
+*rename globalrecordid_parent globalrecordid
+
+merge m:1 globalrecordid using MainHousehold 
+
+gen r_country_str = string(pr_country, "%12.0f")
+
+gen r_clustid_str = string(r_clustid, "%12.0f")
+replace r_clustid_str = cond(strlen(r_clustid_str) == 1, "0" + r_clustid_str, r_clustid_str)
+
+gen r_houseid_str = string(r_houseid, "%03.0f")
+replace r_houseid_str = cond(strlen(r_houseid_str) == 1, "00" + r_houseid_str, r_houseid_str)
+replace r_houseid_str = cond(strlen(r_houseid_str) == 2, "0" + r_houseid_str, r_houseid_str)
+
+gen r_particid_str = string(pr_person_number, "%12.0f")
+replace r_particid_str = cond(strlen(r_particid_str) == 1, "0" + r_particid_str, r_particid_str)
+
+gen pid = r_country_str + r_clustid_str + r_houseid_str + r_particid_str
+gen hhid = r_country_str + r_clustid_str + r_houseid_str
+drop r_country_str r_clustid_str r_houseid_str r_particid_str
+
+*there was no participant 2 in this household
+drop if pid == "21300802"
+
+*merging to the CDR
+drop _merge
+merge m:m pid using Cuba_CDR.dta
+drop _merge
+
+*some cases are being duplicated or kept after merges from files that aren't from the tablet
+drop if globalrecordid == ""
+ 
+ duplicates report pid
+ gen is_duplicate = pid[_n] == pid[_n-1]
+ sort pid
+ list if is_duplicate
+ drop is_duplicate
+ 
+ *The parent is exporting person id, etc, but not the child. It makes no sense that this would be the case.
+
+ *Confirm that this is the case in epi info sync file. 
+
+ *There's 101 cases so it's possible these are just junk. I'll need to confirm. 
+
+ *I'll need to merge the child to the parent to extract pid and try to process all the data again
+
+ *skip for now
+ 
+
+
+gen is_duplicate = pid[_n] == pid[_n-1]
+
+* Mark all duplicate observations with 1 and non-duplicates with 0
+duplicates tag pid, gen(duplicate_tag)
+
+* Keep all observations with duplicate pid
+keep if duplicate_tag == 1
+
+drop duplicate_tag
+
+* Get the list of variable names
+unab varlist : _all
+
+* Convert variables with value labels into string variables
+foreach var of varlist `varlist' {
+    if "`: value label `var''" != "" {
+        tostring `var', replace
+    }
+}
+
+order pid
+
+* Export data to Excel
+export excel using "duplicates/participants_duplicates.xlsx", replace firstrow(variables)
+
+clear all
+
+use NonParticipants
+
+merge m:1 globalrecordid using MainHousehold 
+
+gen r_country_num = 2
+gen r_country_str = string(r_country_num, "%12.0f")
+
+gen r_clustid_str = string(r_clustid, "%12.0f")
+replace r_clustid_str = cond(strlen(r_clustid_str) == 1, "0" + r_clustid_str, r_clustid_str)
+
+gen r_houseid_str = string(r_houseid, "%03.0f")
+replace r_houseid_str = cond(strlen(r_houseid_str) == 1, "00" + r_houseid_str, r_houseid_str)
+replace r_houseid_str = cond(strlen(r_houseid_str) == 2, "0" + r_houseid_str, r_houseid_str)
+
+* generating an arbitrary non-participant id value
+gsort globalrecordid -r_4
+by globalrecordid: gen non_partici_id = _n
+
+gen hhid = r_country_str + r_clustid_str + r_houseid_str
+drop r_country_str r_clustid_str r_houseid_str
+
+ duplicates report hhid
+ sort hhid
+ gen is_duplicate = hhid[_n] == hhid[_n-1]
+ list if is_duplicate
+ 
+ * Mark all duplicate observations with 1 and non-duplicates with 0
+duplicates tag hhid, gen(duplicate_tag)
+
+* Keep all observations with duplicate pid
+keep if duplicate_tag == 1
+
+drop duplicate_tag
+
+* Get the list of variable names
+unab varlist : _all
+
+* Convert variables with value labels into string variables
+foreach var of varlist `varlist' {
+    if "`: value label `var''" != "" {
+        tostring `var', replace
+    }
+}
+
+* Export data to Excel
+export excel using "duplicates/non_participants_duplicates.xlsx", replace firstrow(variables)
+
+clear all
+
+use NonResidentChildren
+
+*rename globalrecordid non_res_globalrecordid
+*rename fkey globalrecordid
+
+merge m:1 globalrecordid using MainHousehold 
+
+gen cr_country_num = 2
+gen cr_country_str = string(cr_country_num, "%12.0f")
+
+gen r_clustid_str = string(r_clustid, "%12.0f")
+replace r_clustid_str = cond(strlen(r_clustid_str) == 1, "0" + r_clustid_str, r_clustid_str)
+
+gen r_houseid_str = string(r_houseid, "%03.0f")
+replace r_houseid_str = cond(strlen(r_houseid_str) == 1, "00" + r_houseid_str, r_houseid_str)
+replace r_houseid_str = cond(strlen(r_houseid_str) == 2, "0" + r_houseid_str, r_houseid_str)
+
+gsort globalrecordid -cr_5
+by globalrecordid: gen non_res_id = _n
+
+gen hhid = cr_country_str + r_clustid_str + r_houseid_str
+drop cr_country_str r_clustid_str r_houseid_str
+
+ duplicates report hhid
+ sort hhid
+ gen is_duplicate = hhid[_n] == hhid[_n-1]
+ list if is_duplicate
+ 
+ * Mark all duplicate observations with 1 and non-duplicates with 0
+duplicates tag hhid, gen(duplicate_tag)
+
+* Keep all observations with duplicate pid
+keep if duplicate_tag == 1
+
+drop duplicate_tag
+
+* Get the list of variable names
+unab varlist : _all
+
+* Convert variables with value labels into string variables
+foreach var of varlist `varlist' {
+    if "`: value label `var''" != "" {
+        tostring `var', replace
+    }
+}
+
+* Export data to Excel
+export excel using "duplicates/non_participants_duplicates.xlsx", replace firstrow(variables)
 
 clear all
 

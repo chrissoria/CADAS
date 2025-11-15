@@ -55,7 +55,7 @@ rename Edad_en_resumen CDR_age
 
 replace cuban_clinical_diagnosis = supp if cuban_clinical_diagnosis == ""
 
-keep pid cuban_clinical_diagnosis cuban_CDR CDR_sex CDR_age
+keep pid hhid cuban_clinical_diagnosis cuban_CDR CDR_sex CDR_age
 
 drop if pid == ""
 drop if cuban_clinical_diagnosis == ""
@@ -68,6 +68,7 @@ bysort pid: drop if _n == 1 & dup_pid_flag > 0
 
 gen cuba_CDR_binary = 0 if cuban_CDR != .
 replace cuba_CDR_binary = 1 if cuban_CDR > .5 & cuban_CDR != .
+*replace cuba_CDR_binary = 0 if cuban_CDR == 2
 
 order pid cuban_clinical_diagnosis cuban_CDR cuba_CDR_binary
 

@@ -190,33 +190,6 @@ tab _merge
 drop _merge
 
 ********** 
-* ROSTER_PARTICIPANTS
-**********
-use rosters_participants, clear
-*keep pid pr_3 pr_4 hhid r_deviceid r_date
-rename r_deviceid numero_tableta
-gen pidr=real(pid)
-*drop if pidr==. /* check if any obs are missing pid */
-egen duplic=count(pid), by(pid) /* check for duplicate PID: should all be =1 if no duplicates */
-tab duplic /* if any duplicates, should re-do cleaning .do file then re-run this file */
-egen sd_sex=sd(pr_3), by(pid)
-egen sd_age=sd(pr_4), by(pid)
-sum sd_sex sd_age /* these should be all zero if duplicates have identical age and sex */
-sort pid
-list pid pr_3 pr_4 duplic if duplic>1 /* print duplicate obs */
-gen pid_en_listas=1 /* create indicator to use after merge with other questionnaire files */
-drop pidr duplic sd_sex sd_age
-*save rosters_check.dta, replace /* I think you could drop these lines, and save just tracker per next line */
-replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
-replace hhid = "2" + substr(hhid, 2, .) if substr(hhid, 1, 1) == "."
-merge m:m hhid using Everything_Wide
-tab pr_3 sex, miss
-list pid pr_3 sex if (pr_3 ~= sex +1) & _merge==3 /* list if sex differs between Roster and Resumen */
-corr pr_4 age
-list pid pr_4 age if abs(pr_4 - age) >2 & _merge==3 /* list if sex differs more than 2 years between Roster and Resumen */
-drop _merge
-save Everything_Wide, replace
-********** 
 * SOCIO
 **********
 use Socio, clear
@@ -237,31 +210,6 @@ list pid s_0 s_2_3 duplic if duplic>1
 gen pid_en_socio=1 
 drop pidr duplic
 *save socio_check.dta, replace
-replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
-merge m:m pid using Everything_Wide
-
-tab pr_3 s_0, miss
-list pid pr_3 s_0 if (pr_3 ~= s_0 +1) & _merge==3 /* list if sex differs between Roster and Socio */
-corr pr_4 s_2_3
-list pid pr_4 s_2_3 if abs(pr_4 - s_2_3) >2 & _merge==3 /* list if sex differs more than 2 years between Roster and Socio */
-
-drop _merge
-save Everything_Wide, replace
-
-********** 
-* PHYS
-**********
-use Phys, clear
-*keep pid p_interid p_deviceid1 p_date
-gen pidr=real(pid)
-*drop if pidr==.
-egen duplic=count(pid), by(pid)
-tab duplic
-sort pid
-list pid duplic if duplic>1 
-gen pid_en_phys=1 
-drop pidr duplic
-*save phys_check.dta, replace
 replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
 merge m:m pid using Everything_Wide
 drop _merge
@@ -326,6 +274,116 @@ drop _merge
 save Everything_Wide, replace
 
 ********** 
+* PHYS
+**********
+use Phys, clear
+*keep pid p_interid p_deviceid1 p_date
+gen pidr=real(pid)
+*drop if pidr==.
+egen duplic=count(pid), by(pid)
+tab duplic
+sort pid
+list pid duplic if duplic>1 
+gen pid_en_phys=1 
+drop pidr duplic
+*save phys_check.dta, replace
+replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
+merge m:m pid using Everything_Wide
+drop _merge
+save Everything_Wide, replace
+
+**********
+* 1066
+**********
+use 1066.dta, clear
+gen pidr = real(pid)
+drop if pidr == .
+keep pid cogscore relscore recall dem1066_score dem1066 dem1066_score_quint dem1066_quint
+egen duplic = count(pid), by(pid)
+tab duplic
+sort pid
+list pid duplic if duplic > 1
+gen pid_en_1066 = 1
+* save 1066_check.dta, replace
+replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
+merge m:m pid using Everything_Wide
+drop _merge
+save Everything_Wide, replace
+
+
+********** 
+* CONSENSUS
+**********
+
+use ConsensusVariables, clear
+drop dem1066 dem1066_score cogscore relscore recall
+replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
+merge m:m pid using Everything_Wide
+drop _merge
+save Everything_Wide, replace
+
+use "../consensus/consensus_long.dta", clear
+keep pid finalniaa_int_binary
+sort pid
+by pid: gen dup = _n == 1
+keep if dup
+drop dup
+
+save "../consensus/unique_classifications.dta", replace
+use Everything_Wide, clear
+
+merge m:1 pid using "../consensus/unique_classifications.dta"
+drop _merge
+save Everything_Wide, replace
+
+*** CUBAN CDR SUBSET **********
+*****************************
+
+if `country' == 2 {
+	merge m:m pid using "Cuba_CDR.dta"
+	drop _merge
+	save Everything_Wide, replace
+	preserve
+	keep if cuba_CDR_binary != .
+	
+	* not sure why there's duplicates (20818201 is showing up more than once)
+	bysort pid: keep if _n == 1
+	
+	save s_c_i_p_select, replace
+	restore
+}
+
+********** 
+* ROSTER_PARTICIPANTS
+**********
+
+use rosters_participants, clear
+*keep pid pr_3 pr_4 hhid r_deviceid r_date
+rename r_deviceid numero_tableta
+gen pidr=real(pid)
+*drop if pidr==. /* check if any obs are missing pid */
+egen duplic=count(pid), by(pid) /* check for duplicate PID: should all be =1 if no duplicates */
+tab duplic /* if any duplicates, should re-do cleaning .do file then re-run this file */
+egen sd_sex=sd(pr_3), by(pid)
+egen sd_age=sd(pr_4), by(pid)
+sum sd_sex sd_age /* these should be all zero if duplicates have identical age and sex */
+sort pid
+list pid pr_3 pr_4 duplic if duplic>1 /* print duplicate obs */
+gen pid_en_listas=1 /* create indicator to use after merge with other questionnaire files */
+drop pidr duplic sd_sex sd_age
+*save rosters_check.dta, replace /* I think you could drop these lines, and save just tracker per next line */
+replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
+replace hhid = "2" + substr(hhid, 2, .) if substr(hhid, 1, 1) == "."
+merge m:m hhid using Everything_Wide
+tab pr_3 sex, miss
+list pid pr_3 sex if (pr_3 ~= sex +1) & _merge==3 /* list if sex differs between Roster and Resumen */
+corr pr_4 age
+list pid pr_4 age if abs(pr_4 - age) >2 & _merge==3 /* list if sex differs more than 2 years between Roster and Resumen */
+drop _merge
+save Everything_Wide, replace
+
+
+********** 
 * HOUSEHOLD
 **********
 
@@ -342,16 +400,6 @@ drop hhidr duplic
 *save hh_check.dta, replace
 replace hhid = "2" + substr(hhid, 2, .) if substr(hhid, 1, 1) == "."
 merge m:m hhid using Everything_Wide
-drop _merge
-save Everything_Wide, replace
-
-********** 
-* CONSENSUS
-**********
-
-use ConsensusVariables, clear
-replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
-merge m:m pid using Everything_Wide
 drop _merge
 save Everything_Wide, replace
 
@@ -376,6 +424,15 @@ merge 1:m Cluster using Everything_Wide
 drop _merge
 save Everything_Wide, replace
 
+*** DOES SEX MATCH IN SOCIO AND ROSTER ****
+tab pr_3 s_0, miss
+list pid pr_3 s_0 if (pr_3 ~= s_0 +1) & !missing(pr_3, s_0)
+corr pr_4 s_2_3
+list pid pr_4 s_2_3 if abs(pr_4 - s_2_3) >2 & !missing(pr_4, s_2_3)
+
+save Everything_Wide, replace
+
+
 ********** 
 * BLOOD
 **********
@@ -399,15 +456,19 @@ drop _merge
 
 }
 
-if `country' == 2 {
-	merge m:m pid using "Cuba_CDR.dta"
-	drop _merge
-}
-
 *generating overall
 gen Country = substr(pid, 1, 1)
-replace Cluster = substr(pid, 2, 2)
-replace House_ID = substr(pid, 4, 3)
+if `country' != 2 {
+    replace Cluster = real(substr(pid, 2, 2))
+    replace House_ID = real(substr(pid, 4, 3))
+}
+else {
+    tostring Cluster, replace
+    tostring House_ID, replace
+    replace Cluster = substr(pid, 2, 2)
+    replace House_ID = substr(pid, 4, 3)
+}
+
 gen Person_ID = substr(pid, 7, 2)
 
 order pid Country Cluster House_ID Person_ID

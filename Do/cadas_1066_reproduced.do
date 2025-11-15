@@ -57,7 +57,11 @@ local impute_recall "no" //imputes the 10-word delayed recall from the immediate
 
 **********************************
 
-use Cog.dta
+***** SCRIPT STARTS HERE *********
+
+**********************************
+
+use Cog
 *until we clean all the data, we'll have to indiscriminantly drop duplicates
 duplicates report pid
 sort pid
@@ -96,15 +100,34 @@ rename c_55 pray
 rename c_56 chemist
 rename c_26 repeat
 rename c_8 town
-gen chief = cond(missing(c_70_d_c),0,c_70_d_c) + cond(missing(c_70_p),0,c_70_p)
+gen chief = .
+if inlist("`country'", "CU", "DR") {
+    replace chief = cond(missing(c_70_d_c), 0, c_70_d_c)
+}
+else {
+    replace chief = cond(missing(c_70_p), 0, c_70_p)
+}
 rename i_a2 street
 rename i_a3 store
 rename i_a4 address
-gen longmem = cond(missing(c_69_c),0,c_69_c) + cond(missing(c_69_d),0,c_69_d) + cond(missing(c_69_p),0,c_69_p)
+gen longmem = .
+if inlist("`country'", "CU", "DR") {
+    replace longmem = cond(missing(c_69_c),0,c_69_c) + cond(missing(c_69_d),0,c_69_d)
+}
+else {
+    replace longmem = cond(missing(c_69_p),0,c_69_p)
+}
+
 rename c_3 month
 rename c_5 day
 rename c_1 year
-gen season = cond(missing(c_2_p_c),0,c_2_p_c) + cond(missing(c_2_d),0,c_2_d)
+gen season = .
+if inlist("`country'", "CU", "DR") {
+    replace season = cond(missing(c_2_p_c),0,c_2_p_c) + cond(missing(c_2_d),0,c_2_d)
+}
+else {
+    replace season = cond(missing(c_2_p_c),0,c_2_p_c)
+}
 rename c_61 nod
 rename c_62 point
 rename cs_32 pentag
@@ -174,6 +197,11 @@ else if "`drop_physical_disability'" == "no" {
 replace pentag = 0 if pentag_diss == 6 | pentag_diss == 7
 }
 
+*street, store, and address come from informant and therefore have a different structure
+recode street (2 = 0)
+recode store (2 = 0)
+recode address (2 = 0)
+
 replace pentag = 1 if pentag == 2
 
 replace animals = . if animals == 777
@@ -189,7 +217,7 @@ foreach var in animals wordimm worddel paper story learn1 learn2 learn3 recall p
     replace `var' = . if `var' == .v | `var' == .i
 }
 
-egen count = rowtotal(pencil watch chair shoes knuckle elbow should bridge hammer pray chemist repeat town chief street store address longmem month day year season nod point  pentag)
+egen count = rowtotal(pencil watch chair shoes knuckle elbow should bridge hammer pray chemist repeat town chief street store address longmem month day year season nod point pentag)
 
 *max should be 27
 summarize count
@@ -226,11 +254,9 @@ summarize storytot
 
 
 * generate the cogscore. anyone who does not have all components will be dropped.
-gen cogscore = (nametot + count + animtot + wordtot1 + wordtot2 + papertot + storytot) * 1.03125
+gen cogscore = 1.03125 * (nametot + count + animtot + wordtot1 + wordtot2 + papertot + storytot)
 
 summarize cogscore
-
-histogram cogscore
 
 /* in CU the averae cogscore is 28.70772 
 in DR the average cogscore is 27.34616
@@ -329,7 +355,7 @@ summarize misstot
 summarize miss1
 summarize miss3
 
-foreach var in put kept frdname famname convers wordfind wordwrg past lastsee lastday orient lostout lostin chores change money {
+foreach var in put kept frdname famname convers wordfind wordwrg past lastsee lastday orient lostout lostin chores change money reason {
     replace `var'= `var'/2
 }
 
@@ -386,6 +412,10 @@ replace U = cond(missing(misstot), 0, U)
 
 gen relscore_cadas = U*S
 
+summarize activ mental memory put kept frdname famname convers ///
+         wordfind wordwrg past lastsee lastday orient lostout ///
+         lostin chores hobby money change reason feed dress toilet
+
 summarize relscore
 /* our relscore in DR is bigger than 10/66 by over a whole point.  
 in Cuba: 1.794301
@@ -411,22 +441,82 @@ if "`impute_recall'" == "yes" {
 	replace recall = pred_recall if recall == 0
 }
 
-gen dem1066_score = exp(8.571528 -.4453795 * cogscore + .5031411 * relscore -.6978724 * recall) / (1 + exp(8.571528 -.4453795 * cogscore + .5031411 * relscore -.6978724 * recall))
+* HERE, I WILL CONVERT THE CONTINOUS VARIABLES WE HAVE INTO QUINTILE CATEGORICALS
+* Create cognitive score categories
+gen ncogscor = .
+replace ncogscor = 1 if cogscore <= 23.699
+replace ncogscor = 2 if cogscore > 23.699 & cogscore <= 28.619
+replace ncogscor = 3 if cogscore > 28.619 & cogscore <= 30.619
+replace ncogscor = 4 if cogscore > 30.619 & cogscore <= 31.839
+replace ncogscor = 5 if cogscore > 31.839 & cogscore != .
 
+* Assign cognitive coefficients (from Table 5)
+gen bcogscor = .
+replace bcogscor = 2.801  if ncogscor == 1
+replace bcogscor = 1.377  if ncogscor == 2
+replace bcogscor = 0.866  if ncogscor == 3
+replace bcogscor = -0.231 if ncogscor == 4
+replace bcogscor = 0      if ncogscor == 5
+
+* Create informant score categories
+gen nrelscor = .
+replace nrelscor = 1 if relscore == 0
+replace nrelscor = 2 if relscore > 0 & relscore <= 1.99
+replace nrelscor = 3 if relscore > 1.99 & relscore <= 5.0
+replace nrelscor = 4 if relscore > 5.0 & relscore <= 12.0
+replace nrelscor = 5 if relscore > 12.0 & relscore != .
+
+* Assign informant coefficients (from Table 5)
+gen brelscor = .
+replace brelscor = 0     if nrelscor == 1
+replace brelscor = 1.908 if nrelscor == 2
+replace brelscor = 2.311 if nrelscor == 3
+replace brelscor = 4.171 if nrelscor == 4
+replace brelscor = 5.680 if nrelscor == 5
+
+* Create delayed recall categories
+gen ndelay = .
+replace ndelay = 1 if recall == 0
+replace ndelay = 2 if recall >= 1 & recall <= 3
+replace ndelay = 3 if recall == 4
+replace ndelay = 4 if recall >= 5 & recall <= 6
+replace ndelay = 5 if recall >= 7 & recall != .
+
+* Assign recall coefficients (from Table 5)
+gen bdelay = .
+replace bdelay = 3.822 if ndelay == 1
+replace bdelay = 3.349 if ndelay == 2
+replace bdelay = 2.575 if ndelay == 3
+replace bdelay = 2.176 if ndelay == 4
+replace bdelay = 0     if ndelay == 5
+
+* quintiles
+xtile ncogscor_quint = cogscore, nq(5)
+xtile nrelscor_quint = relscore, nq(5)
+xtile ndelay_quint = recall, nq(5)
+
+* 1066 formulas
+
+gen dem1066_score = exp(8.486511 -.4001659 * cogscore + .5024221 * relscore -.6997248 * recall) / (1 + exp(8.486511 -.4001659 * cogscore + .5024221 * relscore -.6997248 * recall))
 
 gen dem1066 = .
 replace dem1066 = 1 if dem1066_score >= .5 & dem1066_score != .
 replace dem1066 = 0 if dem1066_score <.5 & dem1066_score != .
 
 summarize dem1066
-*DR dem1066_du~e |      6,783    .1167625    .3211607          0          1
-*CU CADAS dem1066 |        911    .0351262       .1842          0          1
+
+*quints
+gen dem1066_score_quint = exp(-3.190348 - 2.113413 * ncogscor_quint + 1.637074 * nrelscor_quint - 1.119034 * ndelay_quint) / (1 + exp(-3.190348 - 2.113413 * ncogscor_quint + 1.637074 * nrelscor_quint - 1.119034 * ndelay_quint))
+
+gen dem1066_quint = .
+replace dem1066_quint = 1 if dem1066_score_quint >= .5 & dem1066_score_quint != .
+replace dem1066_quint = 0 if dem1066_score_quint <.5 & dem1066_score_quint != .
 
 *the below is only for analyzing the output
 
-keep pid relscore cogscore nametot count animals_diss animals animtot wordtot1 wordtot2 papertot c_66a c_66b c_66c c_66d c_66e c_66f story storytot pencil watch chair shoes knuckle elbow should bridge hammer pray chemist repeat town street store address month day year nod point pentag pentag_diss animals animals_diss chief longmem season c_11 c_12 c_13 wordimm c_21 c_22 c_23 worddel misstot activ mental memory put kept frdname famname convers wordfind wordwrg past lastsee lastday orient lostout lostin chores hobby money change reason feed dress toilet recall dem1066_score dem1066
+keep pid relscore cogscore nametot count animals_diss animals animtot wordtot1 wordtot2 papertot c_66a c_66b c_66c c_66d c_66e c_66f story storytot pencil watch chair shoes knuckle elbow should bridge hammer pray chemist repeat town street store address month day year nod point pentag pentag_diss animals animals_diss chief longmem season c_11 c_12 c_13 wordimm c_21 c_22 c_23 worddel misstot activ mental memory put kept frdname famname convers wordfind wordwrg past lastsee lastday orient lostout lostin chores hobby money change reason feed dress toilet recall dem1066_score dem1066 dem1066_score_quint dem1066_quint
 
-order pid relscore cogscore nametot count animals_diss animals animtot wordtot1 wordtot2 papertot c_66a c_66b c_66c c_66d c_66e c_66f story storytot pencil watch chair shoes knuckle elbow should bridge hammer pray chemist repeat town street store address month day year nod point pentag pentag_diss animals animals_diss chief longmem season c_11 c_12 c_13 wordimm c_21 c_22 c_23 worddel misstot activ mental memory put kept frdname famname convers wordfind wordwrg past lastsee lastday orient lostout lostin chores hobby money change reason feed dress toilet recall dem1066_score dem1066
+order pid relscore cogscore nametot count animals_diss animals animtot wordtot1 wordtot2 papertot c_66a c_66b c_66c c_66d c_66e c_66f story storytot pencil watch chair shoes knuckle elbow should bridge hammer pray chemist repeat town street store address month day year nod point pentag pentag_diss animals animals_diss chief longmem season c_11 c_12 c_13 wordimm c_21 c_22 c_23 worddel misstot activ mental memory put kept frdname famname convers wordfind wordwrg past lastsee lastday orient lostout lostin chores hobby money change reason feed dress toilet recall dem1066_score dem1066 dem1066_score_quint dem1066_quint
 
 export excel using "excel/1066.xlsx", replace firstrow(variables)
 save 1066.dta, replace

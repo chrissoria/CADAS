@@ -26,7 +26,7 @@ else if `country' == 1 {
     insheet using "../DR_in/Roster_Parent.csv", comma names clear
 }
 else if `country' == 2 {
-    insheet using "../CUBA_in/Roster_Parent.csv", comma names clear
+    insheet using "../CUBA_in/Roster_Parent_cleaned.csv", comma names clear
 }
 
 }
@@ -52,10 +52,10 @@ else if `country' == 1 {
     insheet using "../DR_in/Roster_Parent.csv", comma names clear
 }
 else if `country' == 2 {
-    insheet using "../CUBA_in/Roster_Parent.csv", comma names clear
+    insheet using "../CUBA_in/Roster_Parent_cleaned.csv", comma names clear
 }
 }
-  
+
 save Roster_Parent.dta, replace
     
 clear all
@@ -67,7 +67,7 @@ else if `country' == 1 {
     insheet using "../DR_in/Participants.csv", comma names clear
 }
 else if `country' == 2 {
-    insheet using "../CUBA_in/Participants.csv", comma names clear
+    insheet using "../CUBA_in/Participants_cleaned.csv", comma names clear
 }
 
 
@@ -252,6 +252,9 @@ label define PR_6_ 1 "empleo pagado a tiempo completo" ///
     label values pr_6 PR_6_
     
 drop PR_6
+
+bysort globalrecordid: egen num_participants = count(globalrecordid)
+label variable num_participants "Number of participants in household"
     
     save Participants.dta, replace
     
@@ -264,10 +267,10 @@ else if `country' == 1 {
     insheet using "../DR_in/NonParticipants.csv", comma names clear
 }
 else if `country' == 2 {
-    insheet using "../CUBA_in/NonParticipants.csv", comma names clear
+    insheet using "../CUBA_in/NonParticipants_cleaned.csv", comma names clear
 }
   
-   drop globalrecordid
+   rename globalrecordid globalrecordid_non_partic
    rename fkey globalrecordid
    
    label variable r_2_1 "¿Cuál es la relación de este miembro con el participante (#1)?"
@@ -449,6 +452,9 @@ encode R_6, gen(r_6) label(R_6)
     label values r_6 R_6_
     
 drop R_6
+
+bysort globalrecordid: egen num_nonparticipants = count(globalrecordid)
+label variable num_nonparticipants "Number of non-participants in household"
     
     save NonParticipants.dta, replace
     
@@ -461,7 +467,7 @@ else if `country' == 1 {
     insheet using "../DR_in/NonResidentChildren.csv", comma names clear
 }
 else if `country' == 2 {
-    insheet using "../CUBA_in/NonResidentChildren.csv", comma names clear
+    insheet using "../CUBA_in/NonResidentChildren_cleaned.csv", comma names clear
 }
      
     drop globalrecordid
@@ -573,7 +579,7 @@ else if `country' == 2 {
   
   drop _merge
 
-  gen r_country_str = string(r_country, "%12.0f")
+gen r_country_str = string(r_country, "%12.0f")
 
 gen r_clustid_str = string(r_clustid, "%12.0f")
 replace r_clustid_str = cond(strlen(r_clustid_str) == 1, "0" + r_clustid_str, r_clustid_str)
@@ -611,7 +617,7 @@ use "MainHousehold.dta"
 
  save rosters_merged3.dta,replace
  
- //now we append all three
+ *now we append all three
  
  use "rosters_participants.dta"
  append using "rosters_merged2.dta"
@@ -619,12 +625,46 @@ use "MainHousehold.dta"
 
 drop _merge
 
+bysort globalrecordid: egen max_participants = max(num_participants)
+bysort globalrecordid: egen max_nonparticipants = max(num_nonparticipants)
+
+// Replace the original variables with the maximum values
+replace num_participants = max_participants
+replace num_nonparticipants = max_nonparticipants
+
+replace num_participants = 0 if missing(num_participants)
+replace num_nonparticipants = 0 if missing(num_nonparticipants)
+
+gen number_in_household = num_nonparticipants + num_participants
+
+drop num_participants num_nonparticipants
+
+gen r_country_str = string(r_country, "%12.0f")
+
+gen r_clustid_str = string(r_clustid, "%12.0f")
+replace r_clustid_str = cond(strlen(r_clustid_str) == 1, "0" + r_clustid_str, r_clustid_str)
+
+gen r_houseid_str = string(r_houseid, "%03.0f")
+replace r_houseid_str = cond(strlen(r_houseid_str) == 1, "00" + r_houseid_str, r_houseid_str)
+replace r_houseid_str = cond(strlen(r_houseid_str) == 2, "0" + r_houseid_str, r_houseid_str)
+
+recode pr_person_number (missing = "0")
+gen pr_particid_str = string(pr_person_number, "%12.0f")
+
+replace pr_particid_str = cond(strlen(pr_particid_str) == 1, "0" + pr_particid_str, pr_particid_str)
+
+replace hhid = r_country_str + r_clustid_str + r_houseid_str if hhid == ""
+drop r_clustid_str r_houseid_str pr_particid_str r_country_str
+
+sort globalrecordid
+
 log using logs/RostersMissingCodebook, text replace
 
 codebook
 
 log close
 
+drop participants rosterhousehold nonresidentchildren v1
 save rosters_merged.dta,replace
 
 exit, clear
