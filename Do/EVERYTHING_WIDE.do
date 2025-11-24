@@ -432,6 +432,17 @@ list pid pr_4 s_2_3 if abs(pr_4 - s_2_3) >2 & !missing(pr_4, s_2_3)
 
 save Everything_Wide, replace
 
+********** 
+* RURAL/URBAN
+**********
+
+if `country' == 1 {
+	use UPM_CADAS_RD.dta, clear
+	merge 1:m Cluster using Everything_Wide
+	drop _merge
+	save Everything_Wide, replace
+}
+
 
 ********** 
 * BLOOD

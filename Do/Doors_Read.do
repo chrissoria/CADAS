@@ -274,7 +274,7 @@ replace d_houseid_str = cond(strlen(d_houseid_str) == 2, "0" + d_houseid_str, d_
 
 gen d_particid_str = string(d_particid, "%12.0f")
 
-gen pid = d_country_str + d_clustid_str + d_houseid_str + d_particid_str
+gen pid = d_country_str + d_clustid_str + d_houseid_str + "0" + d_particid_str
 replace pid = "." if strpos(pid, ".") > 0
 
 gen hhid = d_country_str + d_clustid_str + d_houseid_str
@@ -284,6 +284,7 @@ drop d_particid_str d_clustid_str d_houseid_str d_country_str informationdoor in
 capture drop dp_deviceid dp_time di_deviceid2 di_time2 di_time1 di_deviceid1 v1 d_survey_date d_time1
 *drop d_clustid2 d_houseid2 d_interid2
 order pid hhid d_particid
+order tracker_complete RSP, last
 
 save door_merged_all.dta,replace
 

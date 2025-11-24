@@ -62,6 +62,8 @@ clear all
 
 insheet using "`path'/CUBA_in/Cog_Scoring.csv", comma names clear
 
+drop v1
+
 append using "../CUBA_in/ty_cog_scores.dta", force
 *this was scored wrong
 replace cs_40 = 3 if globalrecordid == "d6bca3fd-2918-4298-90a1-63e31a5e68c9"
@@ -94,15 +96,24 @@ replace cs_particid = 2 if globalrecordid == "134f5748-c117-4406-992a-bfadc311b3
 replace cs_particid = 1 if globalrecordid == "054eb406-1320-4a42-a651-35660e25e889"
 
 *rescoring pents with invalid scores (2, 4, 8, etc)
-replace cs_32 = 1 if inlist(globalrecordid, "29d3e105-db32-4bfc-ab5a-a958c14b7f16", "18539b19-8a12-4d88-a92f-fd0cf48b65a3", "6bce595d-3a37-43d6-8606-bcfbff78de3e", "0a96b367-1cd0-477e-bcc3-bb4e3a4a6ec1")
-replace cs_32 = 1 if inlist(globalrecordid, "5cc7748c-a1bf-4ad4-a908-2346eb310116", "7f45e073-c308-4914-8bdb-b4441f568819", "68b04bf5-98a6-4cfb-90b6-73199943ae5a", "1abd9a8b-eb1e-43dc-9b90-0db57870ddc3")
-replace cs_32 = 1 if inlist(globalrecordid, "4990632a-7ec7-4409-b3ba-85f25f1bd12d", "41191aa4-b609-4ac2-accc-a578cf495f92", "6f660b4a-f531-4f4d-909c-4d00caeae9b7", "7c09271a-720c-4edf-a0c1-6896b7a2e34f")
-replace cs_32 = 1 if inlist(globalrecordid, "3a34a230-24d7-457f-be83-14eac034b4e5", "1dd5a423-69b7-40b8-be73-81827a439989", "91c83b5a-b181-4610-968c-acccb2a24048", "adf06e49-aee1-4b27-b860-d5e79b156eee")
-replace cs_32 = 1 if inlist(globalrecordid, "39fbf080-746a-44f5-86e6-ab1833e2558b", "c4fbdd12-752f-455f-b04c-9fbf93728ed7", "88f2fb01-0039-4c50-810a-b1103f1c5e1f", "8bb96e92-7800-49cd-97de-33402f034845")
-replace cs_32 = 1 if inlist(globalrecordid, "8caa1203-2469-4781-b80e-3f45682f574d", "8b0ce098-1fa0-43e5-9bce-297adc5eeffe")
-replace cs_32 = 0 if inlist(globalrecordid, "ac0f9968-0d07-41fe-9c19-8e3a70254fc7", "f33b143a-64b8-4606-8dbc-a18d8531c2fe", "1e3c3668-1159-4c5d-b776-573afd9ef24d", "bf92c3f8-0e55-4122-b81e-08294bf3c5da")
-replace cs_32 = 0 if inlist(globalrecordid, "3bfc9722-ac05-4d16-81f9-f9c1fe77c2b8", "0bf49a11-4615-4c22-9337-afd4809412bd", "aca76a52-b20f-40c7-b19d-208b9a4168e1")
+*replace cs_32 = 1 if inlist(globalrecordid, "29d3e105-db32-4bfc-ab5a-a958c14b7f16", "18539b19-8a12-4d88-a92f-fd0cf48b65a3", "6bce595d-3a37-43d6-8606-bcfbff78de3e", "0a96b367-1cd0-477e-bcc3-bb4e3a4a6ec1")
+*replace cs_32 = 1 if inlist(globalrecordid, "5cc7748c-a1bf-4ad4-a908-2346eb310116", "7f45e073-c308-4914-8bdb-b4441f568819", "68b04bf5-98a6-4cfb-90b6-73199943ae5a", "1abd9a8b-eb1e-43dc-9b90-0db57870ddc3")
+*replace cs_32 = 1 if inlist(globalrecordid, "4990632a-7ec7-4409-b3ba-85f25f1bd12d", "41191aa4-b609-4ac2-accc-a578cf495f92", "6f660b4a-f531-4f4d-909c-4d00caeae9b7", "7c09271a-720c-4edf-a0c1-6896b7a2e34f")
+*replace cs_32 = 1 if inlist(globalrecordid, "3a34a230-24d7-457f-be83-14eac034b4e5", "1dd5a423-69b7-40b8-be73-81827a439989", "91c83b5a-b181-4610-968c-acccb2a24048", "adf06e49-aee1-4b27-b860-d5e79b156eee")
+*replace cs_32 = 1 if inlist(globalrecordid, "39fbf080-746a-44f5-86e6-ab1833e2558b", "c4fbdd12-752f-455f-b04c-9fbf93728ed7", "88f2fb01-0039-4c50-810a-b1103f1c5e1f", "8bb96e92-7800-49cd-97de-33402f034845")
+*replace cs_32 = 1 if inlist(globalrecordid, "8caa1203-2469-4781-b80e-3f45682f574d", "8b0ce098-1fa0-43e5-9bce-297adc5eeffe")
+*replace cs_32 = 0 if inlist(globalrecordid, "ac0f9968-0d07-41fe-9c19-8e3a70254fc7", "f33b143a-64b8-4606-8dbc-a18d8531c2fe", "1e3c3668-1159-4c5d-b776-573afd9ef24d", "bf92c3f8-0e55-4122-b81e-08294bf3c5da")
+*replace cs_32 = 0 if inlist(globalrecordid, "3bfc9722-ac05-4d16-81f9-f9c1fe77c2b8", "0bf49a11-4615-4c22-9337-afd4809412bd", "aca76a52-b20f-40c7-b19d-208b9a4168e1")
 
+
+replace cs_32 = 1 if inlist(globalrecordid, "999590c4-d64d-48bc-9dbf-88f17acbc18f")
+replace cs_32 = 1 if inlist(globalrecordid, "1d30bc70-aa2d-4168-a07b-8713448ef862")
+replace cs_32 = 1 if inlist(globalrecordid, "1b2ca006-4e02-4e43-b93a-e6b995693736", "bbab728b-13b2-4f05-bdca-726ebd388e97", "d97434b5-143d-472b-a74b-fc48f9155855", "7038d822-9679-4110-bdce-f42e47f74347")
+replace cs_32 = 1 if inlist(globalrecordid, "054eb406-1320-4a42-a651-35660e25e889", "2fcc2a65-5965-429b-ad5b-a16b623ca42b", "abdbca5a-0c7f-4714-b839-378fde78b550", "2a20d4bd-f982-4b05-85bf-813475f63a89")
+replace cs_32 = 1 if inlist(globalrecordid, "aafd40ee-f9b7-4573-b878-21f6051f9371", "7ec224c8-3fdc-4e2d-9e5d-cb1c46f7ee26", "08817231-c124-4420-91cb-497de353987b", "aecef8b1-1217-4c85-856f-07d4a76ccdb0")
+replace cs_32 = 1 if inlist(globalrecordid, "edd6b259-b938-43ff-be17-f9febe39698e", "74c25bd1-e522-41cb-a673-1387df929eed")
+replace cs_32 = 0 if inlist(globalrecordid, "d9cd5d8e-f451-4f36-9e45-9244b9ce2a32", "c8f5dab9-239d-4540-bd1e-5f5c3c6c1da3")
+replace cs_32 = 0 if inlist(globalrecordid, "7c79a23b-8646-49e9-972b-a02cce80b7b7", "4260585b-6879-4317-b52d-f29906ab85fd", "57ba1a1e-b0bb-46e1-8f86-bd1eebec577b")
 
 export delimited using "`path'/CUBA_in/Cog_Scoring_cleaned.csv", replace nolabel
 

@@ -443,7 +443,7 @@ replace H_in=" " if existe_familiar~=1
 
 if `country' == 0 {
 gen B_in=XF7 if pid_en_sangre==1
-replace B_in=" " if pid_en_sangre~=1
+replace B_in="  " if pid_en_sangre~=1
 
 gen RSPCZIHXF7 = G_in+R_in + S_in + P_in + C_in + Z_in + I_in + H_in + B_in
 tab RSPCZIHXF7
@@ -451,7 +451,7 @@ tab RSPCZIHXF7
 
 else if `country' == 1 {
 gen B_in=XF7 if pid_en_sangre==1
-replace B_in=" " if pid_en_sangre~=1
+replace B_in="  " if pid_en_sangre~=1
 
 gen RSPCZIHXF7 = G_in+R_in + S_in + P_in + C_in + Z_in + I_in + H_in + B_in
 tab RSPCZIHXF7
@@ -487,6 +487,9 @@ if `country' == 2 {
 	merge m:m pid using Cuba_CDR.dta
 	drop _merge
 }
+
+gen tracker_complete = "WIP"
+replace tracker_complete = "Completed" if strpos(RSPCZ, "RSPCZIH") > 0
 
 save tracker_full, replace
 
@@ -627,4 +630,19 @@ capture export excel using "duplicates/in_resumen_not_in_data.xlsx", replace fir
 
 
 log close
-*exit, clear
+
+clear
+use tracker_full
+keep if strpos(RSPCZ, "RSPCZIH") > 0
+keep pid RSPCZ tracker_complete
+sort pid
+quietly by pid: gen dup = cond(_N==1,0,_n)
+drop if dup > 1
+
+save Completed_Interview_PIDs, replace
+
+if `country' ~= 2{
+	merge 1:m pid using door_participants, nogen
+	save door_participants, replace
+}
+exit, clear
