@@ -106,6 +106,12 @@ drop if globalrecordid == "12c89460-75eb-4aee-8a36-31a88c395b70"
 
 gen in_epi7 = 1
 
+* Drop duplicate PIDs, keeping only the first occurrence
+sort pid
+quietly by pid: gen _pid_dup = _n
+drop if _pid_dup > 1
+drop _pid_dup
+
 if `country' == 0 {
     save "../PR_out/Sangre.dta", replace
 }
@@ -183,6 +189,12 @@ rename dup pdfdup
 
 gen in_pdf = 1
 
+* Drop duplicate PIDs, keeping only the first occurrence
+sort pid
+quietly by pid: gen _pid_dup = _n
+drop if _pid_dup > 1
+drop _pid_dup
+
 save sangre_pdf, replace
 
 ******************************************************************************************************************
@@ -207,11 +219,25 @@ gen b_country = `country'
 
 gen b_country_str = string(b_country, "%12.0f")
 
-gen b_clustid_str = string(cluster, "%12.0f")
+capture confirm numeric variable cluster
+if _rc != 0 {
+
+    gen b_clustid_clean = ustrregexra(cluster, "[^0-9]", "")
+    destring b_clustid_clean, replace
+}
+else {
+
+    gen b_clustid_clean = cluster
+}
+
+
+gen b_clustid_str = string(b_clustid_clean, "%12.0f")
 replace b_clustid_str = cond(strlen(b_clustid_str) == 1, "0" + b_clustid_str, b_clustid_str)
 
 if `country' == 1 {
-	gen b_houseid_str = string(houseid, "%03.0f")
+	gen b_houseid_clean = ustrregexra(houseid, "[^0-9]", "")
+	destring b_houseid_clean, replace
+	gen b_houseid_str = string(b_houseid_clean, "%03.0f")
 }
 if `country' == 0 {
 	gen b_houseid_str = string(casa, "%03.0f")
@@ -241,6 +267,12 @@ rename dup exceldup
 
 gen in_excel = 1
 
+* Drop duplicate PIDs, keeping only the first occurrence
+sort pid
+quietly by pid: gen _pid_dup = _n
+drop if _pid_dup > 1
+drop _pid_dup
+
 if `country' == 0 {
     save "../PR_out/Sangre_Excel.dta", replace
 }
@@ -268,6 +300,12 @@ drop epi7_in pdf_in excel_in
 sort pid
 quietly by pid:  gen dup = cond(_N==1,0,_n)
 tabulate dup
+
+* Drop duplicate PIDs, keeping only the first occurrence
+sort pid
+quietly by pid: gen _pid_dup = _n
+drop if _pid_dup > 1
+drop _pid_dup
 
 save sangre_full, replace
 
@@ -300,6 +338,12 @@ label variable date_to_WashU "date to WashU"
 order date_to_WashU pid
 drop hhid exceldup in_excel b_country
 capture drop nolab
+
+* Drop duplicate PIDs, keeping only the first occurrence
+sort pid
+quietly by pid: gen _pid_dup = _n
+drop if _pid_dup > 1
+drop _pid_dup
 
 save Sangre_MMSE.dta, replace
 

@@ -17,6 +17,14 @@ local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
 
 cd "`path'/DR_out"
 
+* Set translation folder path based on language
+if `"$language"' == "E" {
+    local trans_folder "translation_DR/"
+}
+else {
+    local trans_folder ""
+}
+
 use door_merged_all
 
 drop pid hhid
@@ -163,48 +171,10 @@ keep if hhid == "."
 
 export excel using "duplicates/door_no_houseid.xlsx", replace firstrow(variables)
 
-clear all
-
-import excel using "../DR_in/Resumen de entrevistas.xlsx", firstrow
-missings dropobs, force
-replace GénerodeParticpante = "F" if GénerodeParticpante == "f"
-replace GénerodeParticpante = "M" if GénerodeParticpante == "m"
-replace NotasCuestionariosnohechos = "Completa" if NotasCuestionariosnohechos == "completa"
-replace NotasCuestionariosnohechos = "Completa" if NotasCuestionariosnohechos == "Completo"
-replace NotasCuestionariosnohechos = "Completa" if NotasCuestionariosnohechos == "completo"
-replace NotasCuestionariosnohechos = "Incompleta" if NotasCuestionariosnohechos == "Incompleto"
-unab vlist : _all
-sort `vlist'
-quietly by `vlist':  gen dup = cond(_N==1,0,_n)
-drop if dup > 1
-drop dup
-
-capture destring(Cluster) , replace
-capture destring(HouseID) , replace
-capture destring(Participante) , replace
-gen clustid_str = string(Cluster, "%12.0f")
-gen houseid_str = string(HouseID, "%03.0f")
-gen particid_str = string(Participante, "%12.0f")
-
-gen country_str = "1"
-
-replace clustid_str = cond(strlen(clustid_str) == 1, "0" + clustid_str, clustid_str)
-
-replace houseid_str = cond(strlen(houseid_str) == 1, "00" + houseid_str, houseid_str)
-replace houseid_str = cond(strlen(houseid_str) == 2, "0" + houseid_str, houseid_str)
-
-replace particid_str = cond(strlen(particid_str) == 1, "0" + particid_str, particid_str)
-
-gen pid = country_str + clustid_str + houseid_str + particid_str
-drop country_str clustid_str houseid_str particid_str
-
-order pid
-
-save resumen.dta,replace
-
-keep pid 
-
-save resumen_pid.dta,replace 
+* Use resumen.dta produced by Resumen.do instead of re-importing the Excel file
+use resumen.dta, clear
+keep pid
+save resumen_pid.dta, replace 
 
 clear all
  
@@ -275,7 +245,7 @@ export excel using "duplicates/roster_duplicates.xlsx", replace firstrow(variabl
  
  clear all
  
-use Socio
+use `trans_folder'Socio
 drop pid
 drop hhid
 
@@ -284,6 +254,15 @@ replace s_houseid = 83 if globalrecordid == "846f1818-2920-421c-bdde-0a3ac6cb72f
 replace s_houseid = 176 if globalrecordid == "3a7c732c-4edb-4e8d-aa62-e12d03c86b2a"
 
 drop if inlist(globalrecordid, "56fbe48f-d423-417a-87ba-98ba80db0c34")
+
+*11/29/25
+drop if inlist(globalrecordid, "c83837db-be99-4953-843a-3e80055f48c7","8f980bcd-d21e-4929-a256-2182274c0c3e","8c66bb78-f786-43f9-a48e-617ac755261a","13dfca56-369c-4d1b-96a0-acda255076c3","58e0d5a1-ed97-4d43-940d-88a202557753","a64eaca4-2df0-40ef-9d99-59299cb557a3")
+drop if inlist(globalrecordid, "f197e0be-a2a2-4fc6-9223-3c5b2f42c157","c1764461-a4ea-42c4-b2a3-4b504b67f243","ea2b0d6e-0616-4289-83d7-4dfd7ea44b36","4ff047c7-6534-4551-a12d-ec0a1a198d75","34f37d5e-0f30-4959-83ec-b12afcf31d58","28118a64-8cf0-49c5-9bc0-4f161a1be35e")
+drop if inlist(globalrecordid, "d716b289-c74b-4c80-9741-803599dbcc35")
+replace s_particid = 1 if globalrecordid == "87a6bc8f-eb76-4484-8b61-512336b7209d"
+replace s_particid = 2 if globalrecordid == "486d24e7-e978-4da5-b0b6-6bdbca10e51c"
+replace s_clustid = 70 if globalrecordid == "c67a94ec-547c-4e3a-8a28-dba023d8b4cc"
+replace s_houseid = 81 if globalrecordid == "c67a94ec-547c-4e3a-8a28-dba023d8b4cc"
  
 gen s_country_str = string(s_country, "%12.0f")
 
@@ -316,7 +295,7 @@ drop _merge
 
 order pid_parent pid resumen
 
-export excel using "excel/socio.xlsx", replace firstrow(variables)
+export excel using "`trans_folder'excel/socio.xlsx", replace firstrow(variables)
 
 log using logs/SocioOnlyMissing, text replace
 
@@ -360,7 +339,7 @@ drop pid_match
 */
  
  
- save Socio.dta, replace
+ save `trans_folder'Socio.dta, replace
   
 gen is_duplicate = pid[_n] == pid[_n-1]
 
@@ -392,6 +371,17 @@ capture export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(
  *10/17/25 cleaning
  *looks like there's two cases here done in the same house (maybe two parts of the same unit?). For now, we're changing the woman to B
  replace pid = "11206701B" if globalrecordid == "671ca23a-5557-44b8-b6c8-be0b00a061be"
+ 
+ *11/29/25
+ drop if inlist(globalrecordid, "521f2b9d-0dd7-4fa3-89fb-1ea3bd094ff2","5ba5b3ed-c2dc-4b2b-a484-1d061cb5c3b7","7ad4d980-c73e-4800-8dfb-184c875969f0","4044a808-d1bf-42f4-a609-0c3c236d08b9","b10ae00a-c159-4d55-99e7-d4e3bda9672d","32ae6b0d-3dbc-4e2b-9c98-7b219e469f3e")
+ drop if inlist(globalrecordid, "3f38efe9-7272-4f58-9c21-640388799c10","fbc2b76f-763e-4534-911c-17f670fdb558","0458b379-a3d0-4376-98a2-cf11a6a0a30e","68e83227-f007-44f8-93ee-0bb233bde0ce","b3bbf4f4-cfcd-4ca1-89e3-e1816323acad","cf103d53-bf4a-47a4-aa60-8cdd860d3dfb")
+ drop if inlist(globalrecordid, "f4a03839-e66b-4f8c-9412-e7d1f6638cd8")
+ replace p_houseid = 75 if globalrecordid == "671ca23a-5557-44b8-b6c8-be0b00a061be"
+ replace p_particid = 1 if globalrecordid == "de44e9ac-935d-4464-b00b-e3bc85105d5c"
+ replace p_particid = 2 if globalrecordid == "b85f06ec-07ed-40d7-8918-5d2a41d88340"
+ *replace p_particid = 1 if globalrecordid == "09f9d7d6-17aa-44a0-a3bd-f0d399477eca" /// partic 1 already has a phys, unsure if we should follow instructions to change to partic 1
+ replace p_particid = 2 if globalrecordid == "c3ef0142-fd4f-4f18-9355-f62c8b74e6af"
+ replace p_particid = 2 if globalrecordid == "f93b34fa-7aee-40f5-a15f-24a4e97b6308"
  
  drop pid
  drop hhid
@@ -430,7 +420,7 @@ drop _merge
 
 order pid_parent pid resumen
 
-export excel using "excel/examen_fisico.xlsx", replace firstrow(variables)
+export excel using "`trans_folder'excel/examen_fisico.xlsx", replace firstrow(variables)
 
 log using logs/PhysOnlyMissing, text replace
 
@@ -466,11 +456,11 @@ log close
  list if is_duplicate
  drop is_duplicate
  
- save Phys.dta, replace
+ save `trans_folder'Phys.dta, replace
  
  clear all
  
- use Infor
+ use `trans_folder'Infor
  
 *based on the age of the informant (66), I have deduced that this is survey belongs to participant 1 (who is 92)
 replace i_particid = 1 if globalrecordid == "c7ddca33-5131-453b-b3a7-46bb89b22e4f"
@@ -536,7 +526,7 @@ drop _merge
 
 order pid_parent pid resumen
 
-export excel using "excel/informante.xlsx", replace firstrow(variables)
+export excel using "`trans_folder'excel/informante.xlsx", replace firstrow(variables)
 
 log using logs/InforOnlyMissing, text replace
 
@@ -572,7 +562,7 @@ log close
  list if is_duplicate
  drop is_duplicate
  
- save Infor.dta, replace
+ save `trans_folder'Infor.dta, replace
  
  gen is_duplicate = pid[_n] == pid[_n-1]
 
@@ -598,7 +588,7 @@ export excel using "duplicates/informant_duplicates.xlsx", replace firstrow(vari
  
  clear all
  
-use Cog
+use `trans_folder'Cog
 
 merge m:m pid using resumen_pid
 
@@ -611,7 +601,7 @@ drop _merge
 
 order pid_parent pid resumen
 
-save Cog.dta, replace
+save `trans_folder'Cog.dta, replace
 
 clear all
 
@@ -658,8 +648,8 @@ drop h_country_str h_clustid2_str h_houseid2_str
  
 drop is_duplicate
 
-save Household.dta, replace
-export excel using "excel/familiar.xlsx", replace firstrow(variables)
+save `trans_folder'Household.dta, replace
+export excel using "`trans_folder'excel/familiar.xlsx", replace firstrow(variables)
 
 gen is_duplicate = hhid[_n] == hhid[_n-1]
 
@@ -715,7 +705,7 @@ clear all
 *next, I want to find out if we have the right amount of cog scoring and cog surveys
 
 cd "`path'/DR_out"
-use Cog_Scoring
+use `trans_folder'Cog_Scoring
 
 *for now, I will do m:m because I have't been able to pin down which unique cases are the true/correct ones
 merge m:m pid using Cog, force

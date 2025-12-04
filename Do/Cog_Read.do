@@ -4390,21 +4390,29 @@ if `country' == 0 {
 *looks like there's two cases here done in the same house (maybe two parts of the same unit?). For now, we're changing the woman to B
 replace pid = "11206701B" if globalrecordid == "1938d71f-226e-4591-a936-1e0717ed930d"
 
-save Cog.dta, replace
- 
- if `country' == 0 {
-    use "../PR_out/Cog_Scoring.dta"
+* Set translation folder path based on language for intermediate save
+if `"$language"' == "E" {
+    if `country' == 0 {
+        local trans_folder "translation_PR/"
+    }
+    else if `country' == 1 {
+        local trans_folder "translation_DR/"
+    }
+    else if `country' == 2 {
+        local trans_folder "translation_CUBA/"
+    }
 }
-else if `country' == 1 {
-    use "../DR_out/Cog_Scoring.dta"
+else {
+    local trans_folder ""
 }
-else if `country' == 2 {
-    use "../CUBA_out/Cog_Scoring.dta"
-}
+
+save `trans_folder'Cog.dta, replace
+
+use "`trans_folder'Cog_Scoring.dta"
 
 keep pid cs_32 cs_40 cs_41 cs_43 cs_44 cs_72_1 cs_72_2 cs_72_3 cs_72_4 cs_79_1 cs_79_2 cs_79_3 cs_79_4
 
-merge m:m pid using Cog
+merge m:m pid using `trans_folder'Cog
 
 order pid pid2 c_interid c_houseid c_clustid c_particid c_country c_houseid2 c_conglid2 c_particid2 c_deviceid1 c_0 c_1 c_2_p_c c_2_d c_3 c_4 c_5 c_6 c_7_d_c c_7_p c_8 c_9 c_10 c_11 c_12 c_13 c_14 c_15 c_16 c_17 c_18 c_19 c_20 c_21 c_22 c_23 c_24 c_25 c_26 c_26_1 c_27 c_28 c_29 c_30 c_31 c_32 cs_32  c_33_a c_33_1 c_33_2 c_33_3 c_33_4 c_33_5 c_33_6 c_33_7 c_33_8 c_33_9 c_33_10 c_34_a c_34_1 c_34_2 c_34_3 c_34_4 c_34_5 c_34_6 c_34_7 c_34_8 c_34_9 c_34_10 c_35_a c_35_1 c_35_2 c_35_3 c_35_4 c_35_5 c_35_6 c_35_7 c_35_8 c_35_9 c_35_10 g_1 g_1_file c_40 cs_40 cs_41 anim_pic c_43 cs_43 cs_44 symb_pic c_45 c_45_a c_46 c_46_a c_48 c_49 c_50 c_51 c_52 c_53 c_54 c_55 c_56 c_58 c_59 c_60 c_61 c_62 c_63_a c_63_1 c_63_2 c_63_3 c_63_4 c_63_5 c_63_6 c_63_7 c_63_8 c_63_9 c_63_10 c_65 g_2 c_66_a g_2_file c_66a c_66b c_66c c_66d c_66e c_66f c_67_a g_2_file2 c_67_01 c_67_02 c_67_03 c_67_04 c_67_05 c_67_06 c_67_07 c_67_08 c_67_09 c_67_10 c_67_11 c_67_12 c_67_13_c c_67_13_d c_67_13_p c_67_14 c_67_15 c_67_16 c_67_17 c_67_18 c_67_19 c_67_20 c_67_21 c_67_22 c_67_23 c_67_24 c_67_25 c_68_a c_68_01 c_68_02 c_68_03 c_68_04 c_68_05 c_68_06 c_68_07 c_68_08 c_68_09 c_68_10 c_68_11 c_68_12 c_68_13 c_68_14 c_68_15 c_68_16 c_68_17 c_68_18 c_68_19 c_68_20 c_69_c c_69_d c_69_p c_70_d_c c_70_p c_71_c c_71_p c_71_d c_72_1 cs_72_1 c_72_2 cs_72_2 c_72_3 cs_72_3 c_72_4 cs_72_4 c_72_1_pic c_72_2_pic c_72_3_pic c_72_4_pic c_77_a g_3_file c_77a c_77b c_77c c_77d c_77e c_77f c_78_a g_3_file2 c_78_01 c_78_02 c_78_03 c_78_04 c_78_05 c_78_06 c_78_07 c_78_08 c_78_09 c_78_10 c_78_11 c_78_12 c_78_13 c_78_14 c_78_15 c_78_16 c_78_17 c_78_18 c_78_19 c_78_20 c_78_21 c_78_22 c_78_23 c_78_24 c_78_25 c_79_1 cs_79_1 c_79_2 cs_79_2 c_79_3 cs_79_3 c_79_4 cs_79_4 c_79_1_pic c_79_2_pic c_79_3_pic c_79_4_pic c_80a c_80b c_80c c_81 c_82 c_deviceid2
 
@@ -5621,6 +5629,21 @@ export excel using "duplicates/fotos_recibidas.xlsx", replace firstrow(variables
 
 clear all
 
+* Re-define translation folder after clear all
+if `"$language"' == "E" {
+    if `country' == 0 {
+        local trans_folder "translation_PR/"
+    }
+    else if `country' == 1 {
+        local trans_folder "translation_DR/"
+    }
+    else if `country' == 2 {
+        local trans_folder "translation_CUBA/"
+    }
+}
+else {
+    local trans_folder ""
+}
 
 if `country' == 0 {
     insheet using "../PR_in/Cog_Parent.csv", comma names clear
@@ -5640,7 +5663,7 @@ rename c_clustid1 c_parent_clustid
 rename c_houseid1 c_parent_houseid
 rename c_particid1 c_parent_particid
 
-merge 1:m fkey using Cog 
+merge 1:m fkey using `trans_folder'Cog 
 
 drop if _merge == 1
 drop _merge
@@ -5669,5 +5692,57 @@ order pid_parent pid pid_nonmatch globalrecordid hhid
 
 drop c_clustid_str c_houseid_str c_particid_str c_country_str
 
-export excel using "excel/cognitive.xlsx", replace firstrow(variables)
-save Cog.dta, replace
+* Apply English labels if language is set to "E" and save to appropriate location
+if `"$language"' == "E" {
+    capture include "/Users/chrissoria/documents/CADAS/Do/Read/Cog_english_labels.do"
+    capture include "C:\Users\Ty\Desktop\CADAS Data do files\Cog_english_labels.do"
+
+    * Save to translation folder for English
+    if `country' == 0 {
+        save "translation_PR/Cog.dta", replace
+        export excel using "translation_PR/cognitive.xlsx", replace firstrow(variables)
+    }
+    else if `country' == 1 {
+        save "translation_DR/Cog.dta", replace
+        export excel using "translation_DR/cognitive.xlsx", replace firstrow(variables)
+    }
+    else if `country' == 2 {
+        save "translation_CUBA/Cog.dta", replace
+        export excel using "translation_CUBA/cognitive.xlsx", replace firstrow(variables)
+    }
+}
+else {
+    * Save to default location for Spanish
+    export excel using "excel/cognitive.xlsx", replace firstrow(variables)
+    save Cog.dta, replace
+}
+
+********** 
+* CLUSTER SUMMARY TABLE
+**********
+
+* Create summary table of respondents by cluster
+preserve
+
+gen Cluster = c_clustid
+
+* count count rows (each represents a respondent)
+duplicates drop pid, force
+bysort Cluster: gen n_respondents = _N
+collapse (first) n_respondents, by(Cluster)
+
+* calculate total respondents
+egen total_respondents = total(n_respondents)
+gen percent_respondents = (n_respondents / total_respondents) * 100
+
+* percent to 2 decimal places
+format percent_respondents %9.2f
+
+sort Cluster
+drop total_respondents
+
+list Cluster n_respondents percent_respondents, clean noobs
+
+export excel using "excel/Cluster_Summary.xlsx", firstrow(variables) replace
+
+restore

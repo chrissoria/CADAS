@@ -1382,9 +1382,28 @@ codebook
 
 log close
 
-save Phys.dta, replace
+* Apply English labels if language is set to "E" and save to appropriate location
+if `"$language"' == "E" {
+    capture do "/Users/chrissoria/documents/CADAS/Do/Read/Phys_english_labels.do"
+    capture do "C:\Users\Ty\Desktop\CADAS Data do files\Phys_english_labels.do"
 
- * Get the list of variable names
+    * Save to translation folder for English
+    if `country' == 0 {
+        save "translation_PR/Phys.dta", replace
+    }
+    else if `country' == 1 {
+        save "translation_DR/Phys.dta", replace
+    }
+    else if `country' == 2 {
+        save "translation_CUBA/Phys.dta", replace
+    }
+}
+else {
+    * Save to default location for Spanish
+    save Phys.dta, replace
+}
+
+* Get the list of variable names
 unab varlist : _all
 
 * Convert variables with value labels into string variables
@@ -1395,6 +1414,22 @@ foreach var of varlist `varlist' {
 }
 
 clear all
+
+* Re-define translation folder after clear all
+if `"$language"' == "E" {
+    if `country' == 0 {
+        local trans_folder "translation_PR/"
+    }
+    else if `country' == 1 {
+        local trans_folder "translation_DR/"
+    }
+    else if `country' == 2 {
+        local trans_folder "translation_CUBA/"
+    }
+}
+else {
+    local trans_folder ""
+}
 
 if `country' == 0 {
     insheet using "../PR_in/Phys_Parent.csv", comma names clear
@@ -1412,7 +1447,7 @@ rename p_clustid1 p_parent_clustid
 rename p_houseid1 p_parent_houseid
 rename p_particid1 p_parent_particid
 
-merge 1:1 fkey using Phys 
+merge 1:1 fkey using `trans_folder'Phys 
 
 drop if _merge == 1
 drop _merge
@@ -1440,4 +1475,4 @@ order pid_parent pid pid_nonmatch globalrecordid
 
 drop p_clustid_str p_houseid_str p_particid_str p_country_str
 
-save Phys.dta, replace
+save `trans_folder'Phys.dta, replace

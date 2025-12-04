@@ -324,10 +324,30 @@ foreach var of local varlist {
     drop `var'
 }
 
+* Apply English labels if language is set to "E" and save to appropriate location
+if `"$language"' == "E" {
+    capture do "/Users/chrissoria/documents/CADAS/Do/Read/Neighborhood_english_labels.do"
+    capture do "C:\Users\Ty\Desktop\CADAS Data do files\Neighborhood_english_labels.do"
 
-
-save Neighborhood.dta, replace
-export excel using "excel/Neighborhood.xlsx", firstrow(variables) nolabel replace
+    * Save to translation folder for English
+    if `country' == 0 {
+        save "translation_PR/Neighborhood.dta", replace
+        export excel using "translation_PR/excel/Neighborhood.xlsx", firstrow(variables) nolabel replace
+    }
+    else if `country' == 1 {
+        save "translation_DR/Neighborhood.dta", replace
+        export excel using "translation_DR/excel/Neighborhood.xlsx", firstrow(variables) nolabel replace
+    }
+    else if `country' == 2 {
+        save "translation_CUBA/Neighborhood.dta", replace
+        export excel using "translation_CUBA/excel/Neighborhood.xlsx", firstrow(variables) nolabel replace
+    }
+}
+else {
+    * Save to default location for Spanish
+    save Neighborhood.dta, replace
+    export excel using "excel/Neighborhood.xlsx", firstrow(variables) nolabel replace
+}
 
  d
  sum

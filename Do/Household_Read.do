@@ -6984,8 +6984,28 @@ codebook
 
 log close
 
- save Household.dta, replace 
-  * Get the list of variable names
+* Apply English labels if language is set to "E" and save to appropriate location
+if `"$language"' == "E" {
+    capture do "/Users/chrissoria/documents/CADAS/Do/Read/Household_english_labels.do"
+    capture do "C:\Users\Ty\Desktop\CADAS Data do files\Household_english_labels.do"
+
+    * Save to translation folder for English
+    if `country' == 0 {
+        save "translation_PR/Household.dta", replace
+    }
+    else if `country' == 1 {
+        save "translation_DR/Household.dta", replace
+    }
+    else if `country' == 2 {
+        save "translation_CUBA/Household.dta", replace
+    }
+}
+else {
+    * Save to default location for Spanish
+    save Household.dta, replace
+}
+
+* Get the list of variable names
 unab varlist : _all
 
 * Convert variables with value labels into string variables

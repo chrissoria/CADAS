@@ -79,6 +79,12 @@ replace c_particid = 2 if globalrecordid == "5562458f-2fde-4290-8f2d-d6d74835f2c
 *parent pid is diff, and 47-25-1 is missing a cog
 replace c_clustid = 47 if globalrecordid == "f14da436-08b5-42c3-b6f3-c955b97d23de"
 
+*instructions 11/29/25
+replace c_houseid = 75 if globalrecordid == "1938d71f-226e-4591-a936-1e0717ed930d"
+replace c_houseid = 55 if globalrecordid == "3bfe708f-8b63-4fdf-a5d9-304a830a0994" // don't see this hhid as having participants anywhere
+drop if globalrecordid == "8e6fd050-fdd1-4de7-a6e4-537f79928c5b"
+replace c_houseid = 49 if globalrecordid == "b354dae0-1df6-4a57-9202-fbbb73c1e558" // looks like this is a different day than the other surveys in 81-49 so may not belong, also may need to change particid to 2
+
 foreach var in c_clustid c_particid c_houseid {
 	replace `var' = int(`var')
 }
@@ -186,6 +192,12 @@ replace cs_particid = 2 if globalrecordid == "da0f48bc-c91d-4f5f-8b24-9eaf619671
 replace cs_clustid = 276 if globalrecordid == "c8446ae0-a3dd-475d-b708-d1d38245335a"
 
 drop if inlist(globalrecordid, "5a093074-f404-477c-9e58-4b234e314130", "470b5479-7bce-4269-bb29-c42abb68d142", "b6805d75-d916-46f6-aa31-0ef5560c6c32", "e2df7272-2a0d-4918-8cb9-4e2a598f53e2")
+
+* 11/29/25
+drop if inlist(globalrecordid, "f948cbb9-77aa-4959-ba07-0206064e67cd","7bddb4f8-a753-4eb2-a0ab-82ca89870d37","8754b71c-d56b-451c-be26-7784dcc58905","30c3d079-730d-4ade-8f32-1082ce81aa88","9446a754-8046-456f-abfa-dfc42be7087b","894e7b57-b1fd-44fa-bb21-017ce9b4b5be")
+drop if inlist(globalrecordid, "234bb985-ed27-4f7e-810b-aa38eefbe233","2dac7cc4-5a83-4d1a-a56e-b6c9dfa02940")
+replace cs_houseid = 55 if globalrecordid == "685d1da3-46ab-4ca8-9408-23bc7b74ec52"
+replace cs_particid = 2 if globalrecordid == "b3884eb4-02f2-49d8-8683-d304f783830f"
 
 foreach var in cs_clustid cs_particid cs_houseid {
 	replace `var' = int(`var')

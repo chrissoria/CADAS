@@ -31,7 +31,23 @@ else if `country' == 2 {
     cd "`path'/CUBA_out"
 }
 
-*below we read in a country-specific file
+* Set translation folder path based on language
+if `"$language"' == "E" {
+    if `country' == 0 {
+        local trans_folder "translation_PR/"
+    }
+    else if `country' == 1 {
+        local trans_folder "translation_DR/"
+    }
+    else if `country' == 2 {
+        local trans_folder "translation_CUBA/"
+    }
+}
+else {
+    local trans_folder ""
+}
+
+*below we use the output from Resumen.do instead of re-importing the Excel file
 
 /*The goal of this do file is to:
 A. Track which individuals took one survey but not the others
@@ -39,105 +55,8 @@ B. Count Unique Households
 C. Check to see gender in Socio matches gender in Roster
 */
 
-//below we'll pull out the pid row and any columns that might be relevant
-
-if `country' == 0 {
-    import excel using "../PR_in/Resumen de Entrevistas.xlsx", firstrow clear
-    *drop N-Z
-    keep if strpos(lower(NotasCuestionariosnohechos), "complete") > 0
-    keep Cluster Casa Participante GénerodeParticpante EdaddeParticpante Fechadeentrevista NotasCuestionariosnohechos
-    rename (Casa GénerodeParticpante EdaddeParticpante Fechadeentrevista NotasCuestionariosnohechos) ///
-           (House_ID sex age Fecha Notas)
-    drop if missing(Cluster, House_ID, Participante, sex, age, Fecha, Notas)
-}
-
-
-else if `country' == 1 {
-    import excel using "../DR_in/Resumen de entrevistas.xlsx", firstrow
-    rename HouseID House_ID
-    rename GénerodeParticpante sex
-    rename EdaddeParticpante age
-    rename Fechaenquecompletoelchequeo Fecha
-    rename NotasCuestionariosnohechos Notas
-}
-else if `country' == 2 {
-    import excel using "../CUBA_in/Resumen de entrevistas.xlsx", firstrow
-    rename Sexo1Hombre2Mujer sex
-rename Edad age
-rename Fechacompleto Fecha
-rename Casa House_ID1
-rename Porque1nohubo2rehuso Notas
-
-destring Participante, replace
-rename Completo1si2no Completo
-
-destring Completo, replace
-destring Cluster, replace
-destring House_ID1, replace
-}
-
-gen pais = 0
-  
-if `country' == 1 {
-    replace pais = 1 if Participante != .
-}
-else if `country' == 2 {
-    replace pais = 2 if Participante != .
-}
-
-if `country' == 1 {
-drop if pais == .
-replace Notas = lower(trim(Notas))
-drop if Notas == "rechazo"
-
-capture replace Notas_2 = lower(trim(Notas_2))
-capture drop if Notas_2 == "rechazo"
-}
-
-if `country' == 2 {
-drop if pais == 0
-replace Notas = lower(trim(Notas))
-replace Completo = "3" if missing(Completo)
-replace Completo = "1" if Completo == "SI"
-destring Completo, replace
-drop if Completo == 2
-}
-drop if missing(Cluster)
-
-gen country_str = string(pais, "%12.0f")
-
-if `country' != 2 {
-destring Cluster, replace
-destring House_ID, replace
-destring Participante, replace
-
-gen Cluster_str = string(Cluster, "%12.0f")
-gen House_ID_str = string(House_ID, "%12.0f")
-gen Participante_str = string(Participante, "%12.0f")
-
-replace Cluster_str = cond(strlen(Cluster_str) == 1, "0" + Cluster_str, Cluster_str)
-replace House_ID_str = cond(strlen(House_ID_str) == 1, "00" + House_ID_str, House_ID_str)
-replace House_ID_str = cond(strlen(House_ID_str) == 2, "0" + House_ID_str, House_ID_str)
-replace Participante_str = cond(strlen(Participante_str) == 1, "0" + Participante_str, Participante_str)
-
-gen pid = country_str + Cluster_str + House_ID_str + Participante_str
-drop country_str Cluster_str House_ID_str Participante_str
-}
-
-else if `country' == 2 {
-	rename Cluster cluster_real
-	tostring cluster_real, generate(Cluster) format(%12.0g)
-replace Cluster = cond(strlen(Cluster) == 1, "0" + Cluster, Cluster)
-gen House_ID = string(House_ID)
-replace House_ID = cond(strlen(House_ID) == 1, "00" + House_ID, House_ID)
-replace House_ID = cond(strlen(House_ID) == 2, "0" + House_ID, House_ID)
-	rename Participante Participante1
-gen Participante = string(Participante1)
-replace Participante = cond(strlen(Participante) == 1, "0" + Participante, Participante)
-
-gen pid = country_str + Cluster + House_ID + Participante
-drop country_str
-}
+* Use resumen.dta produced by Resumen.do
+use resumen.dta, clear
 
 duplicates drop pid, force
 
@@ -151,13 +70,27 @@ gen pid = ""
 save "all_unique_pids.dta", replace
 
 local datasets "resumen_tracker rosters_participants Socio Phys Cog Cog_Scoring Infor"
+local trans_datasets "Socio Phys Cog Cog_Scoring Infor"
 
 foreach dataset in `datasets' {
-    use "`dataset'.dta", clear
-    
+    * Check if this dataset needs translation folder
+    local use_trans = 0
+    foreach td in `trans_datasets' {
+        if "`dataset'" == "`td'" {
+            local use_trans = 1
+        }
+    }
+
+    if `use_trans' == 1 {
+        use "`trans_folder'`dataset'.dta", clear
+    }
+    else {
+        use "`dataset'.dta", clear
+    }
+
     keep pid
     duplicates drop
-    
+
     append using "all_unique_pids.dta"
     save "all_unique_pids.dta", replace
 }
@@ -176,31 +109,18 @@ log using logs/tracker, text replace
 
 use resumen_tracker.dta, clear
 
-
 keep pid age sex House_ID Cluster
 gen pidr=real(pid)
-rename sex SEX
 
-if `country' != 2 {
-replace SEX = lower(trim(SEX))
-generate sex = cond(SEX == "m", 0, cond(SEX == "f", 1, .))
+* sex is already numeric (0/1) from Resumen.do
+* age may need to be destring if it came in as string (force to handle non-numeric values)
+capture confirm numeric variable age
+if _rc != 0 {
+    destring age, replace force
 }
-
-else if `country' == 2 {
-	replace SEX = lower(trim(SEX))
-	replace SEX = "1" if SEX == "masculino"
-	replace SEX = "2" if SEX == "femenino"
-	destring SEX, replace
-generate sex = cond(SEX == 1,0, cond(SEX == 2, 1,.))
-}
-
-
-drop SEX
-destring age, replace
 
 egen duplic=count(pid), by(pid)
 egen sd_sex=sd(sex), by(pid)
-destring age, replace force
 egen sd_age=sd(age), by(pid)
 tab duplic /* if any duplicates, should re-do cleaning .do file then re-run this file */
 sum sd_sex sd_age /* these should be all zero if duplicates have identical age and sex */
@@ -252,7 +172,7 @@ sum
 ********** 
 * SOCIO
 **********
-use Socio, clear
+use `trans_folder'Socio, clear
 *s_2_3 will be slightly different if age on official documents differs from roster age
 
 capture confirm variable s_sex
@@ -288,7 +208,7 @@ sum
 ********** 
 * PHYS
 **********
-use Phys, clear
+use `trans_folder'Phys, clear
 keep pid p_interid p_deviceid1 p_date
 gen pidr=real(pid)
 drop if pidr==.
@@ -311,7 +231,7 @@ sum
 ********** 
 * COG
 **********
-use Cog, clear
+use `trans_folder'Cog, clear
 keep pid c_interid c_deviceid1 all_image_files_found all_audio_files_found c_date
 gen pidr=real(pid)
 drop if pidr==.
@@ -333,7 +253,7 @@ sum
 ********** 
 * COG SCORING
 **********
-use Cog_Scoring, clear
+use `trans_folder'Cog_Scoring, clear
 keep pid cs_interid cs_date
 gen pidr=real(pid)
 drop if pidr==.
@@ -355,7 +275,7 @@ sum
 ********** 
 * INFORMANT
 **********
-use Infor, clear
+use `trans_folder'Infor, clear
 keep pid i_interid i_deviceid1 i_date
 gen pidr=real(pid)
 drop if pidr==.
@@ -378,7 +298,7 @@ sum
 * HOUSEHOLD
 **********
 
-use Household, clear
+use `trans_folder'Household, clear
 keep hhid h_interid h_deviceid1 h_date
 gen hhidr=real(hhid)
 *drop if hhidr==.
@@ -491,7 +411,7 @@ if `country' == 2 {
 gen tracker_complete = "WIP"
 replace tracker_complete = "Completed" if strpos(RSPCZ, "RSPCZIH") > 0
 
-save tracker_full, replace
+save `trans_folder'tracker_full, replace
 
 * Get the list of variable names
 unab varlist : _all
@@ -503,20 +423,20 @@ foreach var of varlist `varlist' {
     }
 }
 
-export excel using "duplicates/tracker_full.xlsx", replace firstrow(variables)
+export excel using "`trans_folder'duplicates/tracker_full.xlsx", replace firstrow(variables)
 
 drop s_interid p_interid i_interid h_interid cs_interid c_interid
 drop s_deviceid1 p_deviceid1 i_deviceid1 c_deviceid1 all_image_files_found all_audio_files_found
 
-save tracker_slim, replace
+save `trans_folder'tracker_slim, replace
 
-export excel using "duplicates/tracker_slim.xlsx", replace firstrow(variables)
+export excel using "`trans_folder'duplicates/tracker_slim.xlsx", replace firstrow(variables)
 
 use door_merged_all
 
 keep hhid pid d_0 d_1 d_particid
 
-merge m:m hhid using tracker_slim 
+merge m:m hhid using `trans_folder'tracker_slim
 
 capture drop XF7 RSPCZIHXF7
 
@@ -526,13 +446,13 @@ drop _merge
 
 keep d_1 d_particid pid hhid hhid_en_puerta
 
-save tracker_door, replace
-export excel using "duplicates/tracker_door.xlsx", replace firstrow(variables)
+save `trans_folder'tracker_door, replace
+export excel using "`trans_folder'duplicates/tracker_door.xlsx", replace firstrow(variables)
 
 
 clear
 
-use tracker_full
+use `trans_folder'tracker_full
 
 *in this first version, we will focus only on the individual surveys (cog, cog_score, socio, infor, phys)
 
@@ -618,31 +538,19 @@ capture replace pid_en_sangre = " " if pid_en_sangre == "1"
 
 capture drop pid_en_sangre
 
-export excel using "duplicates/casos_incompletos.xlsx", replace firstrow(variables)
+export excel using "`trans_folder'duplicates/casos_incompletos.xlsx", replace firstrow(variables)
 
 clear
-use tracker_slim
+use `trans_folder'tracker_slim
 keep if RSPCZIHXF7 == "G       "
 
 keep pid Cluster House_ID
 
-capture export excel using "duplicates/in_resumen_not_in_data.xlsx", replace firstrow(variables)
+capture export excel using "`trans_folder'duplicates/in_resumen_not_in_data.xlsx", replace firstrow(variables)
 
 
 log close
 
 clear
-use tracker_full
-keep if strpos(RSPCZ, "RSPCZIH") > 0
-keep pid RSPCZ tracker_complete
-sort pid
-quietly by pid: gen dup = cond(_N==1,0,_n)
-drop if dup > 1
 
-save Completed_Interview_PIDs, replace
-
-if `country' ~= 2{
-	merge 1:m pid using door_participants, nogen
-	save door_participants, replace
-}
 exit, clear

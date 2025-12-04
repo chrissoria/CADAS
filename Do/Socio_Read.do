@@ -6069,8 +6069,26 @@ codebook
 
 log close
 
-save Socio.dta, replace
- 
+* Apply English labels if language is set to "E" and save to appropriate location
+if `"$language"' == "E" {
+    capture do "/Users/chrissoria/documents/CADAS/Do/Read/Socio_english_labels.do"
+    capture do "C:\Users\Ty\Desktop\CADAS Data do files\Socio_english_labels.do"
+
+    * Save to translation folder for English
+    if `country' == 0 {
+        save "translation_PR/Socio.dta", replace
+    }
+    else if `country' == 1 {
+        save "translation_DR/Socio.dta", replace
+    }
+    else if `country' == 2 {
+        save "translation_CUBA/Socio.dta", replace
+    }
+}
+else {
+    save Socio.dta, replace
+}
+
  * Get the list of variable names
 unab varlist : _all
 
@@ -6082,6 +6100,22 @@ foreach var of varlist `varlist' {
 }
 
 clear all
+
+* Re-define translation folder after clear all
+if `"$language"' == "E" {
+    if `country' == 0 {
+        local trans_folder "translation_PR/"
+    }
+    else if `country' == 1 {
+        local trans_folder "translation_DR/"
+    }
+    else if `country' == 2 {
+        local trans_folder "translation_CUBA/"
+    }
+}
+else {
+    local trans_folder ""
+}
 
 if `country' == 0 {
     insheet using "../PR_in/Socio_Parent.csv", comma names clear
@@ -6100,7 +6134,7 @@ rename s_clustid1 s_parent_clustid
 rename s_houseid1 s_parent_houseid
 rename s_particid1 s_parent_particid
 
-merge 1:1 fkey using Socio 
+merge 1:1 fkey using `trans_folder'Socio 
 
 drop if _merge == 1
 drop _merge
@@ -6132,4 +6166,23 @@ drop s_clustid_str s_houseid_str s_particid_str s_country_str s_houseid2 s_congl
 
 replace s_clustid = s_parent_clustid if s_clustid == .i
 
-save Socio.dta, replace
+* Apply English labels if language is set to "E" and save to appropriate location
+if `"$language"' == "E" {
+    capture do "/Users/chrissoria/documents/CADAS/Do/Read/Socio_english_labels.do"
+    capture do "C:\Users\Ty\Desktop\CADAS Data do files\Socio_english_labels.do"
+
+    * Save to translation folder for English
+    if `country' == 0 {
+        save "translation_PR/Socio.dta", replace
+    }
+    else if `country' == 1 {
+        save "translation_DR/Socio.dta", replace
+    }
+    else if `country' == 2 {
+        save "translation_CUBA/Socio.dta", replace
+    }
+}
+else {
+    * Save to default location for Spanish
+    save Socio.dta, replace
+}

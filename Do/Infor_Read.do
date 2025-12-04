@@ -698,7 +698,7 @@ generate I_LHAS_54 = cond(i_lhas_54 ==  0, "razonable", cond(i_lhas_54 ==  1, "a
 
 drop i_lhas_54
 
-drop v1
+capture drop v1
 
 
 if `country' == 0 {
@@ -3681,9 +3681,28 @@ codebook
 
 log close
 
- save Infor.dta, replace
- 
- * Get the list of variable names
+* Apply English labels if language is set to "E" and save to appropriate location
+if `"$language"' == "E" {
+    capture do "/Users/chrissoria/documents/CADAS/Do/Read/Infor_english_labels.do"
+    capture do "C:\Users\Ty\Desktop\CADAS Data do files\Infor_english_labels.do"
+
+    * Save to translation folder for English
+    if `country' == 0 {
+        save "translation_PR/Infor.dta", replace
+    }
+    else if `country' == 1 {
+        save "translation_DR/Infor.dta", replace
+    }
+    else if `country' == 2 {
+        save "translation_CUBA/Infor.dta", replace
+    }
+}
+else {
+    * Save to default location for Spanish
+    save Infor.dta, replace
+}
+
+* Get the list of variable names
 unab varlist : _all
 
 * Convert variables with value labels into string variables
@@ -3694,6 +3713,22 @@ foreach var of varlist `varlist' {
 }
 
 clear all
+
+* Re-define translation folder after clear all
+if `"$language"' == "E" {
+    if `country' == 0 {
+        local trans_folder "translation_PR/"
+    }
+    else if `country' == 1 {
+        local trans_folder "translation_DR/"
+    }
+    else if `country' == 2 {
+        local trans_folder "translation_CUBA/"
+    }
+}
+else {
+    local trans_folder ""
+}
 
 if `country' == 0 {
     insheet using "../PR_in/Infor_Parent.csv", comma names clear
@@ -3711,7 +3746,7 @@ rename i_clustid1 i_parent_clustid
 rename i_houseid1 i_parent_houseid
 rename i_particid1 i_parent_particid
 
-merge 1:1 fkey using Infor 
+merge 1:1 fkey using `trans_folder'Infor 
 
 drop if _merge == 1
 drop _merge
@@ -3739,4 +3774,4 @@ order pid_parent pid pid_nonmatch globalrecordid hhid
 
 drop i_clustid_str i_houseid_str i_particid_str i_country_str
 
-save Infor.dta, replace
+save `trans_folder'Infor.dta, replace

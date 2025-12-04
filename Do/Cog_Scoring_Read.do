@@ -126,9 +126,28 @@ label variable cs_79_4 "79.4. El cubo (0-4)"
 *Fix animal scoring so cs_40 is the #UNIQUE animals listed
 replace cs_40 = cs_40 - cs_41 if (cs_40 < . & cs_41 < .) & `country' == 1
 
- save Cog_Scoring.dta, replace
+* Apply English labels if language is set to "E" and save to appropriate location
+if `"$language"' == "E" {
+    capture include "/Users/chrissoria/documents/CADAS/Do/Read/Cog_Scoring_english_labels.do"
+    capture include "C:\Users\Ty\Desktop\CADAS Data do files\Cog_Scoring_english_labels.do"
 
- * Get the list of variable names
+    * Save to translation folder for English
+    if `country' == 0 {
+        save "translation_PR/Cog_Scoring.dta", replace
+    }
+    else if `country' == 1 {
+        save "translation_DR/Cog_Scoring.dta", replace
+    }
+    else if `country' == 2 {
+        save "translation_CUBA/Cog_Scoring.dta", replace
+    }
+}
+else {
+    * Save to default location for Spanish
+    save Cog_Scoring.dta, replace
+}
+
+* Get the list of variable names
 unab varlist : _all
 
 * Convert variables with value labels into string variables

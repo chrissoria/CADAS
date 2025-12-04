@@ -37,7 +37,23 @@ else if `country' == 2 {
     cd "`path'/CUBA_out"
 }
 }
- 
+
+* Set translation folder path based on language
+if `"$language"' == "E" {
+    if `country' == 0 {
+        local trans_folder "translation_PR/"
+    }
+    else if `country' == 1 {
+        local trans_folder "translation_DR/"
+    }
+    else if `country' == 2 {
+        local trans_folder "translation_CUBA/"
+    }
+}
+else {
+    local trans_folder ""
+}
+
 local drop_not_resumen = "no"
 display "`drop_not_resumen'"
 
@@ -169,7 +185,7 @@ capture export excel using "duplicates/roster_duplicates.xlsx", replace firstrow
  
  clear all
  
-use Socio
+use `trans_folder'Socio
 * because the id's were entered in incorrectly in the resumen, we'll have to match that incorrect ID in the data
 replace s_particid = 2 if globalrecordid == "f1f59f5f-83b5-49a0-bca7-e7eccd818b25"
 replace s_particid = 1 if globalrecordid == "f084cb1f-b4eb-4115-8a79-e11ee6038429"
@@ -198,7 +214,7 @@ drop s_country_str s_clustid_str s_houseid_str s_particid_str
 
 merge m:m pid using resumen_pid
 
-gen resumen = "Not in Resumen" if _merge == 1
+capture gen resumen = "Not in Resumen" if _merge == 1
 replace resumen = "Found in Resumen" if _merge == 3
 drop if _merge == 2
 drop _merge
@@ -209,7 +225,7 @@ if "`drop_not_resumen'" == "yes" {
     drop if resumen == "Not in Resumen"
 }
 
-log using "`path'/PR_out/logs/SocioOnlyMissing", text replace
+log using "/Users/chrissoria/documents/CADAS/Data/PR_out/logs/SocioOnlyMissing", text replace
 
 
 local missvarlist
@@ -246,8 +262,8 @@ log close
  list if is_duplicate
  drop is_duplicate
  
-export excel using "excel/socio.xlsx", replace firstrow(variables)
- save Socio.dta, replace
+export excel using "`trans_folder'excel/socio.xlsx", replace firstrow(variables)
+ save `trans_folder'Socio.dta, replace
   
 gen is_duplicate = pid[_n] == pid[_n-1]
 
@@ -273,11 +289,11 @@ export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(variable
  
  clear all
 
-use Cog
+use `trans_folder'Cog
 
 merge m:m pid using resumen_pid
 
-gen resumen = "Not in Resumen" if _merge == 1
+capture gen resumen = "Not in Resumen" if _merge == 1
 replace resumen = "Found in Resumen" if _merge == 3
 drop if _merge == 2
 drop _merge
@@ -288,13 +304,13 @@ if "`drop_not_resumen'" == "yes" {
     drop if resumen == "Not in Resumen"
 }
 
-export excel using "excel/cognitive.xlsx", replace firstrow(variables)
+export excel using "`trans_folder'excel/cognitive.xlsx", replace firstrow(variables)
 
-save cog.dta, replace
+save `trans_folder'cog.dta, replace
 
 clear all
  
- use Phys
+ use `trans_folder'Phys
  drop pid
  drop hhid
  
@@ -325,7 +341,7 @@ drop if pid == "00000000"
 
 merge m:m pid using resumen_pid
 
-gen resumen = "Not in Resumen" if _merge == 1
+capture gen resumen = "Not in Resumen" if _merge == 1
 replace resumen = "Found in Resumen" if _merge == 3
 drop if _merge == 2
 drop _merge
@@ -337,7 +353,7 @@ if "`drop_not_resumen'" == "yes" {
 }
 
 
-log using "`path'/PR_out/logs/PhysOnlyMissing", text replace
+log using "/Users/chrissoria/documents/CADAS/Data/PR_out/logs/PhysOnlyMissing", text replace
 
 
 local missvarlist
@@ -367,8 +383,8 @@ foreach v of local missvarlist {
 }
 
 log close
-export excel using "excel/examen_fisico.xlsx", replace firstrow(variables)
-save Phys.dta, replace
+export excel using "`trans_folder'excel/examen_fisico.xlsx", replace firstrow(variables)
+save `trans_folder'Phys.dta, replace
 
  
  duplicates report pid
@@ -402,7 +418,7 @@ export excel using "duplicates/phys_duplicates.xlsx", replace firstrow(variables
  
  clear all
  
-use Infor
+use `trans_folder'Infor
 
 * because the id's were entered in incorrectly in the resumen, we'll have to match that incorrect ID in the data
 replace i_particid = 2 if globalrecordid == "a027b10b-5295-4c1e-b4e0-1148c2715c04"
@@ -431,7 +447,7 @@ drop if pid == "00000001"
 
 merge m:m pid using resumen_pid
 
-gen resumen = "Not in Resumen" if _merge == 1
+capture gen resumen = "Not in Resumen" if _merge == 1
 replace resumen = "Found in Resumen" if _merge == 3
 drop if _merge == 2
 drop _merge
@@ -442,7 +458,7 @@ if "`drop_not_resumen'" == "yes" {
     drop if resumen == "Not in Resumen"
 }
 
-log using "`path'/PR_out/logs/InforOnlyMissing", text replace
+log using "/Users/chrissoria/documents/CADAS/Data/PR_out/logs/InforOnlyMissing", text replace
 
 local missvarlist
 
@@ -478,8 +494,8 @@ log close
  list if is_duplicate
  drop is_duplicate
 
-export excel using "excel/informante.xlsx", replace firstrow(variables)
-save Infor.dta, replace
+export excel using "`trans_folder'excel/informante.xlsx", replace firstrow(variables)
+save `trans_folder'Infor.dta, replace
  
  gen is_duplicate = pid[_n] == pid[_n-1]
 
@@ -504,12 +520,31 @@ foreach var of varlist `varlist' {
 export excel using "duplicates/informant_duplicates.xlsx", replace firstrow(variables)
  
 clear all
- 
-use Household
+
+use `trans_folder'Cog
+
+merge m:m pid using resumen_pid
+
+capture gen resumen = "Not in Resumen" if _merge == 1
+replace resumen = "Found in Resumen" if _merge == 3
+drop if _merge == 2
+drop _merge
+
+order pid_parent pid resumen
+
+if "`drop_not_resumen'" == "yes" {
+    drop if resumen == "Not in Resumen"
+}
+
+save `trans_folder'Cog.dta, replace
+
+clear all
+
+use `trans_folder'Household
 
 drop if inlist(globalrecordid, "517e61c3-f612-41b8-8038-656a367b177d", "fea7bf68-4b53-41dc-8a3a-170dc287be69", "f810981c-8684-4325-9678-c0e6bf660389")
  
- log using "`path'/PR_out/logs/HouseholdOnlyMissing", text replace
+ log using "/Users/chrissoria/documents/CADAS/Data/PR_out/logs/HouseholdOnlyMissing", text replace
 
  
 
@@ -549,8 +584,8 @@ log close
 
 drop is_duplicate
 
-export excel using "excel/familiar.xlsx", replace firstrow(variables)
-save Household.dta, replace
+export excel using "`trans_folder'excel/familiar.xlsx", replace firstrow(variables)
+save `trans_folder'Household.dta, replace
 
 gen is_duplicate = hhid[_n] == hhid[_n-1]
 
@@ -583,11 +618,11 @@ clear all
 
 *next, I want to find out if we have the right amount of cog scoring and cog surveys
 
-cd "`path'/PR_out"
-use Cog_Scoring
+cd "/Users/chrissoria/documents/CADAS/Data/PR_out"
+use `trans_folder'Cog_Scoring
 
 *for no, I will do m:m because I have't been able to pin down which unique cases are the true/correct ones
-merge m:m pid using Cog, force
+merge m:m pid using `trans_folder'Cog, force
 
 keep if _merge != 3
 

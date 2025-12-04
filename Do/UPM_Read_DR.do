@@ -23,6 +23,12 @@ capture rename UPM Cluster
 capture rename upm Cluster
 capture rename Upm Cluster
 
+tostring Cluster, replace
+
+* Standardize to 2 characters with leading zero
+replace Cluster = trim(Cluster)
+replace Cluster = "0" + Cluster if strlen(Cluster) == 1 & Cluster != ""
+
 * label the Cluster variable
 label variable Cluster "UPM/Cluster identifier"
 
@@ -41,7 +47,7 @@ rename PERSONASDE65Y Cluster_Persons_65Plus
 
 * to resolve the duplicate 24 cluster
 generate str20 Cluster_Latitude_str = string(Cluster_Latitude, "%12.6f")
-replace Cluster = 26 if Cluster_Latitude_str == "-68.971309"
+replace Cluster = "26" if Cluster_Latitude_str == "-68.971309"
 drop Cluster_Latitude_str
 
 * labels
@@ -56,7 +62,7 @@ label variable Cluster_Persons_65Plus "Number of persons aged 65 and older in cl
 
 duplicates drop Cluster, force
 
-keep if Cluster != .
+keep if Cluster != "."
 save UPM_CADAS_RD.dta, replace
 
 exit, clear

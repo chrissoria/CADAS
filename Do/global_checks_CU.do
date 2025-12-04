@@ -14,7 +14,15 @@ local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
 }
 
 cd "`path'/CUBA_out"
- 
+
+* Set translation folder path based on language
+if `"$language"' == "E" {
+    local trans_folder "translation_CUBA/"
+}
+else {
+    local trans_folder ""
+}
+
 import excel using "../CUBA_in/Resumen de entrevistas.xlsx", firstrow
 
 gen clustid_str = string(Cluster, "%12.0f")
@@ -45,7 +53,7 @@ save resumen_pid.dta,replace
  
 clear all
  
-use Socio
+use `trans_folder'Socio
 *we're dropping because pid 20409801 id duplicate, but this case looks mostly empty, we think it's the same person based on gender and resposne to some questions
 drop if globalrecordid == "6146eba7-6072-47f1-ae88-2eb90422f229"
 *participant is a 75 year old female, participant 2 missing socio, must be participant 2 (age matches)
@@ -281,8 +289,8 @@ order pid_parent pid resumen
 *some cases are being duplicated or kept after merges from files that aren't from the tablet
 drop if globalrecordid == ""
 
- save Socio.dta, replace
-export excel using "excel/socio.xlsx", replace firstrow(variables)
+ save `trans_folder'Socio.dta, replace
+export excel using "`trans_folder'excel/socio.xlsx", replace firstrow(variables)
 
 gen is_duplicate = pid[_n] == pid[_n-1]
 
@@ -308,7 +316,7 @@ capture export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(
  
  clear all
  
- use Phys
+ use `trans_folder'Phys
 
  drop pid
  drop hhid
@@ -471,9 +479,9 @@ order pid_parent pid resumen
 *some cases are being duplicated or kept after merges from files that aren't from the tablet
 drop if globalrecordid == ""
 
-save Phys.dta, replace
+save `trans_folder'Phys.dta, replace
 
-export excel using "excel/examen_fisico.xlsx", replace firstrow(variables)
+export excel using "`trans_folder'excel/examen_fisico.xlsx", replace firstrow(variables)
  
  duplicates report pid
  sort pid
@@ -509,7 +517,7 @@ export excel using "duplicates/phys_duplicates.xlsx", replace firstrow(variables
  
 clear all
  
-use Infor
+use `trans_folder'Infor
 
 duplicates drop globalrecordid, force
  
@@ -1194,8 +1202,8 @@ order pid_parent pid resumen
 *some cases are being duplicated or kept after merges from files that aren't from the tablet
 drop if globalrecordid == ""
 
-export excel using "excel/informante.xlsx", replace firstrow(variables)
-save Infor.dta, replace
+export excel using "`trans_folder'excel/informante.xlsx", replace firstrow(variables)
+save `trans_folder'Infor.dta, replace
  
  gen is_duplicate = pid[_n] == pid[_n-1]
 
@@ -1221,7 +1229,7 @@ export excel using "duplicates/informant_duplicates.xlsx", replace firstrow(vari
  
  clear all
  
-use Household
+use `trans_folder'Household
 
 order hhid hhid2 hhid_original globalrecordid fkey h_date
 
@@ -1305,8 +1313,8 @@ drop is_duplicate
 *some cases are being duplicated or kept after merges from files that aren't from the tablet
 drop if globalrecordid == ""
 
-save Household.dta, replace
-export excel using "excel/familiar.xlsx", replace firstrow(variables)
+save `trans_folder'Household.dta, replace
+export excel using "`trans_folder'excel/familiar.xlsx", replace firstrow(variables)
 
 gen is_duplicate = hhid[_n] == hhid[_n-1]
 
@@ -1607,10 +1615,10 @@ clear all
 *next, I want to find out if we have the right amount of cog scoring and cog surveys
 
 cd "`path'/CUBA_out"
-use Cog_Scoring
+use `trans_folder'Cog_Scoring
 
 *for no, I will do m:m because I have't been able to pin down which unique cases are the true/correct ones
-merge m:m pid using Cog, force
+merge m:m pid using `trans_folder'Cog, force
 
 keep if _merge != 3
 
@@ -1640,29 +1648,38 @@ the above are all cognitve surveys with no cognitve scoring files.*/
 *here, we want to merge all the individual-level files together to get a big file
 
 clear all
-use Cog.dta
-merge m:m pid using Infor.dta
+
+* Re-define translation folder after clear all
+if `"$language"' == "E" {
+    local trans_folder "translation_CUBA/"
+}
+else {
+    local trans_folder ""
+}
+
+use `trans_folder'Cog.dta
+merge m:m pid using `trans_folder'Infor.dta
 
 drop _merge
 
-merge m:m pid using Phys.dta
+merge m:m pid using `trans_folder'Phys.dta
 
 drop _merge
 
-merge m:m pid using Socio.dta
+merge m:m pid using `trans_folder'Socio.dta
 
 drop _merge fkey globalrecordid pid_parent  pid_nonmatch
 
-save Respondent_Merged.dta, replace
+save `trans_folder'Respondent_Merged.dta, replace
 
 *next, I want to know which cases within which datasets aren't matching on the CDR dataset
 clear
 
 use Cuba_CDR.dta
 
-foreach data in cog socio infor {
+foreach data in Cog Socio Infor {
 	preserve
-	merge m:m pid using `data'
+	merge m:m pid using `trans_folder'`data'
 	keep if _merge == 1
 	capture export excel using "duplicates/`data'_CDR_non_matches.xlsx", replace firstrow(variables)
 	restore

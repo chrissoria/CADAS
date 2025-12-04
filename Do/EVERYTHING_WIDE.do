@@ -3,6 +3,7 @@ clear all
 set more off
 capture log close
 
+
 *Here we will identify the country we want before we run the file
 *0 = PR, 1 = DR, 2 = CU
 
@@ -23,278 +24,157 @@ include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
 
 if `country' == 0 {
     cd "`path'/PR_out"
+    local temp_dir "../PR_in"
 }
 else if `country' == 1 {
     cd "`path'/DR_out"
+    local temp_dir "../DR_in"
 }
 else if `country' == 2 {
     cd "`path'/CUBA_out"
+    local temp_dir "../CUBA_in"
 }
 
-*below we read in a country-specific file
-
-/*The goal of this do file is to:
-A. Track which individuals took one survey but not the others
-B. Count Unique Households
-C. Check to see gender in Socio matches gender in Roster
-*/
-
-//below we'll pull out the pid row and any columns that might be relevant
-
-if `country' == 0 {
-    import excel using "../PR_in/Resumen de Entrevistas.xlsx", firstrow clear
-    *drop N-Z
-    keep if strpos(lower(NotasCuestionariosnohechos), "complete") > 0
-    keep Cluster Casa Participante GénerodeParticpante EdaddeParticpante Fechadeentrevista NotasCuestionariosnohechos
-    rename (Casa GénerodeParticpante EdaddeParticpante Fechadeentrevista NotasCuestionariosnohechos) ///
-           (House_ID sex age Fecha Notas)
-    drop if missing(Cluster, House_ID, Participante, sex, age, Fecha, Notas)
+* Set translation folder path based on language
+if `"$language"' == "E" {
+    if `country' == 0 {
+        local trans_folder "translation_PR/"
+    }
+    else if `country' == 1 {
+        local trans_folder "translation_DR/"
+    }
+    else if `country' == 2 {
+        local trans_folder "translation_CUBA/"
+    }
 }
-else if `country' == 1 {
-    import excel using "../DR_in/Resumen de entrevistas.xlsx", firstrow
-    rename HouseID House_ID
-    rename GénerodeParticpante sex
-    rename EdaddeParticpante age
-    rename Fechaenquecompletoelchequeo Fecha
-    rename NotasCuestionariosnohechos Notas
+else {
+    local trans_folder ""
 }
-else if `country' == 2 {
-    import excel using "../CUBA_in/Resumen de entrevistas.xlsx", firstrow
-    rename Sexo1Hombre2Mujer sex
-rename Edad age
-rename Fechacompleto Fecha
-rename Casa House_ID1
-rename Porque1nohubo2rehuso Notas
-
-destring Participante, replace
-rename Completo1si2no Completo
-
-destring Completo, replace
-destring Cluster, replace
-destring House_ID1, replace
-}
-
-gen pais = 0
-  
-if `country' == 1 {
-    replace pais = 1 if Participante != .
-}
-else if `country' == 2 {
-    replace pais = 2 if Participante != .
-}
-
-if `country' == 1 {
-*drop if pais == .
-replace Notas = lower(trim(Notas))
-*drop if Notas == "rechazo"
-
-capture replace Notas_2 = lower(trim(Notas_2))
-*capture drop if Notas_2 == "rechazo"
-}
-
-if `country' == 2 {
-*drop if pais == 0
-replace Notas = lower(trim(Notas))
-replace Completo = "3" if missing(Completo)
-replace Completo = "1" if Completo == "SI"
-destring Completo, replace
-*drop if Completo == 2
-}
-*drop if missing(Cluster)
-
-gen country_str = string(pais, "%12.0f")
-
-if `country' != 2 {
-destring Cluster, replace
-destring House_ID, replace
-destring Participante, replace
-
-gen Cluster_str = string(Cluster, "%12.0f")
-gen House_ID_str = string(House_ID, "%12.0f")
-gen Participante_str = string(Participante, "%12.0f")
-
-replace Cluster_str = cond(strlen(Cluster_str) == 1, "0" + Cluster_str, Cluster_str)
-replace House_ID_str = cond(strlen(House_ID_str) == 1, "00" + House_ID_str, House_ID_str)
-replace House_ID_str = cond(strlen(House_ID_str) == 2, "0" + House_ID_str, House_ID_str)
-replace Participante_str = cond(strlen(Participante_str) == 1, "0" + Participante_str, Participante_str)
-
-gen pid = country_str + Cluster_str + House_ID_str + Participante_str
-drop country_str Cluster_str House_ID_str Participante_str
-}
-
-else if `country' == 2 {
-	rename Cluster cluster_real
-	tostring cluster_real, generate(Cluster) format(%12.0g)
-replace Cluster = cond(strlen(Cluster) == 1, "0" + Cluster, Cluster)
-gen House_ID = string(House_ID)
-replace House_ID = cond(strlen(House_ID) == 1, "00" + House_ID, House_ID)
-replace House_ID = cond(strlen(House_ID) == 2, "0" + House_ID, House_ID)
-	rename Participante Participante1
-gen Participante = string(Participante1)
-replace Participante = cond(strlen(Participante) == 1, "0" + Participante, Participante)
-
-gen pid = country_str + Cluster + House_ID + Participante
-drop country_str
-}
-
-
-duplicates drop pid, force
-
-*********
-* RESUMEN ENTREVISTAS
-********
 
 log using logs/Everything_Wide, text replace
 
-keep pid age sex House_ID Cluster
+****************************************
+* SECTION 1: INITIALIZE MASTER DATASET
+****************************************
+* Start with all_unique_pids as the base
+* This will be merged with all other datasets
+* Resumen will be merged LAST
+****************************************
+
+use all_unique_pids.dta, clear
+capture tostring pid, replace
+capture tostring hhid, replace
+duplicates drop pid, force
+
+capture drop Cluster
+capture drop cluster
+capture drop casa
+capture drop participante
+
+gen cluster = substr(pid, 2, 2)
+gen casa = substr(pid, 4, 3)
+gen participante = substr(pid, 8, 1)
+
+save `trans_folder'Everything_Wide, replace
+
+
+/*
+********** 
+* LISTAS
+**********
+
+if `country' ~= 2 {
+    use "participants.dta", clear
+    
+*keep pid R_in
 gen pidr=real(pid)
-rename sex SEX
-
-if `country' != 2 {
-replace SEX = lower(trim(SEX))
-generate sex = cond(SEX == "m", 0, cond(SEX == "f", 1, .))
-}
-
-else if `country' == 2 {
-	replace SEX = lower(trim(SEX))
-	replace SEX = "1" if SEX == "masculino"
-	replace SEX = "2" if SEX == "femenino"
-	destring SEX, replace
-generate sex = cond(SEX == 1,0, cond(SEX == 2, 1,.))
-}
-
-
-drop SEX
-destring age, replace
-
+*drop if pidr==.
 egen duplic=count(pid), by(pid)
-egen sd_sex=sd(sex), by(pid)
-destring age, replace force
-
-egen sd_age=sd(age), by(pid)
-tab duplic /* if any duplicates, should re-do cleaning .do file then re-run this file */
-sum sd_sex sd_age /* these should be all zero if duplicates have identical age and sex */
+tab duplic
 sort pid
-list pid sex age duplic if duplic>1 /* print duplicate obs */
-gen pid_en_resumen=1 /* create indicator to use after merge with other questionnaire files */
-drop pidr duplic sd_sex sd_age
-replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
-gen hhid=substr(pid,1,6)
 
-save Everything_Wide, replace
-
-use using all_unique_pids.dta, clear
-
-merge m:m pid using Everything_Wide.dta
+gen pid_en_listas=1 
+drop pidr duplic
+sum
+*save listas_check.dta, replace
+save "`temp_dir'/temp_participants.dta", replace
+use `trans_folder'Everything_Wide, clear
+merge 1:1 pid using "`temp_dir'/temp_participants.dta"
 tab _merge
+display "Total rows: "
+count
 drop _merge
+save `trans_folder'Everything_Wide, replace
 
-********** 
-* SOCIO
-**********
-use Socio, clear
-*s_2_3 will be slightly different if age on official documents differs from roster age
-
-capture confirm variable s_sex
-if _rc == 0 {
-    rename s_sex s_0
 }
 
-*keep pid s_0 s_2_3 s_interid s_deviceid1 s_date
-gen pidr=real(pid)
+*/
+
+****************************************
+* SECTION 2: SOCIO MERGE
+****************************************
+
+use "`trans_folder'Socio.dta", clear
+
+*keep pid S_in
+*gen pidr=real(pid)
 *drop if pidr==.
 egen duplic=count(pid), by(pid)
 tab duplic
 sort pid
-list pid s_0 s_2_3 duplic if duplic>1 
+
 gen pid_en_socio=1 
-drop pidr duplic
+*drop pidr duplic
+sum
 *save socio_check.dta, replace
-replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
-merge m:m pid using Everything_Wide
-drop _merge
-save Everything_Wide, replace
+save "`temp_dir'/temp_Socio.dta", replace
+use `trans_folder'Everything_Wide, clear
+merge 1:m pid using "`temp_dir'/temp_Socio.dta"
 
-********** 
-* COG
-**********
-use Cog, clear
-*keep pid c_interid c_deviceid1 all_image_files_found all_audio_files_found c_date
-gen pidr=real(pid)
+* Save unmatched records to CSV
+preserve
+keep if _merge == 1
+export delimited using "missing_socio_records.csv", replace
+restore
+
+* Keep only matched records
+keep if _merge == 3
+tab _merge
+display "Total rows: "
+count
+drop _merge
+save `trans_folder'Everything_Wide, replace
+
+
+****************************************
+* SECTION 3: PHYSICAL EXAM MERGE
+****************************************
+
+use "`trans_folder'Phys.dta", clear
+
+*keep pid P_in
+*gen pidr=real(pid)
 *drop if pidr==.
 egen duplic=count(pid), by(pid)
 tab duplic
 sort pid
-list pid duplic if duplic>1 
-gen pid_en_cog=1 
-drop pidr duplic
-*save cog_check.dta, replace
-replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
-merge m:m pid using Everything_Wide
-drop _merge
-save Everything_Wide, replace
 
-********** 
-* COG SCORING
-**********
-use Cog_Scoring, clear
-rename cs_32 cs_32_interviewers
-*keep pid cs_interid cs_date
-gen pidr=real(pid)
-*drop if pidr==.
-egen duplic=count(pid), by(pid)
-tab duplic
-sort pid
-list pid duplic if duplic>1 
-gen pid_en_cog_scor=1 
-drop pidr duplic
-*save cog_scoring_check.dta, replace
-replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
-merge m:m pid using Everything_Wide
-drop _merge
-save Everything_Wide, replace
-
-********** 
-* INFORMANT
-**********
-use Infor, clear
-*keep pid i_interid i_deviceid1 i_date
-gen pidr=real(pid)
-*drop if pidr==.
-egen duplic=count(pid), by(pid)
-tab duplic
-sort pid
-list pid duplic if duplic>1 
-gen pid_en_infor=1 
-drop pidr duplic
-*save infor_check.dta, replace
-replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
-merge m:m pid using Everything_Wide
-drop _merge
-save Everything_Wide, replace
-
-********** 
-* PHYS
-**********
-use Phys, clear
-*keep pid p_interid p_deviceid1 p_date
-gen pidr=real(pid)
-*drop if pidr==.
-egen duplic=count(pid), by(pid)
-tab duplic
-sort pid
-list pid duplic if duplic>1 
 gen pid_en_phys=1 
-drop pidr duplic
+*drop pidr duplic
+sum
 *save phys_check.dta, replace
-replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
-merge m:m pid using Everything_Wide
+save "`temp_dir'/temp_Phys.dta", replace
+use `trans_folder'Everything_Wide, clear
+merge m:m pid using "`temp_dir'/temp_Phys.dta"
+tab _merge
+display "Total rows: "
+count
 drop _merge
-save Everything_Wide, replace
+save `trans_folder'Everything_Wide, replace
 
-**********
-* 1066
-**********
+****************************************
+* SECTION 4: 1066 COGNITIVE MERGE
+****************************************
 use 1066.dta, clear
 gen pidr = real(pid)
 drop if pidr == .
@@ -302,47 +182,136 @@ keep pid cogscore relscore recall dem1066_score dem1066 dem1066_score_quint dem1
 egen duplic = count(pid), by(pid)
 tab duplic
 sort pid
-list pid duplic if duplic > 1
+
 gen pid_en_1066 = 1
 * save 1066_check.dta, replace
 replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
-merge m:m pid using Everything_Wide
+save "`temp_dir'/temp_1066.dta", replace
+use `trans_folder'Everything_Wide, clear
+merge m:m pid using "`temp_dir'/temp_1066.dta"
+tab _merge
+display "Total rows: "
+count
 drop _merge
-save Everything_Wide, replace
+save `trans_folder'Everything_Wide, replace
 
 
-********** 
-* CONSENSUS
-**********
+****************************************
+* SECTION 5: COGNITIVE ASSESSMENT MERGE
+****************************************
+
+use "`trans_folder'Cog.dta", clear
+
+*keep pid C_in
+*gen pidr=real(pid)
+*drop if pidr==.
+egen duplic=count(pid), by(pid)
+tab duplic
+sort pid
+
+gen pid_en_cog=1 
+*drop pidr duplic
+sum
+*save cog_check.dta, replace
+save "`temp_dir'/temp_Cog.dta", replace
+use `trans_folder'Everything_Wide, clear
+merge m:m pid using "`temp_dir'/temp_Cog.dta"
+tab _merge
+display "Total rows: "
+count
+drop _merge
+save `trans_folder'Everything_Wide, replace
+
+
+****************************************
+* SECTION 6: COGNITIVE SCORING MERGE
+****************************************
+
+if `country' ~= 2 {
+    use "`trans_folder'Cog_Scoring.dta", clear
+    
+*keep pid Z_in
+gen pidr=real(pid)
+*drop if pidr==.
+egen duplic=count(pid), by(pid)
+tab duplic
+sort pid
+
+gen pid_en_cog_scor=1 
+drop pidr duplic
+sum
+*save cog_scoring_check.dta, replace
+save "`temp_dir'/temp_Cog_Scoring.dta", replace
+use `trans_folder'Everything_Wide, clear
+merge m:m pid using "`temp_dir'/temp_Cog_Scoring.dta"
+tab _merge
+display "Total rows: "
+count
+drop _merge
+save `trans_folder'Everything_Wide, replace
+
+}
+
+****************************************
+* SECTION 7: INFORMANT INTERVIEW MERGE
+****************************************
+
+use "`trans_folder'Infor.dta", clear
+
+*keep pid I_in
+*gen pidr=real(pid)
+*drop if pidr==.
+egen duplic=count(pid), by(pid)
+tab duplic
+sort pid
+
+gen pid_en_infor=1 
+*drop pidr duplic
+sum
+*save infor_check.dta, replace
+gen pid_en_1066 = 1
+* save 1066_check.dta, replace
+replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
+save "`temp_dir'/temp_Infor.dta", replace
+use `trans_folder'Everything_Wide, clear
+merge m:m pid using "`temp_dir'/temp_Infor.dta"
+tab _merge
+display "Total rows: "
+count
+drop _merge
+save `trans_folder'Everything_Wide, replace
+
+
+****************************************
+* SECTION 8: CONSENSUS DIAGNOSIS MERGE
+****************************************
 
 use ConsensusVariables, clear
+capture destring cs_32, replace force
 drop dem1066 dem1066_score cogscore relscore recall
 replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
-merge m:m pid using Everything_Wide
+save "`temp_dir'/temp_Consensus.dta", replace
+use `trans_folder'Everything_Wide, clear
+merge m:m pid using "`temp_dir'/temp_Consensus.dta"
+tab _merge
+display "Total rows: "
+count
 drop _merge
-save Everything_Wide, replace
+save `trans_folder'Everything_Wide, replace
 
-use "../consensus/consensus_long.dta", clear
-keep pid finalniaa_int_binary
-sort pid
-by pid: gen dup = _n == 1
-keep if dup
-drop dup
-
-save "../consensus/unique_classifications.dta", replace
-use Everything_Wide, clear
-
-merge m:1 pid using "../consensus/unique_classifications.dta"
-drop _merge
-save Everything_Wide, replace
-
-*** CUBAN CDR SUBSET **********
-*****************************
+****************************************
+* SECTION 9: CUBAN CDR SUBSET (CUBA ONLY)
+****************************************
 
 if `country' == 2 {
-	merge m:m pid using "Cuba_CDR.dta"
+	save "`temp_dir'/temp_Cuba_CDR.dta", replace
+    use `trans_folder'Everything_Wide, clear
+	merge m:1 pid using "`temp_dir'/temp_Cuba_CDR.dta"
+tab _merge
+display "Total rows: "
+count
 	drop _merge
-	save Everything_Wide, replace
+	save `trans_folder'Everything_Wide, replace
 	preserve
 	keep if cuba_CDR_binary != .
 	
@@ -353,9 +322,9 @@ if `country' == 2 {
 	restore
 }
 
-********** 
-* ROSTER_PARTICIPANTS
-**********
+****************************************
+* SECTION 10: ROSTER PARTICIPANTS MERGE
+****************************************
 
 use rosters_participants, clear
 *keep pid pr_3 pr_4 hhid r_deviceid r_date
@@ -368,46 +337,53 @@ egen sd_sex=sd(pr_3), by(pid)
 egen sd_age=sd(pr_4), by(pid)
 sum sd_sex sd_age /* these should be all zero if duplicates have identical age and sex */
 sort pid
-list pid pr_3 pr_4 duplic if duplic>1 /* print duplicate obs */
+
 gen pid_en_listas=1 /* create indicator to use after merge with other questionnaire files */
 drop pidr duplic sd_sex sd_age
 *save rosters_check.dta, replace /* I think you could drop these lines, and save just tracker per next line */
 replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
 replace hhid = "2" + substr(hhid, 2, .) if substr(hhid, 1, 1) == "."
-merge m:m hhid using Everything_Wide
-tab pr_3 sex, miss
-list pid pr_3 sex if (pr_3 ~= sex +1) & _merge==3 /* list if sex differs between Roster and Resumen */
-corr pr_4 age
-list pid pr_4 age if abs(pr_4 - age) >2 & _merge==3 /* list if sex differs more than 2 years between Roster and Resumen */
+save "`temp_dir'/temp_rosters_participants.dta", replace
+use `trans_folder'Everything_Wide, clear
+merge m:m pid using "`temp_dir'/temp_rosters_participants.dta"
+tab _merge
+display "Total rows: "
+count
+
 drop _merge
-save Everything_Wide, replace
+save `trans_folder'Everything_Wide, replace
 
 
-********** 
-* HOUSEHOLD
-**********
+****************************************
+* SECTION 11: HOUSEHOLD DATA MERGE
+****************************************
 
-use Household, clear
+use `trans_folder'Household, clear
 *keep hhid h_interid h_deviceid1 h_date
 gen hhidr=real(hhid)
 *drop if hhidr==.
 egen duplic=count(hhid), by(hhid)
 tab duplic
 sort hhid
-list hhid duplic if duplic>1 
+
 gen existe_familiar=1 
 drop hhidr duplic
 *save hh_check.dta, replace
 replace hhid = "2" + substr(hhid, 2, .) if substr(hhid, 1, 1) == "."
-merge m:m hhid using Everything_Wide
+save "`temp_dir'/temp_Household.dta", replace
+use `trans_folder'Everything_Wide, clear
+merge m:m hhid using "`temp_dir'/temp_Household.dta"
+tab _merge
+display "Total rows: "
+count
 drop _merge
-save Everything_Wide, replace
+save `trans_folder'Everything_Wide, replace
 
-********** 
-* NEIGHBORDHOOD
-**********
+****************************************
+* SECTION 12: NEIGHBORHOOD DATA MERGE
+****************************************
 
-use Neighborhood, clear
+use `trans_folder'Neighborhood, clear
 
 collapse (mean) n_5-n_38, by(n_clustid)
 foreach var of varlist n_5-n_38 {
@@ -415,38 +391,21 @@ foreach var of varlist n_5-n_38 {
 	recode `var'mean (0.5=0) (1.5=1) (2.5=2) (3.5=3) (4=4), gen(`var'new)
 }
 *only cuba needs it to be converted to string
-if `country' == 2{
-	tostring n_clustid, replace
-}
+tostring n_clustid, replace
 
-rename n_clustid Cluster
-merge 1:m Cluster using Everything_Wide
+rename n_clustid cluster
+save "`temp_dir'/temp_Neighborhood.dta", replace
+use `trans_folder'Everything_Wide, clear
+merge m:1 cluster using "`temp_dir'/temp_Neighborhood.dta"
+tab _merge
+display "Total rows: "
+count
 drop _merge
-save Everything_Wide, replace
+save `trans_folder'Everything_Wide, replace
 
-*** DOES SEX MATCH IN SOCIO AND ROSTER ****
-tab pr_3 s_0, miss
-list pid pr_3 s_0 if (pr_3 ~= s_0 +1) & !missing(pr_3, s_0)
-corr pr_4 s_2_3
-list pid pr_4 s_2_3 if abs(pr_4 - s_2_3) >2 & !missing(pr_4, s_2_3)
-
-save Everything_Wide, replace
-
-********** 
-* RURAL/URBAN
-**********
-
-if `country' == 1 {
-	use UPM_CADAS_RD.dta, clear
-	merge 1:m Cluster using Everything_Wide
-	drop _merge
-	save Everything_Wide, replace
-}
-
-
-********** 
-* BLOOD
-**********
+****************************************
+* SECTION 13: BLOOD DATA MERGE (PR & DR ONLY)
+****************************************
 
 if `country' ~= 2 {
     use "sangre_full.dta", clear
@@ -457,35 +416,124 @@ gen pidr=real(pid)
 egen duplic=count(pid), by(pid)
 tab duplic
 sort pid
-list pid duplic if duplic>1 
+
 gen pid_en_sangre=1 
 drop pidr duplic
 sum
 *save sangre_check.dta, replace
-merge m:m pid using Everything_Wide
+capture tostring cluster, replace
+save "`temp_dir'/temp_sangre_full.dta", replace
+use `trans_folder'Everything_Wide, clear
+merge m:m pid using "`temp_dir'/temp_sangre_full.dta"
+tab _merge
+display "Total rows: "
+count
+drop _merge
+save `trans_folder'Everything_Wide, replace
+
+}
+
+****************************************
+* STANDARDIZE CLUSTER VARIABLE
+****************************************
+* Ensure cluster is filled and formatted as 2-character string with leading zero
+use `trans_folder'Everything_Wide, clear
+
+* Step 1: Fill missing or empty cluster from PID (positions 2-3)
+replace cluster = substr(pid, 2, 2) if missing(cluster) | cluster == ""
+
+* Step 2: Fill from clustid variables if still missing
+foreach var of varlist * {
+    if strpos(lower("`var'"), "clustid") > 0 {
+        capture confirm string variable `var'
+        if _rc == 0 {
+            * Variable is string
+            replace cluster = `var' if (missing(cluster) | cluster == "" | cluster == "00") & !missing(`var')
+        }
+        else {
+            * Variable is numeric, convert to string
+            capture replace cluster = string(`var') if (missing(cluster) | cluster == "" | cluster == "00") & !missing(`var')
+        }
+    }
+}
+
+* Step 3: Standardize to 2 characters with leading zero
+* First, trim any whitespace
+replace cluster = trim(cluster)
+* If cluster is 1 character, add leading zero
+replace cluster = "0" + cluster if strlen(cluster) == 1 & cluster != ""
+* If cluster is numeric-looking but wrong length, reformat
+capture destring cluster, replace
+if _rc == 0 {
+    * It was successfully converted to numeric, convert back with proper format
+    tostring cluster, replace format(%02.0f)
+}
+
+save `trans_folder'Everything_Wide, replace
+
+****************************************
+* SECTION 14: RURAL/URBAN DATA (DR ONLY)
+****************************************
+
+if `country' == 1 {
+	use UPM_CADAS_RD.dta, clear
+	capture rename Cluster cluster
+	* Standardize cluster to 2 characters with leading zero
+	replace cluster = trim(cluster)
+	replace cluster = "0" + cluster if strlen(cluster) == 1 & cluster != ""
+	save "`temp_dir'/temp_UPM_CADAS_RD.dta", replace
+    use `trans_folder'Everything_Wide, clear
+	merge m:1 cluster using "`temp_dir'/temp_UPM_CADAS_RD.dta"
+tab _merge
+display "Total rows: "
+count
+	drop _merge
+	save `trans_folder'Everything_Wide, replace
+}
+
+****************************************
+* MERGE CONSENSUS DATA
+****************************************
+use "../consensus/consensus_long.dta", clear
+keep pid finalniaa_int_binary
+sort pid
+by pid: gen dup = _n == 1
+keep if dup
+drop dup
+
+save "../consensus/unique_classifications.dta", replace
+use `trans_folder'Everything_Wide, clear
+merge m:1 pid using "../consensus/unique_classifications.dta"
+tab _merge
+
+keep if _merge==3 | _merge==1
+display "Total rows: "
+count
+drop _merge
+save `trans_folder'Everything_Wide, replace
+
+****************************************
+* PROCESS AND MERGE RESUMEN LAST
+****************************************
+
+* Merge with Everything_Wide
+use `trans_folder'Everything_Wide, clear
+merge m:m pid using "`temp_dir'/temp_Resumen.dta"
+keep if _merge == 3 | _merge == 1
 drop _merge
 
-}
+* Fill cluster again for any records from Resumen that have empty cluster
+replace cluster = substr(pid, 2, 2) if missing(cluster) | cluster == ""
 
-*generating overall
-gen Country = substr(pid, 1, 1)
-if `country' != 2 {
-    replace Cluster = real(substr(pid, 2, 2))
-    replace House_ID = real(substr(pid, 4, 3))
-}
-else {
-    tostring Cluster, replace
-    tostring House_ID, replace
-    replace Cluster = substr(pid, 2, 2)
-    replace House_ID = substr(pid, 4, 3)
-}
+save `trans_folder'Everything_Wide, replace
 
-gen Person_ID = substr(pid, 7, 2)
+*** DOES SEX MATCH IN SOCIO AND ROSTER ****
+tab pr_3 s_0, miss
 
-order pid Country Cluster House_ID Person_ID
+corr pr_4 s_2_3
 
-save Everything_Wide.dta, replace
-export excel using "excel/Everything_Wide.xlsx", replace firstrow(variables)
+save `trans_folder'Everything_Wide.dta, replace
+export excel using "`trans_folder'excel/Everything_Wide.xlsx", replace firstrow(variables)
 
 d,s
 sum
@@ -517,8 +565,9 @@ tab RSPCZIHXF7
 }
 
 else if `country' == 1 {
-gen B_in=XF7 if pid_en_sangre==1
-replace B_in=" " if pid_en_sangre~=1
+capture gen B_in=XF7 if pid_en_sangre==1
+capture replace B_in=" " if pid_en_sangre~=1
+capture replace B_in=" " if missing(B_in)
 
 gen RSPCZIHXF7 = G_in+R_in + S_in + P_in + C_in + Z_in + I_in + H_in + B_in
 tab RSPCZIHXF7
@@ -539,7 +588,7 @@ rename age edad_en_resumen
 
 order pid House_ID Cluster
 
-save Everything_Wide_full, replace
+save `trans_folder'Everything_Wide_full, replace
 
 * Get the list of variable names
 unab varlist : _all
@@ -555,28 +604,34 @@ foreach var of varlist `varlist' {
 drop s_interid p_interid i_interid h_interid cs_interid c_interid
 drop s_deviceid1 p_deviceid1 i_deviceid1 c_deviceid1 all_image_files_found all_audio_files_found
 
-save Everything_Wide_slim, replace
+save `trans_folder'Everything_Wide_slim, replace
 
 use door_merged_all
 
 *keep hhid pid d_0 d_1 d_particid
 
-merge m:m hhid using Everything_Wide_slim 
+merge m:m hhid using `trans_folder'Everything_Wide_slim 
+tab _merge
+display "Total rows: "
+count 
 
-capture drop XF7 RSPCZIHXF7
+capture drop RSPCZIHXF7
 
 generate hhid_en_puerta = cond(_merge == 1, "Sola en Puerta", cond(_merge == 2, "Solo en Tracker", cond(_merge == 3, "Match", "")))
 replace hhid_en_puerta = "Sin hhid" if missing(hhid)
+
+* Keep only records from master or matched (drop door-only records)
+keep if _merge == 1 | _merge == 3
 drop _merge
 
 *keep d_1 d_particid pid hhid hhid_en_puerta
 
-save Everything_Wide_door, replace
+save `trans_folder'Everything_Wide_door, replace
 
 
 clear
 
-use Everything_Wide_full
+use `trans_folder'Everything_Wide_full
 
 *in this first version, we will focus only on the individual surveys (cog, cog_score, socio, infor, phys)
 
@@ -612,20 +667,11 @@ foreach var in pid_en_infor pid_en_cog pid_en_cog_scor pid_en_phys pid_en_socio 
     replace `var' = "no presente" if `var' == "."
 }
 
-capture drop Cluster
-capture drop cluster
-capture drop casa
-capture drop participante
-
 rename pid_en_infor informante
 rename pid_en_cog_scor scoring
 rename pid_en_cog cognitiva
 rename pid_en_phys examen_fisico
 rename pid_en_socio sociodemografica
-
-gen cluster = substr(pid, 2, 2)
-gen casa = substr(pid, 4, 3)
-gen participante = substr(pid, 8, 1)
 
 drop sex
 drop House_ID
@@ -665,13 +711,16 @@ capture replace pid_en_sangre = " " if pid_en_sangre == "1"
 
 capture drop pid_en_sangre
 
+
 clear
-use Everything_Wide_slim
+use `trans_folder'Everything_Wide_slim
 
 *keep if RSPCZIHXF7 == "G       "
 
 *keep pid Cluster House_ID
 
 
+
 log close
 *exit, clear
+
