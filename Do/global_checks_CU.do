@@ -23,34 +23,11 @@ else {
     local trans_folder ""
 }
 
-import excel using "../CUBA_in/Resumen de entrevistas.xlsx", firstrow
+* Use resumen.dta produced by Resumen.do instead of re-importing the Excel file
+use resumen.dta, clear
+keep pid
+save resumen_pid.dta, replace
 
-gen clustid_str = string(Cluster, "%12.0f")
-gen houseid_str = string(Casa, "%03.0f")
-gen particid_str = string(Participante, "%12.0f")
-
-gen country_str = "2"
-
-replace clustid_str = cond(strlen(clustid_str) == 1, "0" + clustid_str, clustid_str)
-
-replace houseid_str = cond(strlen(houseid_str) == 1, "00" + houseid_str, houseid_str)
-replace houseid_str = cond(strlen(houseid_str) == 2, "0" + houseid_str, houseid_str)
-
-replace particid_str = cond(strlen(particid_str) == 1, "0" + particid_str, particid_str)
-
-gen pid = country_str + clustid_str + houseid_str + particid_str
-drop country_str clustid_str houseid_str particid_str
-
-duplicates drop pid, force
-
-order pid
-
-save resumen.dta,replace 
-
-keep pid 
-
-save resumen_pid.dta,replace 
- 
 clear all
  
 use `trans_folder'Socio
@@ -277,14 +254,14 @@ log close
 merge m:m pid using resumen_pid
 sort pid
 
-capture gen resumen = string(_merge)
-replace resumen = string(_merge)
-replace resumen = "Not in Resumen" if _merge == 1
-replace resumen = "Found in Resumen" if _merge == 3
+capture gen socio_in_resumen = string(_merge)
+replace socio_in_resumen = string(_merge)
+replace socio_in_resumen = "Not in Resumen" if _merge == 1
+replace socio_in_resumen = "Found in Resumen" if _merge == 3
 drop if _merge == 2
 drop _merge
 
-order pid_parent pid resumen
+order pid_parent pid socio_in_resumen
 
 *some cases are being duplicated or kept after merges from files that aren't from the tablet
 drop if globalrecordid == ""
@@ -467,14 +444,14 @@ sort p_clustid p_houseid
 
 merge m:m pid using resumen_pid
 
-capture gen resumen = string(_merge)
-replace resumen = string(_merge)
-replace resumen = "Not in Resumen" if _merge == 1
-replace resumen = "Found in Resumen" if _merge == 3
+capture gen phys_in_resumen = string(_merge)
+replace phys_in_resumen = string(_merge)
+replace phys_in_resumen = "Not in Resumen" if _merge == 1
+replace phys_in_resumen = "Found in Resumen" if _merge == 3
 drop if _merge == 2
 drop _merge
 
-order pid_parent pid resumen
+order pid_parent pid phys_in_resumen
 
 *some cases are being duplicated or kept after merges from files that aren't from the tablet
 drop if globalrecordid == ""
@@ -1186,18 +1163,18 @@ log close
  drop is_duplicate
  
 sort i_clustid i_houseid
- 
+
 merge m:m pid using resumen_pid
 sort pid
 
-capture gen resumen = string(_merge)
-replace resumen = string(_merge)
-replace resumen = "Not in Resumen" if _merge == 1
-replace resumen = "Found in Resumen" if _merge == 3
+capture gen infor_in_resumen = string(_merge)
+replace infor_in_resumen = string(_merge)
+replace infor_in_resumen = "Not in Resumen" if _merge == 1
+replace infor_in_resumen = "Found in Resumen" if _merge == 3
 drop if _merge == 2
 drop _merge
 
-order pid_parent pid resumen
+order pid_parent pid infor_in_resumen
 
 *some cases are being duplicated or kept after merges from files that aren't from the tablet
 drop if globalrecordid == ""
@@ -1226,9 +1203,26 @@ foreach var of varlist `varlist' {
 }
 
 export excel using "duplicates/informant_duplicates.xlsx", replace firstrow(variables)
- 
- clear all
- 
+
+clear all
+
+use `trans_folder'Cog
+
+merge m:m pid using resumen_pid
+
+capture gen cog_in_resumen = string(_merge)
+replace cog_in_resumen = string(_merge)
+replace cog_in_resumen = "Not in Resumen" if _merge == 1
+replace cog_in_resumen = "Found in Resumen" if _merge == 3
+drop if _merge == 2
+drop _merge
+
+order pid_parent pid cog_in_resumen
+
+save `trans_folder'Cog.dta, replace
+
+clear all
+
 use `trans_folder'Household
 
 order hhid hhid2 hhid_original globalrecordid fkey h_date

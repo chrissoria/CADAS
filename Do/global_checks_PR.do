@@ -57,48 +57,8 @@ else {
 local drop_not_resumen = "no"
 display "`drop_not_resumen'"
 
-import excel using "../PR_in/Resumen de Entrevistas.xlsx", firstrow clear
-
-gen clustid_str = string(Cluster, "%12.0f")
-gen houseid_str = string(Casa, "%03.0f")
-gen particid_str = string(Participante, "%12.0f")
-
-* we believe these are mismatches in the Resumen
-replace particid_str = "1" if (clustid_str == "11" & houseid_str == "094" & particid_str == "2")
-replace GénerodeParticpante = "F" if (clustid_str == "4" & houseid_str == "002" & particid_str == "1")
-
-keep if strpos(lower(NotasCuestionariosnohechos), "complete") > 0
-
-gen country_str = "0"
-
-replace clustid_str = cond(strlen(clustid_str) == 1, "0" + clustid_str, clustid_str)
-
-replace houseid_str = cond(strlen(houseid_str) == 1, "00" + houseid_str, houseid_str)
-replace houseid_str = cond(strlen(houseid_str) == 2, "0" + houseid_str, houseid_str)
-
-replace particid_str = cond(strlen(particid_str) == 1, "0" + particid_str, particid_str)
-
-gen pid = country_str + clustid_str + houseid_str + particid_str
-drop country_str clustid_str houseid_str particid_str
-
-if `country' == 0 {
-	drop N O P Q R S T U V W X Y Z AA AB DiegoNotes blooddrawn Geneticconsent bloodconsent
-}
-
-else if `country' != 0 {
-	drop H I J K L
-}
-
-
-order pid
-
-save resumen.dta,replace 
-
-keep pid 
-
-save resumen_pid.dta,replace 
-
-clear all
+* Use resumen.dta and resumen_pid.dta created by Resumen.do
+* (removed redundant Excel import that was overwriting the processed resumen files)
 
 use door_merged_all
 drop pid hhid
@@ -214,15 +174,15 @@ drop s_country_str s_clustid_str s_houseid_str s_particid_str
 
 merge m:m pid using resumen_pid
 
-capture gen resumen = "Not in Resumen" if _merge == 1
-replace resumen = "Found in Resumen" if _merge == 3
+capture gen socio_in_resumen = "Not in Resumen" if _merge == 1
+replace socio_in_resumen = "Found in Resumen" if _merge == 3
 drop if _merge == 2
 drop _merge
 
-order pid_parent pid resumen
+order pid_parent pid socio_in_resumen
 
 if "`drop_not_resumen'" == "yes" {
-    drop if resumen == "Not in Resumen"
+    drop if socio_in_resumen == "Not in Resumen"
 }
 
 log using "/Users/chrissoria/documents/CADAS/Data/PR_out/logs/SocioOnlyMissing", text replace
@@ -293,15 +253,15 @@ use `trans_folder'Cog
 
 merge m:m pid using resumen_pid
 
-capture gen resumen = "Not in Resumen" if _merge == 1
-replace resumen = "Found in Resumen" if _merge == 3
+capture gen cog_in_resumen = "Not in Resumen" if _merge == 1
+replace cog_in_resumen = "Found in Resumen" if _merge == 3
 drop if _merge == 2
 drop _merge
 
-order pid_parent pid resumen
+order pid_parent pid cog_in_resumen
 
 if "`drop_not_resumen'" == "yes" {
-    drop if resumen == "Not in Resumen"
+    drop if cog_in_resumen == "Not in Resumen"
 }
 
 export excel using "`trans_folder'excel/cognitive.xlsx", replace firstrow(variables)
@@ -309,7 +269,7 @@ export excel using "`trans_folder'excel/cognitive.xlsx", replace firstrow(variab
 save `trans_folder'cog.dta, replace
 
 clear all
- 
+
  use `trans_folder'Phys
  drop pid
  drop hhid
@@ -341,15 +301,15 @@ drop if pid == "00000000"
 
 merge m:m pid using resumen_pid
 
-capture gen resumen = "Not in Resumen" if _merge == 1
-replace resumen = "Found in Resumen" if _merge == 3
+capture gen phys_in_resumen = "Not in Resumen" if _merge == 1
+replace phys_in_resumen = "Found in Resumen" if _merge == 3
 drop if _merge == 2
 drop _merge
 
-order pid_parent pid resumen
+order pid_parent pid phys_in_resumen
 
 if "`drop_not_resumen'" == "yes" {
-    drop if resumen == "Not in Resumen"
+    drop if phys_in_resumen == "Not in Resumen"
 }
 
 
@@ -447,15 +407,15 @@ drop if pid == "00000001"
 
 merge m:m pid using resumen_pid
 
-capture gen resumen = "Not in Resumen" if _merge == 1
-replace resumen = "Found in Resumen" if _merge == 3
+capture gen infor_in_resumen = "Not in Resumen" if _merge == 1
+replace infor_in_resumen = "Found in Resumen" if _merge == 3
 drop if _merge == 2
 drop _merge
 
-order pid_parent pid resumen
+order pid_parent pid infor_in_resumen
 
 if "`drop_not_resumen'" == "yes" {
-    drop if resumen == "Not in Resumen"
+    drop if infor_in_resumen == "Not in Resumen"
 }
 
 log using "/Users/chrissoria/documents/CADAS/Data/PR_out/logs/InforOnlyMissing", text replace
@@ -518,25 +478,6 @@ foreach var of varlist `varlist' {
 }
 
 export excel using "duplicates/informant_duplicates.xlsx", replace firstrow(variables)
- 
-clear all
-
-use `trans_folder'Cog
-
-merge m:m pid using resumen_pid
-
-capture gen resumen = "Not in Resumen" if _merge == 1
-replace resumen = "Found in Resumen" if _merge == 3
-drop if _merge == 2
-drop _merge
-
-order pid_parent pid resumen
-
-if "`drop_not_resumen'" == "yes" {
-    drop if resumen == "Not in Resumen"
-}
-
-save `trans_folder'Cog.dta, replace
 
 clear all
 

@@ -19,6 +19,9 @@ if `"`user'"' == "Chris" {
 		global language = "`lang'"
 		display "Processing language: $language"
 
+		****************************************
+		* READ FILES
+		****************************************
 		do "`path'/Resumen.do"
 
 		if `country' == 0 {
@@ -71,25 +74,23 @@ if `"`user'"' == "Chris" {
 			do "/Users/chrissoria/documents/CADAS/Do/CU/global_checks_CU.do"
 		}
 
+		****************************************
+		* POST-PROCESSING AND FINAL OUTPUT
+		****************************************
+		if `country' != 0 {
+			do "/Users/chrissoria/documents/CADAS/Do/mp4_TyManualScoring.do"
+		}
+		do "/Users/chrissoria/documents/CADAS/Do/InterviewerConcordance1.do"
+		do "/Users/chrissoria/documents/CADAS/Do/cadas_1066_reproduced.do"
+		do "/Users/chrissoria/documents/CADAS/Do/Ty_Pent_Scoring.do"
+		if `country' == 1 {
+			do "/Users/chrissoria/documents/CADAS/Do/DR/UPM_Read_DR.do"
+		}
+		do "/Users/chrissoria/documents/CADAS/Do/Tracker.do"
+		do "/Users/chrissoria/documents/CADAS/Do/consensus_site.do"
+		do "/Users/chrissoria/documents/CADAS/Do/EVERYTHING_WIDE.do"
+
 	} // end language loop
-
-	****************************************
-	* POST-PROCESSING (runs once after both language passes)
-	****************************************
-	global language = "S"  // Reset to Spanish for post-processing
-
-	if `country' != 0 {
-		do "/Users/chrissoria/documents/CADAS/Do/mp4_TyManualScoring.do"
-	}
-	do "/Users/chrissoria/documents/CADAS/Do/Tracker.do"
-	do "/Users/chrissoria/documents/CADAS/Do/InterviewerConcordance1.do"
-	do "/Users/chrissoria/documents/CADAS/Do/cadas_1066_reproduced.do"
-	do "/Users/chrissoria/documents/CADAS/Do/Ty_Pent_Scoring.do"
-	do "/Users/chrissoria/documents/CADAS/Do/consensus_site.do"
-	if `country' == 1 {
-		do "/Users/chrissoria/documents/CADAS/Do/DR/UPM_Read_DR.do"
-	}
-	do "/Users/chrissoria/documents/CADAS/Do/EVERYTHING_WIDE.do"
 
 } // end if user == Chris
 

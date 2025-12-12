@@ -286,14 +286,14 @@ drop s_clustid_str s_houseid_str s_particid_str s_country_str
 
 merge m:m pid using resumen_pid
 
-capture gen resumen = string(_merge)
-capture replace resumen = string(_merge)
-replace resumen = "Not in Resumen" if _merge == 1
-replace resumen = "Found in Resumen" if _merge == 3
+capture gen socio_in_resumen = string(_merge)
+capture replace socio_in_resumen = string(_merge)
+replace socio_in_resumen = "Not in Resumen" if _merge == 1
+replace socio_in_resumen = "Found in Resumen" if _merge == 3
 drop if _merge == 2
 drop _merge
 
-order pid_parent pid resumen
+order pid_parent pid socio_in_resumen
 
 export excel using "`trans_folder'excel/socio.xlsx", replace firstrow(variables)
 
@@ -411,14 +411,14 @@ drop p_country_str p_clustid_str p_houseid_str p_particid_str
 
 merge m:m pid using resumen_pid
 
-capture gen resumen = string(_merge)
-capture replace resumen = string(_merge)
-replace resumen = "Not in Resumen" if _merge == 1
-replace resumen = "Found in Resumen" if _merge == 3
+capture gen phys_in_resumen = string(_merge)
+capture replace phys_in_resumen = string(_merge)
+replace phys_in_resumen = "Not in Resumen" if _merge == 1
+replace phys_in_resumen = "Found in Resumen" if _merge == 3
 drop if _merge == 2
 drop _merge
 
-order pid_parent pid resumen
+order pid_parent pid phys_in_resumen
 
 export excel using "`trans_folder'excel/examen_fisico.xlsx", replace firstrow(variables)
 
@@ -516,15 +516,15 @@ order pid_parent pid pid_nonmatch globalrecordid
 
 merge m:m pid using resumen_pid
 
-capture gen resumen = string(_merge)
-capture replace resumen = string(_merge)
+capture gen infor_in_resumen = string(_merge)
+capture replace infor_in_resumen = string(_merge)
 
-replace resumen = "Not in Resumen" if _merge == 1
-replace resumen = "Found in Resumen" if _merge == 3
+replace infor_in_resumen = "Not in Resumen" if _merge == 1
+replace infor_in_resumen = "Found in Resumen" if _merge == 3
 drop if _merge == 2
 drop _merge
 
-order pid_parent pid resumen
+order pid_parent pid infor_in_resumen
 
 export excel using "`trans_folder'excel/informante.xlsx", replace firstrow(variables)
 
@@ -592,14 +592,14 @@ use `trans_folder'Cog
 
 merge m:m pid using resumen_pid
 
-capture gen resumen = string(_merge)
-capture replace resumen = string(_merge)
-replace resumen = "Not in Resumen" if _merge == 1
-replace resumen = "Found in Resumen" if _merge == 3
+capture gen cog_in_resumen = string(_merge)
+capture replace cog_in_resumen = string(_merge)
+replace cog_in_resumen = "Not in Resumen" if _merge == 1
+replace cog_in_resumen = "Found in Resumen" if _merge == 3
 drop if _merge == 2
 drop _merge
 
-order pid_parent pid resumen
+order pid_parent pid cog_in_resumen
 
 save `trans_folder'Cog.dta, replace
 

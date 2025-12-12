@@ -109,6 +109,24 @@ log using logs/tracker, text replace
 
 use resumen_tracker.dta, clear
 
+* Keep only the variables we need (capture in case some don't exist)
+capture confirm variable age
+if _rc != 0 {
+    gen age = .
+}
+capture confirm variable sex
+if _rc != 0 {
+    gen sex = .
+}
+capture confirm variable House_ID
+if _rc != 0 {
+    gen House_ID = ""
+}
+capture confirm variable Cluster
+if _rc != 0 {
+    gen Cluster = ""
+}
+
 keep pid age sex House_ID Cluster
 gen pidr=real(pid)
 
@@ -344,6 +362,14 @@ sum
 }
 
 * SUMMARY VARIABLE FOR WHICH SURVEYS EACH LINE HAS
+* First ensure all indicator variables exist (in case a dataset was missing)
+foreach var in pid_en_resumen pid_en_listas pid_en_socio pid_en_phys pid_en_cog pid_en_cog_scor pid_en_infor existe_familiar {
+    capture confirm variable `var'
+    if _rc != 0 {
+        gen `var' = .
+    }
+}
+
 gen G_in ="G" if pid_en_resumen==1
 gen R_in="R" if pid_en_listas==1
 gen S_in="S" if pid_en_socio==1

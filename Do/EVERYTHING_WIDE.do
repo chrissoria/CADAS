@@ -58,7 +58,6 @@ log using logs/Everything_Wide, text replace
 ****************************************
 * Start with all_unique_pids as the base
 * This will be merged with all other datasets
-* Resumen will be merged LAST
 ****************************************
 
 use all_unique_pids.dta, clear
@@ -74,6 +73,19 @@ capture drop participante
 gen cluster = substr(pid, 2, 2)
 gen casa = substr(pid, 4, 3)
 gen participante = substr(pid, 8, 1)
+
+save `trans_folder'Everything_Wide, replace
+
+****************************************
+* SECTION 1B: RESUMEN MERGE
+****************************************
+
+merge m:m pid using "`temp_dir'/temp_Resumen.dta"
+keep if _merge == 3 | _merge == 1
+drop _merge
+
+* Fill cluster again for any records from Resumen that have empty cluster
+replace cluster = substr(pid, 2, 2) if missing(cluster) | cluster == ""
 
 save `trans_folder'Everything_Wide, replace
 
@@ -143,6 +155,23 @@ tab _merge
 display "Total rows: "
 count
 drop _merge
+
+* Create depression score from s.10.1
+gen s_depression_score = 0
+replace s_depression_score = (s_depression_score + 1) if s_10_1a == 1
+replace s_depression_score = (s_depression_score + 1) if s_10_1b == 1
+replace s_depression_score = (s_depression_score + 1) if s_10_1c == 1
+replace s_depression_score = (s_depression_score + 1) if s_10_1d == 5
+replace s_depression_score = (s_depression_score + 1) if s_10_1e == 1
+replace s_depression_score = (s_depression_score + 1) if s_10_1f == 5
+replace s_depression_score = (s_depression_score + 1) if s_10_1g == 1
+replace s_depression_score = (s_depression_score + 1) if s_10_1h == 1
+label variable s_depression_score "Depression score (GDS-8)"
+
+* Create depression binary (1 if score >= 4)
+gen s_depression_binary = (s_depression_score >= 4) if !missing(s_depression_score)
+label variable s_depression_binary "Depression (GDS >= 4)"
+
 save `trans_folder'Everything_Wide, replace
 
 
@@ -227,9 +256,8 @@ save `trans_folder'Everything_Wide, replace
 * SECTION 6: COGNITIVE SCORING MERGE
 ****************************************
 
-if `country' ~= 2 {
-    use "`trans_folder'Cog_Scoring.dta", clear
-    
+use "`trans_folder'Cog_Scoring.dta", clear
+
 *keep pid Z_in
 gen pidr=real(pid)
 *drop if pidr==.
@@ -237,7 +265,7 @@ egen duplic=count(pid), by(pid)
 tab duplic
 sort pid
 
-gen pid_en_cog_scor=1 
+gen pid_en_cog_scor=1
 drop pidr duplic
 sum
 *save cog_scoring_check.dta, replace
@@ -249,8 +277,6 @@ display "Total rows: "
 count
 drop _merge
 save `trans_folder'Everything_Wide, replace
-
-}
 
 ****************************************
 * SECTION 7: INFORMANT INTERVIEW MERGE
@@ -304,20 +330,19 @@ save `trans_folder'Everything_Wide, replace
 ****************************************
 
 if `country' == 2 {
-	save "`temp_dir'/temp_Cuba_CDR.dta", replace
-    use `trans_folder'Everything_Wide, clear
-	merge m:1 pid using "`temp_dir'/temp_Cuba_CDR.dta"
-tab _merge
-display "Total rows: "
-count
+	use `trans_folder'Everything_Wide, clear
+	merge m:1 pid using Cuba_CDR.dta
+	tab _merge
+	display "Total rows: "
+	count
 	drop _merge
 	save `trans_folder'Everything_Wide, replace
 	preserve
 	keep if cuba_CDR_binary != .
-	
+
 	* not sure why there's duplicates (20818201 is showing up more than once)
 	bysort pid: keep if _n == 1
-	
+
 	save s_c_i_p_select, replace
 	restore
 }
@@ -417,11 +442,13 @@ egen duplic=count(pid), by(pid)
 tab duplic
 sort pid
 
-gen pid_en_sangre=1 
+gen pid_en_sangre=1
 drop pidr duplic
 sum
 *save sangre_check.dta, replace
 capture tostring cluster, replace
+capture tostring casa, replace
+capture tostring participante, replace
 save "`temp_dir'/temp_sangre_full.dta", replace
 use `trans_folder'Everything_Wide, clear
 merge m:m pid using "`temp_dir'/temp_sangre_full.dta"
@@ -510,21 +537,6 @@ keep if _merge==3 | _merge==1
 display "Total rows: "
 count
 drop _merge
-save `trans_folder'Everything_Wide, replace
-
-****************************************
-* PROCESS AND MERGE RESUMEN LAST
-****************************************
-
-* Merge with Everything_Wide
-use `trans_folder'Everything_Wide, clear
-merge m:m pid using "`temp_dir'/temp_Resumen.dta"
-keep if _merge == 3 | _merge == 1
-drop _merge
-
-* Fill cluster again for any records from Resumen that have empty cluster
-replace cluster = substr(pid, 2, 2) if missing(cluster) | cluster == ""
-
 save `trans_folder'Everything_Wide, replace
 
 *** DOES SEX MATCH IN SOCIO AND ROSTER ****
