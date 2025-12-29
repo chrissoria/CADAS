@@ -326,9 +326,17 @@ drop _merge
 save `trans_folder'Everything_Wide, replace
 
 ****************************************
-* SECTION 9: CUBAN CDR SUBSET (CUBA ONLY)
+* SECTION 9: CREATE S_C_I_P_SELECT SUBSET
 ****************************************
 
+* For DR and PR: save all cases at this point (after socio, cog, infor, phys merges)
+if `country' == 0 | `country' == 1 {
+	use `trans_folder'Everything_Wide, clear
+	bysort pid: keep if _n == 1
+	save s_c_i_p_select, replace
+}
+
+* For Cuba: merge CDR data and filter by cuba_CDR_binary
 if `country' == 2 {
 	use `trans_folder'Everything_Wide, clear
 	merge m:1 pid using Cuba_CDR.dta

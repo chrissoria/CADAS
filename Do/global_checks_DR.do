@@ -249,6 +249,16 @@ use `trans_folder'Socio
 drop pid
 drop hhid
 
+*looks mostly empty duplicate
+drop if globalrecordid == "d27cae71-3282-4f56-9de7-164fac0b024d"
+
+*interviewers made changes to the tablet, making change in child ID's to match parent
+replace s_houseid = 23 if globalrecordid == "87a6bc8f-eb76-4484-8b61-512336b7209d"
+replace s_particid = 2 if globalrecordid == "87a6bc8f-eb76-4484-8b61-512336b7209d"
+
+*parent has the fix, not changed in child
+replace s_houseid = 9 if globalrecordid == "58f723b3-bb9f-48dc-a3ec-1841d68b7539"
+
 replace s_houseid = 83 if globalrecordid == "846f1818-2920-421c-bdde-0a3ac6cb72f2"
 
 replace s_houseid = 176 if globalrecordid == "3a7c732c-4edb-4e8d-aa62-e12d03c86b2a"
@@ -383,6 +393,8 @@ capture export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(
  replace p_particid = 2 if globalrecordid == "c3ef0142-fd4f-4f18-9355-f62c8b74e6af"
  replace p_particid = 2 if globalrecordid == "f93b34fa-7aee-40f5-a15f-24a4e97b6308"
  
+ 
+ 
  drop pid
  drop hhid
  
@@ -491,6 +503,10 @@ drop if inlist(globalrecordid, "7bd0cbfa-4400-42a6-bc25-096aface341b","f40f5149-
 *10/17/25 cleaning
 *looks like there's two cases here done in the same house (maybe two parts of the same unit?). For now, we're changing the woman to B
 replace pid = "11206701B" if globalrecordid == "45ac63ba-c60c-448e-8e28-2250f8ad67d0"
+
+*12/18/25 cleaning
+drop if inlist(globalrecordid, "4165c0fc-74bb-4b3b-af72-0b7d1545a386", "afb1c0f3-bc15-4afd-bad5-2f7899293b11", "1258b91c-3d39-4a0a-a5c3-63629a224ed3", "068f8411-8813-4339-84cf-0e2fe00105fd", "c2da0a76-dcef-49f4-9606-b3d9c3985f84", "128f1db2-36e5-44c9-a085-fc806d4556bc")
+drop if inlist(globalrecordid, "e6b81f28-94d8-4876-85e7-19c2f62d6954", "a25fdb98-cc9d-48f8-8a90-55bdc2251e08", "fa0562be-bbcf-41bd-b5e8-ecafe0b485a9")
 
  drop pid hhid
  
@@ -616,6 +632,9 @@ drop if inlist(globalrecordid, "74574e98-9e46-43cc-991e-716167bd205a","2b1a138b-
 replace h_clustid = 176 if globalrecordid == "26a57540-2990-4236-bc26-5896acc7ead8"
 drop if inlist(globalrecordid, "31614f8a-69c9-4012-96ee-bc4154ca6491", "19b6756d-1236-4abc-b36c-142b71548a50", "3fd9b0fb-8fd1-4c8a-90e1-30b6511b51e5", "3cfbdb1c-1f42-414b-9227-83a1345ac34f")
 
+* 12/18/25 cleaning
+drop if inlist(globalrecordid, "86e85c75-7ea3-4f28-be88-c1682087ac42", "36194fe7-191a-47c6-bba7-82a85a66f15a", "d6e76c24-62dd-4949-a246-ecdbb6538175", "45bffef3-427a-4af7-aba1-be654c2a980b", "0ee893f3-9f93-4354-a870-700b1d6e3f2c", "1c29d55c-b35d-4901-9551-d88011017003", "3ca37865-fb34-4480-a3f9-ecef53e99ecf")
+
 gen h_country_str = string(h_country, "%12.0f")
 
 gen h_clustid_str = string(h_clustid, "%12.0f")
@@ -647,6 +666,15 @@ drop h_country_str h_clustid2_str h_houseid2_str
  list if is_duplicate
  
 drop is_duplicate
+
+merge m:m hhid using resumen_hhid
+
+capture gen household_in_resumen = string(_merge)
+capture replace household_in_resumen = string(_merge)
+replace household_in_resumen = "Not in Resumen" if _merge == 1
+replace household_in_resumen = "Found in Resumen" if _merge == 3
+drop if _merge == 2
+drop _merge
 
 save `trans_folder'Household.dta, replace
 export excel using "`trans_folder'excel/familiar.xlsx", replace firstrow(variables)

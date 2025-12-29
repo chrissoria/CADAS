@@ -83,7 +83,7 @@ replace c_clustid = 47 if globalrecordid == "f14da436-08b5-42c3-b6f3-c955b97d23d
 replace c_houseid = 75 if globalrecordid == "1938d71f-226e-4591-a936-1e0717ed930d"
 replace c_houseid = 55 if globalrecordid == "3bfe708f-8b63-4fdf-a5d9-304a830a0994" // don't see this hhid as having participants anywhere
 drop if globalrecordid == "8e6fd050-fdd1-4de7-a6e4-537f79928c5b"
-replace c_houseid = 49 if globalrecordid == "b354dae0-1df6-4a57-9202-fbbb73c1e558" // looks like this is a different day than the other surveys in 81-49 so may not belong, also may need to change particid to 2
+replace c_houseid = 49 if globalrecordid == "40dc56a1-4747-4d4d-b723-aee5a812884d" // looks like this is a different day than the other surveys in 81-49 so may not belong, also may need to change particid to 2
 
 foreach var in c_clustid c_particid c_houseid {
 	replace `var' = int(`var')
