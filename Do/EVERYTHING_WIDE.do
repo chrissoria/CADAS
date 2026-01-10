@@ -207,7 +207,7 @@ save `trans_folder'Everything_Wide, replace
 use 1066.dta, clear
 gen pidr = real(pid)
 drop if pidr == .
-keep pid cogscore relscore recall dem1066_score dem1066 dem1066_score_quint dem1066_quint
+keep pid cogscore relscore recall dem1066_score dem1066 dem1066_score_quint dem1066_quint immed learn1 learn2 learn3 paper animals nametot count animtot wordtot1 wordtot2 papertot storytot wordimm worddel story misstot
 egen duplic = count(pid), by(pid)
 tab duplic
 sort pid
@@ -336,7 +336,7 @@ if `country' == 0 | `country' == 1 {
 	save s_c_i_p_select, replace
 }
 
-* For Cuba: merge CDR data and filter by cuba_CDR_binary
+* For Cuba: merge CDR data
 if `country' == 2 {
 	use `trans_folder'Everything_Wide, clear
 	merge m:1 pid using Cuba_CDR.dta
@@ -345,14 +345,11 @@ if `country' == 2 {
 	count
 	drop _merge
 	save `trans_folder'Everything_Wide, replace
-	preserve
-	keep if cuba_CDR_binary != .
 
 	* not sure why there's duplicates (20818201 is showing up more than once)
 	bysort pid: keep if _n == 1
 
 	save s_c_i_p_select, replace
-	restore
 }
 
 ****************************************
@@ -742,5 +739,28 @@ use `trans_folder'Everything_Wide_slim
 
 
 log close
+
+****************************************
+* COPY CLEANED DTA FILES TO GOOGLE DRIVE (CUBA ONLY)
+****************************************
+
+if `country' == 2 & `"`user'"' == "Chris" {
+    local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/dta"
+
+    * Copy selected Everything_Wide files to Google Drive
+    copy "`path'/CUBA_out/`trans_folder'Everything_Wide.dta" "`gdrive_out'/Everything_Wide.dta", replace
+    copy "`path'/CUBA_out/`trans_folder'Everything_Wide_full.dta" "`gdrive_out'/Everything_Wide_full.dta", replace
+    copy "`path'/CUBA_out/s_c_i_p_select.dta" "`gdrive_out'/s_c_i_p_select.dta", replace
+
+    display "Everything_Wide files copied to Google Drive: `gdrive_out'"
+
+    * Copy Excel file to Google Drive
+    local gdrive_excel = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/excel"
+
+    copy "`path'/CUBA_out/`trans_folder'excel/Everything_Wide.xlsx" "`gdrive_excel'/Everything_Wide.xlsx", replace
+
+    display "Everything_Wide Excel copied to Google Drive: `gdrive_excel'"
+}
+
 *exit, clear
 

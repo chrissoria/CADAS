@@ -525,6 +525,15 @@ log close
 
 drop is_duplicate
 
+merge m:m hhid using resumen_hhid
+
+capture gen household_in_resumen = string(_merge)
+capture replace household_in_resumen = string(_merge)
+replace household_in_resumen = "Not in Resumen" if _merge == 1
+replace household_in_resumen = "Found in Resumen" if _merge == 3
+drop if _merge == 2
+drop _merge
+
 export excel using "`trans_folder'excel/familiar.xlsx", replace firstrow(variables)
 save `trans_folder'Household.dta, replace
 
@@ -580,3 +589,179 @@ foreach var of varlist `varlist' {
 export excel using "duplicates/no_coincidencias_cog.xlsx", replace firstrow(variables)
 
 list
+
+****************************************
+* SUMMARY STATISTICS LOG
+****************************************
+
+log using "/Users/chrissoria/documents/CADAS/Data/PR_out/logs/global_checks_summary", text replace
+
+display ""
+display "========================================================"
+display "       GLOBAL CHECKS SUMMARY - PUERTO RICO"
+display "========================================================"
+display ""
+
+* Count unique PIDs in each domain
+clear all
+
+* COG
+use `trans_folder'Cog, clear
+duplicates drop pid, force
+count
+local cog_n = r(N)
+
+* SOCIO
+use `trans_folder'Socio, clear
+duplicates drop pid, force
+count
+local socio_n = r(N)
+
+* PHYS
+use `trans_folder'Phys, clear
+duplicates drop pid, force
+count
+local phys_n = r(N)
+
+* INFOR
+use `trans_folder'Infor, clear
+duplicates drop pid, force
+count
+local infor_n = r(N)
+
+* HOUSEHOLD (by hhid, then map to pid)
+use `trans_folder'Household, clear
+duplicates drop hhid, force
+count
+local household_n = r(N)
+
+* RESUMEN (tracker)
+use resumen_pid, clear
+duplicates drop pid, force
+count
+local resumen_n = r(N)
+
+display ""
+display "--------------------------------------------------------"
+display "       NON-DUPLICATE PID COUNTS BY DOMAIN"
+display "--------------------------------------------------------"
+display ""
+display "  Cognitive (Cog):      `cog_n'"
+display "  Sociodemographic:     `socio_n'"
+display "  Physical Exam:        `phys_n'"
+display "  Informant:            `infor_n'"
+display "  Household (hhid):     `household_n'"
+display ""
+display "  Resumen (Tracker):    `resumen_n'"
+display ""
+
+* Build complete cases dataset - PIDs that exist in all 5 domains
+* Start with resumen as base
+use resumen_pid, clear
+duplicates drop pid, force
+keep pid
+gen in_resumen = 1
+
+* Create hhid from pid (first 6 characters: country + cluster + house)
+gen hhid = substr(pid, 1, 6)
+
+* Merge with Cog (create tempfile with unique PIDs first)
+preserve
+use `trans_folder'Cog, clear
+keep pid
+duplicates drop pid, force
+tempfile cog_unique
+save `cog_unique'
+restore
+merge 1:1 pid using `cog_unique', keep(master match)
+gen in_cog = (_merge == 3)
+drop _merge
+
+* Merge with Socio (create tempfile with unique PIDs first)
+preserve
+use `trans_folder'Socio, clear
+keep pid
+duplicates drop pid, force
+tempfile socio_unique
+save `socio_unique'
+restore
+merge 1:1 pid using `socio_unique', keep(master match)
+gen in_socio = (_merge == 3)
+drop _merge
+
+* Merge with Phys (create tempfile with unique PIDs first)
+preserve
+use `trans_folder'Phys, clear
+keep pid
+duplicates drop pid, force
+tempfile phys_unique
+save `phys_unique'
+restore
+merge 1:1 pid using `phys_unique', keep(master match)
+gen in_phys = (_merge == 3)
+drop _merge
+
+* Merge with Infor (create tempfile with unique PIDs first)
+preserve
+use `trans_folder'Infor, clear
+keep pid
+duplicates drop pid, force
+tempfile infor_unique
+save `infor_unique'
+restore
+merge 1:1 pid using `infor_unique', keep(master match)
+gen in_infor = (_merge == 3)
+drop _merge
+
+* Merge with Household (by hhid)
+merge m:1 hhid using `trans_folder'Household, keepusing(hhid) keep(master match)
+gen in_household = (_merge == 3)
+drop _merge
+
+* Calculate complete cases (present in all 5 domains)
+gen complete = (in_cog == 1 & in_socio == 1 & in_phys == 1 & in_infor == 1 & in_household == 1)
+
+* Count complete cases
+count if complete == 1
+local complete_n = r(N)
+
+* Calculate percentage
+local complete_pct = (`complete_n' / `resumen_n') * 100
+
+display "--------------------------------------------------------"
+display "       COMPLETE CASES ANALYSIS"
+display "--------------------------------------------------------"
+display ""
+display "  Complete cases (in all 5 domains):  `complete_n'"
+display "  Total cases in Resumen:             `resumen_n'"
+display "  Completion rate:                    " %5.1f `complete_pct' "%"
+display ""
+
+* Additional breakdown - cases missing each component
+count if in_cog == 0
+local miss_cog = r(N)
+count if in_socio == 0
+local miss_socio = r(N)
+count if in_phys == 0
+local miss_phys = r(N)
+count if in_infor == 0
+local miss_infor = r(N)
+count if in_household == 0
+local miss_household = r(N)
+
+display "--------------------------------------------------------"
+display "       MISSING COMPONENTS (of Resumen cases)"
+display "--------------------------------------------------------"
+display ""
+display "  Missing Cognitive:        `miss_cog'"
+display "  Missing Sociodemographic: `miss_socio'"
+display "  Missing Physical Exam:    `miss_phys'"
+display "  Missing Informant:        `miss_infor'"
+display "  Missing Household:        `miss_household'"
+display ""
+display "========================================================"
+display ""
+
+log close
+
+display "Summary log saved to: /Users/chrissoria/documents/CADAS/Data/PR_out/logs/global_checks_summary.log"

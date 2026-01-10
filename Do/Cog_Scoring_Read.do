@@ -126,6 +126,73 @@ label variable cs_79_4 "79.4. El cubo (0-4)"
 *Fix animal scoring so cs_40 is the #UNIQUE animals listed
 replace cs_40 = cs_40 - cs_41 if (cs_40 < . & cs_41 < .) & `country' == 1
 
+****************************************
+* MERGE TY'S PENTAGON SCORING
+****************************************
+* Preserve current data
+tempfile cog_scoring_main
+save `cog_scoring_main', replace
+
+* Import Ty's scoring file
+if `"`user'"' == "Chris" {
+    if `country' == 0 {
+        import excel using "`path'/PR_in/ty_pent_scoring_in_PR.xlsx", firstrow allstring clear
+    }
+    else if `country' == 1 {
+        import excel using "`path'/DR_in/ty_pent_scoring_in_DR.xlsx", firstrow allstring clear
+    }
+    else if `country' == 2 {
+        import excel using "`path'/CUBA_in/ty_pent_scoring_in_CU.xlsx", firstrow allstring clear
+    }
+}
+else if `"`user'"' == "Ty" {
+    if `country' == 0 {
+        import excel using "`path'/consensus/ty_pent_scoring_in_PR.xlsx", firstrow allstring clear
+    }
+    else if `country' == 1 {
+        import excel using "`path'/consensus/ty_pent_scoring_in_DR.xlsx", firstrow allstring clear
+    }
+    else if `country' == 2 {
+        import excel using "`path'/consensus/ty_pent_scoring_in_CU.xlsx", firstrow allstring clear
+    }
+}
+
+* Rename column from Excel (comes in with wrong name)
+rename cs_40_ty cs_32_ty
+
+* Drop empty rows
+drop if pid == "" & cs_32_ty == ""
+
+* Clean up missing values
+replace cs_32_ty = "" if cs_32_ty == "missing"
+
+* Keep only needed variables for merge
+keep pid cs_32_ty
+
+* Remove duplicates if any
+duplicates drop pid, force
+
+* Save Ty's scoring as temp file
+tempfile ty_scoring
+save `ty_scoring', replace
+
+* Reload main data and merge
+use `cog_scoring_main', clear
+merge m:1 pid using `ty_scoring', nogenerate keep(master match)
+
+* Create cs_32_cleaned: prioritize Ty's scores, fall back to cs_32
+* Convert Ty's string score to numeric
+destring cs_32_ty, gen(ty_score_num) force
+
+* Create cleaned variable: use Ty's score if available, otherwise use original
+gen cs_32_cleaned = ty_score_num if ty_score_num < .
+replace cs_32_cleaned = cs_32 if cs_32_cleaned >= .
+label variable cs_32_cleaned "32. Dibujo de pentagonos (cleaned, Ty scores prioritized)"
+
+* Clean up temporary variable
+drop ty_score_num
+capture drop cs_32_ty
+
 * Apply English labels if language is set to "E" and save to appropriate location
 if `"$language"' == "E" {
     capture include "/Users/chrissoria/documents/CADAS/Do/Read/Cog_Scoring_english_labels.do"

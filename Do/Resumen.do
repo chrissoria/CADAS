@@ -174,6 +174,7 @@ gen Participante_str = Participante
 replace Participante_str = "0" + Participante_str if strlen(Participante_str) == 1
 
 gen pid = country_str + Cluster_str + House_ID_str + Participante_str
+gen hhid = country_str + Cluster_str + House_ID_str
 drop country_str Cluster_str House_ID_str Participante_str
 }
 
@@ -181,7 +182,7 @@ else if `country' == 2 {
 	rename Cluster cluster_real
 	tostring cluster_real, generate(Cluster) format(%12.0g)
 replace Cluster = cond(strlen(Cluster) == 1, "0" + Cluster, Cluster)
-gen House_ID = string(House_ID)
+gen House_ID = string(House_ID1)
 replace House_ID = cond(strlen(House_ID) == 1, "00" + House_ID, House_ID)
 replace House_ID = cond(strlen(House_ID) == 2, "0" + House_ID, House_ID)
 	rename Participante Participante1
@@ -189,14 +190,23 @@ gen Participante = string(Participante1)
 replace Participante = cond(strlen(Participante) == 1, "0" + Participante, Participante)
 
 gen pid = country_str + Cluster + House_ID + Participante
+gen hhid = country_str + Cluster + House_ID
 drop country_str
 }
 
 duplicates drop pid, force
 
-drop H I
+capture drop H I
 
 save resumen.dta, replace
+export excel using "excel/resumen.xlsx", replace firstrow(variables)
+
+* Create resumen_hhid.dta for household merges
+preserve
+keep hhid
+duplicates drop hhid, force
+save resumen_hhid.dta, replace
+restore
 
 ****************************************
 * FINAL CLEANUP AND SAVE

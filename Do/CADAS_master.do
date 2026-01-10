@@ -5,11 +5,15 @@ capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
 
 clear all
 
+****************************************
+* SET COUNTRY HERE (0=PR, 1=DR, 2=CUBA)
+****************************************
+global country = 2
+
 if `"`user'"' == "Chris" {
 
     local path = "/Users/chrissoria/documents/CADAS/Do/Read"
-
-    include "`path'/CADAS_country_define.do"
+    local country = $country
 
 	****************************************
 	* LANGUAGE LOOP: Process data in Spanish first, then English
@@ -81,8 +85,8 @@ if `"`user'"' == "Chris" {
 			do "/Users/chrissoria/documents/CADAS/Do/mp4_TyManualScoring.do"
 		}
 		do "/Users/chrissoria/documents/CADAS/Do/InterviewerConcordance1.do"
-		do "/Users/chrissoria/documents/CADAS/Do/cadas_1066_reproduced.do"
-		do "/Users/chrissoria/documents/CADAS/Do/Ty_Pent_Scoring.do"
+		do "/Users/chrissoria/Documents/CADAS/do/1066_reproduced/1066_master.do"
+		*do "/Users/chrissoria/documents/CADAS/Do/Ty_Pent_Scoring.do" // Logic moved to Cog_Scoring_Read.do
 		if `country' == 1 {
 			do "/Users/chrissoria/documents/CADAS/Do/DR/UPM_Read_DR.do"
 		}
@@ -97,8 +101,7 @@ if `"`user'"' == "Chris" {
 else if `"`user'"' == "Ty" {
 
     local path = "C:\Users\Ty\Desktop\CADAS Data do files"
-
-    include "`path'/CADAS_country_define.do"
+    local country = $country
 
     do "`path'/Cog_Scoring_Read.do"
 
@@ -149,5 +152,4 @@ do "path'/cadas_1066_reproduced.do"
 
 } // end if user == Ty
 
-
-
+clear all

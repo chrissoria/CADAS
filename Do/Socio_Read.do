@@ -6048,18 +6048,15 @@ else {
 
 drop s_temptime1 s_temptime2 s_TotalTimeTemp s_tempdate s_total_days s_total_days2
 
-
-*depression score from s.10.1
-gen s_depression_score = 0
-replace s_depression_score = (s_depression_score + 1) if s_10_1a == 1
-replace s_depression_score = (s_depression_score + 1) if s_10_1b == 1
-replace s_depression_score = (s_depression_score + 1) if s_10_1c == 1
-replace s_depression_score = (s_depression_score + 1) if s_10_1d == 5
-replace s_depression_score = (s_depression_score + 1) if s_10_1e == 1
-replace s_depression_score = (s_depression_score + 1) if s_10_1f == 5
-replace s_depression_score = (s_depression_score + 1) if s_10_1g == 1
-replace s_depression_score = (s_depression_score + 1) if s_10_1h == 1
-
+* Create month-year and year-quarter variables from s_date
+gen s_date_numeric = date(s_date, "YMD")
+gen s_month_year = mofd(s_date_numeric)
+format s_month_year %tm
+label variable s_month_year "Survey month-year"
+gen s_year_quarter = qofd(s_date_numeric)
+format s_year_quarter %tq
+label variable s_year_quarter "Survey year-quarter"
+drop s_date_numeric
 
 
 capture log close
