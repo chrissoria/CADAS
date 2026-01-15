@@ -289,6 +289,13 @@ replace s_particid_str = cond(strlen(s_particid_str) == 1, "0" + s_particid_str,
 gen pid = s_country_str + s_clustid_str + s_houseid_str + s_particid_str
 gen hhid = s_country_str + s_clustid_str + s_houseid_str
 
+*found an error with this participant age, pulled correct age from roster
+replace s_2_3 = 74 if pid == "16700401"
+
+*missing education, pulling in from the roster (inputting because roster doesn't give exact years)
+replace s_2_8c = 2.5 if inlist(pid, "10600801", "12806601", "13605901", "16700701", "17501801")
+replace s_2_8c = 0 if inlist(pid, "18005201")
+
 sort s_parent_clustid s_parent_houseid
 order pid_parent pid pid_nonmatch globalrecordid
 

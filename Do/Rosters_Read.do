@@ -26,7 +26,7 @@ else if `country' == 1 {
     insheet using "../DR_in/Roster_Parent.csv", comma names clear
 }
 else if `country' == 2 {
-    insheet using "../CUBA_in/Roster_Parent_cleaned.csv", comma names clear
+    insheet using "../CUBA_in/Roster_Parent.csv", comma names clear
 }
 
 }
@@ -52,7 +52,7 @@ else if `country' == 1 {
     insheet using "../DR_in/Roster_Parent.csv", comma names clear
 }
 else if `country' == 2 {
-    insheet using "../CUBA_in/Roster_Parent_cleaned.csv", comma names clear
+    insheet using "../CUBA_in/Roster_Parent.csv", comma names clear
 }
 }
 
@@ -67,7 +67,7 @@ else if `country' == 1 {
     insheet using "../DR_in/Participants.csv", comma names clear
 }
 else if `country' == 2 {
-    insheet using "../CUBA_in/Participants_cleaned.csv", comma names clear
+    insheet using "../CUBA_in/Participants.csv", comma names clear
 }
 
 
@@ -267,7 +267,7 @@ else if `country' == 1 {
     insheet using "../DR_in/NonParticipants.csv", comma names clear
 }
 else if `country' == 2 {
-    insheet using "../CUBA_in/NonParticipants_cleaned.csv", comma names clear
+    insheet using "../CUBA_in/NonParticipants.csv", comma names clear
 }
   
    rename globalrecordid globalrecordid_non_partic
@@ -467,7 +467,7 @@ else if `country' == 1 {
     insheet using "../DR_in/NonResidentChildren.csv", comma names clear
 }
 else if `country' == 2 {
-    insheet using "../CUBA_in/NonResidentChildren_cleaned.csv", comma names clear
+    insheet using "../CUBA_in/NonResidentChildren.csv", comma names clear
 }
      
     drop globalrecordid

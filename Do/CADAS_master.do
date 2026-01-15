@@ -8,7 +8,7 @@ clear all
 ****************************************
 * SET COUNTRY HERE (0=PR, 1=DR, 2=CUBA)
 ****************************************
-global country = 2
+global country = 1
 
 if `"`user'"' == "Chris" {
 
@@ -31,17 +31,20 @@ if `"`user'"' == "Chris" {
 		if `country' == 0 {
 			do "`path'/../PR/cog_checks_PR.do"
 			*do "`path'/../PR/door_checks.do"
+			do "`path'/../PR/roster_checks_PR.do"
 			do "/Users/chrissoria/documents/CADAS/Do/Read/Sangre_Read.do"
 		}
 
 		if `country' == 1 {
 			do "`path'/../DR/cog_checks_DR.do"
 			do "`path'/../DR/door_checks_DR.do"
+			do "`path'/../DR/roster_checks_DR.do"
 		}
 
 		if `country' == 2 {
 			do "`path'/../CU/cuban_CDR.do"
 			do "`path'/../CU/cog_checks_CU.do"
+			do "`path'/../CU/roster_checks_CU.do"
 		}
 
 		do "`path'/Cog_Scoring_Read.do"

@@ -214,6 +214,12 @@ merge m:m pid using tracker
 
 tab pr_3 s_0, miss
 list pid pr_3 s_0 if (pr_3 ~= s_0 +1) & _merge==3 /* list if sex differs between Roster and Socio */
+
+preserve
+keep if (pr_3 ~= s_0 +1) & _merge==3
+save tracker_gender_mismatch, replace
+restore
+
 corr pr_4 s_2_3
 list pid pr_4 s_2_3 if abs(pr_4 - s_2_3) >2 & _merge==3 /* list if sex differs more than 2 years between Roster and Socio */
 

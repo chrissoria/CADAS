@@ -31,6 +31,13 @@ save resumen_pid.dta, replace
 clear all
  
 use `trans_folder'Socio
+*found an error with this participant age, pulled correct age from roster
+replace s_2_3 = 68 if pid == "20102302"
+
+replace s_2_8c = 16 if inlist(pid, "20123701", "20814101")
+replace s_2_8c = 2.5 if inlist(pid, "20120201")
+replace s_2_8c = 0 if inlist(pid, "20119601", "20206901")
+
 *we're dropping because pid 20409801 id duplicate, but this case looks mostly empty, we think it's the same person based on gender and resposne to some questions
 drop if globalrecordid == "6146eba7-6072-47f1-ae88-2eb90422f229"
 *participant is a 75 year old female, participant 2 missing socio, must be participant 2 (age matches)
@@ -1307,6 +1314,15 @@ drop is_duplicate
 *some cases are being duplicated or kept after merges from files that aren't from the tablet
 drop if globalrecordid == ""
 
+merge m:m hhid using resumen_hhid
+
+capture gen household_in_resumen = string(_merge)
+replace household_in_resumen = string(_merge)
+replace household_in_resumen = "Not in Resumen" if _merge == 1
+replace household_in_resumen = "Found in Resumen" if _merge == 3
+drop if _merge == 2
+drop _merge
+
 save `trans_folder'Household.dta, replace
 export excel using "`trans_folder'excel/familiar.xlsx", replace firstrow(variables)
 
@@ -1680,3 +1696,35 @@ foreach data in Cog Socio Infor {
 }
 
 clear
+
+****************************************
+* COPY CLEANED DTA FILES TO GOOGLE DRIVE
+****************************************
+
+if `"`user'"' == "Chris" {
+    local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/dta"
+
+    * Copy cleaned DTA files to Google Drive
+    copy "`path'/CUBA_out/`trans_folder'Socio.dta" "`gdrive_out'/Socio.dta", replace
+    copy "`path'/CUBA_out/`trans_folder'Phys.dta" "`gdrive_out'/Phys.dta", replace
+    copy "`path'/CUBA_out/`trans_folder'Infor.dta" "`gdrive_out'/Infor.dta", replace
+    copy "`path'/CUBA_out/`trans_folder'Cog.dta" "`gdrive_out'/Cog.dta", replace
+    copy "`path'/CUBA_out/`trans_folder'Household.dta" "`gdrive_out'/Household.dta", replace
+    copy "`path'/CUBA_out/`trans_folder'Respondent_Merged.dta" "`gdrive_out'/Respondent_Merged.dta", replace
+    copy "`path'/CUBA_out/rosters_participants.dta" "`gdrive_out'/rosters_participants.dta", replace
+    copy "`path'/CUBA_out/rosters_merged.dta" "`gdrive_out'/rosters_merged.dta", replace
+    copy "`path'/CUBA_out/door_merged_all.dta" "`gdrive_out'/door_merged_all.dta", replace
+    copy "`path'/CUBA_out/door_participants.dta" "`gdrive_out'/door_participants.dta", replace
+
+    display "Cleaned DTA files copied to Google Drive: `gdrive_out'"
+
+    * Copy Excel files to Google Drive
+    local gdrive_excel = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/excel"
+
+    copy "`path'/CUBA_out/`trans_folder'excel/socio.xlsx" "`gdrive_excel'/socio.xlsx", replace
+    copy "`path'/CUBA_out/`trans_folder'excel/examen_fisico.xlsx" "`gdrive_excel'/examen_fisico.xlsx", replace
+    copy "`path'/CUBA_out/`trans_folder'excel/informante.xlsx" "`gdrive_excel'/informante.xlsx", replace
+    copy "`path'/CUBA_out/`trans_folder'excel/familiar.xlsx" "`gdrive_excel'/familiar.xlsx", replace
+
+    display "Excel files copied to Google Drive: `gdrive_excel'"
+}
