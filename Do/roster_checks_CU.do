@@ -231,6 +231,7 @@ drop if drop == "drop"
 
 drop drop _merge
 
+capture drop pr_country
 gen pr_country = 2
 
 export delimited Participants , replace

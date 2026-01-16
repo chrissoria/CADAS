@@ -760,3 +760,41 @@ foreach var of varlist `varlist' {
 export excel using "duplicates/no_coincidencias_cog.xlsx", replace firstrow(variables)
 
 list
+
+clear
+
+****************************************
+* COPY CLEANED DTA FILES TO GOOGLE DRIVE
+****************************************
+
+if `"`user'"' == "Chris" {
+    if `"$language"' == "E" {
+        local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Rep Dom/latest_data/TRANSLATED/DTA"
+        local gdrive_excel = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Rep Dom/latest_data/TRANSLATED/EXCEL"
+    }
+    else {
+        local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Rep Dom/latest_data/dta"
+        local gdrive_excel = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Rep Dom/latest_data/excel"
+    }
+
+    * Copy cleaned DTA files to Google Drive
+    copy "`path'/DR_out/`trans_folder'Socio.dta" "`gdrive_out'/Socio.dta", replace
+    copy "`path'/DR_out/`trans_folder'Phys.dta" "`gdrive_out'/Phys.dta", replace
+    copy "`path'/DR_out/`trans_folder'Infor.dta" "`gdrive_out'/Infor.dta", replace
+    copy "`path'/DR_out/`trans_folder'Cog.dta" "`gdrive_out'/Cog.dta", replace
+    copy "`path'/DR_out/`trans_folder'Household.dta" "`gdrive_out'/Household.dta", replace
+    copy "`path'/DR_out/rosters_participants.dta" "`gdrive_out'/rosters_participants.dta", replace
+    copy "`path'/DR_out/rosters_merged.dta" "`gdrive_out'/rosters_merged.dta", replace
+    copy "`path'/DR_out/door_merged_all.dta" "`gdrive_out'/door_merged_all.dta", replace
+    copy "`path'/DR_out/door_participants.dta" "`gdrive_out'/door_participants.dta", replace
+
+    display "Cleaned DTA files copied to Google Drive: `gdrive_out'"
+
+    * Copy Excel files to Google Drive
+    copy "`path'/DR_out/`trans_folder'excel/socio.xlsx" "`gdrive_excel'/socio.xlsx", replace
+    copy "`path'/DR_out/`trans_folder'excel/examen_fisico.xlsx" "`gdrive_excel'/examen_fisico.xlsx", replace
+    copy "`path'/DR_out/`trans_folder'excel/informante.xlsx" "`gdrive_excel'/informante.xlsx", replace
+    copy "`path'/DR_out/`trans_folder'excel/familiar.xlsx" "`gdrive_excel'/familiar.xlsx", replace
+
+    display "Excel files copied to Google Drive: `gdrive_excel'"
+}

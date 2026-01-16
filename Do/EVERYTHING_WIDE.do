@@ -741,11 +741,43 @@ use `trans_folder'Everything_Wide_slim
 log close
 
 ****************************************
-* COPY CLEANED DTA FILES TO GOOGLE DRIVE (CUBA ONLY)
+* COPY CLEANED DTA FILES TO GOOGLE DRIVE
 ****************************************
 
+* DR
+if `country' == 1 & `"`user'"' == "Chris" {
+    if `"$language"' == "E" {
+        local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Rep Dom/latest_data/TRANSLATED/DTA"
+        local gdrive_excel = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Rep Dom/latest_data/TRANSLATED/EXCEL"
+    }
+    else {
+        local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Rep Dom/latest_data/dta"
+        local gdrive_excel = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Rep Dom/latest_data/excel"
+    }
+
+    * Copy selected Everything_Wide files to Google Drive
+    copy "`path'/DR_out/`trans_folder'Everything_Wide.dta" "`gdrive_out'/Everything_Wide.dta", replace
+    copy "`path'/DR_out/`trans_folder'Everything_Wide_full.dta" "`gdrive_out'/Everything_Wide_full.dta", replace
+    copy "`path'/DR_out/s_c_i_p_select.dta" "`gdrive_out'/s_c_i_p_select.dta", replace
+
+    display "Everything_Wide files copied to Google Drive: `gdrive_out'"
+
+    * Copy Excel file to Google Drive
+    copy "`path'/DR_out/`trans_folder'excel/Everything_Wide.xlsx" "`gdrive_excel'/Everything_Wide.xlsx", replace
+
+    display "Everything_Wide Excel copied to Google Drive: `gdrive_excel'"
+}
+
+* Cuba
 if `country' == 2 & `"`user'"' == "Chris" {
-    local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/dta"
+    if `"$language"' == "E" {
+        local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/TRANSLATED/DTA"
+        local gdrive_excel = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/TRANSLATED/EXCEL"
+    }
+    else {
+        local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/dta"
+        local gdrive_excel = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/excel"
+    }
 
     * Copy selected Everything_Wide files to Google Drive
     copy "`path'/CUBA_out/`trans_folder'Everything_Wide.dta" "`gdrive_out'/Everything_Wide.dta", replace
@@ -755,8 +787,6 @@ if `country' == 2 & `"`user'"' == "Chris" {
     display "Everything_Wide files copied to Google Drive: `gdrive_out'"
 
     * Copy Excel file to Google Drive
-    local gdrive_excel = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/excel"
-
     copy "`path'/CUBA_out/`trans_folder'excel/Everything_Wide.xlsx" "`gdrive_excel'/Everything_Wide.xlsx", replace
 
     display "Everything_Wide Excel copied to Google Drive: `gdrive_excel'"

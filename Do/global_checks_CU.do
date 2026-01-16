@@ -1667,21 +1667,6 @@ else {
     local trans_folder ""
 }
 
-use `trans_folder'Cog.dta
-merge m:m pid using `trans_folder'Infor.dta
-
-drop _merge
-
-merge m:m pid using `trans_folder'Phys.dta
-
-drop _merge
-
-merge m:m pid using `trans_folder'Socio.dta
-
-drop _merge fkey globalrecordid pid_parent  pid_nonmatch
-
-save `trans_folder'Respondent_Merged.dta, replace
-
 *next, I want to know which cases within which datasets aren't matching on the CDR dataset
 clear
 
@@ -1702,7 +1687,14 @@ clear
 ****************************************
 
 if `"`user'"' == "Chris" {
-    local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/dta"
+    if `"$language"' == "E" {
+        local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/TRANSLATED/DTA"
+        local gdrive_excel = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/TRANSLATED/EXCEL"
+    }
+    else {
+        local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/dta"
+        local gdrive_excel = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/excel"
+    }
 
     * Copy cleaned DTA files to Google Drive
     copy "`path'/CUBA_out/`trans_folder'Socio.dta" "`gdrive_out'/Socio.dta", replace
@@ -1710,7 +1702,6 @@ if `"`user'"' == "Chris" {
     copy "`path'/CUBA_out/`trans_folder'Infor.dta" "`gdrive_out'/Infor.dta", replace
     copy "`path'/CUBA_out/`trans_folder'Cog.dta" "`gdrive_out'/Cog.dta", replace
     copy "`path'/CUBA_out/`trans_folder'Household.dta" "`gdrive_out'/Household.dta", replace
-    copy "`path'/CUBA_out/`trans_folder'Respondent_Merged.dta" "`gdrive_out'/Respondent_Merged.dta", replace
     copy "`path'/CUBA_out/rosters_participants.dta" "`gdrive_out'/rosters_participants.dta", replace
     copy "`path'/CUBA_out/rosters_merged.dta" "`gdrive_out'/rosters_merged.dta", replace
     copy "`path'/CUBA_out/door_merged_all.dta" "`gdrive_out'/door_merged_all.dta", replace
@@ -1719,8 +1710,6 @@ if `"`user'"' == "Chris" {
     display "Cleaned DTA files copied to Google Drive: `gdrive_out'"
 
     * Copy Excel files to Google Drive
-    local gdrive_excel = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/excel"
-
     copy "`path'/CUBA_out/`trans_folder'excel/socio.xlsx" "`gdrive_excel'/socio.xlsx", replace
     copy "`path'/CUBA_out/`trans_folder'excel/examen_fisico.xlsx" "`gdrive_excel'/examen_fisico.xlsx", replace
     copy "`path'/CUBA_out/`trans_folder'excel/informante.xlsx" "`gdrive_excel'/informante.xlsx", replace

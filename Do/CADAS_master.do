@@ -8,7 +8,7 @@ clear all
 ****************************************
 * SET COUNTRY HERE (0=PR, 1=DR, 2=CUBA)
 ****************************************
-global country = 1
+global country = 2
 
 if `"`user'"' == "Chris" {
 
@@ -96,6 +96,8 @@ if `"`user'"' == "Chris" {
 		do "/Users/chrissoria/documents/CADAS/Do/Tracker.do"
 		do "/Users/chrissoria/documents/CADAS/Do/consensus_site.do"
 		do "/Users/chrissoria/documents/CADAS/Do/EVERYTHING_WIDE.do"
+		do "/Users/chrissoria/documents/CADAS/Do/CADAS_public.do"
+		do "/Users/chrissoria/documents/CADAS/Do/CADAS_weights.do"
 
 	} // end language loop
 
