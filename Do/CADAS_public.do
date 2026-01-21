@@ -311,6 +311,9 @@ capture drop *time*
 capture drop *Time*
 capture drop *date*
 capture drop *Date*
+capture drop i_countmissing
+capture drop i_last
+capture drop i_ADL_summ i_IADL_summ i_memory_summ i_NPI_summ i_JORM_IQCODE_summ
 
 *keep pid I_in
 *gen pidr=real(pid)
@@ -345,6 +348,9 @@ save `trans_folder'CADAS_`country_name', replace
 
 * Deduplicate by pid
 bysort pid: keep if _n == 1
+
+drop Cluster House_ID pid_en_resumen-s_clustid s_deviceid1 s_deviceid2-p_particid2 p_deviceid2-all_image_files_found c_deviceid2-cs_particid2
+drop v1-i_deviceid1 i_deviceid2-pid_en_infor *pic* *file* *score*
 
 save `trans_folder'CADAS_`country_name', replace
 

@@ -382,6 +382,9 @@ collapse (count) sample_n = _one, by(age_group sex)
     * Keep only pid and weight
     keep pid weight
 
+    * Ensure unique PIDs
+    duplicates drop pid, force
+
     * Save weights.dta
     capture erase "`path'/CUBA_out/`trans_folder_cu'weights.dta"
     save "`path'/CUBA_out/`trans_folder_cu'weights.dta", replace

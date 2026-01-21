@@ -333,10 +333,39 @@ save `trans_folder'Everything_Wide, replace
 if `country' == 0 | `country' == 1 {
 	use `trans_folder'Everything_Wide, clear
 	bysort pid: keep if _n == 1
+
+	* Merge consensus binary classifications
+	preserve
+	use "/Users/chrissoria/Documents/Research/consensus/data/out/consensus_binary_simple.dta", clear
+	rename finalniaa_binary team_consensus
+	rename finalniaa_int_binary international_consensus
+	tempfile consensus_temp
+	save `consensus_temp'
+	restore
+
+	merge 1:1 pid using `consensus_temp'
+	tab _merge
+	display "Consensus binary merge results:"
+	count if _merge == 3
+	drop if _merge == 2
+	drop _merge
+
+	* Create consensus_dementia: prioritize international, fall back to team
+	gen consensus_dementia = international_consensus
+	replace consensus_dementia = team_consensus if missing(consensus_dementia)
+	label variable consensus_dementia "Consensus dementia (international priority, team fallback)"
+
+	* Create binary indicator for having consensus
+	gen in_consensus = !missing(consensus_dementia)
+	label variable in_consensus "Has consensus dementia classification"
+
 	save s_c_i_p_select, replace
+
+	* Save back to Everything_Wide so it flows to final datasets
+	save `trans_folder'Everything_Wide, replace
 }
 
-* For Cuba: merge CDR data
+* For Cuba: merge CDR data and weights
 if `country' == 2 {
 	use `trans_folder'Everything_Wide, clear
 	merge m:1 pid using Cuba_CDR.dta
@@ -349,7 +378,42 @@ if `country' == 2 {
 	* not sure why there's duplicates (20818201 is showing up more than once)
 	bysort pid: keep if _n == 1
 
+	* Merge weights for Cuba
+	merge 1:1 pid using `trans_folder'weights.dta
+	tab _merge
+	display "Weights merge results:"
+	count if _merge == 3
+	drop _merge
+
+	* Merge consensus binary classifications
+	preserve
+	use "/Users/chrissoria/Documents/Research/consensus/data/out/consensus_binary_simple.dta", clear
+	rename finalniaa_binary team_consensus
+	rename finalniaa_int_binary international_consensus
+	tempfile consensus_temp
+	save `consensus_temp'
+	restore
+
+	merge 1:1 pid using `consensus_temp'
+	tab _merge
+	display "Consensus binary merge results:"
+	count if _merge == 3
+	drop if _merge == 2
+	drop _merge
+
+	* Create consensus_dementia: prioritize international, fall back to team
+	gen consensus_dementia = international_consensus
+	replace consensus_dementia = team_consensus if missing(consensus_dementia)
+	label variable consensus_dementia "Consensus dementia (international priority, team fallback)"
+
+	* Create binary indicator for having consensus
+	gen in_consensus = !missing(consensus_dementia)
+	label variable in_consensus "Has consensus dementia classification"
+
 	save s_c_i_p_select, replace
+
+	* Save back to Everything_Wide so it flows to final datasets
+	save `trans_folder'Everything_Wide, replace
 }
 
 ****************************************
