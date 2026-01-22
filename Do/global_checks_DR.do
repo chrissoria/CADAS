@@ -769,12 +769,12 @@ clear
 
 if `"`user'"' == "Chris" {
     if `"$language"' == "E" {
-        local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Rep Dom/latest_data/TRANSLATED/DTA"
-        local gdrive_excel = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Rep Dom/latest_data/TRANSLATED/EXCEL"
+        local gdrive_out = "/Users/chrissoria/Google Drive/Other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Rep Dom/latest_data/TRANSLATED/DTA"
+        local gdrive_excel = "/Users/chrissoria/Google Drive/Other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Rep Dom/latest_data/TRANSLATED/EXCEL"
     }
     else {
-        local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Rep Dom/latest_data/dta"
-        local gdrive_excel = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Rep Dom/latest_data/excel"
+        local gdrive_out = "/Users/chrissoria/Google Drive/Other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Rep Dom/latest_data/DTA"
+        local gdrive_excel = "/Users/chrissoria/Google Drive/Other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Rep Dom/latest_data/EXCEL"
     }
 
     * Copy cleaned DTA files to Google Drive
@@ -797,4 +797,18 @@ if `"`user'"' == "Chris" {
     copy "`path'/DR_out/`trans_folder'excel/familiar.xlsx" "`gdrive_excel'/familiar.xlsx", replace
 
     display "Excel files copied to Google Drive: `gdrive_excel'"
+
+    * Copy duplicate check files to Google Drive SAMPLE_DIAGNOSTIC_EXCELS
+    local gdrive_diag = "/Users/chrissoria/Google Drive/Other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Rep Dom/latest_data/SAMPLE_DIAGNOSTIC_EXCELS"
+
+    capture copy "`path'/DR_out/duplicates/cognitive_duplicates.xlsx" "`gdrive_diag'/cognitive_duplicates.xlsx", replace
+    capture copy "`path'/DR_out/duplicates/cog_scoring_duplicates.xlsx" "`gdrive_diag'/cog_scoring_duplicates.xlsx", replace
+    capture copy "`path'/DR_out/duplicates/door_duplicates.xlsx" "`gdrive_diag'/door_duplicates.xlsx", replace
+    capture copy "`path'/DR_out/duplicates/Household_duplicates.xlsx" "`gdrive_diag'/Household_duplicates.xlsx", replace
+    capture copy "`path'/DR_out/duplicates/informant_duplicates.xlsx" "`gdrive_diag'/informant_duplicates.xlsx", replace
+    capture copy "`path'/DR_out/duplicates/phys_duplicates.xlsx" "`gdrive_diag'/phys_duplicates.xlsx", replace
+    capture copy "`path'/DR_out/duplicates/roster_duplicates.xlsx" "`gdrive_diag'/roster_duplicates.xlsx", replace
+    capture copy "`path'/DR_out/duplicates/socio_duplicates.xlsx" "`gdrive_diag'/socio_duplicates.xlsx", replace
+
+    display "Duplicate check files copied to Google Drive: `gdrive_diag'"
 }

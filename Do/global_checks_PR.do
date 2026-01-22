@@ -2,53 +2,22 @@ clear all
 set more off
 capture log close
 
-capture include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_user_define.do"\
+capture include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_user_define.do"
 capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_user_define.do"
-
-capture include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_country_define.do"
-capture include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
 
 if `"`user'"' == "Chris" {
 local path = "/Users/chrissoria/documents/CADAS/Data"
-include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_country_define.do"
-
-if `country' == 0 {
-    cd "`path'/PR_out"
-}
-else if `country' == 1 {
-    cd "`path'/DR_out"
-}
-else if `country' == 2 {
-    cd "`path'/CUBA_out"
-}
 }
 
 else if `"`user'"' == "Ty" {
 local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
-include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
+}
 
-if `country' == 0 {
-    cd "`path'/PR_out"
-}
-else if `country' == 1 {
-    cd "`path'/DR_out"
-}
-else if `country' == 2 {
-    cd "`path'/CUBA_out"
-}
-}
+cd "`path'/PR_out"
 
 * Set translation folder path based on language
 if `"$language"' == "E" {
-    if `country' == 0 {
-        local trans_folder "translation_PR/"
-    }
-    else if `country' == 1 {
-        local trans_folder "translation_DR/"
-    }
-    else if `country' == 2 {
-        local trans_folder "translation_CUBA/"
-    }
+    local trans_folder "translation_PR/"
 }
 else {
     local trans_folder ""
@@ -714,7 +683,13 @@ gen in_infor = (_merge == 3)
 drop _merge
 
 * Merge with Household (by hhid)
-merge m:1 hhid using `trans_folder'Household, keepusing(hhid) keep(master match)
+preserve
+use `trans_folder'Household, clear
+duplicates drop hhid, force
+tempfile household_unique
+save `household_unique'
+restore
+merge m:1 hhid using `household_unique', keepusing(hhid) keep(master match)
 gen in_household = (_merge == 3)
 drop _merge
 
@@ -765,3 +740,54 @@ display ""
 log close
 
 display "Summary log saved to: /Users/chrissoria/documents/CADAS/Data/PR_out/logs/global_checks_summary.log"
+
+clear
+
+****************************************
+* COPY CLEANED DTA FILES TO GOOGLE DRIVE
+****************************************
+
+if `"`user'"' == "Chris" {
+    if `"$language"' == "E" {
+        local gdrive_out = "/Users/chrissoria/Google Drive/Other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Puerto_Rico/Latest_Data/TRANSLATED/DTA"
+        local gdrive_excel = "/Users/chrissoria/Google Drive/Other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Puerto_Rico/Latest_Data/TRANSLATED/EXCEL"
+    }
+    else {
+        local gdrive_out = "/Users/chrissoria/Google Drive/Other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Puerto_Rico/Latest_Data/DTA"
+        local gdrive_excel = "/Users/chrissoria/Google Drive/Other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Puerto_Rico/Latest_Data/EXCEL"
+    }
+
+    * Copy cleaned DTA files to Google Drive
+    copy "`path'/PR_out/`trans_folder'Socio.dta" "`gdrive_out'/Socio.dta", replace
+    copy "`path'/PR_out/`trans_folder'Phys.dta" "`gdrive_out'/Phys.dta", replace
+    copy "`path'/PR_out/`trans_folder'Infor.dta" "`gdrive_out'/Infor.dta", replace
+    copy "`path'/PR_out/`trans_folder'Cog.dta" "`gdrive_out'/Cog.dta", replace
+    copy "`path'/PR_out/`trans_folder'Household.dta" "`gdrive_out'/Household.dta", replace
+    copy "`path'/PR_out/rosters_participants.dta" "`gdrive_out'/rosters_participants.dta", replace
+    copy "`path'/PR_out/rosters_merged.dta" "`gdrive_out'/rosters_merged.dta", replace
+    copy "`path'/PR_out/door_merged_all.dta" "`gdrive_out'/door_merged_all.dta", replace
+    copy "`path'/PR_out/door_participants.dta" "`gdrive_out'/door_participants.dta", replace
+
+    display "Cleaned DTA files copied to Google Drive: `gdrive_out'"
+
+    * Copy Excel files to Google Drive
+    copy "`path'/PR_out/`trans_folder'excel/socio.xlsx" "`gdrive_excel'/socio.xlsx", replace
+    copy "`path'/PR_out/`trans_folder'excel/examen_fisico.xlsx" "`gdrive_excel'/examen_fisico.xlsx", replace
+    copy "`path'/PR_out/`trans_folder'excel/informante.xlsx" "`gdrive_excel'/informante.xlsx", replace
+    copy "`path'/PR_out/`trans_folder'excel/familiar.xlsx" "`gdrive_excel'/familiar.xlsx", replace
+
+    display "Excel files copied to Google Drive: `gdrive_excel'"
+
+    * Copy duplicate check files to Google Drive SAMPLE_DIAGNOSTIC_EXCELS
+    local gdrive_diag = "/Users/chrissoria/Google Drive/Other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Puerto_Rico/Latest_Data/SAMPLE_DIAGNOSTIC_EXCELS"
+
+    capture copy "`path'/PR_out/duplicates/cognitive_duplicates.xlsx" "`gdrive_diag'/cognitive_duplicates.xlsx", replace
+    capture copy "`path'/PR_out/duplicates/cog_scoring_duplicates.xlsx" "`gdrive_diag'/cog_scoring_duplicates.xlsx", replace
+    capture copy "`path'/PR_out/duplicates/Household_duplicates.xlsx" "`gdrive_diag'/Household_duplicates.xlsx", replace
+    capture copy "`path'/PR_out/duplicates/informant_duplicates.xlsx" "`gdrive_diag'/informant_duplicates.xlsx", replace
+    capture copy "`path'/PR_out/duplicates/phys_duplicates.xlsx" "`gdrive_diag'/phys_duplicates.xlsx", replace
+    capture copy "`path'/PR_out/duplicates/roster_duplicates.xlsx" "`gdrive_diag'/roster_duplicates.xlsx", replace
+    capture copy "`path'/PR_out/duplicates/socio_duplicates.xlsx" "`gdrive_diag'/socio_duplicates.xlsx", replace
+
+    display "Duplicate check files copied to Google Drive: `gdrive_diag'"
+}
