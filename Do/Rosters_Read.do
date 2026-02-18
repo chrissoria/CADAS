@@ -579,6 +579,8 @@ else if `country' == 2 {
   
   drop _merge
 
+replace r_country = `country' if r_country != 5
+
 gen r_country_str = string(r_country, "%12.0f")
 
 gen r_clustid_str = string(r_clustid, "%12.0f")
@@ -638,6 +640,8 @@ replace num_nonparticipants = 0 if missing(num_nonparticipants)
 gen number_in_household = num_nonparticipants + num_participants
 
 drop num_participants num_nonparticipants
+
+replace r_country = `country' if r_country != 5
 
 gen r_country_str = string(r_country, "%12.0f")
 

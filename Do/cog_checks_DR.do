@@ -43,6 +43,9 @@ else if `country' == 2 {
 }
 }
 
+*moving to orphanage
+replace c_country = 5 if inlist(globalrecordid,"fddfa661-15e9-4713-8757-6b99eb8587d7","550890f9-98f2-4590-b334-ec94738214f3")
+
 *instructions from Guillermina
 drop if inlist(globalrecordid, "25cdfeb4-89a5-4440-9e85-17033755a325")
 

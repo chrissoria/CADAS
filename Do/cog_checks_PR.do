@@ -9,39 +9,20 @@ display "User: `user'"
 clear all
 capture log close
 
-if `"`user'"' == "Chris" {
-local path = "/Users/chrissoria/documents/CADAS/Data"
-include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_country_define.do"
-
-if `country' == 0 {
-    cd "`path'/PR_out"
-    insheet using "../PR_in/Cog_Child.csv", comma names clear
+if "`user'" == "Chris" {
+    local path "/Users/chrissoria/documents/CADAS/Data"
+    include "/Users/chrissoria/documents/CADAS/Do/Read/CADAS_country_define.do"
 }
-else if `country' == 1 {
-    cd "`path'/DR_out"
-    insheet using "../DR_in/Cog_Child.csv", comma names clear
+else if "`user'" == "Ty" {
+    local path "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
+    include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
 }
-else if `country' == 2 {
-    cd "`path'/CUBA_out"
-    insheet using "../CUBA_in/Cog_Child.csv", comma names clear
-}
+else {
+    display as error "User not recognized. Please set the 'user' macro to either 'Chris' or 'Ty'."
+    exit 198
 }
 
-else if `"`user'"' == "Ty" {
-local path = "C:\Users\Ty\Desktop\Stata_CADAS\DATA"
-include "C:\Users\Ty\Desktop\CADAS Data do files\CADAS_country_define.do"
-
-if `country' == 0 {
-    cd "`path'/PR_out"
-	insheet using "../PR_in/Cog_Child.csv", comma names clear
-}
-else if `country' == 1 {
-    cd "`path'/DR_out"
-}
-else if `country' == 2 {
-    cd "`path'/CUBA_out"
-}
-}
+insheet using "../PR_in/Cog_Child.csv", comma names clear
 
 drop if c_deviceid1 == ""
 
@@ -61,7 +42,6 @@ else if `country' == 2 {
     export delimited using "../CU_in/Cog_Child_cleaned.csv", replace
 }
 
-
 drop if c_interid == 99
 
 gen c_country_str = string(c_country, "%12.0f")
@@ -80,7 +60,7 @@ gen pid = c_country_str + c_clustid_str + c_houseid_str + c_particid_str
 gen hhid = c_country_str + c_clustid_str + c_houseid_str
 drop c_country_str c_clustid_str c_houseid_str c_particid_str
 
-log using "`path'/PR_out/logs/CogOnlyMissing", text replace
+log using "/Users/chrissoria/documents/CADAS/Data/PR_out/logs/CogOnlyMissing", text replace
 
 
 local missvarlist

@@ -74,7 +74,7 @@ else if `country' == 2 {
 
 if `country' == 0 {
 
-    import excel using "../PR_in/Resumen de Entrevistas.xlsx", firstrow clear
+    import excel using "../PR_in/Auditoria de entrevistas CADAS.xlsx", firstrow clear
 	
 	keep if strpos(lower(NotasCuestionariosnohechos), "complete") > 0
 	keep Cluster Casa Participante Notas
@@ -82,14 +82,6 @@ if `country' == 0 {
 	foreach var of varlist Cluster Casa Participante Notas {
 		drop if missing(`var')
 	}
-
-
-
-
-
-
-
-
 
 
 

@@ -146,7 +146,7 @@ sort pid
 list pid sex age duplic if duplic>1 /* print duplicate obs */
 gen pid_en_resumen=1 /* create indicator to use after merge with other questionnaire files */
 drop pidr duplic sd_sex sd_age
-replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
+replace pid = string(`country') + substr(pid, 2, .) if substr(pid, 1, 1) == "."
 sum
 save tracker, replace
 
@@ -174,7 +174,7 @@ gen pid_en_listas=1 /* create indicator to use after merge with other questionna
 drop pidr duplic sd_sex sd_age
 sum
 *save rosters_check.dta, replace /* I think you could drop these lines, and save just tracker per next line */
-*replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
+*replace pid = string(`country') + substr(pid, 2, .) if substr(pid, 1, 1) == "."
 *replace hhid = "2" + substr(hhid, 2, .) if substr(hhid, 1, 1) == "."
 merge m:m pid using tracker
 tab pr_3 sex, miss
@@ -209,7 +209,7 @@ gen pid_en_socio=1
 drop pidr duplic
 sum
 *save socio_check.dta, replace
-replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
+replace pid = string(`country') + substr(pid, 2, .) if substr(pid, 1, 1) == "."
 merge m:m pid using tracker
 
 tab pr_3 s_0, miss
@@ -244,7 +244,7 @@ gen pid_en_phys=1
 drop pidr duplic
 sum
 *save phys_check.dta, replace
-replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
+replace pid = string(`country') + substr(pid, 2, .) if substr(pid, 1, 1) == "."
 merge m:m pid using tracker
 drop _merge
 order pid hhid
@@ -267,7 +267,7 @@ gen pid_en_cog=1
 drop pidr duplic
 sum
 *save cog_check.dta, replace
-replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
+replace pid = string(`country') + substr(pid, 2, .) if substr(pid, 1, 1) == "."
 merge m:m pid using tracker
 drop _merge
 save tracker, replace
@@ -289,7 +289,7 @@ gen pid_en_cog_scor=1
 drop pidr duplic
 sum
 *save cog_scoring_check.dta, replace
-replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
+replace pid = string(`country') + substr(pid, 2, .) if substr(pid, 1, 1) == "."
 merge m:m pid using tracker
 drop _merge
 save tracker, replace
@@ -311,7 +311,7 @@ gen pid_en_infor=1
 drop pidr duplic
 sum
 *save infor_check.dta, replace
-replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
+replace pid = string(`country') + substr(pid, 2, .) if substr(pid, 1, 1) == "."
 merge m:m pid using tracker
 drop _merge
 save tracker, replace
@@ -334,7 +334,7 @@ gen existe_familiar=1
 *drop hhidr duplic
 sum
 *save hh_check.dta, replace
-replace hhid = "2" + substr(hhid, 2, .) if substr(hhid, 1, 1) == "."
+replace hhid = string(`country') + substr(hhid, 2, .) if substr(hhid, 1, 1) == "."
 merge m:m hhid using tracker
 drop _merge
 order pid hhid
@@ -438,6 +438,12 @@ sort pid
 if `country' == 2 {
 	merge m:m pid using Cuba_CDR.dta
 	drop _merge
+	
+	preserve
+	keep pid cuban_CDR cuba_CDR_binary CDR_sex CDR_age sexo_en_socio edad_en_socio
+	keep if cuban_CDR != .
+	export excel using "duplicates/tracker_CDR.xlsx", replace firstrow(variables)
+	restore
 }
 
 gen tracker_complete = "WIP"

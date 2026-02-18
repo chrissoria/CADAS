@@ -1282,6 +1282,8 @@ foreach var of local string_vars {
 
 }
 
+replace h_country = `country' if h_country != 5
+
 label define country_label 0 "Puerto Rico" 1 "República Dominicana" 2 "Cuba"
 label values h_country country_label
 

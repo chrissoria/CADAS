@@ -27,13 +27,26 @@ else if `country' == 2 {
 ****************************************
 
 if `country' == 0 {
-    import excel using "../PR_in/Resumen de Entrevistas.xlsx", firstrow clear
-    *drop N-Z
-    keep if strpos(lower(NotasCuestionariosnohechos), "complete") > 0
-    keep Cluster Casa Participante GénerodeParticpante EdaddeParticpante Fechadeentrevista NotasCuestionariosnohechos
-    rename (Casa GénerodeParticpante EdaddeParticpante Fechadeentrevista NotasCuestionariosnohechos) ///
-           (House_ID sex age Fecha Notas)
-    drop if missing(Cluster, House_ID, Participante, sex, age, Fecha, Notas)
+    import excel using "../PR_in/Auditoria de entrevistas CADAS.xlsx", firstrow clear
+    * Drop rows after the data section (row 838+ is blank/notes)
+    gen _row = _n
+    drop if _row > 837
+    drop _row
+    keep Cluster Casa Participante Gender Age Fechadeentrevista
+    rename (Casa Gender Age Fechadeentrevista) ///
+           (House_ID sex age Fecha)
+    gen Notas = "complete"
+    * Extract leading numbers from ID fields (some have appended notes)
+    foreach var in Cluster House_ID Participante {
+        replace `var' = regexs(0) if regexm(`var', "^[0-9\.]+")
+    }
+    destring Cluster, replace force
+    destring House_ID, replace force
+    destring Participante, replace force
+    replace Cluster = round(Cluster)
+    replace House_ID = round(House_ID)
+    replace Participante = round(Participante)
+    drop if missing(Cluster, House_ID, Participante)
 }
 else if `country' == 1 {
     import excel using "../DR_in/Resumen de entrevistas.xlsx", firstrow
@@ -83,13 +96,26 @@ else if `country' == 2 {
 ****************************************
 
 if `country' == 0 {
-    import excel using "../PR_in/Resumen de Entrevistas.xlsx", firstrow clear
-    *drop N-Z
-    keep if strpos(lower(NotasCuestionariosnohechos), "complete") > 0
-    keep Cluster Casa Participante GénerodeParticpante EdaddeParticpante Fechadeentrevista NotasCuestionariosnohechos
-    rename (Casa GénerodeParticpante EdaddeParticpante Fechadeentrevista NotasCuestionariosnohechos) ///
-           (House_ID sex age Fecha Notas)
-    drop if missing(Cluster, House_ID, Participante, sex, age, Fecha, Notas)
+    import excel using "../PR_in/Auditoria de entrevistas CADAS.xlsx", firstrow clear
+    * Drop rows after the data section (row 838+ is blank/notes)
+    gen _row = _n
+    drop if _row > 837
+    drop _row
+    keep Cluster Casa Participante Gender Age Fechadeentrevista
+    rename (Casa Gender Age Fechadeentrevista) ///
+           (House_ID sex age Fecha)
+    gen Notas = "complete"
+    * Extract leading numbers from ID fields (some have appended notes)
+    foreach var in Cluster House_ID Participante {
+        replace `var' = regexs(0) if regexm(`var', "^[0-9\.]+")
+    }
+    destring Cluster, replace force
+    destring House_ID, replace force
+    destring Participante, replace force
+    replace Cluster = round(Cluster)
+    replace House_ID = round(House_ID)
+    replace Participante = round(Participante)
+    drop if missing(Cluster, House_ID, Participante)
 }
 else if `country' == 1 {
     import excel using "../DR_in/Resumen de entrevistas.xlsx", firstrow
@@ -125,8 +151,8 @@ destring House_ID1, replace
 capture confirm numeric variable sex
 if _rc != 0 {
 	replace sex = lower(trim(sex))
-	replace sex = "0" if strpos(sex, "hombre") > 0 | strpos(sex, "male") > 0 | sex == "m"
 	replace sex = "1" if strpos(sex, "mujer") > 0 | strpos(sex, "female") > 0 | sex == "f"
+	replace sex = "0" if strpos(sex, "hombre") > 0 | strpos(sex, "male") > 0 | sex == "m"
 	destring sex, replace force
 }
 * If sex was 1/2 (e.g. from Cuba), shift to 0/1

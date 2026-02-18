@@ -362,13 +362,27 @@ display "Public dataset created: CADAS_`country_name'.dta"
 
 if `"`user'"' == "Chris" {
 
+    * PR
+    if $country == 0 {
+        if `"$language"' == "E" {
+            local gdrive_out = "/Users/chrissoria/Google Drive/Other computers/My Laptop (1)/documents/cadas/Data/CADAS data upload/Puerto_Rico/Latest_Data/TRANSLATED/DTA"
+        }
+        else {
+            local gdrive_out = "/Users/chrissoria/Google Drive/Other computers/My Laptop (1)/documents/cadas/Data/CADAS data upload/Puerto_Rico/Latest_Data/DTA"
+        }
+
+        copy "`path'/PR_out/`trans_folder'CADAS_PR.dta" "`gdrive_out'/CADAS_PR.dta", replace
+
+        display "Public dataset copied to Google Drive: `gdrive_out'"
+    }
+
     * DR
     if $country == 1 {
         if `"$language"' == "E" {
-            local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Rep Dom/latest_data/TRANSLATED/DTA"
+            local gdrive_out = "/Users/chrissoria/Google Drive/Other computers/My Laptop (1)/documents/cadas/Data/CADAS data upload/Rep Dom/Latest_Data/TRANSLATED/DTA"
         }
         else {
-            local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/Rep Dom/latest_data/dta"
+            local gdrive_out = "/Users/chrissoria/Google Drive/Other computers/My Laptop (1)/documents/cadas/Data/CADAS data upload/Rep Dom/Latest_Data/DTA"
         }
 
         copy "`path'/DR_out/`trans_folder'CADAS_DR.dta" "`gdrive_out'/CADAS_DR.dta", replace
@@ -379,10 +393,10 @@ if `"`user'"' == "Chris" {
     * Cuba
     if $country == 2 {
         if `"$language"' == "E" {
-            local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/TRANSLATED/DTA"
+            local gdrive_out = "/Users/chrissoria/Google Drive/Other computers/My Laptop (1)/documents/cadas/Data/CADAS data upload/Cuba/Latest_Data/TRANSLATED/DTA"
         }
         else {
-            local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/dta"
+            local gdrive_out = "/Users/chrissoria/Google Drive/Other computers/My Laptop (1)/documents/cadas/Data/CADAS data upload/Cuba/Latest_Data/DTA"
         }
 
         copy "`path'/CUBA_out/`trans_folder'CADAS_CU.dta" "`gdrive_out'/CADAS_CU.dta", replace

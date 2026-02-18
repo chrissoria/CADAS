@@ -57,9 +57,8 @@ else if `country' == 2 {
 }
 
 drop v1   
-rename d_clustid d_clustid2
-rename d_houseid d_houseid2
-rename d_interid d_interid2
+rename d_clustid d_clustid_inf_door
+rename d_houseid d_houseid_inf_door
    
    rename globalrecordid globalrecordid1
    duplicates drop globalrecordid1, force
@@ -244,24 +243,14 @@ replace d_7_4 = .i if (d_7_4 == . | d_7_4 == .a)
 replace d_7_5 = .i if (d_7_5 == . | d_7_5 == .a)
 
 *filling this in because interviewers aren't
-if `country' == 0 {
-    replace d_country = 0
-}
-
-else if `country' == 1 {
-    replace d_country = 1
-}
-
-else if `country' == 2 {
-    replace d_country = 2
-}
+replace d_country = `country' if d_country != 5
 
 label define country_label 0 "Puerto Rico" 1 "República Dominicana" 2 "Cuba"
 label values d_country country_label
 
-replace d_clustid = d_clustid2 if d_clustid == 0 | missing(d_clustid)
-replace d_houseid = d_houseid2 if d_houseid == 0 | missing(d_houseid)
-replace d_interid = d_interid2 if d_interid == 0 | missing(d_interid)
+
+replace d_clustid = d_clustid_inf_door if d_clustid == 0 | missing(d_clustid)
+replace d_houseid = d_houseid_inf_door if d_houseid == 0 | missing(d_houseid)
 
 gen d_country_str = string(d_country, "%12.0f")
 
@@ -284,7 +273,6 @@ drop d_particid_str d_clustid_str d_houseid_str d_country_str informationdoor in
 capture drop dp_deviceid dp_time di_deviceid2 di_time2 di_time1 di_deviceid1 v1 d_survey_date d_time1
 *drop d_clustid2 d_houseid2 d_interid2
 order pid hhid d_particid
-order tracker_complete RSP, last
 
 save door_merged_all.dta,replace
 
@@ -334,63 +322,5 @@ drop if missing(d_particid)
 
 save door_participants.dta, replace
 
-* dataset that has all levels of door
-use door_merged_all.dta, clear
 
-drop if d_15 == 0
-
-log using logs/DoorRates, text replace
-
-* Clean d_5 and d_6 variables for non response
-replace d_5 = 0 if missing(d_5) | d_5 > 10
-replace d_6 = 0 if missing(d_6) | d_6 > 10
-
-* Generate total eligibles
-gen eligibles = d_5 + d_6
-
-* Keep last observation per hhid keeping greater value (largest obs)
-bysort hhid (eligibles): keep if _n == _N
-
-* Calculate total eligibles (sum of eligibles)
-summarize eligibles, meanonly
-scalar total_eligibles = r(sum)
-
-* Display total eligibles
-display "Total eligibles: " total_eligibles
-
-* Calculate door response rate (assumption: d_0 is indicator of response)
-summarize d_0, meanonly
-scalar sum_d0 = r(sum)
-scalar n_obs = r(N)
-display "Door response rate: " (sum_d0 / n_obs)
-
-* Count observations after drop
-count
-display "Number of observations after drop: " r(N)
-
-* Generate number interviewed variable
-gen num_interviewed = (d_7_5 == 1 | d_7_5 == 2) 
-replace num_interviewed = 0 if missing(d_7_5)
-
-label variable num_interviewed "at least partially completed interview"
-gen num_complete_interviewed = cond(missing(d_7_5), 0, (d_7_5 == 1), 1)
-label variable num_complete_interviewed "fully completed interview"
-
-* Calculate total interviewed
-summarize num_interviewed, meanonly
-scalar total_interviewed = r(sum)
-
-* Display total interviewed and participant response rate
-display "Total at least partially interviewed: " total_interviewed
-display "At Least Partial Participant response rate: " (total_interviewed / total_eligibles)
-
-summarize num_complete_interviewed, meanonly
-scalar comp_total_interviewed = r(sum)
-
-* Display total interviewed and participant response rate
-display "Total fully interviewed: " comp_total_interviewed
-display "Complete Participant response rate: " (comp_total_interviewed / total_eligibles)
-
-* Close log
-log close
 

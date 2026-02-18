@@ -310,15 +310,7 @@ foreach var of local string_vars {
 
 }
 
-if `country' == 2 {
-    replace p_country = 2
-}
-else if `country' == 1 {
-    replace p_country = 1
-}
-else if `country' == 0 {
-    replace p_country = 0
-}
+replace p_country = `country' if p_country != 5
 
 label define country_label 0 "Puerto Rico" 1 "República Dominicana" 2 "Cuba"
 label values p_country country_label
@@ -1382,9 +1374,19 @@ codebook
 
 log close
 
+* Rename physical exam content variables from p[N]... to p_[N]... prefix
+* This standardizes the naming convention to match other domains (s_, c_, cs_, i_)
+foreach var of varlist p2_* p3_* p4_* p5_* p6 p7_* p8_* p9_* p10_* p11_* p12_* p13_* p14_* p15_* p16_* p17_* p18_* p19_* p20 p21_* p22_* {
+    local newname = "p_" + substr("`var'", 2, .)
+    rename `var' `newname'
+}
+
+* Update p_last string values to match new variable names
+replace p_last = "p_" + substr(p_last, 2, .) if regexm(p_last, "^p[0-9]")
+
 * Apply English labels if language is set to "E" and save to appropriate location
 if `"$language"' == "E" {
-    capture do "/Users/chrissoria/documents/CADAS/Do/Read/Phys_english_labels.do"
+    do "/Users/chrissoria/documents/CADAS/Do/Read/Phys_english_labels.do"
     capture do "C:\Users\Ty\Desktop\CADAS Data do files\Phys_english_labels.do"
 
     * Save to translation folder for English

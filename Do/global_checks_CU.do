@@ -31,6 +31,9 @@ save resumen_pid.dta, replace
 clear all
  
 use `trans_folder'Socio
+*these two cases are mostly empty, have weird ages
+drop if inlist(globalrecordid, "bdc0bff0-17c6-4d8b-bc16-a4cfdf99ceba" "a157f558-8d52-403c-926e-9753377e307f")
+
 *found an error with this participant age, pulled correct age from roster
 replace s_2_3 = 68 if pid == "20102302"
 
@@ -401,6 +404,9 @@ replace p_clustid = 1 if globalrecordid == "840d3ff1-520a-4a0f-95b1-78a15c81d5f6
 * duplicate, 7 feet tall no teeth, probably a mistake, other phys more recent but data looks more realistic (generally)
 replace p_country = 5 if globalrecordid == "a5657c1d-da83-438e-843d-dc594e66739d"
 
+* 1/13/25 cleaning
+replace p_houseid = 250 if globalrecordid == "d3aa63e1-3536-4091-a5f8-e17dc7cb5091" // parent houseid is 250
+
 replace p_clustid = p_conglid2 if p_clustid == .i & p_conglid2 != .
 replace p_clustid = p_conglid2 if p_clustid == . & p_conglid2 != .
  
@@ -631,7 +637,7 @@ drop if inlist(globalrecordid, "c21d973c-0f97-4534-9c59-6ce408ecbcf9","38fb71ea-
 *cluster showing up as 0, should be 1
 replace i_clustid = 1 if globalrecordid == "ec26a01b-bec9-447e-96ab-a32d27317877"
 
-replace i_houseid = 5 if globalrecordid == "fb49a461-94f1-4c67-af93-174289f63dd3"
+replace i_clustid = 5 if globalrecordid == "fb49a461-94f1-4c67-af93-174289f63dd3"
 
 *Tania says this should be recoded to house id 90
 replace i_houseid = 90 if globalrecordid == "6fc449f1-c887-42f4-a7ad-e2c2409ae869"
@@ -1113,8 +1119,13 @@ replace i_particid = 2 if globalrecordid == "291fed04-974d-4414-b996-49d5f7c8789
 
 *9/29/25 fixes
 replace i_clustid = 1 if globalrecordid == "46792019-e4dc-4d35-95d9-3d2e64d13d2e"
- 
- gen i_country_str = string(i_country, "%12.0f")
+
+* 1/13/25
+replace i_particid = 2 if globalrecordid == "af94fdac-5e5c-4cff-8f09-cf6921b1db1d" /// informant sex/age matches partic 1 sex/age
+replace i_particid = 1 if globalrecordid == "3e18c803-f772-4ed2-8c9f-62434cc44e53" /// informant sex/age matches partic 2 sex/age
+replace i_particid = 1 if globalrecordid == "a91f1042-c638-44b3-9752-e44bc2e482e1" /// parent partic AND informant age/sex show this is about partic 1
+
+gen i_country_str = string(i_country, "%12.0f")
 
 gen i_clustid_str = string(i_clustid, "%12.0f")
 replace i_clustid_str = cond(strlen(i_clustid_str) == 1, "0" + i_clustid_str, i_clustid_str)
@@ -1227,6 +1238,70 @@ drop _merge
 order pid_parent pid cog_in_resumen
 
 save `trans_folder'Cog.dta, replace
+
+****************************************
+* PRESERVE LOW SCORES FROM COG_MERGED
+****************************************
+
+* --- CIRCLE DRAWING LOW SCORES ---
+clear all
+use `trans_folder'cog_merged.dta
+keep if (cs_72_1 == 0 | cs_72_1 == 1)
+keep pid cs_72_1 c_72_1_pic
+export delimited using "duplicates/low_scores_72_1_circle.csv", replace
+display "72_1 Circle low scores: " _N " observations"
+
+clear all
+use `trans_folder'cog_merged.dta
+keep if (cs_79_1 == 0 | cs_79_1 == 1)
+keep pid cs_79_1 c_79_1_pic
+export delimited using "duplicates/low_scores_79_1_circle.csv", replace
+display "79_1 Circle low scores: " _N " observations"
+
+* --- DIAMOND DRAWING LOW SCORES ---
+clear all
+use `trans_folder'cog_merged.dta
+keep if (cs_72_2 == 0 | cs_72_2 == 1)
+keep pid cs_72_2 c_72_2_pic
+export delimited using "duplicates/low_scores_72_2_diamond.csv", replace
+display "72_2 Diamond low scores: " _N " observations"
+
+clear all
+use `trans_folder'cog_merged.dta
+keep if (cs_79_2 == 0 | cs_79_2 == 1)
+keep pid cs_79_2 c_79_2_pic
+export delimited using "duplicates/low_scores_79_2_diamond.csv", replace
+display "79_2 Diamond low scores: " _N " observations"
+
+* --- OVERLAPPING RECTANGLES LOW SCORES ---
+clear all
+use `trans_folder'cog_merged.dta
+keep if (cs_72_3 == 0 | cs_72_3 == 1)
+keep pid cs_72_3 c_72_3_pic
+export delimited using "duplicates/low_scores_72_3_rectangles.csv", replace
+display "72_3 Rectangles low scores: " _N " observations"
+
+clear all
+use `trans_folder'cog_merged.dta
+keep if (cs_79_3 == 0 | cs_79_3 == 1)
+keep pid cs_79_3 c_79_3_pic
+export delimited using "duplicates/low_scores_79_3_rectangles.csv", replace
+display "79_3 Rectangles low scores: " _N " observations"
+
+* --- CUBE DRAWING LOW SCORES ---
+clear all
+use `trans_folder'cog_merged.dta
+keep if (cs_72_4 == 0 | cs_72_4 == 1)
+keep pid cs_72_4 c_72_4_pic
+export delimited using "duplicates/low_scores_72_4_cube.csv", replace
+display "72_4 Cube low scores: " _N " observations"
+
+clear all
+use `trans_folder'cog_merged.dta
+keep if (cs_79_4 == 0 | cs_79_4 == 1)
+keep pid cs_79_4 c_79_4_pic
+export delimited using "duplicates/low_scores_79_4_cube.csv", replace
+display "79_4 Cube low scores: " _N " observations"
 
 clear all
 
@@ -1688,12 +1763,12 @@ clear
 
 if `"`user'"' == "Chris" {
     if `"$language"' == "E" {
-        local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/TRANSLATED/DTA"
-        local gdrive_excel = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/TRANSLATED/EXCEL"
+        local gdrive_out = "/Users/chrissoria/Google Drive/Other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/TRANSLATED/DTA"
+        local gdrive_excel = "/Users/chrissoria/Google Drive/Other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/TRANSLATED/EXCEL"
     }
     else {
-        local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/dta"
-        local gdrive_excel = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/excel"
+        local gdrive_out = "/Users/chrissoria/Google Drive/Other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/DTA"
+        local gdrive_excel = "/Users/chrissoria/Google Drive/Other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/EXCEL"
     }
 
     * Copy cleaned DTA files to Google Drive
@@ -1701,6 +1776,7 @@ if `"`user'"' == "Chris" {
     copy "`path'/CUBA_out/`trans_folder'Phys.dta" "`gdrive_out'/Phys.dta", replace
     copy "`path'/CUBA_out/`trans_folder'Infor.dta" "`gdrive_out'/Infor.dta", replace
     copy "`path'/CUBA_out/`trans_folder'Cog.dta" "`gdrive_out'/Cog.dta", replace
+    copy "`path'/CUBA_out/`trans_folder'cog_merged.dta" "`gdrive_out'/cog_merged.dta", replace
     copy "`path'/CUBA_out/`trans_folder'Household.dta" "`gdrive_out'/Household.dta", replace
     copy "`path'/CUBA_out/rosters_participants.dta" "`gdrive_out'/rosters_participants.dta", replace
     copy "`path'/CUBA_out/rosters_merged.dta" "`gdrive_out'/rosters_merged.dta", replace
@@ -1714,6 +1790,27 @@ if `"`user'"' == "Chris" {
     copy "`path'/CUBA_out/`trans_folder'excel/examen_fisico.xlsx" "`gdrive_excel'/examen_fisico.xlsx", replace
     copy "`path'/CUBA_out/`trans_folder'excel/informante.xlsx" "`gdrive_excel'/informante.xlsx", replace
     copy "`path'/CUBA_out/`trans_folder'excel/familiar.xlsx" "`gdrive_excel'/familiar.xlsx", replace
+    copy "`path'/CUBA_out/`trans_folder'excel/cognitive.xlsx" "`gdrive_excel'/cognitive.xlsx", replace
+    copy "`path'/CUBA_out/`trans_folder'excel/cog_merged.xlsx" "`gdrive_excel'/cog_merged.xlsx", replace
 
     display "Excel files copied to Google Drive: `gdrive_excel'"
+
+    * Copy duplicate check files to Google Drive SAMPLE_DIAGNOSTIC_EXCELS
+    local gdrive_diag = "/Users/chrissoria/Google Drive/Other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/cuba/latest_data/SAMPLE_DIAGNOSTIC_EXCELS"
+
+    capture copy "`path'/CUBA_out/duplicates/cognitive_duplicates.xlsx" "`gdrive_diag'/cognitive_duplicates.xlsx", replace
+    capture copy "`path'/CUBA_out/duplicates/cog_scoring_duplicates.xlsx" "`gdrive_diag'/cog_scoring_duplicates.xlsx", replace
+    capture copy "`path'/CUBA_out/duplicates/Household_duplicates.xlsx" "`gdrive_diag'/Household_duplicates.xlsx", replace
+    capture copy "`path'/CUBA_out/duplicates/house_roster_duplicates.xlsx" "`gdrive_diag'/house_roster_duplicates.xlsx", replace
+    capture copy "`path'/CUBA_out/duplicates/informant_duplicates.xlsx" "`gdrive_diag'/informant_duplicates.xlsx", replace
+    capture copy "`path'/CUBA_out/duplicates/main_household_duplicates.xlsx" "`gdrive_diag'/main_household_duplicates.xlsx", replace
+    capture copy "`path'/CUBA_out/duplicates/non_participants_duplicates.xlsx" "`gdrive_diag'/non_participants_duplicates.xlsx", replace
+    capture copy "`path'/CUBA_out/duplicates/non_resident_children_duplicates.xlsx" "`gdrive_diag'/non_resident_children_duplicates.xlsx", replace
+    capture copy "`path'/CUBA_out/duplicates/participants_duplicates.xlsx" "`gdrive_diag'/participants_duplicates.xlsx", replace
+    capture copy "`path'/CUBA_out/duplicates/phys_duplicates.xlsx" "`gdrive_diag'/phys_duplicates.xlsx", replace
+    capture copy "`path'/CUBA_out/duplicates/roster_duplicates.xlsx" "`gdrive_diag'/roster_duplicates.xlsx", replace
+    capture copy "`path'/CUBA_out/duplicates/roster_parent_duplicates.xlsx" "`gdrive_diag'/roster_parent_duplicates.xlsx", replace
+    capture copy "`path'/CUBA_out/duplicates/socio_duplicates.xlsx" "`gdrive_diag'/socio_duplicates.xlsx", replace
+
+    display "Duplicate check files copied to Google Drive: `gdrive_diag'"
 }

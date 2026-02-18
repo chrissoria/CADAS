@@ -418,14 +418,247 @@ collapse (count) sample_n = _one, by(age_group sex)
 ****************************************
 
 if $country == 1 {
+
     capture mkdir "`path'/DR_out/logs"
+    capture log close
     log using "`path'/DR_out/logs/CADAS_weights", text replace
 
     display _newline(2)
     display "================================================================================"
-    display "DR WEIGHTS - TO BE IMPLEMENTED"
+    display "GENERATING CLUSTER-LEVEL POST-STRATIFICATION WEIGHTS FOR DR"
     display "================================================================================"
-    display "Population data needed for Dominican Republic 65+ by age group and sex"
+    display _newline(1)
+
+    * Set translation folder path based on language
+    if `"$language"' == "E" {
+        local trans_folder "translation_DR/"
+    }
+    else {
+        local trans_folder ""
+    }
+
+    *---------------------------------------------------------------------------
+    * Step 2.1: Load UPM cluster population data (created by UPM_Read_DR.do)
+    *---------------------------------------------------------------------------
+
+    use "`path'/DR_out/UPM_CADAS_RD.dta", clear
+
+    * Standardize Cluster to 2-char zero-padded string for merge
+    rename Cluster cluster
+    replace cluster = trim(cluster)
+    replace cluster = "0" + cluster if strlen(cluster) == 1 & cluster != ""
+
+    * Keep only cluster ID and population count
+    keep cluster Cluster_Persons_65Plus
+    rename Cluster_Persons_65Plus pop_65
+
+    * Drop invalid cluster
+    drop if cluster == "0." | cluster == "" | cluster == "00"
+
+    display _newline(1)
+    display "UPM POPULATION DATA (65+)"
+    display "-------------------------"
+    list cluster pop_65, noobs
+
+    tempfile upm_pop
+    save `upm_pop'
+
+    *---------------------------------------------------------------------------
+    * Step 2.2: Load DR Socio data and count sample per cluster
+    *---------------------------------------------------------------------------
+
+    use "`path'/DR_out/`trans_folder'Socio.dta", clear
+
+    display "Loaded DR Socio: N = " _N
+
+    * Use s_clustid to build cluster variable (same logic as EVERYTHING_WIDE)
+    capture confirm variable cluster
+    if _rc != 0 {
+        * cluster variable doesn't exist, create from s_clustid
+        gen cluster = string(s_clustid, "%02.0f")
+    }
+    replace cluster = trim(cluster)
+    replace cluster = "0" + cluster if strlen(cluster) == 1 & cluster != ""
+
+    * Fix missing/blank clusters using parent clustid
+    capture confirm variable s_parent_clustid
+    if _rc == 0 {
+        replace cluster = string(s_parent_clustid, "%02.0f") ///
+            if (cluster == "" | cluster == "00") & !missing(s_parent_clustid) & s_parent_clustid > 0
+    }
+
+    * Fix remaining missing clusters from PID (digits 2-3)
+    replace cluster = substr(pid, 2, 2) ///
+        if (cluster == "" | cluster == "00") & pid != ""
+    replace cluster = "0" + cluster if strlen(cluster) == 1 & cluster != ""
+
+    * Drop cases with no valid cluster
+    drop if cluster == "" | cluster == "00" | cluster == "0."
+
+    *---------------------------------------------------------------------------
+    * Step 2.3: Calculate sample proportions by cluster
+    *---------------------------------------------------------------------------
+
+    gen _one = 1
+    preserve
+
+    collapse (count) sample_n = _one, by(cluster)
+
+    egen sample_total = total(sample_n)
+    gen sample_prop = sample_n / sample_total
+
+    display _newline(1)
+    display "SAMPLE DISTRIBUTION BY CLUSTER"
+    display "------------------------------"
+    list cluster sample_n sample_prop, noobs
+
+    tempfile sample_props
+    save `sample_props'
+
+    restore
+
+    *---------------------------------------------------------------------------
+    * Step 2.4: Merge sample and population proportions
+    *---------------------------------------------------------------------------
+
+    preserve
+
+    use `sample_props', clear
+
+    merge 1:1 cluster using `upm_pop', nogen keep(match)
+
+    * Calculate population proportions
+    egen pop_total = total(pop_65)
+    gen pop_prop = pop_65 / pop_total
+
+    *---------------------------------------------------------------------------
+    * Step 2.5: Calculate post-stratification weights
+    *   weight = pop_prop / sample_prop
+    *   Same formula as Cuba, applied at cluster level
+    *---------------------------------------------------------------------------
+
+    gen weight = pop_prop / sample_prop
+
+    display _newline(1)
+    display "POST-STRATIFICATION WEIGHTS BY CLUSTER"
+    display "--------------------------------------"
+    list cluster sample_n sample_prop pop_65 pop_prop weight, noobs
+
+    keep cluster weight
+
+    tempfile weights_lookup
+    save `weights_lookup'
+
+    restore
+
+    *---------------------------------------------------------------------------
+    * Step 2.6: Merge weights back to Socio (one row per participant)
+    *---------------------------------------------------------------------------
+
+    merge m:1 cluster using `weights_lookup', gen(_merge_weight)
+
+    display _newline(1)
+    display "WEIGHT MERGE RESULTS"
+    display "--------------------"
+    tab _merge_weight
+
+    count if _merge_weight == 1
+    local n_no_weight = r(N)
+    if `n_no_weight' > 0 {
+        display "WARNING: " `n_no_weight' " cases could not be assigned weights"
+    }
+
+    drop _merge_weight
+
+    label variable weight "Post-stratification weight (cluster-level)"
+
+    *---------------------------------------------------------------------------
+    * Step 2.7: Validate weights
+    *---------------------------------------------------------------------------
+
+    display _newline(1)
+    display "================================================================================"
+    display "WEIGHT VALIDATION"
+    display "================================================================================"
+
+    display _newline(1)
+    display "Weight summary statistics:"
+    display "--------------------------"
+    summarize weight, detail
+
+    * Check that weighted cluster proportions match population proportions
+    preserve
+    keep if !missing(weight)
+
+    gen _one2 = 1
+    collapse (sum) weighted_n = weight (count) sample_n = _one2, by(cluster)
+
+    egen weighted_total = total(weighted_n)
+    egen sample_total = total(sample_n)
+    gen sample_prop = sample_n / sample_total
+    gen weighted_prop = weighted_n / weighted_total
+
+    * Merge population proportions
+    merge 1:1 cluster using `upm_pop', nogen keep(match)
+    egen pop_total = total(pop_65)
+    gen pop_prop = pop_65 / pop_total
+
+    gen diff = abs(weighted_prop - pop_prop) * 100
+
+    display _newline(1)
+    display "VALIDATION TABLE: Weighted% should match Population%"
+    display ""
+    list cluster sample_prop weighted_prop pop_prop diff, noobs
+
+    summarize diff
+    local max_diff = r(max)
+
+    display ""
+    if `max_diff' < 0.01 {
+        display "VALIDATION PASSED: All weighted proportions match population proportions"
+    }
+    else {
+        display "VALIDATION FAILED: Maximum difference = " `max_diff' "%"
+    }
+
+    restore
+
+    *---------------------------------------------------------------------------
+    * Step 2.8: Save weights.dta with pid and weight only
+    *---------------------------------------------------------------------------
+
+    display _newline(1)
+    display "================================================================================"
+    display "SAVING DR WEIGHTS FILE"
+    display "================================================================================"
+
+    keep pid weight
+
+    duplicates drop pid, force
+
+    capture erase "`path'/DR_out/`trans_folder'weights.dta"
+    save "`path'/DR_out/`trans_folder'weights.dta", replace
+    display "Saved: `path'/DR_out/`trans_folder'weights.dta"
+
+    * Copy to Google Drive
+    if `"$language"' == "E" {
+        local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/dr/latest_data/TRANSLATED/DTA"
+    }
+    else {
+        local gdrive_out = "/Users/chrissoria/Google Drive/other computers/My Laptop (1)/documents/cadas/data/CADAS data upload/dr/latest_data/dta"
+    }
+
+    capture copy "`path'/DR_out/`trans_folder'weights.dta" "`gdrive_out'/weights.dta", replace
+    if _rc == 0 {
+        display "Copied to Google Drive: `gdrive_out'/weights.dta"
+    }
+    else {
+        display "Note: Could not copy to Google Drive (directory may not exist)"
+    }
+
+    display _newline(1)
+    display "DR weighting complete. Saved weights.dta with pid and weight columns."
+    display "================================================================================"
 
     log close
 }

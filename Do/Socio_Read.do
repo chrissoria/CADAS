@@ -996,15 +996,7 @@ foreach var of local string_vars {
 
 }
 
-if `country' == 2 {
-    replace s_country = 2
-}
-else if `country' == 1 {
-    replace s_country = 1
-}
-else if `country' == 0 {
-    replace s_country = 0
-}
+replace s_country = `country' if s_country != 5
 
 label define country_label 0 "Puerto Rico" 1 "República Dominicana" 2 "Cuba"
 label values s_country country_label
@@ -6162,6 +6154,31 @@ order pid_parent pid pid_nonmatch globalrecordid
 drop s_clustid_str s_houseid_str s_particid_str s_country_str s_houseid2 s_conglid2 s_particid2
 
 replace s_clustid = s_parent_clustid if s_clustid == .i
+
+* Create 5-year age groups based on s_2_3
+gen age_group = .
+replace age_group = 1 if s_2_3 >= 60 & s_2_3 < 65
+replace age_group = 2 if s_2_3 >= 65 & s_2_3 < 70
+replace age_group = 3 if s_2_3 >= 70 & s_2_3 < 75
+replace age_group = 4 if s_2_3 >= 75 & s_2_3 < 80
+replace age_group = 5 if s_2_3 >= 80 & s_2_3 < 85
+replace age_group = 6 if s_2_3 >= 85 & s_2_3 < 90
+replace age_group = 7 if s_2_3 >= 90 & s_2_3 != .
+
+label define age_group_lbl 1 "60-64" 2 "65-69" 3 "70-74" 4 "75-79" 5 "80-84" 6 "85-89" 7 "90+"
+label values age_group age_group_lbl
+label variable age_group "Age group (5-year intervals)"
+
+* Create 10-year age groups based on s_2_3
+gen age_group_10 = .
+replace age_group_10 = 1 if s_2_3 >= 60 & s_2_3 < 70
+replace age_group_10 = 2 if s_2_3 >= 70 & s_2_3 < 80
+replace age_group_10 = 3 if s_2_3 >= 80 & s_2_3 < 90
+replace age_group_10 = 4 if s_2_3 >= 90 & s_2_3 != .
+
+label define age_group_10_lbl 1 "60-69" 2 "70-79" 3 "80-89" 4 "90+"
+label values age_group_10 age_group_10_lbl
+label variable age_group_10 "Age group (10-year intervals)"
 
 * Apply English labels if language is set to "E" and save to appropriate location
 if `"$language"' == "E" {

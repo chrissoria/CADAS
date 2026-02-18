@@ -723,15 +723,7 @@ gen c_date_stata = date(c_date, "YMD")
 
 gen date_greater_102423 = c_date_stata > 23307
 
-if `country' == 2 {
-    replace c_country = 2
-}
-else if `country' == 1 {
-    replace c_country = 1
-}
-else if `country' == 0 {
-    replace c_country = 0
-}
+replace c_country = `country' if c_country != 5
 
 label define country_label 0 "Puerto Rico" 1 "República Dominicana" 2 "Cuba"
 label values c_country country_label
@@ -5566,13 +5558,29 @@ list c_72_3_pic if c_72_3_pic_found == "found" & (c_72_1_pic == ".i" & c_72_2_pi
 list c_72_4_pic if c_72_4_pic_found == "found" & (c_72_1_pic == ".i" & c_72_2_pic == ".i" & c_72_3_pic == ".i")
 log close
 
+* Set translation folder path based on language for cog_merged and cog_slim saves
+if `"$language"' == "E" {
+    if `country' == 0 {
+        local trans_folder "translation_PR/"
+    }
+    else if `country' == 1 {
+        local trans_folder "translation_DR/"
+    }
+    else if `country' == 2 {
+        local trans_folder "translation_CUBA/"
+    }
+}
+else {
+    local trans_folder ""
+}
 
-save cog_merged.dta, replace
+save `trans_folder'cog_merged.dta, replace
+export excel using "`trans_folder'excel/cog_merged.xlsx", replace firstrow(variables)
 
 keep pid hhid c_32 cs_32 pent_pic g_1 g_1_file c_40 cs_40 cs_41 anim_pic c_43 symb_pic cs_43 cs_44 g_2 g_2_file g_2_file2 c_66a c_66b c_66c c_66d c_66e c_66f c_67_01 c_67_02 c_67_03 c_67_04 c_67_05 c_67_06 c_67_07 c_67_08 c_67_09 c_67_10 c_67_11 c_67_12 c_67_13_c c_67_13_d c_67_13_p c_67_14 c_67_15 c_67_16 c_67_17 c_67_18 c_67_19 c_67_20 c_67_21 c_67_22 c_67_23 c_67_24 c_67_25 c_72_1 c_72_2 c_72_3 c_72_4 cs_72_1 c_72_1_pic cs_72_2 c_72_2_pic cs_72_3 c_72_3_pic cs_72_4 c_72_4_pic g_3_file g_3_file2 c_77a c_77b c_77c c_77d c_77d c_77e c_77f c_78_01 c_78_02 c_78_03 c_78_04 c_78_05 c_78_06 c_78_07 c_78_08 c_78_09 c_78_10 c_78_11 c_78_12 c_78_13 c_78_14 c_78_15 c_78_16 c_78_17 c_78_18 c_78_19 c_78_20 c_78_21 c_78_22 c_78_23 c_78_24 c_78_25 c_79_1 c_79_1_pic c_79_2 c_79_2_pic c_79_3 c_79_3_pic c_79_4 c_79_4_pic cs_79_1 cs_79_2 cs_79_3 cs_79_4
 order pid hhid c_32 cs_32 pent_pic g_1 g_1_file c_40 cs_40 cs_41 anim_pic c_43 symb_pic cs_43 cs_44 g_2 g_2_file g_2_file2 c_66a c_66b c_66c c_66d c_66e c_66f c_67_01 c_67_02 c_67_03 c_67_04 c_67_05 c_67_06 c_67_07 c_67_08 c_67_09 c_67_10 c_67_11 c_67_12 c_67_13_c c_67_13_d c_67_13_p c_67_14 c_67_15 c_67_16 c_67_17 c_67_18 c_67_19 c_67_20 c_67_21 c_67_22 c_67_23 c_67_24 c_67_25 c_72_1 c_72_2 c_72_3 c_72_4 cs_72_1 c_72_1_pic cs_72_2 c_72_2_pic cs_72_3 c_72_3_pic cs_72_4 c_72_4_pic g_3_file g_3_file2 c_77a c_77b c_77c c_77d c_77d c_77e c_77f c_78_01 c_78_02 c_78_03 c_78_04 c_78_05 c_78_06 c_78_07 c_78_08 c_78_09 c_78_10 c_78_11 c_78_12 c_78_13 c_78_14 c_78_15 c_78_16 c_78_17 c_78_18 c_78_19 c_78_20 c_78_21 c_78_22 c_78_23 c_78_24 c_78_25 c_79_1 c_79_2 c_79_3 c_79_4 c_79_1_pic c_79_2_pic c_79_3_pic c_79_4_pic cs_79_1 cs_79_2 cs_79_3 cs_79_4
 
-save cog_slim.dta, replace
+save `trans_folder'cog_slim.dta, replace
 
 
  * Get the list of variable names
@@ -5700,15 +5708,15 @@ if `"$language"' == "E" {
     * Save to translation folder for English
     if `country' == 0 {
         save "translation_PR/Cog.dta", replace
-        export excel using "translation_PR/cognitive.xlsx", replace firstrow(variables)
+        export excel using "translation_PR/excel/cognitive.xlsx", replace firstrow(variables)
     }
     else if `country' == 1 {
         save "translation_DR/Cog.dta", replace
-        export excel using "translation_DR/cognitive.xlsx", replace firstrow(variables)
+        export excel using "translation_DR/excel/cognitive.xlsx", replace firstrow(variables)
     }
     else if `country' == 2 {
         save "translation_CUBA/Cog.dta", replace
-        export excel using "translation_CUBA/cognitive.xlsx", replace firstrow(variables)
+        export excel using "translation_CUBA/excel/cognitive.xlsx", replace firstrow(variables)
     }
 }
 else {
@@ -5717,7 +5725,7 @@ else {
     save Cog.dta, replace
 }
 
-********** 
+**********
 * CLUSTER SUMMARY TABLE
 **********
 

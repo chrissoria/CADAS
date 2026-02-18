@@ -46,6 +46,10 @@ if `"`user'"' == "Chris" {
 			do "`path'/../CU/cog_checks_CU.do"
 			do "`path'/../CU/roster_checks_CU.do"
 		}
+		
+		if `country' == 1 {
+			do "`path'/../DR/DR_CDR.do"
+		}
 
 		do "`path'/Cog_Scoring_Read.do"
 
@@ -75,6 +79,7 @@ if `"`user'"' == "Chris" {
 		else if `country' == 1 {
 			do "/Users/chrissoria/documents/CADAS/Do/Read/Sangre_Read.do"
 			do "/Users/chrissoria/documents/CADAS/Do/Tracker.do" // doing before to extract the RSP var
+			do "/Users/chrissoria/documents/CADAS/Do/DR/phys_checks_DR.do"
 			do "/Users/chrissoria/documents/CADAS/Do/DR/global_checks_DR.do"
 		}
 		else if `country' == 2 {

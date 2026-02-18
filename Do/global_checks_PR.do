@@ -762,6 +762,7 @@ if `"`user'"' == "Chris" {
     copy "`path'/PR_out/`trans_folder'Phys.dta" "`gdrive_out'/Phys.dta", replace
     copy "`path'/PR_out/`trans_folder'Infor.dta" "`gdrive_out'/Infor.dta", replace
     copy "`path'/PR_out/`trans_folder'Cog.dta" "`gdrive_out'/Cog.dta", replace
+    copy "`path'/PR_out/`trans_folder'cog_merged.dta" "`gdrive_out'/cog_merged.dta", replace
     copy "`path'/PR_out/`trans_folder'Household.dta" "`gdrive_out'/Household.dta", replace
     copy "`path'/PR_out/rosters_participants.dta" "`gdrive_out'/rosters_participants.dta", replace
     copy "`path'/PR_out/rosters_merged.dta" "`gdrive_out'/rosters_merged.dta", replace
@@ -775,6 +776,8 @@ if `"`user'"' == "Chris" {
     copy "`path'/PR_out/`trans_folder'excel/examen_fisico.xlsx" "`gdrive_excel'/examen_fisico.xlsx", replace
     copy "`path'/PR_out/`trans_folder'excel/informante.xlsx" "`gdrive_excel'/informante.xlsx", replace
     copy "`path'/PR_out/`trans_folder'excel/familiar.xlsx" "`gdrive_excel'/familiar.xlsx", replace
+    copy "`path'/PR_out/`trans_folder'excel/cognitive.xlsx" "`gdrive_excel'/cognitive.xlsx", replace
+    copy "`path'/PR_out/`trans_folder'excel/cog_merged.xlsx" "`gdrive_excel'/cog_merged.xlsx", replace
 
     display "Excel files copied to Google Drive: `gdrive_excel'"
 

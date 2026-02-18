@@ -195,3 +195,24 @@ capture label variable i_h_npi_11_2 "H.NPI.11.2 Rate the distress you experience
 capture label variable i_h_npi_12 "H.NPI.12 Has your (xxx) lost or gained weight, or had a change in the type of food s/he prefers?"
 capture label variable i_h_npi_12_1 "H.NPI.12.1 Rate the severity of the symptom (how it affects your xxx)."
 capture label variable i_h_npi_12_2 "H.NPI.12.2 Rate the distress you experience from this symptom (how it affects you)"
+
+* Section J: Dementia/Alzheimer Diagnosis
+capture label variable i_j1 "J1. Has a doctor ever told your (xxx) that they have dementia or Alzheimer's?"
+capture label variable i_j2 "J2. When was (xxx) first told?"
+capture label variable i_j3 "J3. Did the doctor prescribe any medication for (xxx)?"
+
+* Section K: HCAP Activities
+capture label variable i_k_act_1 "K.ACT.1 On a normal day, how many hours a day does (xxx) read?"
+capture label variable i_k_act_2 "K.ACT.2 On a normal day, how many hours a day does (xxx) read?"
+capture label variable i_k_act_5 "K.ACT.5 On a normal day, how many hours does (xxx) spend on household chores?"
+capture label variable i_k_act_7 "K.ACT.7 On a normal day, how many hours does (xxx) use the computer or internet?"
+capture label variable i_k_act_8 "K.ACT.8 On a normal day, how many hours a day does (xxx) nap?"
+capture label variable i_k_act_10 "K.ACT.10 Does (xxx) cook food?"
+capture label variable i_k_act_13 "K.ACT.13 Can (xxx) get around the neighborhood by themselves?"
+capture label variable i_k_act_14 "K.ACT.14 Can (xxx) use public transportation by themselves?"
+capture label variable i_k_act_15 "K.ACT.15 How often does (xxx) go to work or do volunteer work?"
+capture label variable i_k_act_16 "K.ACT.16 How often does (xxx) go to the supermarket for food or other things?"
+capture label variable i_k_act_17 "K.ACT.17 Does (xxx) usually go alone or accompanied?"
+
+* Section L: Global Data Confidence Rating
+capture label variable i_lhas_54 "L.HAS.54 Global data confidence rating"

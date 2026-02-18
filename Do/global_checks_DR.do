@@ -141,6 +141,8 @@ replace d_clustid = 2 if globalrecordid == "30a0fb9a-b112-467f-b506-58a44220d83c
 replace d_clustid = 2 if globalrecordid == "985877a9-6be5-4abf-8871-efcd40f8cc94"
 replace d_clustid = 2 if globalrecordid == "45f558f6-a99b-46ba-9f8f-133370e70b72"
 
+replace d_country = `country' if d_country != 5
+
 gen d_country_str = string(d_country, "%12.0f")
 
 gen d_clustid_str = string(d_clustid, "%12.0f")
@@ -183,6 +185,13 @@ clear all
 *10/17/25
 *looks like there's two cases here done in the same house (maybe two parts of the same unit?). For now, we're changing the woman to B
 replace pid = "11206701B" if globalrecordid == "6f93ab7a-27ef-4d43-af98-b6a6d310b2d0"
+
+*Guillermina's instructions
+replace r_houseid = 176 if globalrecordid == "2fc5963f-884d-46a1-afdf-05ef20be6b7e"
+drop if inlist(globalrecordid, "7e377739-7ad6-449d-9160-7a48f7b072a0","cb0fe188-897a-4548-8ea8-0f6312e97d0e","f643f981-8e1b-464b-9ad4-82895a654c9e","971a94dc-23d2-4cf7-b005-7aa4f22ccc9f","f576657c-70ad-4ce0-b1d6-fb1d036d4e7c","22f62152-f54b-4184-a932-81425684d192","fd314d24-7e03-441c-b010-9c62a44bfca4")
+drop if inlist(globalrecordid, "fd314d24-7e03-441c-b010-9c62a44bfca4","1dbfefb7-f687-46c7-8b3c-c6d3e1f12054","1dbfefb7-f687-46c7-8b3c-c6d3e1f12054","c0c27807-ca98-4401-8ac5-4b9bed911e15","6882d3ef-d85e-4cbf-a808-e5196d07f6ec","f0fad154-5a31-4f61-a4ff-5e444d381080","c9ea9f35-c5b1-4f8c-a5b5-46d0922acfd3")
+drop if inlist(globalrecordid, "a61e6907-ce64-44c5-82ea-84e8fe81f56d","e5865617-ae1b-4ca7-b629-e92bc4fed6f0","5605afa7-de3f-47ce-b0bb-19e9329c6902","2681cde9-07e6-444e-b15c-eca64e62153f","97cc89f2-f08e-43fb-9b32-1058d31c7b7a","475e79b7-6869-4287-9cc2-42a756ca2ad9","2a96a069-01a1-4417-b599-d351b9499240")
+drop if inlist(globalrecordid, "7d93aa99-1a8b-44b2-888f-202463b39ad4","9f0050d6-a8d2-4c66-9e36-bace00d0f92f","d3681a6c-b7c8-4ac0-b25d-6c5b9983705b","9f0050d6-a8d2-4c66-9e36-bace00d0f92f","85f1a0be-c06e-446e-954f-04cc8f96ea6f","94b44a23-fdb4-4418-89f1-77bfea6ecbe7")
  
 drop pid hhid
 
@@ -190,6 +199,8 @@ drop pid hhid
 *drop if inlist(globalrecordid, "2866ca24-3b54-4e60-b7d4-5d3e940cc2ce", "0e970762-11bd-4c26-8234-8730d55c4a81", "dee51673-76f6-4ef8-a316-7cb20fabd747", "bb478c19-8ebb-4171-9549-731acdca5fae")
 *drop if inlist(globalrecordid, "2fba1415-085f-4054-9aba-df4e59f598ff")
 
+
+replace r_country = `country' if r_country != 5
 
 gen r_country_str = string(r_country, "%12.0f")
 
@@ -208,24 +219,16 @@ gen hhid = r_country_str + r_clustid_str + r_houseid_str
 drop r_country_str r_clustid_str r_houseid_str r_particid_str
 
   
- duplicates report pid
- *this older version of stata doesn't have an easy way to identify duplicate personid, so I'll do it manually
- sort pid
- gen is_duplicate = pid[_n] == pid[_n-1]
- list if is_duplicate
- drop is_duplicate
- 
- save rosters_merged.dta,replace
- 
-gen is_duplicate = pid[_n] == pid[_n-1]
+ save rosters_merged.dta, replace
 
-* Mark all duplicate observations with 1 and non-duplicates with 0
+* Duplicate check on final saved data
+duplicates report pid
 duplicates tag pid, gen(duplicate_tag)
 
-* Keep all observations with duplicate pid
+preserve
 keep if duplicate_tag == 1
-
-drop duplicate_tag
+drop if pr_person_number == .
+order pid
 
 * Get the list of variable names
 unab varlist : _all
@@ -237,12 +240,12 @@ foreach var of varlist `varlist' {
     }
 }
 
-drop if pr_person_number == .
-order pid
+capture erase "duplicates/roster_duplicates.xlsx"
+capture export excel using "duplicates/roster_duplicates.xlsx", replace firstrow(variables)
+restore
 
-* Export data to Excel
-export excel using "duplicates/roster_duplicates.xlsx", replace firstrow(variables)
- 
+drop duplicate_tag
+
  clear all
  
 use `trans_folder'Socio
@@ -269,11 +272,12 @@ drop if inlist(globalrecordid, "56fbe48f-d423-417a-87ba-98ba80db0c34")
 drop if inlist(globalrecordid, "c83837db-be99-4953-843a-3e80055f48c7","8f980bcd-d21e-4929-a256-2182274c0c3e","8c66bb78-f786-43f9-a48e-617ac755261a","13dfca56-369c-4d1b-96a0-acda255076c3","58e0d5a1-ed97-4d43-940d-88a202557753","a64eaca4-2df0-40ef-9d99-59299cb557a3")
 drop if inlist(globalrecordid, "f197e0be-a2a2-4fc6-9223-3c5b2f42c157","c1764461-a4ea-42c4-b2a3-4b504b67f243","ea2b0d6e-0616-4289-83d7-4dfd7ea44b36","4ff047c7-6534-4551-a12d-ec0a1a198d75","34f37d5e-0f30-4959-83ec-b12afcf31d58","28118a64-8cf0-49c5-9bc0-4f161a1be35e")
 drop if inlist(globalrecordid, "d716b289-c74b-4c80-9741-803599dbcc35")
-replace s_particid = 1 if globalrecordid == "87a6bc8f-eb76-4484-8b61-512336b7209d"
 replace s_particid = 2 if globalrecordid == "486d24e7-e978-4da5-b0b6-6bdbca10e51c"
 replace s_clustid = 70 if globalrecordid == "c67a94ec-547c-4e3a-8a28-dba023d8b4cc"
 replace s_houseid = 81 if globalrecordid == "c67a94ec-547c-4e3a-8a28-dba023d8b4cc"
  
+replace s_country = `country' if s_country != 5
+
 gen s_country_str = string(s_country, "%12.0f")
 
 gen s_clustid_str = string(s_clustid, "%12.0f")
@@ -289,17 +293,30 @@ replace s_particid_str = cond(strlen(s_particid_str) == 1, "0" + s_particid_str,
 gen pid = s_country_str + s_clustid_str + s_houseid_str + s_particid_str
 gen hhid = s_country_str + s_clustid_str + s_houseid_str
 
+sort s_parent_clustid s_parent_houseid
+order pid_parent pid pid_nonmatch globalrecordid
+
+drop s_clustid_str s_houseid_str s_particid_str s_country_str
+
 *found an error with this participant age, pulled correct age from roster
 replace s_2_3 = 74 if pid == "16700401"
+
+*s_2_3 entered as 4 (data entry error); roster age = 66
+replace s_2_3 = 66 if globalrecordid == "df37aa28-9aeb-456c-b888-a5cfe068f47a"
+
+*s_2_3 = 64, recode to 65 (likely off by one)
+replace s_2_3 = 65 if globalrecordid == "2773ca96-7bc8-4873-b5e0-fb9b9d01081f"
+
+*s_2_3 = 999 (missing sentinel)
+replace s_2_3 = . if globalrecordid == "eb614a20-bd34-4f75-ba8a-b04833623b85"
+
+*s_2_3 = 1949 (birth year entered instead of age); 2023 - 1949 = 74
+replace s_2_3 = 2023 - 1949 if globalrecordid == "bf2ee5b7-ca26-438d-8202-bf02bceb5ab5"
 
 *missing education, pulling in from the roster (inputting because roster doesn't give exact years)
 replace s_2_8c = 2.5 if inlist(pid, "10600801", "12806601", "13605901", "16700701", "17501801")
 replace s_2_8c = 0 if inlist(pid, "18005201")
 
-sort s_parent_clustid s_parent_houseid
-order pid_parent pid pid_nonmatch globalrecordid
-
-drop s_clustid_str s_houseid_str s_particid_str s_country_str
 
 merge m:m pid using resumen_pid
 
@@ -341,32 +358,15 @@ foreach v of local missvarlist {
 }
 
 log close
- 
- duplicates report pid
- sort pid
- gen is_duplicate = pid[_n] == pid[_n-1]
- list if is_duplicate
- drop is_duplicate
- 
- /*
-gen pid_match = 0 
-replace pid_match = 1 if pid != pid_parent
-list if pid_match
-drop pid_match
-*/
- 
- 
- save `trans_folder'Socio.dta, replace
-  
-gen is_duplicate = pid[_n] == pid[_n-1]
 
-* Mark all duplicate observations with 1 and non-duplicates with 0
+ save `trans_folder'Socio.dta, replace
+
+* Duplicate check on final saved data
+duplicates report pid
 duplicates tag pid, gen(duplicate_tag)
 
-* Keep all observations with duplicate pid
+preserve
 keep if duplicate_tag == 1
-
-drop duplicate_tag
 
 * Get the list of variable names
 unab varlist : _all
@@ -378,11 +378,14 @@ foreach var of varlist `varlist' {
     }
 }
 
-* Export data to Excel
+capture erase "duplicates/socio_duplicates.xlsx"
 capture export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(variables)
- 
+restore
+
+drop duplicate_tag
+
  clear all
- 
+
  use Phys
  
  *10/17/25 cleaning
@@ -396,11 +399,19 @@ capture export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(
  replace p_houseid = 75 if globalrecordid == "671ca23a-5557-44b8-b6c8-be0b00a061be"
  replace p_particid = 1 if globalrecordid == "de44e9ac-935d-4464-b00b-e3bc85105d5c"
  replace p_particid = 2 if globalrecordid == "b85f06ec-07ed-40d7-8918-5d2a41d88340"
- *replace p_particid = 1 if globalrecordid == "09f9d7d6-17aa-44a0-a3bd-f0d399477eca" /// partic 1 already has a phys, unsure if we should follow instructions to change to partic 1
+ *partic 1 already has a phys, unsure if we should follow instructions to change to partic 1, ended up not following guille's instructions
+ replace p_houseid = 23 if globalrecordid == "09f9d7d6-17aa-44a0-a3bd-f0d399477eca" 
+replace p_particid = 2 if globalrecordid == "09f9d7d6-17aa-44a0-a3bd-f0d399477eca" 
+  
  replace p_particid = 2 if globalrecordid == "c3ef0142-fd4f-4f18-9355-f62c8b74e6af"
  replace p_particid = 2 if globalrecordid == "f93b34fa-7aee-40f5-a15f-24a4e97b6308"
  
- 
+ *1/22/25 cleaning
+ drop if inlist(globalrecordid, "521f2b9d-0dd7-4fa3-89fb-1ea3bd094ff2","5ba5b3ed-c2dc-4b2b-a484-1d061cb5c3b7","7ad4d980-c73e-4800-8dfb-184c875969f0","4044a808-d1bf-42f4-a609-0c3c236d08b9","b10ae00a-c159-4d55-99e7-d4e3bda9672d","32ae6b0d-3dbc-4e2b-9c98-7b219e469f3e")
+ drop if inlist(globalrecordid, "3f38efe9-7272-4f58-9c21-640388799c10","fbc2b76f-763e-4534-911c-17f670fdb558","0458b379-a3d0-4376-98a2-cf11a6a0a30e","68e83227-f007-44f8-93ee-0bb233bde0ce","b3bbf4f4-cfcd-4ca1-89e3-e1816323acad","cf103d53-bf4a-47a4-aa60-8cdd860d3dfb")
+ drop if inlist(globalrecordid, "f4a03839-e66b-4f8c-9412-e7d1f6638cd8")
+ replace p_particid = 1 if globalrecordid == "53131197-96f0-4d85-bbce-7a8b6aacc29d"
+ replace p_particid = 2 if globalrecordid == "c3ef0142-fd4f-4f18-9355-f62c8b74e6af"
  
  drop pid
  drop hhid
@@ -408,7 +419,9 @@ capture export excel using "duplicates/socio_duplicates.xlsx", replace firstrow(
  duplicates report globalrecordid
  duplicates drop globalrecordid, force
  
- gen p_country_str = string(p_country, "%12.0f")
+ replace p_country = `country' if p_country != 5
+
+gen p_country_str = string(p_country, "%12.0f")
 
 gen p_clustid_str = string(p_clustid, "%12.0f")
 replace p_clustid_str = cond(strlen(p_clustid_str) == 1, "0" + p_clustid_str, p_clustid_str)
@@ -468,18 +481,38 @@ foreach v of local missvarlist {
 }
 
 log close
- 
- duplicates report pid
- sort pid
- gen is_duplicate = pid[_n] == pid[_n-1]
- list if is_duplicate
- drop is_duplicate
- 
+
  save `trans_folder'Phys.dta, replace
- 
+
+* Duplicate check on final saved data
+duplicates report pid
+duplicates tag pid, gen(duplicate_tag)
+
+preserve
+keep if duplicate_tag == 1
+
+* Get the list of variable names
+unab varlist : _all
+
+* Convert variables with value labels into string variables
+foreach var of varlist `varlist' {
+    if "`: value label `var''" != "" {
+        tostring `var', replace
+    }
+}
+
+capture erase "duplicates/phys_duplicates.xlsx"
+capture export excel using "duplicates/phys_duplicates.xlsx", replace firstrow(variables)
+restore
+
+drop duplicate_tag
+
  clear all
- 
+
  use `trans_folder'Infor
+ 
+* based on the age and sex perfectly match what we have in the tracker
+replace i_particid = 2 if globalrecordid == "1c97cfcb-7da6-4e17-b602-33e9a60b2adc"
  
 *based on the age of the informant (66), I have deduced that this is survey belongs to participant 1 (who is 92)
 replace i_particid = 1 if globalrecordid == "c7ddca33-5131-453b-b3a7-46bb89b22e4f"
@@ -515,9 +548,20 @@ replace pid = "11206701B" if globalrecordid == "45ac63ba-c60c-448e-8e28-2250f8ad
 drop if inlist(globalrecordid, "4165c0fc-74bb-4b3b-af72-0b7d1545a386", "afb1c0f3-bc15-4afd-bad5-2f7899293b11", "1258b91c-3d39-4a0a-a5c3-63629a224ed3", "068f8411-8813-4339-84cf-0e2fe00105fd", "c2da0a76-dcef-49f4-9606-b3d9c3985f84", "128f1db2-36e5-44c9-a085-fc806d4556bc")
 drop if inlist(globalrecordid, "e6b81f28-94d8-4876-85e7-19c2f62d6954", "a25fdb98-cc9d-48f8-8a90-55bdc2251e08", "fa0562be-bbcf-41bd-b5e8-ecafe0b485a9")
 
+*Guillermina's instructions
+drop if inlist(globalrecordid, "4165c0fc-74bb-4b3b-af72-0b7d1545a386","afb1c0f3-bc15-4afd-bad5-2f7899293b11","96c9f78b-9d62-4cc6-9a31-4e4f594757c3","e885c1f4-0ee0-4322-b77d-c72c26cf64fd","812709fa-8790-45d9-ba7b-467f4101c8d6","3fe82ebf-96cf-49a3-975e-37fc0adc3f23","a5318fef-3814-4430-ae41-3decc2670320","068f8411-8813-4339-84cf-0e2fe00105fd")
+drop if inlist(globalrecordid, "c2da0a76-dcef-49f4-9606-b3d9c3985f84","ae83f14d-286a-4625-9964-3e3750d807ae","128f1db2-36e5-44c9-a085-fc806d4556bc","3fd9b0fb-8fd1-4c8a-90e1-30b6511b51e5","e6b81f28-94d8-4876-85e7-19c2f62d6954","d7eec93a-8ceb-493e-9493-fa75ad13b688","3cfbdb1c-1f42-414b-9227-83a1345ac34f")
+replace i_particid = 2 if globalrecordid == "a9553780-b0be-40e8-9350-4f6aaedc929e"
+replace i_particid = 1 if globalrecordid == "09897871-a59f-422a-85ac-f1b4a3640b41"
+replace i_particid = 2 if globalrecordid == "c9527626-fd54-488b-afaf-c2915b5e3914"
+replace i_particid = 2 if globalrecordid == "d3eac927-ebf9-495c-80e6-8d9163d93272"
+replace i_particid = 2 if globalrecordid == "a86404c4-2444-455b-b3ba-4a138943cb13"
+
  drop pid hhid
  
- gen i_country_str = string(i_country, "%12.0f")
+ replace i_country = `country' if i_country != 5
+
+gen i_country_str = string(i_country, "%12.0f")
 
 gen i_clustid_str = string(i_clustid, "%12.0f")
 replace i_clustid_str = cond(strlen(i_clustid_str) == 1, "0" + i_clustid_str, i_clustid_str)
@@ -578,24 +622,15 @@ foreach v of local missvarlist {
 }
 
 log close
- 
- duplicates report pid
- sort pid
- gen is_duplicate = pid[_n] == pid[_n-1]
- list if is_duplicate
- drop is_duplicate
- 
- save `trans_folder'Infor.dta, replace
- 
- gen is_duplicate = pid[_n] == pid[_n-1]
 
-* Mark all duplicate observations with 1 and non-duplicates with 0
+ save `trans_folder'Infor.dta, replace
+
+* Duplicate check on final saved data
+duplicates report pid
 duplicates tag pid, gen(duplicate_tag)
 
-* Keep all observations with duplicate pid
+preserve
 keep if duplicate_tag == 1
-
-drop duplicate_tag
 
 * Get the list of variable names
 unab varlist : _all
@@ -607,10 +642,14 @@ foreach var of varlist `varlist' {
     }
 }
 
-export excel using "duplicates/informant_duplicates.xlsx", replace firstrow(variables)
- 
+capture erase "duplicates/informant_duplicates.xlsx"
+capture export excel using "duplicates/informant_duplicates.xlsx", replace firstrow(variables)
+restore
+
+drop duplicate_tag
+
  clear all
- 
+
 use `trans_folder'Cog
 
 merge m:m pid using resumen_pid
@@ -626,9 +665,73 @@ order pid_parent pid cog_in_resumen
 
 save `trans_folder'Cog.dta, replace
 
+****************************************
+* PRESERVE LOW SCORES FROM COG_MERGED
+****************************************
+
+* --- CIRCLE DRAWING LOW SCORES ---
+clear all
+use `trans_folder'cog_merged.dta
+keep if (cs_72_1 == 0 | cs_72_1 == 1)
+keep pid cs_72_1 c_72_1_pic
+export delimited using "duplicates/low_scores_72_1_circle.csv", replace
+display "72_1 Circle low scores: " _N " observations"
+
+clear all
+use `trans_folder'cog_merged.dta
+keep if (cs_79_1 == 0 | cs_79_1 == 1)
+keep pid cs_79_1 c_79_1_pic
+export delimited using "duplicates/low_scores_79_1_circle.csv", replace
+display "79_1 Circle low scores: " _N " observations"
+
+* --- DIAMOND DRAWING LOW SCORES ---
+clear all
+use `trans_folder'cog_merged.dta
+keep if (cs_72_2 == 0 | cs_72_2 == 1)
+keep pid cs_72_2 c_72_2_pic
+export delimited using "duplicates/low_scores_72_2_diamond.csv", replace
+display "72_2 Diamond low scores: " _N " observations"
+
+clear all
+use `trans_folder'cog_merged.dta
+keep if (cs_79_2 == 0 | cs_79_2 == 1)
+keep pid cs_79_2 c_79_2_pic
+export delimited using "duplicates/low_scores_79_2_diamond.csv", replace
+display "79_2 Diamond low scores: " _N " observations"
+
+* --- OVERLAPPING RECTANGLES LOW SCORES ---
+clear all
+use `trans_folder'cog_merged.dta
+keep if (cs_72_3 == 0 | cs_72_3 == 1)
+keep pid cs_72_3 c_72_3_pic
+export delimited using "duplicates/low_scores_72_3_rectangles.csv", replace
+display "72_3 Rectangles low scores: " _N " observations"
+
+clear all
+use `trans_folder'cog_merged.dta
+keep if (cs_79_3 == 0 | cs_79_3 == 1)
+keep pid cs_79_3 c_79_3_pic
+export delimited using "duplicates/low_scores_79_3_rectangles.csv", replace
+display "79_3 Rectangles low scores: " _N " observations"
+
+* --- CUBE DRAWING LOW SCORES ---
+clear all
+use `trans_folder'cog_merged.dta
+keep if (cs_72_4 == 0 | cs_72_4 == 1)
+keep pid cs_72_4 c_72_4_pic
+export delimited using "duplicates/low_scores_72_4_cube.csv", replace
+display "72_4 Cube low scores: " _N " observations"
+
+clear all
+use `trans_folder'cog_merged.dta
+keep if (cs_79_4 == 0 | cs_79_4 == 1)
+keep pid cs_79_4 c_79_4_pic
+export delimited using "duplicates/low_scores_79_4_cube.csv", replace
+display "79_4 Cube low scores: " _N " observations"
+
 clear all
 
- 
+
  use Household
  
 drop hhid hhid2
@@ -641,6 +744,12 @@ drop if inlist(globalrecordid, "31614f8a-69c9-4012-96ee-bc4154ca6491", "19b6756d
 
 * 12/18/25 cleaning
 drop if inlist(globalrecordid, "86e85c75-7ea3-4f28-be88-c1682087ac42", "36194fe7-191a-47c6-bba7-82a85a66f15a", "d6e76c24-62dd-4949-a246-ecdbb6538175", "45bffef3-427a-4af7-aba1-be654c2a980b", "0ee893f3-9f93-4354-a870-700b1d6e3f2c", "1c29d55c-b35d-4901-9551-d88011017003", "3ca37865-fb34-4480-a3f9-ecef53e99ecf")
+
+*Guillermina's instructions
+drop if inlist(globalrecordid, "96504324-cce1-449d-908a-fc0e6ae34dc3","86e85c75-7ea3-4f28-be88-c1682087ac42","36194fe7-191a-47c6-bba7-82a85a66f15a","d6e76c24-62dd-4949-a246-ecdbb6538175","45bffef3-427a-4af7-aba1-be654c2a980b","0ee893f3-9f93-4354-a870-700b1d6e3f2c","455acf2f-91fc-4f46-b16c-f5b2c97ad327","6d0a13a3-565f-43cd-b565-af1ca3646d89")
+drop if inlist(globalrecordid, "1c29d55c-b35d-4901-9551-d88011017003","91daad94-f12e-4b79-81e5-c5697fef94fb","3ca37865-fb34-4480-a3f9-ecef53e99ecf","ff4a806c-2ba3-4833-828c-cf6ec6e92fba","821324d6-7af3-4ea7-a9e8-af392e97c11a")
+
+replace h_country = `country' if h_country != 5
 
 gen h_country_str = string(h_country, "%12.0f")
 
@@ -669,10 +778,6 @@ drop h_country_str h_clustid2_str h_houseid2_str
 
  duplicates report hhid
  sort hhid
- gen is_duplicate = hhid[_n] == hhid[_n-1]
- list if is_duplicate
- 
-drop is_duplicate
 
 merge m:m hhid using resumen_hhid
 
@@ -683,33 +788,9 @@ replace household_in_resumen = "Found in Resumen" if _merge == 3
 drop if _merge == 2
 drop _merge
 
-save `trans_folder'Household.dta, replace
 export excel using "`trans_folder'excel/familiar.xlsx", replace firstrow(variables)
 
-gen is_duplicate = hhid[_n] == hhid[_n-1]
-
-* Mark all duplicate observations with 1 and non-duplicates with 0
-duplicates tag hhid, gen(duplicate_tag)
-
-* Keep all observations with duplicate pid
-keep if duplicate_tag == 1
-
-drop duplicate_tag
-
-* Get the list of variable names
-unab varlist : _all
-
-* Convert variables with value labels into string variables
-foreach var of varlist `varlist' {
-    if "`: value label `var''" != "" {
-        tostring `var', replace
-    }
-}
-
-* Export data to Excel
-capture export excel using "duplicates/Household_duplicates.xlsx", replace firstrow(variables)
-
- log using logs/HouseholdOnlyMissing, text replace
+log using logs/HouseholdOnlyMissing, text replace
 
 
 local missvarlist
@@ -734,6 +815,31 @@ foreach v of local missvarlist {
 
 
 log close
+
+save `trans_folder'Household.dta, replace
+
+* Duplicate check on final saved data
+duplicates report hhid
+duplicates tag hhid, gen(duplicate_tag)
+
+preserve
+keep if duplicate_tag == 1
+
+* Get the list of variable names
+unab varlist : _all
+
+* Convert variables with value labels into string variables
+foreach var of varlist `varlist' {
+    if "`: value label `var''" != "" {
+        tostring `var', replace
+    }
+}
+
+capture erase "duplicates/Household_duplicates.xlsx"
+capture export excel using "duplicates/Household_duplicates.xlsx", replace firstrow(variables)
+restore
+
+drop duplicate_tag
 
 clear all
 
@@ -782,6 +888,7 @@ if `"`user'"' == "Chris" {
     copy "`path'/DR_out/`trans_folder'Phys.dta" "`gdrive_out'/Phys.dta", replace
     copy "`path'/DR_out/`trans_folder'Infor.dta" "`gdrive_out'/Infor.dta", replace
     copy "`path'/DR_out/`trans_folder'Cog.dta" "`gdrive_out'/Cog.dta", replace
+    copy "`path'/DR_out/`trans_folder'cog_merged.dta" "`gdrive_out'/cog_merged.dta", replace
     copy "`path'/DR_out/`trans_folder'Household.dta" "`gdrive_out'/Household.dta", replace
     copy "`path'/DR_out/rosters_participants.dta" "`gdrive_out'/rosters_participants.dta", replace
     copy "`path'/DR_out/rosters_merged.dta" "`gdrive_out'/rosters_merged.dta", replace
@@ -795,6 +902,8 @@ if `"`user'"' == "Chris" {
     copy "`path'/DR_out/`trans_folder'excel/examen_fisico.xlsx" "`gdrive_excel'/examen_fisico.xlsx", replace
     copy "`path'/DR_out/`trans_folder'excel/informante.xlsx" "`gdrive_excel'/informante.xlsx", replace
     copy "`path'/DR_out/`trans_folder'excel/familiar.xlsx" "`gdrive_excel'/familiar.xlsx", replace
+    copy "`path'/DR_out/`trans_folder'excel/cognitive.xlsx" "`gdrive_excel'/cognitive.xlsx", replace
+    copy "`path'/DR_out/`trans_folder'excel/cog_merged.xlsx" "`gdrive_excel'/cog_merged.xlsx", replace
 
     display "Excel files copied to Google Drive: `gdrive_excel'"
 
@@ -809,6 +918,14 @@ if `"`user'"' == "Chris" {
     capture copy "`path'/DR_out/duplicates/phys_duplicates.xlsx" "`gdrive_diag'/phys_duplicates.xlsx", replace
     capture copy "`path'/DR_out/duplicates/roster_duplicates.xlsx" "`gdrive_diag'/roster_duplicates.xlsx", replace
     capture copy "`path'/DR_out/duplicates/socio_duplicates.xlsx" "`gdrive_diag'/socio_duplicates.xlsx", replace
+
+    * Copy tracker files to Google Drive
+    capture copy "`path'/DR_out/`trans_folder'duplicates/tracker_slim.xlsx" "`gdrive_diag'/tracker_slim.xlsx", replace
+    capture copy "`path'/DR_out/`trans_folder'duplicates/tracker_full.xlsx" "`gdrive_diag'/tracker_full.xlsx", replace
+    capture copy "`path'/DR_out/`trans_folder'duplicates/tracker_door.xlsx" "`gdrive_diag'/tracker_door.xlsx", replace
+    capture copy "`path'/DR_out/`trans_folder'tracker_slim.dta" "`gdrive_diag'/tracker_slim.dta", replace
+    capture copy "`path'/DR_out/`trans_folder'tracker_full.dta" "`gdrive_diag'/tracker_full.dta", replace
+    capture copy "`path'/DR_out/`trans_folder'tracker_door.dta" "`gdrive_diag'/tracker_door.dta", replace
 
     display "Duplicate check files copied to Google Drive: `gdrive_diag'"
 }

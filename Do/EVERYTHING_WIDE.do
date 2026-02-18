@@ -207,7 +207,7 @@ save `trans_folder'Everything_Wide, replace
 use 1066.dta, clear
 gen pidr = real(pid)
 drop if pidr == .
-keep pid cogscore relscore recall dem1066_score dem1066 dem1066_score_quint dem1066_quint immed learn1 learn2 learn3 paper animals nametot count animtot wordtot1 wordtot2 papertot storytot wordimm worddel story misstot
+keep pid cogscore relscore recall dem1066_score dem1066 dem1066_score_quint dem1066_quint cdr_binary cadas_dem1066_score cadas_dem1066 cadas_dem1066_ascribed immed learn1 learn2 learn3 paper animals nametot count animtot wordtot1 wordtot2 papertot storytot wordimm worddel story misstot
 egen duplic = count(pid), by(pid)
 tab duplic
 sort pid
@@ -314,7 +314,7 @@ save `trans_folder'Everything_Wide, replace
 
 use ConsensusVariables, clear
 capture destring cs_32, replace force
-drop dem1066 dem1066_score cogscore relscore recall
+capture drop dem1066 dem1066_score cogscore relscore recall
 replace pid = "2" + substr(pid, 2, .) if substr(pid, 1, 1) == "."
 save "`temp_dir'/temp_Consensus.dta", replace
 use `trans_folder'Everything_Wide, clear
@@ -330,7 +330,7 @@ save `trans_folder'Everything_Wide, replace
 ****************************************
 
 * For DR and PR: save all cases at this point (after socio, cog, infor, phys merges)
-if `country' == 0 | `country' == 1 {
+if `country' == 0{
 	use `trans_folder'Everything_Wide, clear
 	bysort pid: keep if _n == 1
 
@@ -338,7 +338,7 @@ if `country' == 0 | `country' == 1 {
 	preserve
 	use "/Users/chrissoria/Documents/Research/consensus/data/out/consensus_binary_simple.dta", clear
 	rename finalniaa_binary team_consensus
-	rename finalniaa_int_binary international_consensus
+	rename finalniaa_int_binary international_consensus 
 	tempfile consensus_temp
 	save `consensus_temp'
 	restore
@@ -360,9 +360,66 @@ if `country' == 0 | `country' == 1 {
 	label variable in_consensus "Has consensus dementia classification"
 
 	save s_c_i_p_select, replace
+	if `"$language"' == "E" {
+		copy "s_c_i_p_select.dta" "`trans_folder's_c_i_p_select.dta", replace
+	}
 
 	* Save back to Everything_Wide so it flows to final datasets
 	save `trans_folder'Everything_Wide, replace
+}
+
+if `country' == 1 {
+	merge m:1 pid using dr_CDR.dta
+	tab _merge
+	display "Total rows: "
+	count
+	drop _merge
+	
+	save `trans_folder'Everything_Wide, replace
+	
+	use `trans_folder'Everything_Wide, clear
+	bysort pid: keep if _n == 1
+
+	* Merge consensus binary classifications
+	preserve
+	use "/Users/chrissoria/Documents/Research/consensus/data/out/consensus_binary_simple.dta", clear
+	rename finalniaa_binary team_consensus
+	rename finalniaa_int_binary international_consensus 
+	tempfile consensus_temp
+	save `consensus_temp'
+	restore
+
+	merge 1:1 pid using `consensus_temp'
+	tab _merge
+	display "Consensus binary merge results:"
+	count if _merge == 3
+	drop if _merge == 2
+	drop _merge
+
+	* Create consensus_dementia: prioritize international, fall back to team
+	gen consensus_dementia = international_consensus
+	replace consensus_dementia = team_consensus if missing(consensus_dementia)
+	label variable consensus_dementia "Consensus dementia (international priority, team fallback)"
+
+	* Create binary indicator for having consensus
+	gen in_consensus = !missing(consensus_dementia)
+	label variable in_consensus "Has consensus dementia classification"
+
+	* Merge weights for DR
+	merge 1:1 pid using `trans_folder'weights.dta
+	tab _merge
+	display "DR Weights merge results:"
+	count if _merge == 3
+	drop _merge
+
+	save s_c_i_p_select, replace
+	if `"$language"' == "E" {
+		copy "s_c_i_p_select.dta" "`trans_folder's_c_i_p_select.dta", replace
+	}
+
+	* Save back to Everything_Wide so it flows to final datasets
+	save `trans_folder'Everything_Wide, replace
+
 }
 
 * For Cuba: merge CDR data and weights
@@ -388,8 +445,9 @@ if `country' == 2 {
 	* Merge consensus binary classifications
 	preserve
 	use "/Users/chrissoria/Documents/Research/consensus/data/out/consensus_binary_simple.dta", clear
-	rename finalniaa_binary team_consensus
+	rename finalniaa_binary team_consensus 
 	rename finalniaa_int_binary international_consensus
+	rename mci_correct international_mci
 	tempfile consensus_temp
 	save `consensus_temp'
 	restore
@@ -411,6 +469,9 @@ if `country' == 2 {
 	label variable in_consensus "Has consensus dementia classification"
 
 	save s_c_i_p_select, replace
+	if `"$language"' == "E" {
+		copy "s_c_i_p_select.dta" "`trans_folder's_c_i_p_select.dta", replace
+	}
 
 	* Save back to Everything_Wide so it flows to final datasets
 	save `trans_folder'Everything_Wide, replace
@@ -822,7 +883,7 @@ if `country' == 1 & `"`user'"' == "Chris" {
     * Copy selected Everything_Wide files to Google Drive
     copy "`path'/DR_out/`trans_folder'Everything_Wide.dta" "`gdrive_out'/Everything_Wide.dta", replace
     copy "`path'/DR_out/`trans_folder'Everything_Wide_full.dta" "`gdrive_out'/Everything_Wide_full.dta", replace
-    copy "`path'/DR_out/s_c_i_p_select.dta" "`gdrive_out'/s_c_i_p_select.dta", replace
+    copy "`path'/DR_out/`trans_folder's_c_i_p_select.dta" "`gdrive_out'/s_c_i_p_select.dta", replace
 
     display "Everything_Wide files copied to Google Drive: `gdrive_out'"
 
@@ -846,7 +907,7 @@ if `country' == 2 & `"`user'"' == "Chris" {
     * Copy selected Everything_Wide files to Google Drive
     copy "`path'/CUBA_out/`trans_folder'Everything_Wide.dta" "`gdrive_out'/Everything_Wide.dta", replace
     copy "`path'/CUBA_out/`trans_folder'Everything_Wide_full.dta" "`gdrive_out'/Everything_Wide_full.dta", replace
-    copy "`path'/CUBA_out/s_c_i_p_select.dta" "`gdrive_out'/s_c_i_p_select.dta", replace
+    copy "`path'/CUBA_out/`trans_folder's_c_i_p_select.dta" "`gdrive_out'/s_c_i_p_select.dta", replace
 
     display "Everything_Wide files copied to Google Drive: `gdrive_out'"
 
