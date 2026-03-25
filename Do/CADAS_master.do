@@ -72,6 +72,8 @@ if `"`user'"' == "Chris" {
 		do "`path'/Rosters_Read.do"
 
 		do "`path'/Socio_Read.do"
+		
+		do "/Users/chrissoria/documents/CADAS/Do/Out_of_range_fixes.do"
 
 		if `country' == 0 {
 			do "/Users/chrissoria/documents/CADAS/Do/PR/global_checks_PR.do"

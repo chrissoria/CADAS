@@ -3,6 +3,122 @@
 * Called from Phys_Read.do when language == "E"
 
 ****************************************
+* VALUE LABELS (label define + label values)
+****************************************
+
+label define P2_1   0 "No" 1 "Yes", replace
+capture label values p_2_1 P2_1
+
+label define P2_3   0 "No" 1 "Yes", replace
+capture label values p_2_3 P2_3
+
+label define P6     0 "Normal upgaze" 1 "Limited upgaze" 2 "No upgaze, or almost no upgaze" 6 "Did not do the test", replace
+capture label values p_6 P6
+
+label define P7_1   0 "1-4 taps" 1 "5 taps" 2 "6-9 taps" 3 "10+ taps" 6 "Did not do the test", replace
+capture label values p_7_1 P7_1
+
+label define P7_2   0 "No pout (sticks out lips)" 1 "Pout reflex present" 6 "Could not do test", replace
+capture label values p_7_2 P7_2
+
+label define P7_3   0 "No facial twitch" 1 "Facial twitch reflex present" 6 "Could not do test", replace
+capture label values p_7_3 P7_3
+
+label define P8_tone 0 "There is no tremor" 1 "Slow" 2 "Medium" 3 "Fast" 6 "Could not do test", replace
+capture label values p_8_1 P8_tone
+capture label values p_8_2 P8_tone
+capture label values p_8_3 P8_tone
+
+label define P9_1   0 "No drift" 1 "Drift, for neurological causes" 2 "Drift, for other causes" 6 "Did not attempt test", replace
+capture label values p_9_1 P9_1
+
+label define P9_2   0 "Right" 1 "Left" 6 "Could not do test" 7 "Did not attempt test", replace
+capture label values p_9_2 P9_2
+
+label define P10_tone 0 "Normal tone" 1 "Slightly increased tone" 2 "Much increased tone" 6 "Did not attempt test", replace
+capture label values p_10_1_1_1 P10_tone
+capture label values p_10_1_1_2 P10_tone
+capture label values p_10_1_2_1 P10_tone
+capture label values p_10_1_2_2 P10_tone
+capture label values p_10_2_1_1 P10_tone
+capture label values p_10_2_1_2 P10_tone
+capture label values p_10_2_2_1 P10_tone
+capture label values p_10_2_2_2 P10_tone
+
+label define P11_1  0 "Right" 1 "Left" 8 "Does not respond" 9 "Does not know", replace
+capture label values p_11_1 P11_1
+
+label define P11_2  0 "No limitations" 1 "Limitations (slow, and or clumsy)" 6 "Could not do test", replace
+capture label values p_11_2_1 P11_2
+capture label values p_11_2_2 P11_2
+
+label define P11_3_spd 0 "Normal speed" 1 "Slow" 6 "Did not try test", replace
+capture label values p_11_3_1_1 P11_3_spd
+capture label values p_11_3_1_2 P11_3_spd
+
+label define P11_3_crd 0 "Normal coordination" 1 "Clumsy, uncoordinated" 6 "Did not try test", replace
+capture label values p_11_3_2_1 P11_3_crd
+capture label values p_11_3_2_2 P11_3_crd
+
+label define P12_1  0 "Dominant" 1 "Non-dominant" 6 "Did not try test", replace
+capture label values p_12_1 P12_1
+
+label define P12_learn 0 "Requires only 1 demonstration" 1 "Requires 2-3 demonstrations" 2 "Requires 4-5 demonstrations" 3 "Unable to learn correctly with 5 demonstrations" 6 "Did not try test", replace
+capture label values p_12_2_1 P12_learn
+capture label values p_12_3_1 P12_learn
+
+label define P12_seq 0 "5 correct sequences" 1 "5 sequences, made with one mistake" 2 "5 sequences after one re-demonstration" 3 "Unable to complete 5 sequences correctly" 6 "Did not try test", replace
+capture label values p_12_2_2 P12_seq
+capture label values p_12_3_2 P12_seq
+
+label define P13    0 "Absent" 1 "Normal (+)" 2 "Fast normal (2+)" 3 "Pathologically fast (3+)" 6 "Did not try the test", replace
+capture label values p_13_1 P13
+capture label values p_13_2 P13
+capture label values p_13_3 P13
+capture label values p_13_4 P13
+capture label values p_13_5 P13
+
+label define P14_swing 0 "Normal arm swing" 1 "Reduced arm swing" 2 "No arm swing" 6 "Did not try due to disability" 7 "Could not do it for another reason", replace
+capture label values p_14_3_1 P14_swing
+capture label values p_14_3_2 P14_swing
+
+label define P14_4  0 "Normal gait" 1 "Unstable, broad-based gait" 2 "Very unstable, broad-based gait" 6 "Did not try due to disability" 7 "Could not do it for another reason", replace
+capture label values p_14_4 P14_4
+
+label define P14_5  0 "Normal speed" 1 "Somewhat slow" 2 "Very slow" 6 "Did not try due to disability" 7 "Could not do it for another reason", replace
+capture label values p_14_5 P14_5
+
+label define P15_A  0 "No" 1 "Yes", replace
+capture label values p_15_a P15_A
+
+label define P16_1  0 "No" 1 "Yes", replace
+capture label values p_16_1 P16_1
+
+label define P16_2  0 "No" 1 "Yes" 8 "Does not respond" 9 "Does not know", replace
+capture label values p_16_2 P16_2
+
+label define P17_3  0 "No problems" 1 "Some problems" 2 "Many problems" 8 "Does not respond" 9 "Does not know", replace
+capture label values p_17_3 P17_3
+
+label define P19_1  1 "Could not finish the task" 2 "Could finish task, but needed to use hands" 3 "Could finish task, without help of hands" 6 "Did not try", replace
+capture label values p_19_1 P19_1
+
+label define P20    0 "Bed-bound / Confined to bed" 1 "Chair-bound / Confined to chair (limited mobility, can transfer from chair to bed)" 2 "House-bound (limited mobility, stays at home)" 3 "Limited mobility outside the home" 4 "Complete mobility, inside and outside the home" 9 "Does not know", replace
+capture label values p_20 P20
+
+label define P21_1  0 "No" 1 "Yes" 8 "Does not respond", replace
+capture label values p_21_1 P21_1
+
+label define P21_2  1 "Excellent" 2 "Very good" 3 "Good" 4 "Fair" 5 "Poor" 6 "Blind" 8 "Does not respond" 9 "Does not know", replace
+capture label values p_21_2 P21_2
+
+label define P22_1  0 "No" 1 "Yes" 8 "Does not respond", replace
+capture label values p_22_1 P22_1
+
+label define P22_2  1 "Excellent" 2 "Very good" 3 "Good" 4 "Fair" 5 "Poor" 6 "Deaf" 8 "Does not respond" 9 "Does not know", replace
+capture label values p_22_2 P22_2
+
+****************************************
 * VARIABLE LABELS (label variable)
 ****************************************
 

@@ -149,8 +149,8 @@ keep if _merge == 1
 export delimited using "missing_socio_records.csv", replace
 restore
 
-* Keep only matched records
-keep if _merge == 3
+* Keep master and matched records (don't drop cases missing socio)
+keep if _merge == 3 | _merge == 1
 tab _merge
 display "Total rows: "
 count

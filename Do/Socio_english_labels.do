@@ -3,6 +3,613 @@
 * Called from Socio_Read.do when language == "E"
 
 ****************************************
+* VALUE LABELS (label define + label values)
+****************************************
+
+label define country_label 0 "Puerto Rico" 1 "República Dominicana" 2 "Cuba", replace
+capture label values s_country country_label
+label define S_2_9a .a"." 0 "0 - Has not completed any education" 1 "1 - Pre-primary (kindergarten, nursery, maternal, pre-school)" 2 "2 - Primary" 3 "3 - Intermediate" 4 "4 - Secondary " 5 "5 - Tertiary education (e.g. associate degree or technical degree)" 6 "6 - University education or higher" 8 "8 - Does not respond" 9 "9 - Does not know", replace
+capture label values s_2_9a S_2_9a
+label define S_3_11 .a"." 1 "1 - Professional, executive" 2 "2 - Office worker" 3 "3 - Salesperson, retailer" 4 "4 - Independent Farmer" 5 "5 - Farm worker" 6 "6 - Domestic worker" 7 "7 - Other services" 8 "8 - Skilled Worker" 9 "9 - Unskilled worker" 10 "10 - Informal work" 11 "11 - Other" 12 "12 - Did not work" 13 "13 - Did not have a father or guardian" 88 "88 - Does not respond" 99 "99 - Does not know", replace
+capture label values s_3_11 S_3_11
+label define S_6_7 .a"." 1 "01 - you were sick?" 2 "02 - you missed your family?" 3 "03 - it was difficult to stay abroad?" 4 "04 - it was expensive to stay abroad?" 5 "05 - you did not earn enough there?" 6 "06 - you had problems related to migration?" 7 "07 - you had family problems here?" 8 "08 - Other" 88 "88 - Does not respond" 99 "99 - Does not know", replace
+capture label values s_6_7 S_6_7
+label define S_1_1_P .a"." 1 "BLACK" 2 "MULATO, MIXED OR TRIGUEÑO (WHITE OR BLACK)" 3 "WHITE" 4 "MESTIZO (INDIAN WITH WHITE)" 5 "OTHER" 8 "Does not respond"9 "Does not know", replace
+capture label values s_1_1_p S_1_1_P
+label define S_1_1_D .a"." 1 "BLACK" 2 "MULATO" 3 "WHITE" 4 "INDIAN" 5 "OTHER" 8 "Does not respond"9 "Does not know", replace
+capture label values s_1_1_d S_1_1_D
+label define S_1_1_C .a"." 1 "BLACK" 3 "WHITE" 6 "MULATO / MESTIZO" 5 "OTHER" 8 "Does not respond"9 "Does not know", replace
+capture label values s_1_1_c S_1_1_C
+label define S_2_9 .a"." 1 "Never married" 2 "Married/Consensual Union" 3 "Widowed" 4 "Divorced/Separated", replace
+capture label values s_2_9 S_2_9
+label define S_2_11 .a"." 0 "Agnostic/Atheist" 1 "Roman Catholic" 2 "Evangelical / Pentecostal" 3 "Other Christian" 4 "Santeria" 5 "Jewish" 6 "Other" 7 "None" 8 "Does not respond"9 "Does not know", replace
+capture label values s_2_11 S_2_11
+label define S_2_12 .a"." 0 "Every day" 1 "More than once a week" 2 "Once a week" 3 "Two or three times a month" 4 "Once or more times a year " 5 "Never" 8 "Does not respond"9 "Does not know", replace
+capture label values s_2_12 S_2_12
+label define S_2_13 .a"." 0 "No" 1 "Yes, regularly" 2 "Yes, occasionally" 8 "Does not respond"9 "Does not know", replace
+capture label values s_2_13 S_2_13
+label define S_2_14_P .a"." 1 "BLACK" 2 "MULATO, MIXED OR TRIGUEÑO (WHITE OR BLACK)" 3 "WHITE" 4 "MESTIZO (INDIAN WITH WHITE)" 5 "OTHER" 8 "Does not respond"9 "Does not know", replace
+capture label values s_2_14_p S_2_14_P
+label define S_2_14_D .a"." 1 "BLACK" 2 "MULATO" 3 "WHITE" 4 "INDIAN" 5 "OTHER" 8 "Does not respond"9 "Does not know", replace
+capture label values s_2_14_d S_2_14_D
+label define S_2_14_C .a"." 1 "BLACK" 2 "MULATO" 3 "WHITE" 4 "MESTIZO" 5 "OTHER" 8 "Does not respond"9 "Does not know", replace
+capture label values s_2_14_c S_2_14_C
+label define S_2_15_P .a"." 1 "BLACK" 2 "MULATO, MIXED OR TRIGUEÑO (WHITE OR BLACK)" 3 "WHITE" 4 "MESTIZO (INDIAN WITH WHITE)" 5 "OTHER" 8 "Does not respond"9 "Does not know", replace
+capture label values s_2_15_p S_2_15_P
+label define S_2_15_D .a"." 1 "BLACK" 2 "MULATO" 3 "WHITE" 4 "INDIAN" 5 "OTHER" 8 "Does not respond"9 "Does not know", replace
+capture label values s_2_15_d S_2_15_D
+label define S_2_15_C .a"." 1 "BLACK" 2 "MULATO" 3 "WHITE" 4 "MESTIZO" 5 "OTHER" 8 "Does not respond"9 "Does not know", replace
+capture label values s_2_15_c S_2_15_C
+label define S_3_1_P .a"." 1 "Puerto Rico" 2 "United States" 4 "Other country", replace
+capture label values s_3_1_p S_3_1_P
+label define S_3_1_D .a"." 1 "Dominican Republic" 2 "United States" 3 "Haiti" 4 "Other country", replace
+capture label values s_3_1_d S_3_1_D
+label define S_3_1_C .a"." 1 "Cuba" 4 "Other country", replace
+capture label values s_3_1_c S_3_1_C
+label define S_3_2 .a"." 0 "City" 1 "Town" 2 "Countryside", replace
+capture label values s_3_2 S_3_2
+label define S_3_4 .a"." 0 "City" 1 "Town" 2 "Countryside" 8 "Does not respond" 9 "Does not know", replace
+capture label values s_3_4 S_3_4
+label define S_3_5 .a"." 0 "City" 1 "Town" 2 "Countryside" 8 "Does not respond" 9 "Does not know", replace
+capture label values s_3_5 S_3_5
+label define S_3_6 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_3_6 S_3_6
+label define S_3_7 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_3_7 S_3_7
+label define S_3_8 .a"." 1 "Much better" 2 "Better" 3 "Average" 4 "Worse" 5 "Much worse" 8 "Does not respond"9 "Does not know" 10 "Did not go to school", replace
+capture label values s_3_8 S_3_8
+label define S_3_9 .a"." 1 "Much better" 2 "Better" 3 "Average" 4 "Worse" 5 "Much worse" 8 "Does not respond"9 "Does not know" 10 "Did not go to school", replace
+capture label values s_3_9 S_3_9
+label define S_3_12_1 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_3_12_1 S_3_12_1
+label define S_3_12_2 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_3_12_2 S_3_12_2
+label define S_3_12_3 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_3_12_3 S_3_12_3
+label define S_3_12_6 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_3_12_6 S_3_12_6
+label define S_3_12_8 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_3_12_8 S_3_12_8
+label define S_3_13 .a"." 1 "Better" 2 "More or less the same" 3 "Worse" 8 "Does not respond"9 "Does not know", replace
+capture label values s_3_13 S_3_13
+label define S_3_17 .a"." 1 "No" 2 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_3_17 S_3_17
+label define S_3_19_2 .a"." 1 "Day" 2 "Week" 3 "Month" 4 "Year", replace
+capture label values s_3_19_2 S_3_19_2
+label define S_4_1 .a"." 0 "Has not completed any education" 1 "Pre-primary (kindergarten, nursery, maternal, pre-school)" 2 "Primary" 3 "Intermediate" 4 "Secondary" 5 "Tertiary education (e.g. associate degree or technical degree)" 6 "University education or higher" 8 "Does not respond"9 "Does not know", replace
+capture label values s_4_1 S_4_1
+label define S_4_2 .a"." 1 "No" 2 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_4_2 S_4_2
+label define S_4_8 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_4_8 S_4_8
+label define S_4_11 .a"." 0 "Has not completed any education" 1 "Pre-primary (kindergarten, nursery, maternal, pre-school)" 2 "Primary" 3 "Intermediate" 4 "Secondary" 5 "Tertiary education (e.g. associate degree or technical degree)" 6 "University education or higher" 8 "Does not respond"9 "Does not know", replace
+capture label values s_4_11 S_4_11
+label define S_4_12 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_4_12 S_4_12
+label define S_4_18 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_4_18 S_4_18
+label define S_4_21 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_4_21 S_4_21
+label define S_4_22 .a"." 0 "Spouse" 1 "Mother" 2 "Father" 3 "Mother-in-law" 4 "Father-in-law" 5 "Daughter" 6 "Son" 7 "Granddaughter" 8 "Grandson" 9 "Friend" 10 "Otra relative" 11 "Otra person" 88 "Does not respond"99 "Does not know", replace
+capture label values s_4_22 S_4_22
+label define S_4_23_2 .a"." 1 "Day" 2 "Week" 3 "Month" 4 "Year", replace
+capture label values s_4_23_2 S_4_23_2
+label define S_4_26 .a"." 2 "No" 1 "Yes" 3 "I don’t have any" 8 "Does not respond"9 "Does not know", replace
+capture label values s_4_26 S_4_26
+label define S_4_27_2 .a"." 1 "Day" 2 "Week" 3 "Month" 4 "Year", replace
+capture label values s_4_27_2 S_4_27_2
+label define S_4_27A .a"." 1 "Less than 2 hours per week?" 2 "2 to 4 hours per week?" 3 "more than 4 hours per week?" 8 "Does not respond"9 "Does not know", replace
+capture label values s_4_27a S_4_27A
+label define S_4_28 .a"." 2 "No" 1 "Yes" 3"I don’t have any" 8 "Does not respond"9 "Does not know", replace
+capture label values s_4_28 S_4_28
+label define S_4_29_2 .a"." 1 "Day" 2 "Week" 3 "Month" 4 "Year", replace
+capture label values s_4_29_2 S_4_29_2
+label define S_4_29A .a"." 1 "Less than 2 hours per week?" 2 "2 to 4 hours per week?" 3 "more than 4 hours per week?" 8 "Does not respond"9 "Does not know", replace
+capture label values s_4_29a S_4_29A
+label define S_5_1 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_5_1 S_5_1
+label define S_5_2 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_5_2 S_5_2
+label define S_6_1 .a"." 2 "No" 1 "Yes" 7 "Born in the United States" 8 "Does not respond"9 "Does not know", replace
+capture label values s_6_1 S_6_1
+label define S_6_3 .a"." 2 "No" 1 "Yes" 7 "Born in another country" 8 "Does not respond"9 "Does not know", replace
+capture label values s_6_3 S_6_3
+label define S_6_5_P .a"." 2 "A country in Latin America" 3 "Canada" 4 "Spain" 5 "Another European country" 6 "Other", replace
+capture label values s_6_5_p S_6_5_P
+label define S_6_5_D .a"." 1 "Haiti" 2 "A country in Latin America" 3 "Canada" 4 "Spain" 5 "Another European country" 6 "Other", replace
+capture label values s_6_5_d S_6_5_D
+label define S_6_5_C .a"." 2 "A country in Latin America" 3 "Canada" 4 "Spain" 5 "Another European country" 6 "Other", replace
+capture label values s_6_5_c S_6_5_C
+label define S_7_0 .a"." 1 "Very satisfied" 2 "Somewhat satisfied" 3 "Somewhat dissatisfied" 4 "Very dissatisfied" 8 "Does not respond"9 "Does not know", replace
+capture label values s_7_0 S_7_0
+label define S_7_1 .a"." 1 "No" 0 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_7_1 S_7_1
+label define S_7_2A .a"." 0 "Never" 1 "Less than once a month" 2 "Once a month" 3 "Several times a month" 4 "Once per week" 5 "Several times per week" 6 "Every day" 7 "Several times per day" 8 "Does not respond"9 "Does not know", replace
+capture label values s_7_2a S_7_2A
+label define S_7_2B .a"." 0 "Never" 1 "Less than once a month" 2 "Once a month" 3 "Several times a month" 4 "Once per week" 5 "Several times per week" 6 "Every day" 7 "Several times per day" 8 "Does not respond"9 "Does not know", replace
+capture label values s_7_2b S_7_2B
+label define S_7_2C .a"." 0 "Never" 1 "Less than once a month" 2 "Once a month" 3 "Several times a month" 4 "Once per week" 5 "Several times per week" 6 "Every day" 7 "Several times per day" 8 "Does not respond"9 "Does not know", replace
+capture label values s_7_2c S_7_2C
+label define S_7_4A .a"." 0 "Never" 1 "Less than once a month" 2 "Once a month" 3 "Several times a month" 4 "Once per week" 5 "Several times per week" 6 "Every day" 7 "Several times per day" 8 "Does not respond"9 "Does not know", replace
+capture label values s_7_4a S_7_4A
+label define S_7_4B .a"." 0 "Never" 1 "Less than once a month" 2 "Once a month" 3 "Several times a month" 4 "Once per week" 5 "Several times per week" 6 "Every day" 7 "Several times per day" 8 "Does not respond"9 "Does not know", replace
+capture label values s_7_4b S_7_4B
+label define S_7_4C .a"." 0 "Never" 1 "Less than once a month" 2 "Once a month" 3 "Several times a month" 4 "Once per week" 5 "Several times per week" 6 "Every day" 7 "Several times per day" 8 "Does not respond"9 "Does not know", replace
+capture label values s_7_4c S_7_4C
+label define S_7_5A .a"." 1 "Almost never" 2 "Some-times" 3 "Frequently" 8 "Does not respond"9 "Does not know", replace
+capture label values s_7_5a S_7_5A
+label define S_7_5B .a"." 1 "Almost never" 2 "Some-times" 3 "Frequently" 8 "Does not respond"9 "Does not know", replace
+capture label values s_7_5b S_7_5B
+label define S_7_5C .a"." 1 "Almost never" 2 "Some-times" 3 "Frequently" 8 "Does not respond"9 "Does not know", replace
+capture label values s_7_5c S_7_5C
+label define S_7_6A .a"." 1 "Almost every day" 2 "At least once a week" 3 "Several times a month" 4 "Several times a year" 5 "Less than once a year" 6 "Never" 88 "Does not respond"99 "Does not know", replace
+capture label values s_7_6a S_7_6A
+label define S_7_6B .a"." 1 "Always or almost always" 2 "Most of the time" 3 "Some-times" 4 "Almost never" 5 "Never" 88 "Does not respond"99 "Does not know", replace
+capture label values s_7_6b S_7_6B
+label define S_8_1 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_8_1 S_8_1
+label define S_8_3 .a"." 1 "Professional, executive" 2 "Office worker" 3 "Salesperson, retailer" 4 "Independent Farmer" 5 "Farm worker" 6 "Domestic worker" 7 "Other services" 8 "Skilled Worker" 9 "Unskilled worker" 10 "Informal work" 11 "Other" 88 "Does not respond"99 "Does not know", replace
+capture label values s_8_3 S_8_3
+label define S_8_4 .a"." 1 "manager or boss?" 2 "self-employed?" 3 "cooperative worker?" 4 "worker with a fixed wage, salary or daily pay?" 5 "pieceworker, commission worker" 6 "unpaid family worker?" 7 "non-family worker without pay?" 8 "Other" 88 "Does not respond"99 "Does not know", replace
+capture label values s_8_4 S_8_4
+label define S_8_5A .a"." 1 "Work" 2 "Look for work" 3 "Don’t work" 8 "Does not respond", replace
+capture label values s_8_5a S_8_5A
+label define S_8_5D .a"." 1 "Professional, executive" 2 "Office worker" 3 "Salesperson, retailer" 4 "Independent Farmer" 5 "Farm worker" 6 "Domestic worker" 7 "Other services" 8 "Skilled Worker" 9 "Unskilled worker" 10 "Informal work" 11 "Other" 88 "Does not respond"99 "Does not know", replace
+capture label values s_8_5d S_8_5D
+label define S_8_7 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_8_7 S_8_7
+label define S_8_10 .a"." 1 "Always or almost" 2 "Most of the time" 3 "Some-times" 4 "Almost never" 5 "Never" 8 "Does not respond"9 "Does not know", replace
+capture label values s_8_10 S_8_10
+label define S_8_11 .a"." 1 "Always or almost" 2 "Most of the time" 3 "Some-times" 4 "Almost never" 5 "Never" 8 "Does not respond"9 "Does not know", replace
+capture label values s_8_11 S_8_11
+label define S_8_12 .a"." 1 "Strongly disagree" 2 "Disagree" 3 "Agree" 4 "Strongly agree" 5 "Not applicable" 8 "Does not respond"9 "Does not know", replace
+capture label values s_8_12 S_8_12
+label define S_8_13 .a"." 1 "Strongly disagree" 2 "Disagree" 3 "Agree" 4 "Strongly agree" 5 "Not applicable" 8 "Does not respond"9 "Does not know", replace
+capture label values s_8_13 S_8_13
+label define S_8_141 .a"." 1 "Strongly disagree" 2 "Disagree" 3 "Agree" 4 "Strongly agree" 5 "Not applicable" 8 "Does not respond"9 "Does not know", replace
+capture label values s_8_141 S_8_141
+label define S_8_15 .a"." 1 "Strongly disagree" 2 "Disagree" 3 "Agree" 4 "Strongly agree" 5 "Not applicable" 8 "Does not respond"9 "Does not know", replace
+capture label values s_8_15 S_8_15
+label define S_8_16 .a"." 1 "Professional, executive" 2 "Office worker" 3 "Salesperson, retailer" 4 "Independent Farmer" 5 "Farm worker" 6 "Domestic worker" 7 "Other services" 8 "Skilled Worker" 9 "Unskilled worker" 10 "Informal work" 11 "Other" 88 "Does not respond"99 "Does not know", replace
+capture label values s_8_16 S_8_16
+label define S_9_1 .a"." 1 "Excellent" 2 "Very good" 3 "Good" 4 "Regular" 5 "Poor" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_1 S_9_1
+label define S_9_3 .a"." 0 "Does not have that health problem" 1 "Has that problem, but it does not interfere" 2 "Has that problem, and it interferes a little" 3 "Has that problem, and it interferes a lot" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_3 S_9_3
+label define S_9_4 .a"." 0 "Does not have that health problem" 1 "Has that problem, but it does not interfere" 2 "Has that problem, and it interferes a little" 3 "Has that problem, and it interferes a lot" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_4 S_9_4
+label define S_9_5 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_5 S_9_5
+label define S_9_7 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_7 S_9_7
+label define S_9_8 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_8 S_9_8
+label define S_9_11 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_11 S_9_11
+label define S_9_13 .a"." 1 "Less than 6 months" 2 "Between 6 and 11 months" 3 "Between 1 and 2 years" 4 "More than 2 years" 5 "Never" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_13 S_9_13
+label define S_9_14 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_14 S_9_14
+label define S_9_15 .a"." 1 "0-5 years ago" 2 "5-10 years ago" 3 "10 or more years ago" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_15 S_9_15
+label define S_9_16 .a"." 1 "Heart attack" 2 "Angina" 3 "Cardiac arrest" 4 "Valve disease" 5 "Other" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_16 S_9_16
+label define S_9_17 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_17 S_9_17
+label define S_9_18 .a"." 0 "Nobody" 1 "General practitioner" 2 "Specialist" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_18 S_9_18
+label define S_9_19 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_19 S_9_19
+label define S_9_20 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_20 S_9_20
+label define S_9_23 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_23 S_9_23
+label define S_9_24 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_24 S_9_24
+label define S_9_26 .a"." 0 "Diet only" 1 "Oral hypoglycemic agents (no insulin)" 2 "Insulin" 3 "No treatment" 88 "Does not respond"99 "Does not know", replace
+capture label values s_9_26 S_9_26
+label define S_9_28 .a"." 0 "Never" 1 "Less than once a month" 2 "Once a month" 3 "Several times a month" 4 "Once per week" 5 "Several times per week" 6 "Every day" 7 "Several times per day" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_28 S_9_28
+label define S_9_29 .a"." 1 "Once every three months" 2 "Once every six months" 3 "Once a year" 4 "Less than once a year" 5 "Does not have" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_29 S_9_29
+label define S_9_30 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_30 S_9_30
+label define S_9_32 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_32 S_9_32
+label define S_9_33 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_33 S_9_33
+label define S_9_35 .a"." 1 "Less than 6 months" 2 "Between 6 and 11 months" 3 "Between 1 and 2 years" 4 "More than 2 years" 5 "Never" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_35 S_9_35
+label define S_9_37 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_37 S_9_37
+label define S_9_39 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_39 S_9_39
+label define S_9_40 .a"." 1 "Yes, a few (up to 4)" 2 "Yes, quite a lot (more than 4 and less than half)" 3 "Yes, most (half or more)" 4 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_40 S_9_40
+label define S_9_41 .a"." 0 "No" 1 "Yes, rarely" 2 "Yes, frequently" 3 "Yes, very frequently" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_41 S_9_41
+label define S_9_42 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_42 S_9_42
+label define S_9_44 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_44 S_9_44
+label define S_9_46 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_46 S_9_46
+label define S_9_47 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_47 S_9_47
+label define S_9_49 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_49 S_9_49
+label define S_9_50 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_50 S_9_50
+label define S_9_51 .a"." 1 "< 1 year" 2 "1 year to less than" 3 "3 to less than 5 years" 4 "5 years or more" 5 "Never" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_51 S_9_51
+label define S_9_52 .a"." 1 "< 1 year" 2 "1 year to less than" 3 "3 to less than 5 years" 4 "5 years or more" 5 "Never" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_52 S_9_52
+label define S_9_53 .a"." 1 "< 1 year" 2 "1 year to less than" 3 "3 to less than 5 years" 4 "5 years or more" 5 "Never" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_53 S_9_53
+label define S_9_54 .a"." 1 "< 1 year" 2 "1 year to less than" 3 "3 to less than 5 years" 4 "5 years or more" 5 "Never" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_54 S_9_54
+label define S_9_55 .a"." 1 "< 1 year" 2 "1 year to less than" 3 "3 to less than 5 years" 4 "5 years or more" 5 "Never" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_55 S_9_55
+label define S_9_56 .a"." 1 "< 1 year" 2 "1 year to less than" 3 "3 to less than 5 years" 4 "5 years or more" 5 "Never" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_56 S_9_56
+label define S_9_58 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_58 S_9_58
+label define S_9_61A .a"." 1 "Less than 45 years old?" 2 "More or less 50 years old?" 3 "Over 55 years old?" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_61a S_9_61A
+label define S_9_62 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_62 S_9_62
+label define S_9_63 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_63 S_9_63
+label define S_9_64_1 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_64_1 S_9_64_1
+label define S_9_64_2 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_64_2 S_9_64_2
+label define S_9_64_3 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_64_3 S_9_64_3
+label define S_9_64_4 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_64_4 S_9_64_4
+label define S_9_66 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_9_66 S_9_66
+label define S_10_1A .a"." 5 "No, not true" 1 "Yes, true" 8 "Does not respond"9 "Does not know", replace
+capture label values s_10_1a S_10_1A
+label define S_10_1B .a"." 5 "No, not true" 1 "Yes, true" 8 "Does not respond"9 "Does not know", replace
+capture label values s_10_1b S_10_1B
+label define S_10_1C .a"." 5 "No, not true" 1 "Yes, true" 8 "Does not respond"9 "Does not know", replace
+capture label values s_10_1c S_10_1C
+label define S_10_1D .a"." 5 "No, not true" 1 "Yes, true" 8 "Does not respond"9 "Does not know", replace
+capture label values s_10_1d S_10_1D
+label define S_10_1E .a"." 5 "No, not true" 1 "Yes, true" 8 "Does not respond"9 "Does not know", replace
+capture label values s_10_1e S_10_1E
+label define S_10_1F .a"." 5 "No, not true" 1 "Yes, true" 8 "Does not respond"9 "Does not know", replace
+capture label values s_10_1f S_10_1F
+label define S_10_1G .a"." 5 "No, not true" 1 "Yes, true" 8 "Does not respond"9 "Does not know", replace
+capture label values s_10_1g S_10_1G
+label define S_10_1H .a"." 5 "No, not true" 1 "Yes, true" 8 "Does not respond"9 "Does not know", replace
+capture label values s_10_1h S_10_1H
+label define S_10_2 .a"." 1 "Most nights" 2 "Some nights" 3 "Almost never or never" 8 "Does not respond"9 "Does not know", replace
+capture label values s_10_2 S_10_2
+label define S_10_3 .a"." 1 "Most nights" 2 "Some nights" 3 "Almost never or never" 8 "Does not respond"9 "Does not know", replace
+capture label values s_10_3 S_10_3
+label define S_10_4 .a"." 1 "Most nights" 2 "Some nights" 3 "Almost never or never" 8 "Does not respond"9 "Does not know", replace
+capture label values s_10_4 S_10_4
+label define S_10_5 .a"." 1 "Most nights" 2 "Some nights" 3 "Almost never or never" 8 "Does not respond"9 "Does not know", replace
+capture label values s_10_5 S_10_5
+label define S_10_6_1 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_10_6_1 S_10_6_1
+label define S_10_6_1A .a"." 1 "More than a year" 2 "Less than a year" 8 "Does not respond"9 "Does not know", replace
+capture label values s_10_6_1a S_10_6_1A
+label define S_10_6_2 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_10_6_2 S_10_6_2
+label define S_10_6_2A .a"." 1 "More than a year" 2 "Less than a year" 8 "Does not respond"9 "Does not know", replace
+capture label values s_10_6_2a S_10_6_2A
+label define S_10_6_3 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know"7 "Not applicable (does not work)", replace
+capture label values s_10_6_3 S_10_6_3
+label define S_10_6_3A .a"." 1 "More than a year" 2 "Less than a year" 8 "Does not respond"9 "Does not know", replace
+capture label values s_10_6_3a S_10_6_3A
+label define S_10_6_4 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_10_6_4 S_10_6_4
+label define S_10_6_4A .a"." 1 "More than a year" 2 "Less than a year" 8 "Does not respond"9 "Does not know", replace
+capture label values s_10_6_4a S_10_6_4A
+label define S_10_7_1 .a"." 1 "Strongly disagree" 2 "Disagree" 3 "Agree" 4 "Strongly agree" 7 "Not applicable" 8 "Does not respond"9 "Does not know", replace
+capture label values s_10_7_1 S_10_7_1
+label define S_10_7_2 .a"." 1 "Strongly disagree" 2 "Disagree" 3 "Agree" 4 "Strongly agree" 7 "Not applicable" 8 "Does not respond"9 "Does not know", replace
+capture label values s_10_7_2 S_10_7_2
+label define S_11_1 .a"." 1 "Never" 2 "2-3 times in the last month" 3 "About once a week" 4 "2-3 days per week" 5 "Every day" 8 "Does not respond"9 "Does not know", replace
+capture label values s_11_1 S_11_1
+label define S_11_2 .a"." 1 "Mild pain" 2 "Moderate pain" 3 "Severe pain" 4 "Very severe pain" 5 "Excruciating pain" 8 "Does not respond"9 "Does not know", replace
+capture label values s_11_2 S_11_2
+label define S_11_3 .a"." 1 "Not at all" 2 "Not much" 3 "Moderately" 4 "A lot" 8 "Does not respond"9 "Does not know", replace
+capture label values s_11_3 S_11_3
+label define S_12_1A .a"." 2 "No" 1 "Yes" 6 "I cannot do this" 7 "I don’t do this" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_1a S_12_1A
+label define S_12_1B .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_1b S_12_1B
+label define S_12_1C .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_1c S_12_1C
+label define S_12_2A .a"." 2 "No" 1 "Yes" 6 "I cannot do this" 7 "I don’t do this" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_2a S_12_2A
+label define S_12_2C .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_2c S_12_2C
+label define S_12_3A .a"." 2 "No" 1 "Yes" 6 "I cannot do this" 7 "I don’t do this" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_3a S_12_3A
+label define S_12_3C .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_3c S_12_3C
+label define S_12_4A .a"." 2 "No" 1 "Yes" 6 "I cannot do this" 7 "I don’t do this" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_4a S_12_4A
+label define S_12_4B .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_4b S_12_4B
+label define S_12_4C .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_4c S_12_4C
+label define S_12_5A .a"." 2 "No" 1 "Yes" 6 "I cannot do this" 7 "I don’t do this" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_5a S_12_5A
+label define S_12_5C .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_5c S_12_5C
+label define S_12_6A .a"." 2 "No" 1 "Yes" 6 "I cannot do this" 7 "I don’t do this" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_6a S_12_6A
+label define S_12_6C .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_6c S_12_6C
+label define S_12_7 .a"." 2 "No" 1 "Yes" 6 "I cannot do this" 7 "I don’t do this" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_7 S_12_7
+label define S_12_8 .a"." 2 "No" 1 "Yes" 6 "I cannot do this" 7 "I don’t do this" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_8 S_12_8
+label define S_12_9 .a"." 2 "No" 1 "Yes" 6 "I cannot do this" 7 "I don’t do this" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_9 S_12_9
+label define S_12_10 .a"." 2 "No" 1 "Yes" 6 "I cannot do this" 7 "I don’t do this" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_10 S_12_10
+label define S_12_11 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_11 S_12_11
+label define S_12_13 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_13 S_12_13
+label define S_12_14 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_14 S_12_14
+label define S_12_15 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_12_15 S_12_15
+label define S_12_16 .a"." 1 "Totally lifted them" 2 "Partially raised them" 3 "Cannot lift them" 4 "Did not agree to take the test", replace
+capture label values s_12_16 S_12_16
+label define S_13_1_P_C .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_13_1_p_c S_13_1_P_C
+label define S_13_1_D .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_13_1_d S_13_1_D
+label define S_13_3_P_C .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_13_3_p_c S_13_3_P_C
+label define S_13_3_D .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_13_3_d S_13_3_D
+label define S_13_5 .a"." 1 "Daily" 2 "Not every day" 8 "Does not respond"9 "Does not know", replace
+capture label values s_13_5 S_13_5
+label define S_13_8 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_13_8 S_13_8
+label define S_13_9 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_13_9 S_13_9
+label define S_13_12 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_13_12 S_13_12
+label define S_13_13 .a"." 0 "Never" 1 "Some days" 2 "Most days" 3 "Once a day" 4 "More than once a day" 8 "Does not respond"9 "Does not know", replace
+capture label values s_13_13 S_13_13
+label define S_13_14 .a"." 0 "Never" 1 "Some days" 2 "Most days" 3 "Once a day" 4 "More than once a day" 8 "Does not respond"9 "Does not know", replace
+capture label values s_13_14 S_13_14
+label define S_13_15 .a"." 0 "Never" 1 "Some days" 2 "Most days" 3 "Once a day" 4 "More than once a day" 8 "Does not respond"9 "Does not know", replace
+capture label values s_13_15 S_13_15
+label define S_13_16 .a"." 0 "Never" 1 "Some days" 2 "Most days" 3 "Once a day" 4 "More than once a day" 8 "Does not respond"9 "Does not know", replace
+capture label values s_13_16 S_13_16
+label define S_13_17 .a"." 0 "Never" 1 "Some days" 2 "Most days" 3 "Once a day" 4 "More than once a day" 8 "Does not respond"9 "Does not know", replace
+capture label values s_13_17 S_13_17
+label define S_13_18 .a"." 1 "Physically very active" 2 "Physically quite active" 3 "Physically not very active" 4 "Not physically active" 8 "Does not respond"9 "Does not know", replace
+capture label values s_13_18 S_13_18
+label define S_13_19 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_13_19 S_13_19
+label define S_13_22 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_13_22 S_13_22
+label define S_13_30_D_C .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_13_30_d_c S_13_30_D_C
+label define S_13_30_P .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_13_30_p S_13_30_P
+label define S_14_1_P_D .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_14_1_p_d S_14_1_P_D
+label define S_14_3 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_14_3 S_14_3
+label define S_14_17 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_14_17 S_14_17
+label define S_14_18_1 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_14_18_1 S_14_18_1
+label define S_14_18_2 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_14_18_2 S_14_18_2
+label define S_14_18_3 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_14_18_3 S_14_18_3
+label define S_14_18_4 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_14_18_4 S_14_18_4
+label define S_14_18_5 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_14_18_5 S_14_18_5
+label define S_14_18_6 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_14_18_6 S_14_18_6
+label define S_14_23 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_14_23 S_14_23
+label define S_14_30B1_P .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_14_30b1_p S_14_30B1_P
+label define S_14_30B1_D .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_14_30b1_d S_14_30B1_D
+label define S_14_30B2_P .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_14_30b2_p S_14_30B2_P
+label define S_14_30B2_D .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_14_30b2_d S_14_30B2_D
+label define S_14_30B3_P .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_14_30b3_p S_14_30B3_P
+label define S_14_30B3_D .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_14_30b3_d S_14_30B3_D
+label define S_14_31 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_14_31 S_14_31
+label define S_14_32 .a"." 1 "1" 2 "2" 3 "3" 4 "4 or more" 8 "Does not respond"9 "Does not know", replace
+capture label values s_14_32 S_14_32
+label define S_14_33 .a"." 2 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values s_14_33 S_14_33
+label define S_15_1 .a"." 0 "Only the participant" 1 "Participant and proxy" 2 "Only the proxy", replace
+capture label values s_15_1 S_15_1
+label define S_15_2 .a"." 1 "Spouse" 2 "Son/daughter" 3 "Son-in-law/daughter-in-law" 4 "Sibling" 5 "Other relative" 6 "Friend" 7 "Neighbor" 8 "Other", replace
+capture label values s_15_2 S_15_2
+label define S_15_3 .a"." 0 "Reasonable (the interviewee responded appropriately to more or less all the questions)" 1 "Some doubts" 2 "Moderate doubts" 3 "Serious doubts (the interviewer considered that the interviewee was unable or did not cooperate in responding appropriately to most questions)" 4 "No value (the questions were answered randomly)", replace
+capture label values s_15_3 S_15_3
+label define S_7_7a 0 "false" 1 "true", replace
+capture label values s_7_7a S_7_7a
+label define S_7_7b 0 "false" 1 "true", replace
+capture label values s_7_7b S_7_7b
+label define S_7_7c 0 "false" 1 "true", replace
+capture label values s_7_7c S_7_7c
+label define S_7_7d 0 "false" 1 "true", replace
+capture label values s_7_7d S_7_7d
+label define S_7_7e 0 "false" 1 "true", replace
+capture label values s_7_7e S_7_7e
+label define S_7_7f 0 "false" 1 "true", replace
+capture label values s_7_7f S_7_7f
+label define S_7_7g 0 "false" 1 "true", replace
+capture label values s_7_7g S_7_7g
+label define S_7_7h 0 "false" 1 "true", replace
+capture label values s_7_7h S_7_7h
+label define S_7_7i 0 "false" 1 "true", replace
+capture label values s_7_7i S_7_7i
+label define S_7_7j 0 "false" 1 "true", replace
+capture label values s_7_7j S_7_7j
+label define S_7_7k 0 "false" 1 "true", replace
+capture label values s_7_7k S_7_7k
+label define S_8_5b2 0 "false" 1 "true", replace
+capture label values s_8_5b2 S_8_5b2
+label define S_8_5b1 0 "false" 1 "true", replace
+capture label values s_8_5b1 S_8_5b1
+label define S_8_5b3 0 "false" 1 "true", replace
+capture label values s_8_5b3 S_8_5b3
+label define S_8_5b4 0 "false" 1 "true", replace
+capture label values s_8_5b4 S_8_5b4
+label define S_8_5b5 0 "false" 1 "true", replace
+capture label values s_8_5b5 S_8_5b5
+label define S_8_5b6 0 "false" 1 "true", replace
+capture label values s_8_5b6 S_8_5b6
+label define S_8_5b7 0 "false" 1 "true", replace
+capture label values s_8_5b7 S_8_5b7
+label define S_8_5b8 0 "false" 1 "true", replace
+capture label values s_8_5b8 S_8_5b8
+label define S_8_5b9 0 "false" 1 "true", replace
+capture label values s_8_5b9 S_8_5b9
+label define S_8_5b10 0 "false" 1 "true", replace
+capture label values s_8_5b10 S_8_5b10
+label define S_9_38a 0 "false" 1 "true", replace
+capture label values s_9_38a S_9_38a
+label define S_9_38g 0 "false" 1 "true", replace
+capture label values s_9_38g S_9_38g
+label define S_9_38b 0 "false" 1 "true", replace
+capture label values s_9_38b S_9_38b
+label define S_9_38f 0 "false" 1 "true", replace
+capture label values s_9_38f S_9_38f
+label define S_9_38c 0 "false" 1 "true", replace
+capture label values s_9_38c S_9_38c
+label define S_9_38d 0 "false" 1 "true", replace
+capture label values s_9_38d S_9_38d
+label define S_9_38j 0 "false" 1 "true", replace
+capture label values s_9_38j S_9_38j
+label define S_9_38e 0 "false" 1 "true", replace
+capture label values s_9_38e S_9_38e
+label define S_9_38k 0 "false" 1 "true", replace
+capture label values s_9_38k S_9_38k
+label define S_9_38h 0 "false" 1 "true", replace
+capture label values s_9_38h S_9_38h
+label define S_9_38l 0 "false" 1 "true", replace
+capture label values s_9_38l S_9_38l
+label define S_9_38i 0 "false" 1 "true", replace
+capture label values s_9_38i S_9_38i
+label define S_14_2a_P 0 "false" 1 "true", replace
+capture label values s_14_2a_p S_14_2a_P
+label define S_14_1b_P 0 "false" 1 "true", replace
+capture label values s_14_1b_p S_14_1b_P
+label define S_14_2c_P 0 "false" 1 "true", replace
+capture label values s_14_2c_p S_14_2c_P
+label define S_14_2d_P 0 "false" 1 "true", replace
+capture label values s_14_2d_p S_14_2d_P
+label define S_14_2e_P 0 "false" 1 "true", replace
+capture label values s_14_2e_p S_14_2e_P
+label define S_14_2f_P 0 "false" 1 "true", replace
+capture label values s_14_2f_p S_14_2f_P
+label define S_14_2g_P 0 "false" 1 "true", replace
+capture label values s_14_2g_p S_14_2g_P
+label define S_14_2h_P 0 "false" 1 "true", replace
+capture label values s_14_2h_p S_14_2h_P
+label define S_14_2i_P 0 "false" 1 "true", replace
+capture label values s_14_2i_p S_14_2i_P
+label define S_14_2j_P 0 "false" 1 "true", replace
+capture label values s_14_2j_p S_14_2j_P
+label define S_14_2a_D 0 "false" 1 "true", replace
+capture label values s_14_2a_d S_14_2a_D
+label define S_14_2b_D 0 "false" 1 "true", replace
+capture label values s_14_2b_d S_14_2b_D
+label define S_14_2c_D 0 "false" 1 "true", replace
+capture label values s_14_2c_d S_14_2c_D
+label define S_14_2d_D 0 "false" 1 "true", replace
+capture label values s_14_2d_d S_14_2d_D
+label define S_14_2e_D 0 "false" 1 "true", replace
+capture label values s_14_2e_d S_14_2e_D
+label define S_14_2f_D 0 "false" 1 "true", replace
+capture label values s_14_2f_d S_14_2f_D
+label define S_14_2g_D 0 "false" 1 "true", replace
+capture label values s_14_2g_d S_14_2g_D
+label define S_0 .a "." 0 "Man" 1 "Woman", replace
+capture label values s_0 S_0
+label define S_2_9a_ .a"." 0 "Has not completed any education" 1 "Pre-primary (kindergarten, nursery, maternal, pre-school)" 2 "Primary" 3 "Intermediate" 4 "Secondary" 5 "Tertiary education (e.g. associate degree or technical degree)" 6 "University education or higher" 8 "Does not respond" 9 "Does not know", replace
+capture label values s_2_9a_ S_2_9a_
+capture label values s_2_9a S_2_9a_
+label define S_3_11_ .a"." 1 "Professional, executive" 2 "Office worker" 3 "Salesperson, retailer" 4 "Independent Farmer" 5 "Farm worker" 6 "Domestic worker" 7 "Other services" 8 "Skilled Worker" 9 "Unskilled worker" 10 "Informal work" 11 "Other" 12 "Did not work" 13 "Did not have a father or guardian" 88 "Does not respond" 99 "Does not know", replace
+capture label values s_3_11_ S_3_11_
+capture label values s_3_11 S_3_11_
+label define S_6_7_ .a"." 1 "you were sick?" 2 "you missed your family?" 3 "it was difficult to stay abroad?" 4 "it was expensive to stay abroad?" 5 "you did not earn enough there?" 6 "you had problems related to migration?" 7 "you had family problems here?" 8 "OTHER" 88 "Does not respond" 99 "Does not know", replace
+capture label values s_6_7_ S_6_7_
+capture label values s_6_7 S_6_7_
+label define checkbox_label 0 "unchecked" 1 "checked", replace
+capture label values checkbox_label checkbox_label
+capture label values s_7_7a checkbox_label
+capture label values s_7_7b checkbox_label
+capture label values s_7_7c checkbox_label
+capture label values s_7_7d checkbox_label
+capture label values s_7_7e checkbox_label
+capture label values s_7_7f checkbox_label
+capture label values s_7_7g checkbox_label
+capture label values s_7_7h checkbox_label
+capture label values s_7_7i checkbox_label
+capture label values s_7_7j checkbox_label
+capture label values s_7_7k checkbox_label
+capture label values s_8_5b2 checkbox_label
+capture label values s_8_5b1 checkbox_label
+capture label values s_8_5b4 checkbox_label
+capture label values s_8_5b3 checkbox_label
+capture label values s_8_5b5 checkbox_label
+capture label values s_8_5b6 checkbox_label
+capture label values s_8_5b7 checkbox_label
+capture label values s_8_5b8 checkbox_label
+capture label values s_8_5b9 checkbox_label
+capture label values s_9_38a checkbox_label
+capture label values s_9_38g checkbox_label
+capture label values s_9_38b checkbox_label
+capture label values s_9_38f checkbox_label
+capture label values s_9_38c checkbox_label
+capture label values s_9_38d checkbox_label
+capture label values s_9_38j checkbox_label
+capture label values s_9_38e checkbox_label
+capture label values s_9_38k checkbox_label
+capture label values s_9_38h checkbox_label
+capture label values s_9_38l checkbox_label
+capture label values s_9_38i checkbox_label
+capture label values s_14_2a_p checkbox_label
+capture label values s_14_2b_p checkbox_label
+capture label values s_14_2c_p checkbox_label
+capture label values s_14_2d_p checkbox_label
+capture label values s_14_2e_p checkbox_label
+capture label values s_14_2f_p checkbox_label
+capture label values s_14_2g_p checkbox_label
+capture label values s_14_2h_p checkbox_label
+capture label values s_14_2i_p checkbox_label
+capture label values s_14_2j_p checkbox_label
+capture label values s_14_2a_d checkbox_label
+capture label values s_14_2b_d checkbox_label
+capture label values s_14_2c_d checkbox_label
+capture label values s_14_2d_d checkbox_label
+capture label values s_14_2e_d checkbox_label
+capture label values s_14_2f_d checkbox_label
+capture label values s_14_2g_d checkbox_label
+
+****************************************
 * VARIABLE LABELS (label variable)
 ****************************************
 

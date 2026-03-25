@@ -59,6 +59,40 @@ else if `country' == 2 {
 }
 replace cs_country = "2 - Cuba" if cs_country == "" & `country' == 2
 
+* 3/19/26 cleaning — orphan cog scoring fixes (match by interviewer/device/date)
+if `country' == 1 {
+    *cs filed under cluster 52 house 012 — matches 15200001 (int 5, 2025-02-08), house 12→0
+    replace cs_houseid = 0 if globalrecordid == "2394ec35-8e10-409d-a744-a986c2a17ab8"
+    *cs filed under cluster 276 house 176 (9-digit PID 127617601) — matches 10217601 (int 2, 2024-03-05)
+    replace cs_clustid = 2 if globalrecordid == "c8446ae0-a3dd-475d-b708-d1d38245335a"
+    replace cs_houseid = 176 if globalrecordid == "c8446ae0-a3dd-475d-b708-d1d38245335a"
+    *cs filed under house 056 — matches 13700301 (int 5, 2024-12-05), house 56→3
+    replace cs_houseid = 3 if globalrecordid == "ce2fe51d-32b3-4c8d-819f-944362a289c8"
+    *cs filed under house 006 — matches 13901101 (int 5, 2024-11-02), house 6→11 part 1
+    replace cs_houseid = 11 if globalrecordid == "ec1f3e39-735c-4649-b2e0-c995e1c33e0d"
+    replace cs_particid = 1 if globalrecordid == "ec1f3e39-735c-4649-b2e0-c995e1c33e0d"
+    *cs filed under house 002 part 02 — matches 14000102 (int 5, 2024-11-06), house 2→1 part 2
+    replace cs_houseid = 1 if globalrecordid == "df4ba60a-30cb-483c-b63a-19821c166e67"
+    *cs filed under house 085 — matches 14108302 (int 5, 2025-03-19), house 85→83
+    replace cs_houseid = 83 if globalrecordid == "c2628f7d-a40b-4305-bf43-f434806d61e9"
+    *cs filed under cluster 48 — matches 14703801 (int 5, 2025-05-29), cluster 48→47
+    replace cs_clustid = 47 if globalrecordid == "77b23675-ad0c-41b8-81ec-c191547d117f"
+    *cs filed under house 078 — matches 15007901 (int 5, Oct 6 2023), house 78→79
+    replace cs_houseid = 79 if globalrecordid == "01908d5b-227e-4595-b97a-aa88b38ca8ab"
+    *cs filed under house 046 — matches 11100001 (int 2, 2025-04-26), house 46→0
+    replace cs_houseid = 0 if globalrecordid == "920d855a-4869-41fb-99d8-1a4fe992da91"
+    *cs filed under house 037 — matches 17001101 (int 1, 2023-10-25), house 37→11
+    replace cs_houseid = 11 if globalrecordid == "f4d5a77e-7ef2-4a8d-977f-64ac56347b4c"
+
+    *--- CS-only orphans: no matching cog or other surveys, no fix possible ---
+    *cluster 9 house 217 part 01, 2023-07-26 — no match
+    drop if globalrecordid == "0b015af0-644c-48cd-a0b2-d51c12a0e648"
+    *cluster 26 house 005 part 01, 2024-05-03 — no match
+    drop if globalrecordid == "f8895a62-ad60-4751-901a-e740e856e351"
+    *cluster 40 house 008 part 01, 2024-11-08 — cog+phys also orphaned, no socio/infor
+    drop if globalrecordid == "99a766bd-2350-4a10-867f-bf158d7a4fe5"
+}
+
 capture gen cs_country_num = 0
 replace cs_country_num = 1 if cs_country == "1 - República Dominicana"
 replace cs_country_num = 2 if cs_country == "2 - Cuba"

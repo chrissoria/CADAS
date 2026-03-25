@@ -3,7 +3,7 @@ display "CADAS_country_define.do is being executed"
 * Only set country if not already defined by master.do
 * This allows standalone script execution while respecting master.do settings
 if "$country" == "" {
-    global country = 2
+    global country = 1
     *PR = 0
     *DR = 1
     *CUBA = 2

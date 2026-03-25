@@ -3,6 +3,607 @@
 * Called from Household_Read.do when language == "E"
 
 ****************************************
+****************************************
+* VALUE LABELS (label define + label values)
+****************************************
+
+label define country_label 0 "Puerto Rico" 1 "República Dominicana" 2 "Cuba", replace
+capture label values h_country country_label
+label define H_3_1 .a"." 1 "Own" 2 "Rent" 3 "Other", replace
+capture label values h_3_1 H_3_1
+label define H_3_3A_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_3a_p H_3_3A_P
+label define H_3_3A_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_3a_d H_3_3A_D
+label define H_3_3A_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_3a_c H_3_3A_C
+label define H_3_3B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_3b_p H_3_3B_P
+label define H_3_3B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_3b_d H_3_3B_D
+label define H_3_3B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_3b_c H_3_3B_C
+label define H_3_3C_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_3c_p H_3_3C_P
+label define H_3_3C_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_3c_d H_3_3C_D
+label define H_3_3C_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_3c_c H_3_3C_C
+label define H_3_5A_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_5a_p H_3_5A_P
+label define H_3_5A_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_5a_d H_3_5A_D
+label define H_3_5A_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_5a_c H_3_5A_C
+label define H_3_5B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_5b_p H_3_5B_P
+label define H_3_5B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_5b_d H_3_5B_D
+label define H_3_5B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_5b_c H_3_5B_C
+label define H_3_5C_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_5c_p H_3_5C_P
+label define H_3_5C_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_5c_d H_3_5C_D
+label define H_3_5C_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_5c_c H_3_5C_C
+label define H_3_7A_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_7a_p H_3_7A_P
+label define H_3_7A_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_7a_d H_3_7A_D
+label define H_3_7A_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_7a_c H_3_7A_C
+label define H_3_7B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_7b_p H_3_7B_P
+label define H_3_7B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_7b_d H_3_7B_D
+label define H_3_7B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_7b_c H_3_7B_C
+label define H_3_7C_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_7c_p H_3_7C_P
+label define H_3_7C_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_7c_d H_3_7C_D
+label define H_3_7C_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_7c_c H_3_7C_C
+label define H_3_8 .a"." 1 "Concrete" 2 "Tile" 3 "Wood" 4 "Tin" 5 "Other" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_8 H_3_8
+label define N10ENESTAVIVIENDATIENEN .a"." 1 "Piped water inside the home?" 2 "Piped water outside the home but within the property?" 3 "Other piped water?" 4 "Non-piped water (well, river, other)?" 8 "Does not respond"9 "Does not know", replace
+capture label values n10enestaviviendatienen N10ENESTAVIVIENDATIENEN
+label define H_3_11 .a"." 1 "Have a water connection?" 2 "Filled with a water bucket?" 3 "Not filled with water? (latrine)" 4 "Does not have" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_11 H_3_11
+label define H_3_12 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_12 H_3_12
+label define S_3_13 .a"." 1 "Gas" 2 "Wood or coal" 3 "Electricity" 4 "Other" 8 "Does not respond"9 "Does not know", replace
+capture label values s_3_13 S_3_13
+label define H_3_14_1 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_14_1 H_3_14_1
+label define H_3_14_2 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_14_2 H_3_14_2
+label define H_3_14_3 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_14_3 H_3_14_3
+label define H_3_14_4 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_14_4 H_3_14_4
+label define H_3_14_5 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_14_5 H_3_14_5
+label define H_3_14_6 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_14_6 H_3_14_6
+label define H_3_14_7 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_14_7 H_3_14_7
+label define H_3_14_8 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_14_8 H_3_14_8
+label define H_3_14_9 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_14_9 H_3_14_9
+label define H_3_14_10 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_14_10 H_3_14_10
+label define H_3_14_11 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_14_11 H_3_14_11
+label define H_3_14_12 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_14_12 H_3_14_12
+label define H_3_17A_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_17a_p H_3_17A_P
+label define H_3_17A_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_17a_d H_3_17A_D
+label define H_3_17A_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_17a_c H_3_17A_C
+label define H_3_17B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_17b_p H_3_17B_P
+label define H_3_17B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_17b_d H_3_17B_D
+label define H_3_17B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_17b_c H_3_17B_C
+label define H_3_17C_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_17c_p H_3_17C_P
+label define H_3_17C_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_17c_d H_3_17C_D
+label define H_3_17C_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_17c_c H_3_17C_C
+label define H_3_18 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_18 H_3_18
+label define H_3_20A_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_20a_p H_3_20A_P
+label define H_3_20A_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_20a_d H_3_20A_D
+label define H_3_20A_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_20a_c H_3_20A_C
+label define H_3_20B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_20b_p H_3_20B_P
+label define H_3_20B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_20b_d H_3_20B_D
+label define H_3_20B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_20b_c H_3_20B_C
+label define H_3_20C_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_20c_p H_3_20C_P
+label define H_3_20C_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_20c_d H_3_20C_D
+label define H_3_20C_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_20c_c H_3_20C_C
+label define H_3_21 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_21 H_3_21
+label define H_3_23A_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_23a_p H_3_23A_P
+label define H_3_23A_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_23a_d H_3_23A_D
+label define H_3_23A_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_23a_c H_3_23A_C
+label define H_3_23B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_23b_p H_3_23B_P
+label define H_3_23B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_23b_d H_3_23B_D
+label define H_3_23B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_23b_c H_3_23B_C
+label define H_3_23C_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_23c_p H_3_23C_P
+label define H_3_23C_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_23c_d H_3_23C_D
+label define H_3_23C_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_23c_c H_3_23C_C
+label define H_3_24 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_24 H_3_24
+label define H_3_26A_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_26a_p H_3_26A_P
+label define H_3_26A_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_26a_d H_3_26A_D
+label define H_3_26A_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_26a_c H_3_26A_C
+label define H_3_26B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_26b_p H_3_26B_P
+label define H_3_26B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_26b_d H_3_26B_D
+label define H_3_26B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_26b_c H_3_26B_C
+label define H_3_26C_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_26c_p H_3_26C_P
+label define H_3_26C_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_26c_d H_3_26C_D
+label define H_3_26C_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_26c_c H_3_26C_C
+label define H_3_28A_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_28a_p H_3_28A_P
+label define H_3_28A_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_28a_d H_3_28A_D
+label define H_3_28A_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_28a_c H_3_28A_C
+label define H_3_28B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_28b_p H_3_28B_P
+label define H_3_28B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_28b_d H_3_28B_D
+label define H_3_28B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_28b_c H_3_28B_C
+label define H_3_28C_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_28c_p H_3_28C_P
+label define H_3_28C_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_28c_d H_3_28C_D
+label define H_3_28C_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_28c_c H_3_28C_C
+label define H_3_29 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_29 H_3_29
+label define H_3_31A_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_31a_p H_3_31A_P
+label define H_3_31A_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_31a_d H_3_31A_D
+label define H_3_31A_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_31a_c H_3_31A_C
+label define H_3_31B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_31b_p H_3_31B_P
+label define H_3_31B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_31b_d H_3_31B_D
+label define H_3_31B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_31b_c H_3_31B_C
+label define H_3_31C_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_31c_p H_3_31C_P
+label define H_3_31C_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_31c_d H_3_31C_D
+label define H_3_31C_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_31c_c H_3_31C_C
+label define H_3_33A_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_33a_p H_3_33A_P
+label define H_3_33A_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_33a_d H_3_33A_D
+label define H_3_33A_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_33a_c H_3_33A_C
+label define H_3_33B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_33b_p H_3_33B_P
+label define H_3_33B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_33b_d H_3_33B_D
+label define H_3_33B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_33b_c H_3_33B_C
+label define H_3_33C_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_33c_p H_3_33C_P
+label define H_3_33C_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_33c_d H_3_33C_D
+label define H_3_33C_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_33c_c H_3_33C_C
+label define H_3_34 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_3_34 H_3_34
+label define H_4_1 .a"." 1 "Yes" 0 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_1 H_4_1
+label define H_4_1B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_1b_p H_4_1B_P
+label define H_4_1B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_1b_d H_4_1B_D
+label define H_4_1B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_1b_c H_4_1B_C
+label define H_4_1B2_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_1b2_p H_4_1B2_P
+label define H_4_1B2_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_1b2_d H_4_1B2_D
+label define H_4_1B2_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_1b2_c H_4_1B2_C
+label define H_4_1B3_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_1b3_p H_4_1B3_P
+label define H_4_1B3_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_1b3_d H_4_1B3_D
+label define H_4_1B3_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_1b3_c H_4_1B3_C
+label define H_4_2 .a"." 1 "Yes" 0 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_2 H_4_2
+label define H_4_2B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_2b_p H_4_2B_P
+label define H_4_2B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_2b_d H_4_2B_D
+label define H_4_2B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_2b_c H_4_2B_C
+label define H_4_2B2_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_2b2_p H_4_2B2_P
+label define H_4_2B2_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_2b2_d H_4_2B2_D
+label define H_4_2B2_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_2b2_c H_4_2B2_C
+label define H_4_2B3_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_2b3_p H_4_2B3_P
+label define H_4_2B3_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_2b3_d H_4_2B3_D
+label define H_4_2B3_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_2b3_c H_4_2B3_C
+label define H_4_3 .a"." 1 "Yes" 0 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_3 H_4_3
+label define H_4_3B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_3b_p H_4_3B_P
+label define H_4_3B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_3b_d H_4_3B_D
+label define H_4_3B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_3b_c H_4_3B_C
+label define H_4_3B2_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_3b2_p H_4_3B2_P
+label define H_4_3B2_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_3b2_d H_4_3B2_D
+label define H_4_3B2_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_3b2_c H_4_3B2_C
+label define H_4_3B3_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_3b3_p H_4_3B3_P
+label define H_4_3B3_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_3b3_d H_4_3B3_D
+label define H_4_3B3_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_3b3_c H_4_3B3_C
+label define H_4_4 .a"." 1 "Yes" 0 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_4 H_4_4
+label define H_4_4B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_4b_p H_4_4B_P
+label define H_4_4B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_4b_d H_4_4B_D
+label define H_4_4B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_4b_c H_4_4B_C
+label define H_4_4B2_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_4b2_p H_4_4B2_P
+label define H_4_4B2_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_4b2_d H_4_4B2_D
+label define H_4_4B2_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_4b2_c H_4_4B2_C
+label define H_4_4B3_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_4b3_p H_4_4B3_P
+label define H_4_4B3_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_4b3_d H_4_4B3_D
+label define H_4_4B3_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_4b3_c H_4_4B3_C
+label define H_4_5 .a"." 1 "Yes" 0 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_5 H_4_5
+label define H_4_5B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_5b_p H_4_5B_P
+label define H_4_5B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_5b_d H_4_5B_D
+label define H_4_5B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_5b_c H_4_5B_C
+label define H_4_5B2_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_5b2_p H_4_5B2_P
+label define H_4_5B2_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_5b2_d H_4_5B2_D
+label define H_4_5B2_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_5b2_c H_4_5B2_C
+label define H_4_5B3_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_5b3_p H_4_5B3_P
+label define H_4_5B3_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_5b3_d H_4_5B3_D
+label define H_4_5B3_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_5b3_c H_4_5B3_C
+label define H_4_6 .a"." 1 "Yes" 0 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_6 H_4_6
+label define H_4_6B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_6b_p H_4_6B_P
+label define H_4_6B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_6b_d H_4_6B_D
+label define H_4_6B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_6b_c H_4_6B_C
+label define H_4_6B2_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_6b2_p H_4_6B2_P
+label define H_4_6B2_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_6b2_d H_4_6B2_D
+label define H_4_6B2_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_6b2_c H_4_6B2_C
+label define H_4_6B3_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_6b3_p H_4_6B3_P
+label define H_4_6B3_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_6b3_d H_4_6B3_D
+label define H_4_6B3_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_6b3_c H_4_6B3_C
+label define H_4_7 .a"." 1 "Yes" 0 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_7 H_4_7
+label define H_4_7B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_7b_p H_4_7B_P
+label define H_4_7B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_7b_d H_4_7B_D
+label define H_4_7B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_7b_c H_4_7B_C
+label define H_4_7B2_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_7b2_p H_4_7B2_P
+label define H_4_7B2_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_7b2_d H_4_7B2_D
+label define H_4_7B2_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_7b2_c H_4_7B2_C
+label define H_4_8 .a"." 1 "Yes" 0 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_8 H_4_8
+label define H_4_8B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_8b_p H_4_8B_P
+label define H_4_8B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_8b_d H_4_8B_D
+label define H_4_8B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_8b_c H_4_8B_C
+label define H_4_8B2_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_8b2_p H_4_8B2_P
+label define H_4_8B2_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_8b2_d H_4_8B2_D
+label define H_4_8B2_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_4_8b2_c H_4_8B2_C
+label define H_5 .a"." 2 "Yes" 1 "No", replace
+capture label values h_5 H_5
+label define H_5_1 .a"." 1 "Yes" 0 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_1 H_5_1
+label define H_5_1B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_1b_p H_5_1B_P
+label define H_5_1B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_1b_d H_5_1B_D
+label define H_5_1B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_1b_c H_5_1B_C
+label define H_5_1B2_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_1b2_p H_5_1B2_P
+label define H_5_1B2_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_1b2_d H_5_1B2_D
+label define H_5_1B2_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_1b2_c H_5_1B2_C
+label define H_5_1B3_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_1b3_p H_5_1B3_P
+label define H_5_1B3_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_1b3_d H_5_1B3_D
+label define H_5_1B3_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_1b3_c H_5_1B3_C
+label define H_5_2 .a"." 1 "Yes" 0 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_2 H_5_2
+label define H_5_2B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_2b_p H_5_2B_P
+label define H_5_2B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_2b_d H_5_2B_D
+label define H_5_2B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_2b_c H_5_2B_C
+label define H_5_2B2_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_2b2_p H_5_2B2_P
+label define H_5_2B2_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_2b2_d H_5_2B2_D
+label define H_5_2B2_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_2b2_c H_5_2B2_C
+label define H_5_2B3_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_2b3_p H_5_2B3_P
+label define H_5_2B3_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_2b3_d H_5_2B3_D
+label define H_5_2B3_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_2b3_c H_5_2B3_C
+label define H_5_3 .a"." 1 "Yes" 0 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_3 H_5_3
+label define H_5_3B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_3b_p H_5_3B_P
+label define H_5_3B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_3b_d H_5_3B_D
+label define H_5_3B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_3b_c H_5_3B_C
+label define H_5_3B2_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_3b2_p H_5_3B2_P
+label define H_5_3B2_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_3b2_d H_5_3B2_D
+label define H_5_3B2_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_3b2_c H_5_3B2_C
+label define H_5_3B3_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_3b3_p H_5_3B3_P
+label define H_5_3B3_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_3b3_d H_5_3B3_D
+label define H_5_3B3_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_3b3_c H_5_3B3_C
+label define H_5_4 .a"." 1 "Yes" 0 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_4 H_5_4
+label define H_5_4B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_4b_p H_5_4B_P
+label define H_5_4B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_4b_d H_5_4B_D
+label define H_5_4B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_4b_c H_5_4B_C
+label define H_5_4B2_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_4b2_p H_5_4B2_P
+label define H_5_4B2_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_4b2_d H_5_4B2_D
+label define H_5_4B2_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_4b2_c H_5_4B2_C
+label define H_5_4B3_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_4b3_p H_5_4B3_P
+label define H_5_4B3_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_4b3_d H_5_4B3_D
+label define H_5_4B3_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_4b3_c H_5_4B3_C
+label define H_5_5 .a"." 1 "Yes" 0 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_5 H_5_5
+label define H_5_5B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_5b_p H_5_5B_P
+label define H_5_5B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_5b_d H_5_5B_D
+label define H_5_5B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_5b_c H_5_5B_C
+label define H_5_5B2_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_5b2_p H_5_5B2_P
+label define H_5_5B2_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_5b2_d H_5_5B2_D
+label define H_5_5B2_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_5b2_c H_5_5B2_C
+label define H_5_5B3_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_5b3_p H_5_5B3_P
+label define H_5_5B3_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_5b3_d H_5_5B3_D
+label define H_5_5B3_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_5b3_c H_5_5B3_C
+label define H_5_6 .a"." 1 "Yes" 0 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_6 H_5_6
+label define H_5_6B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_6b_p H_5_6B_P
+label define H_5_6B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_6b_d H_5_6B_D
+label define H_5_6B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_6b_c H_5_6B_C
+label define H_5_6B2_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_6b2_p H_5_6B2_P
+label define H_5_6B2_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_6b2_d H_5_6B2_D
+label define H_5_6B2_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_6b2_c H_5_6B2_C
+label define H_5_6B3_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_6b3_p H_5_6B3_P
+label define H_5_6B3_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_6b3_d H_5_6B3_D
+label define H_5_6B3_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_6b3_c H_5_6B3_C
+label define H_5_7 .a"." 1 "Yes" 0 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_7 H_5_7
+label define H_5_7B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_7b_p H_5_7B_P
+label define H_5_7B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_7b_d H_5_7B_D
+label define H_5_7B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_7b_c H_5_7B_C
+label define H_5_7B2_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_7b2_p H_5_7B2_P
+label define H_5_7B2_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_7b2_d H_5_7B2_D
+label define H_5_7B2_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_7b2_c H_5_7B2_C
+label define H_5_8 .a"." 1 "Yes" 0 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_8 H_5_8
+label define H_5_8B_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_8b_p H_5_8B_P
+label define H_5_8B_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_8b_d H_5_8B_D
+label define H_5_8B_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_8b_c H_5_8B_C
+label define H_5_8B2_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_8b2_p H_5_8B2_P
+label define H_5_8B2_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_8b2_d H_5_8B2_D
+label define H_5_8B2_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_5_8b2_c H_5_8B2_C
+label define H_6_1 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_1 H_6_1
+label define H_6_1B1_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_1b1_p H_6_1B1_P
+label define H_6_1B1_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_1b1_d H_6_1B1_D
+label define H_6_1B1_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_1b1_c H_6_1B1_C
+label define H_6_1B2_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_1b2_p H_6_1B2_P
+label define H_6_1B2_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_1b2_d H_6_1B2_D
+label define H_6_1B2_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_1b2_c H_6_1B2_C
+label define H_6_2 .a"." 1 "More than enough?" 2 "Enough?" 3 "Not enough?" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_2 H_6_2
+label define H_6_3 .a"." 1 "More than enough?" 2 "Enough?" 3 "Not enough?" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_3 H_6_3
+label define H_6_41_D .a"." 1 "Yes, and it is already included above" 2 "Yes, and it is NOT included above" 3 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_41_d H_6_41_D
+label define H_6_42_D .a"." 1 "Yes, and it is already included above" 2 "Yes, and it is NOT included above" 3 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_42_d H_6_42_D
+label define H_6_43_D .a"." 1 "Yes, and it is already included above" 2 "Yes, and it is NOT included above" 3 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_43_d H_6_43_D
+label define H_6_44_P .a"." 1 "Yes, and it is already included above" 2 "Yes, and it is NOT included above" 3 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_44_p H_6_44_P
+label define H_6_5 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_5 H_6_5
+label define H_6_5B1_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_5b1_p H_6_5B1_P
+label define H_6_5B1_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_5b1_d H_6_5B1_D
+label define H_6_5B1_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_5b1_c H_6_5B1_C
+label define H_6_5B2_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_5b2_p H_6_5B2_P
+label define H_6_5B2_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_5b2_d H_6_5B2_D
+label define H_6_5B2_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_5b2_c H_6_5B2_C
+label define H_6_6 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_6 H_6_6
+label define H_6_6B1_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_6b1_p H_6_6B1_P
+label define H_6_6B1_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_6b1_d H_6_6B1_D
+label define H_6_6B1_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_6b1_c H_6_6B1_C
+label define H_6_6B2_P .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_6b2_p H_6_6B2_P
+label define H_6_6B2_D .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_6b2_d H_6_6B2_D
+label define H_6_6B2_C .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_6_6b2_c H_6_6B2_C
+label define H_7_1_P_C .a"." 1 "Independent-standing house" 2 "House which shares walls with another house" 3 "Apartment" 4 "Housing constructed in open spaces and alleys" 5 "Housing shared with business" 77 "Other" 99 "Does not know", replace
+capture label values h_7_1_p_c H_7_1_P_C
+label define H_7_1_D .a"." 1 "Independent-standing house" 2 "House which shares walls with another house" 3 "Apartment" 4 "Housing constructed in open spaces and alleys" 5 "Housing shared with business" 6 "Provisional housing, originally intended for plantation workers or disaster survivors" 77 "Other" 99 "Does not know", replace
+capture label values h_7_1_d H_7_1_D
+label define H_7_2_1 .a"." 2 "Yes" 1 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_7_2_1 H_7_2_1
+label define H_7_2_2 .a"." 2 "Yes" 1 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_7_2_2 H_7_2_2
+label define H_7_2_3 .a"." 2 "Yes" 1 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_7_2_3 H_7_2_3
+label define H_7_2_4 .a"." 2 "Yes" 1 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_7_2_4 H_7_2_4
+label define H_7_2_5 .a"." 2 "Yes" 1 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values h_7_2_5 H_7_2_5
+
+****************************************
+
 * VARIABLE LABELS (label variable)
 ****************************************
 

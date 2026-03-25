@@ -404,9 +404,6 @@ replace p_clustid = 1 if globalrecordid == "840d3ff1-520a-4a0f-95b1-78a15c81d5f6
 * duplicate, 7 feet tall no teeth, probably a mistake, other phys more recent but data looks more realistic (generally)
 replace p_country = 5 if globalrecordid == "a5657c1d-da83-438e-843d-dc594e66739d"
 
-* 1/13/25 cleaning
-replace p_houseid = 250 if globalrecordid == "d3aa63e1-3536-4091-a5f8-e17dc7cb5091" // parent houseid is 250
-
 replace p_clustid = p_conglid2 if p_clustid == .i & p_conglid2 != .
 replace p_clustid = p_conglid2 if p_clustid == . & p_conglid2 != .
  
@@ -637,7 +634,7 @@ drop if inlist(globalrecordid, "c21d973c-0f97-4534-9c59-6ce408ecbcf9","38fb71ea-
 *cluster showing up as 0, should be 1
 replace i_clustid = 1 if globalrecordid == "ec26a01b-bec9-447e-96ab-a32d27317877"
 
-replace i_clustid = 5 if globalrecordid == "fb49a461-94f1-4c67-af93-174289f63dd3"
+replace i_houseid = 5 if globalrecordid == "fb49a461-94f1-4c67-af93-174289f63dd3"
 
 *Tania says this should be recoded to house id 90
 replace i_houseid = 90 if globalrecordid == "6fc449f1-c887-42f4-a7ad-e2c2409ae869"
@@ -1119,13 +1116,8 @@ replace i_particid = 2 if globalrecordid == "291fed04-974d-4414-b996-49d5f7c8789
 
 *9/29/25 fixes
 replace i_clustid = 1 if globalrecordid == "46792019-e4dc-4d35-95d9-3d2e64d13d2e"
-
-* 1/13/25
-replace i_particid = 2 if globalrecordid == "af94fdac-5e5c-4cff-8f09-cf6921b1db1d" /// informant sex/age matches partic 1 sex/age
-replace i_particid = 1 if globalrecordid == "3e18c803-f772-4ed2-8c9f-62434cc44e53" /// informant sex/age matches partic 2 sex/age
-replace i_particid = 1 if globalrecordid == "a91f1042-c638-44b3-9752-e44bc2e482e1" /// parent partic AND informant age/sex show this is about partic 1
-
-gen i_country_str = string(i_country, "%12.0f")
+ 
+ gen i_country_str = string(i_country, "%12.0f")
 
 gen i_clustid_str = string(i_clustid, "%12.0f")
 replace i_clustid_str = cond(strlen(i_clustid_str) == 1, "0" + i_clustid_str, i_clustid_str)
@@ -1811,6 +1803,16 @@ if `"`user'"' == "Chris" {
     capture copy "`path'/CUBA_out/duplicates/roster_duplicates.xlsx" "`gdrive_diag'/roster_duplicates.xlsx", replace
     capture copy "`path'/CUBA_out/duplicates/roster_parent_duplicates.xlsx" "`gdrive_diag'/roster_parent_duplicates.xlsx", replace
     capture copy "`path'/CUBA_out/duplicates/socio_duplicates.xlsx" "`gdrive_diag'/socio_duplicates.xlsx", replace
+    capture copy "`path'/CUBA_out/duplicates/casos_incompletos.xlsx" "`gdrive_diag'/casos_incompletos.xlsx", replace
+
+    * Copy tracker files to Google Drive
+    capture copy "`path'/CUBA_out/`trans_folder'duplicates/tracker_slim.xlsx" "`gdrive_diag'/tracker_slim.xlsx", replace
+    capture copy "`path'/CUBA_out/`trans_folder'duplicates/tracker_full.xlsx" "`gdrive_diag'/tracker_full.xlsx", replace
+    capture copy "`path'/CUBA_out/`trans_folder'duplicates/tracker_door.xlsx" "`gdrive_diag'/tracker_door.xlsx", replace
+    capture copy "`path'/CUBA_out/`trans_folder'duplicates/tracker_CDR.xlsx" "`gdrive_diag'/tracker_CDR.xlsx", replace
+    capture copy "`path'/CUBA_out/`trans_folder'tracker_slim.dta" "`gdrive_diag'/tracker_slim.dta", replace
+    capture copy "`path'/CUBA_out/`trans_folder'tracker_full.dta" "`gdrive_diag'/tracker_full.dta", replace
+    capture copy "`path'/CUBA_out/`trans_folder'tracker_door.dta" "`gdrive_diag'/tracker_door.dta", replace
 
     display "Duplicate check files copied to Google Drive: `gdrive_diag'"
 }

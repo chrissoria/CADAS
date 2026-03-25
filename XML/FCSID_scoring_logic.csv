@@ -1,0 +1,34 @@
+field,scoring_var,score_component,raw_0,raw_1,raw_2,raw_3,max_value,notes
+I_F_CSID_1,v1G,Score1,0,1,,,1,binary
+I_F_CSID_2,v2G,Score1,0,1,,,1,binary
+I_F_CSID_3,v3G,Score1,0,1,,,1,binary
+I_F_BSE_3,vBSE3,Score1,0,0,0,,0,always 0 regardless of input
+I_F_CSID_4,v4G,Score1,0,0.5,1,,1,3-level
+I_F_CSID_5,v5G,Score1,0,0.5,1,,1,3-level
+I_F_CSID_6,v6G,Score1,0,0.5,1,,1,3-level
+I_F_BSE_7,vBSE7G,Score1,0,0,0,,0,always 0 regardless of input
+I_F_CSID_7,v7G,Score1,0,0.5,1,,1,3-level
+I_F_CSID_8,v8G,Score2,0,0.5,1,,1,3-level
+I_F_CSID_9,v9G,Score2,0,0.5,1,,1,3-level
+I_F_CSID_10,v10G,Score2,0,0.5,1,,1,3-level
+I_F_CSID_11,v11G,Score2,0,0.5,1,,1,3-level
+I_F_CSID_12,v12G,Score2,0,0.5,1,,1,3-level
+I_F_CSID_13,v13G,Score2,0,0.5,1,,1,3-level
+I_F_CSID_14,v14G,Score2,0,0.5,1,,1,3-level
+I_F_CSID_15,v15G,Score2,0,0.5,1,,1,3-level
+I_F_CSID_16,v16G,Score2,0,0.5,1,,1,3-level
+I_F_CSID_17,v17G,Score2,0,0.5,1,,1,3-level
+I_F_CSID_17a,v17aG,Score2 (subtracted),0,v17G,2,,penalty,"if 17a=0 or missing then v17aG=0; if 17a=1 then v17aG=v17G (0 or 0.5 or 1); if 17a=2 then v17aG=2 (not overridden by Page After). Subtracted from Score2."
+I_F_CSID_18,v18G,Score2,0,1,,,1,binary
+I_F_CSID_19,v19G,Score3,0,0.5,1,,1,3-level
+I_F_CSID_20,v20G,Score3,0,0.5,1,,1,3-level
+I_F_CSID_21,v21G,Score3,0,0.5,1,,1,3-level
+I_F_CSID_22_1,v22_1G,Score3,0,1,2,3,3,4-level
+I_F_CSID_22_2,v22_2G,Score3 (subtracted),0,v22_1G,,,penalty,"if 22_2=1 then v22_2G=v22_1G (subtracts full 22_1 value); if 22_2=0 or missing then 0"
+I_F_CSID_23_1,v23_1G,Score3,0,1,2,3,3,4-level
+I_F_CSID_23_2,v23_2G,Score3 (subtracted),0,v23_1G,,,penalty,"if 23_2=1 then v23_2G=v23_1G (subtracts full 23_1 value); if 23_2=0 or missing then 0"
+I_F_CSID_24_1,v24_1G,Score3,0,1,2,3,3,4-level
+I_F_CSID_24_2,v24_2G,Score3 (subtracted),0,v24_1G,,,penalty,"if 24_2=1 then v24_2G=v24_1G (subtracts full 24_1 value); if 24_2=0 or missing then 0"
+I_F_CSID_25,v25G,Score3,0,1,,,1,binary
+I_F_CSID_26,v26G,Score4,0,1,,,1,binary
+I_F_CSID_27,v27G,Score4,0,1,,,1,binary

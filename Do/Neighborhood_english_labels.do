@@ -3,6 +3,16 @@
 * Called from Neighborhood_Read.do when language == "E"
 
 ****************************************
+****************************************
+* VALUE LABELS (label define + label values)
+****************************************
+
+label define N_1 .a"." 0"Lower class" 1"Middle class" 2"Upper class", replace
+capture label values n_1 N_1
+label define country 0 "puerto rico" 1 "república dominicana" 2 "cuba", replace
+
+****************************************
+
 * VARIABLE LABELS (label variable)
 ****************************************
 

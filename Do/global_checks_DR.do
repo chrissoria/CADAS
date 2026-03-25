@@ -275,7 +275,46 @@ drop if inlist(globalrecordid, "d716b289-c74b-4c80-9741-803599dbcc35")
 replace s_particid = 2 if globalrecordid == "486d24e7-e978-4da5-b0b6-6bdbca10e51c"
 replace s_clustid = 70 if globalrecordid == "c67a94ec-547c-4e3a-8a28-dba023d8b4cc"
 replace s_houseid = 81 if globalrecordid == "c67a94ec-547c-4e3a-8a28-dba023d8b4cc"
- 
+
+*socio free-floaters matched to no-socio resumen cases by cluster + date
+*cluster 17: socio entered house 19 but resumen has house 29 (PID 11702901)
+replace s_houseid = 29 if globalrecordid == "7355762b-b846-40bb-aa29-87e4e8459f18"
+*cluster 31: socio entered house 1 but resumen has house 28 (PID 13102801)
+replace s_houseid = 28 if globalrecordid == "f19aeecb-0b3c-4870-8d04-d114eefc88c1"
+
+*garbage record: cluster=0, house=0
+drop if globalrecordid == "54302519-240d-42bf-9de2-458ae7c0d8bb"
+*orphan: cluster 75 house 45 not in resumen, no matching case found
+replace s_country = 5 if globalrecordid == "6ed713f6-a0d5-4a09-8d1a-16f23f565678"
+
+* 3/19/26 — flagged mostly empty socio surveys but keeping for now
+* 11100201 (86%), 15301801 (84%), 11204101 (79%), 15214602 (76%)
+* 10909001 (73%), 12305001 (72%), 15302201 (67%)
+*16700801: near-empty across all surveys (socio 70%, cog 71%, phys 97%, infor 97%) — junk
+drop if globalrecordid == "42d26839-e0d6-4850-b0b9-d0ed59db48c3"
+
+* Calculate content-based missingness for socio (% of s_ content vars missing)
+capture drop s_pct_missing
+gen _s_n_content = 0
+gen _s_n_miss = 0
+foreach v of varlist s_* {
+    local skip = 0
+    if regexm("`v'", "countmissing|last|deviceid|clustid|houseid|particid|interid|country|date|time|pct_missing") local skip = 1
+    if `skip' == 0 {
+        replace _s_n_content = _s_n_content + 1
+        capture confirm numeric variable `v'
+        if _rc == 0 {
+            replace _s_n_miss = _s_n_miss + 1 if missing(`v')
+        }
+        else {
+            replace _s_n_miss = _s_n_miss + 1 if `v' == ""
+        }
+    }
+}
+gen s_pct_missing = round(100 * _s_n_miss / _s_n_content, 0.1)
+label variable s_pct_missing "Socio content % missing"
+drop _s_n_content _s_n_miss
+
 replace s_country = `country' if s_country != 5
 
 gen s_country_str = string(s_country, "%12.0f")
@@ -317,6 +356,19 @@ replace s_2_3 = 2023 - 1949 if globalrecordid == "bf2ee5b7-ca26-438d-8202-bf02bc
 replace s_2_8c = 2.5 if inlist(pid, "10600801", "12806601", "13605901", "16700701", "17501801")
 replace s_2_8c = 0 if inlist(pid, "18005201")
 
+*weight variables entered in pounds — convert to kg
+*label says "if answered in pounds, divide by 2.2"; threshold >150 kg (implausible for adults)
+foreach wv in s_13_23_d_c s_13_25_d_c s_13_27_d_c {
+    capture confirm variable `wv'
+    if _rc == 0 {
+        quietly count if `wv' > 150 & !missing(`wv')
+        local n_lbs = r(N)
+        replace `wv' = round(`wv' / 2.2, 0.1) if `wv' > 150 & !missing(`wv')
+        *cap implausible post-conversion values
+        replace `wv' = . if `wv' > 300 & !missing(`wv')
+        display "Weight fix (`wv'): `n_lbs' values converted from lbs to kg"
+    }
+}
 
 merge m:m pid using resumen_pid
 
@@ -386,7 +438,7 @@ drop duplicate_tag
 
  clear all
 
- use Phys
+ use `trans_folder'Phys
  
  *10/17/25 cleaning
  *looks like there's two cases here done in the same house (maybe two parts of the same unit?). For now, we're changing the woman to B
@@ -412,13 +464,50 @@ replace p_particid = 2 if globalrecordid == "09f9d7d6-17aa-44a0-a3bd-f0d399477ec
  drop if inlist(globalrecordid, "f4a03839-e66b-4f8c-9412-e7d1f6638cd8")
  replace p_particid = 1 if globalrecordid == "53131197-96f0-4d85-bbce-7a8b6aacc29d"
  replace p_particid = 2 if globalrecordid == "c3ef0142-fd4f-4f18-9355-f62c8b74e6af"
- 
+
+ * 3/19/26 cleaning — orphan phys fixes
+ *phys filed under house 001 but same interviewer (1), device (01_do), and date (2024-07-27)
+ *as all other surveys for cluster 54, house 043, participant 01 — house digit entry error
+ replace p_houseid = 43 if globalrecordid == "081d4cda-12a8-4a6c-be9e-8d88ce664ba5"
+ *garbage entry: cluster 2, house 001, 2024-04-05 on device 06_do — cluster 2 surveyed Jul-Aug 2023, no match
+ drop if globalrecordid == "e60020b5-697d-4cc2-8e54-1ba6112d9b82"
+ *garbage PIDs 1494444401/02: house 44444, clearly test/junk entries
+ drop if inlist(globalrecordid, "e26066da-becb-43fa-b9ef-0d527ea90a60", "1adc243f-5783-469c-bf70-eecb8302c450")
+ *orphan: cluster 75 house 001 part 02, no matching case, 96% missing — drop
+ drop if globalrecordid == "6b3923af-b502-4069-9842-b56f073a85fc"
+ *orphan: cluster 40 house 008 part 01, has phys+cog but no socio/infor — move to country 5
+ replace p_country = 5 if globalrecordid == "ef8821ae-403d-41a7-be68-ae2ec02e4769"
+ *16700801: near-empty across all surveys — junk
+ drop if globalrecordid == "cc8b1c0c-5065-4490-9ade-6ec2b3678a72"
+
  drop pid
  drop hhid
  
  duplicates report globalrecordid
  duplicates drop globalrecordid, force
  
+ * Calculate content-based missingness for phys (% of p_ content vars missing)
+ capture drop p_pct_missing
+ gen _p_n_content = 0
+ gen _p_n_miss = 0
+ foreach v of varlist p_* {
+     local skip = 0
+     if regexm("`v'", "countmissing|last|deviceid|clustid|houseid|particid|interid|country|date|time|pct_missing") local skip = 1
+     if `skip' == 0 {
+         replace _p_n_content = _p_n_content + 1
+         capture confirm numeric variable `v'
+         if _rc == 0 {
+             replace _p_n_miss = _p_n_miss + 1 if missing(`v')
+         }
+         else {
+             replace _p_n_miss = _p_n_miss + 1 if `v' == ""
+         }
+     }
+ }
+ gen p_pct_missing = round(100 * _p_n_miss / _p_n_content, 0.1)
+ label variable p_pct_missing "Phys content % missing"
+ drop _p_n_content _p_n_miss
+
  replace p_country = `country' if p_country != 5
 
 gen p_country_str = string(p_country, "%12.0f")
@@ -522,14 +611,19 @@ replace i_particid = 2 if globalrecordid == "ab8cb82c-dfbf-4249-9225-5af21101db7
 *instructions from guillermina
 replace i_particid = 1 if globalrecordid == "515d1632-ce79-493d-9fbf-9897ffbffc5c"
 
-replace i_clustid = 176 if globalrecordid == "a4184246-538b-41fc-a23b-80a6992f616b"
+*infor filed under cluster 176 house 176 (9-digit PID 117617601) but same interviewer (2),
+*device (02_do), and date (2024-03-04) as all other surveys for cluster 2, house 176, part 01 (10217601)
+replace i_clustid = 2 if globalrecordid == "a4184246-538b-41fc-a23b-80a6992f616b"
+replace i_houseid = 176 if globalrecordid == "a4184246-538b-41fc-a23b-80a6992f616b"
 
 replace i_houseid2 = 66 if globalrecordid == "746a368c-a2cd-491f-9040-6654b2c87640"
 replace i_houseid = 66 if globalrecordid == "746a368c-a2cd-491f-9040-6654b2c87640"
 
 
-replace i_houseid2 = 77 if globalrecordid == "449e7a26-a22d-4feb-b7ed-35b1f36ce77a"
-replace i_houseid = 77 if globalrecordid == "449e7a26-a22d-4feb-b7ed-35b1f36ce77a"
+*infor filed under house 077 but same interviewer (1), device (01_do), and date (2024-02-03)
+*as all other surveys for cluster 80, house 071, part 01 (18007101) — house 77→71
+replace i_houseid2 = 71 if globalrecordid == "449e7a26-a22d-4feb-b7ed-35b1f36ce77a"
+replace i_houseid = 71 if globalrecordid == "449e7a26-a22d-4feb-b7ed-35b1f36ce77a"
 
 *both of these apppear to be a junk case from sept 1 and 8/25, most values are missing
 drop if inlist(globalrecordid, "9350d6a0-a2b7-4c7b-a433-db9b38a4439a","9063c91e-8f34-4497-909d-2814de817c4a", "2bbb0db0-005d-49f9-8465-c97b2bd22d88")
@@ -554,11 +648,70 @@ drop if inlist(globalrecordid, "c2da0a76-dcef-49f4-9606-b3d9c3985f84","ae83f14d-
 replace i_particid = 2 if globalrecordid == "a9553780-b0be-40e8-9350-4f6aaedc929e"
 replace i_particid = 1 if globalrecordid == "09897871-a59f-422a-85ac-f1b4a3640b41"
 replace i_particid = 2 if globalrecordid == "c9527626-fd54-488b-afaf-c2915b5e3914"
-replace i_particid = 2 if globalrecordid == "d3eac927-ebf9-495c-80e6-8d9163d93272"
+*infor filed under part 02 but same interviewer (5), device (05_do), and date (2024-12-11)
+*as all other surveys for cluster 62, house 027, part 01 (16202701) — part 2→1
+replace i_particid = 1 if globalrecordid == "d3eac927-ebf9-495c-80e6-8d9163d93272"
 replace i_particid = 2 if globalrecordid == "a86404c4-2444-455b-b3ba-4a138943cb13"
+
+* 3/19/26 cleaning — orphan infor fixes
+*infor filed under part 02 but same interviewer (5), device (05_do), and date (2024-11-02)
+*as all other surveys for cluster 39, house 011, part 01 (13901101) — part 2→1
+replace i_particid = 1 if globalrecordid == "badd8bda-958a-4129-adee-549267608620"
+*infor filed under house 036 but same date (2024-09-14)
+*as all other surveys for cluster 57, house 037, part 01 (15703701) — house 36→37
+replace i_houseid = 37 if globalrecordid == "88b23a49-9094-419f-b17c-2e73c1122388"
+*infor filed under house 001 but same interviewer (1), device (01_do), and infor date (2023-11-02)
+*matches c_date for cluster 70, house 081, part 01 (17008101) — house 1→81
+replace i_houseid = 81 if globalrecordid == "031f3054-0bc3-4f2b-a83f-2a509d31724b"
+
+*--- Infor-only orphans: no matching case found, moved to country 5 ---
+*cluster 70 house 093 part 01, 01_do, 2023-11-08 — possible match 17008101 but already matched 17000101
+replace i_country = 5 if globalrecordid == "03027a32-3fdc-4cc9-93ce-75f85a237fad"
+*cluster 30 house 036 part 01, 01_do, 2024-06-18 — different interviewer/device/date from only candidate
+replace i_country = 5 if globalrecordid == "f6cd918d-e135-4ebf-89f0-3ef4e85c4cb9"
+*cluster 02 house 025 part 01, 01_do, 2023-07-28 — no match in cluster 02
+replace i_country = 5 if globalrecordid == "2b1bfbba-7aae-4fac-807a-0588515e0fab"
+*cluster 05 house 001 part 02, 03_do, 2023-11-23 — no cases missing infor in cluster 05
+replace i_country = 5 if globalrecordid == "44b3a4f1-9b00-4e2c-af7c-a363b993301c"
+*cluster 17 house 031 part 01, 01_do, 2024-07-13 — no cases missing infor in cluster 17
+replace i_country = 5 if globalrecordid == "46de6e8a-e965-46a5-bc94-d4297038047c"
+*cluster 24 house 011 part 02, 01_do, 2025-05-09 — no cases missing infor in cluster 24
+replace i_country = 5 if globalrecordid == "31dffc35-3a0d-468e-826c-b185bf4fa146"
+*cluster 75 house 088 part 01, 06_do, 2024-03-09 — only candidate already country 5
+replace i_country = 5 if globalrecordid == "0946286b-2c77-482b-a792-47c7d94b417c"
+*cluster 83 house 026 part 02, 01_do, 2023-12-16 — no cases missing infor in cluster 83
+replace i_country = 5 if globalrecordid == "2cc147e2-a9dd-4dd0-a6d7-ff05671829ba"
+*garbage PIDs 1494444401/02: house 44444, junk entries
+drop if inlist(globalrecordid, "7c76df3b-539e-40f7-a0c8-bc2dec565c66", "444902b8-e032-43d0-bdfc-b45324b5a486")
+*16700801: near-empty across all surveys — junk
+drop if globalrecordid == "07b082fe-7a95-49f9-9724-006dda08b5f4"
+*15806302: infor 97% missing — junk
+drop if globalrecordid == "40c391a7-7f2a-4d27-b707-2b48c5b170af"
 
  drop pid hhid
  
+ * Calculate content-based missingness for infor (% of i_ content vars missing)
+ capture drop i_pct_missing
+ gen _i_n_content = 0
+ gen _i_n_miss = 0
+ foreach v of varlist i_* {
+     local skip = 0
+     if regexm("`v'", "countmissing|last|deviceid|clustid|houseid|particid|interid|country|date|time|pct_missing") local skip = 1
+     if `skip' == 0 {
+         replace _i_n_content = _i_n_content + 1
+         capture confirm numeric variable `v'
+         if _rc == 0 {
+             replace _i_n_miss = _i_n_miss + 1 if missing(`v')
+         }
+         else {
+             replace _i_n_miss = _i_n_miss + 1 if `v' == ""
+         }
+     }
+ }
+ gen i_pct_missing = round(100 * _i_n_miss / _i_n_content, 0.1)
+ label variable i_pct_missing "Infor content % missing"
+ drop _i_n_content _i_n_miss
+
  replace i_country = `country' if i_country != 5
 
 gen i_country_str = string(i_country, "%12.0f")
@@ -652,6 +805,28 @@ drop duplicate_tag
 
 use `trans_folder'Cog
 
+* Calculate content-based missingness for cog (% of c_ content vars missing)
+capture drop c_pct_missing
+gen _c_n_content = 0
+gen _c_n_miss = 0
+foreach v of varlist c_* {
+    local skip = 0
+    if regexm("`v'", "countmissing|last|deviceid|clustid|houseid|particid|interid|country|date|time|pct_missing") local skip = 1
+    if `skip' == 0 {
+        replace _c_n_content = _c_n_content + 1
+        capture confirm numeric variable `v'
+        if _rc == 0 {
+            replace _c_n_miss = _c_n_miss + 1 if missing(`v')
+        }
+        else {
+            replace _c_n_miss = _c_n_miss + 1 if `v' == ""
+        }
+    }
+}
+gen c_pct_missing = round(100 * _c_n_miss / _c_n_content, 0.1)
+label variable c_pct_missing "Cog content % missing"
+drop _c_n_content _c_n_miss
+
 merge m:m pid using resumen_pid
 
 capture gen cog_in_resumen = string(_merge)
@@ -739,8 +914,24 @@ drop hhid hhid2
 drop if inlist(globalrecordid, "d3d9c1f9-3ff2-434f-b223-6e4131ddc739","10c63e51-b6b6-444a-9def-621e9920021f","ead54b80-b458-4c82-9b7c-06a64719c74c","e65dc446-42bc-4cd0-b7f8-469569ef66f7")
 drop if inlist(globalrecordid, "74574e98-9e46-43cc-991e-716167bd205a","2b1a138b-160d-4ee9-b32b-e849bbd08a22","f2f52561-05a4-4423-9224-e656d7641cea","73290b90-92c0-45a6-8fe5-7337835d7d5b","cf48f800-6bb3-4114-af5f-72f7b7626e4d")
 
-replace h_clustid = 176 if globalrecordid == "26a57540-2990-4236-bc26-5896acc7ead8"
+*household filed under cluster 176 house 176 but same interviewer (2), device (02_do),
+*and date (2024-03-04) as all other surveys for cluster 2, house 176 (10217601)
+replace h_clustid = 2 if globalrecordid == "26a57540-2990-4236-bc26-5896acc7ead8"
 drop if inlist(globalrecordid, "31614f8a-69c9-4012-96ee-bc4154ca6491", "19b6756d-1236-4abc-b36c-142b71548a50", "3fd9b0fb-8fd1-4c8a-90e1-30b6511b51e5", "3cfbdb1c-1f42-414b-9227-83a1345ac34f")
+
+* 3/19/26 cleaning — orphan household fixes
+*garbage PID: house 44444, junk entry
+drop if globalrecordid == "a131e1cb-5b31-4f60-8e70-1a5d6fec9ad5"
+*household filed under house 061 but same interviewer (4), device (04_do), and date (2024-08-30)
+*as respondent 16006701 who is missing household — house 61→67
+replace h_houseid = 67 if globalrecordid == "d2dc6112-babc-4330-ba06-4edfcb8e371c"
+*orphan: cluster 30 house 036, int 4, 2024-06-04 — no respondents at this hhid
+replace h_country = 5 if globalrecordid == "c21b44d4-7317-46ac-8a69-f10656abeee2"
+*household filed under house 007 but same interviewer (1), device (03_do), and date (2023-07-03)
+*as respondent 10601801 (cluster 6, house 018) who is missing household — house 7→18
+replace h_houseid = 18 if globalrecordid == "85735869-bb37-4c96-8dd3-020048b8c90d"
+*orphan: cluster 46 house 004, int 1, 2025-05-29 — no respondents at this hhid
+replace h_country = 5 if globalrecordid == "6624c212-e4a8-4b08-a3a3-778c5a4da1d3"
 
 * 12/18/25 cleaning
 drop if inlist(globalrecordid, "86e85c75-7ea3-4f28-be88-c1682087ac42", "36194fe7-191a-47c6-bba7-82a85a66f15a", "d6e76c24-62dd-4949-a246-ecdbb6538175", "45bffef3-427a-4af7-aba1-be654c2a980b", "0ee893f3-9f93-4354-a870-700b1d6e3f2c", "1c29d55c-b35d-4901-9551-d88011017003", "3ca37865-fb34-4480-a3f9-ecef53e99ecf")
@@ -869,6 +1060,54 @@ list
 
 clear
 
+*next, find households with no matching respondents and respondents with no matching household
+
+* Build unique hhid list from all person-level surveys
+clear
+set obs 0
+gen hhid = ""
+save "../DR_in/temp_all_hhids.dta", replace
+
+foreach dataset in Socio Phys Cog Cog_Scoring Infor {
+    capture {
+        use "`dataset'.dta", clear
+        capture tostring hhid, replace
+        keep hhid
+        duplicates drop
+        append using "../DR_in/temp_all_hhids.dta"
+        save "../DR_in/temp_all_hhids.dta", replace
+    }
+}
+
+use "../DR_in/temp_all_hhids.dta", clear
+duplicates drop
+save "../DR_in/temp_all_hhids.dta", replace
+
+* Merge Household against respondent hhids
+use Household.dta, clear
+capture tostring hhid, replace
+merge m:1 hhid using "../DR_in/temp_all_hhids.dta"
+
+* _merge==1: household with no respondents, _merge==2: respondents with no household
+keep if _merge != 3
+
+* Get the list of variable names
+unab varlist : _all
+
+* Convert variables with value labels into string variables
+foreach var of varlist `varlist' {
+    if "`: value label `var''" != "" {
+        tostring `var', replace
+    }
+}
+
+export excel using "duplicates/no_coincidencias_familiar.xlsx", replace firstrow(variables)
+
+display "Household/respondent mismatches:"
+tab _merge
+
+clear
+
 ****************************************
 * COPY CLEANED DTA FILES TO GOOGLE DRIVE
 ****************************************
@@ -918,6 +1157,7 @@ if `"`user'"' == "Chris" {
     capture copy "`path'/DR_out/duplicates/phys_duplicates.xlsx" "`gdrive_diag'/phys_duplicates.xlsx", replace
     capture copy "`path'/DR_out/duplicates/roster_duplicates.xlsx" "`gdrive_diag'/roster_duplicates.xlsx", replace
     capture copy "`path'/DR_out/duplicates/socio_duplicates.xlsx" "`gdrive_diag'/socio_duplicates.xlsx", replace
+    capture copy "`path'/DR_out/duplicates/casos_incompletos.xlsx" "`gdrive_diag'/casos_incompletos.xlsx", replace
 
     * Copy tracker files to Google Drive
     capture copy "`path'/DR_out/`trans_folder'duplicates/tracker_slim.xlsx" "`gdrive_diag'/tracker_slim.xlsx", replace

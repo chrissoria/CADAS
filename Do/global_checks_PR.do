@@ -791,6 +791,15 @@ if `"`user'"' == "Chris" {
     capture copy "`path'/PR_out/duplicates/phys_duplicates.xlsx" "`gdrive_diag'/phys_duplicates.xlsx", replace
     capture copy "`path'/PR_out/duplicates/roster_duplicates.xlsx" "`gdrive_diag'/roster_duplicates.xlsx", replace
     capture copy "`path'/PR_out/duplicates/socio_duplicates.xlsx" "`gdrive_diag'/socio_duplicates.xlsx", replace
+    capture copy "`path'/PR_out/duplicates/casos_incompletos.xlsx" "`gdrive_diag'/casos_incompletos.xlsx", replace
+
+    * Copy tracker files to Google Drive
+    capture copy "`path'/PR_out/`trans_folder'duplicates/tracker_slim.xlsx" "`gdrive_diag'/tracker_slim.xlsx", replace
+    capture copy "`path'/PR_out/`trans_folder'duplicates/tracker_full.xlsx" "`gdrive_diag'/tracker_full.xlsx", replace
+    capture copy "`path'/PR_out/`trans_folder'duplicates/tracker_door.xlsx" "`gdrive_diag'/tracker_door.xlsx", replace
+    capture copy "`path'/PR_out/`trans_folder'tracker_slim.dta" "`gdrive_diag'/tracker_slim.dta", replace
+    capture copy "`path'/PR_out/`trans_folder'tracker_full.dta" "`gdrive_diag'/tracker_full.dta", replace
+    capture copy "`path'/PR_out/`trans_folder'tracker_door.dta" "`gdrive_diag'/tracker_door.dta", replace
 
     display "Duplicate check files copied to Google Drive: `gdrive_diag'"
 }

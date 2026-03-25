@@ -198,7 +198,9 @@ if _rc == 0 {
     rename s_sex s_0
 }
 
-keep pid s_0 s_2_3 s_interid s_deviceid1 s_date
+capture confirm variable s_pct_missing
+if _rc != 0 gen s_pct_missing = .
+keep pid s_0 s_2_3 s_interid s_deviceid1 s_date s_pct_missing
 gen pidr=real(pid)
 drop if pidr==.
 egen duplic=count(pid), by(pid)
@@ -233,7 +235,9 @@ sum
 * PHYS
 **********
 use `trans_folder'Phys, clear
-keep pid p_interid p_deviceid1 p_date
+capture confirm variable p_pct_missing
+if _rc != 0 gen p_pct_missing = .
+keep pid p_interid p_deviceid1 p_date p_pct_missing
 gen pidr=real(pid)
 drop if pidr==.
 egen duplic=count(pid), by(pid)
@@ -256,7 +260,9 @@ sum
 * COG
 **********
 use `trans_folder'Cog, clear
-keep pid c_interid c_deviceid1 all_image_files_found all_audio_files_found c_date
+capture confirm variable c_pct_missing
+if _rc != 0 gen c_pct_missing = .
+keep pid c_interid c_deviceid1 all_image_files_found all_audio_files_found c_date c_pct_missing
 gen pidr=real(pid)
 drop if pidr==.
 egen duplic=count(pid), by(pid)
@@ -300,7 +306,9 @@ sum
 * INFORMANT
 **********
 use `trans_folder'Infor, clear
-keep pid i_interid i_deviceid1 i_date
+capture confirm variable i_pct_missing
+if _rc != 0 gen i_pct_missing = .
+keep pid i_interid i_deviceid1 i_date i_pct_missing
 gen pidr=real(pid)
 drop if pidr==.
 egen duplic=count(pid), by(pid)
@@ -430,6 +438,14 @@ gen House_ID = substr(pid, 4, 3)
 order pid hhid House_ID Cluster
 sort pid
 
+* Number of participants per household + sex mismatch (both from de-duplicated pids)
+preserve
+duplicates drop pid, force
+egen n_en_hogar = count(pid), by(hhid)
+keep if sex != sexo_en_socio & !missing(sex) & !missing(sexo_en_socio)
+keep pid hhid House_ID Cluster n_en_hogar sex sexo_en_socio
+export excel using "`trans_folder'duplicates/tracker_sex_mismatch.xlsx", replace firstrow(variables)
+restore
 
 *********
 **CDR***
@@ -588,6 +604,338 @@ capture export excel using "`trans_folder'duplicates/in_resumen_not_in_data.xlsx
 
 
 log close
+
+
+****************************************
+* COG MATCHING: find no-cog cases and cog-only cases
+* Goal: surface households where a cog-only pid could fill the gap
+*        for a pid that has everything else but no cog
+****************************************
+
+use `trans_folder'tracker_full, clear
+
+* --- Dataset 1: Has everything except cog ---
+* "Everything" = at least socio + phys + infor present, cog absent
+preserve
+keep if pid_en_socio == 1 & pid_en_phys == 1 & pid_en_infor == 1 ///
+      & (pid_en_cog == . | pid_en_cog != 1)
+keep pid hhid RSPCZIHXF7 pid_en_socio pid_en_phys pid_en_cog pid_en_cog_scor pid_en_infor existe_familiar edad_en_resumen sexo_en_socio
+save `trans_folder'tmp_no_cog.dta, replace
+restore
+
+* --- Dataset 2: Has cog but missing socio + phys + infor ---
+preserve
+keep if pid_en_cog == 1 ///
+      & (pid_en_socio == . | pid_en_socio != 1) ///
+      & (pid_en_phys  == . | pid_en_phys  != 1) ///
+      & (pid_en_infor == . | pid_en_infor != 1)
+keep pid hhid RSPCZIHXF7 pid_en_socio pid_en_phys pid_en_cog pid_en_cog_scor pid_en_infor
+rename pid        pid_cog_only
+rename RSPCZIHXF7 RSPCZIHXF7_cog_only
+save `trans_folder'tmp_cog_only.dta, replace
+restore
+
+* --- Join by hhid to find households with both ---
+use `trans_folder'tmp_no_cog.dta, clear
+rename pid        pid_no_cog
+rename RSPCZIHXF7 RSPCZIHXF7_no_cog
+
+joinby hhid using `trans_folder'tmp_cog_only.dta, unmatched(master)
+
+* _merge == 1: no-cog case with no matching cog-only case in household
+* _merge == 3: potential match found
+gen potential_match = (_merge == 3)
+drop _merge
+
+order hhid pid_no_cog pid_cog_only potential_match RSPCZIHXF7_no_cog RSPCZIHXF7_cog_only
+
+sort hhid pid_no_cog
+
+save `trans_folder'tmp_cog_match_candidates.dta, replace
+export excel using "`trans_folder'duplicates/cog_match_candidates.xlsx", replace firstrow(variables)
+
+display "No-cog cases total: " _N
+count if potential_match == 1
+display "No-cog cases with a cog-only pid in same household: " r(N)
+
+clear
+
+
+****************************************
+* SOCIO MATCHING: find no-socio cases and socio-only cases
+* Goal: surface households where a socio-only pid could fill the gap
+*        for a pid that has everything else but no socio
+****************************************
+
+use `trans_folder'tracker_full, clear
+
+* --- Dataset 1: Has everything except socio ---
+* "Everything" = at least phys + cog + infor present, socio absent
+preserve
+keep if pid_en_phys == 1 & pid_en_cog == 1 & pid_en_infor == 1 ///
+      & (pid_en_socio == . | pid_en_socio != 1)
+keep pid hhid RSPCZIHXF7 pid_en_socio pid_en_phys pid_en_cog pid_en_cog_scor pid_en_infor existe_familiar edad_en_resumen sexo_en_socio
+save `trans_folder'tmp_no_socio.dta, replace
+restore
+
+* --- Dataset 2: Has socio but missing phys + cog + infor ---
+preserve
+keep if pid_en_socio == 1 ///
+      & (pid_en_phys  == . | pid_en_phys  != 1) ///
+      & (pid_en_cog   == . | pid_en_cog   != 1) ///
+      & (pid_en_infor == . | pid_en_infor != 1)
+keep pid hhid RSPCZIHXF7 pid_en_socio pid_en_phys pid_en_cog pid_en_cog_scor pid_en_infor
+rename pid        pid_socio_only
+rename RSPCZIHXF7 RSPCZIHXF7_socio_only
+save `trans_folder'tmp_socio_only.dta, replace
+restore
+
+* --- Join by hhid to find households with both ---
+use `trans_folder'tmp_no_socio.dta, clear
+rename pid        pid_no_socio
+rename RSPCZIHXF7 RSPCZIHXF7_no_socio
+
+joinby hhid using `trans_folder'tmp_socio_only.dta, unmatched(master)
+
+* _merge == 1: no-socio case with no matching socio-only case in household
+* _merge == 3: potential match found
+gen potential_match = (_merge == 3)
+drop _merge
+
+order hhid pid_no_socio pid_socio_only potential_match RSPCZIHXF7_no_socio RSPCZIHXF7_socio_only
+
+sort hhid pid_no_socio
+
+save `trans_folder'tmp_socio_match_candidates.dta, replace
+if _N > 0 {
+    export excel using "`trans_folder'duplicates/socio_match_candidates.xlsx", replace firstrow(variables)
+}
+
+display "No-socio cases total: " _N
+if _N > 0 {
+    count if potential_match == 1
+    display "No-socio cases with a socio-only pid in same household: " r(N)
+}
+
+clear
+
+
+****************************************
+* CASES WITH SPCZI BUT NO COG SCORING
+* Participants with Socio, Phys, Cog, Infor present but Cog_Scoring absent
+****************************************
+
+use `trans_folder'tracker_full, clear
+
+keep if pid_en_socio == 1 & pid_en_phys == 1 & pid_en_cog == 1 & pid_en_infor == 1 ///
+      & (pid_en_cog_scor == . | pid_en_cog_scor != 1)
+
+gen cluster      = substr(pid, 2, 2)
+gen casa         = substr(pid, 4, 3)
+gen participante = substr(pid, 8, 1)
+
+display "Cases with Socio+Phys+Cog+Infor but no Cog_Scoring: " _N
+
+keep pid hhid cluster casa participante RSPCZIHXF7 ///
+     s_date c_date p_date i_date ///
+     s_interid c_interid p_interid i_interid ///
+     s_deviceid1 c_deviceid1 p_deviceid1 i_deviceid1 ///
+     edad_en_resumen sexo_en_socio
+
+sort cluster casa participante
+
+export excel using "`trans_folder'duplicates/missing_cog_scoring.xlsx", replace firstrow(variables)
+
+clear
+
+
+****************************************
+* GPS TRACKER: DISTANCES FROM COG TO OTHER SURVEYS
+* Reads Parent CSVs, builds PIDs, computes haversine distances (miles)
+* Baseline: Cog GPS coordinates; socio/phys/infor measured relative to cog
+****************************************
+
+* -- 1. COG GPS --
+if `country' == 0 {
+    insheet using "../PR_in/Cog_Parent.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/Cog_Parent.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/Cog_Parent.csv", comma names clear
+}
+
+keep c_lat c_lon c_clustid1 c_houseid1 c_particid1
+
+gen clustid_str  = string(c_clustid1)
+replace clustid_str  = "0"  + clustid_str if strlen(clustid_str)  == 1
+gen houseid_str  = string(c_houseid1)
+replace houseid_str  = "00" + houseid_str  if strlen(houseid_str)  == 1
+replace houseid_str  = "0"  + houseid_str  if strlen(houseid_str)  == 2
+gen particid_str = string(c_particid1)
+replace particid_str = "0"  + particid_str if strlen(particid_str) == 1
+
+gen pid = "`country'" + clustid_str + houseid_str + particid_str
+drop clustid_str houseid_str particid_str c_clustid1 c_houseid1 c_particid1
+rename c_lat cog_lat
+rename c_lon cog_lon
+duplicates drop pid, force
+save `trans_folder'tmp_gps_cog.dta, replace
+
+* -- 2. SOCIO GPS --
+if `country' == 0 {
+    insheet using "../PR_in/Socio_Parent.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/Socio_Parent.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/Socio_Parent.csv", comma names clear
+}
+
+keep s_lat s_lon s_clustid1 s_houseid1 s_particid1
+
+gen clustid_str  = string(s_clustid1)
+replace clustid_str  = "0"  + clustid_str if strlen(clustid_str)  == 1
+gen houseid_str  = string(s_houseid1)
+replace houseid_str  = "00" + houseid_str  if strlen(houseid_str)  == 1
+replace houseid_str  = "0"  + houseid_str  if strlen(houseid_str)  == 2
+gen particid_str = string(s_particid1)
+replace particid_str = "0"  + particid_str if strlen(particid_str) == 1
+
+gen pid = "`country'" + clustid_str + houseid_str + particid_str
+drop clustid_str houseid_str particid_str s_clustid1 s_houseid1 s_particid1
+rename s_lat socio_lat
+rename s_lon socio_lon
+duplicates drop pid, force
+save `trans_folder'tmp_gps_socio.dta, replace
+
+* -- 3. PHYS GPS --
+if `country' == 0 {
+    insheet using "../PR_in/Phys_Parent.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/Phys_Parent.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/Phys_Parent.csv", comma names clear
+}
+
+keep p_lat p_lon p_clustid1 p_houseid1 p_particid1
+
+gen clustid_str  = string(p_clustid1)
+replace clustid_str  = "0"  + clustid_str if strlen(clustid_str)  == 1
+gen houseid_str  = string(p_houseid1)
+replace houseid_str  = "00" + houseid_str  if strlen(houseid_str)  == 1
+replace houseid_str  = "0"  + houseid_str  if strlen(houseid_str)  == 2
+gen particid_str = string(p_particid1)
+replace particid_str = "0"  + particid_str if strlen(particid_str) == 1
+
+gen pid = "`country'" + clustid_str + houseid_str + particid_str
+drop clustid_str houseid_str particid_str p_clustid1 p_houseid1 p_particid1
+rename p_lat phys_lat
+rename p_lon phys_lon
+duplicates drop pid, force
+save `trans_folder'tmp_gps_phys.dta, replace
+
+* -- 4. INFOR GPS --
+if `country' == 0 {
+    insheet using "../PR_in/Infor_Parent.csv", comma names clear
+}
+else if `country' == 1 {
+    insheet using "../DR_in/Infor_Parent.csv", comma names clear
+}
+else if `country' == 2 {
+    insheet using "../CUBA_in/Infor_Parent.csv", comma names clear
+}
+
+keep i_lat i_lon i_clustid1 i_houseid1 i_particid1
+
+gen clustid_str  = string(i_clustid1)
+replace clustid_str  = "0"  + clustid_str if strlen(clustid_str)  == 1
+gen houseid_str  = string(i_houseid1)
+replace houseid_str  = "00" + houseid_str  if strlen(houseid_str)  == 1
+replace houseid_str  = "0"  + houseid_str  if strlen(houseid_str)  == 2
+gen particid_str = string(i_particid1)
+replace particid_str = "0"  + particid_str if strlen(particid_str) == 1
+
+gen pid = "`country'" + clustid_str + houseid_str + particid_str
+drop clustid_str houseid_str particid_str i_clustid1 i_houseid1 i_particid1
+rename i_lat infor_lat
+rename i_lon infor_lon
+duplicates drop pid, force
+save `trans_folder'tmp_gps_infor.dta, replace
+
+* -- Deduplicate tracker_slim for 1:1 merge --
+use `trans_folder'tracker_slim, clear
+duplicates drop pid, force
+save `trans_folder'tmp_slim_dedup.dta, replace
+
+* -- Merge all GPS into one dataset --
+use `trans_folder'tmp_gps_cog.dta, clear
+merge 1:1 pid using `trans_folder'tmp_gps_socio.dta, nogen
+merge 1:1 pid using `trans_folder'tmp_gps_phys.dta,  nogen
+merge 1:1 pid using `trans_folder'tmp_gps_infor.dta, nogen
+
+* -- Haversine distances: cog → each other survey (miles) --
+* d = 2R * arcsin(sqrt(sin²(Δlat/2) + cos(lat1)*cos(lat2)*sin²(Δlon/2))),  R = 3958.8 miles
+
+gen dist_socio_miles = 2 * 3958.8 * asin(sqrt( ///
+    sin((socio_lat - cog_lat) * _pi / 360)^2 + ///
+    cos(cog_lat * _pi / 180) * cos(socio_lat * _pi / 180) * ///
+    sin((socio_lon - cog_lon) * _pi / 360)^2 ///
+)) if !missing(cog_lat, cog_lon, socio_lat, socio_lon)
+label variable dist_socio_miles "Distance: Cog to Socio (miles)"
+
+gen dist_phys_miles = 2 * 3958.8 * asin(sqrt( ///
+    sin((phys_lat - cog_lat) * _pi / 360)^2 + ///
+    cos(cog_lat * _pi / 180) * cos(phys_lat * _pi / 180) * ///
+    sin((phys_lon - cog_lon) * _pi / 360)^2 ///
+)) if !missing(cog_lat, cog_lon, phys_lat, phys_lon)
+label variable dist_phys_miles "Distance: Cog to Phys (miles)"
+
+gen dist_infor_miles = 2 * 3958.8 * asin(sqrt( ///
+    sin((infor_lat - cog_lat) * _pi / 360)^2 + ///
+    cos(cog_lat * _pi / 180) * cos(infor_lat * _pi / 180) * ///
+    sin((infor_lon - cog_lon) * _pi / 360)^2 ///
+)) if !missing(cog_lat, cog_lon, infor_lat, infor_lon)
+label variable dist_infor_miles "Distance: Cog to Infor (miles)"
+
+* -- Flag cases where any survey is more than 0.1 miles from cog --
+gen flag_distance = (dist_socio_miles > 0.1 & !missing(dist_socio_miles)) | ///
+                    (dist_phys_miles  > 0.1 & !missing(dist_phys_miles))  | ///
+                    (dist_infor_miles > 0.1 & !missing(dist_infor_miles))
+label variable flag_distance "Any survey >0.1 miles from Cog"
+
+* -- Merge completeness status from tracker --
+merge 1:1 pid using `trans_folder'tmp_slim_dedup.dta, keep(1 3) nogen
+
+gen cluster      = substr(pid, 2, 2)
+gen casa         = substr(pid, 4, 3)
+gen participante = substr(pid, 8, 1)
+
+order pid hhid cluster casa participante RSPCZIHXF7 ///
+      flag_distance ///
+      cog_lat cog_lon ///
+      socio_lat socio_lon dist_socio_miles ///
+      phys_lat phys_lon dist_phys_miles ///
+      infor_lat infor_lon dist_infor_miles
+
+sort cluster casa participante
+
+save `trans_folder'tracker_gps, replace
+export excel using "`trans_folder'duplicates/tracker_gps.xlsx", replace firstrow(variables)
+
+count if flag_distance == 1
+display "Cases flagged (any survey >0.1 miles from Cog): " r(N)
+
+* Clean up temp files
+capture erase `trans_folder'tmp_gps_cog.dta
+capture erase `trans_folder'tmp_gps_socio.dta
+capture erase `trans_folder'tmp_gps_phys.dta
+capture erase `trans_folder'tmp_gps_infor.dta
+capture erase `trans_folder'tmp_slim_dedup.dta
 
 clear
 

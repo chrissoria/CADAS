@@ -3,6 +3,346 @@
 * Called from Infor_Read.do when language == "E"
 
 ****************************************
+****************************************
+* VALUE LABELS (label define + label values)
+****************************************
+
+label define I_A2 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values i_a2 I_A2
+label define I_A3 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values i_a3 I_A3
+label define I_A4 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values i_a4 I_A4
+label define I_B1 .a"." 1 "a member of (xxx)’s household?" 2 "a non-resident child of (xxx)?" 3 "someone else?", replace
+capture label values i_b1 I_B1
+label define I_B4 .a"." 1 "Female" 2 "Male" 3 "Other", replace
+capture label values i_b4 I_B4
+label define I_B5 .a"." 1 "Spouse" 2 "Child" 3 "Son-in-law/daughter-in-law" 4 "Brother/sister" 5 "Other relative" 6 "Friend" 7 "Neighbor" 8 "Other" 88 "Does not respond", replace
+capture label values i_b5 I_B5
+label define I_C1 .a"." 1 "Needs care most of the time" 2 "Needs occasional care" 3 "Doesn't need care, takes care of themselves" 8 "Does not respond"9 "Does not know", replace
+capture label values i_c1 I_C1
+label define I_C2 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values i_c2 I_C2
+label define I_C3 .a"." 1 "One or more family members" 2 "One or more friends or neighbors, unpaid	" 3 "One or more paid caregivers" 4 "Does not receive direct care" 8 "Does not respond"9 "Does not know", replace
+capture label values i_c3 I_C3
+label define I_C4 .a"." 1 "One of the main direct caregivers" 2 "One of the main caretakers of 'organization'" 3 "Only slightly involved in providing or organizing care (others do it more)" 4 "Not involved in providing or arranging care", replace
+capture label values i_c4 I_C4
+label define I_C5 .a"." 1 "Yes, I have stopped working" 2 "Yes, I have decreased work hours" 3 "No" 8 "Does not respond", replace
+capture label values i_c5 I_C5
+label define I_C9 .a"." 1 "Yes" 2 "No" 8 "Does not respond", replace
+capture label values i_c9 I_C9
+label define I_C11 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values i_c11 I_C11
+label define I_C23 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values i_c23 I_C23
+label define I_C25 .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values i_c25 I_C25
+label define I_C26A .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values i_c26a I_C26A
+label define I_C27A .a"." 1 "Yes" 2 "No" 8 "Does not respond"9 "Does not know", replace
+capture label values i_c27a I_C27A
+label define I_D2 .a"." 0 "Never" 1 "Rarely" 2 "Sometimes " 3 "Frequentlye" 4 "Almost always" 8 "Does not respond", replace
+capture label values i_d2 I_D2
+label define I_D3 .a"." 0 "Never" 1 "Rarely" 2 "Sometimes" 3 "Frequently" 4 "Almost always" 8 "Does not respond", replace
+capture label values i_d3 I_D3
+label define I_D5 .a"." 0 "Never" 1 "Rarely" 2 "Sometimes" 3 "Frequently" 4 "Almost always" 8 "Does not respond", replace
+capture label values i_d5 I_D5
+label define I_D6 .a"."0 "Never" 1 "Rarely" 2 "Sometimes" 3 "Frequently" 4 "Almost always" 8 "Does not respond", replace
+capture label values i_d6 I_D6
+label define I_D9 .a"." 0 "Never" 1 "Rarely" 2 "Sometimes" 3 "Frequently" 4 "Almost always" 8 "Does not respond", replace
+capture label values i_d9 I_D9
+label define I_D10 .a"." 0 "Never" 1 "Rarely" 2 "Sometimes" 3 "Frequently" 4 "Almost always" 8 "Does not respond", replace
+capture label values i_d10 I_D10
+label define I_D11 .a"." 0 "Never" 1 "Rarely" 2 "Sometimes" 3 "Frequently" 4 "Almost always" 8 "Does not respond", replace
+capture label values i_d11 I_D11
+label define I_D12 .a"." 0 "Never" 1 "Rarely" 2 "Sometimes" 3 "Frequently" 4 "Almost always" 8 "Does not respond", replace
+capture label values i_d12 I_D12
+label define I_D17 .a"." 0 "Never" 1 "Rarely" 2 "Sometimes" 3 "Frequently" 4 "Almost always" 8 "Does not respond", replace
+capture label values i_d17 I_D17
+label define I_D19 .a"." 0 "Never" 1 "Rarely" 2 "Sometimes" 3 "Frequently" 4 "Almost always" 8 "Does not respond", replace
+capture label values i_d19 I_D19
+label define I_D20 .a"." 0 "Never" 1 "Rarely" 2 "Sometimes" 3 "Frequently" 4 "Almost always" 8 "Does not respond", replace
+capture label values i_d20 I_D20
+label define I_D21 .a"." 0 "Never" 1 "Rarely" 2 "Sometimes" 3 "Frequently" 4 "Almost always" 8 "Does not respond", replace
+capture label values i_d21 I_D21
+label define I_E1 .a"." 1 "Has improved a lot" 2 "Has improved a little" 3 "Not much has changed" 4 "Has worsened a little" 5 "Has worsened a lot" 8 "Does not respond"9 "Does not know", replace
+capture label values i_e1 I_E1
+label define I_E2 .a"." 1 "Has improved a lot" 2 "Has improved a little" 3 "Not much has changed" 4 "Has worsened a little" 5 "Has worsened a lot" 8 "Does not respond"9 "Does not know", replace
+capture label values i_e2 I_E2
+label define I_E3 .a"." 1 "Has improved a lot" 2 "Has improved a little" 3 "Not much has changed" 4 "Has worsened a little" 5 "Has worsened a lot" 8 "Does not respond"9 "Does not know", replace
+capture label values i_e3 I_E3
+label define I_E4 .a"." 1 "Has improved a lot" 2 "Has improved a little" 3 "Not much has changed" 4 "Has worsened a little" 5 "Has worsened a lot" 8 "Does not respond"9 "Does not know", replace
+capture label values i_e4 I_E4
+label define I_E5 .a"." 1 "Has improved a lot" 2 "Has improved a little" 3 "Not much has changed" 4 "Has worsened a little" 5 "Has worsened a lot" 8 "Does not respond"9 "Does not know", replace
+capture label values i_e5 I_E5
+label define I_E6 .a"." 1 "Has improved a lot" 2 "Has improved a little" 3 "Not much has changed" 4 "Has worsened a little" 5 "Has worsened a lot" 8 "Does not respond"9 "Does not know", replace
+capture label values i_e6 I_E6
+label define I_E7 .a"." 1 "Has improved a lot" 2 "Has improved a little" 3 "Not much has changed" 4 "Has worsened a little" 5 "Has worsened a lot" 8 "Does not respond"9 "Does not know", replace
+capture label values i_e7 I_E7
+label define I_E8 .a"." 1 "Has improved a lot" 2 "Has improved a little" 3 "Not much has changed" 4 "Has worsened a little" 5 "Has worsened a lot" 8 "Does not respond"9 "Does not know", replace
+capture label values i_e8 I_E8
+label define I_E9 .a"." 1 "Has improved a lot" 2 "Has improved a little" 3 "Not much has changed" 4 "Has worsened a little" 5 "Has worsened a lot" 8 "Does not respond"9 "Does not know", replace
+capture label values i_e9 I_E9
+label define I_E10 .a"." 1 "Has improved a lot" 2 "Has improved a little" 3 "Not much has changed" 4 "Has worsened a little" 5 "Has worsened a lot" 8 "Does not respond"9 "Does not know", replace
+capture label values i_e10 I_E10
+label define I_E11 .a"." 1 "Has improved a lot" 2 "Has improved a little" 3 "Not much has changed" 4 "Has worsened a little" 5 "Has worsened a lot" 8 "Does not respond"9 "Does not know", replace
+capture label values i_e11 I_E11
+label define I_E12 .a"." 1 "Has improved a lot" 2 "Has improved a little" 3 "Not much has changed" 4 "Has worsened a little" 5 "Has worsened a lot" 8 "Does not respond"9 "Does not know", replace
+capture label values i_e12 I_E12
+label define I_E13 .a"." 1 "Has improved a lot" 2 "Has improved a little" 3 "Not much has changed" 4 "Has worsened a little" 5 "Has worsened a lot" 8 "Does not respond"9 "Does not know", replace
+capture label values i_e13 I_E13
+label define I_E14 .a"." 1 "Has improved a lot" 2 "Has improved a little" 3 "Not much has changed" 4 "Has worsened a little" 5 "Has worsened a lot" 8 "Does not respond"9 "Does not know", replace
+capture label values i_e14 I_E14
+label define I_E15 .a"." 1 "Has improved a lot" 2 "Has improved a little" 3 "Not much has changed" 4 "Has worsened a little" 5 "Has worsened a lot" 8 "Does not respond"9 "Does not know", replace
+capture label values i_e15 I_E15
+label define I_E16 .a"." 1 "Has improved a lot" 2 "Has improved a little" 3 "Not much has changed" 4 "Has worsened a little" 5 "Has worsened a lot" 8 "Does not respond"9 "Does not know", replace
+capture label values i_e16 I_E16
+label define I_F_CSID_1 .a"." 0 "No changes" 1 "Decreased activities and reduced ability to carry out activities", replace
+capture label values i_f_csid_1 I_F_CSID_1
+label define I_F_CSID_2 .a"." 0 "No changes" 1 "General deterioration", replace
+capture label values i_f_csid_2 I_F_CSID_2
+label define I_F_CSID_3 .a"." 0 "No" 1 "Yes", replace
+capture label values i_f_csid_3 I_F_CSID_3
+label define I_F_CSID_4 .a"." 0 "Never" 1 "Yes, sometimes" 2 "Yes, on a regular basis", replace
+capture label values i_f_csid_4 I_F_CSID_4
+label define I_F_CSID_5 .a"." 0 "Never" 1 "Yes, sometimes" 2 "Yes, on a regular basis", replace
+capture label values i_f_csid_5 I_F_CSID_5
+label define I_F_BSE_3 .a"." 0 "Never" 1 "Yes, sometimes" 2 "Yes, on a regular basis", replace
+capture label values i_f_bse_3 I_F_BSE_3
+label define I_F_BSE_7 .a"." 0 "Never" 1 "Yes, sometimes" 2 "Yes, on a regular basis", replace
+capture label values i_f_bse_7 I_F_BSE_7
+label define I_F_CSID_6 .a"." 0 "Never" 1 "Yes, sometimes" 2 "Yes, on a regular basis", replace
+capture label values i_f_csid_6 I_F_CSID_6
+label define I_F_CSID_7 .a"." 0 "Never" 1 "Yes, sometimes" 2 "Yes, on a regular basis", replace
+capture label values i_f_csid_7 I_F_CSID_7
+label define I_F_CSID_8 .a"." 0 "Never" 1 "Yes, sometimes" 2 "Yes, on a regular basis", replace
+capture label values i_f_csid_8 I_F_CSID_8
+label define I_F_CSID_9 .a"." 0 "Never" 1 "Yes, sometimes" 2 "Yes, on a regular basis", replace
+capture label values i_f_csid_9 I_F_CSID_9
+label define I_F_CSID_10 .a"." 0 "Never" 1 "Yes, sometimes" 2 "Yes, on a regular basis", replace
+capture label values i_f_csid_10 I_F_CSID_10
+label define I_F_CSID_11 .a"." 0 "Never" 1 "Yes, sometimes" 2 "Yes, on a regular basis", replace
+capture label values i_f_csid_11 I_F_CSID_11
+label define I_F_CSID_12 .a"." 0 "Never" 1 "Yes, sometimes" 2 "Yes, on a regular basis", replace
+capture label values i_f_csid_12 I_F_CSID_12
+label define I_F_CSID_13 .a"." 0 "Never" 1 "Yes, sometimes" 2 "Yes, on a regular basis", replace
+capture label values i_f_csid_13 I_F_CSID_13
+label define I_F_CSID_14 .a"." 0 "Never" 1 "Yes, sometimes" 2 "Yes, on a regular basis", replace
+capture label values i_f_csid_14 I_F_CSID_14
+label define I_F_CSID_15 .a"." 0 "Never" 1 "Yes, sometimes" 2 "Yes, on a regular basis", replace
+capture label values i_f_csid_15 I_F_CSID_15
+label define I_F_CSID_16 .a"." 0 "Never" 1 "Yes, sometimes" 2 "Yes, on a regular basis", replace
+capture label values i_f_csid_16 I_F_CSID_16
+label define I_F_CSID_17 .a"." 0 "Never" 1 "Yes, sometimes" 2 "Yes, on a regular basis", replace
+capture label values i_f_csid_17 I_F_CSID_17
+label define I_F_CSID_17A .a"." 0 "No" 1 "Yes", replace
+capture label values i_f_csid_17a I_F_CSID_17A
+label define I_F_CSID_18 .a"." 0 "No" 1 "Yes", replace
+capture label values i_f_csid_18 I_F_CSID_18
+label define I_F_CSID_19 .a"." 0 "Shows no difficulty" 1 "Some difficulty" 2 "Can’t handle money", replace
+capture label values i_f_csid_19 I_F_CSID_19
+label define I_F_CSID_20 .a"." 0 "Never" 1 "Yes, sometimes" 2 "Yes, on a regular basis", replace
+capture label values i_f_csid_20 I_F_CSID_20
+label define I_F_CSID_21 .a"." 0 "Never" 1 "Yes, sometimes" 2 "Yes, on a regular basis", replace
+capture label values i_f_csid_21 I_F_CSID_21
+label define I_F_CSID_22_1 .a"." 0 "Eats cleanly and with proper utensils" 1 "Gets dirty when eating. Only uses the spoon" 2 "Simple solids, like cookies" 3 "Must be fed", replace
+capture label values i_f_csid_22_1 I_F_CSID_22_1
+label define I_F_CSID_22_2 .a"." 0 "No" 1 "Yes", replace
+capture label values i_f_csid_22_2 I_F_CSID_22_2
+label define I_F_CSID_23_1 .a"." 0 "Dressed on their own" 1 "Occasionally misses a button, etc." 2 "Wrong sequence, often forgets items" 3 "Unable to dress", replace
+capture label values i_f_csid_23_1 I_F_CSID_23_1
+label define I_F_CSID_23_2 .a"." 0 "No" 1 "Yes", replace
+capture label values i_f_csid_23_2 I_F_CSID_23_2
+label define I_F_CSID_24_1 .a"." 0 "No problems" 1 "Occasionally wets the bed" 2 "Frequently wets the bed" 3 "Double incontinence", replace
+capture label values i_f_csid_24_1 I_F_CSID_24_1
+label define I_F_CSID_24_2 .a"." 0 "No" 1 "Yes", replace
+capture label values i_f_csid_24_2 I_F_CSID_24_2
+label define I_F_CSID_25 .a"." 0 "No" 1 "Yes", replace
+capture label values i_f_csid_25 I_F_CSID_25
+label define I_F_CSID_26 .a"." 0 "No" 1 "Yes", replace
+capture label values i_f_csid_26 I_F_CSID_26
+label define I_F_CSID_27 .a"." 0 "No" 1 "Yes", replace
+capture label values i_f_csid_27 I_F_CSID_27
+label define I_F_CSID_28 .a"." 0 "No" 1 "Yes", replace
+capture label values i_f_csid_28 I_F_CSID_28
+label define I_G1 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g1 I_G1
+label define I_G1_2 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g1_2 I_G1_2
+label define I_G1_3 .a"." 0 "Not helpful" 1 "A little helpful" 2 "Very helpful" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g1_3 I_G1_3
+label define I_G1_4 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g1_4 I_G1_4
+label define I_G1_5 .a"." 0 "Not helpful" 1 "A little helpful" 2 "Very helpful" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g1_5 I_G1_5
+label define I_G_HAS_2 .a"." 1 "Rapid onset of organic features over 1-3 days" 2 "Rapid onset of more than 3 days but less than 3 weeks" 3 "Gradual onset over a longer period of time" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_2 I_G_HAS_2
+label define I_G_HAS_3_1 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_3_1 I_G_HAS_3_1
+label define I_G_HAS_3_11 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_3_11 I_G_HAS_3_11
+label define I_G_HAS_3_13 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_3_13 I_G_HAS_3_13
+label define I_G_HAS_3_14 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_3_14 I_G_HAS_3_14
+label define I_G_HAS_3_16 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_3_16 I_G_HAS_3_16
+label define I_G_HAS_3_22 .a"." 1 "In general, described as deterioration" 2 "In general, described as improvement" 3 "Described as no changes, or few changes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_3_22 I_G_HAS_3_22
+label define I_G_HAS_4 .a"." 0 "Does not vary" 1 "Fluctuating pattern with several days or weeks of improvement" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_4 I_G_HAS_4
+label define I_G_HAS_5_1 .a"." 0 "Did not become normal" 1 "Condition described as return to normal or near normal" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_5_1 I_G_HAS_5_1
+label define I_G_HAS_6 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_6 I_G_HAS_6
+label define I_G_HAS_7_1 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_7_1 I_G_HAS_7_1
+label define I_G_HAS_10 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_10 I_G_HAS_10
+label define I_G_HAS_11 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_11 I_G_HAS_11
+label define I_G_HAS_12 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_12 I_G_HAS_12
+label define I_G_HAS_13 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_13 I_G_HAS_13
+label define I_G_HAS_14_1 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_14_1 I_G_HAS_14_1
+label define I_G_HAS_15 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_15 I_G_HAS_15
+label define I_G_HAS_17 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_17 I_G_HAS_17
+label define I_G_HAS_18 .a"." 0 "Only happened recently" 1 "One of the first things" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_18 I_G_HAS_18
+label define I_G_HAS_47 .a"." 0 "No" 1 "Yes, probably" 2 "Yes, definitely" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_47 I_G_HAS_47
+label define I_G_HAS_48 .a"." 0 "No" 1 "Yes, probably" 2 "Yes, definitelye" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_48 I_G_HAS_48
+label define I_G_HAS_49 .a"." 0 "No" 1 "Yes, from a few minutes to an hour" 2 "Yes, more than an hour" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_49 I_G_HAS_49
+label define I_G_HAS_50 .a"." 0 "No	such changes" 1 "Serious condition affecting the head and causing permanent changes to personality/intellect" 8 "Does not respond"9 "Does not know", replace
+capture label values i_g_has_50 I_G_HAS_50
+label define I_G_HAS_52 .a"." 0 "No" 1 "Yes", replace
+capture label values i_g_has_52 I_G_HAS_52
+label define I_H_NPI_1 .a"." 0 "No" 1 "Yes" 8 "Does not respond" 9 "Does not know", replace
+capture label values i_h_npi_1 I_H_NPI_1
+label define I_H_NPI_1_1 .a"." 1 "Slight (noticeable, but not significant changes)" 2 "Moderate (significant, but not dramatic changes)" 3 "Severe (very marked and prominent, dramatic change)", replace
+capture label values i_h_npi_1_1 I_H_NPI_1_1
+label define I_H_NPI_1_2 .a"." 0 "Does not cause any discomfort" 1 "Minimal (slight discomfort, not a problem to handle)" 2 "Mild (not much discomfort, easy to handle)" 3 "Moderate (fairly uncomfortable, not always easy to handle)" 4 "Severe (a lot of discomfort, difficult to handle)" 5 "Extreme or very severe (extreme discomfort, unable to handle)", replace
+capture label values i_h_npi_1_2 I_H_NPI_1_2
+label define I_H_NPI_2 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_h_npi_2 I_H_NPI_2
+label define I_H_NPI_2_1 .a"." 1 "Slight (noticeable, but not significant changes)" 2 "Moderate (significant, but not dramatic changes)" 3 "Severe (very marked and prominent, dramatic change)", replace
+capture label values i_h_npi_2_1 I_H_NPI_2_1
+label define I_H_NPI_2_2 .a"." 0 "Does not cause any discomfort" 1 "Minimal (slight discomfort, not a problem to handle)" 2 "Mild (not much discomfort, easy to handle)" 3 "Moderate (fairly uncomfortable, not always easy to handle)" 4 "Severe (much discomfort, difficult to handle)" 5 "Extreme or very severe (extreme discomfort, unable to handle)", replace
+capture label values i_h_npi_2_2 I_H_NPI_2_2
+label define I_H_NPI_3 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_h_npi_3 I_H_NPI_3
+label define I_H_NPI_3_1 .a"." 1 "Slight (noticeable, but not significant changes)" 2 "Moderate (significant, but not dramatic changes)" 3 "Severe (very marked and prominent, dramatic change)", replace
+capture label values i_h_npi_3_1 I_H_NPI_3_1
+label define I_H_NPI_3_2 .a"." 0 "Does not cause any discomfort" 1 "Minimal (slight discomfort, not a problem to handle)" 2 "Mild (not much discomfort, easy to handle)" 3 "Moderate (fairly uncomfortable, not always easy to handle)" 4 "Severe (much discomfort, difficult to handle)" 5 "Extreme or very severe (extreme discomfort, unable to handle)", replace
+capture label values i_h_npi_3_2 I_H_NPI_3_2
+label define I_H_NPI_4 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_h_npi_4 I_H_NPI_4
+label define I_H_NPI_4_1 .a"." 1 "Slight (noticeable, but not significant changes)" 2 "Moderate (significant, but not dramatic changes)" 3 "Severe (very marked and prominent, dramatic change)", replace
+capture label values i_h_npi_4_1 I_H_NPI_4_1
+label define I_H_NPI_4_2 .a"." 0 "Does not cause any discomfort" 1 "Minimal (slight discomfort, not a problem to handle)" 2 "Mild (not much discomfort, easy to handle)" 3 "Moderate (fairly uncomfortable, not always easy to handle)" 4 "Severe (much discomfort, difficult to handle)" 5 "Extreme or very severe (extreme discomfort, unable to handle)", replace
+capture label values i_h_npi_4_2 I_H_NPI_4_2
+label define I_H_NPI_5 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_h_npi_5 I_H_NPI_5
+label define I_H_NPI_5_1 .a"." 1 "Slight (noticeable, but not significant changes)" 2 "Moderate (significant, but not dramatic changes)" 3 "Severe (very marked and prominent, dramatic change)", replace
+capture label values i_h_npi_5_1 I_H_NPI_5_1
+label define I_H_NPI_5_2 .a"." 0 "Does not cause any discomfort" 1 "Minimal (slight discomfort, not a problem to handle)" 2 "Mild (not much discomfort, easy to handle)" 3 "Moderate (fairly uncomfortable, not always easy to handle)" 4 "Severe (much discomfort, difficult to handle)" 5 "Extreme or very severe (extreme discomfort, unable to handle)", replace
+capture label values i_h_npi_5_2 I_H_NPI_5_2
+label define I_H_NPI_6 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_h_npi_6 I_H_NPI_6
+label define I_H_NPI_6_1 .a"." 1 "Slight (noticeable, but not significant changes)" 2 "Moderate (significant, but not dramatic changes)" 3 "Severe (very marked and prominent, dramatic change)", replace
+capture label values i_h_npi_6_1 I_H_NPI_6_1
+label define I_H_NPI_6_2 .a"." 0 "Does not cause any discomfort" 1 "Minimal (slight discomfort, not a problem to handle)" 2 "Mild (not much discomfort, easy to handle)" 3 "Moderate (fairly uncomfortable, not always easy to handle)" 4 "Severe (much discomfort, difficult to handle)" 5 "Extreme or very severe (extreme discomfort, unable to handle)", replace
+capture label values i_h_npi_6_2 I_H_NPI_6_2
+label define I_H_NPI_7 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_h_npi_7 I_H_NPI_7
+label define I_H_NPI_7_1 .a"." 1 "Slight (noticeable, but not significant changes)" 2 "Moderate (significant, but not dramatic changes)" 3 "Severe (very marked and prominent, dramatic change)", replace
+capture label values i_h_npi_7_1 I_H_NPI_7_1
+label define I_H_NPI_7_2 .a"." 0 "Does not cause any discomfort" 1 "Minimal (slight discomfort, not a problem to handle)" 2 "Mild (not much discomfort, easy to handle)" 3 "Moderate (fairly uncomfortable, not always easy to handle)" 4 "Severe (much discomfort, difficult to handle)" 5 "Extreme or very severe (extreme discomfort, unable to handle)", replace
+capture label values i_h_npi_7_2 I_H_NPI_7_2
+label define I_H_NPI_8 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_h_npi_8 I_H_NPI_8
+label define I_H_NPI_8_1 .a"." 1 "Slight (noticeable, but not significant changes)" 2 "Moderate (significant, but not dramatic changes)" 3 "Severe (very marked and prominent, dramatic change)", replace
+capture label values i_h_npi_8_1 I_H_NPI_8_1
+label define I_H_NPI_8_2 .a"." 0 "Does not cause any discomfort" 1 "Minimal (slight discomfort, not a problem to handle)" 2 "Mild (not much discomfort, easy to handle)" 3 "Moderate (fairly uncomfortable, not always easy to handle)" 4 "Severe (much discomfort, difficult to handle)" 5 "Extreme or very severe (extreme discomfort, unable to handle)", replace
+capture label values i_h_npi_8_2 I_H_NPI_8_2
+label define I_H_NPI_9 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_h_npi_9 I_H_NPI_9
+label define I_H_NPI_9_1 .a"." 1 "Slight (noticeable, but not significant changes)" 2 "Moderate (significant, but not dramatic changes)" 3 "Severe (very marked and prominent, dramatic change)", replace
+capture label values i_h_npi_9_1 I_H_NPI_9_1
+label define I_H_NPI_9_2 .a"." 0 "Does not cause any discomfort" 1 "Minimal (slight discomfort, not a problem to handle)" 2 "Mild (not much discomfort, easy to handle)" 3 "Moderate (fairly uncomfortable, not always easy to handle)" 4 "Severe (much discomfort, difficult to handle)" 5 "Extreme or very severe (extreme discomfort, unable to handle)", replace
+capture label values i_h_npi_9_2 I_H_NPI_9_2
+label define I_H_NPI_10 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_h_npi_10 I_H_NPI_10
+label define I_H_NPI_10_1 .a"." 1 "Slight (noticeable, but not significant changes)" 2 "Moderate (significant, but not dramatic changes)" 3 "Severe (very marked and prominent, dramatic change)", replace
+capture label values i_h_npi_10_1 I_H_NPI_10_1
+label define I_H_NPI_10_2 .a"." 0 "Does not cause any discomfort" 1 "Minimal (slight discomfort, not a problem to handle)" 2 "Mild (not much discomfort, easy to handle)" 3 "Moderate (fairly uncomfortable, not always easy to handle)" 4 "Severe (much discomfort, difficult to handle)" 5 "Extreme or very severe (extreme discomfort, unable to handle)", replace
+capture label values i_h_npi_10_2 I_H_NPI_10_2
+label define I_H_NPI_11 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_h_npi_11 I_H_NPI_11
+label define I_H_NPI_11_1 .a"." 1 "Slight (noticeable, but not significant changes)" 2 "Moderate (significant, but not dramatic changes)" 3 "Severe (very marked and prominent, dramatic change)", replace
+capture label values i_h_npi_11_1 I_H_NPI_11_1
+label define I_H_NPI_11_2 .a"." 0 "Does not cause any discomfort" 1 "Minimal (slight discomfort, not a problem to handle)" 2 "Mild (not much discomfort, easy to handle)" 3 "Moderate (fairly uncomfortable, not always easy to handle)" 4 "Severe (much discomfort, difficult to handle)" 5 "Extreme or very severe (extreme discomfort, unable to handle)", replace
+capture label values i_h_npi_11_2 I_H_NPI_11_2
+label define I_H_NPI_12 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_h_npi_12 I_H_NPI_12
+label define I_H_NPI_12_1 .a"." 1 "Slight (noticeable, but not significant changes)" 2 "Moderate (significant, but not dramatic changes)" 3 "Severe (very marked and prominent, dramatic change)", replace
+capture label values i_h_npi_12_1 I_H_NPI_12_1
+label define I_H_NPI_12_2 .a"." 0 "Does not cause any discomfort" 1 "Minimal (slight discomfort, not a problem to handle)" 2 "Mild (not much discomfort, easy to handle)" 3 "Moderate (fairly uncomfortable, not always easy to handle)" 4 "Severe (much discomfort, difficult to handle)" 5 "Extreme or very severe (extreme discomfort, unable to handle)", replace
+capture label values i_h_npi_12_2 I_H_NPI_12_2
+label define I_J1 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_j1 I_J1
+label define I_J2 .a"." 1 "Less than five years ago" 2 "Between 5 and 10 years ago" 3 "10 years ago or more" 8 "Does not respond"9 "Does not know", replace
+capture label values i_j2 I_J2
+label define I_J3 .a"." 0 "No" 1 "Yes" 8 "Does not respond"9 "Does not know", replace
+capture label values i_j3 I_J3
+label define I_K_ACT_1 .a"." 1 "Zero" 2 "Half hour" 3 "One" 4 "Two to three" 5 "Four to six" 6 "Seven or more" 7 "Never" 9 "Does not know"8 "Does not respond", replace
+capture label values i_k_act_1 I_K_ACT_1
+label define I_K_ACT_2 .a"." 1 "Zero" 2 "Half hour" 3 "One" 4 "Two to three" 5 "Four to six" 6 "Seven or more" 7 "Never" 9 "Does not know"8 "Does not respond", replace
+capture label values i_k_act_2 I_K_ACT_2
+label define I_K_ACT_5 .a"." 1 "Zero" 2 "Half hour" 3 "One" 4 "Two to three" 5 "Four to six" 6 "Seven or more" 7 "Never" 9 "Does not know"8 "Does not respond", replace
+capture label values i_k_act_5 I_K_ACT_5
+label define I_K_ACT_7 .a"." 1 "Zero" 2 "Half hour" 3 "One" 4 "Two to three" 5 "Four to six" 6 "Seven or more" 7 "Never" 9 "Does not know"8 "Does not respond", replace
+capture label values i_k_act_7 I_K_ACT_7
+label define I_K_ACT_8 .a"." 1 "Zero" 2 "Half hour" 3 "One" 4 "Two to three" 5 "Four to six" 6 "Seven or more" 7 "Never" 9 "Does not know"8 "Does not respond", replace
+capture label values i_k_act_8 I_K_ACT_8
+label define I_K_ACT_10 .a"." 1 "Yes" 2 "No" 6 "xxx doesn’t usually cook" 9 "Does not know"8 "Does not respond", replace
+capture label values i_k_act_10 I_K_ACT_10
+label define I_K_ACT_13 .a"." 1 "Yes" 2 "No" 9 "Does not know"8 "Does not respond", replace
+capture label values i_k_act_13 I_K_ACT_13
+label define I_K_ACT_14 .a"." 1 "Yes" 2 "No" 9 "Does not know"8 "Does not respond", replace
+capture label values i_k_act_14 I_K_ACT_14
+label define I_K_ACT_15 .a"." 1 "Daily" 2 "Several times per week" 3 "Once a week" 4 "Once a month" 5 "Rarely" 6 "Never" 9 "Does not know"8 "Does not respond", replace
+capture label values i_k_act_15 I_K_ACT_15
+label define I_K_ACT_16 .a"." 1 "Daily" 2 "Several times a week" 3 "Once a week" 4 "Once a month" 5 "Rarely" 6 "Never" 9 "Does not know"8 "Does not respond", replace
+capture label values i_k_act_16 I_K_ACT_16
+label define I_K_ACT_17 .a"." 1 "Alone" 2 "Accompanied" 9 "Does not know"8 "Does not respond", replace
+capture label values i_k_act_17 I_K_ACT_17
+label define I_LHAS_54 .a"." 0 "Reasonable" 1 "Some doubts" 2 "Moderate doubts" 3 "Serious doubts" 4 "Worthless", replace
+capture label values i_lhas_54 I_LHAS_54
+label define I_B7 .a "." 0 "None" 1 "1 to 5" 2 "6 to 8" 3 "9 to 12" 4 "More than 12" 8 "Does not respond" 9 "Does not know", replace
+capture label values i_b7 I_B7
+label define I_B7_ .a "." 0 "None" 1 "1 to 5" 2 "6 to 8" 3 "9 to 12" 4 "More than 12" 8 "Does not respond" 9 "Does not know", replace
+capture label values i_b7_ I_B7_
+capture label values i_b7 I_B7_
+label define I_C7_1 .a "." 1 "1 - profesional ejecutivo" 2 "2 - oficinista" 3 "3 - vendedor, minorista" 4 "4 - agricultor independiente" 5 "5 - trabajador agricola" 6 "6 - trabajador domestico" 7 "7 - otros servicios" 8 "8 - trabajador especializado" 9 "9 - trabajador no especializado" 10 "10 - trabajos informales" 13 "13- otros" 88 "88 - no responde" 99 "99 - no sabe", replace
+capture label values i_c7_1 I_C7_1
+label define I_C7_1_ .a "." 1 "Professional, executive" 2 "Clerk" 3 "Seller, retailer" 4 "Independent farmer" 5 "Farm worker" 6 "Domestic worker" 7 "Other services" 8 "Skilled worker" 9 "Unskilled worker" 10 "Informal jobs" 13 "Others" 88 "Does not respond" 99 "Does not know", replace
+capture label values i_c7_1_ I_C7_1_
+capture label values i_c7_1 I_C7_1_
+label define I_C8A .a "." 1 "1 - todo el tiempo enfocado exclusivamente en su (xxx)" 2 "2 - la mayor parte del tiempo enfocado en su (xxx)" 3 "3 - mitad y mitad" 4 "4 - la mayor parte del tiempo haciendo otras tareas u ocio" 8 "8 - no responde" 9 "9 - no sabe", replace
+capture label values i_c8a I_C8A
+label define I_C8A_ .a "." 1 "All the time focused exclusively on their (xxx)" 2 "Most of the time focused on their (xxx)" 3 "Half and Half" 4 "Most of the time doing other tasks or leisure" 8 "Does not respond" 9 "Does not know", replace
+capture label values i_c8a_ I_C8A_
+capture label values i_c8a I_C8A_
+
+****************************************
+
 * VARIABLE LABELS (label variable)
 ****************************************
 

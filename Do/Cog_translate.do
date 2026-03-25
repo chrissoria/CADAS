@@ -66,6 +66,7 @@ if !_rc{
 }
 
 label define C_0 .a"." 1 "correct"0 "incorrect"
+label values c_0 C_0
 
 
 
@@ -75,6 +76,7 @@ if !_rc{
 }
 
 label define C_1 .a"." 1 "correct"0 "incorrect"
+label values c_1 C_1
 
 
 
@@ -84,6 +86,7 @@ if !_rc{
 }
 
 label define C_2_P_C .a"." 1 "correct"0 "incorrect"
+label values c_2_p_c C_2_P_C
 
 
 
@@ -93,6 +96,7 @@ if !_rc{
 }
 
 label define C_2_D .a"." 1 "correct"0 "incorrect"
+label values c_2_d C_2_D
 
 
 
@@ -102,6 +106,7 @@ if !_rc{
 }
 
 label define C_3 .a"." 1 "correct"0 "incorrect"
+label values c_3 C_3
 
 
 
@@ -111,6 +116,7 @@ if !_rc{
 }
 
 label define C_4 .a"." 1 "correct"0 "incorrect"
+label values c_4 C_4
 
 
 
@@ -120,6 +126,7 @@ if !_rc{
 }
 
 label define C_5 .a"." 1 "correct"0 "incorrect"
+label values c_5 C_5
 
 
 
@@ -129,6 +136,7 @@ if !_rc{
 }
 
 label define C_6 .a"." 1 "correct"0 "incorrect"
+label values c_6 C_6
 
 
 
@@ -138,6 +146,7 @@ if !_rc{
 }
 
 label define C_7_D_C .a"." 1 "correct"0 "incorrect"
+label values c_7_d_c C_7_D_C
 
 
 
@@ -147,6 +156,7 @@ if !_rc{
 }
 
 label define C_7_P .a"." 1 "correct"0 "incorrect"
+label values c_7_p C_7_P
 
 
 
@@ -156,6 +166,7 @@ if !_rc{
 }
 
 label define C_8 .a"." 1 "correct"0 "incorrect"
+label values c_8 C_8
 
 
 
@@ -165,6 +176,7 @@ if !_rc{
 }
 
 label define C_9 .a"." 1 "correct"0 "incorrect"
+label values c_9 C_9
 
 
 
@@ -174,6 +186,7 @@ if !_rc{
 }
 
 label define C_10 .a"." 1 "correct"0 "incorrect"
+label values c_10 C_10
 
 
 
@@ -183,6 +196,7 @@ if !_rc{
 }
 
 label define C_11 .a"." 1 "correct"0 "incorrect"
+label values c_11 C_11
 
 
 
@@ -192,6 +206,7 @@ if !_rc{
 }
 
 label define C_12 .a"." 1 "correct"0 "incorrect"
+label values c_12 C_12
 
 
 
@@ -201,6 +216,7 @@ if !_rc{
 }
 
 label define C_13 .a"." 1 "correct"0 "incorrect"
+label values c_13 C_13
 
 
 
@@ -210,6 +226,7 @@ if !_rc{
 }
 
 label define C_21 .a"." 1 "correct"0 "incorrect"
+label values c_21 C_21
 
 
 
@@ -219,6 +236,7 @@ if !_rc{
 }
 
 label define C_22 .a"." 1 "correct"0 "incorrect"
+label values c_22 C_22
 
 
 
@@ -228,6 +246,7 @@ if !_rc{
 }
 
 label define C_23 .a"." 1 "correct"0 "incorrect"
+label values c_23 C_23
 
 
 
@@ -237,6 +256,7 @@ if !_rc{
 }
 
 label define C_24 .a"." 1 "correct"0 "incorrect"6 "could not (physical limitation)"7 "refused"
+label values c_24 C_24
 
 
 
@@ -246,6 +266,7 @@ if !_rc{
 }
 
 label define C_25 .a"." 1 "correct"0 "incorrect"6 "could not (physical limitation)"7 "refused"
+label values c_25 C_25
 
 
 
@@ -255,6 +276,7 @@ if !_rc{
 }
 
 label define C_26 .a"." 1 "correct"0 "incorrect"7 "refused"
+label values c_26 C_26
 
 
 
@@ -264,6 +286,7 @@ if !_rc{
 }
 
 label define C_27 .a"." 1 "correct"0 "incorrect"6 "could not (physical limitation)"7 "refused"
+label values c_27 C_27
 
 
 
@@ -273,6 +296,7 @@ if !_rc{
 }
 
 label define C_28 .a"." 1 "correct"0 "incorrect"6 "could not (physical limitation)"7 "refused"
+label values c_28 C_28
 
 
 
@@ -282,6 +306,7 @@ if !_rc{
 }
 
 label define C_29 .a"." 1 "correct"0 "incorrect"6 "could not (physical limitation)"7 "refused"
+label values c_29 C_29
 
 
 
@@ -291,6 +316,7 @@ if !_rc{
 }
 
 label define C_30 .a"." 1 "correct"0 "incorrect"5 "could not (illiterate)"6 "could not (physical limitation)"7 "refused"
+label values c_30 C_30
 
 
 
@@ -300,6 +326,7 @@ if !_rc{
 }
 
 label define C_31 .a"." 0 "0" 1 "1" 5 "could not (illiterate)"6 "could not (physical limitation)"7 "refused"
+label values c_31 C_31
 
 
 
@@ -309,6 +336,7 @@ if !_rc{
 }
 
 label define C_32 .a"." 1 "yes" 6 "could not (physical limitation)"7 "refused"
+label values c_32 C_32
 
 
 
@@ -318,6 +346,7 @@ if !_rc{
 }
 
 label define G_1 .a"." 1 "yes" 2 "no" 
+label values g_1 G_1
 
 
 
@@ -327,6 +356,7 @@ if !_rc{
 }
 
 label define C_40 .a"." 0 "no" 1 "yes" 777 "refused"
+label values c_40 C_40
 
 
 
@@ -336,6 +366,7 @@ if !_rc{
 }
 
 label define C_43 .a"." 0 "no" 1 "yes" 666 "could not (physical limitation)"777 "refused"
+label values c_43 C_43
 
 
 
@@ -345,6 +376,7 @@ if !_rc{
 }
 
 label define C_45 .a"." 1 "correct"0 "incorrect"2 "wants to start over" 7 "refused"
+label values c_45 C_45
 
 
 
@@ -354,6 +386,7 @@ if !_rc{
 }
 
 label define C_46 .a"." 1 "correct"0 "incorrect"7 "refused"
+label values c_46 C_46
 
 
 
@@ -363,6 +396,7 @@ if !_rc{
 }
 
 label define C_48 .a"." 1 "correct"0 "incorrect"6 "could not (physical limitation)"7 "refused"
+label values c_48 C_48
 
 
 
@@ -372,6 +406,7 @@ if !_rc{
 }
 
 label define C_49 .a"." 1 "correct"0 "incorrect"6 "could not (physical limitation)"7 "refused"
+label values c_49 C_49
 
 
 
@@ -381,6 +416,7 @@ if !_rc{
 }
 
 label define C_50 .a"." 1 "correct"0 "incorrect"6 "could not (physical limitation)"7 "refused"
+label values c_50 C_50
 
 
 
@@ -390,6 +426,7 @@ if !_rc{
 }
 
 label define C_51 .a"." 1 "correct"0 "incorrect"6 "could not (physical limitation)"7 "refused"
+label values c_51 C_51
 
 
 
@@ -399,6 +436,7 @@ if !_rc{
 }
 
 label define C_52 .a"." 1 "correct"0 "incorrect"6 "could not (physical limitation)"7 "refused"
+label values c_52 C_52
 
 
 
@@ -408,6 +446,7 @@ if !_rc{
 }
 
 label define C_53 .a"." 1 "correct"0 "incorrect"7 "refused"
+label values c_53 C_53
 
 
 
@@ -417,6 +456,7 @@ if !_rc{
 }
 
 label define C_54 .a"." 1 "correct"0 "incorrect"7 "refused"
+label values c_54 C_54
 
 
 
@@ -426,6 +466,7 @@ if !_rc{
 }
 
 label define C_55 .a"." 1 "correct"0 "incorrect"7 "refused"
+label values c_55 C_55
 
 
 
@@ -435,6 +476,7 @@ if !_rc{
 }
 
 label define C_56 .a"." 1 "correct"0 "incorrect"7 "refused"
+label values c_56 C_56
 
 
 
@@ -444,6 +486,7 @@ if !_rc{
 }
 
 label define C_58 .a"." 1 "answered" 2 "did not answer" 
+label values c_58 C_58
 
 
 
@@ -453,6 +496,7 @@ if !_rc{
 }
 
 label define C_59 .a"." 1 "answered" 2 "did not answer" 
+label values c_59 C_59
 
 
 
@@ -462,6 +506,7 @@ if !_rc{
 }
 
 label define C_60 .a"." 1 "answered" 2 "did not answer" 
+label values c_60 C_60
 
 
 
@@ -471,6 +516,7 @@ if !_rc{
 }
 
 label define C_61 .a"." 1 "correct"0 "incorrect"6 "could not (physical limitation)"7 "refused"
+label values c_61 C_61
 
 
 
@@ -480,6 +526,7 @@ if !_rc{
 }
 
 label define C_62 .a"." 1 "correct"0 "incorrect"6 "could not (physical limitation)"7 "refused"
+label values c_62 C_62
 
 
 
@@ -489,6 +536,7 @@ if !_rc{
 }
 
 label define C_65 .a"." 1 "correct"0 "incorrect"
+label values c_65 C_65
 
 
 
@@ -498,6 +546,7 @@ if !_rc{
 }
 
 label define G_2 .a"." 1 "yes" 2 "no" 
+label values g_2 G_2
 
 
 
@@ -507,6 +556,7 @@ if !_rc{
 }
 
 label define C_66A .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_66a C_66A
 
 
 
@@ -516,6 +566,7 @@ if !_rc{
 }
 
 label define C_66B .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_66b C_66B
 
 
 
@@ -525,6 +576,7 @@ if !_rc{
 }
 
 label define C_66C .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_66c C_66C
 
 
 
@@ -534,6 +586,7 @@ if !_rc{
 }
 
 label define C_66D .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_66d C_66D
 
 
 
@@ -543,6 +596,7 @@ if !_rc{
 }
 
 label define C_66E .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_66e C_66E
 
 
 
@@ -552,6 +606,7 @@ if !_rc{
 }
 
 label define C_66F .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_66f C_66F
 
 
 
@@ -561,6 +616,7 @@ if !_rc{
 }
 
 label define C_67_01 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_01 C_67_01
 
 
 
@@ -570,6 +626,7 @@ if !_rc{
 }
 
 label define C_67_02 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_02 C_67_02
 
 
 
@@ -579,6 +636,7 @@ if !_rc{
 }
 
 label define C_67_03 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_03 C_67_03
 
 
 
@@ -588,6 +646,7 @@ if !_rc{
 }
 
 label define C_67_04 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_04 C_67_04
 
 
 
@@ -597,6 +656,7 @@ if !_rc{
 }
 
 label define C_67_05 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_05 C_67_05
 
 
 
@@ -606,6 +666,7 @@ if !_rc{
 }
 
 label define C_67_06 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_06 C_67_06
 
 
 
@@ -615,6 +676,7 @@ if !_rc{
 }
 
 label define C_67_07 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_07 C_67_07
 
 
 
@@ -624,6 +686,7 @@ if !_rc{
 }
 
 label define C_67_08 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_08 C_67_08
 
 
 
@@ -633,6 +696,7 @@ if !_rc{
 }
 
 label define C_67_09 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_09 C_67_09
 
 
 
@@ -642,6 +706,7 @@ if !_rc{
 }
 
 label define C_67_10 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_10 C_67_10
 
 
 
@@ -651,6 +716,7 @@ if !_rc{
 }
 
 label define C_67_11 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_11 C_67_11
 
 
 
@@ -660,6 +726,7 @@ if !_rc{
 }
 
 label define C_67_12 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_12 C_67_12
 
 
 
@@ -669,6 +736,7 @@ if !_rc{
 }
 
 label define C_67_13_C .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_13_c C_67_13_C
 
 
 
@@ -678,6 +746,7 @@ if !_rc{
 }
 
 label define C_67_13_D .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_13_d C_67_13_D
 
 
 
@@ -687,6 +756,7 @@ if !_rc{
 }
 
 label define C_67_13_P .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_13_p C_67_13_P
 
 
 
@@ -696,6 +766,7 @@ if !_rc{
 }
 
 label define C_67_14 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_14 C_67_14
 
 
 
@@ -705,6 +776,7 @@ if !_rc{
 }
 
 label define C_67_15 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_15 C_67_15
 
 
 
@@ -714,6 +786,7 @@ if !_rc{
 }
 
 label define C_67_16 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_16 C_67_16
 
 
 
@@ -723,6 +796,7 @@ if !_rc{
 }
 
 label define C_67_17 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_17 C_67_17
 
 
 
@@ -732,6 +806,7 @@ if !_rc{
 }
 
 label define C_67_18 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_18 C_67_18
 
 
 
@@ -741,6 +816,7 @@ if !_rc{
 }
 
 label define C_67_19 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_19 C_67_19
 
 
 
@@ -750,6 +826,7 @@ if !_rc{
 }
 
 label define C_67_20 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_20 C_67_20
 
 
 
@@ -759,6 +836,7 @@ if !_rc{
 }
 
 label define C_67_21 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_21 C_67_21
 
 
 
@@ -768,6 +846,7 @@ if !_rc{
 }
 
 label define C_67_22 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_22 C_67_22
 
 
 
@@ -777,6 +856,7 @@ if !_rc{
 }
 
 label define C_67_23 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_23 C_67_23
 
 
 
@@ -786,6 +866,7 @@ if !_rc{
 }
 
 label define C_67_24 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_24 C_67_24
 
 
 
@@ -795,6 +876,7 @@ if !_rc{
 }
 
 label define C_67_25 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_67_25 C_67_25
 
 
 
@@ -804,6 +886,7 @@ if !_rc{
 }
 
 label define C_68_01 .a"." 1 "yes" 2 "no" 
+label values c_68_01 C_68_01
 
 
 
@@ -813,6 +896,7 @@ if !_rc{
 }
 
 label define C_68_02 .a"." 1 "yes" 2 "no" 
+label values c_68_02 C_68_02
 
 
 
@@ -822,6 +906,7 @@ if !_rc{
 }
 
 label define C_68_03 .a"." 1 "yes" 2 "no" 
+label values c_68_03 C_68_03
 
 
 
@@ -831,6 +916,7 @@ if !_rc{
 }
 
 label define C_68_04 .a"." 1 "yes" 2 "no" 
+label values c_68_04 C_68_04
 
 
 
@@ -840,6 +926,7 @@ if !_rc{
 }
 
 label define C_68_05 .a"." 1 "yes" 2 "no" 
+label values c_68_05 C_68_05
 
 
 
@@ -849,6 +936,7 @@ if !_rc{
 }
 
 label define C_68_06 .a"." 1 "yes" 2 "no" 
+label values c_68_06 C_68_06
 
 
 
@@ -858,6 +946,7 @@ if !_rc{
 }
 
 label define C_68_07 .a"." 1 "yes" 2 "no" 
+label values c_68_07 C_68_07
 
 
 
@@ -867,6 +956,7 @@ if !_rc{
 }
 
 label define C_68_08 .a"." 1 "yes" 2 "no" 
+label values c_68_08 C_68_08
 
 
 
@@ -876,6 +966,7 @@ if !_rc{
 }
 
 label define C_68_09 .a"." 1 "yes" 2 "no" 
+label values c_68_09 C_68_09
 
 
 
@@ -885,6 +976,7 @@ if !_rc{
 }
 
 label define C_68_10 .a"." 1 "yes" 2 "no" 
+label values c_68_10 C_68_10
 
 
 
@@ -894,6 +986,7 @@ if !_rc{
 }
 
 label define C_68_11 .a"." 1 "yes" 2 "no" 
+label values c_68_11 C_68_11
 
 
 
@@ -903,6 +996,7 @@ if !_rc{
 }
 
 label define C_68_12 .a"." 1 "yes" 2 "no" 
+label values c_68_12 C_68_12
 
 
 
@@ -912,6 +1006,7 @@ if !_rc{
 }
 
 label define C_68_13 .a"." 1 "yes" 2 "no" 
+label values c_68_13 C_68_13
 
 
 
@@ -921,6 +1016,7 @@ if !_rc{
 }
 
 label define C_68_14 .a"." 1 "yes" 2 "no" 
+label values c_68_14 C_68_14
 
 
 
@@ -930,6 +1026,7 @@ if !_rc{
 }
 
 label define C_68_15 .a"." 1 "yes" 2 "no" 
+label values c_68_15 C_68_15
 
 
 
@@ -939,6 +1036,7 @@ if !_rc{
 }
 
 label define C_68_16 .a"." 1 "yes" 2 "no" 
+label values c_68_16 C_68_16
 
 
 
@@ -948,6 +1046,7 @@ if !_rc{
 }
 
 label define C_68_17 .a"." 1 "yes" 2 "no" 
+label values c_68_17 C_68_17
 
 
 
@@ -957,6 +1056,7 @@ if !_rc{
 }
 
 label define C_68_18 .a"." 1 "yes" 2 "no" 
+label values c_68_18 C_68_18
 
 
 
@@ -966,6 +1066,7 @@ if !_rc{
 }
 
 label define C_68_19 .a"." 1 "yes" 2 "no" 
+label values c_68_19 C_68_19
 
 
 
@@ -975,6 +1076,7 @@ if !_rc{
 }
 
 label define C_68_20 .a"." 1 "yes" 2 "no" 
+label values c_68_20 C_68_20
 
 
 
@@ -984,6 +1086,7 @@ if !_rc{
 }
 
 label define C_69_C .a"." 1 "correct"0 "incorrect"
+label values c_69_c C_69_C
 
 
 
@@ -993,6 +1096,7 @@ if !_rc{
 }
 
 label define C_69_D .a"." 1 "correct"0 "incorrect"
+label values c_69_d C_69_D
 
 
 
@@ -1002,6 +1106,7 @@ if !_rc{
 }
 
 label define C_69_P .a"." 1 "correct"0 "incorrect"
+label values c_69_p C_69_P
 
 
 
@@ -1011,6 +1116,7 @@ if !_rc{
 }
 
 label define C_70_D_C .a"." 1 "correct"0 "incorrect"
+label values c_70_d_c C_70_D_C
 
 
 
@@ -1020,6 +1126,7 @@ if !_rc{
 }
 
 label define C_70_P .a"." 1 "correct"0 "incorrect"
+label values c_70_p C_70_P
 
 
 
@@ -1029,6 +1136,7 @@ if !_rc{
 }
 
 label define C_71_C .a"." 1 "correct"0 "incorrect"
+label values c_71_c C_71_C
 
 
 
@@ -1038,6 +1146,7 @@ if !_rc{
 }
 
 label define C_71_P .a"." 1 "correct"0 "incorrect"
+label values c_71_p C_71_P
 
 
 
@@ -1047,6 +1156,7 @@ if !_rc{
 }
 
 label define C_71_D .a"." 1 "correct"0 "incorrect"
+label values c_71_d C_71_D
 
 
 
@@ -1056,6 +1166,7 @@ if !_rc{
 }
 
 label define C_72_1 .a"." 1 "yes" 6 "could not (physical limitation)"7 "refused"
+label values c_72_1 C_72_1
 
 
 
@@ -1065,6 +1176,7 @@ if !_rc{
 }
 
 label define C_72_2 .a"." 1 "yes" 6 "could not (physical limitation)"7 "refused"
+label values c_72_2 C_72_2
 
 
 
@@ -1074,6 +1186,7 @@ if !_rc{
 }
 
 label define C_72_3 .a"." 1 "yes" 6 "could not (physical limitation)"7 "refused"
+label values c_72_3 C_72_3
 
 
 
@@ -1083,6 +1196,7 @@ if !_rc{
 }
 
 label define C_72_4 .a"." 1 "yes" 6 "could not (physical limitation)"7 "refused"
+label values c_72_4 C_72_4
 
 
 /*
@@ -1093,6 +1207,7 @@ if !_rc{
 }
 
 label define G_3 .a"." 1 "yes" 2 "no" 
+label values g_3 G_3
 
 */
 
@@ -1102,7 +1217,8 @@ if !_rc{
      tostring C_77A, replace
 }
 
-label define C_77A .a"." 0 "sí exacta" 1 "yes, approximately" 2 "forgot the element"
+label define C_77A .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_77a C_77A
 
 
 
@@ -1112,6 +1228,7 @@ if !_rc{
 }
 
 label define C_77B .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_77b C_77B
 
 
 
@@ -1121,6 +1238,7 @@ if !_rc{
 }
 
 label define C_77C .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_77c C_77C
 
 
 
@@ -1130,6 +1248,7 @@ if !_rc{
 }
 
 label define C_77D .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_77d C_77D
 
 
 
@@ -1139,6 +1258,7 @@ if !_rc{
 }
 
 label define C_77E .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_77e C_77E
 
 
 
@@ -1148,6 +1268,7 @@ if !_rc{
 }
 
 label define C_77F .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_77f C_77F
 
 
 
@@ -1157,6 +1278,7 @@ if !_rc{
 }
 
 label define C_78_01 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_01 C_78_01
 
 
 
@@ -1166,6 +1288,7 @@ if !_rc{
 }
 
 label define C_78_02 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_02 C_78_02
 
 
 
@@ -1175,6 +1298,7 @@ if !_rc{
 }
 
 label define C_78_03 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_03 C_78_03
 
 
 
@@ -1184,6 +1308,7 @@ if !_rc{
 }
 
 label define C_78_04 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_04 C_78_04
 
 
 
@@ -1193,6 +1318,7 @@ if !_rc{
 }
 
 label define C_78_05 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_05 C_78_05
 
 
 
@@ -1202,6 +1328,7 @@ if !_rc{
 }
 
 label define C_78_06 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_06 C_78_06
 
 
 
@@ -1211,6 +1338,7 @@ if !_rc{
 }
 
 label define C_78_07 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_07 C_78_07
 
 
 
@@ -1220,6 +1348,7 @@ if !_rc{
 }
 
 label define C_78_08 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_08 C_78_08
 
 
 
@@ -1229,6 +1358,7 @@ if !_rc{
 }
 
 label define C_78_09 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_09 C_78_09
 
 
 
@@ -1238,6 +1368,7 @@ if !_rc{
 }
 
 label define C_78_10 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_10 C_78_10
 
 
 
@@ -1247,6 +1378,7 @@ if !_rc{
 }
 
 label define C_78_11 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_11 C_78_11
 
 
 
@@ -1256,6 +1388,7 @@ if !_rc{
 }
 
 label define C_78_12 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_12 C_78_12
 
 
 
@@ -1265,6 +1398,7 @@ if !_rc{
 }
 
 label define C_78_13 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_13 C_78_13
 
 
 
@@ -1274,6 +1408,7 @@ if !_rc{
 }
 
 label define C_78_14 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_14 C_78_14
 
 
 
@@ -1283,6 +1418,7 @@ if !_rc{
 }
 
 label define C_78_15 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_15 C_78_15
 
 
 
@@ -1292,6 +1428,7 @@ if !_rc{
 }
 
 label define C_78_16 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_16 C_78_16
 
 
 
@@ -1301,6 +1438,7 @@ if !_rc{
 }
 
 label define C_78_17 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_17 C_78_17
 
 
 
@@ -1310,6 +1448,7 @@ if !_rc{
 }
 
 label define C_78_18 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_18 C_78_18
 
 
 
@@ -1319,6 +1458,7 @@ if !_rc{
 }
 
 label define C_78_19 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_19 C_78_19
 
 
 
@@ -1328,6 +1468,7 @@ if !_rc{
 }
 
 label define C_78_20 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_20 C_78_20
 
 
 
@@ -1337,6 +1478,7 @@ if !_rc{
 }
 
 label define C_78_21 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_21 C_78_21
 
 
 
@@ -1346,6 +1488,7 @@ if !_rc{
 }
 
 label define C_78_22 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_22 C_78_22
 
 
 
@@ -1355,6 +1498,7 @@ if !_rc{
 }
 
 label define C_78_23 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_23 C_78_23
 
 
 
@@ -1364,6 +1508,7 @@ if !_rc{
 }
 
 label define C_78_24 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_24 C_78_24
 
 
 
@@ -1373,6 +1518,7 @@ if !_rc{
 }
 
 label define C_78_25 .a"." 0 "yes, exactly" 1 "yes, approximately" 2 "forgot the element"
+label values c_78_25 C_78_25
 
 
 
@@ -1382,6 +1528,7 @@ if !_rc{
 }
 
 label define C_79_1 .a"." 1 "yes" 6 "could not (physical limitation)"4 "could not remember the figure" 7 "refused"
+label values c_79_1 C_79_1
 
 
 
@@ -1391,6 +1538,7 @@ if !_rc{
 }
 
 label define C_79_2 .a"." 1 "yes" 6 "could not (physical limitation)"4 "could not remember the figure" 7 "refused"
+label values c_79_2 C_79_2
 
 
 
@@ -1400,6 +1548,7 @@ if !_rc{
 }
 
 label define C_79_3 .a"." 1 "yes" 6 "could not (physical limitation)"4 "could not remember the figure" 7 "refused"
+label values c_79_3 C_79_3
 
 
 
@@ -1409,6 +1558,7 @@ if !_rc{
 }
 
 label define C_79_4 .a"." 1 "yes" 6 "could not (physical limitation)"4 "could not remember the figure" 7 "refused"
+label values c_79_4 C_79_4
 
 
 
@@ -1418,6 +1568,7 @@ if !_rc{
 }
 
 label define C_80A .a"." 2 "no" 1 "yes" 
+label values c_80a C_80A
 
 
 
@@ -1427,6 +1578,7 @@ if !_rc{
 }
 
 label define C_80B .a"." 2 "no" 1 "yes" 
+label values c_80b C_80B
 
 
 
@@ -1436,6 +1588,7 @@ if !_rc{
 }
 
 label define C_80C .a"." 2 "no" 1 "yes" 
+label values c_80c C_80C
 
 
 
@@ -1445,6 +1598,7 @@ if !_rc{
 }
 
 label define C_81 .a"." 1 "excellent" 2 "very good" 3 "good" 4 "regular" 5 "poor" 6 "blind" 
+label values c_81 C_81
 
 
 
@@ -1454,250 +1608,300 @@ if !_rc{
 }
 
 label define C_82 .a"." 1 "excellent" 2 "very good" 3 "good" 4 "regular" 5 "poor" 6 "deaf" 
+label values c_82 C_82
 
 
 
 label define C_33_A 0 "false" 7 "true"
+label values c_33_a C_33_A
 
 
 
 
 label define C_33_1 0 "false" 1 "true"
+label values c_33_1 C_33_1
 
 
 
 
 label define C_33_2 0 "false" 1 "true"
+label values c_33_2 C_33_2
 
 
 
 
 label define C_33_3 0 "false" 1 "true"
+label values c_33_3 C_33_3
 
 
 
 
 label define C_33_4 0 "false" 1 "true"
+label values c_33_4 C_33_4
 
 
 
 
 label define C_33_5 0 "false" 1 "true"
+label values c_33_5 C_33_5
 
 
 
 
 label define C_33_6 0 "false" 1 "true"
+label values c_33_6 C_33_6
 
 
 
 
 label define C_33_7 0 "false" 1 "true"
+label values c_33_7 C_33_7
 
 
 
 
 label define C_33_8 0 "false" 1 "true"
+label values c_33_8 C_33_8
 
 
 
 
 label define C_33_9 0 "false" 1 "true"
+label values c_33_9 C_33_9
 
 
 
 
 label define C_33_10 0 "false" 1 "true"
+label values c_33_10 C_33_10
 
 
 
 
 label define C_34_A 0 "false" 7 "true"
+label values c_34_a C_34_A
 
 
 
 
 label define C_34_1 0 "false" 1 "true"
+label values c_34_1 C_34_1
 
 
 
 
 label define C_34_2 0 "false" 1 "true"
+label values c_34_2 C_34_2
 
 
 
 
 label define C_34_3 0 "false" 1 "true"
+label values c_34_3 C_34_3
 
 
 
 
 label define C_34_4 0 "false" 1 "true"
+label values c_34_4 C_34_4
 
 
 
 
 label define C_34_5 0 "false" 1 "true"
+label values c_34_5 C_34_5
 
 
 
 
 label define C_34_6 0 "false" 1 "true"
+label values c_34_6 C_34_6
 
 
 
 
 label define C_34_7 0 "false" 1 "true"
+label values c_34_7 C_34_7
 
 
 
 
 label define C_34_8 0 "false" 1 "true"
+label values c_34_8 C_34_8
 
 
 
 
 label define C_34_9 0 "false" 1 "true"
+label values c_34_9 C_34_9
 
 
 
 
 label define C_34_10 0 "false" 1 "true"
+label values c_34_10 C_34_10
 
 
 
 
 label define C_35_A 0 "false" 7 "true"
+label values c_35_a C_35_A
 
 
 
 
 label define C_35_1 0 "false" 1 "true"
+label values c_35_1 C_35_1
 
 
 
 
 label define C_35_2 0 "false" 1 "true"
+label values c_35_2 C_35_2
 
 
 
 
 label define C_35_3 0 "false" 1 "true"
+label values c_35_3 C_35_3
 
 
 
 
 label define C_35_4 0 "false" 1 "true"
+label values c_35_4 C_35_4
 
 
 
 
 label define C_35_5 0 "false" 1 "true"
+label values c_35_5 C_35_5
 
 
 
 
 label define C_35_6 0 "false" 1 "true"
+label values c_35_6 C_35_6
 
 
 
 
 label define C_35_7 0 "false" 1 "true"
+label values c_35_7 C_35_7
 
 
 
 
 label define C_35_8 0 "false" 1 "true"
+label values c_35_8 C_35_8
 
 
 
 
 label define C_35_9 0 "false" 1 "true"
+label values c_35_9 C_35_9
 
 
 
 
 label define C_35_10 0 "false" 1 "true"
+label values c_35_10 C_35_10
 
 
 
 
 label define C_63_A 0 "false" 7 "true"
+label values c_63_a C_63_A
 
 
 
 
 label define C_63_1 0 "false" 1 "true"
+label values c_63_1 C_63_1
 
 
 
 
 label define C_63_2 0 "false" 1 "true"
+label values c_63_2 C_63_2
 
 
 
 
 label define C_63_3 0 "false" 1 "true"
+label values c_63_3 C_63_3
 
 
 
 
 label define C_63_4 0 "false" 1 "true"
+label values c_63_4 C_63_4
 
 
 
 
 label define C_63_5 0 "false" 1 "true"
+label values c_63_5 C_63_5
 
 
 
 
 label define C_63_6 0 "false" 1 "true"
+label values c_63_6 C_63_6
 
 
 
 
 label define C_63_7 0 "false" 1 "true"
+label values c_63_7 C_63_7
 
 
 
 
 label define C_63_8 0 "false" 1 "true"
+label values c_63_8 C_63_8
 
 
 
 
 label define C_63_9 0 "false" 1 "true"
+label values c_63_9 C_63_9
 
 
 
 
 label define C_63_10 0 "false" 1 "true"
+label values c_63_10 C_63_10
 
 
 
 
 label define C_66_A 0 "false" 7 "true"
+label values c_66_a C_66_A
 
 
 
 
 label define C_67_A 0 "false" 7 "true"
+label values c_67_a C_67_A
 
 
 
 
 label define C_68_A 0 "false" 7 "true"
+label values c_68_a C_68_A
 
 
 
 
 label define C_77_A 0 "false" 7 "true"
+label values c_77_a C_77_A
 
 
 
 
 label define C_78_A 0 "false" 7 "true"
+label values c_78_a C_78_A
 
 
 
@@ -2243,6 +2447,7 @@ label variable c_82 "82. How is the participant's ear/hearing range (with device
 label variable c_deviceid2 "Device ID:"
 
 label define checkbox_label 0 "unchecked" 1 "checked", replace
+label values checkbox_label checkbox_label
 
 label values c_33_a checkbox_label
 

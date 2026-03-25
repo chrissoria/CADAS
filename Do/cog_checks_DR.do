@@ -46,13 +46,21 @@ else if `country' == 2 {
 *moving to orphanage
 replace c_country = 5 if inlist(globalrecordid,"fddfa661-15e9-4713-8757-6b99eb8587d7","550890f9-98f2-4590-b334-ec94738214f3")
 
+*complete interview (cm=14, audio present) but Resumen never submitted — no socio linkage possible
+*cluster 80, house 063, part 02; single-participant household; documented in cog_data_gaps.rtf
+replace c_country = 5 if globalrecordid == "185b850d-3d8c-43dd-9fa2-15c846e951ba"
+
 *instructions from Guillermina
 drop if inlist(globalrecordid, "25cdfeb4-89a5-4440-9e85-17033755a325")
 
 *this case appears to be a less complete duplicate
 drop if inlist(globalrecordid, "64e14797-d05d-489f-a564-966f84963e43")
 
-replace c_clustid = 176 if globalrecordid == "25290482-82e8-4ca9-83ef-f451d9d1c4b0"
+*cog filed under cluster 176 house 179 (9-digit PID 117617901) but same interviewer (2),
+*device (02_do), and date (2024-03-04) as socio/phys for cluster 2, house 176, part 01 (10217601)
+*interviewer entered house number in cluster field; original c_clustid=176 line was a no-op
+replace c_clustid = 2 if globalrecordid == "25290482-82e8-4ca9-83ef-f451d9d1c4b0"
+replace c_houseid = 176 if globalrecordid == "25290482-82e8-4ca9-83ef-f451d9d1c4b0"
 
 *instructions from Guillermina
 *this got deleted, need to recover
@@ -60,6 +68,25 @@ replace c_clustid = 176 if globalrecordid == "25290482-82e8-4ca9-83ef-f451d9d1c4
 
 *these look like junk
 drop if inlist(globalrecordid, "37134dc6-03b8-4b78-afad-234dc6bc522a", "3fe9ab18-9ced-4313-a365-ca12ab9d08a4", "a211402c-0be5-4e33-8944-d1b1b2fd56ae","0f793ca8-fc3d-4f19-be72-bd460bbd850a")
+
+*completely empty shell at cluster 4 — real interview is at cluster 51 (15100402, GRID 18fa02cb); c_conglid2=51 confirms; c_countmissing=170
+drop if globalrecordid == "3ba8ce1a-0e76-4444-bb2d-120c2530b7ee"
+
+*near-empty ghost at cluster 65 (c_conglid2=6) — correct cog already matched to 10601101; c_countmissing=157
+drop if globalrecordid == "087907f2-71b4-476a-9496-794c283679a0"
+
+*--- Cog-only orphans: Not in Resumen, no matching socio anywhere in cluster, no fix possible ---
+
+*partial interview (cm=111, refused at c_43); cluster 62, house 002, part 01
+drop if globalrecordid == "bb00d5b5-0276-4c52-8f82-597a5a790c87"
+
+*batch drop: empty/near-empty shells (cm=130-170), all Not in Resumen, no socio match
+*10300301(133) 10602102(159) 12205302(136) 12703101(130) 12806902(144) 12906901(170)
+drop if inlist(globalrecordid, "d453c038-27ff-4b73-901b-dfa9bda6a892", "699ad8ab-d5bb-46e4-bb72-c0fa2e7dc8db", "c0d2bdb7-a27d-4f63-8980-e482564d66d2", "708c4a13-589e-4aec-88be-92e53868ec3c", "05284101-9a36-421d-94b9-251729753ac8", "451f0d7f-1212-4fb7-8abf-9a8e6be01f7a")
+*13000702(159) 13402201(135) 13700401(170) 14106601(164) 14600101(169) 16302802(149)
+drop if inlist(globalrecordid, "196e209c-d3bc-4e0f-b76d-9b1b09252cb7", "a589a28f-c28f-435f-b0a5-e970ec925c41", "7dfa89c6-3820-484d-8c84-027caed1817a", "f9570166-6e65-480d-9180-df666722d2bd", "045232a8-ffb6-4ecc-9542-f83e1abac8c4", "c95b3d28-1d7c-45c6-9f21-273b342621e1")
+*16700101(170) 17101301(135) 17101901(137) 17500101(136)
+drop if inlist(globalrecordid, "179c5d53-a092-47c4-8a9e-d7bc52084a1d", "54ec2565-bbf2-42b0-b157-6031ff7f2c88", "4f6b1000-4d2c-4850-83f1-35a957cb9f7c", "69e54963-e309-44ae-8fc0-5666a6b4c1c8")
 
 *10/17/25 cleaning
 *these look empty
@@ -82,11 +109,68 @@ replace c_particid = 2 if globalrecordid == "5562458f-2fde-4290-8f2d-d6d74835f2c
 *parent pid is diff, and 47-25-1 is missing a cog
 replace c_clustid = 47 if globalrecordid == "f14da436-08b5-42c3-b6f3-c955b97d23de"
 
+*cog filed under house 056 but physical image says cluster 37 house 3 — tablet entry error
+*same interviewer (5), device (05_do), and date (2024-12-05) as all other surveys for 13700301
+replace c_houseid = 3 if globalrecordid == "736f5585-a698-456b-bba4-01c697653b95"
+
+*cog filed under house 005 but same interviewer (1), device (01_do), and date (2024-05-03)
+*as all other surveys for cluster 26, house 069, participant 01 — likely PID entry error on cog tablet
+replace c_houseid = 69 if globalrecordid == "10614afd-b11b-4d22-a6b9-54c460a5857f"
+
+*cog cluster/house digits transposed (entered as cluster 33 house 015, should be cluster 15 house 033)
+*same interviewer (1), device (01_do), and date (2025-07-11) as all other surveys for 11503301
+replace c_clustid = 15 if globalrecordid == "d055d2ff-4b8e-48b2-853e-59ad8815bf8b"
+replace c_houseid = 33 if globalrecordid == "d055d2ff-4b8e-48b2-853e-59ad8815bf8b"
+
+*cog filed under house 046 but same interviewer (2), device (02_do), and date (2025-04-26)
+*as all other surveys for cluster 11, house 000, participant 01 — likely PID entry error on cog tablet
+replace c_houseid = 0 if globalrecordid == "c4bf28b8-aaf6-4426-9804-06f214d2a60e"
+
+*cog filed under house 085 but same interviewer (5), device (05_do), and date (2025-03-19)
+*as all other surveys for cluster 41, house 083, participant 02 — last digit 5 vs 3
+replace c_houseid = 83 if globalrecordid == "ae4b25be-077e-4f69-8f4a-220bfc342eeb"
+
+*cog filed under cluster 48 but same interviewer (5), device (05_do), and date (2025-05-29)
+*as all other surveys for cluster 47, house 038, participant 01 — cluster digit 8 vs 7
+*MainHousehold.csv and socio child both confirm cluster 47
+replace c_clustid = 47 if globalrecordid == "237f4543-0dc1-4fcb-bba2-1b2b90472238"
+
+*cog filed under house 078 but same interviewer (5), device (05_do), and date (2023-10-06)
+*as all other surveys for cluster 50, house 079, participant 01 — last digit 8 vs 9
+replace c_houseid = 79 if globalrecordid == "cf77a5b4-1ad9-4427-9efb-cb820ffde3c8"
+
+
+*cog filed under house 047 but same interviewer (2), device (02_do), and date (2024-01-18)
+*as all other surveys for cluster 81, house 049, participant 02 — last digit 7 vs 9
+*house 047 participant 2 has no socio; scoring already correctly filed under house 049
+replace c_houseid = 49 if globalrecordid == "34228e00-a21f-4a1c-931c-0db54568dcfa"
+
+*cog filed under house 006 but c_houseid2=11 internally flags house 011 as correct
+*same interviewer (5), device (05_do), date (2024-11-02); cog at 10:48, socio at 11:24
+*no socio exists for cluster 39, house 006, participant 01
+replace c_houseid = 11 if globalrecordid == "6d210bfd-51e2-46bf-8015-80f6661989b2"
+
 *instructions 11/29/25
 replace c_houseid = 75 if globalrecordid == "1938d71f-226e-4591-a936-1e0717ed930d"
 replace c_houseid = 55 if globalrecordid == "3bfe708f-8b63-4fdf-a5d9-304a830a0994" // don't see this hhid as having participants anywhere
 drop if globalrecordid == "8e6fd050-fdd1-4de7-a6e4-537f79928c5b"
 replace c_houseid = 49 if globalrecordid == "40dc56a1-4747-4d4d-b723-aee5a812884d" // looks like this is a different day than the other surveys in 81-49 so may not belong, also may need to change particid to 2
+
+* 3/19/26 cleaning — orphan cog fixes
+*cog filed under cluster 52 house 012 but same interviewer (5), device (05_do),
+*and date (2025-02-08) as all other surveys for 15200001 — house digit entry error
+replace c_houseid = 0 if globalrecordid == "800978a8-9731-49bd-9253-90e689d89c1f"
+
+*--- Cog-only orphans: no matching case found, moved to country 5 ---
+*cluster 70 house 037 part 01, device 01_do, 2023-10-25 — no cases missing cog in cluster 70
+replace c_country = 5 if globalrecordid == "4280fb7c-9f4b-40ff-8aa9-6557b83180a0"
+*cluster 30 house 035 part 02, device 01_do, 2024-06-18 — no cases missing cog in cluster 30
+replace c_country = 5 if globalrecordid == "b132d999-57b6-48be-b83f-18a653ce77fe"
+*cluster 40 house 008 part 01, device 04_do, 2024-11-08 — has phys+cog but no socio/infor anywhere
+*phys also orphaned to country 5 in global_checks_DR.do
+replace c_country = 5 if globalrecordid == "6e9ef757-b6f5-4b91-9100-82f6a19a7397"
+*16700801: near-empty across all surveys (cog 71%) — junk
+drop if globalrecordid == "7ca8ebc8-1859-4385-b1b7-8d177a521a3b"
 
 foreach var in c_clustid c_particid c_houseid {
 	replace `var' = int(`var')
